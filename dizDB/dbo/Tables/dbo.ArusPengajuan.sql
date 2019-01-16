@@ -1,0 +1,26 @@
+﻿CREATE TABLE [dbo].[ArusPengajuan] (
+    [idaruspengajuan]  BIGINT         IDENTITY (1, 1) NOT NULL,
+    [idunique]         VARCHAR (1000) DEFAULT ('-') NOT NULL,
+    [idbank]           BIGINT         DEFAULT ((0)) NOT NULL,
+    [noaruspengajuan]  VARCHAR (15)   DEFAULT ('-') NOT NULL,
+    [idpemohon]        BIGINT         DEFAULT ((0)) NOT NULL,
+    [namapemohon]      VARCHAR (300)  DEFAULT ('-') NOT NULL,
+    [jabatanpemohon]   VARCHAR (250)  DEFAULT ('-') NOT NULL,
+    [deptpemohon]      VARCHAR (150)  DEFAULT ('-') NOT NULL,
+    [tanggalpemohon]   DATETIME       DEFAULT (getdate()) NOT NULL,
+    [iddisetujui]      BIGINT         NULL,
+    [namadisetujui]    VARCHAR (300)  NULL,
+    [jabatandisetujui] VARCHAR (250)  NULL,
+    [deptdisetujui]    VARCHAR (150)  NULL,
+    [tanggaldisetujui] DATETIME       NULL,
+    [iddiketahui]      BIGINT         NULL,
+    [namadiketahui]    VARCHAR (300)  NULL,
+    [jabatandiketahui] VARCHAR (250)  NULL,
+    [deptdiketahui]    VARCHAR (150)  NULL,
+    [tanggaldiketahui] DATETIME       NULL,
+    [isdeleted]        BIGINT         DEFAULT ((0)) NOT NULL,
+    [deletereason]     VARCHAR (500)  DEFAULT ('-') NOT NULL,
+    [idcompany]        BIGINT         DEFAULT ((0)) NOT NULL,
+    PRIMARY KEY CLUSTERED ([idaruspengajuan] ASC)
+);
+

@@ -1,0 +1,142 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="setJurnal" targetNamespace="http://tempuri.org/setJurnal.xsd" xmlns:mstns="http://tempuri.org/setJurnal.xsd" xmlns="http://tempuri.org/setJurnal.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="MySettings" AppSettingsPropertyName="ConnString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="ConnString (MySettings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.dizUI.My.MySettings.GlobalReference.Default.ConnString" Provider="System.Data.SqlClient" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="xrJurnalTableAdapter" GeneratorDataComponentClassName="xrJurnalTableAdapter" Name="xrJurnal" UserDataComponentName="xrJurnalTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="ConnString (MySettings)" DbObjectName="POS216TEST.dbo.xrJurnal" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT idjurnal, datejurnal, tanggaljurnal, idreff, tablereff, idcoalama, idcoa, coabaru, coalama, rekening, remarks, jumlahuang, posisidk, dk, isdeleted FROM dbo.xrJurnal</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="datejurnal" DataSetColumn="datejurnal" />
+              <Mapping SourceColumn="tanggaljurnal" DataSetColumn="tanggaljurnal" />
+              <Mapping SourceColumn="idreff" DataSetColumn="idreff" />
+              <Mapping SourceColumn="coabaru" DataSetColumn="coabaru" />
+              <Mapping SourceColumn="coalama" DataSetColumn="coalama" />
+              <Mapping SourceColumn="rekening" DataSetColumn="rekening" />
+              <Mapping SourceColumn="remarks" DataSetColumn="remarks" />
+              <Mapping SourceColumn="jumlahuang" DataSetColumn="jumlahuang" />
+              <Mapping SourceColumn="posisidk" DataSetColumn="posisidk" />
+              <Mapping SourceColumn="dk" DataSetColumn="dk" />
+              <Mapping SourceColumn="isdeleted" DataSetColumn="isdeleted" />
+              <Mapping SourceColumn="idjurnal" DataSetColumn="idjurnal" />
+              <Mapping SourceColumn="tablereff" DataSetColumn="tablereff" />
+              <Mapping SourceColumn="idcoalama" DataSetColumn="idcoalama" />
+              <Mapping SourceColumn="idcoa" DataSetColumn="idcoa" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+        </Tables>
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="setJurnal" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="True" msprop:Generator_DataSetName="setJurnal" msprop:Generator_UserDSName="setJurnal">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="xrJurnal" msprop:Generator_UserTableName="xrJurnal" msprop:Generator_RowEvArgName="xrJurnalRowChangeEvent" msprop:Generator_TableVarName="tablexrJurnal" msprop:Generator_TablePropName="xrJurnal" msprop:Generator_RowDeletingName="xrJurnalRowDeleting" msprop:Generator_RowChangingName="xrJurnalRowChanging" msprop:Generator_RowDeletedName="xrJurnalRowDeleted" msprop:Generator_RowEvHandlerName="xrJurnalRowChangeEventHandler" msprop:Generator_TableClassName="xrJurnalDataTable" msprop:Generator_RowChangedName="xrJurnalRowChanged" msprop:Generator_RowClassName="xrJurnalRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="datejurnal" msprop:Generator_ColumnVarNameInTable="columndatejurnal" msprop:Generator_ColumnPropNameInRow="datejurnal" msprop:Generator_ColumnPropNameInTable="datejurnalColumn" msprop:Generator_UserColumnName="datejurnal" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="tanggaljurnal" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columntanggaljurnal" msprop:Generator_ColumnPropNameInRow="tanggaljurnal" msprop:Generator_ColumnPropNameInTable="tanggaljurnalColumn" msprop:Generator_UserColumnName="tanggaljurnal" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="61" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="idreff" msprop:Generator_ColumnVarNameInTable="columnidreff" msprop:Generator_ColumnPropNameInRow="idreff" msprop:Generator_ColumnPropNameInTable="idreffColumn" msprop:Generator_UserColumnName="idreff">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="2000" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="coabaru" msprop:Generator_ColumnVarNameInTable="columncoabaru" msprop:Generator_ColumnPropNameInRow="coabaru" msprop:Generator_ColumnPropNameInTable="coabaruColumn" msprop:Generator_UserColumnName="coabaru" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="20" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="coalama" msprop:Generator_ColumnVarNameInTable="columncoalama" msprop:Generator_ColumnPropNameInRow="coalama" msprop:Generator_ColumnPropNameInTable="coalamaColumn" msprop:Generator_UserColumnName="coalama" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="20" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="rekening" msprop:Generator_ColumnVarNameInTable="columnrekening" msprop:Generator_ColumnPropNameInRow="rekening" msprop:Generator_ColumnPropNameInTable="rekeningColumn" msprop:Generator_UserColumnName="rekening" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="500" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="remarks" msprop:Generator_ColumnVarNameInTable="columnremarks" msprop:Generator_ColumnPropNameInRow="remarks" msprop:Generator_ColumnPropNameInTable="remarksColumn" msprop:Generator_UserColumnName="remarks" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="8000" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="jumlahuang" msprop:Generator_ColumnVarNameInTable="columnjumlahuang" msprop:Generator_ColumnPropNameInRow="jumlahuang" msprop:Generator_ColumnPropNameInTable="jumlahuangColumn" msprop:Generator_UserColumnName="jumlahuang" type="xs:decimal" minOccurs="0" />
+              <xs:element name="posisidk" msprop:Generator_ColumnVarNameInTable="columnposisidk" msprop:Generator_ColumnPropNameInRow="posisidk" msprop:Generator_ColumnPropNameInTable="posisidkColumn" msprop:Generator_UserColumnName="posisidk" type="xs:long" minOccurs="0" />
+              <xs:element name="dk" msprop:Generator_ColumnVarNameInTable="columndk" msprop:Generator_ColumnPropNameInRow="dk" msprop:Generator_ColumnPropNameInTable="dkColumn" msprop:Generator_UserColumnName="dk" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="isdeleted" msprop:Generator_ColumnVarNameInTable="columnisdeleted" msprop:Generator_ColumnPropNameInRow="isdeleted" msprop:Generator_ColumnPropNameInTable="isdeletedColumn" msprop:Generator_UserColumnName="isdeleted" type="xs:long" minOccurs="0" />
+              <xs:element name="idjurnal" msprop:Generator_ColumnVarNameInTable="columnidjurnal" msprop:Generator_ColumnPropNameInRow="idjurnal" msprop:Generator_ColumnPropNameInTable="idjurnalColumn" msprop:Generator_UserColumnName="idjurnal">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="tablereff" msprop:Generator_ColumnVarNameInTable="columntablereff" msprop:Generator_ColumnPropNameInRow="tablereff" msprop:Generator_ColumnPropNameInTable="tablereffColumn" msprop:Generator_UserColumnName="tablereff">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="idcoalama" msprop:Generator_ColumnVarNameInTable="columnidcoalama" msprop:Generator_ColumnPropNameInRow="idcoalama" msprop:Generator_ColumnPropNameInTable="idcoalamaColumn" msprop:Generator_UserColumnName="idcoalama">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="idcoa" msprop:Generator_ColumnVarNameInTable="columnidcoa" msprop:Generator_ColumnPropNameInRow="idcoa" msprop:Generator_ColumnPropNameInTable="idcoaColumn" msprop:Generator_UserColumnName="idcoa">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:xrJurnal" />
+      <xs:field xpath="mstns:idjurnal" />
+    </xs:unique>
+  </xs:element>
+</xs:schema>

@@ -1,0 +1,32 @@
+﻿select c.idcoa,c.coa,c.remarks,isnull(sum(j.saldo),0) as saldo 
+from coa c 
+left join 
+(
+select c.coa,
+isnull(d.debet,0) as debet,
+isnull(k.kredit,0) as kredit,
+isnull(k.kredit,0)+isnull(d.debet,0) as saldo 
+from coa c 
+left join 
+(
+select sum(d.jumlahuang) as debet,d.idcoa 
+from jurnal d 
+where d.posisidk=1 and LEFT(CONVERT(VARCHAR, d.tanggaljurnal, 120), 10)>='*TAHUN*-01-01' and LEFT(CONVERT(VARCHAR, d.tanggaljurnal, 120), 10) <= '*TANGGAL*' 
+and d.idcompany=(select top 1 value from sys_appsetting where variable='CompanyID') 
+group by d.idcoa
+) d on c.idcoa=d.idcoa 
+left join 
+(
+select sum(d.jumlahuang) as kredit,d.idcoa 
+from jurnal d 
+where d.posisidk=2 and LEFT(CONVERT(VARCHAR, d.tanggaljurnal, 120), 10)>='*TAHUN*-01-01' and LEFT(CONVERT(VARCHAR, d.tanggaljurnal, 120), 10) <= '*TANGGAL*' 
+and d.idcompany=(select top 1 value from sys_appsetting where variable='CompanyID') 
+group by d.idcoa
+) k on c.idcoa=k.idcoa 
+) j on j.coa like c.coa + '%' 
+where c.idcompany=(select top 1 value from sys_appsetting where variable='CompanyID') 
+and len(c.coa)<=4 
+and convert(bigint,c.coa)>=0 
+and convert(bigint,left(c.coa,1)) in (1,2,3) 
+group by c.idcoa,c.coa,c.remarks 
+order by convert(varchar(20),c.coa) asc

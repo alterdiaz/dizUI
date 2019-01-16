@@ -1,0 +1,22 @@
+﻿select 
+a.idanggaran,c.coa,c.remarks 
+,isnull(yr.angyr,0) as angyr, isnull(yr.realyr,0) as realyr 
+from anggaran a 
+left join coa c on a.idcoa=c.idcoa 
+left join ( 
+select 
+a.idanggaran,isnull(a.jumlahuang,0) as angyr,a.idcoa, isnull(yr.realyr,0) as realyr 
+from anggaran a 
+left join ( 
+select sum(isnull(ad.jumlahuang,0)) as realyr 
+from aruspengajuan ap 
+left join aruspengajuandt ad 
+on ap.idaruspengajuan=ad.idaruspengajuan and ad.posisidk=2 and ad.idcompany=(select top 1 value from sys_appsetting where variable='CompanyID') 
+where ap.isdeleted=0 and ad.isdeleted=0 
+and left(convert(varchar,ap.tanggalpemohon,121),4)='*TAHUN*' 
+and ap.idcompany=(select top 1 value from sys_appsetting where variable='CompanyID') 
+) yr on a.idcoa=yr.idcoa 
+where a.periode='*TAHUN*' and a.idcompany=(select top 1 value from sys_appsetting where variable='CompanyID') 
+) yr on a.idcoa=yr.idcoa 
+where a.periode = '*TAHUN*' and a.idcompany=(select top 1 value from sys_appsetting where variable='CompanyID') 
+order by convert(bigint,c.coa) asc 

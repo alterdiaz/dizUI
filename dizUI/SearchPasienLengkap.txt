@@ -1,0 +1,32 @@
+﻿select r.idrekammedis as 'ID',
+dbo.fformatnorm(r.rekammedisno) as 'No RM',
+sap.generalcode + ' ' + r.nama as 'Nama Pasien',
+st.generalcode as 'Jenis Kelamin',
+w.wilayah as 'Warganegara',
+kot.wilayah as 'Tempat Lahir',
+convert(varchar,r.tanggallahir,105) as 'Tgl Lahir',
+ms.generalcode as 'Status Pernikahan',
+isnull(a.alamat,'-') as 'Alamat',
+isnull(telk.phone,0) as 'Telp Kantor',
+isnull(telk.extension,0) as 'Ext.',
+isnull(telr.phone,0) as 'Telp Rumah',
+isnull(telh.phone,0) as 'Handphone',
+isnull(kelg.nama,'-') as 'Nama Keluarga',
+isnull(kelt.generalcode,'-') as 'Jenis Keluarga',
+isnull(telkr.phone,0) as 'Telp Keluarga Rumah',
+isnull(telkh.phone,0) as 'Telp Keluarga HP' 
+from rekammedis r 
+left join sys_generalcode sap on r.sapaan=sap.idgeneral and sap.gctype='SAPAAN' 
+left join sys_generalcode st on r.jeniskelamin=st.idgeneral and st.gctype='SEXTYPE' 
+left join sys_generalcode ms on r.pernikahan=ms.idgeneral and ms.gctype='MARITALSTATUS' 
+left join alamat a on r.idrekammedis=a.idreff and a.tablereff='PASIEN'and a.isprimary=1 and a.isdeleted=0 and a.idcompany=(select top 1 value from sys_appsetting where variable='CompanyID') 
+left join wilayah w on r.kewarganegaraan=w.idwilayah and w.idcompany=(select top 1 value from sys_appsetting where variable='CompanyID') 
+left join wilayah kot on r.kotalahir=kot.idwilayah and kot.idcompany=(select top 1 value from sys_appsetting where variable='CompanyID') 
+left join phone telk on r.idrekammedis=telk.idreff and telk.tablereff='PASIEN' and telk.isprimary=1 and telk.isdeleted=0 and telk.phonetype=1 and telk.idcompany=(select top 1 value from sys_appsetting where variable='CompanyID') 
+left join phone telr on r.idrekammedis=telr.idreff and telr.tablereff='PASIEN' and telr.isprimary=1 and telr.isdeleted=0 and telr.phonetype=2 and telr.idcompany=(select top 1 value from sys_appsetting where variable='CompanyID') 
+left join phone telh on r.idrekammedis=telh.idreff and telh.tablereff='PASIEN' and telh.isprimary=1 and telh.isdeleted=0 and telh.phonetype=3 and telh.idcompany=(select top 1 value from sys_appsetting where variable='CompanyID') 
+left join keluarga kelg on r.idrekammedis=kelg.idreff and kelg.tablereff='PASIEN' and kelg.isdeleted=0 and kelg.idcompany=(select top 1 value from sys_appsetting where variable='CompanyID') 
+left join sys_generalcode kelt on kelg.familytype=kelt.idgeneral and kelt.gctype='FAMILYTYPE' 
+left join phone telkr on kelg.idkeluarga=telkr.idreff and telkr.tablereff='KELUARGAPASIEN' and telkr.isprimary=1 and telkr.isdeleted=0 and telkr.phonetype=2 and telkr.idcompany=(select top 1 value from sys_appsetting where variable='CompanyID') 
+left join phone telkh on kelg.idkeluarga=telkh.idreff and telkh.tablereff='KELUARGAPASIEN' and telkh.isprimary=1 and telkh.isdeleted=0 and telkh.phonetype=3 and telkh.idcompany=(select top 1 value from sys_appsetting where variable='CompanyID') 
+where r.isdeleted=0 and r.idcompany=(select top 1 value from sys_appsetting where variable='CompanyID') 

@@ -1,0 +1,96 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="BRPPPset" targetNamespace="http://tempuri.org/BRPPPset.xsd" xmlns:mstns="http://tempuri.org/BRPPPset.xsd" xmlns="http://tempuri.org/BRPPPset.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="MySettings" AppSettingsPropertyName="ConnString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="ConnString (MySettings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.dizUI.My.MySettings.GlobalReference.Default.ConnString" Provider="System.Data.SqlClient" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="xrBeforeReviewPPPTableAdapter" GeneratorDataComponentClassName="xrBeforeReviewPPPTableAdapter" Name="xrBeforeReviewPPP" UserDataComponentName="xrBeforeReviewPPPTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="ConnString (MySettings)" DbObjectName="POS216TEST.dbo.xrBeforeReviewPPP" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT tanggalpemohon, noaruspengajuan, statushd, keperluan, nodokumen, jumlahuang, posisidk, statusdt FROM xrBeforeReviewPPP</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="tanggalpemohon" DataSetColumn="tanggalpemohon" />
+              <Mapping SourceColumn="noaruspengajuan" DataSetColumn="noaruspengajuan" />
+              <Mapping SourceColumn="statushd" DataSetColumn="statushd" />
+              <Mapping SourceColumn="keperluan" DataSetColumn="keperluan" />
+              <Mapping SourceColumn="nodokumen" DataSetColumn="nodokumen" />
+              <Mapping SourceColumn="jumlahuang" DataSetColumn="jumlahuang" />
+              <Mapping SourceColumn="posisidk" DataSetColumn="posisidk" />
+              <Mapping SourceColumn="statusdt" DataSetColumn="statusdt" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+        </Tables>
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="BRPPPset" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="True" msprop:Generator_DataSetName="BRPPPset" msprop:Generator_UserDSName="BRPPPset">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="xrBeforeReviewPPP" msprop:Generator_UserTableName="xrBeforeReviewPPP" msprop:Generator_RowEvArgName="xrBeforeReviewPPPRowChangeEvent" msprop:Generator_TableVarName="tablexrBeforeReviewPPP" msprop:Generator_TablePropName="xrBeforeReviewPPP" msprop:Generator_RowDeletingName="xrBeforeReviewPPPRowDeleting" msprop:Generator_RowChangingName="xrBeforeReviewPPPRowChanging" msprop:Generator_RowDeletedName="xrBeforeReviewPPPRowDeleted" msprop:Generator_RowEvHandlerName="xrBeforeReviewPPPRowChangeEventHandler" msprop:Generator_TableClassName="xrBeforeReviewPPPDataTable" msprop:Generator_RowChangedName="xrBeforeReviewPPPRowChanged" msprop:Generator_RowClassName="xrBeforeReviewPPPRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="idbank" msprop:Generator_ColumnVarNameInTable="columnidbank" msprop:Generator_ColumnPropNameInRow="idbank" msprop:Generator_ColumnPropNameInTable="idbankColumn" msprop:Generator_UserColumnName="idbank" type="xs:string" minOccurs="0" />
+              <xs:element name="tanggalpemohon" msprop:Generator_ColumnVarNameInTable="columntanggalpemohon" msprop:Generator_ColumnPropNameInRow="tanggalpemohon" msprop:Generator_ColumnPropNameInTable="tanggalpemohonColumn" msprop:Generator_UserColumnName="tanggalpemohon" type="xs:dateTime" />
+              <xs:element name="noaruspengajuan" msprop:Generator_ColumnVarNameInTable="columnnoaruspengajuan" msprop:Generator_ColumnPropNameInRow="noaruspengajuan" msprop:Generator_ColumnPropNameInTable="noaruspengajuanColumn" msprop:Generator_UserColumnName="noaruspengajuan">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="15" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="statushd" msprop:Generator_ColumnVarNameInTable="columnstatushd" msprop:Generator_ColumnPropNameInRow="statushd" msprop:Generator_ColumnPropNameInTable="statushdColumn" msprop:Generator_UserColumnName="statushd" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="nomorurut" msprop:Generator_ColumnVarNameInTable="columnnomorurut" msprop:Generator_ColumnPropNameInRow="nomorurut" msprop:Generator_ColumnPropNameInTable="nomorurutColumn" msprop:Generator_UserColumnName="nomorurut" type="xs:long" minOccurs="0" />
+              <xs:element name="keperluan" msprop:Generator_ColumnVarNameInTable="columnkeperluan" msprop:Generator_ColumnPropNameInRow="keperluan" msprop:Generator_ColumnPropNameInTable="keperluanColumn" msprop:Generator_UserColumnName="keperluan" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="5000" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="nodokumen" msprop:Generator_ColumnVarNameInTable="columnnodokumen" msprop:Generator_ColumnPropNameInRow="nodokumen" msprop:Generator_ColumnPropNameInTable="nodokumenColumn" msprop:Generator_UserColumnName="nodokumen" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="250" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="jumlahuang" msprop:Generator_ColumnVarNameInTable="columnjumlahuang" msprop:Generator_ColumnPropNameInRow="jumlahuang" msprop:Generator_ColumnPropNameInTable="jumlahuangColumn" msprop:Generator_UserColumnName="jumlahuang" type="xs:decimal" minOccurs="0" />
+              <xs:element name="posisidk" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnposisidk" msprop:Generator_ColumnPropNameInRow="posisidk" msprop:Generator_ColumnPropNameInTable="posisidkColumn" msprop:Generator_UserColumnName="posisidk" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="11" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="statusdt" msprop:Generator_ColumnVarNameInTable="columnstatusdt" msprop:Generator_ColumnPropNameInRow="statusdt" msprop:Generator_ColumnPropNameInTable="statusdtColumn" msprop:Generator_UserColumnName="statusdt" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

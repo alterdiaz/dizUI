@@ -1,0 +1,818 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{A926A602-231A-4B64-83C2-944B179175D5}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <StartupObject>dizUIlite.My.MyApplication</StartupObject>
+    <RootNamespace>dizUIlite</RootNamespace>
+    <AssemblyName>dizUIlite</AssemblyName>
+    <FileAlignment>512</FileAlignment>
+    <MyType>WindowsForms</MyType>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <OptionExplicit>On</OptionExplicit>
+    <OptionCompare>Binary</OptionCompare>
+    <OptionStrict>Off</OptionStrict>
+    <OptionInfer>Off</OptionInfer>
+    <ApplicationIcon>Resources\dizLite.ico</ApplicationIcon>
+    <ApplicationManifest>My Project\app.manifest</ApplicationManifest>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <TargetFrameworkProfile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DocumentationFile>dizUIlite.xml</DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022,42353,42354,42355</NoWarn>
+    <Prefer32Bit>false</Prefer32Bit>
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DocumentationFile>dizUIlite.xml</DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022,42353,42354,42355</NoWarn>
+    <Prefer32Bit>false</Prefer32Bit>
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Live|AnyCPU'">
+    <DefineTrace>true</DefineTrace>
+    <OutputPath>bin\Live\</OutputPath>
+    <DocumentationFile>dizUIlite.xml</DocumentationFile>
+    <Optimize>true</Optimize>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022,42353,42354,42355</NoWarn>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Demo|AnyCPU'">
+    <DefineTrace>true</DefineTrace>
+    <OutputPath>bin\Demo\</OutputPath>
+    <DocumentationFile>dizUIlite.xml</DocumentationFile>
+    <Optimize>true</Optimize>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022,42353,42354,42355</NoWarn>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="DevExpress.Charts.v17.2.Core, Version=17.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.Data.v17.2, Version=17.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.DataAccess.v17.2, Version=17.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.DataAccess.v17.2.UI, Version=17.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Map.v17.2.Core, Version=17.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.PivotGrid.v17.2.Core, Version=17.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.Pdf.v17.2.Core, Version=17.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.RichEdit.v17.2.Export, Version=17.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.Printing.v17.2.Core, Version=17.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.Office.v17.2.Core, Version=17.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.RichEdit.v17.2.Core, Version=17.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.TreeMap.v17.2.Core, Version=17.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Utils.v17.2, Version=17.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.Utils.v17.2.UI, Version=17.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.Xpo.v17.2, Version=17.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.XtraBars.v17.2, Version=17.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.XtraCharts.v17.2.Wizard, Version=17.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.XtraCharts.v17.2, Version=17.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.XtraCharts.v17.2.UI, Version=17.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.XtraEditors.v17.2, Version=17.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.XtraGauges.v17.2.Core, Version=17.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.XtraGrid.v17.2, Version=17.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.XtraLayout.v17.2, Version=17.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.XtraMap.v17.2, Version=17.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraPivotGrid.v17.2, Version=17.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.XtraPrinting.v17.2, Version=17.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.Sparkline.v17.2.Core, Version=17.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.CodeParser.v17.2, Version=17.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.XtraReports.v17.2, Version=17.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.XtraReports.v17.2.Extensions, Version=17.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.Images.v17.2, Version=17.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.XtraRichEdit.v17.2, Version=17.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.XtraScheduler.v17.2.Reporting.Extensions, Version=17.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.XtraScheduler.v17.2, Version=17.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.XtraScheduler.v17.2.Core, Version=17.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.XtraTreeList.v17.2, Version=17.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.XtraTreeMap.v17.2, Version=17.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="HL7SDK, Version=1.0.4.0, Culture=neutral, PublicKeyToken=96dc2418941d0102, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\DLL\HL7SDK.dll</HintPath>
+    </Reference>
+    <Reference Include="MySql.Data, Version=6.8.3.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\DLL\MySql.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\DLL\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="PrintingRaw">
+      <HintPath>..\..\DLL\PrintingRaw.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.SQLite, Version=1.0.109.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Data.SQLite.Core.1.0.109.2\lib\net46\System.Data.SQLite.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Data.SQLite.EF6, Version=1.0.109.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Data.SQLite.EF6.1.0.109.0\lib\net46\System.Data.SQLite.EF6.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Data.SQLite.Linq, Version=1.0.109.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Data.SQLite.Linq.1.0.109.0\lib\net46\System.Data.SQLite.Linq.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Design" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Management" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Import Include="Microsoft.VisualBasic" />
+    <Import Include="System" />
+    <Import Include="System.Collections" />
+    <Import Include="System.Collections.Generic" />
+    <Import Include="System.Data" />
+    <Import Include="System.Drawing" />
+    <Import Include="System.Diagnostics" />
+    <Import Include="System.Windows.Forms" />
+    <Import Include="System.Linq" />
+    <Import Include="System.Xml.Linq" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="C:\Program Files (x86)\System.Data.SQLite\2013\bin\SQLite.Interop.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <None Include="packages.config" />
+    <None Include="Resources\canvas_lite.png" />
+    <None Include="Resources\dizUILite250.png" />
+    <None Include="Resources\dizUILite64.png" />
+    <None Include="Resources\dizUI250.png" />
+    <None Include="Resources\dizUI64.png" />
+    <None Include="Resources\dizLite.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ApplicationEvents.vb" />
+    <Compile Include="Apps\Kasbon\frmKaryawan.Designer.vb">
+      <DependentUpon>frmKaryawan.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\Kasbon\frmKaryawan.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Apps\Kasbon\frmKasbon.Designer.vb">
+      <DependentUpon>frmKasbon.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\Kasbon\frmKasbon.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Apps\Kasbon\frmMonKasbon.Designer.vb">
+      <DependentUpon>frmMonKasbon.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\Kasbon\frmMonKasbon.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Apps\Kasbon\frmTagihan.Designer.vb">
+      <DependentUpon>frmTagihan.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\Kasbon\frmTagihan.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Apps\Support\modApps.vb" />
+    <Compile Include="Apps\Support\modCSS.vb" />
+    <Compile Include="Core\Main\frmExportChart.Designer.vb">
+      <DependentUpon>frmExportChart.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Core\Main\frmExportChart.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Core\Main\Controls\ucChatbox.Designer.vb">
+      <DependentUpon>ucChatbox.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Core\Main\Controls\ucChatbox.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Core\Main\Controls\ucChatlist.Designer.vb">
+      <DependentUpon>ucChatlist.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Core\Main\Controls\ucChatlist.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Core\Main\Controls\ucMemo.Designer.vb">
+      <DependentUpon>ucMemo.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Core\Main\Controls\ucMemo.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Core\Main\Controls\ucNotes.Designer.vb">
+      <DependentUpon>ucNotes.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Core\Main\Controls\ucNotes.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Core\Main\frmDizSplash.Designer.vb">
+      <DependentUpon>frmDizSplash.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Core\Main\frmDizSplash.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Core\Main\frmExportMap.Designer.vb">
+      <DependentUpon>frmExportMap.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Core\Main\frmExportMap.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Core\Main\frmSplash.Designer.vb">
+      <DependentUpon>frmSplash.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Core\Main\frmSplash.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Core\Main\frmLoading.Designer.vb">
+      <DependentUpon>frmLoading.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Core\Main\frmLoading.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Core\Main\frmMessagebox.Designer.vb">
+      <DependentUpon>frmMessagebox.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Core\Main\frmMessagebox.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Core\Main\frmExport.Designer.vb">
+      <DependentUpon>frmExport.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Core\Main\frmExport.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Core\Main\frmMain.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Core\Main\frmMain.Designer.vb">
+      <DependentUpon>frmMain.vb</DependentUpon>
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Core\Main\frmSearch.Designer.vb">
+      <DependentUpon>frmSearch.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Core\Main\frmSearch.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Core\Submission\frmChangeHardware.Designer.vb">
+      <DependentUpon>frmChangeHardware.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Core\Submission\frmChangeHardware.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Core\Submission\frmCurrentPayment.Designer.vb">
+      <DependentUpon>frmCurrentPayment.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Core\Submission\frmCurrentPayment.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Core\Submission\frmFiturServer.Designer.vb">
+      <DependentUpon>frmFiturServer.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Core\Submission\frmFiturServer.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Core\Submission\frmHistoryPayment.Designer.vb">
+      <DependentUpon>frmHistoryPayment.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Core\Submission\frmHistoryPayment.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Core\Submission\frmNewCompany.Designer.vb">
+      <DependentUpon>frmNewCompany.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Core\Submission\frmNewCompany.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Core\Submission\frmNewData.Designer.vb">
+      <DependentUpon>frmNewData.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Core\Submission\frmNewData.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Core\Submission\frmNewPayment.Designer.vb">
+      <DependentUpon>frmNewPayment.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Core\Submission\frmNewPayment.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Core\Submission\frmNewProduct.Designer.vb">
+      <DependentUpon>frmNewProduct.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Core\Submission\frmNewProduct.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Core\Submission\frmNewProfile.Designer.vb">
+      <DependentUpon>frmNewProfile.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Core\Submission\frmNewProfile.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Core\Support\dtsetMYS.vb" />
+    <Compile Include="Core\Support\dtsetSQLI.vb" />
+    <Compile Include="Core\Support\dtsetSQLS.vb" />
+    <Compile Include="Core\Support\extensions.vb" />
+    <Compile Include="Core\Support\modCore.vb" />
+    <Compile Include="Core\Support\modNewData.vb" />
+    <Compile Include="Core\Support\MyRenderer.vb" />
+    <Compile Include="Core\Support\MYs.vb" />
+    <Compile Include="Core\Support\SQLi.vb" />
+    <Compile Include="Core\Support\SQLs.vb" />
+    <Compile Include="My Project\AssemblyInfo.vb" />
+    <Compile Include="My Project\Application.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Application.myapp</DependentUpon>
+    </Compile>
+    <Compile Include="My Project\Resources.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="My Project\Settings.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Apps\Kasbon\frmKaryawan.resx">
+      <DependentUpon>frmKaryawan.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps\Kasbon\frmKasbon.resx">
+      <DependentUpon>frmKasbon.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps\Kasbon\frmMonKasbon.resx">
+      <DependentUpon>frmMonKasbon.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps\Kasbon\frmTagihan.resx">
+      <DependentUpon>frmTagihan.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Core\Main\Controls\ucChatbox.resx">
+      <DependentUpon>ucChatbox.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Core\Main\Controls\ucChatlist.resx">
+      <DependentUpon>ucChatlist.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Core\Main\Controls\ucMemo.resx">
+      <DependentUpon>ucMemo.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Core\Main\Controls\ucNotes.resx">
+      <DependentUpon>ucNotes.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Core\Main\frmDizSplash.resx">
+      <DependentUpon>frmDizSplash.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Core\Main\frmExportChart.resx">
+      <DependentUpon>frmExportChart.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Core\Main\frmExportMap.resx">
+      <DependentUpon>frmExportMap.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Core\Main\frmSplash.resx">
+      <DependentUpon>frmSplash.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Core\Main\frmLoading.resx">
+      <DependentUpon>frmLoading.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Core\Main\frmMessagebox.resx">
+      <DependentUpon>frmMessagebox.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Core\Main\frmExport.resx">
+      <DependentUpon>frmExport.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Core\Main\frmMain.resx">
+      <DependentUpon>frmMain.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Core\Main\frmSearch.resx">
+      <DependentUpon>frmSearch.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Core\Submission\frmChangeHardware.resx">
+      <DependentUpon>frmChangeHardware.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Core\Submission\frmCurrentPayment.resx">
+      <DependentUpon>frmCurrentPayment.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Core\Submission\frmFiturServer.resx">
+      <DependentUpon>frmFiturServer.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Core\Submission\frmHistoryPayment.resx">
+      <DependentUpon>frmHistoryPayment.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Core\Submission\frmNewCompany.resx">
+      <DependentUpon>frmNewCompany.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Core\Submission\frmNewData.resx">
+      <DependentUpon>frmNewData.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Core\Submission\frmNewPayment.resx">
+      <DependentUpon>frmNewPayment.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Core\Submission\frmNewProduct.resx">
+      <DependentUpon>frmNewProduct.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Core\Submission\frmNewProfile.resx">
+      <DependentUpon>frmNewProfile.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="My Project\licenses.licx" />
+    <EmbeddedResource Include="My Project\Resources.resx">
+      <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
+      <CustomToolNamespace>My.Resources</CustomToolNamespace>
+      <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.vb</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="default_demo.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="default_live.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="dizEngine20.db">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <None Include="Resources\bookmark.png" />
+    <None Include="Resources\bookmarkChoco.png" />
+    <None Include="Resources\bookmarkGreen.png" />
+    <None Include="Resources\bookmarkOrange.png" />
+    <None Include="Resources\bookmarkPurple.png" />
+    <None Include="Resources\bookmarkRed.png" />
+    <None Include="Resources\cancel.png" />
+    <None Include="Resources\cancel21.png" />
+    <None Include="Resources\check.png" />
+    <None Include="Resources\info.png" />
+    <None Include="Resources\info27.png" />
+    <None Include="Resources\ribbons.png" />
+    <None Include="Resources\slot1.png" />
+    <None Include="Resources\slotr.png" />
+    <None Include="Resources\canvas_services.jpg" />
+    <None Include="Resources\anatomi-p.png" />
+    <None Include="Resources\anatomi-w.png" />
+    <None Include="Resources\loading.gif" />
+    <None Include="Resources\loading1.gif" />
+    <None Include="Resources\loading2.gif" />
+    <None Include="Resources\memo.png" />
+    <None Include="Resources\paper.png" />
+    <None Include="Resources\paperdoc.png" />
+    <None Include="Resources\paperpdf.png" />
+    <None Include="Resources\paperppt.png" />
+    <None Include="Resources\papertxt.png" />
+    <None Include="Resources\papervsd.png" />
+    <None Include="Resources\paperxls.png" />
+    <None Include="Resources\papergif.png" />
+    <None Include="Resources\paperjpg.png" />
+    <None Include="Resources\paperpng.png" />
+    <None Include="Resources\AnatomiA.png" />
+    <None Include="Resources\AnatomiC.png" />
+    <None Include="Resources\AnatomiCF.png" />
+    <None Include="Resources\AnatomiD.png" />
+    <None Include="Resources\AnatomiH.png" />
+    <None Include="Resources\AnatomiN.png" />
+    <None Include="Resources\AnatomiOF.png" />
+    <None Include="Resources\AnatomiU.png" />
+    <None Include="Resources\AnatomiV.png" />
+    <None Include="Resources\dizSetup.ico" />
+    <None Include="Resources\dizDemo.ico" />
+    <None Include="Resources\AnatomiB.png" />
+    <None Include="Resources\stampAlergiMini.png" />
+    <None Include="Resources\AnatomiSD.png" />
+    <None Include="Resources\AnatomiST.png" />
+    <None Include="Resources\AnatomiOE.png" />
+    <None Include="Resources\AnatomiW.png" />
+    <None Include="Resources\AnatomiCR.png" />
+    <None Include="Resources\line1.png" />
+    <None Include="Resources\dizUI.ico" />
+    <None Include="Resources\canvas.jpg" />
+    <None Include="My Project\Application.myapp">
+      <Generator>MyApplicationCodeGenerator</Generator>
+      <LastGenOutput>Application.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="My Project\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <CustomToolNamespace>My</CustomToolNamespace>
+      <LastGenOutput>Settings.Designer.vb</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\SingleLogoDiznet64.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bordernon_n.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bordernon_w.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bordersingle_n.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bordersingle_w.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\exit_n.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\exit_w.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\max_n.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\max_w.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\min_n.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\min_w.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\message.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\notes.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\notif.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\profile.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\server.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\recent.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\favorite.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\swirl.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\list.png" />
+    <None Include="Resources\tasklist.png" />
+    <None Include="Resources\formlist.png" />
+    <None Include="Resources\tileLarge.jpg" />
+    <None Include="Resources\tileSmall.jpg" />
+    <None Include="Resources\stampVoid.png" />
+    <None Include="Resources\stampAccept.png" />
+    <None Include="Resources\stampDelete.png" />
+    <None Include="Resources\stampReview.png" />
+    <None Include="Resources\canvas_footer.jpg" />
+    <None Include="Resources\canvas_header.jpg" />
+    <None Include="Resources\canvas_body.jpg" />
+    <None Include="Resources\ico_question.png" />
+    <None Include="Resources\canvas_perform.jpg" />
+    <None Include="Resources\canvas_msgbox.jpg" />
+    <None Include="Resources\canvas_export.jpg" />
+    <None Include="Resources\canvas_recent.jpg" />
+    <None Include="Resources\canvas_splash.jpg" />
+    <None Include="Resources\chatright1.png" />
+    <None Include="Resources\hourglass.gif" />
+    <None Include="Resources\boxHorizontal.png" />
+    <None Include="Resources\boxCorner4.png" />
+    <None Include="Resources\boxCorner41.png" />
+    <None Include="Resources\boxCorner42.png" />
+    <None Include="Resources\boxHorizontal4.png" />
+    <None Include="Resources\boxHorizontal41.png" />
+    <None Include="Resources\boxCorner4RU.png" />
+    <None Include="Resources\boxCorner4LU.png" />
+    <None Include="Resources\boxHorizontal42.png" />
+    <None Include="Resources\boxCorner4LU1.png" />
+    <None Include="Resources\boxCorner4LD.png" />
+    <None Include="Resources\boxCorner4RD.png" />
+    <None Include="Resources\boxPoint4.png" />
+    <None Include="Resources\boxVertical4.png" />
+    <None Include="Resources\notess.png" />
+    <None Include="Resources\notesu.png" />
+    <None Include="Resources\message1.png" />
+    <None Include="Resources\message2.png" />
+    <None Include="Resources\message3.png" />
+    <None Include="Resources\message4.png" />
+    <None Include="Resources\message5.png" />
+    <None Include="Resources\message6.png" />
+    <None Include="Resources\message7.png" />
+    <None Include="Resources\message8.png" />
+    <None Include="Resources\message9.png" />
+    <None Include="Resources\message9u.png" />
+    <None Include="Resources\notifu.png" />
+    <None Include="Resources\boxPoint2.png" />
+    <None Include="Resources\messagen.png" />
+    <None Include="app.config" />
+    <None Include="My Project\app.manifest" />
+    <None Include="Resources\setting.png" />
+    <None Include="Resources\menu.png" />
+    <None Include="Resources\authorization.png" />
+    <None Include="Resources\browse w.png" />
+    <None Include="Resources\browse.png" />
+    <None Include="Resources\export.png" />
+    <None Include="Resources\ok.png" />
+    <None Include="Resources\ok w.png" />
+    <None Include="Resources\SingleLogoDiznet250.png" />
+    <None Include="Resources\print.png" />
+    <None Include="Resources\newitem.png" />
+    <None Include="Resources\deleteitem.png" />
+    <None Include="Resources\connection.png" />
+    <None Include="Resources\upload.png" />
+    <None Include="Resources\server1.png" />
+    <None Include="Resources\runtime.png" />
+    <None Include="Resources\download.png" />
+    <None Include="Resources\saveitem.png" />
+    <None Include="Resources\images.png" />
+    <None Include="Resources\hovprev.png" />
+    <None Include="Resources\hovnext.png" />
+    <None Include="Resources\close.png" />
+    <None Include="Resources\defprofile.png" />
+    <None Include="Resources\defprofile200.png" />
+    <None Include="Resources\client.png" />
+    <None Include="Resources\splashImage.jpg" />
+    <None Include="Resources\LogoDiznet 183x48.png" />
+    <None Include="Resources\ico_warning.png" />
+    <None Include="Resources\ico_info.png" />
+    <None Include="Resources\ico_critical.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.2.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 2.0 %28x86%29</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.0 %28x86%29</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Core\Enum\" />
+    <Folder Include="Dataset\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\dizEngine\dizEngine.vbproj">
+      <Project>{ceef446d-04f8-4b0a-ac41-8b463e77d138}</Project>
+      <Name>dizEngine</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
+  <Import Project="..\packages\System.Data.SQLite.Core.1.0.109.2\build\net46\System.Data.SQLite.Core.targets" Condition="Exists('..\packages\System.Data.SQLite.Core.1.0.109.2\build\net46\System.Data.SQLite.Core.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\System.Data.SQLite.Core.1.0.109.2\build\net46\System.Data.SQLite.Core.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\System.Data.SQLite.Core.1.0.109.2\build\net46\System.Data.SQLite.Core.targets'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

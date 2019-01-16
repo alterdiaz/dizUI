@@ -1,0 +1,55 @@
+﻿select 
+isnull(a.idjurnal,b.idjurnal) as idjurnal,
+convert(varchar,isnull(a.tanggaljurnal,b.tanggaljurnal),105) + ' ' + convert(varchar,isnull(a.tanggaljurnal,b.tanggaljurnal),108) as tanggaljurnal,
+isnull(a.nodokumen,b.nodokumen) as nodokumen,
+isnull(a.remarks,b.remarks) as remarks,
+isnull(a.debet,b.debet) as debet,
+isnull(a.kredit,b.kredit) as kredit,
+isnull(a.saldoakhir,b.saldoakhir) as saldoakhir 
+from 
+
+(
+select j.idjurnal, j.tanggaljurnal, isnull(j.nodokumen,'-') as nodokumen, j.remarks, isnull(d.jumlahuang,0) as debet, isnull(k.jumlahuang,0) as kredit, convert(decimal(20,2),0) as saldoakhir 
+from jurnal j 
+left join 
+(
+select j.idjurnal,j.jumlahuang 
+from jurnal j 
+where j.idcompany=(select top 1 value from sys_appsetting where variable='CompanyID') 
+and j.posisidk=1
+) d on d.idjurnal=j.idjurnal 
+left join 
+(
+select j.idjurnal,j.jumlahuang 
+from jurnal j 
+where j.idcompany=(select top 1 value from sys_appsetting where variable='CompanyID') 
+and j.posisidk=2
+) k on k.idjurnal=j.idjurnal 
+where j.idcompany=(select top 1 value from sys_appsetting where variable='CompanyID') 
+and j.idcoa=*IDCOA* 
+and convert(varchar,j.tanggaljurnal,120) like '*TAHUNBULAN*-%'
+) 
+a 
+full outer join 
+
+(
+select 0 as idjurnal,CONVERT(Datetime, '*TAHUNBULAN*-01 00:00:01', 120) as tanggaljurnal, '-' as nodokumen,'SALDO AWAL *NAMABULAN* *TAHUN*' as remarks, convert(decimal(20,2),0) as debet, convert(decimal(20,2),0) as kredit, 
+isnull(bd.debet,0)-isnull(bk.kredit,0) as saldoakhir
+from coa c 
+left join 
+(
+select sum(bd.jumlahuang) as debet,bd.idcoa from jurnal bd 
+where bd.idcompany=(select top 1 value from sys_appsetting where variable='CompanyID') 
+and bd.posisidk=1 and LEFT(CONVERT(VARCHAR, bd.tanggaljurnal, 120), 10)>='*TAHUN*-01-01' and LEFT(CONVERT(VARCHAR, bd.tanggaljurnal, 120), 10) < '*TAHUNBULAN*-01' 
+group by bd.idcoa
+) bd on c.idcoa=bd.idcoa 
+left join 
+(
+select sum(bk.jumlahuang) as kredit,bk.idcoa from jurnal bk 
+where bk.idcompany=(select top 1 value from sys_appsetting where variable='CompanyID') 
+and bk.posisidk=2 and LEFT(CONVERT(VARCHAR, bk.tanggaljurnal, 120), 10)>='*TAHUN*-01-01' and LEFT(CONVERT(VARCHAR, bk.tanggaljurnal, 120), 10) < '*TAHUNBULAN*-01' 
+group by bk.idcoa
+) bk on c.idcoa=bk.idcoa 
+where c.idcoa=*IDCOA* 
+) b on a.idjurnal=b.idjurnal
+order by tanggaljurnal asc 

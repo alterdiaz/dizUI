@@ -1,0 +1,168 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="setPUMPB" targetNamespace="http://tempuri.org/setPUMPB.xsd" xmlns:mstns="http://tempuri.org/setPUMPB.xsd" xmlns="http://tempuri.org/setPUMPB.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="MySettings" AppSettingsPropertyName="ConnString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="ConnString (MySettings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.dizUI.My.MySettings.GlobalReference.Default.ConnString" Provider="System.Data.SqlClient" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="xrPUMPBTableAdapter" GeneratorDataComponentClassName="xrPUMPBTableAdapter" Name="xrPUMPB" UserDataComponentName="xrPUMPBTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="ConnString (MySettings)" DbObjectName="POS216TEST.dbo.xrPUMPB" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT nopengajuan, tanggalpengajuan, jumlahuang, hurufuang, namapemohon, jabatanpemohon, keperluan, namareview, tanggalreview, namakabid, tanggalkabid, namadirektur, tanggaldirektur, deleted, rejectreason FROM xrPUMPB</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="nopengajuan" DataSetColumn="nopengajuan" />
+              <Mapping SourceColumn="tanggalpengajuan" DataSetColumn="tanggalpengajuan" />
+              <Mapping SourceColumn="jumlahuang" DataSetColumn="jumlahuang" />
+              <Mapping SourceColumn="hurufuang" DataSetColumn="hurufuang" />
+              <Mapping SourceColumn="namapemohon" DataSetColumn="namapemohon" />
+              <Mapping SourceColumn="jabatanpemohon" DataSetColumn="jabatanpemohon" />
+              <Mapping SourceColumn="keperluan" DataSetColumn="keperluan" />
+              <Mapping SourceColumn="namareview" DataSetColumn="namareview" />
+              <Mapping SourceColumn="tanggalreview" DataSetColumn="tanggalreview" />
+              <Mapping SourceColumn="namakabid" DataSetColumn="namakabid" />
+              <Mapping SourceColumn="tanggalkabid" DataSetColumn="tanggalkabid" />
+              <Mapping SourceColumn="namadirektur" DataSetColumn="namadirektur" />
+              <Mapping SourceColumn="tanggaldirektur" DataSetColumn="tanggaldirektur" />
+              <Mapping SourceColumn="deleted" DataSetColumn="deleted" />
+              <Mapping SourceColumn="rejectreason" DataSetColumn="rejectreason" />
+              <Mapping SourceColumn="idpengajuan" DataSetColumn="idpengajuan" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+        </Tables>
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="setPUMPB" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="True" msprop:Generator_DataSetName="setPUMPB" msprop:Generator_UserDSName="setPUMPB">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="xrPUMPB" msprop:Generator_UserTableName="xrPUMPB" msprop:Generator_RowEvArgName="xrPUMPBRowChangeEvent" msprop:Generator_TableVarName="tablexrPUMPB" msprop:Generator_TablePropName="xrPUMPB" msprop:Generator_RowDeletingName="xrPUMPBRowDeleting" msprop:Generator_RowChangingName="xrPUMPBRowChanging" msprop:Generator_RowDeletedName="xrPUMPBRowDeleted" msprop:Generator_RowEvHandlerName="xrPUMPBRowChangeEventHandler" msprop:Generator_TableClassName="xrPUMPBDataTable" msprop:Generator_RowChangedName="xrPUMPBRowChanged" msprop:Generator_RowClassName="xrPUMPBRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="nopengajuan" msprop:Generator_ColumnVarNameInTable="columnnopengajuan" msprop:Generator_ColumnPropNameInRow="nopengajuan" msprop:Generator_ColumnPropNameInTable="nopengajuanColumn" msprop:Generator_UserColumnName="nopengajuan" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="25" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="tanggalpengajuan" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columntanggalpengajuan" msprop:Generator_ColumnPropNameInRow="tanggalpengajuan" msprop:Generator_ColumnPropNameInTable="tanggalpengajuanColumn" msprop:Generator_UserColumnName="tanggalpengajuan" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="61" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="jumlahuang" msprop:Generator_ColumnVarNameInTable="columnjumlahuang" msprop:Generator_ColumnPropNameInRow="jumlahuang" msprop:Generator_ColumnPropNameInTable="jumlahuangColumn" msprop:Generator_UserColumnName="jumlahuang" type="xs:decimal" minOccurs="0" />
+              <xs:element name="hurufuang" msprop:Generator_ColumnVarNameInTable="columnhurufuang" msprop:Generator_ColumnPropNameInRow="hurufuang" msprop:Generator_ColumnPropNameInTable="hurufuangColumn" msprop:Generator_UserColumnName="hurufuang" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="5000" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="namapemohon" msprop:Generator_ColumnVarNameInTable="columnnamapemohon" msprop:Generator_ColumnPropNameInRow="namapemohon" msprop:Generator_ColumnPropNameInTable="namapemohonColumn" msprop:Generator_UserColumnName="namapemohon" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="300" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="jabatanpemohon" msprop:Generator_ColumnVarNameInTable="columnjabatanpemohon" msprop:Generator_ColumnPropNameInRow="jabatanpemohon" msprop:Generator_ColumnPropNameInTable="jabatanpemohonColumn" msprop:Generator_UserColumnName="jabatanpemohon" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="250" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="keperluan" msprop:Generator_ColumnVarNameInTable="columnkeperluan" msprop:Generator_ColumnPropNameInRow="keperluan" msprop:Generator_ColumnPropNameInTable="keperluanColumn" msprop:Generator_UserColumnName="keperluan" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="5000" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="namareview" msprop:Generator_ColumnVarNameInTable="columnnamareview" msprop:Generator_ColumnPropNameInRow="namareview" msprop:Generator_ColumnPropNameInTable="namareviewColumn" msprop:Generator_UserColumnName="namareview" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="300" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="tanggalreview" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columntanggalreview" msprop:Generator_ColumnPropNameInRow="tanggalreview" msprop:Generator_ColumnPropNameInTable="tanggalreviewColumn" msprop:Generator_UserColumnName="tanggalreview" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="61" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="namakabid" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnnamakabid" msprop:Generator_ColumnPropNameInRow="namakabid" msprop:Generator_ColumnPropNameInTable="namakabidColumn" msprop:Generator_UserColumnName="namakabid" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="300" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="tanggalkabid" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columntanggalkabid" msprop:Generator_ColumnPropNameInRow="tanggalkabid" msprop:Generator_ColumnPropNameInTable="tanggalkabidColumn" msprop:Generator_UserColumnName="tanggalkabid" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="61" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="namadirektur" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnnamadirektur" msprop:Generator_ColumnPropNameInRow="namadirektur" msprop:Generator_ColumnPropNameInTable="namadirekturColumn" msprop:Generator_UserColumnName="namadirektur" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="300" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="tanggaldirektur" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columntanggaldirektur" msprop:Generator_ColumnPropNameInRow="tanggaldirektur" msprop:Generator_ColumnPropNameInTable="tanggaldirekturColumn" msprop:Generator_UserColumnName="tanggaldirektur" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="61" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="deleted" msprop:Generator_ColumnVarNameInTable="columndeleted" msprop:Generator_ColumnPropNameInRow="deleted" msprop:Generator_ColumnPropNameInTable="deletedColumn" msprop:Generator_UserColumnName="deleted" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="rejectreason" msprop:Generator_ColumnVarNameInTable="columnrejectreason" msprop:Generator_ColumnPropNameInRow="rejectreason" msprop:Generator_ColumnPropNameInTable="rejectreasonColumn" msprop:Generator_UserColumnName="rejectreason" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="500" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="idpengajuan" msprop:Generator_ColumnVarNameInTable="columnidpengajuan" msprop:Generator_ColumnPropNameInRow="idpengajuan" msprop:Generator_ColumnPropNameInTable="idpengajuanColumn" msprop:Generator_UserColumnName="idpengajuan">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="Constraint2">
+      <xs:selector xpath=".//mstns:xrPUMPB" />
+      <xs:field xpath="mstns:idpengajuan" />
+    </xs:unique>
+  </xs:element>
+</xs:schema>

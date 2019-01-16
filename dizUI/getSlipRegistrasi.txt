@@ -1,0 +1,19 @@
+﻿select r.idrekammedis, 
+LEFT((convert(varchar,replicate('0',8-len(p.rekammedisno)))+convert(varchar,p.rekammedisno)),2)+'-'+
+substring(convert(varchar,replicate('0',8-len(p.rekammedisno)))+convert(varchar,p.rekammedisno),3,2)+'-'+
+substring(convert(varchar,replicate('0',8-len(p.rekammedisno)))+convert(varchar,p.rekammedisno),5,2)+'-'+
+RIGHT(convert(varchar,replicate('0',8-len(p.rekammedisno)))+convert(varchar,p.rekammedisno),2) as norm, 
+r.registrasino,p.nama as namapasien,jk.generalcode as sex,l.nama as lokasi,pa.nama as paramedis,np.generalcode as sapaan,ke.kelas,pay.nama as payer,asr.nama as asuransi,s.nama as spesialis,pt.generalcode as payertype 
+from registrasi r 
+left join rekammedis p on r.idrekammedis=p.idrekammedis and p.idcompany=(select top 1 value from sys_appsetting where variable='CompanyID') 
+left join sys_generalcode jk on p.jeniskelamin=jk.idgeneral and jk.gctype='SEXTYPE' 
+left join sys_generalcode np on p.jeniskelamin=np.idgeneral and np.gctype='SAPAAN' 
+left join sys_generalcode pt on r.payertype=pt.idgeneral and pt.gctype='PAYERTYPE' 
+left join unit u on r.idunit=u.idunit and u.idcompany=(select top 1 value from sys_appsetting where variable='CompanyID') 
+left join lokasi l on r.idlokasi=l.idlokasi and l.idcompany=(select top 1 value from sys_appsetting where variable='CompanyID') 
+left join paramedis pa on r.iddokterruangan=pa.idparamedis and pa.idcompany=(select top 1 value from sys_appsetting where variable='CompanyID') 
+left join spesialis s on r.idspesialisruangan=s.idspesialis and s.idcompany=(select top 1 value from sys_appsetting where variable='CompanyID') 
+left join kelas ke on r.idkelas=ke.idkelas and ke.idcompany=(select top 1 value from sys_appsetting where variable='CompanyID') 
+left join businesspartner pay on r.idpayer=pay.idbusinesspartner and pay.idcompany=(select top 1 value from sys_appsetting where variable='CompanyID') 
+left join businesspartner asr on r.idasuransi=asr.idbusinesspartner and asr.idcompany=(select top 1 value from sys_appsetting where variable='CompanyID') 
+where r.idcompany=(select top 1 value from sys_appsetting where variable='CompanyID') 

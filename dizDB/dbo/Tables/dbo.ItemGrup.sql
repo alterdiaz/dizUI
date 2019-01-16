@@ -1,0 +1,12 @@
+﻿CREATE TABLE [dbo].[ItemGrup] (
+    [iditemgrup]  BIGINT        IDENTITY (1, 1) NOT NULL,
+    [itemgrup]    VARCHAR (200) DEFAULT ('-') NOT NULL,
+    [isdeleted]   BIGINT        DEFAULT ((0)) NOT NULL,
+    [createdby]   BIGINT        DEFAULT ((0)) NOT NULL,
+    [createddate] DATETIME      DEFAULT (getdate()) NOT NULL,
+    [updatedby]   BIGINT        NULL,
+    [updateddate] DATETIME      NULL,
+    [idcompany]   BIGINT        DEFAULT ((0)) NOT NULL,
+    PRIMARY KEY CLUSTERED ([iditemgrup] ASC)
+);
+

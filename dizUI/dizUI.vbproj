@@ -1,0 +1,3304 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{83ECAF6F-CFF0-4A27-A384-90F09601F789}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <StartupObject>dizUI.My.MyApplication</StartupObject>
+    <RootNamespace>dizUI</RootNamespace>
+    <AssemblyName>dizUI</AssemblyName>
+    <FileAlignment>512</FileAlignment>
+    <MyType>WindowsForms</MyType>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <OptionExplicit>On</OptionExplicit>
+    <OptionCompare>Binary</OptionCompare>
+    <OptionStrict>Off</OptionStrict>
+    <OptionInfer>Off</OptionInfer>
+    <ApplicationIcon>Resources\dizLive.ico</ApplicationIcon>
+    <ApplicationManifest>My Project\app.manifest</ApplicationManifest>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <TargetFrameworkProfile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DocumentationFile>dizUI.xml</DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022,42353,42354,42355</NoWarn>
+    <Prefer32Bit>false</Prefer32Bit>
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DocumentationFile>dizUI.xml</DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022,42353,42354,42355</NoWarn>
+    <Prefer32Bit>false</Prefer32Bit>
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Live|AnyCPU'">
+    <DefineTrace>true</DefineTrace>
+    <OutputPath>bin\Live\</OutputPath>
+    <DocumentationFile>dizUI.xml</DocumentationFile>
+    <Optimize>true</Optimize>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022,42353,42354,42355</NoWarn>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Demo|AnyCPU'">
+    <DefineTrace>true</DefineTrace>
+    <OutputPath>bin\Demo\</OutputPath>
+    <DocumentationFile>dizUI.xml</DocumentationFile>
+    <Optimize>true</Optimize>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022,42353,42354,42355</NoWarn>
+    <DebugType>Full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <DebugSymbols>true</DebugSymbols>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignManifests>false</SignManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestCertificateThumbprint>779FC150DCC4F23DF90037E8EB54CAEE3B94CB37</ManifestCertificateThumbprint>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestKeyFile>dizUI_TemporaryKey.pfx</ManifestKeyFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>false</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>dizUI.pfx</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="DevExpress.Charts.v17.2.Core, Version=17.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.Dashboard.v17.2.Core, Version=17.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Dashboard.v17.2.Win, Version=17.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Data.v17.2, Version=17.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.DataAccess.v17.2, Version=17.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.DataAccess.v17.2.UI, Version=17.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Map.v17.2.Core, Version=17.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.PivotGrid.v17.2.Core, Version=17.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.Pdf.v17.2.Core, Version=17.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.RichEdit.v17.2.Export, Version=17.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.Printing.v17.2.Core, Version=17.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.Office.v17.2.Core, Version=17.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.RichEdit.v17.2.Core, Version=17.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.TreeMap.v17.2.Core, Version=17.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Utils.v17.2, Version=17.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.Utils.v17.2.UI, Version=17.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.Xpo.v17.2, Version=17.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.XtraBars.v17.2, Version=17.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.XtraCharts.v17.2.Wizard, Version=17.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.XtraCharts.v17.2, Version=17.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.XtraCharts.v17.2.UI, Version=17.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.XtraEditors.v17.2, Version=17.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.XtraGauges.v17.2.Core, Version=17.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.XtraGauges.v17.2.Presets, Version=17.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraGauges.v17.2.Win, Version=17.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraGrid.v17.2, Version=17.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.XtraLayout.v17.2, Version=17.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.XtraMap.v17.2, Version=17.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraPivotGrid.v17.2, Version=17.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.XtraPrinting.v17.2, Version=17.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.Sparkline.v17.2.Core, Version=17.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.CodeParser.v17.2, Version=17.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.XtraReports.v17.2, Version=17.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.XtraReports.v17.2.Extensions, Version=17.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.Images.v17.2, Version=17.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.XtraRichEdit.v17.2, Version=17.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.XtraRichEdit.v17.2.Extensions, Version=17.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraScheduler.v17.2.Reporting.Extensions, Version=17.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.XtraScheduler.v17.2, Version=17.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.XtraScheduler.v17.2.Core, Version=17.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.XtraTreeList.v17.2, Version=17.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.XtraTreeMap.v17.2, Version=17.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="HL7SDK, Version=1.0.4.0, Culture=neutral, PublicKeyToken=96dc2418941d0102, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\DLL\HL7SDK.dll</HintPath>
+    </Reference>
+    <Reference Include="MySql.Data, Version=6.8.3.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\DLL\MySql.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\DLL\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PrintingRaw">
+      <HintPath>..\..\DLL\PrintingRaw.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.SQLite, Version=1.0.109.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Data.SQLite.Core.1.0.109.2\lib\net46\System.Data.SQLite.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Data.SQLite.EF6, Version=1.0.109.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Data.SQLite.EF6.1.0.109.0\lib\net46\System.Data.SQLite.EF6.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Data.SQLite.Linq, Version=1.0.109.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Data.SQLite.Linq.1.0.109.0\lib\net46\System.Data.SQLite.Linq.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Design" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Management" />
+    <Reference Include="System.Runtime.Remoting" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="UIAutomationClient" />
+  </ItemGroup>
+  <ItemGroup>
+    <Import Include="Microsoft.VisualBasic" />
+    <Import Include="System" />
+    <Import Include="System.Collections" />
+    <Import Include="System.Collections.Generic" />
+    <Import Include="System.Data" />
+    <Import Include="System.Drawing" />
+    <Import Include="System.Diagnostics" />
+    <Import Include="System.Windows.Forms" />
+    <Import Include="System.Linq" />
+    <Import Include="System.Xml.Linq" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="C:\Program Files (x86)\System.Data.SQLite\2013\bin\SQLite.Interop.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ApplicationEvents.vb" />
+    <Compile Include="Apps\Accounting\frmBukuBesar.Designer.vb">
+      <DependentUpon>frmBukuBesar.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\Accounting\frmBukuBesar.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Apps\Accounting\frmBukuPembantu.Designer.vb">
+      <DependentUpon>frmBukuPembantu.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\Accounting\frmBukuPembantu.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Apps\Accounting\frmNeraca.Designer.vb">
+      <DependentUpon>frmNeraca.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\Accounting\frmNeraca.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Apps\Accounting\frmNeracaSaldo.Designer.vb">
+      <DependentUpon>frmNeracaSaldo.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\Accounting\frmNeracaSaldo.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Apps\Accounting\frmRugiLaba.Designer.vb">
+      <DependentUpon>frmRugiLaba.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\Accounting\frmRugiLaba.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Apps\Accounting\frmStrukturArusKas.Designer.vb">
+      <DependentUpon>frmStrukturArusKas.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\Accounting\frmStrukturArusKas.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Apps\Accounting\frmStrukturLaporanNeraca.Designer.vb">
+      <DependentUpon>frmStrukturLaporanNeraca.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\Accounting\frmStrukturLaporanNeraca.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Apps\Appointment\frmDeleteReason.Designer.vb">
+      <DependentUpon>frmDeleteReason.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\Appointment\frmDeleteReason.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Apps\Appointment\frmEditNoteReason.Designer.vb">
+      <DependentUpon>frmEditNoteReason.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\Appointment\frmEditNoteReason.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Apps\Appointment\frmJadwalParamedis.Designer.vb">
+      <DependentUpon>frmJadwalParamedis.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\Appointment\frmJadwalParamedis.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Apps\Appointment\frmParamedisCuti.Designer.vb">
+      <DependentUpon>frmParamedisCuti.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\Appointment\frmParamedisCuti.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Apps\Auditor\frmArusKas.Designer.vb">
+      <DependentUpon>frmArusKas.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\Auditor\frmArusKas.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Apps\Auditor\frmNeracaTahunan.Designer.vb">
+      <DependentUpon>frmNeracaTahunan.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\Auditor\frmNeracaTahunan.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Apps\Auditor\frmNeracaBulanan.Designer.vb">
+      <DependentUpon>frmNeracaBulanan.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\Auditor\frmNeracaBulanan.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Apps\Auditor\frmRugiLabaBulanan.Designer.vb">
+      <DependentUpon>frmRugiLabaBulanan.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\Auditor\frmRugiLabaBulanan.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Apps\Auditor\frmRugiLabaTahunan.Designer.vb">
+      <DependentUpon>frmRugiLabaTahunan.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\Auditor\frmRugiLabaTahunan.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Apps\Common\Data\frmBank.Designer.vb">
+      <DependentUpon>frmBank.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\Common\Data\frmBank.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Apps\Common\Data\frmCariWilayah.Designer.vb">
+      <DependentUpon>frmCariWilayah.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\Common\Data\frmCariWilayah.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Apps\Common\Data\frmSelectDevice.Designer.vb">
+      <DependentUpon>frmSelectDevice.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\Common\Data\frmSelectDevice.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Apps\HRD\Data\frmKaryawanCalon.Designer.vb">
+      <DependentUpon>frmKaryawanCalon.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\HRD\Data\frmKaryawanCalon.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Apps\HRD\Data\frmKaryawanCuti.Designer.vb">
+      <DependentUpon>frmKaryawanCuti.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\HRD\Data\frmKaryawanCuti.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Apps\HRD\Monitor\frmMonMutasiKaryawan.Designer.vb">
+      <DependentUpon>frmMonMutasiKaryawan.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\HRD\Monitor\frmMonMutasiKaryawan.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Apps\HRD\Monitor\frmMonTeguranKaryawan.Designer.vb">
+      <DependentUpon>frmMonTeguranKaryawan.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\HRD\Monitor\frmMonTeguranKaryawan.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Apps\Helpdesk\frmHelpdeskRequest.Designer.vb">
+      <DependentUpon>frmHelpdeskRequest.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\Helpdesk\frmHelpdeskRequest.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Apps\HRD\Data\frmJadwalKerja.Designer.vb">
+      <DependentUpon>frmJadwalKerja.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\HRD\Data\frmJadwalKerja.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Apps\HRD\Data\frmKomponenGaji.Designer.vb">
+      <DependentUpon>frmKomponenGaji.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\HRD\Data\frmKomponenGaji.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Apps\HRD\Data\frmStandardGaji.Designer.vb">
+      <DependentUpon>frmStandardGaji.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\HRD\Data\frmStandardGaji.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Apps\PDAB\Transaksi\clsRenumberingArusPengajuan.vb" />
+    <Compile Include="Apps\Common\Data\frmLokasi.Designer.vb">
+      <DependentUpon>frmLokasi.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\Common\Data\frmLokasi.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Apps\Common\Data\frmDeviceLokasi.Designer.vb">
+      <DependentUpon>frmDeviceLokasi.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\Common\Data\frmDeviceLokasi.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Apps\POS\Data\frmItemGrup.Designer.vb">
+      <DependentUpon>frmItemGrup.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\POS\Data\frmItemGrup.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Apps\POS\Data\frmItemPriceKelas.Designer.vb">
+      <DependentUpon>frmItemPriceKelas.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\POS\Data\frmItemPriceKelas.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Apps\POS\FormReport\xrSPP.Designer.vb">
+      <DependentUpon>xrSPP.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\POS\FormReport\xrSPP.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Apps\POS\FormReport\xrSPBLMA.Designer.vb">
+      <DependentUpon>xrSPBLMA.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\POS\FormReport\xrSPBLMA.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Apps\POS\Monitor\frmMonSPB.Designer.vb">
+      <DependentUpon>frmMonSPB.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\POS\Monitor\frmMonSPB.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Apps\POS\Transaksi\frmPembelianNI.Designer.vb">
+      <DependentUpon>frmPembelianNI.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\POS\Transaksi\frmPembelianNI.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Apps\POS\Transaksi\frmPermintaanBarangNQM.Designer.vb">
+      <DependentUpon>frmPermintaanBarangNQM.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\POS\Transaksi\frmPermintaanBarangNQM.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Apps\POS\Transaksi\frmPermintaanBarangNQLMA.Designer.vb">
+      <DependentUpon>frmPermintaanBarangNQLMA.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\POS\Transaksi\frmPermintaanBarangNQLMA.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Apps\POS\Transaksi\frmPermintaanBarangQM.Designer.vb">
+      <DependentUpon>frmPermintaanBarangQM.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\POS\Transaksi\frmPermintaanBarangQM.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Apps\POS\Transaksi\frmPermintaanBarangReview.Designer.vb">
+      <DependentUpon>frmPermintaanBarangReview.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\POS\Transaksi\frmPermintaanBarangReview.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Apps\POS\Transaksi\frmPermintaanPembelian.Designer.vb">
+      <DependentUpon>frmPermintaanPembelian.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\POS\Transaksi\frmPermintaanPembelian.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Apps\POS\Transaksi\frmPermintaanPembelianReview.Designer.vb">
+      <DependentUpon>frmPermintaanPembelianReview.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\POS\Transaksi\frmPermintaanPembelianReview.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Apps\POS\Transaksi\frmValidasiItemHarga.Designer.vb">
+      <DependentUpon>frmValidasiItemHarga.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\POS\Transaksi\frmValidasiItemHarga.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Apps\RS\Asesmen\frmAMRHB201801.Designer.vb">
+      <DependentUpon>frmAMRHB201801.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\RS\Asesmen\frmAMRHB201801.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Apps\RS\Asesmen\frmAMRJ201801.Designer.vb">
+      <DependentUpon>frmAMRJ201801.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\RS\Asesmen\frmAMRJ201801.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Apps\RS\Asesmen\frmAPIGD201801.Designer.vb">
+      <DependentUpon>frmAPIGD201801.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\RS\Asesmen\frmAPIGD201801.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Apps\RS\Asesmen\frmAsesmenGizi.Designer.vb">
+      <DependentUpon>frmAsesmenGizi.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\RS\Asesmen\frmAsesmenGizi.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Apps\RS\Asesmen\frmAsesmenRehab.Designer.vb">
+      <DependentUpon>frmAsesmenRehab.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\RS\Asesmen\frmAsesmenRehab.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Apps\RS\Asesmen\frmDiagnosaKerja.Designer.vb">
+      <DependentUpon>frmDiagnosaKerja.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\RS\Asesmen\frmDiagnosaKerja.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Apps\RS\Asesmen\frmOrderDietPasien.Designer.vb">
+      <DependentUpon>frmOrderDietPasien.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\RS\Asesmen\frmOrderDietPasien.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Apps\RS\Dashboard\frmBoardPelayanan.Designer.vb">
+      <DependentUpon>frmBoardPelayanan.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\RS\Dashboard\frmBoardPelayanan.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Apps\RS\Data\frmDietMenu.Designer.vb">
+      <DependentUpon>frmDietMenu.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\RS\Data\frmDietMenu.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Apps\RS\Data\frmFarmasiRujukan.Designer.vb">
+      <DependentUpon>frmFarmasiRujukan.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\RS\Data\frmFarmasiRujukan.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Apps\RS\Data\frmICD.Designer.vb">
+      <DependentUpon>frmICD.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\RS\Data\frmICD.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Apps\Appointment\frmParamedisJadwal.Designer.vb">
+      <DependentUpon>frmParamedisJadwal.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\Appointment\frmParamedisJadwal.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Apps\RS\Data\frmSelectParamedis.Designer.vb">
+      <DependentUpon>frmSelectParamedis.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\RS\Data\frmSelectParamedis.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Apps\RS\Data\frmPasienQuickEdit.Designer.vb">
+      <DependentUpon>frmPasienQuickEdit.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\RS\Data\frmPasienQuickEdit.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Apps\RS\Data\frmRehabMedikICD.Designer.vb">
+      <DependentUpon>frmRehabMedikICD.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\RS\Data\frmRehabMedikICD.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Apps\RS\Data\frmKelas.Designer.vb">
+      <DependentUpon>frmKelas.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\RS\Data\frmKelas.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Apps\RS\Data\frmKelasKamar.Designer.vb">
+      <DependentUpon>frmKelasKamar.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\RS\Data\frmKelasKamar.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Apps\RS\Data\frmLaboratoriumRujukan.Designer.vb">
+      <DependentUpon>frmLaboratoriumRujukan.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\RS\Data\frmLaboratoriumRujukan.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Apps\RS\Data\frmParamedis.Designer.vb">
+      <DependentUpon>frmParamedis.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\RS\Data\frmParamedis.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Apps\RS\Data\frmPasien.Designer.vb">
+      <DependentUpon>frmPasien.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\RS\Data\frmPasien.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Apps\RS\Data\frmPasienSimple.Designer.vb">
+      <DependentUpon>frmPasienSimple.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\RS\Data\frmPasienSimple.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Apps\RS\Data\frmPasienSwapData.Designer.vb">
+      <DependentUpon>frmPasienSwapData.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\RS\Data\frmPasienSwapData.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Apps\RS\Data\frmPelayanan.Designer.vb">
+      <DependentUpon>frmPelayanan.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\RS\Data\frmPelayanan.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Apps\RS\Data\frmPelayananSpesialis.Designer.vb">
+      <DependentUpon>frmPelayananSpesialis.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\RS\Data\frmPelayananSpesialis.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Apps\RS\Data\frmRMOldData.Designer.vb">
+      <DependentUpon>frmRMOldData.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\RS\Data\frmRMOldData.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Apps\RS\Data\frmSpesialis.Designer.vb">
+      <DependentUpon>frmSpesialis.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\RS\Data\frmSpesialis.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Apps\RS\Data\frmRehabMedik.Designer.vb">
+      <DependentUpon>frmRehabMedik.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\RS\Data\frmRehabMedik.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Apps\RS\FormReport\xrAMIGD201801.Designer.vb">
+      <DependentUpon>xrAMIGD201801.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\RS\FormReport\xrAMIGD201801.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Apps\RS\FormReport\xrAMRHB201801.Designer.vb">
+      <DependentUpon>xrAMRHB201801.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\RS\FormReport\xrAMRHB201801.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Apps\RS\FormReport\xrAMRJ201801.Designer.vb">
+      <DependentUpon>xrAMRJ201801.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\RS\FormReport\xrAMRJ201801.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Apps\RS\FormReport\xrAnatomi.Designer.vb">
+      <DependentUpon>xrAnatomi.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\RS\FormReport\xrAnatomi.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Apps\RS\FormReport\xrAnatomiSQ.Designer.vb">
+      <DependentUpon>xrAnatomiSQ.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\RS\FormReport\xrAnatomiSQ.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Apps\RS\FormReport\xrDPJPIGD201801.Designer.vb">
+      <DependentUpon>xrDPJPIGD201801.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\RS\FormReport\xrDPJPIGD201801.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Apps\RS\FormReport\xrLabelPasien18815_201801.Designer.vb">
+      <DependentUpon>xrLabelPasien18815_201801.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\RS\FormReport\xrLabelPasien18815_201801.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Apps\RS\FormReport\xrPasienBaru01.Designer.vb">
+      <DependentUpon>xrPasienBaru01.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\RS\FormReport\xrPasienBaru01.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Apps\RS\FormReport\xrPenunjangR201801.Designer.vb">
+      <DependentUpon>xrPenunjangR201801.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\RS\FormReport\xrPenunjangR201801.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Apps\RS\FormReport\xrPenunjangL201801.Designer.vb">
+      <DependentUpon>xrPenunjangL201801.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\RS\FormReport\xrPenunjangL201801.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Apps\RS\FormReport\xrPenunjangE201801.Designer.vb">
+      <DependentUpon>xrPenunjangE201801.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\RS\FormReport\xrPenunjangE201801.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Apps\RS\FormReport\xrRadiologi19401530.Designer.vb">
+      <DependentUpon>xrRadiologi19401530.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\RS\FormReport\xrRadiologi19401530.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Apps\RS\FormReport\xrRegistrasiSlip081201.Designer.vb">
+      <DependentUpon>xrRegistrasiSlip081201.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\RS\FormReport\xrRegistrasiSlip081201.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Apps\RS\FormReport\xrRegistrasiSlip121401.designer.vb">
+      <DependentUpon>xrRegistrasiSlip121401.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\RS\FormReport\xrRegistrasiSlip121401.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Apps\RS\FormReport\xrRegistrasiSlip241401.designer.vb">
+      <DependentUpon>xrRegistrasiSlip241401.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\RS\FormReport\xrRegistrasiSlip241401.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Apps\RS\FormReport\xrRegistrasiSlip242801.designer.vb">
+      <DependentUpon>xrRegistrasiSlip242801.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\RS\FormReport\xrRegistrasiSlip242801.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Apps\RS\FormReport\xrRegistrasiSlip382801.Designer.vb">
+      <DependentUpon>xrRegistrasiSlip382801.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\RS\FormReport\xrRegistrasiSlip382801.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Apps\Appointment\frmAppointmentInfo.Designer.vb">
+      <DependentUpon>frmAppointmentInfo.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\Appointment\frmAppointmentInfo.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Apps\RS\FormReport\xrRiwayatA201801.Designer.vb">
+      <DependentUpon>xrRiwayatA201801.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\RS\FormReport\xrRiwayatA201801.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Apps\RS\FormReport\xrRiwayatO201801.Designer.vb">
+      <DependentUpon>xrRiwayatO201801.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\RS\FormReport\xrRiwayatO201801.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Apps\RS\FormReport\xrRiwayatD201801.Designer.vb">
+      <DependentUpon>xrRiwayatD201801.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\RS\FormReport\xrRiwayatD201801.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Apps\RS\FormReport\xrRiwayatS201801.Designer.vb">
+      <DependentUpon>xrRiwayatS201801.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\RS\FormReport\xrRiwayatS201801.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Apps\RS\FormReport\xrSOAP201801.Designer.vb">
+      <DependentUpon>xrSOAP201801.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\RS\FormReport\xrSOAP201801.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Apps\RS\FormReport\xrSOAPIncIGD201801.Designer.vb">
+      <DependentUpon>xrSOAPIncIGD201801.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\RS\FormReport\xrSOAPIncIGD201801.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Apps\RS\FormReport\xrSOAPIncRHB201801.Designer.vb">
+      <DependentUpon>xrSOAPIncRHB201801.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\RS\FormReport\xrSOAPIncRHB201801.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Apps\RS\FormReport\xrSOAPIncRJ201801.Designer.vb">
+      <DependentUpon>xrSOAPIncRJ201801.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\RS\FormReport\xrSOAPIncRJ201801.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Apps\RS\Monitor\frmGrafikPenyakitTerbanyak.Designer.vb">
+      <DependentUpon>frmGrafikPenyakitTerbanyak.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\RS\Monitor\frmGrafikPenyakitTerbanyak.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Apps\RS\Monitor\frmMonAgamaPasien.Designer.vb">
+      <DependentUpon>frmMonAgamaPasien.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\RS\Monitor\frmMonAgamaPasien.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Apps\RS\Monitor\frmMonAppointmentHarian.Designer.vb">
+      <DependentUpon>frmMonAppointmentHarian.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\RS\Monitor\frmMonAppointmentHarian.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Apps\RS\Monitor\frmMonJadwalDokterDay.Designer.vb">
+      <DependentUpon>frmMonJadwalDokterDay.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\RS\Monitor\frmMonJadwalDokterDay.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Apps\RS\Monitor\frmMonAnalisaRM.Designer.vb">
+      <DependentUpon>frmMonAnalisaRM.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\RS\Monitor\frmMonAnalisaRM.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Apps\RS\Monitor\frmMonAppointment.Designer.vb">
+      <DependentUpon>frmMonAppointment.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\RS\Monitor\frmMonAppointment.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Apps\RS\Monitor\frmMonAppointmentPasien.Designer.vb">
+      <DependentUpon>frmMonAppointmentPasien.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\RS\Monitor\frmMonAppointmentPasien.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Apps\RS\Monitor\frmMonDemografiPasien.Designer.vb">
+      <DependentUpon>frmMonDemografiPasien.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\RS\Monitor\frmMonDemografiPasien.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Apps\RS\Monitor\frmMonDemografiPasienPeta.Designer.vb">
+      <DependentUpon>frmMonDemografiPasienPeta.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\RS\Monitor\frmMonDemografiPasienPeta.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Apps\RS\Monitor\frmMonHistoriKamar.Designer.vb">
+      <DependentUpon>frmMonHistoriKamar.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\RS\Monitor\frmMonHistoriKamar.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Apps\RS\Monitor\frmMonHistoriPasien.Designer.vb">
+      <DependentUpon>frmMonHistoriPasien.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\RS\Monitor\frmMonHistoriPasien.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Apps\RS\Monitor\frmMonIjinPraktekParamedis.Designer.vb">
+      <DependentUpon>frmMonIjinPraktekParamedis.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\RS\Monitor\frmMonIjinPraktekParamedis.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Apps\RS\Monitor\frmMonJadwalDokter.Designer.vb">
+      <DependentUpon>frmMonJadwalDokter.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\RS\Monitor\frmMonJadwalDokter.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Apps\RS\Monitor\frmMonKamar.Designer.vb">
+      <DependentUpon>frmMonKamar.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\RS\Monitor\frmMonKamar.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Apps\RS\Monitor\frmMonPasienBaruLama.Designer.vb">
+      <DependentUpon>frmMonPasienBaruLama.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\RS\Monitor\frmMonPasienBaruLama.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Apps\RS\Monitor\frmMonPenyakitTerbanyak.Designer.vb">
+      <DependentUpon>frmMonPenyakitTerbanyak.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\RS\Monitor\frmMonPenyakitTerbanyak.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Apps\RS\Monitor\frmMonPenyakitTerbanyakIGD.Designer.vb">
+      <DependentUpon>frmMonPenyakitTerbanyakIGD.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\RS\Monitor\frmMonPenyakitTerbanyakIGD.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Apps\RS\Monitor\frmMonPenyakitTerbanyakIRJ.Designer.vb">
+      <DependentUpon>frmMonPenyakitTerbanyakIRJ.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\RS\Monitor\frmMonPenyakitTerbanyakIRJ.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Apps\RS\Monitor\frmMonPenyakitTerbanyakIRM.Designer.vb">
+      <DependentUpon>frmMonPenyakitTerbanyakIRM.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\RS\Monitor\frmMonPenyakitTerbanyakIRM.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Apps\RS\Monitor\frmMonRegisterAll.Designer.vb">
+      <DependentUpon>frmMonRegisterAll.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\RS\Monitor\frmMonRegisterAll.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Apps\RS\Monitor\frmMonRegisterAllDay.Designer.vb">
+      <DependentUpon>frmMonRegisterAllDay.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\RS\Monitor\frmMonRegisterAllDay.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Apps\RS\Monitor\frmMonRegisterIGD.Designer.vb">
+      <DependentUpon>frmMonRegisterIGD.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\RS\Monitor\frmMonRegisterIGD.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Apps\RS\Monitor\frmMonRegisterIGDday.Designer.vb">
+      <DependentUpon>frmMonRegisterIGDday.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\RS\Monitor\frmMonRegisterIGDday.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Apps\RS\Monitor\frmMonRegisterIRJday.Designer.vb">
+      <DependentUpon>frmMonRegisterIRJday.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\RS\Monitor\frmMonRegisterIRJday.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Apps\RS\Monitor\frmMonRegisterIRMday.Designer.vb">
+      <DependentUpon>frmMonRegisterIRMday.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\RS\Monitor\frmMonRegisterIRMday.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Apps\RS\Monitor\frmMonRegisterIRNA.Designer.vb">
+      <DependentUpon>frmMonRegisterIRNA.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\RS\Monitor\frmMonRegisterIRNA.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Apps\RS\Monitor\frmMonRegisterIRM.Designer.vb">
+      <DependentUpon>frmMonRegisterIRM.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\RS\Monitor\frmMonRegisterIRM.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Apps\RS\Monitor\frmMonRegisterIRJ.Designer.vb">
+      <DependentUpon>frmMonRegisterIRJ.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\RS\Monitor\frmMonRegisterIRJ.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Apps\RS\Monitor\frmMonRegisterIRNAday.Designer.vb">
+      <DependentUpon>frmMonRegisterIRNAday.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\RS\Monitor\frmMonRegisterIRNAday.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Apps\RS\Monitor\frmMonRegisterRespond.Designer.vb">
+      <DependentUpon>frmMonRegisterRespond.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\RS\Monitor\frmMonRegisterRespond.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Apps\RS\Monitor\frmMonUltahPasien.Designer.vb">
+      <DependentUpon>frmMonUltahPasien.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\RS\Monitor\frmMonUltahPasien.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Apps\RS\Asesmen\frmAMIGD201801.Designer.vb">
+      <DependentUpon>frmAMIGD201801.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\RS\Asesmen\frmAMIGD201801.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Apps\RS\FormReport\xrRadiologi13801990.Designer.vb">
+      <DependentUpon>xrRadiologi13801990.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\RS\FormReport\xrRadiologi13801990.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Apps\RS\Trans\frmAnalisaRM.Designer.vb">
+      <DependentUpon>frmAnalisaRM.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\RS\Trans\frmAnalisaRM.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Apps\POS\Data\frmBusinessPartnerQuickAdd.Designer.vb">
+      <DependentUpon>frmBusinessPartnerQuickAdd.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\POS\Data\frmBusinessPartnerQuickAdd.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Apps\RS\Data\frmBukuTarif.Designer.vb">
+      <DependentUpon>frmBukuTarif.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\RS\Data\frmBukuTarif.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Apps\RS\Trans\frmKamarPindah.Designer.vb">
+      <DependentUpon>frmKamarPindah.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\RS\Trans\frmKamarPindah.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Apps\RS\Trans\frmOrderKonfirmRadiologi.Designer.vb">
+      <DependentUpon>frmOrderKonfirmRadiologi.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\RS\Trans\frmOrderKonfirmRadiologi.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Apps\RS\Trans\frmOrderLaboratorium.Designer.vb">
+      <DependentUpon>frmOrderLaboratorium.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\RS\Trans\frmOrderLaboratorium.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Apps\RS\Trans\frmOrderRadiologi.Designer.vb">
+      <DependentUpon>frmOrderRadiologi.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\RS\Trans\frmOrderRadiologi.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Apps\RS\Trans\frmParamedisQuickAdd.Designer.vb">
+      <DependentUpon>frmParamedisQuickAdd.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\RS\Trans\frmParamedisQuickAdd.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Apps\RS\Trans\frmPelayananSelect.Designer.vb">
+      <DependentUpon>frmPelayananSelect.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\RS\Trans\frmPelayananSelect.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Apps\RS\Data\frmRadiologiRujukan.Designer.vb">
+      <DependentUpon>frmRadiologiRujukan.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\RS\Data\frmRadiologiRujukan.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Apps\RS\Trans\frmRegistrasi.Designer.vb">
+      <DependentUpon>frmRegistrasi.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\RS\Trans\frmRegistrasi.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Apps\RS\Data\frmRMSelect.Designer.vb">
+      <DependentUpon>frmRMSelect.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\RS\Data\frmRMSelect.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Apps\RS\Monitor\frmMonRegisterParamedis.Designer.vb">
+      <DependentUpon>frmMonRegisterParamedis.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\RS\Monitor\frmMonRegisterParamedis.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Apps\Appointment\frmAppointment.Designer.vb">
+      <DependentUpon>frmAppointment.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\Appointment\frmAppointment.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Apps\RS\Trans\frmRegistrasiCancel.Designer.vb">
+      <DependentUpon>frmRegistrasiCancel.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\RS\Trans\frmRegistrasiCancel.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Apps\RS\Trans\frmRegistrasiPasienApp.Designer.vb">
+      <DependentUpon>frmRegistrasiPasienApp.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\RS\Trans\frmRegistrasiPasienApp.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Apps\RS\Trans\frmRegistrasiRanap.Designer.vb">
+      <DependentUpon>frmRegistrasiRanap.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\RS\Trans\frmRegistrasiRanap.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Apps\RS\Trans\frmRegistrasiUpdate.Designer.vb">
+      <DependentUpon>frmRegistrasiUpdate.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\RS\Trans\frmRegistrasiUpdate.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Apps\RS\Trans\frmWristbandSelect.Designer.vb">
+      <DependentUpon>frmWristbandSelect.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\RS\Trans\frmWristbandSelect.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Apps\SIA\Report\frmLaporanNeraca.Designer.vb">
+      <DependentUpon>frmLaporanNeraca.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\SIA\Report\frmLaporanNeraca.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Apps\SIA\Transaksi\frmJurnalUmumAutobalance.Designer.vb">
+      <DependentUpon>frmJurnalUmumAutobalance.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\SIA\Transaksi\frmJurnalUmumAutobalance.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Apps\Temp\frmCOA_generator.Designer.vb">
+      <DependentUpon>frmCOA_generator.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\Temp\frmCOA_generator.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Apps\HRD\Data\frmDepartment.designer.vb">
+      <DependentUpon>frmDepartment.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\HRD\Data\frmDepartment.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Apps\Temp\frmImportCOA.Designer.vb">
+      <DependentUpon>frmImportCOA.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\Temp\frmImportCOA.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Apps\HRD\Data\frmJabatan.designer.vb">
+      <DependentUpon>frmJabatan.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\HRD\Data\frmJabatan.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Apps\HRD\Data\frmKaryawan.designer.vb">
+      <DependentUpon>frmKaryawan.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\HRD\Data\frmKaryawan.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Apps\SIA\Data\frmCOA.Designer.vb">
+      <DependentUpon>frmCOA.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\SIA\Data\frmCOA.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Apps\SIA\Data\frmKategoriCOA.Designer.vb">
+      <DependentUpon>frmKategoriCOA.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\SIA\Data\frmKategoriCOA.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Apps\SIA\Data\frmKategoriPeruntukan.Designer.vb">
+      <DependentUpon>frmKategoriPeruntukan.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\SIA\Data\frmKategoriPeruntukan.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Apps\SIA\Data\frmSaldoAwal.Designer.vb">
+      <DependentUpon>frmSaldoAwal.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\SIA\Data\frmSaldoAwal.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Apps\HRD\Data\frmSelectKaryawan.Designer.vb">
+      <DependentUpon>frmSelectKaryawan.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\HRD\Data\frmSelectKaryawan.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Apps\HRD\Data\frmSelectUnit.Designer.vb">
+      <DependentUpon>frmSelectUnit.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\HRD\Data\frmSelectUnit.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Apps\HRD\Data\frmUnit.Designer.vb">
+      <DependentUpon>frmUnit.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\HRD\Data\frmUnit.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Apps\Auditor\frmJurnalBulanan.Designer.vb">
+      <DependentUpon>frmJurnalBulanan.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\Auditor\frmJurnalBulanan.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Apps\PDAB\Monitor\frmMonUserPPP.Designer.vb">
+      <DependentUpon>frmMonUserPPP.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\PDAB\Monitor\frmMonUserPPP.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Apps\PDAB\Monitor\frmMonUserPUMPB.Designer.vb">
+      <DependentUpon>frmMonUserPUMPB.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\PDAB\Monitor\frmMonUserPUMPB.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Apps\POS\Data\frmItem.Designer.vb">
+      <DependentUpon>frmItem.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\POS\Data\frmItem.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Apps\PDAB\Monitor\frmMonAnggaranRutin.Designer.vb">
+      <DependentUpon>frmMonAnggaranRutin.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\PDAB\Monitor\frmMonAnggaranRutin.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Apps\PDAB\Monitor\frmMonAnggaranTahunan.Designer.vb">
+      <DependentUpon>frmMonAnggaranTahunan.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\PDAB\Monitor\frmMonAnggaranTahunan.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Apps\PDAB\Monitor\frmMonPPP.Designer.vb">
+      <DependentUpon>frmMonPPP.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\PDAB\Monitor\frmMonPPP.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Apps\PDAB\Monitor\frmMonPUMPB.Designer.vb">
+      <DependentUpon>frmMonPUMPB.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\PDAB\Monitor\frmMonPUMPB.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Apps\PDAB\Monitor\frmReviewDirekturPPP.Designer.vb">
+      <DependentUpon>frmReviewDirekturPPP.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\PDAB\Monitor\frmReviewDirekturPPP.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Apps\PDAB\Monitor\frmReviewDirekturPUMPB.Designer.vb">
+      <DependentUpon>frmReviewDirekturPUMPB.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\PDAB\Monitor\frmReviewDirekturPUMPB.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Apps\PDAB\Monitor\frmReviewKabidKeuPUMPB.Designer.vb">
+      <DependentUpon>frmReviewKabidKeuPUMPB.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\PDAB\Monitor\frmReviewKabidKeuPUMPB.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Apps\PDAB\Monitor\frmReviewPPP.Designer.vb">
+      <DependentUpon>frmReviewPPP.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\PDAB\Monitor\frmReviewPPP.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Apps\PDAB\Monitor\frmReviewPUMPB.Designer.vb">
+      <DependentUpon>frmReviewPUMPB.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\PDAB\Monitor\frmReviewPUMPB.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Apps\PDAB\Monitor\xrJurnalBulanan.Designer.vb">
+      <DependentUpon>xrJurnalBulanan.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\PDAB\Monitor\xrJurnalBulanan.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Apps\POS\Data\frmBusinessPartner.Designer.vb">
+      <DependentUpon>frmBusinessPartner.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\POS\Data\frmBusinessPartner.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Apps\POS\Data\frmItemPrice.Designer.vb">
+      <DependentUpon>frmItemPrice.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\POS\Data\frmItemPrice.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Apps\POS\Data\frmItemSupplier.Designer.vb">
+      <DependentUpon>frmItemSupplier.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\POS\Data\frmItemSupplier.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Apps\POS\Data\frmItemUnit.Designer.vb">
+      <DependentUpon>frmItemUnit.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\POS\Data\frmItemUnit.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Apps\POS\Data\frmItemUnitPrice.Designer.vb">
+      <DependentUpon>frmItemUnitPrice.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\POS\Data\frmItemUnitPrice.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Apps\POS\Data\frmPlanningBOM.Designer.vb">
+      <DependentUpon>frmPlanningBOM.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\POS\Data\frmPlanningBOM.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Apps\POS\Data\frmSatuan.Designer.vb">
+      <DependentUpon>frmSatuan.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\POS\Data\frmSatuan.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Apps\POS\frmAppPOSSetting.Designer.vb">
+      <DependentUpon>frmAppPOSSetting.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\POS\frmAppPOSSetting.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Apps\POS\Transaksi\frmItemBOM.Designer.vb">
+      <DependentUpon>frmItemBOM.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\POS\Transaksi\frmItemBOM.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Apps\POS\Transaksi\frmMutasiBarang.Designer.vb">
+      <DependentUpon>frmMutasiBarang.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\POS\Transaksi\frmMutasiBarang.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Apps\POS\Transaksi\frmPembayaran.Designer.vb">
+      <DependentUpon>frmPembayaran.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\POS\Transaksi\frmPembayaran.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Apps\POS\Transaksi\frmPermintaanBarangQLMA.Designer.vb">
+      <DependentUpon>frmPermintaanBarangQLMA.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\POS\Transaksi\frmPermintaanBarangQLMA.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Apps\SIA\Report\frmReportJurnal.Designer.vb">
+      <DependentUpon>frmReportJurnal.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\SIA\Report\frmReportJurnal.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Apps\PDAB\Report\frmReportPPP.Designer.vb">
+      <DependentUpon>frmReportPPP.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\PDAB\Report\frmReportPPP.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Apps\PDAB\Report\frmReportPUMPB.Designer.vb">
+      <DependentUpon>frmReportPUMPB.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\PDAB\Report\frmReportPUMPB.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Apps\PDAB\Report\frmReportRejectPUMPB.Designer.vb">
+      <DependentUpon>frmReportRejectPUMPB.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\PDAB\Report\frmReportRejectPUMPB.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Apps\PDAB\Report\frmReportSblmReviewPPP.Designer.vb">
+      <DependentUpon>frmReportSblmReviewPPP.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\PDAB\Report\frmReportSblmReviewPPP.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Apps\PDAB\Report\xrBeforeReviewPPP.Designer.vb">
+      <DependentUpon>xrBeforeReviewPPP.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\PDAB\Report\xrBeforeReviewPPP.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Apps\PDAB\Report\xrBeforeReviewPPPKas.Designer.vb">
+      <DependentUpon>xrBeforeReviewPPPKas.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\PDAB\Report\xrBeforeReviewPPPKas.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Apps\SIA\Report\xrJurnal.Designer.vb">
+      <DependentUpon>xrJurnal.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\SIA\Report\xrJurnal.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Apps\PDAB\Report\xrPPP.Designer.vb">
+      <DependentUpon>xrPPP.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\PDAB\Report\xrPPP.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Apps\PDAB\Report\xrPPPKas.Designer.vb">
+      <DependentUpon>xrPPPKas.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\PDAB\Report\xrPPPKas.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Apps\PDAB\Report\xrPUMPB.Designer.vb">
+      <DependentUpon>xrPUMPB.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\PDAB\Report\xrPUMPB.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Apps\PDAB\Report\xrRejectPUMPB.Designer.vb">
+      <DependentUpon>xrRejectPUMPB.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\PDAB\Report\xrRejectPUMPB.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Apps\PDAB\Transaksi\clsRenumberingDocument.vb">
+    </Compile>
+    <Compile Include="Apps\PDAB\Transaksi\clsRenumberingDtSN.vb" />
+    <Compile Include="Apps\SIA\Transaksi\frmAnggaran.Designer.vb">
+      <DependentUpon>frmAnggaran.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\SIA\Transaksi\frmAnggaran.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Apps\PDAB\Transaksi\frmExternalPUMPB.Designer.vb">
+      <DependentUpon>frmExternalPUMPB.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\PDAB\Transaksi\frmExternalPUMPB.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Apps\SIA\Transaksi\frmJurnal.Designer.vb">
+      <DependentUpon>frmJurnal.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\SIA\Transaksi\frmJurnal.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Apps\SIA\Transaksi\frmJurnalUmum.Designer.vb">
+      <DependentUpon>frmJurnalUmum.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\SIA\Transaksi\frmJurnalUmum.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Apps\PDAB\Transaksi\frmPPP.Designer.vb">
+      <DependentUpon>frmPPP.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\PDAB\Transaksi\frmPPP.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Apps\PDAB\Transaksi\frmInternalPUMPB.Designer.vb">
+      <DependentUpon>frmInternalPUMPB.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\PDAB\Transaksi\frmInternalPUMPB.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Apps\Common\Data\frmWilayah.designer.vb">
+      <DependentUpon>frmWilayah.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\Common\Data\frmWilayah.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Apps\Support\modApps.vb" />
+    <Compile Include="Apps\Support\modCSS.vb" />
+    <Compile Include="Apps\UserControl\btnBooking.designer.vb">
+      <DependentUpon>btnBooking.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\UserControl\btnBooking.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Apps\UserControl\btnBookingR.designer.vb">
+      <DependentUpon>btnBookingR.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\UserControl\btnBookingR.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Apps\UserControl\btnJadwalDokter.Designer.vb">
+      <DependentUpon>btnJadwalDokter.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\UserControl\btnJadwalDokter.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Apps\UserControl\btnSchedule.designer.vb">
+      <DependentUpon>btnSchedule.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\UserControl\btnSchedule.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Core\Main\frmAppDevice.Designer.vb">
+      <DependentUpon>frmAppDevice.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Core\Main\frmAppDevice.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Core\Main\frmExportChart.Designer.vb">
+      <DependentUpon>frmExportChart.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Core\Main\frmExportChart.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Core\Main\frmExportMultiChart.Designer.vb">
+      <DependentUpon>frmExportMultiChart.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Core\Main\frmExportMultiChart.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Core\Main\frmPrintSelect.Designer.vb">
+      <DependentUpon>frmPrintSelect.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Core\Main\frmPrintSelect.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dataset\BRPPPset.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BRPPPset.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Core\Main\Controls\ucChatbox.Designer.vb">
+      <DependentUpon>ucChatbox.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Core\Main\Controls\ucChatbox.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Core\Main\Controls\ucChatlist.Designer.vb">
+      <DependentUpon>ucChatlist.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Core\Main\Controls\ucChatlist.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Core\Main\Controls\ucMemo.Designer.vb">
+      <DependentUpon>ucMemo.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Core\Main\Controls\ucMemo.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Core\Main\Controls\ucNotes.Designer.vb">
+      <DependentUpon>ucNotes.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Core\Main\Controls\ucNotes.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Core\Main\frmAdministrator.Designer.vb">
+      <DependentUpon>frmAdministrator.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Core\Main\frmAdministrator.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Apps\PDAB\frmAppPDABSetting.Designer.vb">
+      <DependentUpon>frmAppPDABSetting.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\PDAB\frmAppPDABSetting.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Core\Main\frmAuthentication.Designer.vb">
+      <DependentUpon>frmAuthentication.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Core\Main\frmAuthentication.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Core\Main\frmComputerClient.Designer.vb">
+      <DependentUpon>frmComputerClient.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Core\Main\frmComputerClient.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Core\Main\frmDevice.Designer.vb">
+      <DependentUpon>frmDevice.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Core\Main\frmDevice.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Core\Main\frmDizSplash.Designer.vb">
+      <DependentUpon>frmDizSplash.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Core\Main\frmDizSplash.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Core\Main\frmExportMap.Designer.vb">
+      <DependentUpon>frmExportMap.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Core\Main\frmExportMap.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Core\Main\frmMemo.Designer.vb">
+      <DependentUpon>frmMemo.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Core\Main\frmMemo.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Core\Main\frmMessagesNew.Designer.vb">
+      <DependentUpon>frmMessagesNew.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Core\Main\frmMessagesNew.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Core\Main\frmNotes.Designer.vb">
+      <DependentUpon>frmNotes.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Core\Main\frmNotes.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Core\Main\frmSplash.Designer.vb">
+      <DependentUpon>frmSplash.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Core\Main\frmSplash.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Core\Submission\frmChangeHardware.Designer.vb">
+      <DependentUpon>frmChangeHardware.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Core\Submission\frmChangeHardware.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Core\Submission\frmCurrentPayment.Designer.vb">
+      <DependentUpon>frmCurrentPayment.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Core\Submission\frmCurrentPayment.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Core\Submission\frmFiturServer.Designer.vb">
+      <DependentUpon>frmFiturServer.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Core\Submission\frmFiturServer.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Core\Main\frmLoading.Designer.vb">
+      <DependentUpon>frmLoading.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Core\Main\frmLoading.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Core\Main\frmMessagebox.Designer.vb">
+      <DependentUpon>frmMessagebox.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Core\Main\frmMessagebox.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Core\Submission\frmHistoryPayment.Designer.vb">
+      <DependentUpon>frmHistoryPayment.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Core\Submission\frmHistoryPayment.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Core\Submission\frmNewCompany.Designer.vb">
+      <DependentUpon>frmNewCompany.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Core\Submission\frmNewCompany.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Core\Main\frmExport.Designer.vb">
+      <DependentUpon>frmExport.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Core\Main\frmExport.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Core\Main\frmIconManager.Designer.vb">
+      <DependentUpon>frmIconManager.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Core\Main\frmIconManager.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Core\Main\frmImageManager.Designer.vb">
+      <DependentUpon>frmImageManager.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Core\Main\frmImageManager.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Core\Main\frmLogin.Designer.vb">
+      <DependentUpon>frmLogin.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Core\Main\frmLogin.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Core\Main\frmMenu.Designer.vb">
+      <DependentUpon>frmMenu.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Core\Main\frmMenu.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Core\Main\frmMessages.Designer.vb">
+      <DependentUpon>frmMessages.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Core\Main\frmMessages.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Core\Submission\frmNewData.Designer.vb">
+      <DependentUpon>frmNewData.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Core\Submission\frmNewData.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Core\Submission\frmNewPayment.Designer.vb">
+      <DependentUpon>frmNewPayment.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Core\Submission\frmNewPayment.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Core\Submission\frmNewProduct.Designer.vb">
+      <DependentUpon>frmNewProduct.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Core\Submission\frmNewProduct.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Core\Submission\frmNewProfile.Designer.vb">
+      <DependentUpon>frmNewProfile.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Core\Submission\frmNewProfile.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Core\Main\frmPerformance.Designer.vb">
+      <DependentUpon>frmPerformance.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Core\Main\frmPerformance.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Core\Main\frmMain.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Core\Main\frmMain.Designer.vb">
+      <DependentUpon>frmMain.vb</DependentUpon>
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Core\Main\frmProfile.Designer.vb">
+      <DependentUpon>frmProfile.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Core\Main\frmProfile.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Core\Main\frmSearch.Designer.vb">
+      <DependentUpon>frmSearch.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Core\Main\frmSearch.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Core\Main\frmSettingDB.Designer.vb">
+      <DependentUpon>frmSettingDB.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Core\Main\frmSettingDB.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Core\Main\frmUserLevel.Designer.vb">
+      <DependentUpon>frmUserLevel.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Core\Main\frmUserLevel.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Core\Support\modNewData.vb" />
+    <Compile Include="Core\Support\dtsetMYS.vb" />
+    <Compile Include="Core\Support\dtsetSQLI.vb" />
+    <Compile Include="Core\Support\dtsetSQLS.vb" />
+    <Compile Include="Core\Support\extensions.vb" />
+    <Compile Include="Core\Support\modCore.vb" />
+    <Compile Include="Core\Support\MyRenderer.vb" />
+    <Compile Include="Core\Support\MYs.vb" />
+    <Compile Include="Core\Support\SQLi.vb" />
+    <Compile Include="Core\Support\SQLs.vb" />
+    <Compile Include="Apps\Temp\Form1.Designer.vb">
+      <DependentUpon>Form1.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\Temp\Form1.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dataset\BRPPPset.vb">
+      <DependentUpon>BRPPPset.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Dataset\setPPP.vb">
+      <DependentUpon>setPPP.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Dataset\spAMIGD201801.vb">
+      <DependentUpon>spAMIGD201801.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Dataset\spAMRHB201801.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>spAMRHB201801.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Dataset\spJurnalBulanan.vb">
+      <DependentUpon>spJurnalBulanan.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="My Project\AssemblyInfo.vb" />
+    <Compile Include="My Project\Application.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Application.myapp</DependentUpon>
+    </Compile>
+    <Compile Include="My Project\Resources.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="My Project\Settings.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="Dataset\setJurnal.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>setJurnal.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Dataset\setPPP.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>setPPP.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Dataset\setPUMPB.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>setPUMPB.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Dataset\spAMIGD201801.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>spAMIGD201801.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Dataset\spAnatomi.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>spAnatomi.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Dataset\spJurnal.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>spJurnal.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Dataset\spJurnalBulanan.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>spJurnalBulanan.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Dataset\spPenunjangEKG.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>spPenunjangEKG.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Dataset\spPenunjangLAB.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>spPenunjangLAB.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Dataset\spPenunjangRAD.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>spPenunjangRAD.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Dataset\spRegistrasiPasienBaru.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>spRegistrasiPasienBaru.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Dataset\spRegistrasiPasienBaru.vb">
+      <DependentUpon>spRegistrasiPasienBaru.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Dataset\spRegistrasiSlip.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>spRegistrasiSlip.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Dataset\spRiwayatD201801.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>spRiwayatD201801.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Dataset\spRiwayatO201801.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>spRiwayatO201801.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Dataset\spRiwayatS201801.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>spRiwayatS201801.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Dataset\spSN201801.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>spSN201801.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Dataset\spCompanyLogoCaptionSquare.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>spCompanyLogoCaptionSquare.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Dataset\spAMRJ201801.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>spAMRJ201801.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Dataset\spRiwayatA201801.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>spRiwayatA201801.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Dataset\spRegDPJP.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>spRegDPJP.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="spSPB.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>spSPB.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="spSPB.vb">
+      <DependentUpon>spSPB.xsd</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Apps\Accounting\frmBukuBesar.resx">
+      <DependentUpon>frmBukuBesar.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps\Accounting\frmBukuPembantu.resx">
+      <DependentUpon>frmBukuPembantu.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps\Accounting\frmNeraca.resx">
+      <DependentUpon>frmNeraca.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps\Accounting\frmNeracaSaldo.resx">
+      <DependentUpon>frmNeracaSaldo.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps\Accounting\frmRugiLaba.resx">
+      <DependentUpon>frmRugiLaba.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps\Accounting\frmStrukturArusKas.resx">
+      <DependentUpon>frmStrukturArusKas.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps\Accounting\frmStrukturLaporanNeraca.resx">
+      <DependentUpon>frmStrukturLaporanNeraca.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps\Appointment\frmDeleteReason.resx">
+      <DependentUpon>frmDeleteReason.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps\Appointment\frmEditNoteReason.resx">
+      <DependentUpon>frmEditNoteReason.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps\Appointment\frmJadwalParamedis.resx">
+      <DependentUpon>frmJadwalParamedis.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps\Appointment\frmParamedisCuti.resx">
+      <DependentUpon>frmParamedisCuti.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps\Auditor\frmArusKas.resx">
+      <DependentUpon>frmArusKas.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps\Auditor\frmNeracaTahunan.resx">
+      <DependentUpon>frmNeracaTahunan.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps\Auditor\frmNeracaBulanan.resx">
+      <DependentUpon>frmNeracaBulanan.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps\Auditor\frmRugiLabaBulanan.resx">
+      <DependentUpon>frmRugiLabaBulanan.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps\Auditor\frmRugiLabaTahunan.resx">
+      <DependentUpon>frmRugiLabaTahunan.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps\Common\Data\frmBank.resx">
+      <DependentUpon>frmBank.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps\Common\Data\frmCariWilayah.resx">
+      <DependentUpon>frmCariWilayah.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps\Common\Data\frmSelectDevice.resx">
+      <DependentUpon>frmSelectDevice.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps\HRD\Data\frmKaryawanCuti.resx">
+      <DependentUpon>frmKaryawanCuti.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps\Common\Data\frmLokasi.resx">
+      <DependentUpon>frmLokasi.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps\HRD\Monitor\frmMonMutasiKaryawan.resx">
+      <DependentUpon>frmMonMutasiKaryawan.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps\HRD\Monitor\frmMonTeguranKaryawan.resx">
+      <DependentUpon>frmMonTeguranKaryawan.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps\Common\Data\frmDeviceLokasi.resx">
+      <DependentUpon>frmDeviceLokasi.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps\HRD\Data\frmJadwalKerja.resx">
+      <DependentUpon>frmJadwalKerja.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps\HRD\Data\frmKomponenGaji.resx">
+      <DependentUpon>frmKomponenGaji.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps\HRD\Data\frmStandardGaji.resx">
+      <DependentUpon>frmStandardGaji.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps\POS\Data\frmItemGrup.resx">
+      <DependentUpon>frmItemGrup.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps\POS\Data\frmItemPriceKelas.resx">
+      <DependentUpon>frmItemPriceKelas.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps\POS\FormReport\xrSPP.resx">
+      <DependentUpon>xrSPP.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps\POS\FormReport\xrSPBLMA.resx">
+      <DependentUpon>xrSPBLMA.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps\POS\Monitor\frmMonSPB.resx">
+      <DependentUpon>frmMonSPB.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps\POS\Transaksi\frmPembelianNI.resx">
+      <DependentUpon>frmPembelianNI.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps\POS\Transaksi\frmPermintaanBarangNQLMA.resx">
+      <DependentUpon>frmPermintaanBarangNQLMA.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps\POS\Transaksi\frmPermintaanBarangNQM.resx">
+      <DependentUpon>frmPermintaanBarangNQM.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps\POS\Transaksi\frmPermintaanBarangQM.resx">
+      <DependentUpon>frmPermintaanBarangQM.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps\POS\Transaksi\frmPermintaanBarangReview.resx">
+      <DependentUpon>frmPermintaanBarangReview.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps\POS\Transaksi\frmPermintaanPembelian.resx">
+      <DependentUpon>frmPermintaanPembelian.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps\POS\Transaksi\frmPermintaanPembelianReview.resx">
+      <DependentUpon>frmPermintaanPembelianReview.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps\POS\Transaksi\frmValidasiItemHarga.resx">
+      <DependentUpon>frmValidasiItemHarga.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps\RS\Asesmen\frmAMRHB201801.resx">
+      <DependentUpon>frmAMRHB201801.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps\RS\Asesmen\frmAMRJ201801.resx">
+      <DependentUpon>frmAMRJ201801.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps\RS\Asesmen\frmAPIGD201801.resx">
+      <DependentUpon>frmAPIGD201801.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps\RS\Asesmen\frmAsesmenGizi.resx">
+      <DependentUpon>frmAsesmenGizi.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps\RS\Asesmen\frmAsesmenRehab.resx">
+      <DependentUpon>frmAsesmenRehab.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps\RS\Asesmen\frmDiagnosaKerja.resx">
+      <DependentUpon>frmDiagnosaKerja.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps\RS\Asesmen\frmOrderDietPasien.resx">
+      <DependentUpon>frmOrderDietPasien.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps\RS\Dashboard\frmBoardPelayanan.resx">
+      <DependentUpon>frmBoardPelayanan.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps\RS\Data\frmBukuTarif.resx">
+      <DependentUpon>frmBukuTarif.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps\RS\Data\frmDietMenu.resx">
+      <DependentUpon>frmDietMenu.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps\RS\Data\frmFarmasiRujukan.resx">
+      <DependentUpon>frmFarmasiRujukan.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps\RS\Data\frmICD.resx">
+      <DependentUpon>frmICD.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps\Appointment\frmParamedisJadwal.resx">
+      <DependentUpon>frmParamedisJadwal.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps\RS\Data\frmPasienQuickEdit.resx">
+      <DependentUpon>frmPasienQuickEdit.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps\RS\Data\frmPasienSwapData.resx">
+      <DependentUpon>frmPasienSwapData.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps\RS\Data\frmRehabMedikICD.resx">
+      <DependentUpon>frmRehabMedikICD.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps\RS\Data\frmKelas.resx">
+      <DependentUpon>frmKelas.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps\RS\Data\frmKelasKamar.resx">
+      <DependentUpon>frmKelasKamar.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps\RS\Data\frmLaboratoriumRujukan.resx">
+      <DependentUpon>frmLaboratoriumRujukan.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps\RS\Data\frmParamedis.resx">
+      <DependentUpon>frmParamedis.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps\RS\Data\frmPasien.resx">
+      <DependentUpon>frmPasien.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps\RS\Data\frmPasienSimple.resx">
+      <DependentUpon>frmPasienSimple.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps\RS\Data\frmPelayanan.resx">
+      <DependentUpon>frmPelayanan.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps\RS\Data\frmPelayananSpesialis.resx">
+      <DependentUpon>frmPelayananSpesialis.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps\RS\Data\frmRadiologiRujukan.resx">
+      <DependentUpon>frmRadiologiRujukan.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps\RS\Data\frmRMOldData.resx">
+      <DependentUpon>frmRMOldData.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps\RS\Data\frmSelectParamedis.resx">
+      <DependentUpon>frmSelectParamedis.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps\RS\Data\frmSpesialis.resx">
+      <DependentUpon>frmSpesialis.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps\RS\Data\frmRehabMedik.resx">
+      <DependentUpon>frmRehabMedik.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps\RS\FormReport\xrAMIGD201801.resx">
+      <DependentUpon>xrAMIGD201801.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps\RS\FormReport\xrAMRHB201801.resx">
+      <DependentUpon>xrAMRHB201801.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps\RS\FormReport\xrAMRJ201801.resx">
+      <DependentUpon>xrAMRJ201801.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps\RS\FormReport\xrAnatomi.resx">
+      <DependentUpon>xrAnatomi.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps\RS\FormReport\xrAnatomiSQ.resx">
+      <DependentUpon>xrAnatomiSQ.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps\RS\FormReport\xrDPJPIGD201801.resx">
+      <DependentUpon>xrDPJPIGD201801.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps\RS\FormReport\xrLabelPasien18815_201801.resx">
+      <DependentUpon>xrLabelPasien18815_201801.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps\RS\FormReport\xrPasienBaru01.resx">
+      <DependentUpon>xrPasienBaru01.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps\RS\FormReport\xrPenunjangR201801.resx">
+      <DependentUpon>xrPenunjangR201801.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps\RS\FormReport\xrPenunjangL201801.resx">
+      <DependentUpon>xrPenunjangL201801.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps\RS\FormReport\xrPenunjangE201801.resx">
+      <DependentUpon>xrPenunjangE201801.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps\RS\FormReport\xrRadiologi19401530.resx">
+      <DependentUpon>xrRadiologi19401530.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps\RS\FormReport\xrRegistrasiSlip081201.resx">
+      <DependentUpon>xrRegistrasiSlip081201.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps\RS\FormReport\xrRegistrasiSlip121401.resx">
+      <DependentUpon>xrRegistrasiSlip121401.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps\RS\FormReport\xrRegistrasiSlip241401.resx">
+      <DependentUpon>xrRegistrasiSlip241401.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps\RS\FormReport\xrRegistrasiSlip242801.resx">
+      <DependentUpon>xrRegistrasiSlip242801.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps\RS\FormReport\xrRegistrasiSlip382801.resx">
+      <DependentUpon>xrRegistrasiSlip382801.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps\Appointment\frmAppointment.resx">
+      <DependentUpon>frmAppointment.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps\Appointment\frmAppointmentInfo.resx">
+      <DependentUpon>frmAppointmentInfo.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps\RS\FormReport\xrRiwayatA201801.resx">
+      <DependentUpon>xrRiwayatA201801.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps\RS\FormReport\xrRiwayatO201801.resx">
+      <DependentUpon>xrRiwayatO201801.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps\RS\FormReport\xrRiwayatD201801.resx">
+      <DependentUpon>xrRiwayatD201801.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps\RS\FormReport\xrRiwayatS201801.resx">
+      <DependentUpon>xrRiwayatS201801.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps\RS\FormReport\xrSOAP201801.resx">
+      <DependentUpon>xrSOAP201801.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps\RS\FormReport\xrSOAPIncIGD201801.resx">
+      <DependentUpon>xrSOAPIncIGD201801.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps\RS\FormReport\xrSOAPIncRHB201801.resx">
+      <DependentUpon>xrSOAPIncRHB201801.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps\RS\FormReport\xrSOAPIncRJ201801.resx">
+      <DependentUpon>xrSOAPIncRJ201801.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps\RS\Monitor\frmGrafikPenyakitTerbanyak.resx">
+      <DependentUpon>frmGrafikPenyakitTerbanyak.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps\RS\Monitor\frmMonAgamaPasien.resx">
+      <DependentUpon>frmMonAgamaPasien.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps\RS\Monitor\frmMonAppointmentHarian.resx">
+      <DependentUpon>frmMonAppointmentHarian.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps\RS\Monitor\frmMonJadwalDokterDay.resx">
+      <DependentUpon>frmMonJadwalDokterDay.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps\RS\Monitor\frmMonAnalisaRM.resx">
+      <DependentUpon>frmMonAnalisaRM.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps\RS\Monitor\frmMonAppointment.resx">
+      <DependentUpon>frmMonAppointment.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps\RS\Monitor\frmMonAppointmentPasien.resx">
+      <DependentUpon>frmMonAppointmentPasien.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps\RS\Monitor\frmMonDemografiPasien.resx">
+      <DependentUpon>frmMonDemografiPasien.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps\RS\Monitor\frmMonDemografiPasienPeta.resx">
+      <DependentUpon>frmMonDemografiPasienPeta.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps\RS\Monitor\frmMonHistoriKamar.resx">
+      <DependentUpon>frmMonHistoriKamar.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps\RS\Monitor\frmMonHistoriPasien.resx">
+      <DependentUpon>frmMonHistoriPasien.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps\RS\Monitor\frmMonIjinPraktekParamedis.resx">
+      <DependentUpon>frmMonIjinPraktekParamedis.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps\RS\Monitor\frmMonJadwalDokter.resx">
+      <DependentUpon>frmMonJadwalDokter.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps\RS\Monitor\frmMonKamar.resx">
+      <DependentUpon>frmMonKamar.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps\RS\Monitor\frmMonPasienBaruLama.resx">
+      <DependentUpon>frmMonPasienBaruLama.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps\RS\Monitor\frmMonPenyakitTerbanyak.resx">
+      <DependentUpon>frmMonPenyakitTerbanyak.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps\RS\Monitor\frmMonPenyakitTerbanyakIGD.resx">
+      <DependentUpon>frmMonPenyakitTerbanyakIGD.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps\RS\Monitor\frmMonRegisterAll.resx">
+      <DependentUpon>frmMonRegisterAll.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps\RS\Monitor\frmMonRegisterAllDay.resx">
+      <DependentUpon>frmMonRegisterAllDay.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps\RS\Monitor\frmMonRegisterIGD.resx">
+      <DependentUpon>frmMonRegisterIGD.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps\RS\Monitor\frmMonRegisterIGDday.resx">
+      <DependentUpon>frmMonRegisterIGDday.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps\RS\Monitor\frmMonRegisterIRJday.resx">
+      <DependentUpon>frmMonRegisterIRJday.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps\RS\Monitor\frmMonRegisterIRMday.resx">
+      <DependentUpon>frmMonRegisterIRMday.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps\RS\Monitor\frmMonRegisterIRNA.resx">
+      <DependentUpon>frmMonRegisterIRNA.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps\RS\Monitor\frmMonRegisterIRM.resx">
+      <DependentUpon>frmMonRegisterIRM.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps\RS\Monitor\frmMonRegisterIRJ.resx">
+      <DependentUpon>frmMonRegisterIRJ.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps\RS\Monitor\frmMonRegisterIRNAday.resx">
+      <DependentUpon>frmMonRegisterIRNAday.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps\RS\Monitor\frmMonRegisterRespond.resx">
+      <DependentUpon>frmMonRegisterRespond.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps\RS\Monitor\frmMonUltahPasien.resx">
+      <DependentUpon>frmMonUltahPasien.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps\RS\Asesmen\frmAMIGD201801.resx">
+      <DependentUpon>frmAMIGD201801.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps\RS\FormReport\xrRadiologi13801990.resx">
+      <DependentUpon>xrRadiologi13801990.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps\RS\Trans\frmAnalisaRM.resx">
+      <DependentUpon>frmAnalisaRM.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps\POS\Data\frmBusinessPartnerQuickAdd.resx">
+      <DependentUpon>frmBusinessPartnerQuickAdd.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps\RS\Trans\frmKamarPindah.resx">
+      <DependentUpon>frmKamarPindah.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps\RS\Trans\frmOrderKonfirmRadiologi.resx">
+      <DependentUpon>frmOrderKonfirmRadiologi.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps\RS\Trans\frmOrderLaboratorium.resx">
+      <DependentUpon>frmOrderLaboratorium.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps\RS\Trans\frmOrderRadiologi.resx">
+      <DependentUpon>frmOrderRadiologi.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps\RS\Trans\frmParamedisQuickAdd.resx">
+      <DependentUpon>frmParamedisQuickAdd.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps\RS\Trans\frmPelayananSelect.resx">
+      <DependentUpon>frmPelayananSelect.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps\RS\Trans\frmRegistrasi.resx">
+      <DependentUpon>frmRegistrasi.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps\RS\Data\frmRMSelect.resx">
+      <DependentUpon>frmRMSelect.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps\RS\Trans\frmRegistrasiCancel.resx">
+      <DependentUpon>frmRegistrasiCancel.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps\RS\Trans\frmRegistrasiPasienApp.resx">
+      <DependentUpon>frmRegistrasiPasienApp.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps\RS\Trans\frmRegistrasiRanap.resx">
+      <DependentUpon>frmRegistrasiRanap.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps\RS\Trans\frmRegistrasiUpdate.resx">
+      <DependentUpon>frmRegistrasiUpdate.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps\RS\Trans\frmWristbandSelect.resx">
+      <DependentUpon>frmWristbandSelect.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps\SIA\Transaksi\frmJurnalUmumAutobalance.resx">
+      <DependentUpon>frmJurnalUmumAutobalance.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps\Temp\frmCOA_generator.resx">
+      <DependentUpon>frmCOA_generator.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps\HRD\Data\frmDepartment.resx">
+      <DependentUpon>frmDepartment.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps\Temp\frmImportCOA.resx">
+      <DependentUpon>frmImportCOA.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps\HRD\Data\frmJabatan.resx">
+      <DependentUpon>frmJabatan.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps\HRD\Data\frmKaryawan.resx">
+      <DependentUpon>frmKaryawan.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps\SIA\Data\frmCOA.resx">
+      <DependentUpon>frmCOA.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps\SIA\Data\frmKategoriCOA.resx">
+      <DependentUpon>frmKategoriCOA.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps\SIA\Data\frmKategoriPeruntukan.resx">
+      <DependentUpon>frmKategoriPeruntukan.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps\SIA\Data\frmSaldoAwal.resx">
+      <DependentUpon>frmSaldoAwal.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps\HRD\Data\frmSelectKaryawan.resx">
+      <DependentUpon>frmSelectKaryawan.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps\HRD\Data\frmSelectUnit.resx">
+      <DependentUpon>frmSelectUnit.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps\HRD\Data\frmUnit.resx">
+      <DependentUpon>frmUnit.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps\Auditor\frmJurnalBulanan.resx">
+      <DependentUpon>frmJurnalBulanan.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps\PDAB\Monitor\frmMonAnggaranRutin.resx">
+      <DependentUpon>frmMonAnggaranRutin.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps\PDAB\Monitor\frmMonAnggaranTahunan.resx">
+      <DependentUpon>frmMonAnggaranTahunan.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps\PDAB\Monitor\frmMonPPP.resx">
+      <DependentUpon>frmMonPPP.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps\PDAB\Monitor\frmMonPUMPB.resx">
+      <DependentUpon>frmMonPUMPB.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps\PDAB\Monitor\frmMonUserPPP.resx">
+      <DependentUpon>frmMonUserPPP.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps\PDAB\Monitor\frmMonUserPUMPB.resx">
+      <DependentUpon>frmMonUserPUMPB.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps\PDAB\Monitor\frmReviewDirekturPPP.resx">
+      <DependentUpon>frmReviewDirekturPPP.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps\PDAB\Monitor\frmReviewDirekturPUMPB.resx">
+      <DependentUpon>frmReviewDirekturPUMPB.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps\PDAB\Monitor\frmReviewKabidKeuPUMPB.resx">
+      <DependentUpon>frmReviewKabidKeuPUMPB.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps\PDAB\Monitor\frmReviewPPP.resx">
+      <DependentUpon>frmReviewPPP.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps\PDAB\Monitor\frmReviewPUMPB.resx">
+      <DependentUpon>frmReviewPUMPB.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps\PDAB\Monitor\xrJurnalBulanan.resx">
+      <DependentUpon>xrJurnalBulanan.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps\POS\Data\frmBusinessPartner.resx">
+      <DependentUpon>frmBusinessPartner.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps\POS\Data\frmItem.resx">
+      <DependentUpon>frmItem.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps\POS\Data\frmItemPrice.resx">
+      <DependentUpon>frmItemPrice.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps\POS\Data\frmItemSupplier.resx">
+      <DependentUpon>frmItemSupplier.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps\POS\Data\frmItemUnit.resx">
+      <DependentUpon>frmItemUnit.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps\POS\Data\frmItemUnitPrice.resx">
+      <DependentUpon>frmItemUnitPrice.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps\POS\Data\frmPlanningBOM.resx">
+      <DependentUpon>frmPlanningBOM.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps\POS\Data\frmSatuan.resx">
+      <DependentUpon>frmSatuan.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps\POS\frmAppPOSSetting.resx">
+      <DependentUpon>frmAppPOSSetting.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps\POS\Transaksi\frmItemBOM.resx">
+      <DependentUpon>frmItemBOM.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps\POS\Transaksi\frmMutasiBarang.resx">
+      <DependentUpon>frmMutasiBarang.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps\POS\Transaksi\frmPembayaran.resx">
+      <DependentUpon>frmPembayaran.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps\POS\Transaksi\frmPermintaanBarangQLMA.resx">
+      <DependentUpon>frmPermintaanBarangQLMA.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps\SIA\Report\frmReportJurnal.resx">
+      <DependentUpon>frmReportJurnal.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps\PDAB\Report\frmReportPPP.resx">
+      <DependentUpon>frmReportPPP.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps\PDAB\Report\frmReportPUMPB.resx">
+      <DependentUpon>frmReportPUMPB.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps\PDAB\Report\frmReportRejectPUMPB.resx">
+      <DependentUpon>frmReportRejectPUMPB.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps\PDAB\Report\frmReportSblmReviewPPP.resx">
+      <DependentUpon>frmReportSblmReviewPPP.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps\PDAB\Report\xrBeforeReviewPPP.resx">
+      <DependentUpon>xrBeforeReviewPPP.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps\PDAB\Report\xrBeforeReviewPPPKas.resx">
+      <DependentUpon>xrBeforeReviewPPPKas.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps\SIA\Report\xrJurnal.resx">
+      <DependentUpon>xrJurnal.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps\PDAB\Report\xrPPP.resx">
+      <DependentUpon>xrPPP.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps\PDAB\Report\xrPPPKas.resx">
+      <DependentUpon>xrPPPKas.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps\PDAB\Report\xrPUMPB.resx">
+      <DependentUpon>xrPUMPB.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps\PDAB\Report\xrRejectPUMPB.resx">
+      <DependentUpon>xrRejectPUMPB.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps\SIA\Transaksi\frmAnggaran.resx">
+      <DependentUpon>frmAnggaran.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps\PDAB\Transaksi\frmExternalPUMPB.resx">
+      <DependentUpon>frmExternalPUMPB.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps\SIA\Transaksi\frmJurnal.resx">
+      <DependentUpon>frmJurnal.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps\SIA\Transaksi\frmJurnalUmum.resx">
+      <DependentUpon>frmJurnalUmum.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps\PDAB\Transaksi\frmPPP.resx">
+      <DependentUpon>frmPPP.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps\PDAB\Transaksi\frmInternalPUMPB.resx">
+      <DependentUpon>frmInternalPUMPB.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps\Common\Data\frmWilayah.resx">
+      <DependentUpon>frmWilayah.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps\UserControl\btnBooking.resx">
+      <DependentUpon>btnBooking.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps\UserControl\btnBookingR.resx">
+      <DependentUpon>btnBookingR.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps\UserControl\btnJadwalDokter.resx">
+      <DependentUpon>btnJadwalDokter.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps\UserControl\btnSchedule.resx">
+      <DependentUpon>btnSchedule.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Core\Main\Controls\ucChatbox.resx">
+      <DependentUpon>ucChatbox.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Core\Main\Controls\ucChatlist.resx">
+      <DependentUpon>ucChatlist.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Core\Main\Controls\ucMemo.resx">
+      <DependentUpon>ucMemo.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Core\Main\Controls\ucNotes.resx">
+      <DependentUpon>ucNotes.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Core\Main\frmAdministrator.resx">
+      <DependentUpon>frmAdministrator.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps\PDAB\frmAppPDABSetting.resx">
+      <DependentUpon>frmAppPDABSetting.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Core\Main\frmAppDevice.resx">
+      <DependentUpon>frmAppDevice.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Core\Main\frmAuthentication.resx">
+      <DependentUpon>frmAuthentication.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Core\Main\frmComputerClient.resx">
+      <DependentUpon>frmComputerClient.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Core\Main\frmDevice.resx">
+      <DependentUpon>frmDevice.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Core\Main\frmDizSplash.resx">
+      <DependentUpon>frmDizSplash.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Core\Main\frmExportChart.resx">
+      <DependentUpon>frmExportChart.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Core\Main\frmExportMap.resx">
+      <DependentUpon>frmExportMap.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Core\Main\frmMemo.resx">
+      <DependentUpon>frmMemo.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Core\Main\frmMessagesNew.resx">
+      <DependentUpon>frmMessagesNew.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Core\Main\frmNotes.resx">
+      <DependentUpon>frmNotes.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Core\Main\frmPrintSelect.resx">
+      <DependentUpon>frmPrintSelect.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Core\Main\frmSplash.resx">
+      <DependentUpon>frmSplash.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Core\Submission\frmChangeHardware.resx">
+      <DependentUpon>frmChangeHardware.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Core\Submission\frmCurrentPayment.resx">
+      <DependentUpon>frmCurrentPayment.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Core\Submission\frmFiturServer.resx">
+      <DependentUpon>frmFiturServer.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Core\Main\frmLoading.resx">
+      <DependentUpon>frmLoading.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Core\Main\frmMessagebox.resx">
+      <DependentUpon>frmMessagebox.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Core\Submission\frmHistoryPayment.resx">
+      <DependentUpon>frmHistoryPayment.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Core\Submission\frmNewCompany.resx">
+      <DependentUpon>frmNewCompany.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Core\Main\frmExport.resx">
+      <DependentUpon>frmExport.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Core\Main\frmIconManager.resx">
+      <DependentUpon>frmIconManager.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Core\Main\frmImageManager.resx">
+      <DependentUpon>frmImageManager.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Core\Main\frmLogin.resx">
+      <DependentUpon>frmLogin.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Core\Main\frmMenu.resx">
+      <DependentUpon>frmMenu.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Core\Main\frmMessages.resx">
+      <DependentUpon>frmMessages.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Core\Submission\frmNewData.resx">
+      <DependentUpon>frmNewData.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Core\Submission\frmNewPayment.resx">
+      <DependentUpon>frmNewPayment.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Core\Submission\frmNewProduct.resx">
+      <DependentUpon>frmNewProduct.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Core\Submission\frmNewProfile.resx">
+      <DependentUpon>frmNewProfile.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Core\Main\frmPerformance.resx">
+      <DependentUpon>frmPerformance.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Core\Main\frmMain.resx">
+      <DependentUpon>frmMain.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Core\Main\frmProfile.resx">
+      <DependentUpon>frmProfile.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Core\Main\frmSearch.resx">
+      <DependentUpon>frmSearch.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Core\Main\frmSettingDB.resx">
+      <DependentUpon>frmSettingDB.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Core\Main\frmUserLevel.resx">
+      <DependentUpon>frmUserLevel.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps\Temp\Form1.resx">
+      <DependentUpon>Form1.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="My Project\licenses.licx" />
+    <EmbeddedResource Include="My Project\Resources.resx">
+      <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
+      <CustomToolNamespace>My.Resources</CustomToolNamespace>
+      <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.vb</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="default_demo.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="default_live.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="dizEngine20.db">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <None Include="Dataset\spAMRHB201801.xsc">
+      <DependentUpon>spAMRHB201801.xsd</DependentUpon>
+    </None>
+    <None Include="Dataset\spAMRHB201801.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>spAMRHB201801.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="Dataset\spAMRHB201801.xss">
+      <DependentUpon>spAMRHB201801.xsd</DependentUpon>
+    </None>
+    <None Include="dizUI.pfx" />
+    <None Include="dizUI_TemporaryKey.pfx" />
+    <None Include="packages.config" />
+    <None Include="Resources\bookmark.png" />
+    <None Include="Resources\bookmarkChoco.png" />
+    <None Include="Resources\bookmarkGreen.png" />
+    <None Include="Resources\bookmarkOrange.png" />
+    <None Include="Resources\bookmarkPurple.png" />
+    <None Include="Resources\bookmarkRed.png" />
+    <None Include="Resources\cancel.png" />
+    <None Include="Resources\cancel21.png" />
+    <None Include="Resources\check.png" />
+    <None Include="Resources\info.png" />
+    <None Include="Resources\info27.png" />
+    <None Include="Resources\ribbons.png" />
+    <None Include="Resources\slot1.png" />
+    <None Include="Resources\slotr.png" />
+    <Content Include="getPasienRegistrasi.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="getSlipRegistrasi.txt" />
+    <None Include="Resources\canvas_services.jpg" />
+    <None Include="Resources\anatomi-p.png" />
+    <None Include="Resources\anatomi-w.png" />
+    <None Include="Resources\loading.gif" />
+    <None Include="Resources\loading1.gif" />
+    <None Include="Resources\loading2.gif" />
+    <None Include="Resources\memo.png" />
+    <None Include="Resources\paper.png" />
+    <None Include="Resources\paperdoc.png" />
+    <None Include="Resources\paperpdf.png" />
+    <None Include="Resources\paperppt.png" />
+    <None Include="Resources\papertxt.png" />
+    <None Include="Resources\papervsd.png" />
+    <None Include="Resources\paperxls.png" />
+    <None Include="Resources\papergif.png" />
+    <None Include="Resources\paperjpg.png" />
+    <None Include="Resources\paperpng.png" />
+    <None Include="Resources\AnatomiA.png" />
+    <None Include="Resources\AnatomiC.png" />
+    <None Include="Resources\AnatomiCF.png" />
+    <None Include="Resources\AnatomiD.png" />
+    <None Include="Resources\AnatomiH.png" />
+    <None Include="Resources\AnatomiN.png" />
+    <None Include="Resources\AnatomiOF.png" />
+    <None Include="Resources\AnatomiU.png" />
+    <None Include="Resources\AnatomiV.png" />
+    <None Include="Resources\AnatomiB.png" />
+    <None Include="Resources\stampAlergiMini.png" />
+    <None Include="Resources\AnatomiSD.png" />
+    <None Include="Resources\AnatomiST.png" />
+    <None Include="Resources\AnatomiOE.png" />
+    <None Include="Resources\AnatomiW.png" />
+    <None Include="Resources\AnatomiCR.png" />
+    <None Include="Resources\dizLive.png" />
+    <None Include="Resources\dizDemo.ico" />
+    <None Include="Resources\dizLive.ico" />
+    <None Include="Resources\dizDemo.png" />
+    <None Include="Resources\callout.png" />
+    <None Include="Resources\callout_w.png" />
+    <Content Include="SearchPasienLengkap.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <None Include="Resources\canvas.jpg" />
+    <Content Include="RugiLabaTahunan.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="RugiLabaTahunanBulan.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <None Include="My Project\Application.myapp">
+      <Generator>MyApplicationCodeGenerator</Generator>
+      <LastGenOutput>Application.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="My Project\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <CustomToolNamespace>My</CustomToolNamespace>
+      <LastGenOutput>Settings.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="Dataset\spAMIGD201801.xsc">
+      <DependentUpon>spAMIGD201801.xsd</DependentUpon>
+    </None>
+    <None Include="Dataset\spAMIGD201801.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>spAMIGD201801.Designer.vb</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Dataset\spAMIGD201801.xss">
+      <DependentUpon>spAMIGD201801.xsd</DependentUpon>
+    </None>
+    <None Include="Dataset\spAnatomi.xsc">
+      <DependentUpon>spAnatomi.xsd</DependentUpon>
+    </None>
+    <None Include="Dataset\spAnatomi.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>spAnatomi.Designer.vb</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Dataset\spAnatomi.xss">
+      <DependentUpon>spAnatomi.xsd</DependentUpon>
+    </None>
+    <None Include="Dataset\spPenunjangEKG.xsc">
+      <DependentUpon>spPenunjangEKG.xsd</DependentUpon>
+    </None>
+    <None Include="Dataset\spPenunjangEKG.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>spPenunjangEKG.Designer.vb</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Dataset\spPenunjangEKG.xss">
+      <DependentUpon>spPenunjangEKG.xsd</DependentUpon>
+    </None>
+    <None Include="Dataset\spPenunjangLAB.xsc">
+      <DependentUpon>spPenunjangLAB.xsd</DependentUpon>
+    </None>
+    <None Include="Dataset\spPenunjangLAB.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>spPenunjangLAB.Designer.vb</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Dataset\spPenunjangLAB.xss">
+      <DependentUpon>spPenunjangLAB.xsd</DependentUpon>
+    </None>
+    <None Include="Dataset\spPenunjangRAD.xsc">
+      <DependentUpon>spPenunjangRAD.xsd</DependentUpon>
+    </None>
+    <None Include="Dataset\spPenunjangRAD.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>spPenunjangRAD.Designer.vb</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Dataset\spPenunjangRAD.xss">
+      <DependentUpon>spPenunjangRAD.xsd</DependentUpon>
+    </None>
+    <None Include="Dataset\spRegistrasiPasienBaru.xsc">
+      <DependentUpon>spRegistrasiPasienBaru.xsd</DependentUpon>
+    </None>
+    <None Include="Dataset\spRegistrasiPasienBaru.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>spRegistrasiPasienBaru.Designer.vb</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Dataset\spRegistrasiPasienBaru.xss">
+      <DependentUpon>spRegistrasiPasienBaru.xsd</DependentUpon>
+    </None>
+    <None Include="Dataset\spRegistrasiSlip.xsc">
+      <DependentUpon>spRegistrasiSlip.xsd</DependentUpon>
+    </None>
+    <None Include="Dataset\spRegistrasiSlip.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>spRegistrasiSlip.Designer.vb</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Dataset\spRegistrasiSlip.xss">
+      <DependentUpon>spRegistrasiSlip.xsd</DependentUpon>
+    </None>
+    <None Include="Dataset\spRiwayatD201801.xsc">
+      <DependentUpon>spRiwayatD201801.xsd</DependentUpon>
+    </None>
+    <None Include="Dataset\spRiwayatD201801.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>spRiwayatD201801.Designer.vb</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Dataset\spRiwayatD201801.xss">
+      <DependentUpon>spRiwayatD201801.xsd</DependentUpon>
+    </None>
+    <None Include="Dataset\spRiwayatO201801.xsc">
+      <DependentUpon>spRiwayatO201801.xsd</DependentUpon>
+    </None>
+    <None Include="Dataset\spRiwayatO201801.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>spRiwayatO201801.Designer.vb</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Dataset\spRiwayatO201801.xss">
+      <DependentUpon>spRiwayatO201801.xsd</DependentUpon>
+    </None>
+    <None Include="Dataset\spRiwayatS201801.xsc">
+      <DependentUpon>spRiwayatS201801.xsd</DependentUpon>
+    </None>
+    <None Include="Dataset\spRiwayatS201801.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>spRiwayatS201801.Designer.vb</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Dataset\spRiwayatS201801.xss">
+      <DependentUpon>spRiwayatS201801.xsd</DependentUpon>
+    </None>
+    <None Include="Dataset\spSN201801.xsc">
+      <DependentUpon>spSN201801.xsd</DependentUpon>
+    </None>
+    <None Include="Dataset\spSN201801.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>spSN201801.Designer.vb</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Dataset\spSN201801.xss">
+      <DependentUpon>spSN201801.xsd</DependentUpon>
+    </None>
+    <None Include="Dataset\spCompanyLogoCaptionSquare.xsc">
+      <DependentUpon>spCompanyLogoCaptionSquare.xsd</DependentUpon>
+    </None>
+    <None Include="Dataset\spCompanyLogoCaptionSquare.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>spCompanyLogoCaptionSquare.Designer.vb</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Dataset\spCompanyLogoCaptionSquare.xss">
+      <DependentUpon>spCompanyLogoCaptionSquare.xsd</DependentUpon>
+    </None>
+    <None Include="Dataset\spAMRJ201801.xsc">
+      <DependentUpon>spAMRJ201801.xsd</DependentUpon>
+    </None>
+    <None Include="Dataset\spAMRJ201801.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>spAMRJ201801.Designer.vb</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Dataset\spAMRJ201801.xss">
+      <DependentUpon>spAMRJ201801.xsd</DependentUpon>
+    </None>
+    <None Include="Dataset\spRiwayatA201801.xsc">
+      <DependentUpon>spRiwayatA201801.xsd</DependentUpon>
+    </None>
+    <None Include="Dataset\spRiwayatA201801.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>spRiwayatA201801.Designer.vb</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Dataset\spRiwayatA201801.xss">
+      <DependentUpon>spRiwayatA201801.xsd</DependentUpon>
+    </None>
+    <None Include="Dataset\spRegDPJP.xsc">
+      <DependentUpon>spRegDPJP.xsd</DependentUpon>
+    </None>
+    <None Include="Dataset\spRegDPJP.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>spRegDPJP.Designer.vb</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Dataset\spRegDPJP.xss">
+      <DependentUpon>spRegDPJP.xsd</DependentUpon>
+    </None>
+    <None Include="spSPB.xsc">
+      <DependentUpon>spSPB.xsd</DependentUpon>
+    </None>
+    <None Include="spSPB.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>spSPB.Designer.vb</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="spSPB.xss">
+      <DependentUpon>spSPB.xsd</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bordernon_n.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bordernon_w.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bordersingle_n.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bordersingle_w.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\exit_n.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\exit_w.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\max_n.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\max_w.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\min_n.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\min_w.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\message.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\notes.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\notif.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\profile.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\server.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\recent.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\favorite.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\swirl.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="BukuBesarKD.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="BukuBesarDK.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="BukuPembantuDK.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="BukuPembantuKD.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="MonAngBulanan.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="MonAngTahunan.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Neraca.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="NeracaBulanan.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="NeracaSaldo.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="NeracaTahunan.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="NeracaTahunanBulan.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="RepJurnal.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <None Include="Resources\list.png" />
+    <None Include="Resources\tasklist.png" />
+    <None Include="Resources\formlist.png" />
+    <None Include="Resources\tileLarge.jpg" />
+    <None Include="Resources\tileSmall.jpg" />
+    <None Include="Resources\stampVoid.png" />
+    <None Include="Resources\stampAccept.png" />
+    <None Include="Resources\stampDelete.png" />
+    <None Include="Resources\stampReview.png" />
+    <None Include="Resources\canvas_footer.jpg" />
+    <None Include="Resources\canvas_header.jpg" />
+    <None Include="Resources\canvas_body.jpg" />
+    <None Include="Resources\ico_question.png" />
+    <None Include="Resources\canvas_perform.jpg" />
+    <None Include="Resources\canvas_msgbox.jpg" />
+    <None Include="Resources\canvas_export.jpg" />
+    <None Include="Resources\canvas_recent.jpg" />
+    <None Include="Resources\canvas_splash.jpg" />
+    <None Include="Resources\chatright1.png" />
+    <None Include="Resources\hourglass.gif" />
+    <None Include="Resources\boxHorizontal.png" />
+    <None Include="Resources\boxCorner4.png" />
+    <None Include="Resources\boxCorner41.png" />
+    <None Include="Resources\boxCorner42.png" />
+    <None Include="Resources\boxHorizontal4.png" />
+    <None Include="Resources\boxHorizontal41.png" />
+    <None Include="Resources\boxCorner4RU.png" />
+    <None Include="Resources\boxCorner4LU.png" />
+    <None Include="Resources\boxHorizontal42.png" />
+    <None Include="Resources\boxCorner4LU1.png" />
+    <None Include="Resources\boxCorner4LD.png" />
+    <None Include="Resources\boxCorner4RD.png" />
+    <None Include="Resources\boxPoint4.png" />
+    <None Include="Resources\boxVertical4.png" />
+    <None Include="Resources\notess.png" />
+    <None Include="Resources\notesu.png" />
+    <None Include="Resources\message1.png" />
+    <None Include="Resources\message2.png" />
+    <None Include="Resources\message3.png" />
+    <None Include="Resources\message4.png" />
+    <None Include="Resources\message5.png" />
+    <None Include="Resources\message6.png" />
+    <None Include="Resources\message7.png" />
+    <None Include="Resources\message8.png" />
+    <None Include="Resources\message9.png" />
+    <None Include="Resources\message9u.png" />
+    <None Include="Resources\notifu.png" />
+    <None Include="Resources\boxPoint2.png" />
+    <None Include="Resources\messagen.png" />
+    <Content Include="RugiLaba.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="RugiLabaBulanan.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <None Include="app.config" />
+    <None Include="Dataset\BRPPPset.xsc">
+      <DependentUpon>BRPPPset.xsd</DependentUpon>
+    </None>
+    <None Include="Dataset\BRPPPset.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>BRPPPset.Designer.vb</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Dataset\BRPPPset.xss">
+      <DependentUpon>BRPPPset.xsd</DependentUpon>
+    </None>
+    <None Include="My Project\app.manifest" />
+    <None Include="Resources\setting.png" />
+    <None Include="Resources\menu.png" />
+    <None Include="Resources\authorization.png" />
+    <None Include="Resources\browse w.png" />
+    <None Include="Resources\browse.png" />
+    <None Include="Resources\export.png" />
+    <None Include="Resources\ok.png" />
+    <None Include="Resources\ok w.png" />
+    <None Include="Resources\print.png" />
+    <None Include="Resources\newitem.png" />
+    <None Include="Resources\deleteitem.png" />
+    <None Include="Resources\connection.png" />
+    <None Include="Resources\upload.png" />
+    <None Include="Resources\server1.png" />
+    <None Include="Resources\runtime.png" />
+    <None Include="Resources\download.png" />
+    <None Include="Resources\saveitem.png" />
+    <None Include="Resources\images.png" />
+    <None Include="Resources\hovprev.png" />
+    <None Include="Resources\hovnext.png" />
+    <None Include="Resources\close.png" />
+    <None Include="Resources\defprofile.png" />
+    <None Include="Resources\defprofile200.png" />
+    <None Include="Resources\client.png" />
+    <None Include="Resources\splashImage.jpg" />
+    <None Include="Resources\LogoDiznet 183x48.png" />
+    <None Include="Resources\ico_warning.png" />
+    <None Include="Resources\ico_info.png" />
+    <None Include="Resources\ico_critical.png" />
+    <None Include="Dataset\setJurnal.xsc">
+      <DependentUpon>setJurnal.xsd</DependentUpon>
+    </None>
+    <None Include="Dataset\setJurnal.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>setJurnal.Designer.vb</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Dataset\setJurnal.xss">
+      <DependentUpon>setJurnal.xsd</DependentUpon>
+    </None>
+    <None Include="Dataset\setPPP.xsc">
+      <DependentUpon>setPPP.xsd</DependentUpon>
+    </None>
+    <None Include="Dataset\setPPP.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>setPPP.Designer.vb</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Dataset\setPPP.xss">
+      <DependentUpon>setPPP.xsd</DependentUpon>
+    </None>
+    <None Include="Dataset\setPUMPB.xsc">
+      <DependentUpon>setPUMPB.xsd</DependentUpon>
+    </None>
+    <None Include="Dataset\setPUMPB.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>setPUMPB.Designer.vb</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Dataset\setPUMPB.xss">
+      <DependentUpon>setPUMPB.xsd</DependentUpon>
+    </None>
+    <None Include="Dataset\spJurnal.xsc">
+      <DependentUpon>spJurnal.xsd</DependentUpon>
+    </None>
+    <None Include="Dataset\spJurnal.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>spJurnal.Designer.vb</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Dataset\spJurnal.xss">
+      <DependentUpon>spJurnal.xsd</DependentUpon>
+    </None>
+    <None Include="Dataset\spJurnalBulanan.xsc">
+      <DependentUpon>spJurnalBulanan.xsd</DependentUpon>
+    </None>
+    <None Include="Dataset\spJurnalBulanan.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>spJurnalBulanan.Designer.vb</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Dataset\spJurnalBulanan.xss">
+      <DependentUpon>spJurnalBulanan.xsd</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.2.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 2.0 %28x86%29</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.0 %28x86%29</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Apps\Logistik\" />
+    <Folder Include="Apps\RS\Report\" />
+    <Folder Include="Core\Enum\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\dizEngine\dizEngine.vbproj">
+      <Project>{ceef446d-04f8-4b0a-ac41-8b463e77d138}</Project>
+      <Name>dizEngine</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
+  <Import Project="..\packages\System.Data.SQLite.Core.1.0.109.2\build\net46\System.Data.SQLite.Core.targets" Condition="Exists('..\packages\System.Data.SQLite.Core.1.0.109.2\build\net46\System.Data.SQLite.Core.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\System.Data.SQLite.Core.1.0.109.2\build\net46\System.Data.SQLite.Core.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\System.Data.SQLite.Core.1.0.109.2\build\net46\System.Data.SQLite.Core.targets'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

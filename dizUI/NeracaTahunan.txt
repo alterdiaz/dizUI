@@ -1,0 +1,21 @@
+﻿select c.idcoa,c.coa,c.remarks
+,convert(decimal(20,2),0) as januari 
+,convert(decimal(20,2),0) as februari 
+,convert(decimal(20,2),0) as maret 
+,convert(decimal(20,2),0) as april 
+,convert(decimal(20,2),0) as mei 
+,convert(decimal(20,2),0) as juni 
+,convert(decimal(20,2),0) as juli 
+,convert(decimal(20,2),0) as agustus
+,convert(decimal(20,2),0) as september 
+,convert(decimal(20,2),0) as oktober 
+,convert(decimal(20,2),0) as november 
+,convert(decimal(20,2),0) as desember 
+,convert(decimal(20,2),0) as total 
+from coa c 
+where c.idcompany=(select top 1 value from sys_appsetting where variable='CompanyID') 
+and len(c.coa)<=4 
+and convert(bigint,c.coa)>=0 
+and convert(bigint,left(c.coa,1)) in (1,2,3) 
+group by c.idcoa,c.coa,c.remarks 
+order by convert(varchar(20),c.coa) asc

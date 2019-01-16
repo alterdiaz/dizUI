@@ -1,0 +1,26 @@
+﻿CREATE TABLE [dbo].[sys_User] (
+    [iduser]           BIGINT         IDENTITY (1, 1) NOT NULL,
+    [iduseronline]     BIGINT         NULL,
+    [iduserlevel]      BIGINT         NULL,
+    [iduserstatus]     BIGINT         NULL,
+    [username]         VARCHAR (500)  NOT NULL,
+    [idtoken]          BIGINT         NULL,
+    [tokenkey1]        VARCHAR (100)  NULL,
+    [tokenkey2]        VARCHAR (100)  NULL,
+    [password]         VARCHAR (8000) NOT NULL,
+    [namalengkap]      VARCHAR (2000) NOT NULL,
+    [personalno]       VARCHAR (200)  NULL,
+    [idcardtype]       BIGINT         NULL,
+    [email]            VARCHAR (500)  NULL,
+    [handphone]        VARCHAR (50)   NULL,
+    [hint]             VARCHAR (500)  NULL,
+    [recoveryquestion] VARCHAR (200)  NOT NULL,
+    [recoveryanswer]   VARCHAR (500)  NOT NULL,
+    [bannedreason]     VARCHAR (500)  NOT NULL,
+    [waktucek]         DATETIME       NULL,
+    [isdeleted]        BIGINT         NULL,
+    [ipclient]         VARCHAR (20)   NULL,
+    [isuseronline]     BIGINT         NULL,
+    PRIMARY KEY CLUSTERED ([iduser] ASC)
+);
+
