@@ -121,8 +121,14 @@
             dizMsgbox("Isian belum benar, silahkan cek isian anda", dizMsgboxStyle.Peringatan, Me)
             Exit Sub
         End If
+        Dim sqls As New SQLs(dbstring)
+        sqls.DMLQuery("select idbukutarif from bukutarif where idcompany=(select top 1 value from sys_appsetting where variable='CompanyID') and year(periodetahun)='" & Year(deTanggal.EditValue) & "'", "cektahun")
+        If sqls.getDataSet("cektahun") > 0 Then
+            dizMsgbox("Buku Tarif tahun tersebut sudah ada", dizMsgboxStyle.Info, Me)
+            deTanggal.Focus()
+            Exit Sub
+        End If
         If statData = statusData.Baru Then
-            Dim sqls As New SQLs(dbstring)
             sqls.DMLQuery("select idbukutarif from bukutarif where idcompany=(select top 1 value from sys_appsetting where variable='CompanyID') and year(periodetahun)='" & Year(deTanggal.EditValue) & "' and isdeleted=0", "exist")
             If sqls.getDataSet("exist") = 0 Then
                 idData = "-1"
@@ -132,7 +138,6 @@
                 Exit Sub
             End If
         ElseIf statData = statusData.Edit Then
-            Dim sqls As New SQLs(dbstring)
             sqls.DMLQuery("select idbukutarif from bukutarif where idcompany=(select top 1 value from sys_appsetting where variable='CompanyID') and year(periodetahun)='" & Year(deTanggal.EditValue) & "' and isdeleted=0 and idbukutarif<>'" & idData & "'", "exist")
             If sqls.getDataSet("exist") > 0 Then
                 dizMsgbox("Data tersebut sudah ada", dizMsgboxStyle.Info, Me)

@@ -49,6 +49,7 @@ Partial Class frmItemPrice
         Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepositoryItemSpinEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit()
         Me.tlpField = New System.Windows.Forms.TableLayoutPanel()
         Me.lueItem = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.slueView = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -80,6 +81,7 @@ Partial Class frmItemPrice
         Me.pBody.SuspendLayout()
         CType(Me.gcData, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gvData, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemSpinEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.tlpField.SuspendLayout()
         CType(Me.lueItem.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.slueView, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -199,6 +201,7 @@ Partial Class frmItemPrice
         Me.gcData.Location = New System.Drawing.Point(0, 138)
         Me.gcData.MainView = Me.gvData
         Me.gcData.Name = "gcData"
+        Me.gcData.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemSpinEdit1})
         Me.gcData.Size = New System.Drawing.Size(786, 240)
         Me.gcData.TabIndex = 8
         Me.gcData.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gvData})
@@ -301,6 +304,7 @@ Partial Class frmItemPrice
         Me.gcprice.AppearanceHeader.Options.UseTextOptions = True
         Me.gcprice.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.gcprice.Caption = "Harga"
+        Me.gcprice.ColumnEdit = Me.RepositoryItemSpinEdit1
         Me.gcprice.FieldName = "harga"
         Me.gcprice.Name = "gcprice"
         Me.gcprice.OptionsColumn.AllowEdit = False
@@ -351,6 +355,18 @@ Partial Class frmItemPrice
         Me.GridColumn6.OptionsColumn.ReadOnly = True
         Me.GridColumn6.Visible = True
         Me.GridColumn6.VisibleIndex = 7
+        '
+        'RepositoryItemSpinEdit1
+        '
+        Me.RepositoryItemSpinEdit1.AutoHeight = False
+        Me.RepositoryItemSpinEdit1.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.RepositoryItemSpinEdit1.DisplayFormat.FormatString = "n2"
+        Me.RepositoryItemSpinEdit1.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.RepositoryItemSpinEdit1.EditFormat.FormatString = "n2"
+        Me.RepositoryItemSpinEdit1.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.RepositoryItemSpinEdit1.IsFloatValue = False
+        Me.RepositoryItemSpinEdit1.Mask.EditMask = "N00"
+        Me.RepositoryItemSpinEdit1.Name = "RepositoryItemSpinEdit1"
         '
         'tlpField
         '
@@ -823,6 +839,7 @@ Partial Class frmItemPrice
         Me.pBody.PerformLayout()
         CType(Me.gcData, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.gvData, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemSpinEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.tlpField.ResumeLayout(False)
         Me.tlpField.PerformLayout()
         CType(Me.lueItem.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -884,4 +901,5 @@ Partial Class frmItemPrice
     Friend WithEvents slueView As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents GridColumn13 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn14 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents RepositoryItemSpinEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit
 End Class

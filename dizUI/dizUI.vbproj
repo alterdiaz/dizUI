@@ -104,6 +104,10 @@
     <AssemblyOriginatorKeyFile>dizUI.pfx</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="ChilkatDotNet46, Version=9.5.0.76, Culture=neutral, PublicKeyToken=eb5fc1fc52ef09bd, processorArchitecture=x86">
+      <HintPath>..\packages\chilkat-win32.9.5.0.76\lib\net46\ChilkatDotNet46.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="DevExpress.Charts.v17.2.Core, Version=17.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <Private>True</Private>
     </Reference>
@@ -613,6 +617,12 @@
     <Compile Include="Apps\Appointment\frmParamedisJadwal.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Apps\RS\Data\frmInfoPasien.Designer.vb">
+      <DependentUpon>frmInfoPasien.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\RS\Data\frmInfoPasien.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Apps\RS\Data\frmSelectParamedis.Designer.vb">
       <DependentUpon>frmSelectParamedis.vb</DependentUpon>
     </Compile>
@@ -875,6 +885,12 @@
       <DependentUpon>frmMonAppointmentHarian.vb</DependentUpon>
     </Compile>
     <Compile Include="Apps\RS\Monitor\frmMonAppointmentHarian.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Apps\RS\Monitor\frmMonBukuTarif.Designer.vb">
+      <DependentUpon>frmMonBukuTarif.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\RS\Monitor\frmMonBukuTarif.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Apps\RS\Monitor\frmMonJadwalDokterDay.Designer.vb">
@@ -1163,6 +1179,12 @@
       <DependentUpon>frmRegistrasiUpdate.vb</DependentUpon>
     </Compile>
     <Compile Include="Apps\RS\Trans\frmRegistrasiUpdate.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Apps\RS\Trans\frmSuratRujukanRadiologi.Designer.vb">
+      <DependentUpon>frmSuratRujukanRadiologi.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\RS\Trans\frmSuratRujukanRadiologi.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Apps\RS\Trans\frmWristbandSelect.Designer.vb">
@@ -1566,6 +1588,12 @@
     <Compile Include="Core\Main\frmExportChart.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Core\Main\frmExportExcel.Designer.vb">
+      <DependentUpon>frmExportExcel.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Core\Main\frmExportExcel.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Core\Main\frmExportMultiChart.Designer.vb">
       <DependentUpon>frmExportMultiChart.vb</DependentUpon>
     </Compile>
@@ -1845,6 +1873,7 @@
     <Compile Include="Dataset\spJurnalBulanan.vb">
       <DependentUpon>spJurnalBulanan.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Microsoft\Office.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
@@ -2132,6 +2161,9 @@
     <EmbeddedResource Include="Apps\Appointment\frmParamedisJadwal.resx">
       <DependentUpon>frmParamedisJadwal.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Apps\RS\Data\frmInfoPasien.resx">
+      <DependentUpon>frmInfoPasien.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Apps\RS\Data\frmPasienQuickEdit.resx">
       <DependentUpon>frmPasienQuickEdit.vb</DependentUpon>
     </EmbeddedResource>
@@ -2270,6 +2302,9 @@
     <EmbeddedResource Include="Apps\RS\Monitor\frmMonAppointmentHarian.resx">
       <DependentUpon>frmMonAppointmentHarian.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Apps\RS\Monitor\frmMonBukuTarif.resx">
+      <DependentUpon>frmMonBukuTarif.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Apps\RS\Monitor\frmMonJadwalDokterDay.resx">
       <DependentUpon>frmMonJadwalDokterDay.vb</DependentUpon>
     </EmbeddedResource>
@@ -2395,6 +2430,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Apps\RS\Trans\frmRegistrasiUpdate.resx">
       <DependentUpon>frmRegistrasiUpdate.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps\RS\Trans\frmSuratRujukanRadiologi.resx">
+      <DependentUpon>frmSuratRujukanRadiologi.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Apps\RS\Trans\frmWristbandSelect.resx">
       <DependentUpon>frmWristbandSelect.vb</DependentUpon>
@@ -2620,6 +2658,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Core\Main\frmExportChart.resx">
       <DependentUpon>frmExportChart.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Core\Main\frmExportExcel.resx">
+      <DependentUpon>frmExportExcel.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Core\Main\frmExportMap.resx">
       <DependentUpon>frmExportMap.vb</DependentUpon>

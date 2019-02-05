@@ -259,8 +259,8 @@
         Dim strnpwp As String = getNumber(npwp)
         Dim strnickunique As String = getCharsUpper(nickname)
 
-        Dim sqls As New SQLs(mystring)
-        sqls.DMLQuery("select idcompany from company where companylegalnumber='" & strnpwp & "' or companynicknameunique='" & strnickunique & "' or companyemail='" & emailcomp & "'", "content")
+        'Dim sqls As New SQLs(mystring)
+        'sqls.DMLQuery("select idcompany from company where companylegalnumber='" & strnpwp & "' or companynicknameunique='" & strnickunique & "' or companyemail='" & emailcomp & "'", "content")
         If sqls.getDataSet("content") > 0 Then
             retval = False
         End If

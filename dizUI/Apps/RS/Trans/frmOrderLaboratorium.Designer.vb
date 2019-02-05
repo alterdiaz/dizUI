@@ -339,14 +339,14 @@ Partial Class frmOrderLaboratorium
         Me.gcKode.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.gcKode.Caption = "Kode"
         Me.gcKode.FieldName = "kode"
-        Me.gcKode.MaxWidth = 120
-        Me.gcKode.MinWidth = 120
+        Me.gcKode.MaxWidth = 140
+        Me.gcKode.MinWidth = 140
         Me.gcKode.Name = "gcKode"
         Me.gcKode.OptionsColumn.AllowEdit = False
         Me.gcKode.OptionsColumn.ReadOnly = True
         Me.gcKode.Visible = True
         Me.gcKode.VisibleIndex = 2
-        Me.gcKode.Width = 120
+        Me.gcKode.Width = 140
         '
         'gcNama
         '
@@ -806,6 +806,8 @@ Partial Class frmOrderLaboratorium
         '
         'gclCek
         '
+        Me.gclCek.AppearanceCell.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.gclCek.AppearanceCell.Options.UseBackColor = True
         Me.gclCek.AppearanceHeader.Font = New System.Drawing.Font("Tahoma", 9.0!)
         Me.gclCek.AppearanceHeader.Options.UseFont = True
         Me.gclCek.AppearanceHeader.Options.UseTextOptions = True

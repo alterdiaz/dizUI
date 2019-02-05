@@ -95,9 +95,9 @@
     Private idlokasi As String = ""
     Private idkelas As String = ""
 
-    Private Sub loadLOV(Optional idunit As String = "", Optional iddept As String = "")
+    Private Sub loadLOV(Optional idunit As String = "")
         Dim sqls As New SQLs(dbstring)
-        sqls.DMLQuery("select idunit as id,unit as content from unit where isdeleted=0 and idcompany=(select top 1 value from sys_appsetting where variable='CompanyID')", "unit")
+        sqls.DMLQuery("select idunit as id,unit as content from unit where idunit not in (select value from sys_appsetting where variable in ('IDSystemUnit','IDVendorUnit')) and isdeleted=0 and idcompany=(select top 1 value from sys_appsetting where variable='CompanyID')", "unit")
         lueUnit.Properties.DataSource = sqls.dataTable("unit")
         lueUnit.Properties.ValueMember = "id"
         lueUnit.Properties.DisplayMember = "content"
@@ -158,9 +158,17 @@
     Private dttbl As New DataTable
     Private Sub loadgrid()
         Dim sqls As New SQLs(dbstring)
-        sqls.DMLQuery("select '' as idtransaksidt,i.iditem,i.itemtype,i.idsatuan,gc.generalcode as type,i.kode,i.item,s.satuan,0 as qty,0 as qtylalu,0 as qtyask,'-' as remarks,i.iditemgrup,ig.itemgrup from item i left join itemgrup ig on i.iditemgrup=ig.iditemgrup left join sys_generalcode gc on gc.idgeneral=i.itemtype and gc.gctype='ITEMTYPE' left join satuan s on s.idsatuan=i.idsatuan where 1=0", "getnull")
+        sqls.DMLQuery("select '' as idtransaksidt,i.iditem,i.itemtype,i.idsatuan,gc.generalcode as type,i.kode,i.item,s.satuan,0 as qty,0 as qtylalu,0 as qtyask,'-' as remarks,i.iditemgrup,ig.itemgrup,'0' as idbusinesspartner from item i left join itemgrup ig on i.iditemgrup=ig.iditemgrup left join sys_generalcode gc on gc.idgeneral=i.itemtype and gc.gctype='ITEMTYPE' left join satuan s on s.idsatuan=i.idsatuan where 1=0", "getnull")
         dttbl = sqls.dataTable("getnull")
         gcData.DataSource = dttbl
+    End Sub
+
+    Private Sub loadBP()
+        Dim sqls As New SQLs(dbstring)
+        sqls.DMLQuery("select bp.idbusinesspartner as id,bp.nama as content from businesspartner bp where bp.businesspartnertype=9 and bp.isdeleted=0 union select '0','Tidak Rujukan' order by bp.nama asc", "bp")
+        lueRujukan.DataSource = sqls.dataTable("bp")
+        lueRujukan.ValueMember = "id"
+        lueRujukan.DisplayMember = "content"
     End Sub
 
     Private Sub frmOrderRadiologi_Load(sender As Object, e As EventArgs) Handles Me.Load
@@ -177,6 +185,7 @@
         pRightBar.Enabled = False
 
         loadLOV()
+        loadBP()
         btnNew_Click(Me, Nothing)
 
         btnSearch.Visible = True
@@ -217,12 +226,14 @@
                     dr("qty") = 0
                     dr("qtylalu") = 0
                     dr("qtyask") = 0
+                    dr("idbusinesspartner") = 0
                     dttbl.Rows.Add(dr)
                 End If
                 dra("cek") = 0
             End If
         Next
         gcData.DataSource = dttbl
+        gvData.BestFitColumns()
     End Sub
 
     Private Sub btnAllItem_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnAllItem.Click
@@ -257,11 +268,13 @@
                     dr("qty") = 0
                     dr("qtylalu") = 0
                     dr("qtyask") = 0
+                    dr("idbusinesspartner") = 0
                     dttbl.Rows.Add(dr)
                 End If
                 dra("cek") = 0
             Next
             gcData.DataSource = dttbl
+            gvData.BestFitColumns()
         End If
     End Sub
 
@@ -276,6 +289,7 @@
             sqls.DMLQuery("update transaksidt set isdeleted=1 where idtransaksidt='" & dr("idtransaksidt") & "'", False)
             dttbl.Rows.Remove(dr)
             gcData.DataSource = dttbl
+            gvData.BestFitColumns()
         End If
     End Sub
 
@@ -287,6 +301,7 @@
                 sqls.DMLQuery("update transaksidt set isdeleted=1 where idtransaksidt='" & dr("idtransaksidt") & "'", False)
             Next
             loadgrid()
+            gvData.BestFitColumns()
         End If
     End Sub
 
@@ -341,7 +356,7 @@
         End If
 
         field.AddRange(New String() {"idtransaksi", "transaksino", "transaksitype", "idtransaksireff", "transaksitypereff", "transaksistatus", "asaltype", "idasal", "iddeptasal", "tujuantype", "idtujuan", "iddepttujuan", "idcompany", "createdby", "createddate", "createdfromip", "createdfromhostname"})
-        value.AddRange(New Object() {idTrans, teNoTrans.Text, idTransType, idReg, idRegType, 1, "Unit", lueUnit.EditValue, iddept, "Unit", lueUnit.EditValue, iddept, idcomp, userid, nowTime, ipadd, hostname})
+        value.AddRange(New Object() {idTrans, teNoTrans.Text, idTransType, idReg, idRegType, 8, "Unit", lueUnit.EditValue, iddept, "Unit", lueUnit.EditValue, iddept, idcomp, userid, nowTime, ipadd, hostname})
         If dsqls.datasetSave("transaksi", idTrans, field, value, False) = True Then
             Dim cekval As Boolean = False
             dsqls = New dtsetSQLS(dbstring)
@@ -350,7 +365,7 @@
             field.Clear()
             value.Clear()
 
-            field.AddRange(New String() {"idtransaksidt", "idtransaksi", "iditem", "kodeitem", "item", "itemtype", "type", "qtydispose", "qtycharges", "idsatuan", "satuan", "harga", "subtotal", "subtotaldisc", "subtotaldisclain", "subtotaldisclainppn", "subtotalpersonal", "remarks", "createdby", "createddate", "createdfromip", "createdfromhostname", "idcompany"})
+            field.AddRange(New String() {"idtransaksidt", "idtransaksi", "iditem", "kodeitem", "item", "itemtype", "type", "qtydispose", "qtycharges", "idsatuan", "satuan", "harga", "subtotal", "subtotaldisc", "subtotaldisclain", "subtotaldisclainppn", "subtotalpersonal", "remarks", "createdby", "createddate", "createdfromip", "createdfromhostname", "idcompany", "idbusinesspartner"})
             For a As Integer = 0 To gvData.RowCount - 1
                 dsqls = New dtsetSQLS(dbstring)
                 value.Clear()
@@ -364,7 +379,7 @@
                 End If
                 sqls.DMLQuery("select i.iditem,i.itemtype,i.idsatuan,gc.generalcode as type,i.kode,i.item,s.satuan,0 as qty,i.iditemgrup,ig.itemgrup from item i left join sys_generalcode gc on gc.idgeneral=i.itemtype and gc.gctype='ITEMTYPE' left join satuan s on s.idsatuan=i.idsatuan left join itemgrup ig on ig.iditemgrup=i.iditemgrup where i.iditem='" & dr("iditem") & "'", "dataitem")
 
-                value.AddRange(New Object() {dr("idtransaksidt"), idTrans, dr("iditem"), dr("kode"), dr("item"), sqls.getDataSet("dataitem", 0, "itemtype"), sqls.getDataSet("dataitem", 0, "type"), 1, 1, sqls.getDataSet("dataitem", 0, "idsatuan"), sqls.getDataSet("dataitem", 0, "satuan"), harga, harga, harga, harga, harga, harga, dr("remarks"), userid, nowTime, ipadd, hostname, idcomp})
+                value.AddRange(New Object() {dr("idtransaksidt"), idTrans, dr("iditem"), dr("kode"), dr("item"), sqls.getDataSet("dataitem", 0, "itemtype"), sqls.getDataSet("dataitem", 0, "type"), 1, 1, sqls.getDataSet("dataitem", 0, "idsatuan"), sqls.getDataSet("dataitem", 0, "satuan"), harga, harga, harga, harga, harga, harga, dr("remarks"), userid, nowTime, ipadd, hostname, idcomp, If(dr("idbusinesspartner"), 0)})
                 cekval = dsqls.datasetSave("transaksidt", "idtransaksidt", field, value, False)
             Next
             If cekval = True Then
@@ -375,13 +390,11 @@
 
     Private Sub btnSearch_Click(sender As Object, e As EventArgs) Handles btnSearch.Click
         Dim sqls As New SQLs(dbstring)
-        sqls.DMLQuery("select r.idregistrasi,convert(varchar,r.registrasidate,105)+' '+convert(varchar,r.registrasidate,108) as 'Tgl Registrasi',case when r.isoneday=1 then r.registrasino + ' (ODS)' else r.registrasino end as 'No Registrasi',pm.nama as 'Tenaga Medis',dbo.fformatnorm(rm.rekammedisno) as 'No RM',rm.nama as 'Nama Pasien',jk.generalcode as 'Jenis Kelamin',convert(varchar,rm.tanggallahir,105) as 'Tgl Lahir',dbo.fUmurRegister(rm.tanggallahir,r.registrasidate) as 'Umur',kw.wilayah as 'Kewarganegaraan' from registrasi r left join rekammedis rm on r.idrekammedis=rm.idrekammedis left join sys_generalcode jk on rm.jeniskelamin=jk.idgeneral and jk.gctype='SEXTYPE' left join wilayah kw on rm.kewarganegaraan=kw.idwilayah  left join paramedis pm on r.iddokterruangan=pm.idparamedis where r.registrasistatus=0 and rm.rekammedisno<>0 and r.iddepartment=(select top 1 [value] from sys_appsetting where variable='IDRadDept') order by r.registrasidate desc", "search")
+        sqls.DMLQuery("select r.idregistrasi,convert(varchar,r.registrasidate,105)+' '+convert(varchar,r.registrasidate,108) as 'Tgl Registrasi',case when r.isoneday=1 then r.registrasino + ' (ODS)' else r.registrasino end as 'No Registrasi',pm.nama as 'Tenaga Medis',dbo.fformatnorm(rm.rekammedisno) as 'No RM',rm.nama as 'Nama Pasien',jk.generalcode as 'Jenis Kelamin',convert(varchar,rm.tanggallahir,105) as 'Tgl Lahir',dbo.fUmurRegister(rm.tanggallahir,r.registrasidate) as 'Umur',kw.wilayah as 'Kewarganegaraan' from registrasi r left join rekammedis rm on r.idrekammedis=rm.idrekammedis left join sys_generalcode jk on rm.jeniskelamin=jk.idgeneral and jk.gctype='SEXTYPE' left join wilayah kw on rm.kewarganegaraan=kw.idwilayah left join paramedis pm on r.iddokterruangan=pm.idparamedis where r.registrasistatus=0 and rm.rekammedisno<>0 and r.iddepartment=(select top 1 [value] from sys_appsetting where variable='IDRadDept') order by r.registrasidate desc", "search")
         Dim cari As New frmSearch(sqls.dataSet, "search", "idregistrasi")
         tambahChild(cari)
 
         If cari.ShowDialog = Windows.Forms.DialogResult.OK Then
-            MsgBox(cari.GetIDSelectData)
-            Clipboard.SetText(cari.GetIDSelectData)
             loadgrid()
             sqls.DMLQuery("select r.idregistrasi,r.registrasino,r.transactiontype from registrasi r where r.idregistrasi='" & cari.GetIDSelectData & "'", "getidreg")
 
@@ -407,7 +420,7 @@
             teNoTrans.Text = sqls.getDataSet("gettranshd", 0, "transaksino")
             idTrans = sqls.getDataSet("gettranshd", 0, "idtransaksi")
 
-            sqls.DMLQuery("select t.idtransaksidt,t.iditem,t.itemtype,t.idsatuan,t.type,t.kodeitem as kode,t.item,t.satuan,t.qtydispose as qty,t.qtydispose as qtylalu,t.qtydispose as qtyask,t.remarks,i.iditemgrup,ig.itemgrup from transaksidt t left join item i on t.iditem=i.iditem left join itemgrup ig on i.iditemgrup=ig.iditemgrup where t.idtransaksi='" & idTrans & "' order by t.createddate asc", "getdetil")
+            sqls.DMLQuery("select t.idtransaksidt,t.iditem,t.itemtype,t.idsatuan,t.type,t.kodeitem as kode,t.item,t.satuan,t.qtydispose as qty,t.qtydispose as qtylalu,t.qtydispose as qtyask,t.remarks,i.iditemgrup,ig.itemgrup,t.idbusinesspartner from transaksidt t left join item i on t.iditem=i.iditem left join itemgrup ig on i.iditemgrup=ig.iditemgrup where t.idtransaksi='" & idTrans & "' order by t.createddate asc", "getdetil")
             dttbl = sqls.dataTable("getdetil")
             gcData.DataSource = dttbl
             gvData.BestFitColumns()

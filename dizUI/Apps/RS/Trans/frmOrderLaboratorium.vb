@@ -118,9 +118,9 @@
     Private cntdept As Long = 0
     Private cntdokter As Long = 0
 
-    Private Sub loadLOV(Optional idunit As String = "", Optional iddept As String = "")
+    Private Sub loadLOV(Optional idunit As String = "")
         Dim sqls As New SQLs(dbstring)
-        sqls.DMLQuery("select idunit as id,unit as content from unit where isdeleted=0 and idcompany=(select top 1 value from sys_appsetting where variable='CompanyID')", "unit")
+        sqls.DMLQuery("select idunit as id,unit as content from unit where isdeleted=0 and idunit not in (select value from sys_appsetting where variable in ('IDSystemUnit','IDVendorUnit')) and idcompany=(select top 1 value from sys_appsetting where variable='CompanyID')", "unit")
         lueUnit.Properties.DataSource = sqls.dataTable("unit")
         lueUnit.Properties.ValueMember = "id"
         lueUnit.Properties.DisplayMember = "content"

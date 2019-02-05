@@ -92,7 +92,7 @@
         lueSupplier.Properties.ValueMember = "id"
         lueSupplier.Properties.DisplayMember = "content"
 
-        sqls.DMLQuery("select idunit as id,unit as content from unit where isdeleted=0", "unit")
+        sqls.DMLQuery("select idunit as id,unit as content from unit where idunit not in (select value from sys_appsetting where variable in ('IDSystemUnit','IDVendorUnit')) and isdeleted=0", "unit")
         lueUnit.Properties.DataSource = sqls.dataTable("unit")
         lueUnit.Properties.ValueMember = "id"
         lueUnit.Properties.DisplayMember = "content"

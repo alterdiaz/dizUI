@@ -147,7 +147,7 @@
             Exit Sub
         End If
 
-        mysqls.DMLQuery("select idunit as id, unit as content from unit where idcompany=(select top 1 value from sys_appsetting where variable='CompanyID') and isdeleted=0 and (idunit<>(select isnull(value,0) from sys_appsetting where variable='IDSystemUnit') and idunit<>(select isnull(value,0) from sys_appsetting where variable='IDVendorUnit')) order by unit asc", "unit")
+        mysqls.DMLQuery("select idunit as id, unit as content from unit where idcompany=(select top 1 value from sys_appsetting where variable='CompanyID') and isdeleted=0 and idunit not in (select value from sys_appsetting where variable in ('IDSystemUnit','IDVendorUnit')) order by unit asc", "unit")
         lueEntryUnit.Properties.DataSource = mysqls.dataTable("unit")
         lueEntryUnit.Properties.DisplayMember = "content"
         lueEntryUnit.Properties.ValueMember = "id"
@@ -159,7 +159,7 @@
             Exit Sub
         End If
 
-        mysqls.DMLQuery("select idunit as id, unit as content from unit where idcompany=(select top 1 value from sys_appsetting where variable='CompanyID') and isdeleted=0 and (idunit<>(select isnull(value,0) from sys_appsetting where variable='IDSystemUnit') and idunit<>(select isnull(value,0) from sys_appsetting where variable='IDVendorUnit')) order by unit asc", "munit")
+        mysqls.DMLQuery("select idunit as id, unit as content from unit where idcompany=(select top 1 value from sys_appsetting where variable='CompanyID') and isdeleted=0 and idunit not in (select value from sys_appsetting where variable in ('IDSystemUnit','IDVendorUnit')) order by unit asc", "munit")
         lueUnit.Properties.DataSource = mysqls.dataTable("munit")
         lueUnit.Properties.DisplayMember = "content"
         lueUnit.Properties.ValueMember = "id"

@@ -86,7 +86,7 @@
 
     Private Sub loadGrid()
         Dim mysqls As New SQLs(dbstring)
-        mysqls.DMLQuery("select ip.iditemharga,ip.iditem,i.kode,i.item,ip.harga,ip.idunit,u.unit,ip.idkelas,k.kelas,ip.startdate,convert(varchar,ip.startdate,105) as tglawal,ip.enddate,convert(varchar,ip.enddate,105) as tglakhir,ip.isdeleted,d.generalcode as statdata from itemharga ip left join unit u on ip.idunit=u.idunit left join item i on ip.iditem=i.iditem left join kelas k on ip.idkelas=k.idkelas left join sys_generalcode d on d.idgeneral=ip.isdeleted and d.gctype='DELETE' order by u.unit asc,k.kelas asc,i.item asc,ip.enddate desc", "data")
+        mysqls.DMLQuery("select ip.iditemharga,ip.iditem,i.kode,i.item,ip.harga,ip.idunit,u.unit,ip.idkelas,k.kelas,ip.startdate,convert(varchar,ip.startdate,105) as tglawal,ip.enddate,convert(varchar,ip.enddate,105) as tglakhir,ip.isdeleted,d.generalcode as statdata from itemharga ip left join unit u on ip.idunit=u.idunit left join item i on ip.iditem=i.iditem left join kelas k on ip.idkelas=k.idkelas left join sys_generalcode d on d.idgeneral=ip.isdeleted and d.gctype='DELETE' where ip.isdeleted=0 and ip.isvalid=0 order by u.unit asc,k.kelas asc,i.item asc,ip.enddate desc", "data")
         gcData.DataSource = mysqls.dataTable("data")
         gvData.BestFitColumns()
     End Sub
@@ -98,8 +98,8 @@
         lueItem.Properties.ValueMember = "id"
         lueItem.Properties.DisplayMember = "content"
 
-        mysqls.DMLQuery("select idunit as id,unit as content from unit where isdeleted=0", "unit")
-        lueunit.Properties.DataSource = mysqls.dataTable("unit")
+        mysqls.DMLQuery("select u.idunit as id,u.unit as content from unit u where u.isdeleted=0 and u.idunit not in (select value from sys_appsetting where variable in ('IDSystemUnit','IDVendorUnit'))", "unit")
+        lueUnit.Properties.DataSource = mysqls.dataTable("unit")
         lueunit.Properties.ValueMember = "id"
         lueunit.Properties.DisplayMember = "content"
 
@@ -133,8 +133,20 @@
             dizMsgbox("Isian belum benar, silahkan cek isian anda", dizMsgboxStyle.peringatan, Me)
             Exit Sub
         End If
+        If lueKelas.EditValue Is Nothing Then
+            dizMsgbox("Isian belum benar, silahkan cek isian anda", dizMsgboxStyle.Peringatan, Me)
+            Exit Sub
+        End If
         If sePrice.Value = 0 Then
             dizMsgbox("Isian belum benar, silahkan cek isian anda", dizMsgboxStyle.peringatan, Me)
+            Exit Sub
+        End If
+        If deTanggalStart.EditValue Is Nothing Then
+            dizMsgbox("Tanggal Berlaku belum benar, silahkan cek isian anda", dizMsgboxStyle.Peringatan, Me)
+            Exit Sub
+        End If
+        If deTanggalEnd.EditValue Is Nothing Then
+            dizMsgbox("Tanggal Berakhir belum benar, silahkan cek isian anda", dizMsgboxStyle.Peringatan, Me)
             Exit Sub
         End If
         If CDate(deTanggalStart.EditValue) = CDate(deTanggalEnd.EditValue) Then
@@ -145,8 +157,9 @@
             dizMsgbox("Tanggal Mulai dan Selesai belum benar, silahkan cek isian anda", dizMsgboxStyle.Peringatan, Me)
             Exit Sub
         End If
+        Dim sqls As New SQLs(dbstring)
         If statData = statusData.Baru Then
-            Dim sqls As New SQLs(dbstring)
+            sqls = New SQLs(dbstring)
             sqls.DMLQuery("select iditemharga from itemharga where idkelas='" & lueKelas.EditValue & "' and idunit='" & lueUnit.EditValue & "' and iditem='" & lueItem.EditValue & "' and isdeleted=0", "exist")
             If sqls.getDataSet("exist") = 0 Then
                 idData = "-1"
@@ -156,7 +169,7 @@
                 Exit Sub
             End If
         ElseIf statData = statusData.Edit Then
-            Dim sqls As New SQLs(dbstring)
+            sqls = New SQLs(dbstring)
             sqls.DMLQuery("select iditemharga from itemharga where idkelas='" & lueKelas.EditValue & "' and idunit='" & lueUnit.EditValue & "' and iditem='" & lueItem.EditValue & "' and isdeleted=0 and iditemharga<>'" & idData & "'", "exist")
             If sqls.getDataSet("exist") > 0 Then
                 dizMsgbox("Data tersebut sudah ada", dizMsgboxStyle.info, Me)
@@ -169,14 +182,16 @@
         Dim field As New List(Of String)
         Dim value As New List(Of Object)
 
-        If statData = statusData.Baru Then
-            idData = GenerateGUID()
-            field.AddRange(New String() {"iditemharga", "iditem", "idunit", "idkelas", "harga", "startdate", "enddate", "createdby", "createddate"})
-            value.AddRange(New Object() {idData, lueItem.EditValue, lueUnit.EditValue, lueKelas.EditValue, sePrice.Value, CDate(deTanggalStart.EditValue), CDate(deTanggalEnd.EditValue), userid, nowTime})
-        Else
-            field.AddRange(New String() {"iditemharga", "harga", "startdate", "enddate", "updatedby", "updateddate"})
-            value.AddRange(New Object() {idData, sePrice.Value, CDate(deTanggalStart.EditValue), CDate(deTanggalEnd.EditValue), userid, nowTime})
+        SQLs = New SQLs(dbstring)
+        SQLs.DMLQuery("select iditemharga from itemharga where startdate<=convert(date,'" & Format(CDate(deTanggalStart.EditValue), "mm-dd-yyyy") & "') and enddate>=convert(date,'" & Format(CDate(deTanggalEnd.EditValue), "mm-dd-yyyy") & "') and isdeleted=0 and idkelas='" & lueKelas.EditValue & "' and idunit='" & lueUnit.EditValue & "' and iditem='" & lueItem.EditValue & "'", "cekexistharga")
+        If sqls.getDataSet("cekexistharga") > 0 Then
+            For i As Integer = 0 To sqls.getDataSet("cekexistharga") - 1
+                sqls.DMLQuery("update itemharga set isdeleted=1,updateddate=getdate(),updatedby='" & userid & "' where iditemharga='" & sqls.getDataSet("cekexistharga", i, "iditemharga") & "'", False)
+            Next
         End If
+        idData = GenerateGUID()
+        field.AddRange(New String() {"iditemharga", "iditem", "idunit", "idkelas", "harga", "startdate", "enddate", "createdby", "createddate"})
+        value.AddRange(New Object() {idData, lueItem.EditValue, lueUnit.EditValue, lueKelas.EditValue, sePrice.Value, CDate(deTanggalStart.EditValue), CDate(deTanggalEnd.EditValue), userid, nowTime})
 
         If dtSQL.datasetSave("itemharga", idData, field, value, False) = True Then
             dizMsgbox("Data tersimpan", dizMsgboxStyle.Info, Me)

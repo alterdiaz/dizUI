@@ -340,7 +340,7 @@
         deTanggal.EditValue = nowTime
 
         Dim mysqls As New SQLs(dbstring)
-        mysqls.DMLQuery("select idunit, unit from unit where isdeleted=0 and unit<>'SYSTEM'", "unit")
+        mysqls.DMLQuery("select idunit, unit from unit where isdeleted=0 and idunit not in (select value from sys_appsetting where variable in ('IDSystemUnit','IDVendorUnit'))", "unit")
         lueUnit.Properties.DataSource = mysqls.dataTable("unit")
         lueUnit.Properties.DisplayMember = "unit"
         lueUnit.Properties.ValueMember = "idunit"

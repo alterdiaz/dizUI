@@ -68,7 +68,7 @@ Partial Class frmImageManager
         '
         'lvImages
         '
-        Me.lvImages.Appearance.ViewBackground.BackColor = System.Drawing.color.fromargb(240, 240, 240)
+        Me.lvImages.Appearance.ViewBackground.BackColor = System.Drawing.Color.FromArgb(CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer))
         Me.lvImages.Appearance.ViewBackground.Options.UseBackColor = True
         Me.lvImages.GridControl = Me.gcImages
         Me.lvImages.Name = "lvImages"
@@ -132,7 +132,7 @@ Partial Class frmImageManager
         '
         'tpInfo
         '
-        Me.tpInfo.BackColor = System.Drawing.color.fromargb(240, 240, 240)
+        Me.tpInfo.BackColor = System.Drawing.Color.FromArgb(CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer))
         Me.tpInfo.Controls.Add(Me.btniSave)
         Me.tpInfo.Controls.Add(Me.chbInfo)
         Me.tpInfo.Controls.Add(Me.lblDescription)
@@ -174,7 +174,7 @@ Partial Class frmImageManager
         '
         'tpNew
         '
-        Me.tpNew.BackColor = System.Drawing.color.fromargb(240, 240, 240)
+        Me.tpNew.BackColor = System.Drawing.Color.FromArgb(CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer))
         Me.tpNew.Controls.Add(Me.lblSize)
         Me.tpNew.Controls.Add(Me.lblNewDescription)
         Me.tpNew.Controls.Add(Me.tboNewDescription)
@@ -349,7 +349,7 @@ Partial Class frmImageManager
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.BackColor = System.Drawing.color.fromargb(240, 240, 240)
+        Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer))
         Me.ClientSize = New System.Drawing.Size(674, 522)
         Me.Controls.Add(Me.tlpForm)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None

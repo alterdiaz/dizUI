@@ -1,6 +1,7 @@
 ﻿Imports System.Runtime.InteropServices
 Imports System.Drawing.Drawing2D
 Imports System.Reflection
+Imports Microsoft.Win32
 
 Public Class frmMain
 
@@ -8,7 +9,7 @@ Public Class frmMain
     Const WM_NCLBUTTONDOWN = &HA1
 
     'API functions   
-    <DllImport("user32.dll", CharSet:=CharSet.Auto, SetLastError:=True, ExactSpelling:=True)> _
+    <DllImport("user32.dll", CharSet:=CharSet.Auto, SetLastError:=True, ExactSpelling:=True)>
     Public Shared Function ReleaseCapture() As Boolean
     End Function
     Declare Auto Function SendMessage Lib "user32.dll" (ByVal hWnd As IntPtr, ByVal msg As Integer, ByVal wParam As IntPtr, ByVal lParam As IntPtr) As IntPtr
@@ -23,7 +24,7 @@ Public Class frmMain
     Private Sub frmMain_ClientSizeChanged(sender As Object, e As EventArgs) Handles Me.ClientSizeChanged
         If Me.WindowState <> mLastState Then
             mLastState = Me.WindowState
-            onWindowStateChanged(e)
+            OnWindowStateChanged(e)
         End If
     End Sub
 
@@ -242,7 +243,7 @@ Public Class frmMain
             pbNotification.BackColor = Color.Gainsboro
         ElseIf Icon = iconNotif.warning Then
             pbNotification.Image = My.Resources.ico_warning
-            pbNotification.BackColor = color.fromargb(240, 240, 240)
+            pbNotification.BackColor = Color.FromArgb(240, 240, 240)
         End If
         lblNotification.Text = Format(nowTime, "HH:mm:ss") & " " & content
         intNotif = 5
@@ -417,7 +418,7 @@ Public Class frmMain
 
         appPath = Application.StartupPath
         appPath = CheckAndRepairValidPath(appPath)
-        My.Computer.Registry.SetValue("HKEY_CURRENT_USER\Software\SIEPAM", "Path", appPath, Microsoft.Win32.RegistryValueKind.String)
+        My.Computer.Registry.SetValue("HKEY_CURRENT_USER\Software\SIEPAM", "Path", appPath, RegistryValueKind.String)
         checkPath()
         If IO.Path.GetFileNameWithoutExtension(Application.ExecutablePath) = "dizUI" Then
             If IO.File.Exists(appPath & "default_live.jpg") Then
@@ -561,8 +562,8 @@ Public Class frmMain
                 '    'MYs.getDataSet("token", 0, "tokenkey2")
                 'Else
                 tmpidtoken = "E82EC129-868C-4FEB-9AEB-0ADB46428F1E"
-                    tmptokenkey1 = "ABF"
-                    tmptokenkey2 = "123"
+                tmptokenkey1 = "ABF"
+                tmptokenkey2 = "123"
                 'End If
 
                 tmphardwareid = getBoardID()
@@ -896,35 +897,40 @@ Public Class frmMain
 
     Private Sub syncToken()
         isSync = True
-        Dim mystring As String = ""
-        Dim mydb As String = ""
-        Dim mysvr As String = ""
-        Dim myport As String = "0"
-        Dim myusr As String = ""
-        Dim mypass As String = ""
+        'Dim mystring As String = ""
+        'Dim mydb As String = ""
+        'Dim mysvr As String = ""
+        'Dim myport As String = "0"
+        'Dim myusr As String = ""
+        'Dim mypass As String = ""
+        Dim mysite As String = ""
 
         Dim lite As New SQLi(dblite)
-        lite.DMLQuery("select databasename || '|' || ipserver || '|' || port || '|' || username || '|' || password as dbstring from dbconn where dbtype='SQLS' and dblocation='DOMAIN'", "getdbstring")
+        'lite.DMLQuery("select databasename || '|' || ipserver || '|' || port || '|' || username || '|' || password as dbstring from dbconn where dbtype='SQLS' and dblocation='DOMAIN'", "getdbstring")
+        lite.DMLQuery("select siteurl from siteconn where active=1 order by idsiteconndesc", "getdbstring")
         If lite.getDataSet("getdbstring") > 0 Then
-            mystring = lite.getDataSet("getdbstring", 0, "dbstring")
+            mysite = lite.getDataSet("getdbstring", 0, "siteurl")
+            'mystring = lite.getDataSet("getdbstring", 0, "dbstring")
 
-            lite.DMLQuery("select databasename,ipserver,port,username,password from dbconn where dbtype='SQLS' and dblocation='DOMAIN'", "getdbseparate")
+            'lite.DMLQuery("select databasename,ipserver,port,username,password from dbconn where dbtype='SQLS' and dblocation='DOMAIN'", "getdbseparate")
 
-            mydb = lite.getDataSet("getdbseparate", 0, "databasename")
-            mysvr = lite.getDataSet("getdbseparate", 0, "ipserver")
-            myport = lite.getDataSet("getdbseparate", 0, "port")
-            myusr = lite.getDataSet("getdbseparate", 0, "username")
-            mypass = lite.getDataSet("getdbseparate", 0, "password")
+            'mydb = lite.getDataSet("getdbseparate", 0, "databasename")
+            'mysvr = lite.getDataSet("getdbseparate", 0, "ipserver")
+            'myport = lite.getDataSet("getdbseparate", 0, "port")
+            'myusr = lite.getDataSet("getdbseparate", 0, "username")
+            'mypass = lite.getDataSet("getdbseparate", 0, "password")
         End If
 
-        Dim mys As New SQLs(mystring)
+        'Dim mys As New SQLs(mystring)
         Dim sqlset As New dtsetSQLS(dbstring)
 
         Dim sqls As New SQLs(dbstring)
         Dim localcnt As Integer = 0
         Dim servercnt As Integer = 0
         sqls.DMLQuery("select idtoken,idtokenonline,tokenkey1,tokenkey2,isdeleted,deletereason from sys_token order by createddate asc", "cnt")
-        mys.DMLQuery("select idtoken,tokenkey1,tokenkey2,isdeleted,deletereason from " & mydb & "." & myusr & ".token order by createddate asc", "cnt")
+
+        Dim rest As New 
+        'mys.DMLQuery("select idtoken,tokenkey1,tokenkey2,isdeleted,deletereason from " & mydb & "." & myusr & ".token order by createddate asc", "cnt")
         If sqls.getDataSet("cnt") > 0 Then
             localcnt = sqls.getDataSet("cnt")
         End If
@@ -1727,7 +1733,7 @@ Public Class frmMain
             Else
                 gcSearch.Visible = False
                 gcSearch.SendToBack()
-                teSearch.Text = ""
+                'teSearch.Text = ""
             End If
         Else
             gcSearch.Visible = False

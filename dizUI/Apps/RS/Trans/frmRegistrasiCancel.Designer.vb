@@ -53,12 +53,12 @@ Partial Class frmRegistrasiCancel
         Me.GridColumn14 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemMemoEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit()
         Me.TableLayoutPanel3 = New System.Windows.Forms.TableLayoutPanel()
+        Me.teRemarks = New DevExpress.XtraEditors.TextEdit()
         Me.Label10 = New System.Windows.Forms.Label()
         Me.pHeader = New System.Windows.Forms.Panel()
         Me.btnNew = New System.Windows.Forms.Button()
         Me.btnSave = New System.Windows.Forms.Button()
         Me.lblSep5 = New System.Windows.Forms.Label()
-        Me.teRemarks = New DevExpress.XtraEditors.TextEdit()
         Me.tlpForm.SuspendLayout()
         Me.pTitle.SuspendLayout()
         CType(Me.pMinimize, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -70,8 +70,8 @@ Partial Class frmRegistrasiCancel
         CType(Me.riceCek, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemMemoEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TableLayoutPanel3.SuspendLayout()
-        Me.pHeader.SuspendLayout()
         CType(Me.teRemarks.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.pHeader.SuspendLayout()
         Me.SuspendLayout()
         '
         'tlpForm
@@ -247,6 +247,8 @@ Partial Class frmRegistrasiCancel
         '
         'GridColumn5
         '
+        Me.GridColumn5.AppearanceCell.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.GridColumn5.AppearanceCell.Options.UseBackColor = True
         Me.GridColumn5.AppearanceHeader.Options.UseTextOptions = True
         Me.GridColumn5.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.GridColumn5.Caption = "Cek"
@@ -471,6 +473,25 @@ Partial Class frmRegistrasiCancel
         Me.TableLayoutPanel3.Size = New System.Drawing.Size(786, 36)
         Me.TableLayoutPanel3.TabIndex = 10
         '
+        'teRemarks
+        '
+        Me.teRemarks.Anchor = System.Windows.Forms.AnchorStyles.Left
+        Me.teRemarks.Location = New System.Drawing.Point(218, 8)
+        Me.teRemarks.Margin = New System.Windows.Forms.Padding(0)
+        Me.teRemarks.Name = "teRemarks"
+        Me.teRemarks.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[True]
+        Me.teRemarks.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.teRemarks.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 9.0!)
+        Me.teRemarks.Properties.Appearance.Options.UseBackColor = True
+        Me.teRemarks.Properties.Appearance.Options.UseFont = True
+        Me.teRemarks.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple
+        Me.teRemarks.Properties.MaxLength = 300
+        Me.teRemarks.Properties.NullText = "[Belum Diisi]"
+        Me.teRemarks.Properties.NullValuePrompt = "[Belum Diisi]"
+        Me.teRemarks.Size = New System.Drawing.Size(150, 20)
+        Me.teRemarks.TabIndex = 22
+        Me.teRemarks.Tag = "remarks"
+        '
         'Label10
         '
         Me.Label10.Anchor = System.Windows.Forms.AnchorStyles.Right
@@ -542,25 +563,6 @@ Partial Class frmRegistrasiCancel
         Me.lblSep5.Text = "|"
         Me.lblSep5.TextAlign = System.Drawing.ContentAlignment.TopCenter
         '
-        'teRemarks
-        '
-        Me.teRemarks.Anchor = System.Windows.Forms.AnchorStyles.Left
-        Me.teRemarks.Location = New System.Drawing.Point(218, 8)
-        Me.teRemarks.Margin = New System.Windows.Forms.Padding(0)
-        Me.teRemarks.Name = "teRemarks"
-        Me.teRemarks.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[True]
-        Me.teRemarks.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.teRemarks.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 9.0!)
-        Me.teRemarks.Properties.Appearance.Options.UseBackColor = True
-        Me.teRemarks.Properties.Appearance.Options.UseFont = True
-        Me.teRemarks.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple
-        Me.teRemarks.Properties.MaxLength = 300
-        Me.teRemarks.Properties.NullText = "[Belum Diisi]"
-        Me.teRemarks.Properties.NullValuePrompt = "[Belum Diisi]"
-        Me.teRemarks.Size = New System.Drawing.Size(150, 20)
-        Me.teRemarks.TabIndex = 22
-        Me.teRemarks.Tag = "remarks"
-        '
         'frmRegistrasiCancel
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -585,8 +587,8 @@ Partial Class frmRegistrasiCancel
         CType(Me.RepositoryItemMemoEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.TableLayoutPanel3.ResumeLayout(False)
         Me.TableLayoutPanel3.PerformLayout()
-        Me.pHeader.ResumeLayout(False)
         CType(Me.teRemarks.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.pHeader.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub

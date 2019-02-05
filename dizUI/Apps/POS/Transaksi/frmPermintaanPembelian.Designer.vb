@@ -38,10 +38,10 @@ Partial Class frmPermintaanPembelian
         Me.gcKode = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.gcNama = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.gcSatuan = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.seQty = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit()
         Me.gcQtyAsk = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.teRemarks = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
+        Me.seQty = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit()
         Me.seHarga = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit()
+        Me.teRemarks = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
         Me.tlpField = New System.Windows.Forms.TableLayoutPanel()
         Me.teNote = New DevExpress.XtraEditors.TextEdit()
         Me.Label4 = New System.Windows.Forms.Label()
@@ -64,8 +64,8 @@ Partial Class frmPermintaanPembelian
         CType(Me.gcData, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gvData, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.seQty, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.teRemarks, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.seHarga, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.teRemarks, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.tlpField.SuspendLayout()
         CType(Me.teNote.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.deTanggal.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -241,14 +241,14 @@ Partial Class frmPermintaanPembelian
         Me.gcKode.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.gcKode.Caption = "Kode"
         Me.gcKode.FieldName = "kode"
-        Me.gcKode.MaxWidth = 100
-        Me.gcKode.MinWidth = 100
+        Me.gcKode.MaxWidth = 140
+        Me.gcKode.MinWidth = 140
         Me.gcKode.Name = "gcKode"
         Me.gcKode.OptionsColumn.AllowEdit = False
         Me.gcKode.OptionsColumn.ReadOnly = True
         Me.gcKode.Visible = True
         Me.gcKode.VisibleIndex = 1
-        Me.gcKode.Width = 100
+        Me.gcKode.Width = 140
         '
         'gcNama
         '
@@ -278,19 +278,6 @@ Partial Class frmPermintaanPembelian
         Me.gcSatuan.VisibleIndex = 3
         Me.gcSatuan.Width = 60
         '
-        'seQty
-        '
-        Me.seQty.AutoHeight = False
-        Me.seQty.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
-        Me.seQty.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
-        Me.seQty.DisplayFormat.FormatString = "n0"
-        Me.seQty.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.seQty.EditFormat.FormatString = "n0"
-        Me.seQty.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.seQty.IsFloatValue = False
-        Me.seQty.Mask.EditMask = "N00"
-        Me.seQty.Name = "seQty"
-        '
         'gcQtyAsk
         '
         Me.gcQtyAsk.AppearanceHeader.Options.UseTextOptions = True
@@ -307,10 +294,18 @@ Partial Class frmPermintaanPembelian
         Me.gcQtyAsk.VisibleIndex = 4
         Me.gcQtyAsk.Width = 50
         '
-        'teRemarks
+        'seQty
         '
-        Me.teRemarks.AutoHeight = False
-        Me.teRemarks.Name = "teRemarks"
+        Me.seQty.AutoHeight = False
+        Me.seQty.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.seQty.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
+        Me.seQty.DisplayFormat.FormatString = "n0"
+        Me.seQty.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.seQty.EditFormat.FormatString = "n0"
+        Me.seQty.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.seQty.IsFloatValue = False
+        Me.seQty.Mask.EditMask = "N00"
+        Me.seQty.Name = "seQty"
         '
         'seHarga
         '
@@ -322,6 +317,11 @@ Partial Class frmPermintaanPembelian
         Me.seHarga.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.seHarga.Mask.EditMask = "N00"
         Me.seHarga.Name = "seHarga"
+        '
+        'teRemarks
+        '
+        Me.teRemarks.AutoHeight = False
+        Me.teRemarks.Name = "teRemarks"
         '
         'tlpField
         '
@@ -585,8 +585,8 @@ Partial Class frmPermintaanPembelian
         CType(Me.gcData, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.gvData, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.seQty, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.teRemarks, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.seHarga, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.teRemarks, System.ComponentModel.ISupportInitialize).EndInit()
         Me.tlpField.ResumeLayout(False)
         Me.tlpField.PerformLayout()
         CType(Me.teNote.Properties, System.ComponentModel.ISupportInitialize).EndInit()

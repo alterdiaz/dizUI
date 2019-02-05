@@ -86,7 +86,7 @@ Public Class frmPermintaanBarangNQLMA
         End If
     End Sub
 
-    Private Sub loadItem(ByVal idunit As Integer)
+    Private Sub loadItem(ByVal idunit As String)
         Dim sqls As New SQLs(dbstring)
         Dim field As New List(Of String)
         Dim value As New List(Of Object)

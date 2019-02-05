@@ -1,4 +1,5 @@
-﻿Public Class frmValidasiItemHarga
+﻿
+Public Class frmInfoPasien
     Const HTCAPTION = &H2
     Const WM_NCLBUTTONDOWN = &HA1
 
@@ -17,6 +18,7 @@
     End Sub
 
     Private Sub pExit_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles pExit.Click
+        splashClosed = True
         Me.Dispose()
     End Sub
 
@@ -84,84 +86,56 @@
         End If
     End Sub
 
-    Private Sub loadGrid()
-        Dim mysqls As New SQLs(dbstring)
-        mysqls.DMLQuery("select convert(bit,0) as cek,ih.iditemharga,ih.idunit,u.unit,i.iditem,i.itemtype,gc.generalcode as type,i.kode,i.item,i.iditemgrup,ig.itemgrup,ih.idkelas,k.kelas,ih.harga,convert(varchar,ih.startdate,105) as startdate,convert(varchar,ih.enddate,105) as enddate from item i left join itemgrup ig on i.iditemgrup=ig.iditemgrup left join sys_generalcode gc on gc.idgeneral=i.itemtype and gc.gctype='ITEMTYPE' left join itemharga ih on ih.iditem=i.iditem left join unit u on ih.idunit=u.idunit left join kelas k on k.idkelas=ih.idkelas where ih.isdeleted=0 and ih.isvalid=0 order by ig.itemgrup asc,ih.startdate asc,i.item asc", "data")
-        gcData.DataSource = mysqls.dataTable("data")
-        gvData.BestFitColumns()
-    End Sub
+    Public Sub New(idpasien As String)
 
-    Private Sub btnNew_Click(sender As Object, e As EventArgs) Handles btnNew.Click
-        loadGrid()
-        gvData.FindFilterText = ""
-    End Sub
+        ' This call is required by the designer.
+        InitializeComponent()
 
-    Private Sub frmValidasiItemHarga_Load(sender As Object, e As EventArgs) Handles Me.Load
-        If formTitle <> "" Then
-            Me.Text = formTitle
-            lblTitle.Text = formTitle
-        End If
+        ' Add any initialization after the InitializeComponent() call.
+        Dim sqls As New SQLs(dbstring)
+        Dim field As New List(Of String)
+        Dim value As New List(Of Object)
+        field.AddRange(New String() {"@idrm"})
+        value.AddRange(New Object() {idpasien})
+        sqls.CallSP("spGetPasienRegistrasi", "getpx", field, value)
 
-        gvData.OptionsView.ColumnAutoWidth = False
-        btnNew_Click(btnNew, Nothing)
-    End Sub
+        teNoRM.Text = sqls.getDataSet("getpx", 0, "rekammedisno")
+        teJenisKartu.Text = sqls.getDataSet("getpx", 0, "jeniskartu")
+        teNomorKartu.Text = sqls.getDataSet("getpx", 0, "nomorkartu")
+        teHamil.Text = sqls.getDataSet("getpx", 0, "hamil")
+        teGolonganDarah.Text = sqls.getDataSet("getpx", 0, "golongandarah")
+        teRhesus.Text = sqls.getDataSet("getpx", 0, "rhesus")
 
-    Private Sub btnSave_Click(sender As Object, e As EventArgs) Handles btnSave.Click
-        If gvData.RowCount = 0 Then
-            dizMsgbox("Item tidak ditemukan", dizMsgboxStyle.Kesalahan, Me)
-            Exit Sub
-        End If
+        teNamaPanggilan.Text = sqls.getDataSet("getpx", 0, "namapanggilan")
+        teNama.Text = sqls.getDataSet("getpx", 0, "nama")
+        teJenisKelamin.Text = sqls.getDataSet("getpx", 0, "jeniskelamin")
+        teWarganegara.Text = sqls.getDataSet("getpx", 0, "warganegara")
+        teTanggalLahir.Text = sqls.getDataSet("getpx", 0, "tanggallahir")
+        teUmur.Text = sqls.getDataSet("getpx", 0, "usia")
 
-        Dim loadScr As New frmLoading()
-        splashClosed = False
-        loadScr.Show(Me)
-        loadScr.BringToFront()
-        Application.DoEvents()
-        Me.Cursor = Cursors.WaitCursor
+        meAlamat.Text = sqls.getDataSet("getpx", 0, "alamat")
 
-        Dim cek As Boolean = False
-        For i As Integer = 0 To gvData.RowCount - 1
-            Dim dra As DataRow = gvData.GetDataRow(i)
-            If dra("cek") = "True" Then
-                Dim iditemharga As String = dra("iditemharga")
-
-                Dim sqls As New SQLs(dbstring)
-                sqls.DMLQuery("update itemharga set isvalid=1,isdeleted=0 where iditemharga='" & iditemharga & "'", False)
-                cek = True
-            End If
-        Next
-
-        Me.Cursor = Cursors.Default
-        splashClosed = True
-
-        If cek = True Then
-            dizMsgbox("Data tersimpan", dizMsgboxStyle.Info, Me)
+        sqls.DMLQuery("select count(r.idregistrasi) as counter,d.kode from registrasi r left join department d on r.iddepartment=d.iddepartment where r.iddepartment in (select value from sys_appsetting where variable in('idemergencydept','idicudept','idinpatientdept','idlabdept','idnicudept','idoperatingdept','idoutpatientdept','idpicudept','idphysiodept','idraddept')) and idrekammedis='" & idpasien & "' group by d.kode order by d.kode asc", "data")
+        Dim str As String = ""
+        If sqls.getDataSet("data") = 0 Then
+            str = "Registrasi tidak ditemukan"
         Else
-            dizMsgbox("Tidak ada yang tersimpan", dizMsgboxStyle.Info, Me)
+            str = "Jumlah Registrasi" & vbCrLf
+            For i As Integer = 0 To sqls.getDataSet("data") - 1
+                str &= sqls.getDataSet("data", i, "counter")
+                str &= " "
+                str &= sqls.getDataSet("data", i, "kode")
+                If i <> sqls.getDataSet("data") - 1 Then
+                    str &= ", "
+                End If
+            Next
         End If
-        btnNew_Click(btnNew, Nothing)
+        lblStatus.Text = str
     End Sub
 
-    Private Sub btnAllItem_Click(sender As Object, e As EventArgs) Handles btnAllItem.Click
-        If gvData.RowCount = 0 Then
-            dizMsgbox("Item tidak ditemukan", dizMsgboxStyle.Kesalahan, Me)
-            Exit Sub
-        End If
-        For i As Integer = 0 To gvData.RowCount - 1
-            Dim dra As DataRow = gvData.GetDataRow(i)
-            dra("cek") = 1
-        Next
-    End Sub
-
-    Private Sub btnNoItem_Click(sender As Object, e As EventArgs) Handles btnNoItem.Click
-        If gvData.RowCount = 0 Then
-            dizMsgbox("Item tidak ditemukan", dizMsgboxStyle.Kesalahan, Me)
-            Exit Sub
-        End If
-        For i As Integer = 0 To gvData.RowCount - 1
-            Dim dra As DataRow = gvData.GetDataRow(i)
-            dra("cek") = 0
-        Next
+    Private Sub frmInfoPasien_Load(sender As Object, e As EventArgs) Handles Me.Load
+        Me.pMinimize.Enabled = False
+        Me.pMaximize.Enabled = False
     End Sub
 
 End Class

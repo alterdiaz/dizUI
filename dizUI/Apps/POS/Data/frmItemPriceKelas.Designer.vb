@@ -29,33 +29,28 @@ Partial Class frmItemPriceKelas
         Me.pMaximize = New System.Windows.Forms.PictureBox()
         Me.pExit = New System.Windows.Forms.PictureBox()
         Me.pBody = New System.Windows.Forms.Panel()
+        Me.sccForm = New DevExpress.XtraEditors.SplitContainerControl()
         Me.gcData = New DevExpress.XtraGrid.GridControl()
         Me.gvData = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.gcID = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.gcidunit = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.gciditem = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.gcKode = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.gcNama = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.gcunit = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.gcprice = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.tlpField = New System.Windows.Forms.TableLayoutPanel()
-        Me.lueUnit = New DevExpress.XtraEditors.LookUpEdit()
-        Me.Label5 = New System.Windows.Forms.Label()
-        Me.deTanggalEnd = New DevExpress.XtraEditors.DateEdit()
-        Me.Label3 = New System.Windows.Forms.Label()
-        Me.deTanggalStart = New DevExpress.XtraEditors.DateEdit()
-        Me.Label2 = New System.Windows.Forms.Label()
-        Me.pHeader = New System.Windows.Forms.Panel()
-        Me.btnNew = New System.Windows.Forms.Button()
-        Me.btnSave = New System.Windows.Forms.Button()
-        Me.btnDelete = New System.Windows.Forms.Button()
-        Me.lblSep5 = New System.Windows.Forms.Label()
-        Me.sccForm = New DevExpress.XtraEditors.SplitContainerControl()
+        Me.gcHargaTmp = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepositoryItemSpinEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit()
         Me.Panel1 = New System.Windows.Forms.Panel()
         Me.btnDeleteAllItem = New System.Windows.Forms.Button()
         Me.btnDeleteItem = New System.Windows.Forms.Button()
+        Me.tlpField = New System.Windows.Forms.TableLayoutPanel()
+        Me.Label5 = New System.Windows.Forms.Label()
+        Me.lueUnit = New DevExpress.XtraEditors.LookUpEdit()
+        Me.deTanggalStart = New DevExpress.XtraEditors.DateEdit()
+        Me.Label2 = New System.Windows.Forms.Label()
+        Me.Label3 = New System.Windows.Forms.Label()
+        Me.deTanggalEnd = New DevExpress.XtraEditors.DateEdit()
         Me.pRightBar = New System.Windows.Forms.Panel()
         Me.xtcItem = New DevExpress.XtraTab.XtraTabControl()
         Me.xtpItem = New DevExpress.XtraTab.XtraTabPage()
@@ -68,25 +63,30 @@ Partial Class frmItemPriceKelas
         Me.pItem = New System.Windows.Forms.Panel()
         Me.btnAllItem = New System.Windows.Forms.Button()
         Me.btnItemSelect = New System.Windows.Forms.Button()
-        Me.RepositoryItemSpinEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit()
+        Me.pHeader = New System.Windows.Forms.Panel()
+        Me.btnImportFormat = New System.Windows.Forms.Button()
+        Me.btnExportFormat = New System.Windows.Forms.Button()
+        Me.btnNew = New System.Windows.Forms.Button()
+        Me.btnSave = New System.Windows.Forms.Button()
+        Me.lblSep5 = New System.Windows.Forms.Label()
         Me.tlpForm.SuspendLayout()
         Me.pTitle.SuspendLayout()
         CType(Me.pMinimize, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.pMaximize, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.pExit, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.pBody.SuspendLayout()
-        CType(Me.gcData, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.gvData, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.tlpField.SuspendLayout()
-        CType(Me.lueUnit.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.deTanggalEnd.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.deTanggalEnd.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.deTanggalStart.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.deTanggalStart.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.pHeader.SuspendLayout()
         CType(Me.sccForm, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.sccForm.SuspendLayout()
+        CType(Me.gcData, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.gvData, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemSpinEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel1.SuspendLayout()
+        Me.tlpField.SuspendLayout()
+        CType(Me.lueUnit.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.deTanggalStart.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.deTanggalStart.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.deTanggalEnd.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.deTanggalEnd.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.pRightBar.SuspendLayout()
         CType(Me.xtcItem, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.xtcItem.SuspendLayout()
@@ -95,7 +95,7 @@ Partial Class frmItemPriceKelas
         CType(Me.gvItem, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.ceCek, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.pItem.SuspendLayout()
-        CType(Me.RepositoryItemSpinEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.pHeader.SuspendLayout()
         Me.SuspendLayout()
         '
         'tlpForm
@@ -115,7 +115,7 @@ Partial Class frmItemPriceKelas
         Me.tlpForm.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30.0!))
         Me.tlpForm.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
         Me.tlpForm.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
-        Me.tlpForm.Size = New System.Drawing.Size(904, 408)
+        Me.tlpForm.Size = New System.Drawing.Size(904, 462)
         Me.tlpForm.TabIndex = 0
         '
         'pTitle
@@ -193,8 +193,29 @@ Partial Class frmItemPriceKelas
         Me.pBody.Location = New System.Drawing.Point(2, 30)
         Me.pBody.Margin = New System.Windows.Forms.Padding(0)
         Me.pBody.Name = "pBody"
-        Me.pBody.Size = New System.Drawing.Size(900, 378)
+        Me.pBody.Size = New System.Drawing.Size(900, 432)
         Me.pBody.TabIndex = 7
+        '
+        'sccForm
+        '
+        Me.sccForm.Appearance.BackColor = System.Drawing.Color.FromArgb(CType(CType(66, Byte), Integer), CType(CType(66, Byte), Integer), CType(CType(66, Byte), Integer))
+        Me.sccForm.Appearance.Options.UseBackColor = True
+        Me.sccForm.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.sccForm.Location = New System.Drawing.Point(0, 30)
+        Me.sccForm.Margin = New System.Windows.Forms.Padding(0)
+        Me.sccForm.Name = "sccForm"
+        Me.sccForm.Panel1.Controls.Add(Me.gcData)
+        Me.sccForm.Panel1.Controls.Add(Me.Panel1)
+        Me.sccForm.Panel1.Controls.Add(Me.tlpField)
+        Me.sccForm.Panel1.MinSize = 520
+        Me.sccForm.Panel1.Text = "Panel1"
+        Me.sccForm.Panel2.Controls.Add(Me.pRightBar)
+        Me.sccForm.Panel2.MinSize = 270
+        Me.sccForm.Panel2.Text = "Panel2"
+        Me.sccForm.Size = New System.Drawing.Size(900, 402)
+        Me.sccForm.SplitterPosition = 625
+        Me.sccForm.TabIndex = 15
+        Me.sccForm.Text = "SplitContainerControl1"
         '
         'gcData
         '
@@ -203,7 +224,7 @@ Partial Class frmItemPriceKelas
         Me.gcData.MainView = Me.gvData
         Me.gcData.Name = "gcData"
         Me.gcData.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemSpinEdit1})
-        Me.gcData.Size = New System.Drawing.Size(625, 288)
+        Me.gcData.Size = New System.Drawing.Size(625, 312)
         Me.gcData.TabIndex = 8
         Me.gcData.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gvData})
         '
@@ -217,27 +238,18 @@ Partial Class frmItemPriceKelas
         Me.gvData.Appearance.OddRow.Options.UseBackColor = True
         Me.gvData.Appearance.Row.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer))
         Me.gvData.Appearance.Row.Options.UseBackColor = True
-        Me.gvData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.gcID, Me.gcidunit, Me.gciditem, Me.GridColumn3, Me.gcKode, Me.gcNama, Me.gcunit, Me.gcprice, Me.GridColumn5})
+        Me.gvData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.gcidunit, Me.gciditem, Me.GridColumn2, Me.GridColumn1, Me.gcKode, Me.gcNama, Me.gcunit, Me.gcHargaTmp})
         Me.gvData.GridControl = Me.gcData
         Me.gvData.Name = "gvData"
+        Me.gvData.OptionsView.ColumnAutoWidth = False
         Me.gvData.OptionsView.EnableAppearanceEvenRow = True
         Me.gvData.OptionsView.EnableAppearanceOddRow = True
         Me.gvData.OptionsView.ShowGroupPanel = False
         '
-        'gcID
-        '
-        Me.gcID.AppearanceCell.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.gcID.AppearanceCell.Options.UseBackColor = True
-        Me.gcID.Caption = "ID"
-        Me.gcID.FieldName = "iditemharga"
-        Me.gcID.Name = "gcID"
-        Me.gcID.OptionsColumn.AllowEdit = False
-        Me.gcID.OptionsColumn.ReadOnly = True
-        '
         'gcidunit
         '
-        Me.gcidunit.Caption = "idunit"
-        Me.gcidunit.FieldName = "idunit"
+        Me.gcidunit.Caption = "itemtype"
+        Me.gcidunit.FieldName = "itemtype"
         Me.gcidunit.Name = "gcidunit"
         '
         'gciditem
@@ -246,11 +258,25 @@ Partial Class frmItemPriceKelas
         Me.gciditem.FieldName = "iditem"
         Me.gciditem.Name = "gciditem"
         '
-        'GridColumn3
+        'GridColumn2
         '
-        Me.GridColumn3.Caption = "idkelas"
-        Me.GridColumn3.FieldName = "idkelas"
-        Me.GridColumn3.Name = "GridColumn3"
+        Me.GridColumn2.Caption = "iditemgrup"
+        Me.GridColumn2.FieldName = "iditemgrup"
+        Me.GridColumn2.Name = "GridColumn2"
+        Me.GridColumn2.OptionsColumn.AllowEdit = False
+        Me.GridColumn2.OptionsColumn.ReadOnly = True
+        '
+        'GridColumn1
+        '
+        Me.GridColumn1.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn1.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn1.Caption = "Grup"
+        Me.GridColumn1.FieldName = "itemgrup"
+        Me.GridColumn1.Name = "GridColumn1"
+        Me.GridColumn1.OptionsColumn.AllowEdit = False
+        Me.GridColumn1.OptionsColumn.ReadOnly = True
+        Me.GridColumn1.Visible = True
+        Me.GridColumn1.VisibleIndex = 1
         '
         'gcKode
         '
@@ -262,7 +288,7 @@ Partial Class frmItemPriceKelas
         Me.gcKode.OptionsColumn.AllowEdit = False
         Me.gcKode.OptionsColumn.ReadOnly = True
         Me.gcKode.Visible = True
-        Me.gcKode.VisibleIndex = 1
+        Me.gcKode.VisibleIndex = 2
         '
         'gcNama
         '
@@ -274,40 +300,89 @@ Partial Class frmItemPriceKelas
         Me.gcNama.OptionsColumn.AllowEdit = False
         Me.gcNama.OptionsColumn.ReadOnly = True
         Me.gcNama.Visible = True
-        Me.gcNama.VisibleIndex = 2
+        Me.gcNama.VisibleIndex = 3
         '
         'gcunit
         '
         Me.gcunit.AppearanceHeader.Options.UseTextOptions = True
         Me.gcunit.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.gcunit.Caption = "Unit"
-        Me.gcunit.FieldName = "unit"
+        Me.gcunit.Caption = "Jenis"
+        Me.gcunit.FieldName = "type"
         Me.gcunit.Name = "gcunit"
         Me.gcunit.OptionsColumn.AllowEdit = False
         Me.gcunit.OptionsColumn.ReadOnly = True
         Me.gcunit.Visible = True
         Me.gcunit.VisibleIndex = 0
         '
-        'gcprice
+        'gcHargaTmp
         '
-        Me.gcprice.AppearanceCell.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.gcprice.AppearanceCell.Options.UseBackColor = True
-        Me.gcprice.AppearanceHeader.Options.UseTextOptions = True
-        Me.gcprice.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.gcprice.Caption = "Harga"
-        Me.gcprice.ColumnEdit = Me.RepositoryItemSpinEdit1
-        Me.gcprice.FieldName = "harga"
-        Me.gcprice.Name = "gcprice"
-        Me.gcprice.Visible = True
-        Me.gcprice.VisibleIndex = 3
+        Me.gcHargaTmp.AppearanceCell.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.gcHargaTmp.AppearanceCell.Options.UseBackColor = True
+        Me.gcHargaTmp.AppearanceHeader.Options.UseTextOptions = True
+        Me.gcHargaTmp.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.gcHargaTmp.Caption = "Harga"
+        Me.gcHargaTmp.ColumnEdit = Me.RepositoryItemSpinEdit1
+        Me.gcHargaTmp.FieldName = "harga"
+        Me.gcHargaTmp.Name = "gcHargaTmp"
         '
-        'GridColumn5
+        'RepositoryItemSpinEdit1
         '
-        Me.GridColumn5.Caption = "GridColumn5"
-        Me.GridColumn5.FieldName = "isdeleted"
-        Me.GridColumn5.Name = "GridColumn5"
-        Me.GridColumn5.OptionsColumn.AllowEdit = False
-        Me.GridColumn5.OptionsColumn.ReadOnly = True
+        Me.RepositoryItemSpinEdit1.AutoHeight = False
+        Me.RepositoryItemSpinEdit1.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.RepositoryItemSpinEdit1.DisplayFormat.FormatString = "n2"
+        Me.RepositoryItemSpinEdit1.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.RepositoryItemSpinEdit1.EditFormat.FormatString = "n2"
+        Me.RepositoryItemSpinEdit1.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.RepositoryItemSpinEdit1.IsFloatValue = False
+        Me.RepositoryItemSpinEdit1.Mask.EditMask = "N00"
+        Me.RepositoryItemSpinEdit1.Name = "RepositoryItemSpinEdit1"
+        '
+        'Panel1
+        '
+        Me.Panel1.BackColor = System.Drawing.Color.FromArgb(CType(CType(66, Byte), Integer), CType(CType(66, Byte), Integer), CType(CType(66, Byte), Integer))
+        Me.Panel1.Controls.Add(Me.btnDeleteAllItem)
+        Me.Panel1.Controls.Add(Me.btnDeleteItem)
+        Me.Panel1.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.Panel1.ForeColor = System.Drawing.Color.White
+        Me.Panel1.Location = New System.Drawing.Point(0, 372)
+        Me.Panel1.Margin = New System.Windows.Forms.Padding(0)
+        Me.Panel1.Name = "Panel1"
+        Me.Panel1.Size = New System.Drawing.Size(625, 30)
+        Me.Panel1.TabIndex = 13
+        '
+        'btnDeleteAllItem
+        '
+        Me.btnDeleteAllItem.BackColor = System.Drawing.Color.Maroon
+        Me.btnDeleteAllItem.Dock = System.Windows.Forms.DockStyle.Left
+        Me.btnDeleteAllItem.FlatAppearance.BorderSize = 0
+        Me.btnDeleteAllItem.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DimGray
+        Me.btnDeleteAllItem.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DarkGray
+        Me.btnDeleteAllItem.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnDeleteAllItem.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnDeleteAllItem.Location = New System.Drawing.Point(0, 0)
+        Me.btnDeleteAllItem.Name = "btnDeleteAllItem"
+        Me.btnDeleteAllItem.Size = New System.Drawing.Size(120, 30)
+        Me.btnDeleteAllItem.TabIndex = 16
+        Me.btnDeleteAllItem.Text = "HAPUS ALL ITEM"
+        Me.btnDeleteAllItem.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
+        Me.btnDeleteAllItem.UseVisualStyleBackColor = False
+        '
+        'btnDeleteItem
+        '
+        Me.btnDeleteItem.BackColor = System.Drawing.Color.Maroon
+        Me.btnDeleteItem.Dock = System.Windows.Forms.DockStyle.Right
+        Me.btnDeleteItem.FlatAppearance.BorderSize = 0
+        Me.btnDeleteItem.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DimGray
+        Me.btnDeleteItem.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DarkGray
+        Me.btnDeleteItem.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnDeleteItem.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnDeleteItem.Location = New System.Drawing.Point(525, 0)
+        Me.btnDeleteItem.Name = "btnDeleteItem"
+        Me.btnDeleteItem.Size = New System.Drawing.Size(100, 30)
+        Me.btnDeleteItem.TabIndex = 15
+        Me.btnDeleteItem.Text = "HAPUS ITEM"
+        Me.btnDeleteItem.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
+        Me.btnDeleteItem.UseVisualStyleBackColor = False
         '
         'tlpField
         '
@@ -340,6 +415,18 @@ Partial Class frmItemPriceKelas
         Me.tlpField.Size = New System.Drawing.Size(625, 60)
         Me.tlpField.TabIndex = 7
         '
+        'Label5
+        '
+        Me.Label5.Anchor = System.Windows.Forms.AnchorStyles.Right
+        Me.Label5.AutoSize = True
+        Me.Label5.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label5.Location = New System.Drawing.Point(80, 11)
+        Me.Label5.Name = "Label5"
+        Me.Label5.Size = New System.Drawing.Size(29, 14)
+        Me.Label5.TabIndex = 21
+        Me.Label5.Text = "Unit"
+        Me.Label5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        '
         'lueUnit
         '
         Me.lueUnit.Anchor = System.Windows.Forms.AnchorStyles.Left
@@ -363,78 +450,6 @@ Partial Class frmItemPriceKelas
         Me.lueUnit.Size = New System.Drawing.Size(200, 20)
         Me.lueUnit.TabIndex = 48
         Me.lueUnit.Tag = "idunit"
-        '
-        'Label5
-        '
-        Me.Label5.Anchor = System.Windows.Forms.AnchorStyles.Right
-        Me.Label5.AutoSize = True
-        Me.Label5.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label5.Location = New System.Drawing.Point(80, 11)
-        Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(29, 14)
-        Me.Label5.TabIndex = 21
-        Me.Label5.Text = "Unit"
-        Me.Label5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        '
-        'deTanggalEnd
-        '
-        Me.deTanggalEnd.Anchor = System.Windows.Forms.AnchorStyles.Left
-        Me.deTanggalEnd.EditValue = Nothing
-        Me.deTanggalEnd.Location = New System.Drawing.Point(412, 32)
-        Me.deTanggalEnd.Margin = New System.Windows.Forms.Padding(0)
-        Me.deTanggalEnd.Name = "deTanggalEnd"
-        Me.deTanggalEnd.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.deTanggalEnd.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 9.0!)
-        Me.deTanggalEnd.Properties.Appearance.ForeColor = System.Drawing.Color.Black
-        Me.deTanggalEnd.Properties.Appearance.Options.UseBackColor = True
-        Me.deTanggalEnd.Properties.Appearance.Options.UseFont = True
-        Me.deTanggalEnd.Properties.Appearance.Options.UseForeColor = True
-        Me.deTanggalEnd.Properties.AppearanceCalendar.DayCellHighlighted.Font = New System.Drawing.Font("Tahoma", 9.0!)
-        Me.deTanggalEnd.Properties.AppearanceCalendar.DayCellHighlighted.Options.UseFont = True
-        Me.deTanggalEnd.Properties.AppearanceCalendar.Header.Font = New System.Drawing.Font("Tahoma", 9.0!)
-        Me.deTanggalEnd.Properties.AppearanceCalendar.Header.Options.UseFont = True
-        Me.deTanggalEnd.Properties.AppearanceCalendar.HeaderHighlighted.Font = New System.Drawing.Font("Tahoma", 9.0!)
-        Me.deTanggalEnd.Properties.AppearanceCalendar.HeaderHighlighted.Options.UseFont = True
-        Me.deTanggalEnd.Properties.AppearanceCalendar.WeekNumber.Font = New System.Drawing.Font("Tahoma", 9.0!)
-        Me.deTanggalEnd.Properties.AppearanceCalendar.WeekNumber.Options.UseFont = True
-        Me.deTanggalEnd.Properties.AppearanceDisabled.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.deTanggalEnd.Properties.AppearanceDisabled.Font = New System.Drawing.Font("Tahoma", 9.0!)
-        Me.deTanggalEnd.Properties.AppearanceDisabled.Options.UseBackColor = True
-        Me.deTanggalEnd.Properties.AppearanceDisabled.Options.UseFont = True
-        Me.deTanggalEnd.Properties.AppearanceDropDown.Font = New System.Drawing.Font("Tahoma", 9.0!)
-        Me.deTanggalEnd.Properties.AppearanceDropDown.Options.UseFont = True
-        Me.deTanggalEnd.Properties.AppearanceFocused.Font = New System.Drawing.Font("Tahoma", 9.0!)
-        Me.deTanggalEnd.Properties.AppearanceFocused.Options.UseFont = True
-        Me.deTanggalEnd.Properties.AppearanceReadOnly.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.deTanggalEnd.Properties.AppearanceReadOnly.Font = New System.Drawing.Font("Tahoma", 9.0!)
-        Me.deTanggalEnd.Properties.AppearanceReadOnly.Options.UseBackColor = True
-        Me.deTanggalEnd.Properties.AppearanceReadOnly.Options.UseFont = True
-        Me.deTanggalEnd.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple
-        Me.deTanggalEnd.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.deTanggalEnd.Properties.CalendarTimeEditing = DevExpress.Utils.DefaultBoolean.[True]
-        Me.deTanggalEnd.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
-        Me.deTanggalEnd.Properties.CalendarView = DevExpress.XtraEditors.Repository.CalendarView.Classic
-        Me.deTanggalEnd.Properties.DisplayFormat.FormatString = "dd-MM-yyyy"
-        Me.deTanggalEnd.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.deTanggalEnd.Properties.EditFormat.FormatString = "dd-MM-yyyy"
-        Me.deTanggalEnd.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.deTanggalEnd.Properties.Mask.EditMask = "dd-MM-yyyy"
-        Me.deTanggalEnd.Properties.VistaDisplayMode = DevExpress.Utils.DefaultBoolean.[False]
-        Me.deTanggalEnd.Size = New System.Drawing.Size(133, 20)
-        Me.deTanggalEnd.TabIndex = 24
-        Me.deTanggalEnd.Tag = "enddate"
-        '
-        'Label3
-        '
-        Me.Label3.Anchor = System.Windows.Forms.AnchorStyles.Right
-        Me.Label3.AutoSize = True
-        Me.Label3.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label3.Location = New System.Drawing.Point(338, 35)
-        Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(71, 14)
-        Me.Label3.TabIndex = 18
-        Me.Label3.Text = "Tgl Berakhir"
-        Me.Label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
         'deTanggalStart
         '
@@ -496,149 +511,65 @@ Partial Class frmItemPriceKelas
         Me.Label2.Text = "Tgl Berlaku"
         Me.Label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
-        'pHeader
+        'Label3
         '
-        Me.pHeader.BackColor = System.Drawing.Color.FromArgb(CType(CType(66, Byte), Integer), CType(CType(66, Byte), Integer), CType(CType(66, Byte), Integer))
-        Me.pHeader.Controls.Add(Me.btnNew)
-        Me.pHeader.Controls.Add(Me.btnSave)
-        Me.pHeader.Controls.Add(Me.btnDelete)
-        Me.pHeader.Dock = System.Windows.Forms.DockStyle.Top
-        Me.pHeader.ForeColor = System.Drawing.Color.White
-        Me.pHeader.Location = New System.Drawing.Point(0, 0)
-        Me.pHeader.Margin = New System.Windows.Forms.Padding(0)
-        Me.pHeader.Name = "pHeader"
-        Me.pHeader.Size = New System.Drawing.Size(900, 30)
-        Me.pHeader.TabIndex = 4
+        Me.Label3.Anchor = System.Windows.Forms.AnchorStyles.Right
+        Me.Label3.AutoSize = True
+        Me.Label3.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label3.Location = New System.Drawing.Point(338, 35)
+        Me.Label3.Name = "Label3"
+        Me.Label3.Size = New System.Drawing.Size(71, 14)
+        Me.Label3.TabIndex = 18
+        Me.Label3.Text = "Tgl Berakhir"
+        Me.Label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
-        'btnNew
+        'deTanggalEnd
         '
-        Me.btnNew.Dock = System.Windows.Forms.DockStyle.Right
-        Me.btnNew.FlatAppearance.BorderSize = 0
-        Me.btnNew.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DimGray
-        Me.btnNew.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DarkGray
-        Me.btnNew.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btnNew.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnNew.Location = New System.Drawing.Point(680, 0)
-        Me.btnNew.Name = "btnNew"
-        Me.btnNew.Size = New System.Drawing.Size(60, 30)
-        Me.btnNew.TabIndex = 17
-        Me.btnNew.Text = "BARU"
-        Me.btnNew.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
-        Me.btnNew.UseVisualStyleBackColor = True
-        '
-        'btnSave
-        '
-        Me.btnSave.BackColor = System.Drawing.Color.FromArgb(CType(CType(156, Byte), Integer), CType(CType(207, Byte), Integer), CType(CType(49, Byte), Integer))
-        Me.btnSave.Dock = System.Windows.Forms.DockStyle.Right
-        Me.btnSave.FlatAppearance.BorderSize = 0
-        Me.btnSave.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DimGray
-        Me.btnSave.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DarkGray
-        Me.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btnSave.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnSave.Location = New System.Drawing.Point(740, 0)
-        Me.btnSave.Name = "btnSave"
-        Me.btnSave.Size = New System.Drawing.Size(80, 30)
-        Me.btnSave.TabIndex = 15
-        Me.btnSave.Text = "SIMPAN"
-        Me.btnSave.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
-        Me.btnSave.UseVisualStyleBackColor = False
-        '
-        'btnDelete
-        '
-        Me.btnDelete.Dock = System.Windows.Forms.DockStyle.Right
-        Me.btnDelete.FlatAppearance.BorderSize = 0
-        Me.btnDelete.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DimGray
-        Me.btnDelete.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DarkGray
-        Me.btnDelete.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btnDelete.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnDelete.Location = New System.Drawing.Point(820, 0)
-        Me.btnDelete.Name = "btnDelete"
-        Me.btnDelete.Size = New System.Drawing.Size(80, 30)
-        Me.btnDelete.TabIndex = 11
-        Me.btnDelete.Text = "HAPUS"
-        Me.btnDelete.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
-        Me.btnDelete.UseVisualStyleBackColor = True
-        '
-        'lblSep5
-        '
-        Me.lblSep5.BackColor = System.Drawing.Color.Transparent
-        Me.lblSep5.Dock = System.Windows.Forms.DockStyle.Right
-        Me.lblSep5.Font = New System.Drawing.Font("Segoe UI Light", 18.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblSep5.Location = New System.Drawing.Point(74, 0)
-        Me.lblSep5.Margin = New System.Windows.Forms.Padding(4)
-        Me.lblSep5.Name = "lblSep5"
-        Me.lblSep5.Size = New System.Drawing.Size(16, 1)
-        Me.lblSep5.TabIndex = 19
-        Me.lblSep5.Text = "|"
-        Me.lblSep5.TextAlign = System.Drawing.ContentAlignment.TopCenter
-        '
-        'sccForm
-        '
-        Me.sccForm.Appearance.BackColor = System.Drawing.Color.FromArgb(CType(CType(66, Byte), Integer), CType(CType(66, Byte), Integer), CType(CType(66, Byte), Integer))
-        Me.sccForm.Appearance.Options.UseBackColor = True
-        Me.sccForm.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.sccForm.Location = New System.Drawing.Point(0, 30)
-        Me.sccForm.Margin = New System.Windows.Forms.Padding(0)
-        Me.sccForm.Name = "sccForm"
-        Me.sccForm.Panel1.Controls.Add(Me.Panel1)
-        Me.sccForm.Panel1.Controls.Add(Me.gcData)
-        Me.sccForm.Panel1.Controls.Add(Me.tlpField)
-        Me.sccForm.Panel1.MinSize = 520
-        Me.sccForm.Panel1.Text = "Panel1"
-        Me.sccForm.Panel2.Controls.Add(Me.pRightBar)
-        Me.sccForm.Panel2.MinSize = 270
-        Me.sccForm.Panel2.Text = "Panel2"
-        Me.sccForm.Size = New System.Drawing.Size(900, 348)
-        Me.sccForm.SplitterPosition = 625
-        Me.sccForm.TabIndex = 15
-        Me.sccForm.Text = "SplitContainerControl1"
-        '
-        'Panel1
-        '
-        Me.Panel1.BackColor = System.Drawing.Color.FromArgb(CType(CType(66, Byte), Integer), CType(CType(66, Byte), Integer), CType(CType(66, Byte), Integer))
-        Me.Panel1.Controls.Add(Me.btnDeleteAllItem)
-        Me.Panel1.Controls.Add(Me.btnDeleteItem)
-        Me.Panel1.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.Panel1.ForeColor = System.Drawing.Color.White
-        Me.Panel1.Location = New System.Drawing.Point(0, 318)
-        Me.Panel1.Margin = New System.Windows.Forms.Padding(0)
-        Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(625, 30)
-        Me.Panel1.TabIndex = 13
-        '
-        'btnDeleteAllItem
-        '
-        Me.btnDeleteAllItem.BackColor = System.Drawing.Color.Maroon
-        Me.btnDeleteAllItem.Dock = System.Windows.Forms.DockStyle.Left
-        Me.btnDeleteAllItem.FlatAppearance.BorderSize = 0
-        Me.btnDeleteAllItem.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DimGray
-        Me.btnDeleteAllItem.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DarkGray
-        Me.btnDeleteAllItem.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btnDeleteAllItem.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnDeleteAllItem.Location = New System.Drawing.Point(0, 0)
-        Me.btnDeleteAllItem.Name = "btnDeleteAllItem"
-        Me.btnDeleteAllItem.Size = New System.Drawing.Size(120, 30)
-        Me.btnDeleteAllItem.TabIndex = 16
-        Me.btnDeleteAllItem.Text = "HAPUS ALL ITEM"
-        Me.btnDeleteAllItem.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
-        Me.btnDeleteAllItem.UseVisualStyleBackColor = False
-        '
-        'btnDeleteItem
-        '
-        Me.btnDeleteItem.BackColor = System.Drawing.Color.Maroon
-        Me.btnDeleteItem.Dock = System.Windows.Forms.DockStyle.Right
-        Me.btnDeleteItem.FlatAppearance.BorderSize = 0
-        Me.btnDeleteItem.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DimGray
-        Me.btnDeleteItem.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DarkGray
-        Me.btnDeleteItem.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btnDeleteItem.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnDeleteItem.Location = New System.Drawing.Point(525, 0)
-        Me.btnDeleteItem.Name = "btnDeleteItem"
-        Me.btnDeleteItem.Size = New System.Drawing.Size(100, 30)
-        Me.btnDeleteItem.TabIndex = 15
-        Me.btnDeleteItem.Text = "HAPUS ITEM"
-        Me.btnDeleteItem.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
-        Me.btnDeleteItem.UseVisualStyleBackColor = False
+        Me.deTanggalEnd.Anchor = System.Windows.Forms.AnchorStyles.Left
+        Me.deTanggalEnd.EditValue = Nothing
+        Me.deTanggalEnd.Location = New System.Drawing.Point(412, 32)
+        Me.deTanggalEnd.Margin = New System.Windows.Forms.Padding(0)
+        Me.deTanggalEnd.Name = "deTanggalEnd"
+        Me.deTanggalEnd.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.deTanggalEnd.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 9.0!)
+        Me.deTanggalEnd.Properties.Appearance.ForeColor = System.Drawing.Color.Black
+        Me.deTanggalEnd.Properties.Appearance.Options.UseBackColor = True
+        Me.deTanggalEnd.Properties.Appearance.Options.UseFont = True
+        Me.deTanggalEnd.Properties.Appearance.Options.UseForeColor = True
+        Me.deTanggalEnd.Properties.AppearanceCalendar.DayCellHighlighted.Font = New System.Drawing.Font("Tahoma", 9.0!)
+        Me.deTanggalEnd.Properties.AppearanceCalendar.DayCellHighlighted.Options.UseFont = True
+        Me.deTanggalEnd.Properties.AppearanceCalendar.Header.Font = New System.Drawing.Font("Tahoma", 9.0!)
+        Me.deTanggalEnd.Properties.AppearanceCalendar.Header.Options.UseFont = True
+        Me.deTanggalEnd.Properties.AppearanceCalendar.HeaderHighlighted.Font = New System.Drawing.Font("Tahoma", 9.0!)
+        Me.deTanggalEnd.Properties.AppearanceCalendar.HeaderHighlighted.Options.UseFont = True
+        Me.deTanggalEnd.Properties.AppearanceCalendar.WeekNumber.Font = New System.Drawing.Font("Tahoma", 9.0!)
+        Me.deTanggalEnd.Properties.AppearanceCalendar.WeekNumber.Options.UseFont = True
+        Me.deTanggalEnd.Properties.AppearanceDisabled.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.deTanggalEnd.Properties.AppearanceDisabled.Font = New System.Drawing.Font("Tahoma", 9.0!)
+        Me.deTanggalEnd.Properties.AppearanceDisabled.Options.UseBackColor = True
+        Me.deTanggalEnd.Properties.AppearanceDisabled.Options.UseFont = True
+        Me.deTanggalEnd.Properties.AppearanceDropDown.Font = New System.Drawing.Font("Tahoma", 9.0!)
+        Me.deTanggalEnd.Properties.AppearanceDropDown.Options.UseFont = True
+        Me.deTanggalEnd.Properties.AppearanceFocused.Font = New System.Drawing.Font("Tahoma", 9.0!)
+        Me.deTanggalEnd.Properties.AppearanceFocused.Options.UseFont = True
+        Me.deTanggalEnd.Properties.AppearanceReadOnly.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.deTanggalEnd.Properties.AppearanceReadOnly.Font = New System.Drawing.Font("Tahoma", 9.0!)
+        Me.deTanggalEnd.Properties.AppearanceReadOnly.Options.UseBackColor = True
+        Me.deTanggalEnd.Properties.AppearanceReadOnly.Options.UseFont = True
+        Me.deTanggalEnd.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple
+        Me.deTanggalEnd.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.deTanggalEnd.Properties.CalendarTimeEditing = DevExpress.Utils.DefaultBoolean.[True]
+        Me.deTanggalEnd.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
+        Me.deTanggalEnd.Properties.CalendarView = DevExpress.XtraEditors.Repository.CalendarView.Classic
+        Me.deTanggalEnd.Properties.DisplayFormat.FormatString = "dd-MM-yyyy"
+        Me.deTanggalEnd.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.deTanggalEnd.Properties.EditFormat.FormatString = "dd-MM-yyyy"
+        Me.deTanggalEnd.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.deTanggalEnd.Properties.Mask.EditMask = "dd-MM-yyyy"
+        Me.deTanggalEnd.Properties.VistaDisplayMode = DevExpress.Utils.DefaultBoolean.[False]
+        Me.deTanggalEnd.Size = New System.Drawing.Size(133, 20)
+        Me.deTanggalEnd.TabIndex = 24
+        Me.deTanggalEnd.Tag = "enddate"
         '
         'pRightBar
         '
@@ -648,7 +579,7 @@ Partial Class frmItemPriceKelas
         Me.pRightBar.Location = New System.Drawing.Point(0, 0)
         Me.pRightBar.Margin = New System.Windows.Forms.Padding(0)
         Me.pRightBar.Name = "pRightBar"
-        Me.pRightBar.Size = New System.Drawing.Size(270, 348)
+        Me.pRightBar.Size = New System.Drawing.Size(270, 402)
         Me.pRightBar.TabIndex = 9
         '
         'xtcItem
@@ -664,7 +595,7 @@ Partial Class frmItemPriceKelas
         Me.xtcItem.Margin = New System.Windows.Forms.Padding(0)
         Me.xtcItem.Name = "xtcItem"
         Me.xtcItem.SelectedTabPage = Me.xtpItem
-        Me.xtcItem.Size = New System.Drawing.Size(270, 348)
+        Me.xtcItem.Size = New System.Drawing.Size(270, 402)
         Me.xtcItem.TabIndex = 11
         Me.xtcItem.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.xtpItem})
         '
@@ -673,7 +604,7 @@ Partial Class frmItemPriceKelas
         Me.xtpItem.Controls.Add(Me.gcItem)
         Me.xtpItem.Controls.Add(Me.pItem)
         Me.xtpItem.Name = "xtpItem"
-        Me.xtpItem.Size = New System.Drawing.Size(262, 318)
+        Me.xtpItem.Size = New System.Drawing.Size(262, 372)
         Me.xtpItem.Text = "Daftar Item"
         '
         'gcItem
@@ -683,7 +614,7 @@ Partial Class frmItemPriceKelas
         Me.gcItem.MainView = Me.gvItem
         Me.gcItem.Name = "gcItem"
         Me.gcItem.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.ceCek})
-        Me.gcItem.Size = New System.Drawing.Size(262, 288)
+        Me.gcItem.Size = New System.Drawing.Size(262, 342)
         Me.gcItem.TabIndex = 11
         Me.gcItem.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gvItem})
         '
@@ -734,6 +665,8 @@ Partial Class frmItemPriceKelas
         '
         'gclCek
         '
+        Me.gclCek.AppearanceCell.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.gclCek.AppearanceCell.Options.UseBackColor = True
         Me.gclCek.AppearanceHeader.Options.UseTextOptions = True
         Me.gclCek.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.gclCek.Caption = "Cek"
@@ -759,7 +692,7 @@ Partial Class frmItemPriceKelas
         Me.pItem.Controls.Add(Me.btnItemSelect)
         Me.pItem.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.pItem.ForeColor = System.Drawing.Color.White
-        Me.pItem.Location = New System.Drawing.Point(0, 288)
+        Me.pItem.Location = New System.Drawing.Point(0, 342)
         Me.pItem.Margin = New System.Windows.Forms.Padding(0)
         Me.pItem.Name = "pItem"
         Me.pItem.Size = New System.Drawing.Size(262, 30)
@@ -799,24 +732,109 @@ Partial Class frmItemPriceKelas
         Me.btnItemSelect.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
         Me.btnItemSelect.UseVisualStyleBackColor = False
         '
-        'RepositoryItemSpinEdit1
+        'pHeader
         '
-        Me.RepositoryItemSpinEdit1.AutoHeight = False
-        Me.RepositoryItemSpinEdit1.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.RepositoryItemSpinEdit1.DisplayFormat.FormatString = "n2"
-        Me.RepositoryItemSpinEdit1.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.RepositoryItemSpinEdit1.EditFormat.FormatString = "n2"
-        Me.RepositoryItemSpinEdit1.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.RepositoryItemSpinEdit1.IsFloatValue = False
-        Me.RepositoryItemSpinEdit1.Mask.EditMask = "N00"
-        Me.RepositoryItemSpinEdit1.Name = "RepositoryItemSpinEdit1"
+        Me.pHeader.BackColor = System.Drawing.Color.FromArgb(CType(CType(66, Byte), Integer), CType(CType(66, Byte), Integer), CType(CType(66, Byte), Integer))
+        Me.pHeader.Controls.Add(Me.btnImportFormat)
+        Me.pHeader.Controls.Add(Me.btnExportFormat)
+        Me.pHeader.Controls.Add(Me.btnNew)
+        Me.pHeader.Controls.Add(Me.btnSave)
+        Me.pHeader.Dock = System.Windows.Forms.DockStyle.Top
+        Me.pHeader.ForeColor = System.Drawing.Color.White
+        Me.pHeader.Location = New System.Drawing.Point(0, 0)
+        Me.pHeader.Margin = New System.Windows.Forms.Padding(0)
+        Me.pHeader.Name = "pHeader"
+        Me.pHeader.Size = New System.Drawing.Size(900, 30)
+        Me.pHeader.TabIndex = 4
+        '
+        'btnImportFormat
+        '
+        Me.btnImportFormat.BackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer))
+        Me.btnImportFormat.Dock = System.Windows.Forms.DockStyle.Left
+        Me.btnImportFormat.FlatAppearance.BorderSize = 0
+        Me.btnImportFormat.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DimGray
+        Me.btnImportFormat.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DarkGray
+        Me.btnImportFormat.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnImportFormat.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnImportFormat.Location = New System.Drawing.Point(120, 0)
+        Me.btnImportFormat.Name = "btnImportFormat"
+        Me.btnImportFormat.Size = New System.Drawing.Size(120, 30)
+        Me.btnImportFormat.TabIndex = 20
+        Me.btnImportFormat.Text = "IMPORT DATA"
+        Me.btnImportFormat.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
+        Me.btnImportFormat.UseMnemonic = False
+        Me.btnImportFormat.UseVisualStyleBackColor = False
+        '
+        'btnExportFormat
+        '
+        Me.btnExportFormat.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(0, Byte), Integer))
+        Me.btnExportFormat.Dock = System.Windows.Forms.DockStyle.Left
+        Me.btnExportFormat.FlatAppearance.BorderSize = 0
+        Me.btnExportFormat.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DimGray
+        Me.btnExportFormat.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DarkGray
+        Me.btnExportFormat.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnExportFormat.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnExportFormat.Location = New System.Drawing.Point(0, 0)
+        Me.btnExportFormat.Name = "btnExportFormat"
+        Me.btnExportFormat.Size = New System.Drawing.Size(120, 30)
+        Me.btnExportFormat.TabIndex = 19
+        Me.btnExportFormat.Text = "EXPORT FORMAT"
+        Me.btnExportFormat.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
+        Me.btnExportFormat.UseMnemonic = False
+        Me.btnExportFormat.UseVisualStyleBackColor = False
+        '
+        'btnNew
+        '
+        Me.btnNew.Dock = System.Windows.Forms.DockStyle.Right
+        Me.btnNew.FlatAppearance.BorderSize = 0
+        Me.btnNew.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DimGray
+        Me.btnNew.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DarkGray
+        Me.btnNew.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnNew.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnNew.Location = New System.Drawing.Point(760, 0)
+        Me.btnNew.Name = "btnNew"
+        Me.btnNew.Size = New System.Drawing.Size(60, 30)
+        Me.btnNew.TabIndex = 17
+        Me.btnNew.Text = "BARU"
+        Me.btnNew.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
+        Me.btnNew.UseVisualStyleBackColor = True
+        '
+        'btnSave
+        '
+        Me.btnSave.BackColor = System.Drawing.Color.FromArgb(CType(CType(156, Byte), Integer), CType(CType(207, Byte), Integer), CType(CType(49, Byte), Integer))
+        Me.btnSave.Dock = System.Windows.Forms.DockStyle.Right
+        Me.btnSave.FlatAppearance.BorderSize = 0
+        Me.btnSave.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DimGray
+        Me.btnSave.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DarkGray
+        Me.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnSave.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnSave.Location = New System.Drawing.Point(820, 0)
+        Me.btnSave.Name = "btnSave"
+        Me.btnSave.Size = New System.Drawing.Size(80, 30)
+        Me.btnSave.TabIndex = 15
+        Me.btnSave.Text = "SIMPAN"
+        Me.btnSave.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
+        Me.btnSave.UseVisualStyleBackColor = False
+        '
+        'lblSep5
+        '
+        Me.lblSep5.BackColor = System.Drawing.Color.Transparent
+        Me.lblSep5.Dock = System.Windows.Forms.DockStyle.Right
+        Me.lblSep5.Font = New System.Drawing.Font("Segoe UI Light", 18.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblSep5.Location = New System.Drawing.Point(74, 0)
+        Me.lblSep5.Margin = New System.Windows.Forms.Padding(4)
+        Me.lblSep5.Name = "lblSep5"
+        Me.lblSep5.Size = New System.Drawing.Size(16, 1)
+        Me.lblSep5.TabIndex = 19
+        Me.lblSep5.Text = "|"
+        Me.lblSep5.TextAlign = System.Drawing.ContentAlignment.TopCenter
         '
         'frmItemPriceKelas
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer))
-        Me.ClientSize = New System.Drawing.Size(904, 408)
+        Me.ClientSize = New System.Drawing.Size(904, 462)
         Me.Controls.Add(Me.tlpForm)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
         Me.Name = "frmItemPriceKelas"
@@ -828,19 +846,19 @@ Partial Class frmItemPriceKelas
         CType(Me.pMaximize, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.pExit, System.ComponentModel.ISupportInitialize).EndInit()
         Me.pBody.ResumeLayout(False)
+        CType(Me.sccForm, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.sccForm.ResumeLayout(False)
         CType(Me.gcData, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.gvData, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemSpinEdit1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.Panel1.ResumeLayout(False)
         Me.tlpField.ResumeLayout(False)
         Me.tlpField.PerformLayout()
         CType(Me.lueUnit.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.deTanggalEnd.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.deTanggalEnd.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.deTanggalStart.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.deTanggalStart.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.pHeader.ResumeLayout(False)
-        CType(Me.sccForm, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.sccForm.ResumeLayout(False)
-        Me.Panel1.ResumeLayout(False)
+        CType(Me.deTanggalEnd.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.deTanggalEnd.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.pRightBar.ResumeLayout(False)
         CType(Me.xtcItem, System.ComponentModel.ISupportInitialize).EndInit()
         Me.xtcItem.ResumeLayout(False)
@@ -849,7 +867,7 @@ Partial Class frmItemPriceKelas
         CType(Me.gvItem, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.ceCek, System.ComponentModel.ISupportInitialize).EndInit()
         Me.pItem.ResumeLayout(False)
-        CType(Me.RepositoryItemSpinEdit1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.pHeader.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
@@ -862,9 +880,7 @@ Partial Class frmItemPriceKelas
     Public WithEvents gvData As DevExpress.XtraGrid.Views.Grid.GridView
     Public WithEvents tlpField As System.Windows.Forms.TableLayoutPanel
     Public WithEvents tlpForm As System.Windows.Forms.TableLayoutPanel
-    Friend WithEvents gcID As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents gcNama As DevExpress.XtraGrid.Columns.GridColumn
-    Public WithEvents btnDelete As System.Windows.Forms.Button
     Friend WithEvents gcKode As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents pTitle As System.Windows.Forms.Panel
     Public WithEvents lblTitle As System.Windows.Forms.Label
@@ -876,13 +892,11 @@ Partial Class frmItemPriceKelas
     Friend WithEvents gcidunit As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents gciditem As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents gcunit As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents gcprice As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents gcHargaTmp As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents Label3 As Label
     Friend WithEvents Label2 As Label
     Friend WithEvents deTanggalEnd As DevExpress.XtraEditors.DateEdit
     Friend WithEvents deTanggalStart As DevExpress.XtraEditors.DateEdit
-    Friend WithEvents GridColumn3 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn5 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents sccForm As DevExpress.XtraEditors.SplitContainerControl
     Public WithEvents Panel1 As Panel
     Public WithEvents btnDeleteAllItem As Button
@@ -900,4 +914,8 @@ Partial Class frmItemPriceKelas
     Public WithEvents btnAllItem As Button
     Public WithEvents btnItemSelect As Button
     Friend WithEvents RepositoryItemSpinEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit
+    Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
+    Public WithEvents btnExportFormat As Button
+    Public WithEvents btnImportFormat As Button
 End Class

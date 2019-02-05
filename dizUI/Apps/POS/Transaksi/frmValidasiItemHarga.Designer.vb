@@ -31,28 +31,28 @@ Partial Class frmValidasiItemHarga
         Me.pBody = New System.Windows.Forms.Panel()
         Me.gcData = New DevExpress.XtraGrid.GridControl()
         Me.gvData = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn17 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn16 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn15 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.riceCek = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
-        Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.gcKode = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.gcNama = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn11 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn13 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn14 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepositoryItemSpinEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit()
+        Me.GridColumn15 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn16 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemMemoEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit()
         Me.pHeader = New System.Windows.Forms.Panel()
+        Me.btnNoItem = New System.Windows.Forms.Button()
+        Me.btnAllItem = New System.Windows.Forms.Button()
         Me.btnNew = New System.Windows.Forms.Button()
         Me.btnSave = New System.Windows.Forms.Button()
         Me.lblSep5 = New System.Windows.Forms.Label()
@@ -65,6 +65,7 @@ Partial Class frmValidasiItemHarga
         CType(Me.gcData, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gvData, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.riceCek, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemSpinEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemMemoEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.pHeader.SuspendLayout()
         Me.SuspendLayout()
@@ -174,7 +175,7 @@ Partial Class frmValidasiItemHarga
         Me.gcData.MainView = Me.gvData
         Me.gcData.Margin = New System.Windows.Forms.Padding(0)
         Me.gcData.Name = "gcData"
-        Me.gcData.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemMemoEdit1, Me.riceCek})
+        Me.gcData.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemMemoEdit1, Me.riceCek, Me.RepositoryItemSpinEdit1})
         Me.gcData.Size = New System.Drawing.Size(786, 348)
         Me.gcData.TabIndex = 8
         Me.gcData.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gvData})
@@ -189,7 +190,7 @@ Partial Class frmValidasiItemHarga
         Me.gvData.Appearance.OddRow.Options.UseBackColor = True
         Me.gvData.Appearance.Row.Font = New System.Drawing.Font("Tahoma", 9.0!)
         Me.gvData.Appearance.Row.Options.UseFont = True
-        Me.gvData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn8, Me.GridColumn17, Me.GridColumn16, Me.GridColumn15, Me.GridColumn5, Me.GridColumn3, Me.gcKode, Me.GridColumn9, Me.gcNama, Me.GridColumn2, Me.GridColumn1, Me.GridColumn4, Me.GridColumn6, Me.GridColumn7, Me.GridColumn10, Me.GridColumn11, Me.GridColumn12, Me.GridColumn13, Me.GridColumn14})
+        Me.gvData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn5, Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn6, Me.GridColumn8, Me.GridColumn7, Me.GridColumn9, Me.GridColumn10, Me.GridColumn11, Me.GridColumn12, Me.GridColumn13, Me.GridColumn14, Me.GridColumn15, Me.GridColumn16})
         Me.gvData.GridControl = Me.gcData
         Me.gvData.Name = "gvData"
         Me.gvData.OptionsFind.AlwaysVisible = True
@@ -202,45 +203,10 @@ Partial Class frmValidasiItemHarga
         Me.gvData.OptionsView.RowAutoHeight = True
         Me.gvData.OptionsView.ShowGroupPanel = False
         '
-        'GridColumn8
-        '
-        Me.GridColumn8.AppearanceCell.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.GridColumn8.AppearanceCell.Options.UseBackColor = True
-        Me.GridColumn8.Caption = "ID"
-        Me.GridColumn8.FieldName = "idregistrasi"
-        Me.GridColumn8.Name = "GridColumn8"
-        Me.GridColumn8.OptionsColumn.AllowEdit = False
-        Me.GridColumn8.OptionsColumn.ReadOnly = True
-        '
-        'GridColumn17
-        '
-        Me.GridColumn17.Caption = "idlokasi"
-        Me.GridColumn17.FieldName = "idlokasi"
-        Me.GridColumn17.Name = "GridColumn17"
-        '
-        'GridColumn16
-        '
-        Me.GridColumn16.Caption = "transactiontype"
-        Me.GridColumn16.FieldName = "transactiontype"
-        Me.GridColumn16.Name = "GridColumn16"
-        '
-        'GridColumn15
-        '
-        Me.GridColumn15.AppearanceHeader.Options.UseTextOptions = True
-        Me.GridColumn15.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GridColumn15.Caption = "Reg. Status"
-        Me.GridColumn15.FieldName = "regstatus"
-        Me.GridColumn15.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left
-        Me.GridColumn15.MinWidth = 100
-        Me.GridColumn15.Name = "GridColumn15"
-        Me.GridColumn15.OptionsColumn.AllowEdit = False
-        Me.GridColumn15.OptionsColumn.ReadOnly = True
-        Me.GridColumn15.Visible = True
-        Me.GridColumn15.VisibleIndex = 1
-        Me.GridColumn15.Width = 100
-        '
         'GridColumn5
         '
+        Me.GridColumn5.AppearanceCell.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.GridColumn5.AppearanceCell.Options.UseBackColor = True
         Me.GridColumn5.AppearanceHeader.Options.UseTextOptions = True
         Me.GridColumn5.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.GridColumn5.Caption = "Cek"
@@ -258,180 +224,186 @@ Partial Class frmValidasiItemHarga
         Me.riceCek.CheckStyle = DevExpress.XtraEditors.Controls.CheckStyles.Style6
         Me.riceCek.Name = "riceCek"
         '
-        'GridColumn3
+        'GridColumn1
         '
-        Me.GridColumn3.AppearanceHeader.Options.UseTextOptions = True
-        Me.GridColumn3.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GridColumn3.Caption = "No. RM"
-        Me.GridColumn3.FieldName = "norm"
-        Me.GridColumn3.Name = "GridColumn3"
-        Me.GridColumn3.OptionsColumn.AllowEdit = False
-        Me.GridColumn3.OptionsColumn.ReadOnly = True
-        Me.GridColumn3.Visible = True
-        Me.GridColumn3.VisibleIndex = 3
-        '
-        'gcKode
-        '
-        Me.gcKode.AppearanceHeader.Options.UseTextOptions = True
-        Me.gcKode.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.gcKode.Caption = "Registrasi No."
-        Me.gcKode.FieldName = "registrasino"
-        Me.gcKode.MinWidth = 100
-        Me.gcKode.Name = "gcKode"
-        Me.gcKode.OptionsColumn.AllowEdit = False
-        Me.gcKode.OptionsColumn.ReadOnly = True
-        Me.gcKode.Visible = True
-        Me.gcKode.VisibleIndex = 2
-        Me.gcKode.Width = 100
-        '
-        'GridColumn9
-        '
-        Me.GridColumn9.AppearanceHeader.Options.UseTextOptions = True
-        Me.GridColumn9.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GridColumn9.Caption = "Tgl. Registrasi"
-        Me.GridColumn9.FieldName = "registrasidate"
-        Me.GridColumn9.MinWidth = 50
-        Me.GridColumn9.Name = "GridColumn9"
-        Me.GridColumn9.OptionsColumn.AllowEdit = False
-        Me.GridColumn9.OptionsColumn.ReadOnly = True
-        Me.GridColumn9.Visible = True
-        Me.GridColumn9.VisibleIndex = 4
-        Me.GridColumn9.Width = 148
-        '
-        'gcNama
-        '
-        Me.gcNama.AppearanceHeader.Options.UseTextOptions = True
-        Me.gcNama.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.gcNama.Caption = "Nama Pasien"
-        Me.gcNama.FieldName = "namapasien"
-        Me.gcNama.Name = "gcNama"
-        Me.gcNama.OptionsColumn.AllowEdit = False
-        Me.gcNama.OptionsColumn.ReadOnly = True
-        Me.gcNama.Visible = True
-        Me.gcNama.VisibleIndex = 5
-        Me.gcNama.Width = 177
+        Me.GridColumn1.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn1.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn1.Caption = "GridColumn1"
+        Me.GridColumn1.FieldName = "iditemharga"
+        Me.GridColumn1.Name = "GridColumn1"
+        Me.GridColumn1.OptionsColumn.AllowEdit = False
+        Me.GridColumn1.OptionsColumn.ReadOnly = True
         '
         'GridColumn2
         '
         Me.GridColumn2.AppearanceHeader.Options.UseTextOptions = True
         Me.GridColumn2.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GridColumn2.Caption = "Umur"
-        Me.GridColumn2.FieldName = "umur"
+        Me.GridColumn2.Caption = "GridColumn2"
+        Me.GridColumn2.FieldName = "idunit"
         Me.GridColumn2.Name = "GridColumn2"
         Me.GridColumn2.OptionsColumn.AllowEdit = False
         Me.GridColumn2.OptionsColumn.ReadOnly = True
-        Me.GridColumn2.Visible = True
-        Me.GridColumn2.VisibleIndex = 7
-        Me.GridColumn2.Width = 131
         '
-        'GridColumn1
+        'GridColumn3
         '
-        Me.GridColumn1.AppearanceHeader.Options.UseTextOptions = True
-        Me.GridColumn1.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GridColumn1.Caption = "Jenis Kelamin"
-        Me.GridColumn1.FieldName = "sex"
-        Me.GridColumn1.Name = "GridColumn1"
-        Me.GridColumn1.OptionsColumn.AllowEdit = False
-        Me.GridColumn1.OptionsColumn.ReadOnly = True
-        Me.GridColumn1.Visible = True
-        Me.GridColumn1.VisibleIndex = 6
-        Me.GridColumn1.Width = 100
+        Me.GridColumn3.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn3.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn3.Caption = "GridColumn3"
+        Me.GridColumn3.FieldName = "iditem"
+        Me.GridColumn3.Name = "GridColumn3"
+        Me.GridColumn3.OptionsColumn.AllowEdit = False
+        Me.GridColumn3.OptionsColumn.ReadOnly = True
         '
         'GridColumn4
         '
         Me.GridColumn4.AppearanceHeader.Options.UseTextOptions = True
         Me.GridColumn4.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GridColumn4.Caption = "Paramedis"
-        Me.GridColumn4.FieldName = "paramedis"
+        Me.GridColumn4.Caption = "GridColumn4"
+        Me.GridColumn4.FieldName = "iditemgrup"
         Me.GridColumn4.Name = "GridColumn4"
         Me.GridColumn4.OptionsColumn.AllowEdit = False
         Me.GridColumn4.OptionsColumn.ReadOnly = True
-        Me.GridColumn4.Visible = True
-        Me.GridColumn4.VisibleIndex = 8
         '
         'GridColumn6
         '
         Me.GridColumn6.AppearanceHeader.Options.UseTextOptions = True
         Me.GridColumn6.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GridColumn6.Caption = "Spesialis"
-        Me.GridColumn6.FieldName = "spesialis"
+        Me.GridColumn6.Caption = "GridColumn6"
+        Me.GridColumn6.FieldName = "idkelas"
         Me.GridColumn6.Name = "GridColumn6"
         Me.GridColumn6.OptionsColumn.AllowEdit = False
         Me.GridColumn6.OptionsColumn.ReadOnly = True
-        Me.GridColumn6.Visible = True
-        Me.GridColumn6.VisibleIndex = 9
+        '
+        'GridColumn8
+        '
+        Me.GridColumn8.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn8.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn8.Caption = "GridColumn8"
+        Me.GridColumn8.FieldName = "itemtype"
+        Me.GridColumn8.Name = "GridColumn8"
+        Me.GridColumn8.OptionsColumn.AllowEdit = False
+        Me.GridColumn8.OptionsColumn.ReadOnly = True
         '
         'GridColumn7
         '
         Me.GridColumn7.AppearanceHeader.Options.UseTextOptions = True
         Me.GridColumn7.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GridColumn7.Caption = "Lokasi"
-        Me.GridColumn7.FieldName = "lokasi"
+        Me.GridColumn7.Caption = "Unit"
+        Me.GridColumn7.FieldName = "unit"
         Me.GridColumn7.Name = "GridColumn7"
         Me.GridColumn7.OptionsColumn.AllowEdit = False
         Me.GridColumn7.OptionsColumn.ReadOnly = True
         Me.GridColumn7.Visible = True
-        Me.GridColumn7.VisibleIndex = 10
+        Me.GridColumn7.VisibleIndex = 1
+        '
+        'GridColumn9
+        '
+        Me.GridColumn9.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn9.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn9.Caption = "Jenis"
+        Me.GridColumn9.FieldName = "type"
+        Me.GridColumn9.Name = "GridColumn9"
+        Me.GridColumn9.OptionsColumn.AllowEdit = False
+        Me.GridColumn9.OptionsColumn.ReadOnly = True
+        Me.GridColumn9.Visible = True
+        Me.GridColumn9.VisibleIndex = 3
         '
         'GridColumn10
         '
         Me.GridColumn10.AppearanceHeader.Options.UseTextOptions = True
         Me.GridColumn10.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GridColumn10.Caption = "Kamar"
-        Me.GridColumn10.FieldName = "kamar"
+        Me.GridColumn10.Caption = "Kode"
+        Me.GridColumn10.FieldName = "kode"
         Me.GridColumn10.Name = "GridColumn10"
         Me.GridColumn10.OptionsColumn.AllowEdit = False
         Me.GridColumn10.OptionsColumn.ReadOnly = True
         Me.GridColumn10.Visible = True
-        Me.GridColumn10.VisibleIndex = 11
+        Me.GridColumn10.VisibleIndex = 5
         '
         'GridColumn11
         '
         Me.GridColumn11.AppearanceHeader.Options.UseTextOptions = True
         Me.GridColumn11.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GridColumn11.Caption = "Kelas"
-        Me.GridColumn11.FieldName = "kelas"
+        Me.GridColumn11.Caption = "Nama"
+        Me.GridColumn11.FieldName = "item"
         Me.GridColumn11.Name = "GridColumn11"
         Me.GridColumn11.OptionsColumn.AllowEdit = False
         Me.GridColumn11.OptionsColumn.ReadOnly = True
         Me.GridColumn11.Visible = True
-        Me.GridColumn11.VisibleIndex = 12
+        Me.GridColumn11.VisibleIndex = 6
         '
         'GridColumn12
         '
         Me.GridColumn12.AppearanceHeader.Options.UseTextOptions = True
         Me.GridColumn12.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GridColumn12.Caption = "Jenis Bayar"
-        Me.GridColumn12.FieldName = "payertype"
+        Me.GridColumn12.Caption = "Grup"
+        Me.GridColumn12.FieldName = "itemgrup"
         Me.GridColumn12.Name = "GridColumn12"
         Me.GridColumn12.OptionsColumn.AllowEdit = False
         Me.GridColumn12.OptionsColumn.ReadOnly = True
         Me.GridColumn12.Visible = True
-        Me.GridColumn12.VisibleIndex = 13
+        Me.GridColumn12.VisibleIndex = 4
         '
         'GridColumn13
         '
         Me.GridColumn13.AppearanceHeader.Options.UseTextOptions = True
         Me.GridColumn13.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GridColumn13.Caption = "Pembayar"
-        Me.GridColumn13.FieldName = "payer"
+        Me.GridColumn13.Caption = "Kelas"
+        Me.GridColumn13.FieldName = "kelas"
         Me.GridColumn13.Name = "GridColumn13"
         Me.GridColumn13.OptionsColumn.AllowEdit = False
         Me.GridColumn13.OptionsColumn.ReadOnly = True
         Me.GridColumn13.Visible = True
-        Me.GridColumn13.VisibleIndex = 14
+        Me.GridColumn13.VisibleIndex = 2
         '
         'GridColumn14
         '
         Me.GridColumn14.AppearanceHeader.Options.UseTextOptions = True
         Me.GridColumn14.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GridColumn14.Caption = "Asuransi"
-        Me.GridColumn14.FieldName = "asuransi"
+        Me.GridColumn14.Caption = "Harga"
+        Me.GridColumn14.ColumnEdit = Me.RepositoryItemSpinEdit1
+        Me.GridColumn14.FieldName = "harga"
         Me.GridColumn14.Name = "GridColumn14"
         Me.GridColumn14.OptionsColumn.AllowEdit = False
         Me.GridColumn14.OptionsColumn.ReadOnly = True
         Me.GridColumn14.Visible = True
-        Me.GridColumn14.VisibleIndex = 15
+        Me.GridColumn14.VisibleIndex = 7
+        '
+        'RepositoryItemSpinEdit1
+        '
+        Me.RepositoryItemSpinEdit1.AutoHeight = False
+        Me.RepositoryItemSpinEdit1.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.RepositoryItemSpinEdit1.DisplayFormat.FormatString = "n2"
+        Me.RepositoryItemSpinEdit1.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.RepositoryItemSpinEdit1.EditFormat.FormatString = "n2"
+        Me.RepositoryItemSpinEdit1.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.RepositoryItemSpinEdit1.IsFloatValue = False
+        Me.RepositoryItemSpinEdit1.Mask.EditMask = "N00"
+        Me.RepositoryItemSpinEdit1.Name = "RepositoryItemSpinEdit1"
+        '
+        'GridColumn15
+        '
+        Me.GridColumn15.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn15.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn15.Caption = "Tgl.Berlaku"
+        Me.GridColumn15.FieldName = "startdate"
+        Me.GridColumn15.Name = "GridColumn15"
+        Me.GridColumn15.OptionsColumn.AllowEdit = False
+        Me.GridColumn15.OptionsColumn.ReadOnly = True
+        Me.GridColumn15.Visible = True
+        Me.GridColumn15.VisibleIndex = 8
+        '
+        'GridColumn16
+        '
+        Me.GridColumn16.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn16.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn16.Caption = "Tgl.Berakhir"
+        Me.GridColumn16.FieldName = "enddate"
+        Me.GridColumn16.Name = "GridColumn16"
+        Me.GridColumn16.OptionsColumn.AllowEdit = False
+        Me.GridColumn16.OptionsColumn.ReadOnly = True
+        Me.GridColumn16.Visible = True
+        Me.GridColumn16.VisibleIndex = 9
         '
         'RepositoryItemMemoEdit1
         '
@@ -441,6 +413,8 @@ Partial Class frmValidasiItemHarga
         'pHeader
         '
         Me.pHeader.BackColor = System.Drawing.Color.FromArgb(CType(CType(66, Byte), Integer), CType(CType(66, Byte), Integer), CType(CType(66, Byte), Integer))
+        Me.pHeader.Controls.Add(Me.btnNoItem)
+        Me.pHeader.Controls.Add(Me.btnAllItem)
         Me.pHeader.Controls.Add(Me.btnNew)
         Me.pHeader.Controls.Add(Me.btnSave)
         Me.pHeader.Dock = System.Windows.Forms.DockStyle.Top
@@ -450,6 +424,42 @@ Partial Class frmValidasiItemHarga
         Me.pHeader.Name = "pHeader"
         Me.pHeader.Size = New System.Drawing.Size(786, 30)
         Me.pHeader.TabIndex = 4
+        '
+        'btnNoItem
+        '
+        Me.btnNoItem.BackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer))
+        Me.btnNoItem.Dock = System.Windows.Forms.DockStyle.Left
+        Me.btnNoItem.FlatAppearance.BorderSize = 0
+        Me.btnNoItem.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DimGray
+        Me.btnNoItem.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DarkGray
+        Me.btnNoItem.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnNoItem.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnNoItem.Location = New System.Drawing.Point(100, 0)
+        Me.btnNoItem.Name = "btnNoItem"
+        Me.btnNoItem.Size = New System.Drawing.Size(100, 30)
+        Me.btnNoItem.TabIndex = 19
+        Me.btnNoItem.Text = "NO ITEM"
+        Me.btnNoItem.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
+        Me.btnNoItem.UseMnemonic = False
+        Me.btnNoItem.UseVisualStyleBackColor = False
+        '
+        'btnAllItem
+        '
+        Me.btnAllItem.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(0, Byte), Integer))
+        Me.btnAllItem.Dock = System.Windows.Forms.DockStyle.Left
+        Me.btnAllItem.FlatAppearance.BorderSize = 0
+        Me.btnAllItem.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DimGray
+        Me.btnAllItem.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DarkGray
+        Me.btnAllItem.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnAllItem.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnAllItem.Location = New System.Drawing.Point(0, 0)
+        Me.btnAllItem.Name = "btnAllItem"
+        Me.btnAllItem.Size = New System.Drawing.Size(100, 30)
+        Me.btnAllItem.TabIndex = 18
+        Me.btnAllItem.Text = "ALL ITEM"
+        Me.btnAllItem.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
+        Me.btnAllItem.UseMnemonic = False
+        Me.btnAllItem.UseVisualStyleBackColor = False
         '
         'btnNew
         '
@@ -517,6 +527,7 @@ Partial Class frmValidasiItemHarga
         CType(Me.gcData, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.gvData, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.riceCek, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemSpinEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemMemoEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.pHeader.ResumeLayout(False)
         Me.ResumeLayout(False)
@@ -531,23 +542,21 @@ Partial Class frmValidasiItemHarga
     Friend WithEvents pExit As System.Windows.Forms.PictureBox
     Public WithEvents gcData As DevExpress.XtraGrid.GridControl
     Public WithEvents gvData As DevExpress.XtraGrid.Views.Grid.GridView
-    Friend WithEvents GridColumn8 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents gcKode As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents gcNama As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents RepositoryItemMemoEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit
-    Friend WithEvents GridColumn9 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn5 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents riceCek As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
     Public WithEvents pBody As Panel
     Public WithEvents pHeader As Panel
     Public WithEvents btnNew As Button
     Public WithEvents btnSave As Button
-    Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn3 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn4 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn6 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn8 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn7 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn9 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn10 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn11 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn12 As DevExpress.XtraGrid.Columns.GridColumn
@@ -555,5 +564,7 @@ Partial Class frmValidasiItemHarga
     Friend WithEvents GridColumn14 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn15 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn16 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn17 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents RepositoryItemSpinEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit
+    Public WithEvents btnAllItem As Button
+    Public WithEvents btnNoItem As Button
 End Class

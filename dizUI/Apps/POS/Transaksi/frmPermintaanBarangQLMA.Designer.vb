@@ -247,6 +247,7 @@ Partial Class frmPermintaanBarangQLMA
         Me.gvData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.gcID, Me.gcitemtype, Me.gcidsatuan, Me.gcType, Me.gcKode, Me.gcNama, Me.gcSatuan, Me.gcQtyLalu, Me.gcQtyAsk, Me.gcQty, Me.GridColumn1})
         Me.gvData.GridControl = Me.gcData
         Me.gvData.Name = "gvData"
+        Me.gvData.OptionsView.ColumnAutoWidth = False
         Me.gvData.OptionsView.EnableAppearanceEvenRow = True
         Me.gvData.OptionsView.EnableAppearanceOddRow = True
         Me.gvData.OptionsView.ShowGroupPanel = False
@@ -292,14 +293,14 @@ Partial Class frmPermintaanBarangQLMA
         Me.gcKode.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.gcKode.Caption = "Kode"
         Me.gcKode.FieldName = "kode"
-        Me.gcKode.MaxWidth = 100
-        Me.gcKode.MinWidth = 100
+        Me.gcKode.MaxWidth = 140
+        Me.gcKode.MinWidth = 140
         Me.gcKode.Name = "gcKode"
         Me.gcKode.OptionsColumn.AllowEdit = False
         Me.gcKode.OptionsColumn.ReadOnly = True
         Me.gcKode.Visible = True
         Me.gcKode.VisibleIndex = 1
-        Me.gcKode.Width = 100
+        Me.gcKode.Width = 140
         '
         'gcNama
         '
@@ -749,6 +750,8 @@ Partial Class frmPermintaanBarangQLMA
         '
         'gclCek
         '
+        Me.gclCek.AppearanceCell.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.gclCek.AppearanceCell.Options.UseBackColor = True
         Me.gclCek.AppearanceHeader.Options.UseTextOptions = True
         Me.gclCek.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.gclCek.Caption = "Cek"

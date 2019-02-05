@@ -38,10 +38,12 @@ Partial Class frmPermintaanBarangReview
         Me.gcKode = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.gcNama = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.gcSatuan = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.seQty = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit()
         Me.gcQtyAsk = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.seQty = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit()
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.tlpField = New System.Windows.Forms.TableLayoutPanel()
+        Me.teNote = New DevExpress.XtraEditors.TextEdit()
+        Me.teUnit = New DevExpress.XtraEditors.TextEdit()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.deTanggal = New DevExpress.XtraEditors.DateEdit()
         Me.teKode = New DevExpress.XtraEditors.TextEdit()
@@ -53,8 +55,6 @@ Partial Class frmPermintaanBarangReview
         Me.btnSave = New System.Windows.Forms.Button()
         Me.btnDelete = New System.Windows.Forms.Button()
         Me.lblSep5 = New System.Windows.Forms.Label()
-        Me.teUnit = New DevExpress.XtraEditors.TextEdit()
-        Me.teNote = New DevExpress.XtraEditors.TextEdit()
         Me.tlpForm.SuspendLayout()
         Me.pTitle.SuspendLayout()
         CType(Me.pMinimize, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -65,12 +65,12 @@ Partial Class frmPermintaanBarangReview
         CType(Me.gvData, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.seQty, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.tlpField.SuspendLayout()
+        CType(Me.teNote.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.teUnit.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.deTanggal.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.deTanggal.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.teKode.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.pHeader.SuspendLayout()
-        CType(Me.teUnit.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.teNote.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'tlpForm
@@ -240,14 +240,14 @@ Partial Class frmPermintaanBarangReview
         Me.gcKode.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.gcKode.Caption = "Kode"
         Me.gcKode.FieldName = "kode"
-        Me.gcKode.MaxWidth = 100
-        Me.gcKode.MinWidth = 100
+        Me.gcKode.MaxWidth = 140
+        Me.gcKode.MinWidth = 140
         Me.gcKode.Name = "gcKode"
         Me.gcKode.OptionsColumn.AllowEdit = False
         Me.gcKode.OptionsColumn.ReadOnly = True
         Me.gcKode.Visible = True
         Me.gcKode.VisibleIndex = 1
-        Me.gcKode.Width = 100
+        Me.gcKode.Width = 140
         '
         'gcNama
         '
@@ -277,19 +277,6 @@ Partial Class frmPermintaanBarangReview
         Me.gcSatuan.VisibleIndex = 3
         Me.gcSatuan.Width = 60
         '
-        'seQty
-        '
-        Me.seQty.AutoHeight = False
-        Me.seQty.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
-        Me.seQty.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
-        Me.seQty.DisplayFormat.FormatString = "n0"
-        Me.seQty.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.seQty.EditFormat.FormatString = "n0"
-        Me.seQty.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.seQty.IsFloatValue = False
-        Me.seQty.Mask.EditMask = "N00"
-        Me.seQty.Name = "seQty"
-        '
         'gcQtyAsk
         '
         Me.gcQtyAsk.AppearanceHeader.Options.UseTextOptions = True
@@ -305,6 +292,19 @@ Partial Class frmPermintaanBarangReview
         Me.gcQtyAsk.Visible = True
         Me.gcQtyAsk.VisibleIndex = 4
         Me.gcQtyAsk.Width = 50
+        '
+        'seQty
+        '
+        Me.seQty.AutoHeight = False
+        Me.seQty.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.seQty.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
+        Me.seQty.DisplayFormat.FormatString = "n0"
+        Me.seQty.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.seQty.EditFormat.FormatString = "n0"
+        Me.seQty.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.seQty.IsFloatValue = False
+        Me.seQty.Mask.EditMask = "N00"
+        Me.seQty.Name = "seQty"
         '
         'GridColumn1
         '
@@ -353,6 +353,46 @@ Partial Class frmPermintaanBarangReview
         Me.tlpField.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
         Me.tlpField.Size = New System.Drawing.Size(832, 60)
         Me.tlpField.TabIndex = 7
+        '
+        'teNote
+        '
+        Me.teNote.Anchor = System.Windows.Forms.AnchorStyles.Left
+        Me.teNote.Location = New System.Drawing.Point(526, 32)
+        Me.teNote.Margin = New System.Windows.Forms.Padding(0)
+        Me.teNote.Name = "teNote"
+        Me.teNote.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[True]
+        Me.teNote.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.teNote.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 9.0!)
+        Me.teNote.Properties.Appearance.Options.UseBackColor = True
+        Me.teNote.Properties.Appearance.Options.UseFont = True
+        Me.teNote.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple
+        Me.teNote.Properties.MaxLength = 300
+        Me.teNote.Properties.NullText = "[Belum Diisi]"
+        Me.teNote.Properties.NullValuePrompt = "[Belum Diisi]"
+        Me.teNote.Properties.ReadOnly = True
+        Me.teNote.Size = New System.Drawing.Size(150, 20)
+        Me.teNote.TabIndex = 19
+        Me.teNote.Tag = "remarks"
+        '
+        'teUnit
+        '
+        Me.teUnit.Anchor = System.Windows.Forms.AnchorStyles.Left
+        Me.teUnit.Location = New System.Drawing.Point(226, 32)
+        Me.teUnit.Margin = New System.Windows.Forms.Padding(0)
+        Me.teUnit.Name = "teUnit"
+        Me.teUnit.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[True]
+        Me.teUnit.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.teUnit.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 9.0!)
+        Me.teUnit.Properties.Appearance.Options.UseBackColor = True
+        Me.teUnit.Properties.Appearance.Options.UseFont = True
+        Me.teUnit.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple
+        Me.teUnit.Properties.MaxLength = 300
+        Me.teUnit.Properties.NullText = "[Belum Diisi]"
+        Me.teUnit.Properties.NullValuePrompt = "[Belum Diisi]"
+        Me.teUnit.Properties.ReadOnly = True
+        Me.teUnit.Size = New System.Drawing.Size(200, 20)
+        Me.teUnit.TabIndex = 19
+        Me.teUnit.Tag = "idunitasal"
         '
         'Label4
         '
@@ -540,46 +580,6 @@ Partial Class frmPermintaanBarangReview
         Me.lblSep5.Text = "|"
         Me.lblSep5.TextAlign = System.Drawing.ContentAlignment.TopCenter
         '
-        'teUnit
-        '
-        Me.teUnit.Anchor = System.Windows.Forms.AnchorStyles.Left
-        Me.teUnit.Location = New System.Drawing.Point(226, 32)
-        Me.teUnit.Margin = New System.Windows.Forms.Padding(0)
-        Me.teUnit.Name = "teUnit"
-        Me.teUnit.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[True]
-        Me.teUnit.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.teUnit.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 9.0!)
-        Me.teUnit.Properties.Appearance.Options.UseBackColor = True
-        Me.teUnit.Properties.Appearance.Options.UseFont = True
-        Me.teUnit.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple
-        Me.teUnit.Properties.MaxLength = 300
-        Me.teUnit.Properties.NullText = "[Belum Diisi]"
-        Me.teUnit.Properties.NullValuePrompt = "[Belum Diisi]"
-        Me.teUnit.Properties.ReadOnly = True
-        Me.teUnit.Size = New System.Drawing.Size(200, 20)
-        Me.teUnit.TabIndex = 19
-        Me.teUnit.Tag = "idunitasal"
-        '
-        'teNote
-        '
-        Me.teNote.Anchor = System.Windows.Forms.AnchorStyles.Left
-        Me.teNote.Location = New System.Drawing.Point(526, 32)
-        Me.teNote.Margin = New System.Windows.Forms.Padding(0)
-        Me.teNote.Name = "teNote"
-        Me.teNote.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[True]
-        Me.teNote.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.teNote.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 9.0!)
-        Me.teNote.Properties.Appearance.Options.UseBackColor = True
-        Me.teNote.Properties.Appearance.Options.UseFont = True
-        Me.teNote.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple
-        Me.teNote.Properties.MaxLength = 300
-        Me.teNote.Properties.NullText = "[Belum Diisi]"
-        Me.teNote.Properties.NullValuePrompt = "[Belum Diisi]"
-        Me.teNote.Properties.ReadOnly = True
-        Me.teNote.Size = New System.Drawing.Size(150, 20)
-        Me.teNote.TabIndex = 19
-        Me.teNote.Tag = "remarks"
-        '
         'frmPermintaanBarangReview
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -603,12 +603,12 @@ Partial Class frmPermintaanBarangReview
         CType(Me.seQty, System.ComponentModel.ISupportInitialize).EndInit()
         Me.tlpField.ResumeLayout(False)
         Me.tlpField.PerformLayout()
+        CType(Me.teNote.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.teUnit.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.deTanggal.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.deTanggal.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.teKode.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.pHeader.ResumeLayout(False)
-        CType(Me.teUnit.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.teNote.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub

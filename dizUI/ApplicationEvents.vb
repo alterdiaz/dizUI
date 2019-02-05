@@ -1,4 +1,6 @@
-﻿Namespace My
+﻿Imports Microsoft.VisualBasic.ApplicationServices
+
+Namespace My
 
     ' The following events are available for MyApplication:
     ' 
@@ -18,13 +20,13 @@
             writeLog(rClose)
         End Sub
 
-        Private Sub MyApplication_Startup(ByVal sender As Object, ByVal e As Microsoft.VisualBasic.ApplicationServices.StartupEventArgs) Handles Me.Startup
+        Private Sub MyApplication_Startup(sender As Object, e As StartupEventArgs) Handles Me.Startup
             nowTime = Now
             startTime = nowTime
             Me.MinimumSplashScreenDisplayTime = 5000
         End Sub
 
-        Private Sub MyApplication_UnhandledException(ByVal sender As Object, ByVal e As Microsoft.VisualBasic.ApplicationServices.UnhandledExceptionEventArgs) Handles Me.UnhandledException
+        Private Sub MyApplication_UnhandledException(sender As Object, e As UnhandledExceptionEventArgs) Handles Me.UnhandledException
             writeLog("Error: " & e.Exception.Message)
         End Sub
 

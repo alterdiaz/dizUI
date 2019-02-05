@@ -43,6 +43,8 @@ Partial Class frmOrderKonfirmRadiologi
         Me.gcNama = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.rimeRemarks = New DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit()
+        Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.lueRujukan = New DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit()
         Me.seQty = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit()
         Me.Panel1 = New System.Windows.Forms.Panel()
         Me.btnDeleteAllItem = New System.Windows.Forms.Button()
@@ -75,10 +77,11 @@ Partial Class frmOrderKonfirmRadiologi
         Me.pHeader = New System.Windows.Forms.Panel()
         Me.btnSearch = New System.Windows.Forms.Button()
         Me.btnSave = New System.Windows.Forms.Button()
+        Me.btnSavePrint = New System.Windows.Forms.Button()
         Me.btnDelete = New System.Windows.Forms.Button()
         Me.lblSep5 = New System.Windows.Forms.Label()
         Me.tmrCek = New System.Windows.Forms.Timer(Me.components)
-        Me.btnSavePrint = New System.Windows.Forms.Button()
+        Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.tlpForm.SuspendLayout()
         Me.pTitle.SuspendLayout()
         CType(Me.pMinimize, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -90,6 +93,7 @@ Partial Class frmOrderKonfirmRadiologi
         CType(Me.gcData, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gvData, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.rimeRemarks, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.lueRujukan, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.seQty, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel1.SuspendLayout()
         Me.tlpField.SuspendLayout()
@@ -237,7 +241,7 @@ Partial Class frmOrderKonfirmRadiologi
         Me.gcData.Location = New System.Drawing.Point(0, 84)
         Me.gcData.MainView = Me.gvData
         Me.gcData.Name = "gcData"
-        Me.gcData.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.seQty, Me.rimeRemarks})
+        Me.gcData.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.seQty, Me.rimeRemarks, Me.lueRujukan})
         Me.gcData.Size = New System.Drawing.Size(662, 275)
         Me.gcData.TabIndex = 8
         Me.gcData.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gvData})
@@ -256,9 +260,10 @@ Partial Class frmOrderKonfirmRadiologi
         Me.gvData.Appearance.OddRow.Options.UseFont = True
         Me.gvData.Appearance.Row.Font = New System.Drawing.Font("Tahoma", 9.0!)
         Me.gvData.Appearance.Row.Options.UseFont = True
-        Me.gvData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn4, Me.gcID, Me.GridColumn3, Me.GridColumn2, Me.gcitemtype, Me.gcType, Me.gcKode, Me.gcNama, Me.GridColumn1})
+        Me.gvData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn4, Me.gcID, Me.GridColumn3, Me.GridColumn2, Me.gcitemtype, Me.gcType, Me.gcKode, Me.gcNama, Me.GridColumn1, Me.GridColumn6})
         Me.gvData.GridControl = Me.gcData
         Me.gvData.Name = "gvData"
+        Me.gvData.OptionsView.ColumnAutoWidth = False
         Me.gvData.OptionsView.EnableAppearanceEvenRow = True
         Me.gvData.OptionsView.EnableAppearanceOddRow = True
         Me.gvData.OptionsView.ShowGroupPanel = False
@@ -385,6 +390,26 @@ Partial Class frmOrderKonfirmRadiologi
         '
         Me.rimeRemarks.MaxLength = 200
         Me.rimeRemarks.Name = "rimeRemarks"
+        '
+        'GridColumn6
+        '
+        Me.GridColumn6.AppearanceCell.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.GridColumn6.AppearanceCell.Options.UseBackColor = True
+        Me.GridColumn6.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn6.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn6.Caption = "Dirujuk"
+        Me.GridColumn6.ColumnEdit = Me.lueRujukan
+        Me.GridColumn6.FieldName = "idbusinesspartner"
+        Me.GridColumn6.Name = "GridColumn6"
+        Me.GridColumn6.Visible = True
+        Me.GridColumn6.VisibleIndex = 5
+        '
+        'lueRujukan
+        '
+        Me.lueRujukan.AutoHeight = False
+        Me.lueRujukan.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.lueRujukan.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id", "ID", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default], DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("content", "Content")})
+        Me.lueRujukan.Name = "lueRujukan"
         '
         'seQty
         '
@@ -915,6 +940,24 @@ Partial Class frmOrderKonfirmRadiologi
         Me.btnSave.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
         Me.btnSave.UseVisualStyleBackColor = False
         '
+        'btnSavePrint
+        '
+        Me.btnSavePrint.BackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer))
+        Me.btnSavePrint.Dock = System.Windows.Forms.DockStyle.Left
+        Me.btnSavePrint.FlatAppearance.BorderSize = 0
+        Me.btnSavePrint.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DimGray
+        Me.btnSavePrint.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DarkGray
+        Me.btnSavePrint.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnSavePrint.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnSavePrint.Location = New System.Drawing.Point(0, 0)
+        Me.btnSavePrint.Name = "btnSavePrint"
+        Me.btnSavePrint.Size = New System.Drawing.Size(120, 30)
+        Me.btnSavePrint.TabIndex = 19
+        Me.btnSavePrint.Text = "CETAK STIKER"
+        Me.btnSavePrint.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
+        Me.btnSavePrint.UseMnemonic = False
+        Me.btnSavePrint.UseVisualStyleBackColor = False
+        '
         'btnDelete
         '
         Me.btnDelete.BackColor = System.Drawing.Color.Maroon
@@ -949,23 +992,20 @@ Partial Class frmOrderKonfirmRadiologi
         '
         Me.tmrCek.Interval = 3000
         '
-        'btnSavePrint
+        'GridColumn5
         '
-        Me.btnSavePrint.BackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer))
-        Me.btnSavePrint.Dock = System.Windows.Forms.DockStyle.Left
-        Me.btnSavePrint.FlatAppearance.BorderSize = 0
-        Me.btnSavePrint.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DimGray
-        Me.btnSavePrint.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DarkGray
-        Me.btnSavePrint.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btnSavePrint.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnSavePrint.Location = New System.Drawing.Point(0, 0)
-        Me.btnSavePrint.Name = "btnSavePrint"
-        Me.btnSavePrint.Size = New System.Drawing.Size(120, 30)
-        Me.btnSavePrint.TabIndex = 19
-        Me.btnSavePrint.Text = "CETAK STIKER"
-        Me.btnSavePrint.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
-        Me.btnSavePrint.UseMnemonic = False
-        Me.btnSavePrint.UseVisualStyleBackColor = False
+        Me.GridColumn5.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn5.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn5.Caption = "Cek"
+        Me.GridColumn5.ColumnEdit = Me.ceCek
+        Me.GridColumn5.FieldName = "cek"
+        Me.GridColumn5.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Right
+        Me.GridColumn5.MaxWidth = 30
+        Me.GridColumn5.MinWidth = 30
+        Me.GridColumn5.Name = "GridColumn5"
+        Me.GridColumn5.Visible = True
+        Me.GridColumn5.VisibleIndex = 1
+        Me.GridColumn5.Width = 30
         '
         'frmOrderKonfirmRadiologi
         '
@@ -989,6 +1029,7 @@ Partial Class frmOrderKonfirmRadiologi
         CType(Me.gcData, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.gvData, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.rimeRemarks, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.lueRujukan, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.seQty, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Panel1.ResumeLayout(False)
         Me.tlpField.ResumeLayout(False)
@@ -1068,4 +1109,7 @@ Partial Class frmOrderKonfirmRadiologi
     Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn4 As DevExpress.XtraGrid.Columns.GridColumn
     Public WithEvents btnSavePrint As Button
+    Friend WithEvents GridColumn6 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents lueRujukan As DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit
+    Friend WithEvents GridColumn5 As DevExpress.XtraGrid.Columns.GridColumn
 End Class

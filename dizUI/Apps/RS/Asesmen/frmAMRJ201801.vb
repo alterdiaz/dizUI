@@ -1673,4 +1673,22 @@ Public Class frmAMRJ201801
         formTitle = Me.lblTitle.Text
     End Sub
 
+    Private Sub btnInfoPasien_Click(sender As Object, e As EventArgs) Handles btnInfoPasien.Click
+        If idselect = "-1" Then
+            dizMsgbox("Register belum dipilih", dizMsgboxStyle.Peringatan, Me)
+            Exit Sub
+        End If
+
+        formTitle = ""
+        Dim frminfopx As New frmInfoPasien(teNoRM.Tag)
+        tambahChild(frminfopx)
+        frminfopx.StartPosition = FormStartPosition.CenterScreen
+        frminfopx.pMinimize.Enabled = False
+        frminfopx.pMaximize.Enabled = False
+        frminfopx.tlpForm.RowCount = 4
+        frminfopx.tlpForm.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 2.0!))
+        frminfopx.ShowDialog(Me)
+        formTitle = Me.lblTitle.Text
+    End Sub
+
 End Class

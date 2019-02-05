@@ -1,5 +1,5 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
-Partial Class frmPermintaanPembelianReview
+Partial Class frmMonBukuTarif
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
@@ -31,28 +31,22 @@ Partial Class frmPermintaanPembelianReview
         Me.pBody = New System.Windows.Forms.Panel()
         Me.gcData = New DevExpress.XtraGrid.GridControl()
         Me.gvData = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.gcID = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.gcitemtype = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.gcidsatuan = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.gcType = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.gcidunit = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.gciditem = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.gcKode = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.gcNama = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.gcSatuan = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.gcQtyAsk = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.seQty = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit()
-        Me.seHarga = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit()
-        Me.teRemarks = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
+        Me.gcunit = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.gcHargaTmp = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepositoryItemSpinEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit()
         Me.tlpField = New System.Windows.Forms.TableLayoutPanel()
-        Me.teNote = New DevExpress.XtraEditors.TextEdit()
-        Me.Label4 = New System.Windows.Forms.Label()
         Me.deTanggal = New DevExpress.XtraEditors.DateEdit()
-        Me.teKode = New DevExpress.XtraEditors.TextEdit()
-        Me.lblParent = New System.Windows.Forms.Label()
+        Me.Label5 = New System.Windows.Forms.Label()
+        Me.lueUnit = New DevExpress.XtraEditors.LookUpEdit()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.pHeader = New System.Windows.Forms.Panel()
-        Me.btnSearch = New System.Windows.Forms.Button()
-        Me.btnSave = New System.Windows.Forms.Button()
-        Me.btnDelete = New System.Windows.Forms.Button()
+        Me.btnExport = New System.Windows.Forms.Button()
         Me.lblSep5 = New System.Windows.Forms.Label()
         Me.tlpForm.SuspendLayout()
         Me.pTitle.SuspendLayout()
@@ -62,14 +56,11 @@ Partial Class frmPermintaanPembelianReview
         Me.pBody.SuspendLayout()
         CType(Me.gcData, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gvData, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.seQty, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.seHarga, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.teRemarks, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemSpinEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.tlpField.SuspendLayout()
-        CType(Me.teNote.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.deTanggal.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.deTanggal.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.teKode.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.lueUnit.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.pHeader.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -90,7 +81,7 @@ Partial Class frmPermintaanPembelianReview
         Me.tlpForm.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30.0!))
         Me.tlpForm.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
         Me.tlpForm.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
-        Me.tlpForm.Size = New System.Drawing.Size(836, 449)
+        Me.tlpForm.Size = New System.Drawing.Size(904, 462)
         Me.tlpForm.TabIndex = 0
         '
         'pTitle
@@ -103,7 +94,7 @@ Partial Class frmPermintaanPembelianReview
         Me.pTitle.Location = New System.Drawing.Point(2, 0)
         Me.pTitle.Margin = New System.Windows.Forms.Padding(0)
         Me.pTitle.Name = "pTitle"
-        Me.pTitle.Size = New System.Drawing.Size(832, 30)
+        Me.pTitle.Size = New System.Drawing.Size(900, 30)
         Me.pTitle.TabIndex = 10
         '
         'lblTitle
@@ -116,9 +107,9 @@ Partial Class frmPermintaanPembelianReview
         Me.lblTitle.Margin = New System.Windows.Forms.Padding(0)
         Me.lblTitle.Name = "lblTitle"
         Me.lblTitle.Padding = New System.Windows.Forms.Padding(10, 0, 0, 0)
-        Me.lblTitle.Size = New System.Drawing.Size(742, 30)
+        Me.lblTitle.Size = New System.Drawing.Size(810, 30)
         Me.lblTitle.TabIndex = 6
-        Me.lblTitle.Text = "Permintaan Pembelian Review"
+        Me.lblTitle.Text = "Monitoring Buku Tarif"
         Me.lblTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
         'pMinimize
@@ -126,7 +117,7 @@ Partial Class frmPermintaanPembelianReview
         Me.pMinimize.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.pMinimize.Dock = System.Windows.Forms.DockStyle.Right
         Me.pMinimize.Image = Global.dizUI.My.Resources.Resources.min_w
-        Me.pMinimize.Location = New System.Drawing.Point(742, 0)
+        Me.pMinimize.Location = New System.Drawing.Point(810, 0)
         Me.pMinimize.Margin = New System.Windows.Forms.Padding(0)
         Me.pMinimize.Name = "pMinimize"
         Me.pMinimize.Size = New System.Drawing.Size(30, 30)
@@ -139,7 +130,7 @@ Partial Class frmPermintaanPembelianReview
         Me.pMaximize.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.pMaximize.Dock = System.Windows.Forms.DockStyle.Right
         Me.pMaximize.Image = Global.dizUI.My.Resources.Resources.max_w
-        Me.pMaximize.Location = New System.Drawing.Point(772, 0)
+        Me.pMaximize.Location = New System.Drawing.Point(840, 0)
         Me.pMaximize.Margin = New System.Windows.Forms.Padding(0)
         Me.pMaximize.Name = "pMaximize"
         Me.pMaximize.Size = New System.Drawing.Size(30, 30)
@@ -152,7 +143,7 @@ Partial Class frmPermintaanPembelianReview
         Me.pExit.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.pExit.Dock = System.Windows.Forms.DockStyle.Right
         Me.pExit.Image = Global.dizUI.My.Resources.Resources.exit_w
-        Me.pExit.Location = New System.Drawing.Point(802, 0)
+        Me.pExit.Location = New System.Drawing.Point(870, 0)
         Me.pExit.Margin = New System.Windows.Forms.Padding(0)
         Me.pExit.Name = "pExit"
         Me.pExit.Size = New System.Drawing.Size(30, 30)
@@ -169,18 +160,17 @@ Partial Class frmPermintaanPembelianReview
         Me.pBody.Location = New System.Drawing.Point(2, 30)
         Me.pBody.Margin = New System.Windows.Forms.Padding(0)
         Me.pBody.Name = "pBody"
-        Me.pBody.Size = New System.Drawing.Size(832, 419)
+        Me.pBody.Size = New System.Drawing.Size(900, 432)
         Me.pBody.TabIndex = 7
         '
         'gcData
         '
         Me.gcData.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.gcData.Font = New System.Drawing.Font("Tahoma", 9.0!)
-        Me.gcData.Location = New System.Drawing.Point(0, 90)
+        Me.gcData.Location = New System.Drawing.Point(0, 66)
         Me.gcData.MainView = Me.gvData
         Me.gcData.Name = "gcData"
-        Me.gcData.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.seQty, Me.seHarga, Me.teRemarks})
-        Me.gcData.Size = New System.Drawing.Size(832, 329)
+        Me.gcData.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemSpinEdit1})
+        Me.gcData.Size = New System.Drawing.Size(900, 366)
         Me.gcData.TabIndex = 8
         Me.gcData.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gvData})
         '
@@ -192,47 +182,49 @@ Partial Class frmPermintaanPembelianReview
         Me.gvData.Appearance.EvenRow.Options.UseBackColor = True
         Me.gvData.Appearance.OddRow.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer))
         Me.gvData.Appearance.OddRow.Options.UseBackColor = True
-        Me.gvData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.gcID, Me.gcitemtype, Me.gcidsatuan, Me.gcType, Me.gcKode, Me.gcNama, Me.gcSatuan, Me.gcQtyAsk})
+        Me.gvData.Appearance.Row.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.gvData.Appearance.Row.Options.UseBackColor = True
+        Me.gvData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.gcidunit, Me.gciditem, Me.GridColumn2, Me.GridColumn1, Me.gcKode, Me.gcNama, Me.gcunit, Me.gcHargaTmp})
         Me.gvData.GridControl = Me.gcData
         Me.gvData.Name = "gvData"
+        Me.gvData.OptionsView.ColumnAutoWidth = False
         Me.gvData.OptionsView.EnableAppearanceEvenRow = True
         Me.gvData.OptionsView.EnableAppearanceOddRow = True
         Me.gvData.OptionsView.ShowGroupPanel = False
+        Me.gvData.OptionsView.ShowViewCaption = True
         '
-        'gcID
+        'gcidunit
         '
-        Me.gcID.AppearanceCell.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.gcID.AppearanceCell.Options.UseBackColor = True
-        Me.gcID.Caption = "ID"
-        Me.gcID.FieldName = "iditem"
-        Me.gcID.Name = "gcID"
-        Me.gcID.OptionsColumn.AllowEdit = False
-        Me.gcID.OptionsColumn.ReadOnly = True
+        Me.gcidunit.Caption = "itemtype"
+        Me.gcidunit.FieldName = "itemtype"
+        Me.gcidunit.Name = "gcidunit"
         '
-        'gcitemtype
+        'gciditem
         '
-        Me.gcitemtype.Caption = "itemtype"
-        Me.gcitemtype.FieldName = "itemtype"
-        Me.gcitemtype.Name = "gcitemtype"
+        Me.gciditem.Caption = "gciditem"
+        Me.gciditem.FieldName = "iditem"
+        Me.gciditem.Name = "gciditem"
         '
-        'gcidsatuan
+        'GridColumn2
         '
-        Me.gcidsatuan.Caption = "idsatuan"
-        Me.gcidsatuan.FieldName = "idsatuan"
-        Me.gcidsatuan.Name = "gcidsatuan"
+        Me.GridColumn2.Caption = "iditemgrup"
+        Me.GridColumn2.FieldName = "iditemgrup"
+        Me.GridColumn2.Name = "GridColumn2"
+        Me.GridColumn2.OptionsColumn.AllowEdit = False
+        Me.GridColumn2.OptionsColumn.ReadOnly = True
         '
-        'gcType
+        'GridColumn1
         '
-        Me.gcType.AppearanceHeader.Options.UseTextOptions = True
-        Me.gcType.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.gcType.Caption = "Tipe"
-        Me.gcType.FieldName = "type"
-        Me.gcType.Name = "gcType"
-        Me.gcType.OptionsColumn.AllowEdit = False
-        Me.gcType.OptionsColumn.ReadOnly = True
-        Me.gcType.Visible = True
-        Me.gcType.VisibleIndex = 0
-        Me.gcType.Width = 119
+        Me.GridColumn1.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn1.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn1.Caption = "Grup"
+        Me.GridColumn1.FieldName = "itemgrup"
+        Me.GridColumn1.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left
+        Me.GridColumn1.Name = "GridColumn1"
+        Me.GridColumn1.OptionsColumn.AllowEdit = False
+        Me.GridColumn1.OptionsColumn.ReadOnly = True
+        Me.GridColumn1.Visible = True
+        Me.GridColumn1.VisibleIndex = 1
         '
         'gcKode
         '
@@ -240,14 +232,12 @@ Partial Class frmPermintaanPembelianReview
         Me.gcKode.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.gcKode.Caption = "Kode"
         Me.gcKode.FieldName = "kode"
-        Me.gcKode.MaxWidth = 140
-        Me.gcKode.MinWidth = 140
+        Me.gcKode.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left
         Me.gcKode.Name = "gcKode"
         Me.gcKode.OptionsColumn.AllowEdit = False
         Me.gcKode.OptionsColumn.ReadOnly = True
         Me.gcKode.Visible = True
-        Me.gcKode.VisibleIndex = 1
-        Me.gcKode.Width = 140
+        Me.gcKode.VisibleIndex = 2
         '
         'gcNama
         '
@@ -255,72 +245,48 @@ Partial Class frmPermintaanPembelianReview
         Me.gcNama.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.gcNama.Caption = "Nama"
         Me.gcNama.FieldName = "item"
+        Me.gcNama.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left
         Me.gcNama.Name = "gcNama"
         Me.gcNama.OptionsColumn.AllowEdit = False
         Me.gcNama.OptionsColumn.ReadOnly = True
         Me.gcNama.Visible = True
-        Me.gcNama.VisibleIndex = 2
-        Me.gcNama.Width = 190
+        Me.gcNama.VisibleIndex = 3
         '
-        'gcSatuan
+        'gcunit
         '
-        Me.gcSatuan.AppearanceHeader.Options.UseTextOptions = True
-        Me.gcSatuan.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.gcSatuan.Caption = "Satuan"
-        Me.gcSatuan.FieldName = "satuan"
-        Me.gcSatuan.MaxWidth = 60
-        Me.gcSatuan.MinWidth = 60
-        Me.gcSatuan.Name = "gcSatuan"
-        Me.gcSatuan.OptionsColumn.AllowEdit = False
-        Me.gcSatuan.OptionsColumn.ReadOnly = True
-        Me.gcSatuan.Visible = True
-        Me.gcSatuan.VisibleIndex = 4
-        Me.gcSatuan.Width = 60
+        Me.gcunit.AppearanceHeader.Options.UseTextOptions = True
+        Me.gcunit.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.gcunit.Caption = "Jenis"
+        Me.gcunit.FieldName = "type"
+        Me.gcunit.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left
+        Me.gcunit.Name = "gcunit"
+        Me.gcunit.OptionsColumn.AllowEdit = False
+        Me.gcunit.OptionsColumn.ReadOnly = True
+        Me.gcunit.Visible = True
+        Me.gcunit.VisibleIndex = 0
         '
-        'gcQtyAsk
+        'gcHargaTmp
         '
-        Me.gcQtyAsk.AppearanceHeader.Options.UseTextOptions = True
-        Me.gcQtyAsk.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.gcQtyAsk.Caption = "Minta"
-        Me.gcQtyAsk.ColumnEdit = Me.seQty
-        Me.gcQtyAsk.FieldName = "qtyask"
-        Me.gcQtyAsk.MaxWidth = 50
-        Me.gcQtyAsk.MinWidth = 50
-        Me.gcQtyAsk.Name = "gcQtyAsk"
-        Me.gcQtyAsk.OptionsColumn.AllowEdit = False
-        Me.gcQtyAsk.OptionsColumn.ReadOnly = True
-        Me.gcQtyAsk.Visible = True
-        Me.gcQtyAsk.VisibleIndex = 3
-        Me.gcQtyAsk.Width = 50
+        Me.gcHargaTmp.AppearanceCell.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.gcHargaTmp.AppearanceCell.Options.UseBackColor = True
+        Me.gcHargaTmp.AppearanceHeader.Options.UseTextOptions = True
+        Me.gcHargaTmp.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.gcHargaTmp.Caption = "Harga"
+        Me.gcHargaTmp.ColumnEdit = Me.RepositoryItemSpinEdit1
+        Me.gcHargaTmp.FieldName = "harga"
+        Me.gcHargaTmp.Name = "gcHargaTmp"
         '
-        'seQty
+        'RepositoryItemSpinEdit1
         '
-        Me.seQty.AutoHeight = False
-        Me.seQty.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
-        Me.seQty.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
-        Me.seQty.DisplayFormat.FormatString = "n0"
-        Me.seQty.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.seQty.EditFormat.FormatString = "n0"
-        Me.seQty.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.seQty.IsFloatValue = False
-        Me.seQty.Mask.EditMask = "N00"
-        Me.seQty.Name = "seQty"
-        '
-        'seHarga
-        '
-        Me.seHarga.AutoHeight = False
-        Me.seHarga.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.seHarga.DisplayFormat.FormatString = "n2"
-        Me.seHarga.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.seHarga.EditFormat.FormatString = "n2"
-        Me.seHarga.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.seHarga.Mask.EditMask = "N00"
-        Me.seHarga.Name = "seHarga"
-        '
-        'teRemarks
-        '
-        Me.teRemarks.AutoHeight = False
-        Me.teRemarks.Name = "teRemarks"
+        Me.RepositoryItemSpinEdit1.AutoHeight = False
+        Me.RepositoryItemSpinEdit1.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.RepositoryItemSpinEdit1.DisplayFormat.FormatString = "n2"
+        Me.RepositoryItemSpinEdit1.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.RepositoryItemSpinEdit1.EditFormat.FormatString = "n2"
+        Me.RepositoryItemSpinEdit1.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.RepositoryItemSpinEdit1.IsFloatValue = False
+        Me.RepositoryItemSpinEdit1.Mask.EditMask = "N00"
+        Me.RepositoryItemSpinEdit1.Name = "RepositoryItemSpinEdit1"
         '
         'tlpField
         '
@@ -329,79 +295,37 @@ Partial Class frmPermintaanPembelianReview
         Me.tlpField.BackColor = System.Drawing.Color.FromArgb(CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer))
         Me.tlpField.ColumnCount = 6
         Me.tlpField.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
-        Me.tlpField.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 70.0!))
+        Me.tlpField.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100.0!))
         Me.tlpField.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 200.0!))
         Me.tlpField.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100.0!))
-        Me.tlpField.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 150.0!))
+        Me.tlpField.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 200.0!))
         Me.tlpField.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
-        Me.tlpField.Controls.Add(Me.teNote, 4, 2)
-        Me.tlpField.Controls.Add(Me.Label4, 3, 2)
         Me.tlpField.Controls.Add(Me.deTanggal, 4, 1)
-        Me.tlpField.Controls.Add(Me.teKode, 2, 1)
-        Me.tlpField.Controls.Add(Me.lblParent, 1, 1)
+        Me.tlpField.Controls.Add(Me.Label5, 1, 1)
+        Me.tlpField.Controls.Add(Me.lueUnit, 2, 1)
         Me.tlpField.Controls.Add(Me.Label2, 3, 1)
         Me.tlpField.Dock = System.Windows.Forms.DockStyle.Top
         Me.tlpField.Location = New System.Drawing.Point(0, 30)
-        Me.tlpField.Margin = New System.Windows.Forms.Padding(0)
         Me.tlpField.Name = "tlpField"
-        Me.tlpField.RowCount = 4
+        Me.tlpField.RowCount = 3
         Me.tlpField.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 6.0!))
-        Me.tlpField.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 24.0!))
         Me.tlpField.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 24.0!))
         Me.tlpField.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 6.0!))
         Me.tlpField.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
-        Me.tlpField.Size = New System.Drawing.Size(832, 60)
+        Me.tlpField.Size = New System.Drawing.Size(900, 36)
         Me.tlpField.TabIndex = 7
-        '
-        'teNote
-        '
-        Me.teNote.Anchor = System.Windows.Forms.AnchorStyles.Left
-        Me.teNote.Location = New System.Drawing.Point(526, 32)
-        Me.teNote.Margin = New System.Windows.Forms.Padding(0)
-        Me.teNote.Name = "teNote"
-        Me.teNote.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[True]
-        Me.teNote.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.teNote.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 9.0!)
-        Me.teNote.Properties.Appearance.Options.UseBackColor = True
-        Me.teNote.Properties.Appearance.Options.UseFont = True
-        Me.teNote.Properties.AppearanceDisabled.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.teNote.Properties.AppearanceDisabled.Options.UseBackColor = True
-        Me.teNote.Properties.AppearanceReadOnly.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.teNote.Properties.AppearanceReadOnly.Options.UseBackColor = True
-        Me.teNote.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple
-        Me.teNote.Properties.MaxLength = 300
-        Me.teNote.Properties.NullText = "[Belum Diisi]"
-        Me.teNote.Properties.NullValuePrompt = "[Belum Diisi]"
-        Me.teNote.Properties.ReadOnly = True
-        Me.teNote.Size = New System.Drawing.Size(150, 20)
-        Me.teNote.TabIndex = 21
-        Me.teNote.Tag = "remarks"
-        '
-        'Label4
-        '
-        Me.Label4.Anchor = System.Windows.Forms.AnchorStyles.Right
-        Me.Label4.AutoSize = True
-        Me.Label4.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label4.Location = New System.Drawing.Point(453, 35)
-        Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(70, 14)
-        Me.Label4.TabIndex = 24
-        Me.Label4.Text = "Keterangan"
-        Me.Label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
         'deTanggal
         '
         Me.deTanggal.Anchor = System.Windows.Forms.AnchorStyles.Left
         Me.deTanggal.EditValue = Nothing
-        Me.deTanggal.Location = New System.Drawing.Point(526, 8)
+        Me.deTanggal.Location = New System.Drawing.Point(550, 8)
         Me.deTanggal.Margin = New System.Windows.Forms.Padding(0)
         Me.deTanggal.Name = "deTanggal"
-        Me.deTanggal.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.deTanggal.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
         Me.deTanggal.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 9.0!)
-        Me.deTanggal.Properties.Appearance.ForeColor = System.Drawing.Color.Black
         Me.deTanggal.Properties.Appearance.Options.UseBackColor = True
         Me.deTanggal.Properties.Appearance.Options.UseFont = True
-        Me.deTanggal.Properties.Appearance.Options.UseForeColor = True
         Me.deTanggal.Properties.AppearanceCalendar.DayCellHighlighted.Font = New System.Drawing.Font("Tahoma", 9.0!)
         Me.deTanggal.Properties.AppearanceCalendar.DayCellHighlighted.Options.UseFont = True
         Me.deTanggal.Properties.AppearanceCalendar.Header.Font = New System.Drawing.Font("Tahoma", 9.0!)
@@ -421,122 +345,95 @@ Partial Class frmPermintaanPembelianReview
         Me.deTanggal.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple
         Me.deTanggal.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.deTanggal.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
-        Me.deTanggal.Properties.DisplayFormat.FormatString = "dd-MM-yyyy HH:mm:ss"
+        Me.deTanggal.Properties.CalendarView = DevExpress.XtraEditors.Repository.CalendarView.Vista
+        Me.deTanggal.Properties.DisplayFormat.FormatString = "yyyy"
         Me.deTanggal.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.deTanggal.Properties.EditFormat.FormatString = "dd-MM-yyyy HH:mm:ss"
+        Me.deTanggal.Properties.EditFormat.FormatString = "yyyy"
         Me.deTanggal.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.deTanggal.Properties.Mask.EditMask = "dd-MM-yyyy HH:mm:ss"
-        Me.deTanggal.Size = New System.Drawing.Size(135, 20)
-        Me.deTanggal.TabIndex = 32
-        Me.deTanggal.Tag = ""
+        Me.deTanggal.Properties.Mask.EditMask = "yyyy"
+        Me.deTanggal.Properties.Mask.UseMaskAsDisplayFormat = True
+        Me.deTanggal.Properties.VistaCalendarInitialViewStyle = DevExpress.XtraEditors.VistaCalendarInitialViewStyle.YearsGroupView
+        Me.deTanggal.Properties.VistaCalendarViewStyle = DevExpress.XtraEditors.VistaCalendarViewStyle.YearsGroupView
+        Me.deTanggal.Properties.VistaDisplayMode = DevExpress.Utils.DefaultBoolean.[True]
+        Me.deTanggal.Size = New System.Drawing.Size(104, 20)
+        Me.deTanggal.TabIndex = 33
+        Me.deTanggal.Tag = "periodetahun"
         '
-        'teKode
+        'Label5
         '
-        Me.teKode.Anchor = System.Windows.Forms.AnchorStyles.Left
-        Me.teKode.Location = New System.Drawing.Point(226, 8)
-        Me.teKode.Margin = New System.Windows.Forms.Padding(0)
-        Me.teKode.Name = "teKode"
-        Me.teKode.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[True]
-        Me.teKode.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.teKode.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 9.0!)
-        Me.teKode.Properties.Appearance.Options.UseBackColor = True
-        Me.teKode.Properties.Appearance.Options.UseFont = True
-        Me.teKode.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple
-        Me.teKode.Properties.MaxLength = 300
-        Me.teKode.Properties.NullText = "[Belum Diisi]"
-        Me.teKode.Properties.NullValuePrompt = "[Belum Diisi]"
-        Me.teKode.Properties.ReadOnly = True
-        Me.teKode.Size = New System.Drawing.Size(200, 20)
-        Me.teKode.TabIndex = 18
-        Me.teKode.Tag = "transaksino"
+        Me.Label5.Anchor = System.Windows.Forms.AnchorStyles.Right
+        Me.Label5.AutoSize = True
+        Me.Label5.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label5.Location = New System.Drawing.Point(218, 11)
+        Me.Label5.Name = "Label5"
+        Me.Label5.Size = New System.Drawing.Size(29, 14)
+        Me.Label5.TabIndex = 21
+        Me.Label5.Text = "Unit"
+        Me.Label5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
-        'lblParent
+        'lueUnit
         '
-        Me.lblParent.Anchor = System.Windows.Forms.AnchorStyles.Right
-        Me.lblParent.AutoSize = True
-        Me.lblParent.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblParent.Location = New System.Drawing.Point(180, 11)
-        Me.lblParent.Name = "lblParent"
-        Me.lblParent.Size = New System.Drawing.Size(43, 14)
-        Me.lblParent.TabIndex = 20
-        Me.lblParent.Text = "Nomor"
-        Me.lblParent.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.lueUnit.Anchor = System.Windows.Forms.AnchorStyles.Left
+        Me.lueUnit.Location = New System.Drawing.Point(250, 8)
+        Me.lueUnit.Margin = New System.Windows.Forms.Padding(0)
+        Me.lueUnit.Name = "lueUnit"
+        Me.lueUnit.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[False]
+        Me.lueUnit.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.lueUnit.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 9.0!)
+        Me.lueUnit.Properties.Appearance.Options.UseBackColor = True
+        Me.lueUnit.Properties.Appearance.Options.UseFont = True
+        Me.lueUnit.Properties.AppearanceDisabled.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.lueUnit.Properties.AppearanceDisabled.Options.UseBackColor = True
+        Me.lueUnit.Properties.AppearanceReadOnly.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.lueUnit.Properties.AppearanceReadOnly.Options.UseBackColor = True
+        Me.lueUnit.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple
+        Me.lueUnit.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.lueUnit.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id", "ID", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default], DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("content", "Content")})
+        Me.lueUnit.Properties.NullText = "[Isian belum dipilih]"
+        Me.lueUnit.Properties.NullValuePrompt = "[Isian belum dipilih]"
+        Me.lueUnit.Size = New System.Drawing.Size(200, 20)
+        Me.lueUnit.TabIndex = 48
+        Me.lueUnit.Tag = "idunit"
         '
         'Label2
         '
         Me.Label2.Anchor = System.Windows.Forms.AnchorStyles.Right
         Me.Label2.AutoSize = True
         Me.Label2.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label2.Location = New System.Drawing.Point(473, 11)
+        Me.Label2.Location = New System.Drawing.Point(499, 11)
         Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(50, 14)
-        Me.Label2.TabIndex = 49
-        Me.Label2.Text = "Tanggal"
+        Me.Label2.Size = New System.Drawing.Size(48, 14)
+        Me.Label2.TabIndex = 18
+        Me.Label2.Text = "Periode"
         Me.Label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
         'pHeader
         '
         Me.pHeader.BackColor = System.Drawing.Color.FromArgb(CType(CType(66, Byte), Integer), CType(CType(66, Byte), Integer), CType(CType(66, Byte), Integer))
-        Me.pHeader.Controls.Add(Me.btnSearch)
-        Me.pHeader.Controls.Add(Me.btnSave)
-        Me.pHeader.Controls.Add(Me.btnDelete)
+        Me.pHeader.Controls.Add(Me.btnExport)
         Me.pHeader.Dock = System.Windows.Forms.DockStyle.Top
         Me.pHeader.ForeColor = System.Drawing.Color.White
         Me.pHeader.Location = New System.Drawing.Point(0, 0)
         Me.pHeader.Margin = New System.Windows.Forms.Padding(0)
         Me.pHeader.Name = "pHeader"
-        Me.pHeader.Size = New System.Drawing.Size(832, 30)
+        Me.pHeader.Size = New System.Drawing.Size(900, 30)
         Me.pHeader.TabIndex = 4
         '
-        'btnSearch
+        'btnExport
         '
-        Me.btnSearch.Dock = System.Windows.Forms.DockStyle.Right
-        Me.btnSearch.FlatAppearance.BorderSize = 0
-        Me.btnSearch.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DimGray
-        Me.btnSearch.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DarkGray
-        Me.btnSearch.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btnSearch.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnSearch.Location = New System.Drawing.Point(612, 0)
-        Me.btnSearch.Name = "btnSearch"
-        Me.btnSearch.Size = New System.Drawing.Size(60, 30)
-        Me.btnSearch.TabIndex = 18
-        Me.btnSearch.Text = "CARI"
-        Me.btnSearch.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
-        Me.btnSearch.UseVisualStyleBackColor = True
-        '
-        'btnSave
-        '
-        Me.btnSave.BackColor = System.Drawing.Color.FromArgb(CType(CType(156, Byte), Integer), CType(CType(207, Byte), Integer), CType(CType(49, Byte), Integer))
-        Me.btnSave.Dock = System.Windows.Forms.DockStyle.Right
-        Me.btnSave.FlatAppearance.BorderSize = 0
-        Me.btnSave.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DimGray
-        Me.btnSave.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DarkGray
-        Me.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btnSave.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnSave.Location = New System.Drawing.Point(672, 0)
-        Me.btnSave.Name = "btnSave"
-        Me.btnSave.Size = New System.Drawing.Size(80, 30)
-        Me.btnSave.TabIndex = 15
-        Me.btnSave.Text = "REVIEW"
-        Me.btnSave.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
-        Me.btnSave.UseVisualStyleBackColor = False
-        '
-        'btnDelete
-        '
-        Me.btnDelete.BackColor = System.Drawing.Color.Maroon
-        Me.btnDelete.Dock = System.Windows.Forms.DockStyle.Right
-        Me.btnDelete.FlatAppearance.BorderSize = 0
-        Me.btnDelete.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DimGray
-        Me.btnDelete.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DarkGray
-        Me.btnDelete.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btnDelete.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnDelete.Location = New System.Drawing.Point(752, 0)
-        Me.btnDelete.Name = "btnDelete"
-        Me.btnDelete.Size = New System.Drawing.Size(80, 30)
-        Me.btnDelete.TabIndex = 11
-        Me.btnDelete.Text = "VOID"
-        Me.btnDelete.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
-        Me.btnDelete.UseVisualStyleBackColor = False
+        Me.btnExport.Dock = System.Windows.Forms.DockStyle.Right
+        Me.btnExport.FlatAppearance.BorderSize = 0
+        Me.btnExport.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DimGray
+        Me.btnExport.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DarkGray
+        Me.btnExport.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnExport.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnExport.Location = New System.Drawing.Point(800, 0)
+        Me.btnExport.Name = "btnExport"
+        Me.btnExport.Size = New System.Drawing.Size(100, 30)
+        Me.btnExport.TabIndex = 16
+        Me.btnExport.Text = "EXPORT"
+        Me.btnExport.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
+        Me.btnExport.UseVisualStyleBackColor = True
         '
         'lblSep5
         '
@@ -551,17 +448,17 @@ Partial Class frmPermintaanPembelianReview
         Me.lblSep5.Text = "|"
         Me.lblSep5.TextAlign = System.Drawing.ContentAlignment.TopCenter
         '
-        'frmPermintaanPembelianReview
+        'frmMonBukuTarif
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer))
-        Me.ClientSize = New System.Drawing.Size(836, 449)
+        Me.ClientSize = New System.Drawing.Size(904, 462)
         Me.Controls.Add(Me.tlpForm)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
-        Me.Name = "frmPermintaanPembelianReview"
+        Me.Name = "frmMonBukuTarif"
         Me.ShowInTaskbar = False
-        Me.Text = "Permintaan Pembelian Review"
+        Me.Text = "Monitoring Buku Tarif"
         Me.tlpForm.ResumeLayout(False)
         Me.pTitle.ResumeLayout(False)
         CType(Me.pMinimize, System.ComponentModel.ISupportInitialize).EndInit()
@@ -571,49 +468,40 @@ Partial Class frmPermintaanPembelianReview
         Me.pBody.PerformLayout()
         CType(Me.gcData, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.gvData, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.seQty, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.seHarga, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.teRemarks, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemSpinEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.tlpField.ResumeLayout(False)
         Me.tlpField.PerformLayout()
-        CType(Me.teNote.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.deTanggal.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.deTanggal.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.teKode.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.lueUnit.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.pHeader.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
     Friend WithEvents lblSep5 As System.Windows.Forms.Label
     Public WithEvents pHeader As System.Windows.Forms.Panel
-    Public WithEvents btnSave As System.Windows.Forms.Button
     Public WithEvents pBody As System.Windows.Forms.Panel
     Public WithEvents gcData As DevExpress.XtraGrid.GridControl
     Public WithEvents gvData As DevExpress.XtraGrid.Views.Grid.GridView
     Public WithEvents tlpField As System.Windows.Forms.TableLayoutPanel
     Public WithEvents tlpForm As System.Windows.Forms.TableLayoutPanel
-    Friend WithEvents gcID As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents gcNama As DevExpress.XtraGrid.Columns.GridColumn
-    Public WithEvents btnDelete As System.Windows.Forms.Button
     Friend WithEvents gcKode As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents lblParent As System.Windows.Forms.Label
     Friend WithEvents pTitle As System.Windows.Forms.Panel
     Public WithEvents lblTitle As System.Windows.Forms.Label
     Friend WithEvents pMinimize As System.Windows.Forms.PictureBox
     Friend WithEvents pMaximize As System.Windows.Forms.PictureBox
     Friend WithEvents pExit As System.Windows.Forms.PictureBox
-    Friend WithEvents teKode As DevExpress.XtraEditors.TextEdit
-    Friend WithEvents gcSatuan As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents gcType As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents gcitemtype As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents gcidsatuan As DevExpress.XtraGrid.Columns.GridColumn
-    Public WithEvents btnSearch As System.Windows.Forms.Button
-    Friend WithEvents Label2 As System.Windows.Forms.Label
+    Friend WithEvents Label5 As System.Windows.Forms.Label
+    Friend WithEvents lueUnit As DevExpress.XtraEditors.LookUpEdit
+    Friend WithEvents gcidunit As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents gciditem As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents gcunit As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents gcHargaTmp As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents Label2 As Label
+    Friend WithEvents RepositoryItemSpinEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit
+    Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents deTanggal As DevExpress.XtraEditors.DateEdit
-    Friend WithEvents seQty As DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit
-    Friend WithEvents Label4 As System.Windows.Forms.Label
-    Friend WithEvents teNote As DevExpress.XtraEditors.TextEdit
-    Friend WithEvents gcQtyAsk As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents seHarga As DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit
-    Friend WithEvents teRemarks As DevExpress.XtraEditors.Repository.RepositoryItemTextEdit
+    Public WithEvents btnExport As Button
 End Class
