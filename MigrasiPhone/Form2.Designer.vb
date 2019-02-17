@@ -24,13 +24,13 @@ Partial Class Form2
     Private Sub InitializeComponent()
         Me.gcData = New DevExpress.XtraGrid.GridControl()
         Me.gvData = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.rimeNote = New DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit()
-        Me.btnRefresh = New System.Windows.Forms.Button()
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.rimeNote = New DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit()
+        Me.btnRefresh = New System.Windows.Forms.Button()
         CType(Me.gcData, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gvData, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.rimeNote, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -91,6 +91,46 @@ Partial Class Form2
         Me.gvData.OptionsView.ShowViewCaption = True
         Me.gvData.ViewCaption = " "
         '
+        'GridColumn1
+        '
+        Me.GridColumn1.Caption = "GridColumn1"
+        Me.GridColumn1.FieldName = "idcompany"
+        Me.GridColumn1.Name = "GridColumn1"
+        Me.GridColumn1.Visible = True
+        Me.GridColumn1.VisibleIndex = 0
+        '
+        'GridColumn2
+        '
+        Me.GridColumn2.Caption = "GridColumn2"
+        Me.GridColumn2.FieldName = "companycode"
+        Me.GridColumn2.Name = "GridColumn2"
+        Me.GridColumn2.Visible = True
+        Me.GridColumn2.VisibleIndex = 1
+        '
+        'GridColumn3
+        '
+        Me.GridColumn3.Caption = "GridColumn3"
+        Me.GridColumn3.FieldName = "companyofficialname"
+        Me.GridColumn3.Name = "GridColumn3"
+        Me.GridColumn3.Visible = True
+        Me.GridColumn3.VisibleIndex = 2
+        '
+        'GridColumn4
+        '
+        Me.GridColumn4.Caption = "GridColumn4"
+        Me.GridColumn4.FieldName = "tokenkey1"
+        Me.GridColumn4.Name = "GridColumn4"
+        Me.GridColumn4.Visible = True
+        Me.GridColumn4.VisibleIndex = 3
+        '
+        'GridColumn5
+        '
+        Me.GridColumn5.Caption = "GridColumn5"
+        Me.GridColumn5.FieldName = "tokenkey2"
+        Me.GridColumn5.Name = "GridColumn5"
+        Me.GridColumn5.Visible = True
+        Me.GridColumn5.VisibleIndex = 4
+        '
         'rimeNote
         '
         Me.rimeNote.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
@@ -115,46 +155,6 @@ Partial Class Form2
         Me.btnRefresh.Text = "REFRESH"
         Me.btnRefresh.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
         Me.btnRefresh.UseVisualStyleBackColor = False
-        '
-        'GridColumn1
-        '
-        Me.GridColumn1.Caption = "GridColumn1"
-        Me.GridColumn1.FieldName = "iduser"
-        Me.GridColumn1.Name = "GridColumn1"
-        Me.GridColumn1.Visible = True
-        Me.GridColumn1.VisibleIndex = 0
-        '
-        'GridColumn2
-        '
-        Me.GridColumn2.Caption = "GridColumn2"
-        Me.GridColumn2.FieldName = "username"
-        Me.GridColumn2.Name = "GridColumn2"
-        Me.GridColumn2.Visible = True
-        Me.GridColumn2.VisibleIndex = 1
-        '
-        'GridColumn3
-        '
-        Me.GridColumn3.Caption = "GridColumn3"
-        Me.GridColumn3.FieldName = "idtoken"
-        Me.GridColumn3.Name = "GridColumn3"
-        Me.GridColumn3.Visible = True
-        Me.GridColumn3.VisibleIndex = 2
-        '
-        'GridColumn4
-        '
-        Me.GridColumn4.Caption = "GridColumn4"
-        Me.GridColumn4.FieldName = "tokenkey1"
-        Me.GridColumn4.Name = "GridColumn4"
-        Me.GridColumn4.Visible = True
-        Me.GridColumn4.VisibleIndex = 3
-        '
-        'GridColumn5
-        '
-        Me.GridColumn5.Caption = "GridColumn5"
-        Me.GridColumn5.FieldName = "tokenkey2"
-        Me.GridColumn5.Name = "GridColumn5"
-        Me.GridColumn5.Visible = True
-        Me.GridColumn5.VisibleIndex = 4
         '
         'Form2
         '

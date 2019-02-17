@@ -17,7 +17,7 @@
     Public tmpidproduct As String = "-1"
     Public tmpproductname As String = ""
     Public tmpproductcode As String = ""
-    Public tmpidproducttype As String = "-1"
+    Public tmpidproducttype As New List(Of String)
 
     Public tmpidhardware As String = ""
     Public tmphardwareid As String = ""

@@ -31,15 +31,6 @@ Partial Class frmChangeHardware
         Me.tePerusahaanPIN = New DevExpress.XtraEditors.TextEdit()
         Me.Label5 = New System.Windows.Forms.Label()
         Me.btnExistCompany = New System.Windows.Forms.Button()
-        Me.btnExistProduk = New System.Windows.Forms.Button()
-        Me.teProductPIN = New DevExpress.XtraEditors.TextEdit()
-        Me.teJenisProduk = New DevExpress.XtraEditors.TextEdit()
-        Me.Label3 = New System.Windows.Forms.Label()
-        Me.Label6 = New System.Windows.Forms.Label()
-        Me.teNamaProduk = New DevExpress.XtraEditors.TextEdit()
-        Me.Label2 = New System.Windows.Forms.Label()
-        Me.teNamaResmiProduk = New DevExpress.XtraEditors.TextEdit()
-        Me.Label1 = New System.Windows.Forms.Label()
         Me.teKodeHardware = New DevExpress.XtraEditors.TextEdit()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.pHeader = New System.Windows.Forms.Panel()
@@ -61,10 +52,6 @@ Partial Class frmChangeHardware
         Me.tlpPengguna.SuspendLayout()
         CType(Me.teNamaPerusahaan.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.tePerusahaanPIN.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.teProductPIN.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.teJenisProduk.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.teNamaProduk.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.teNamaResmiProduk.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.teKodeHardware.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.pHeader.SuspendLayout()
         CType(Me.pbSync, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -92,12 +79,12 @@ Partial Class frmChangeHardware
         Me.tlpForm.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30.0!))
         Me.tlpForm.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
         Me.tlpForm.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 2.0!))
-        Me.tlpForm.Size = New System.Drawing.Size(460, 310)
+        Me.tlpForm.Size = New System.Drawing.Size(460, 190)
         Me.tlpForm.TabIndex = 1
         '
         'pBody
         '
-        Me.pBody.BackColor = System.Drawing.color.fromargb(240, 240, 240)
+        Me.pBody.BackColor = System.Drawing.Color.FromArgb(CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer))
         Me.pBody.Controls.Add(Me.tlpEntry)
         Me.pBody.Controls.Add(Me.pHeader)
         Me.pBody.Controls.Add(Me.panelLogin)
@@ -105,12 +92,12 @@ Partial Class frmChangeHardware
         Me.pBody.Location = New System.Drawing.Point(2, 30)
         Me.pBody.Margin = New System.Windows.Forms.Padding(0)
         Me.pBody.Name = "pBody"
-        Me.pBody.Size = New System.Drawing.Size(456, 278)
+        Me.pBody.Size = New System.Drawing.Size(456, 158)
         Me.pBody.TabIndex = 7
         '
         'tlpEntry
         '
-        Me.tlpEntry.BackColor = System.Drawing.color.fromargb(240, 240, 240)
+        Me.tlpEntry.BackColor = System.Drawing.Color.FromArgb(CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer))
         Me.tlpEntry.ColumnCount = 3
         Me.tlpEntry.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 4.0!))
         Me.tlpEntry.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
@@ -124,7 +111,7 @@ Partial Class frmChangeHardware
         Me.tlpEntry.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 4.0!))
         Me.tlpEntry.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
         Me.tlpEntry.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 4.0!))
-        Me.tlpEntry.Size = New System.Drawing.Size(456, 248)
+        Me.tlpEntry.Size = New System.Drawing.Size(456, 128)
         Me.tlpEntry.TabIndex = 112
         '
         'tlpPengguna
@@ -136,47 +123,33 @@ Partial Class frmChangeHardware
         Me.tlpPengguna.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 160.0!))
         Me.tlpPengguna.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 220.0!))
         Me.tlpPengguna.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
-        Me.tlpPengguna.Controls.Add(Me.teNamaPerusahaan, 2, 9)
-        Me.tlpPengguna.Controls.Add(Me.Label9, 1, 9)
-        Me.tlpPengguna.Controls.Add(Me.tePerusahaanPIN, 2, 7)
-        Me.tlpPengguna.Controls.Add(Me.Label5, 1, 7)
-        Me.tlpPengguna.Controls.Add(Me.btnExistCompany, 2, 8)
-        Me.tlpPengguna.Controls.Add(Me.btnExistProduk, 2, 2)
-        Me.tlpPengguna.Controls.Add(Me.teProductPIN, 2, 1)
-        Me.tlpPengguna.Controls.Add(Me.teJenisProduk, 2, 5)
-        Me.tlpPengguna.Controls.Add(Me.Label3, 1, 1)
-        Me.tlpPengguna.Controls.Add(Me.Label6, 1, 5)
-        Me.tlpPengguna.Controls.Add(Me.teNamaProduk, 2, 4)
-        Me.tlpPengguna.Controls.Add(Me.Label2, 1, 4)
-        Me.tlpPengguna.Controls.Add(Me.teNamaResmiProduk, 2, 3)
-        Me.tlpPengguna.Controls.Add(Me.Label1, 1, 3)
-        Me.tlpPengguna.Controls.Add(Me.teKodeHardware, 2, 11)
-        Me.tlpPengguna.Controls.Add(Me.Label4, 1, 11)
+        Me.tlpPengguna.Controls.Add(Me.teNamaPerusahaan, 2, 3)
+        Me.tlpPengguna.Controls.Add(Me.Label9, 1, 3)
+        Me.tlpPengguna.Controls.Add(Me.tePerusahaanPIN, 2, 1)
+        Me.tlpPengguna.Controls.Add(Me.Label5, 1, 1)
+        Me.tlpPengguna.Controls.Add(Me.btnExistCompany, 2, 2)
+        Me.tlpPengguna.Controls.Add(Me.teKodeHardware, 2, 5)
+        Me.tlpPengguna.Controls.Add(Me.Label4, 1, 5)
         Me.tlpPengguna.Dock = System.Windows.Forms.DockStyle.Fill
         Me.tlpPengguna.Location = New System.Drawing.Point(4, 4)
         Me.tlpPengguna.Margin = New System.Windows.Forms.Padding(0)
         Me.tlpPengguna.Name = "tlpPengguna"
-        Me.tlpPengguna.RowCount = 13
+        Me.tlpPengguna.RowCount = 7
         Me.tlpPengguna.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
-        Me.tlpPengguna.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 24.0!))
-        Me.tlpPengguna.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 24.0!))
-        Me.tlpPengguna.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 24.0!))
-        Me.tlpPengguna.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 24.0!))
-        Me.tlpPengguna.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 24.0!))
-        Me.tlpPengguna.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 6.0!))
         Me.tlpPengguna.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 24.0!))
         Me.tlpPengguna.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 24.0!))
         Me.tlpPengguna.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 24.0!))
         Me.tlpPengguna.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 6.0!))
         Me.tlpPengguna.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 24.0!))
         Me.tlpPengguna.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
-        Me.tlpPengguna.Size = New System.Drawing.Size(448, 240)
+        Me.tlpPengguna.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
+        Me.tlpPengguna.Size = New System.Drawing.Size(448, 120)
         Me.tlpPengguna.TabIndex = 114
         '
         'teNamaPerusahaan
         '
         Me.teNamaPerusahaan.Anchor = System.Windows.Forms.AnchorStyles.Left
-        Me.teNamaPerusahaan.Location = New System.Drawing.Point(194, 182)
+        Me.teNamaPerusahaan.Location = New System.Drawing.Point(194, 59)
         Me.teNamaPerusahaan.Margin = New System.Windows.Forms.Padding(0)
         Me.teNamaPerusahaan.Name = "teNamaPerusahaan"
         Me.teNamaPerusahaan.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[True]
@@ -201,7 +174,7 @@ Partial Class frmChangeHardware
         Me.Label9.Anchor = System.Windows.Forms.AnchorStyles.Right
         Me.Label9.AutoSize = True
         Me.Label9.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label9.Location = New System.Drawing.Point(88, 185)
+        Me.Label9.Location = New System.Drawing.Point(88, 62)
         Me.Label9.Name = "Label9"
         Me.Label9.Size = New System.Drawing.Size(103, 14)
         Me.Label9.TabIndex = 29
@@ -211,7 +184,7 @@ Partial Class frmChangeHardware
         'tePerusahaanPIN
         '
         Me.tePerusahaanPIN.Anchor = System.Windows.Forms.AnchorStyles.Left
-        Me.tePerusahaanPIN.Location = New System.Drawing.Point(194, 134)
+        Me.tePerusahaanPIN.Location = New System.Drawing.Point(194, 11)
         Me.tePerusahaanPIN.Margin = New System.Windows.Forms.Padding(0)
         Me.tePerusahaanPIN.Name = "tePerusahaanPIN"
         Me.tePerusahaanPIN.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[True]
@@ -241,7 +214,7 @@ Partial Class frmChangeHardware
         Me.Label5.Anchor = System.Windows.Forms.AnchorStyles.Right
         Me.Label5.AutoSize = True
         Me.Label5.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label5.Location = New System.Drawing.Point(90, 137)
+        Me.Label5.Location = New System.Drawing.Point(90, 14)
         Me.Label5.Name = "Label5"
         Me.Label5.Size = New System.Drawing.Size(101, 14)
         Me.Label5.TabIndex = 29
@@ -257,7 +230,7 @@ Partial Class frmChangeHardware
         Me.btnExistCompany.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnExistCompany.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnExistCompany.ForeColor = System.Drawing.Color.Black
-        Me.btnExistCompany.Location = New System.Drawing.Point(194, 156)
+        Me.btnExistCompany.Location = New System.Drawing.Point(194, 33)
         Me.btnExistCompany.Margin = New System.Windows.Forms.Padding(0)
         Me.btnExistCompany.Name = "btnExistCompany"
         Me.btnExistCompany.Size = New System.Drawing.Size(100, 24)
@@ -266,172 +239,10 @@ Partial Class frmChangeHardware
         Me.btnExistCompany.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
         Me.btnExistCompany.UseVisualStyleBackColor = False
         '
-        'btnExistProduk
-        '
-        Me.btnExistProduk.BackColor = System.Drawing.Color.FromArgb(CType(CType(156, Byte), Integer), CType(CType(207, Byte), Integer), CType(CType(49, Byte), Integer))
-        Me.btnExistProduk.FlatAppearance.BorderColor = System.Drawing.Color.Black
-        Me.btnExistProduk.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DimGray
-        Me.btnExistProduk.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DarkGray
-        Me.btnExistProduk.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btnExistProduk.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnExistProduk.ForeColor = System.Drawing.Color.Black
-        Me.btnExistProduk.Location = New System.Drawing.Point(194, 30)
-        Me.btnExistProduk.Margin = New System.Windows.Forms.Padding(0)
-        Me.btnExistProduk.Name = "btnExistProduk"
-        Me.btnExistProduk.Size = New System.Drawing.Size(100, 24)
-        Me.btnExistProduk.TabIndex = 29
-        Me.btnExistProduk.Text = "CEK KODE"
-        Me.btnExistProduk.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
-        Me.btnExistProduk.UseVisualStyleBackColor = False
-        '
-        'teProductPIN
-        '
-        Me.teProductPIN.Anchor = System.Windows.Forms.AnchorStyles.Left
-        Me.teProductPIN.Location = New System.Drawing.Point(194, 8)
-        Me.teProductPIN.Margin = New System.Windows.Forms.Padding(0)
-        Me.teProductPIN.Name = "teProductPIN"
-        Me.teProductPIN.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[True]
-        Me.teProductPIN.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.teProductPIN.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 9.0!)
-        Me.teProductPIN.Properties.Appearance.Options.UseBackColor = True
-        Me.teProductPIN.Properties.Appearance.Options.UseFont = True
-        Me.teProductPIN.Properties.AppearanceDisabled.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.teProductPIN.Properties.AppearanceDisabled.Font = New System.Drawing.Font("Tahoma", 9.0!)
-        Me.teProductPIN.Properties.AppearanceDisabled.Options.UseBackColor = True
-        Me.teProductPIN.Properties.AppearanceDisabled.Options.UseFont = True
-        Me.teProductPIN.Properties.AppearanceReadOnly.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.teProductPIN.Properties.AppearanceReadOnly.Font = New System.Drawing.Font("Tahoma", 9.0!)
-        Me.teProductPIN.Properties.AppearanceReadOnly.Options.UseBackColor = True
-        Me.teProductPIN.Properties.AppearanceReadOnly.Options.UseFont = True
-        Me.teProductPIN.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple
-        Me.teProductPIN.Properties.MaxLength = 500
-        Me.teProductPIN.Properties.NullText = "[Kosong]"
-        Me.teProductPIN.Properties.NullValuePrompt = "[Belum Diisi]"
-        Me.teProductPIN.Properties.Tag = "namalengkap"
-        Me.teProductPIN.Size = New System.Drawing.Size(218, 20)
-        Me.teProductPIN.TabIndex = 3
-        Me.teProductPIN.Tag = ""
-        '
-        'teJenisProduk
-        '
-        Me.teJenisProduk.Anchor = System.Windows.Forms.AnchorStyles.Left
-        Me.teJenisProduk.Location = New System.Drawing.Point(194, 104)
-        Me.teJenisProduk.Margin = New System.Windows.Forms.Padding(0)
-        Me.teJenisProduk.Name = "teJenisProduk"
-        Me.teJenisProduk.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[True]
-        Me.teJenisProduk.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.teJenisProduk.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 9.0!)
-        Me.teJenisProduk.Properties.Appearance.ForeColor = System.Drawing.Color.Black
-        Me.teJenisProduk.Properties.Appearance.Options.UseBackColor = True
-        Me.teJenisProduk.Properties.Appearance.Options.UseFont = True
-        Me.teJenisProduk.Properties.Appearance.Options.UseForeColor = True
-        Me.teJenisProduk.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple
-        Me.teJenisProduk.Properties.MaxLength = 300
-        Me.teJenisProduk.Properties.NullText = "[Kosong]"
-        Me.teJenisProduk.Properties.NullValuePrompt = "[Belum Diisi]"
-        Me.teJenisProduk.Properties.ReadOnly = True
-        Me.teJenisProduk.Properties.Tag = "namalengkap"
-        Me.teJenisProduk.Size = New System.Drawing.Size(218, 20)
-        Me.teJenisProduk.TabIndex = 30
-        Me.teJenisProduk.Tag = ""
-        '
-        'Label3
-        '
-        Me.Label3.Anchor = System.Windows.Forms.AnchorStyles.Right
-        Me.Label3.AutoSize = True
-        Me.Label3.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label3.Location = New System.Drawing.Point(114, 11)
-        Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(77, 14)
-        Me.Label3.TabIndex = 6
-        Me.Label3.Text = "Kode Produk"
-        Me.Label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        '
-        'Label6
-        '
-        Me.Label6.Anchor = System.Windows.Forms.AnchorStyles.Right
-        Me.Label6.AutoSize = True
-        Me.Label6.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label6.Location = New System.Drawing.Point(116, 107)
-        Me.Label6.Name = "Label6"
-        Me.Label6.Size = New System.Drawing.Size(75, 14)
-        Me.Label6.TabIndex = 30
-        Me.Label6.Text = "Jenis Produk"
-        Me.Label6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        '
-        'teNamaProduk
-        '
-        Me.teNamaProduk.Anchor = System.Windows.Forms.AnchorStyles.Left
-        Me.teNamaProduk.Location = New System.Drawing.Point(194, 80)
-        Me.teNamaProduk.Margin = New System.Windows.Forms.Padding(0)
-        Me.teNamaProduk.Name = "teNamaProduk"
-        Me.teNamaProduk.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[True]
-        Me.teNamaProduk.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.teNamaProduk.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 9.0!)
-        Me.teNamaProduk.Properties.Appearance.ForeColor = System.Drawing.Color.Black
-        Me.teNamaProduk.Properties.Appearance.Options.UseBackColor = True
-        Me.teNamaProduk.Properties.Appearance.Options.UseFont = True
-        Me.teNamaProduk.Properties.Appearance.Options.UseForeColor = True
-        Me.teNamaProduk.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple
-        Me.teNamaProduk.Properties.MaxLength = 300
-        Me.teNamaProduk.Properties.NullText = "[Kosong]"
-        Me.teNamaProduk.Properties.NullValuePrompt = "[Belum Diisi]"
-        Me.teNamaProduk.Properties.ReadOnly = True
-        Me.teNamaProduk.Properties.Tag = "namalengkap"
-        Me.teNamaProduk.Size = New System.Drawing.Size(218, 20)
-        Me.teNamaProduk.TabIndex = 6
-        Me.teNamaProduk.Tag = ""
-        '
-        'Label2
-        '
-        Me.Label2.Anchor = System.Windows.Forms.AnchorStyles.Right
-        Me.Label2.AutoSize = True
-        Me.Label2.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label2.Location = New System.Drawing.Point(112, 83)
-        Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(79, 14)
-        Me.Label2.TabIndex = 18
-        Me.Label2.Text = "Nama Produk"
-        Me.Label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        '
-        'teNamaResmiProduk
-        '
-        Me.teNamaResmiProduk.Anchor = System.Windows.Forms.AnchorStyles.Left
-        Me.teNamaResmiProduk.Location = New System.Drawing.Point(194, 56)
-        Me.teNamaResmiProduk.Margin = New System.Windows.Forms.Padding(0)
-        Me.teNamaResmiProduk.Name = "teNamaResmiProduk"
-        Me.teNamaResmiProduk.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[True]
-        Me.teNamaResmiProduk.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.teNamaResmiProduk.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 9.0!)
-        Me.teNamaResmiProduk.Properties.Appearance.ForeColor = System.Drawing.Color.Black
-        Me.teNamaResmiProduk.Properties.Appearance.Options.UseBackColor = True
-        Me.teNamaResmiProduk.Properties.Appearance.Options.UseFont = True
-        Me.teNamaResmiProduk.Properties.Appearance.Options.UseForeColor = True
-        Me.teNamaResmiProduk.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple
-        Me.teNamaResmiProduk.Properties.MaxLength = 500
-        Me.teNamaResmiProduk.Properties.NullText = "[Kosong]"
-        Me.teNamaResmiProduk.Properties.NullValuePrompt = "[Belum Diisi]"
-        Me.teNamaResmiProduk.Properties.ReadOnly = True
-        Me.teNamaResmiProduk.Properties.Tag = "namalengkap"
-        Me.teNamaResmiProduk.Size = New System.Drawing.Size(218, 20)
-        Me.teNamaResmiProduk.TabIndex = 5
-        '
-        'Label1
-        '
-        Me.Label1.Anchor = System.Windows.Forms.AnchorStyles.Right
-        Me.Label1.AutoSize = True
-        Me.Label1.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label1.Location = New System.Drawing.Point(77, 59)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(114, 14)
-        Me.Label1.TabIndex = 18
-        Me.Label1.Text = "Nama Resmi Produk"
-        Me.Label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        '
         'teKodeHardware
         '
         Me.teKodeHardware.Anchor = System.Windows.Forms.AnchorStyles.Left
-        Me.teKodeHardware.Location = New System.Drawing.Point(194, 212)
+        Me.teKodeHardware.Location = New System.Drawing.Point(194, 89)
         Me.teKodeHardware.Margin = New System.Windows.Forms.Padding(0)
         Me.teKodeHardware.Name = "teKodeHardware"
         Me.teKodeHardware.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[True]
@@ -456,7 +267,7 @@ Partial Class frmChangeHardware
         Me.Label4.Anchor = System.Windows.Forms.AnchorStyles.Right
         Me.Label4.AutoSize = True
         Me.Label4.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label4.Location = New System.Drawing.Point(100, 215)
+        Me.Label4.Location = New System.Drawing.Point(100, 92)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(91, 14)
         Me.Label4.TabIndex = 20
@@ -506,7 +317,7 @@ Partial Class frmChangeHardware
         '
         'panelLogin
         '
-        Me.panelLogin.BackColor = System.Drawing.color.fromargb(240, 240, 240)
+        Me.panelLogin.BackColor = System.Drawing.Color.FromArgb(CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer))
         Me.panelLogin.Controls.Add(Me.btnUserCheck)
         Me.panelLogin.Controls.Add(Me.texPassword)
         Me.panelLogin.Controls.Add(Me.texUsername)
@@ -655,8 +466,8 @@ Partial Class frmChangeHardware
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.BackColor = System.Drawing.color.fromargb(240, 240, 240)
-        Me.ClientSize = New System.Drawing.Size(460, 310)
+        Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer))
+        Me.ClientSize = New System.Drawing.Size(460, 190)
         Me.ControlBox = False
         Me.Controls.Add(Me.tlpForm)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
@@ -673,10 +484,6 @@ Partial Class frmChangeHardware
         Me.tlpPengguna.PerformLayout()
         CType(Me.teNamaPerusahaan.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.tePerusahaanPIN.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.teProductPIN.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.teJenisProduk.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.teNamaProduk.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.teNamaResmiProduk.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.teKodeHardware.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.pHeader.ResumeLayout(False)
         CType(Me.pbSync, System.ComponentModel.ISupportInitialize).EndInit()
@@ -694,12 +501,8 @@ Partial Class frmChangeHardware
     Friend WithEvents pBody As System.Windows.Forms.Panel
     Friend WithEvents pHeader As System.Windows.Forms.Panel
     Public WithEvents btnSave As System.Windows.Forms.Button
-    Friend WithEvents teNamaResmiProduk As DevExpress.XtraEditors.TextEdit
     Friend WithEvents tlpPengguna As System.Windows.Forms.TableLayoutPanel
     Friend WithEvents tlpEntry As System.Windows.Forms.TableLayoutPanel
-    Friend WithEvents Label2 As System.Windows.Forms.Label
-    Friend WithEvents Label1 As System.Windows.Forms.Label
-    Friend WithEvents teNamaProduk As DevExpress.XtraEditors.TextEdit
     Friend WithEvents pTitle As System.Windows.Forms.Panel
     Friend WithEvents pExit As System.Windows.Forms.PictureBox
     Friend WithEvents Label4 As System.Windows.Forms.Label
@@ -712,14 +515,9 @@ Partial Class frmChangeHardware
     Friend WithEvents Label7 As System.Windows.Forms.Label
     Friend WithEvents Label8 As System.Windows.Forms.Label
     Friend WithEvents teKodeHardware As DevExpress.XtraEditors.TextEdit
-    Friend WithEvents teJenisProduk As DevExpress.XtraEditors.TextEdit
-    Friend WithEvents Label6 As System.Windows.Forms.Label
-    Friend WithEvents teProductPIN As DevExpress.XtraEditors.TextEdit
-    Friend WithEvents Label3 As System.Windows.Forms.Label
     Friend WithEvents Label9 As System.Windows.Forms.Label
     Friend WithEvents tePerusahaanPIN As DevExpress.XtraEditors.TextEdit
     Friend WithEvents Label5 As System.Windows.Forms.Label
     Public WithEvents btnExistCompany As System.Windows.Forms.Button
-    Public WithEvents btnExistProduk As System.Windows.Forms.Button
     Friend WithEvents teNamaPerusahaan As DevExpress.XtraEditors.TextEdit
 End Class

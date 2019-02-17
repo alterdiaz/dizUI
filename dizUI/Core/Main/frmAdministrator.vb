@@ -101,18 +101,24 @@
     Private Sub sync()
         If isServer = True Then
             Dim lite As New SQLi(dblite)
-            lite.DMLQuery("select databasename || '|' || ipserver || '|' || port || '|' || username || '|' || password as dbstring from dbconn where dbtype='SQLS' and dblocation='DOMAIN'", "getdbstring")
+            lite.DMLQuery("select siteurl from siteconn where active=1 order by idsiteconn desc", "getdbstring")
             If lite.getDataSet("getdbstring") > 0 Then
-                mystring = lite.getDataSet("getdbstring", 0, "dbstring")
-
-                lite.DMLQuery("select databasename,ipserver,port,username,password from dbconn where dbtype='SQLS' and dblocation='DOMAIN'", "getdbseparate")
-
-                mydb = lite.getDataSet("getdbseparate", 0, "databasename")
-                mysvr = lite.getDataSet("getdbseparate", 0, "ipserver")
-                myport = lite.getDataSet("getdbseparate", 0, "port")
-                myusr = lite.getDataSet("getdbseparate", 0, "username")
-                mypass = lite.getDataSet("getdbseparate", 0, "password")
+                'mystring = lite.getDataSet("getdbstring", 0, "dbstring")
+                mysite = lite.getDataSet("getdbstring", 0, "siteurl")
+                mysite = CheckAndRepairValidURL(mysite)
             End If
+            'lite.DMLQuery("select databasename || '|' || ipserver || '|' || port || '|' || username || '|' || password as dbstring from dbconn where dbtype='SQLS' and dblocation='DOMAIN'", "getdbstring")
+            'If lite.getDataSet("getdbstring") > 0 Then
+            '    mystring = lite.getDataSet("getdbstring", 0, "dbstring")
+
+            '    lite.DMLQuery("select databasename,ipserver,port,username,password from dbconn where dbtype='SQLS' and dblocation='DOMAIN'", "getdbseparate")
+
+            '    mydb = lite.getDataSet("getdbseparate", 0, "databasename")
+            '    mysvr = lite.getDataSet("getdbseparate", 0, "ipserver")
+            '    myport = lite.getDataSet("getdbseparate", 0, "port")
+            '    myusr = lite.getDataSet("getdbseparate", 0, "username")
+            '    mypass = lite.getDataSet("getdbseparate", 0, "password")
+            'End If
 
             'Dim mys As New MYs(mystring)
             ''If mys.checkConnection() = True Then
@@ -129,18 +135,24 @@
     Private Sub syncUser(ByVal hostname As String)
         isSync = True
         Dim lite As New SQLi(dblite)
-        lite.DMLQuery("select databasename || '|' || ipserver || '|' || port || '|' || username || '|' || password as dbstring from dbconn where dbtype='SQLS' and dblocation='DOMAIN'", "getdbstring")
+        lite.DMLQuery("select siteurl from siteconn where active=1 order by idsiteconn desc", "getdbstring")
         If lite.getDataSet("getdbstring") > 0 Then
-            mystring = lite.getDataSet("getdbstring", 0, "dbstring")
-
-            lite.DMLQuery("select databasename,ipserver,port,username,password from dbconn where dbtype='SQLS' and dblocation='DOMAIN'", "getdbseparate")
-
-            mydb = lite.getDataSet("getdbseparate", 0, "databasename")
-            mysvr = lite.getDataSet("getdbseparate", 0, "ipserver")
-            myport = lite.getDataSet("getdbseparate", 0, "port")
-            myusr = lite.getDataSet("getdbseparate", 0, "username")
-            mypass = lite.getDataSet("getdbseparate", 0, "password")
+            'mystring = lite.getDataSet("getdbstring", 0, "dbstring")
+            mysite = lite.getDataSet("getdbstring", 0, "siteurl")
+            mysite = CheckAndRepairValidURL(mysite)
         End If
+        'lite.DMLQuery("select databasename || '|' || ipserver || '|' || port || '|' || username || '|' || password as dbstring from dbconn where dbtype='SQLS' and dblocation='DOMAIN'", "getdbstring")
+        'If lite.getDataSet("getdbstring") > 0 Then
+        '    mystring = lite.getDataSet("getdbstring", 0, "dbstring")
+
+        '    lite.DMLQuery("select databasename,ipserver,port,username,password from dbconn where dbtype='SQLS' and dblocation='DOMAIN'", "getdbseparate")
+
+        '    mydb = lite.getDataSet("getdbseparate", 0, "databasename")
+        '    mysvr = lite.getDataSet("getdbseparate", 0, "ipserver")
+        '    myport = lite.getDataSet("getdbseparate", 0, "port")
+        '    myusr = lite.getDataSet("getdbseparate", 0, "username")
+        '    mypass = lite.getDataSet("getdbseparate", 0, "password")
+        'End If
 
         'Dim mys As New SQLs(mystring)
         'Dim myset As New dtsetSQLS(mystring)
@@ -148,8 +160,8 @@
         Dim sqlset As New dtsetSQLS(dbstring)
 
         Dim mysuccess As Boolean = False
-        Dim localcnt As Integer = 0
-        Dim servercnt As Integer = 0
+        Dim localcnt As Long = 0
+        Dim servercnt As Long = 0
         Dim idguest As String = 0
         sqls.DMLQuery("select iduserlevel from sys_userlevel where userlevel='Guest'", "getIDguest")
         If sqls.getDataSet("getIDguest") > 0 Then
@@ -161,191 +173,246 @@
             idinactive = sqls.getDataSet("getIDinactive", 0, "idgeneral")
         End If
         Dim idtoken As String = 0
-        sqls.DMLQuery("select su.iduser,su.username,su.password,su.hint,su.recoveryquestion,su.recoveryanswer,su.namalengkap,su.personalno,su.cardtype,su.email,su.handphone,su.idtoken,st.idtokenonline,su.tokenkey1,su.tokenkey2 from sys_user su left join sys_token st on su.idtoken=st.idtoken order by su.username asc", "cnt")
+        sqls.DMLQuery("select su.iduser,su.username,su.password,su.hint,su.recoveryquestion,su.recoveryanswer,su.namalengkap,su.personalno,su.cardtype,su.email,su.handphone,su.idtoken,su.tokenkey1,su.tokenkey2 from sys_user su left join sys_token st on su.idtoken=st.idtoken order by su.username asc", "cnt")
 
         'hosting offline 
         'mysuccess = MYs.DMLQuery("select su.iduser,su.username,su.password,su.hint,su.recoveryquestion,su.recoveryanswer,su.namalengkap,su.personalno,su.cardtype,su.email,su.handphone,st.idtoken,su.tokenkey1,su.tokenkey2 from " & mydb & "." & myusr & ".[user] su left join " & mydb & "." & myusr & ".token st on su.idtoken=st.idtoken", "cnt")
+        Dim json_result As String = ""
+        Dim table As DataTable = Nothing
+        Dim mparam As New List(Of String)
+        Dim mvalue As New List(Of String)
+        mparam.Clear()
+        mvalue.Clear()
+        json_result = ""
+        mparam.AddRange(New String() {"param", "value", "tkey1", "tkey2"})
+        mvalue.AddRange(New String() {"cekusertoken", "", tmptokenkey1, tmptokenkey2})
+        json_result = modCore.HttpPOSTRequestSelect(mysite & "user", mparam, mvalue)
+        table = Newtonsoft.Json.JsonConvert.DeserializeObject(Of DataTable)(json_result)
 
-        'If mysuccess = True Then
-        '    localcnt = sqls.getDataSet("cnt")
-        '    servercnt = mys.getDataSet("cnt")
-        '    'If localcnt < servercnt Then
-        '    'Download from server
-        '    'lblLoad.Text = "DOWNLOAD (0/" & mys.getDataSet("cnt") & ")"
+        If table.Rows.Count > 0 Then 'mysuccess = True Then
+            localcnt = sqls.getDataSet("cnt")
+            servercnt = table.Rows.Count 'MYs.getDataSet("cnt")
+            'If localcnt < servercnt Then
+            'Download from server
+            'lblLoad.Text = "DOWNLOAD (0/" & mys.getDataSet("cnt") & ")"
 
-        '    For i As Integer = 0 To mys.getDataSet("cnt") - 1
-        '        Dim striduser As String = mys.getDataSet("cnt", i, "iduser")
-        '        Dim strusername As String = mys.getDataSet("cnt", i, "username")
-        '        Dim stridtoken As String = mys.getDataSet("cnt", i, "idtoken")
-        '        Dim strtokenkey1 As String = mys.getDataSet("cnt", i, "tokenkey1")
-        '        Dim strtokenkey2 As String = mys.getDataSet("cnt", i, "tokenkey2")
-        '        Dim strpassword As String = mys.getDataSet("cnt", i, "password")
-        '        Dim strnamalengkap As String = mys.getDataSet("cnt", i, "namalengkap")
-        '        Dim strpersonalno As String = mys.getDataSet("cnt", i, "personalno")
-        '        Dim strcardtype As String = mys.getDataSet("cnt", i, "cardtype")
-        '        Dim stremail As String = mys.getDataSet("cnt", i, "email")
-        '        Dim strhandphone As String = mys.getDataSet("cnt", i, "handphone")
-        '        Dim strhint As String = mys.getDataSet("cnt", i, "hint")
-        '        Dim strrecoveryquestion As String = mys.getDataSet("cnt", i, "recoveryquestion")
-        '        Dim strrecoveryanswer As String = mys.getDataSet("cnt", i, "recoveryanswer")
+            For i As Integer = 0 To table.Rows.Count - 1 'MYs.getDataSet("cnt") - 1
+                Dim striduser As String = table.Rows(i).Item("iduser") 'MYs.getDataSet("cnt", i, "iduser")
+                Dim strusername As String = table.Rows(i).Item("username") 'MYs.getDataSet("cnt", i, "username")
+                Dim stridtoken As String = table.Rows(i).Item("idtoken") 'MYs.getDataSet("cnt", i, "idtoken")
+                Dim strtokenkey1 As String = table.Rows(i).Item("tokenkey1") 'MYs.getDataSet("cnt", i, "tokenkey1")
+                Dim strtokenkey2 As String = table.Rows(i).Item("tokenkey2") 'MYs.getDataSet("cnt", i, "tokenkey2")
+                Dim strpassword As String = table.Rows(i).Item("namalengkap") 'MYs.getDataSet("cnt", i, "password")
+                Dim strnamalengkap As String = table.Rows(i).Item("") 'MYs.getDataSet("cnt", i, "namalengkap")
+                Dim strpersonalno As String = table.Rows(i).Item("persionalno") 'MYs.getDataSet("cnt", i, "personalno")
+                Dim strcardtype As String = table.Rows(i).Item("cardtype") 'MYs.getDataSet("cnt", i, "cardtype")
+                Dim stremail As String = table.Rows(i).Item("email") 'MYs.getDataSet("cnt", i, "email")
+                Dim strhandphone As String = table.Rows(i).Item("handphone") 'MYs.getDataSet("cnt", i, "handphone")
+                Dim strhint As String = table.Rows(i).Item("hint") 'MYs.getDataSet("cnt", i, "hint")
+                Dim strrecoveryquestion As String = table.Rows(i).Item("recoveryquestion") 'MYs.getDataSet("cnt", i, "recoveryquestion")
+                Dim strrecoveryanswer As String = table.Rows(i).Item("recoveryanswer") 'MYs.getDataSet("cnt", i, "recoveryanswer")
 
-        '        sqls = New SQLs(dbstring)
-        '        sqls.DMLQuery("select iduser from sys_user where username='" & strusername & "'", "cekusername")
+                sqls = New SQLs(dbstring)
+                sqls.DMLQuery("select iduser from sys_user where username='" & strusername & "'", "cekusername")
 
-        '        Dim field As New List(Of String)
-        '        Dim value As New List(Of Object)
-        '        If sqls.getDataSet("cekusername") > 0 Then
-        '            idData = sqls.getDataSet("cekusername", 0, "iduser")
-        '        Else
-        '            idData = "-1"
-        '        End If
-        '        If idData = "-1" Then
-        '            field.AddRange(New String() {"iduser", "iduserlevel", "userstatus", "username", "idtoken", "tokenkey1", "tokenkey2", "password", "namalengkap", "personalno", "cardtype", "email", "handphone", "hint", "recoveryquestion", "recoveryanswer", "bannedreason", "waktucek", "isdeleted", "isuseronline"})
-        '        Else
-        '            field.AddRange(New String() {"iduser",  "username", "namalengkap", "personalno", "cardtype", "email", "handphone", "hint", "recoveryquestion", "recoveryanswer", "bannedreason", "waktucek", "isdeleted"})
-        '        End If
+                Dim field As New List(Of String)
+                Dim value As New List(Of Object)
+                If sqls.getDataSet("cekusername") > 0 Then
+                    idData = sqls.getDataSet("cekusername", 0, "iduser")
+                Else
+                    idData = "-1"
+                End If
+                If idData = "-1" Then
+                    field.AddRange(New String() {"iduser", "iduserlevel", "userstatus", "username", "idtoken", "tokenkey1", "tokenkey2", "password", "namalengkap", "personalno", "cardtype", "email", "handphone", "hint", "recoveryquestion", "recoveryanswer", "bannedreason", "waktucek", "isdeleted", "isuseronline"})
+                Else
+                    field.AddRange(New String() {"iduser", "username", "namalengkap", "personalno", "cardtype", "email", "handphone", "hint", "recoveryquestion", "recoveryanswer", "bannedreason", "waktucek", "isdeleted"})
+                End If
 
-        '        sqlset = New dtsetSQLS(dbstring)
-        '        sqlset.DMLQuery("select idtoken from sys_token where idtokenonline=" & stridtoken, "getidtoken")
-        '        If sqlset.getDataSetRowCount("getidtoken") > 0 Then
-        '            idtoken = sqlset.getDataSetValue("getidtoken", 0, "idtoken")
-        '        End If
+                sqlset = New dtsetSQLS(dbstring)
+                sqlset.DMLQuery("select idtoken from sys_token where idtokenonline='" & stridtoken & "'", "getidtoken")
+                If sqlset.getDataSetRowCount("getidtoken") > 0 Then
+                    idtoken = sqlset.getDataSetValue("getidtoken", 0, "idtoken")
+                End If
 
-        '        value.Add(idData)
-        '        value.Add(striduser)
-        '        If idData = "-1" Then
-        '            value.Add(idguest)
-        '            value.Add(idinactive)
-        '        End If
-        '        value.Add(strusername) 'MYs.getDataSet("cnt", i, "username"))
-        '        If idData = "-1" Then
-        '            value.Add(idtoken)
-        '            value.Add(strtokenkey1) 'MYs.getDataSet("cnt", i, "tokenkey1"))
-        '            value.Add(strtokenkey2) 'MYs.getDataSet("cnt", i, "tokenkey2"))
-        '            value.Add(strpassword) 'MYs.getDataSet("cnt", i, "password"))
-        '        End If
-        '        value.Add(strnamalengkap) 'MYs.getDataSet("cnt", i, "namalengkap"))
-        '        value.Add(strpersonalno) 'MYs.getDataSet("cnt", i, "personalno"))
-        '        value.Add(strcardtype) 'MYs.getDataSet("cnt", i, "cardtype"))
-        '        value.Add(stremail) 'MYs.getDataSet("cnt", i, "email"))
-        '        value.Add(strhandphone) 'MYs.getDataSet("cnt", i, "handphone"))
-        '        value.Add(strhint) 'MYs.getDataSet("cnt", i, "hint"))
-        '        value.Add(strrecoveryquestion) 'MYs.getDataSet("cnt", i, "recoveryquestion"))
-        '        value.Add(strrecoveryanswer) 'MYs.getDataSet("cnt", i, "recoveryanswer"))
-        '        If idData = "-1" Then
-        '            value.Add("download from server")
-        '        Else
-        '            value.Add("")
-        '        End If
-        '        value.Add(nowTime)
-        '        value.Add(0)
-        '        If idData = "-1" Then
-        '            value.Add("1")
-        '        End If
+                If idData = "-1" Then
+                    value.Add(idData)
+                    value.Add(idguest)
+                    value.Add(idinactive)
+                Else
+                    value.Add(idData)
+                End If
+                value.Add(strusername) 'MYs.getDataSet("cnt", i, "username"))
+                If idData = "-1" Then
+                    value.Add(idtoken)
+                    value.Add(strtokenkey1) 'MYs.getDataSet("cnt", i, "tokenkey1"))
+                    value.Add(strtokenkey2) 'MYs.getDataSet("cnt", i, "tokenkey2"))
+                    value.Add(strpassword) 'MYs.getDataSet("cnt", i, "password"))
+                End If
+                value.Add(strnamalengkap) 'MYs.getDataSet("cnt", i, "namalengkap"))
+                value.Add(strpersonalno) 'MYs.getDataSet("cnt", i, "personalno"))
+                value.Add(strcardtype) 'MYs.getDataSet("cnt", i, "cardtype"))
+                value.Add(stremail) 'MYs.getDataSet("cnt", i, "email"))
+                value.Add(strhandphone) 'MYs.getDataSet("cnt", i, "handphone"))
+                value.Add(strhint) 'MYs.getDataSet("cnt", i, "hint"))
+                value.Add(strrecoveryquestion) 'MYs.getDataSet("cnt", i, "recoveryquestion"))
+                value.Add(strrecoveryanswer) 'MYs.getDataSet("cnt", i, "recoveryanswer"))
+                If idData = "-1" Then
+                    value.Add("download from server")
+                Else
+                    value.Add("")
+                End If
+                value.Add(nowTime)
+                value.Add(0)
+                If idData = "-1" Then
+                    value.Add("1")
+                End If
 
-        '        myset = New dtsetSQLS(mystring)
-        '        Application.DoEvents()
-        '        'Threading.Thread.Sleep(100)
-        '        If sqlset.datasetSave("sys_user", idData, field, value, False) = False Then
-        '            'lblLoad.Text = "DOWNLOAD (ERROR)"
-        '            Exit For
-        '        Else
-        '            'lblLoad.Text = "DOWNLOAD (" & i & "/" & mys.getDataSet("cnt") & ")"
-        '        End If
-        '    Next
-        '    'End If
-        'End If
+                'myset = New dtsetSQLS(mystring)
+                Application.DoEvents()
+                'Threading.Thread.Sleep(100)
+                If sqlset.datasetSave("sys_user", idData, field, value, False) = False Then
+                    'lblLoad.Text = "DOWNLOAD (ERROR)"
+                    Exit For
+                Else
+                    'lblLoad.Text = "DOWNLOAD (" & i & "/" & mys.getDataSet("cnt") & ")"
+                End If
+            Next
+            'End If
+        End If
 
         localcnt = 0
         servercnt = 0
         'mys = New SQLs(mystring)
         sqls = New SQLs(dbstring)
-        sqls.DMLQuery("select su.iduser,su.username,su.password,su.hint,su.recoveryquestion,su.recoveryanswer,su.namalengkap,su.personalno,su.cardtype,su.email,su.handphone,su.idtoken,st.idtokenonline,su.tokenkey1,su.tokenkey2 from sys_user su left join sys_token st on su.idtoken=st.idtoken", "cnt")
+        sqls.DMLQuery("select su.iduser,su.username,su.password,su.hint,su.recoveryquestion,su.recoveryanswer,su.namalengkap,su.personalno,su.cardtype,su.email,su.handphone,su.idtoken,st.idtoken,su.tokenkey1,su.tokenkey2 from sys_user su left join sys_token st on su.idtoken=st.idtoken", "cnt")
+
+        mparam.Clear()
+        mvalue.Clear()
+        table.Clear()
+        json_result = ""
+        mparam.AddRange(New String() {"param", "value", "tkey1", "tkey2"})
+        mvalue.AddRange(New String() {"cekusertoken", "", tmptokenkey1, tmptokenkey2})
+        json_result = modCore.HttpPOSTRequestSelect(mysite & "user", mparam, mvalue)
+        table = Newtonsoft.Json.JsonConvert.DeserializeObject(Of DataTable)(json_result)
 
         'mysuccess = mys.DMLQuery("select su.iduser,su.username,su.password,su.hint,su.recoveryquestion,su.recoveryanswer,su.namalengkap,su.personalno,su.cardtype,su.email,su.handphone,st.idtoken,su.tokenkey1,su.tokenkey2 from " & mydb & "." & myusr & ".[user] su left join " & mydb & "." & myusr & ".token st on su.idtoken=st.idtoken", "cnt")
-        'If mysuccess = True Then
-        '    localcnt = sqls.getDataSet("cnt")
-        '    servercnt = mys.getDataSet("cnt")
+        If table.Rows.Count > 0 Then 'mysuccess = True Then
+            localcnt = sqls.getDataSet("cnt")
+            servercnt = table.Rows.Count 'MYs.getDataSet("cnt")
 
-        '    'If localcnt > servercnt Then
-        '    'Upload to server
-        '    'lblLoad.Text = "UPLOAD (0/" & sqls.getDataSet("cnt") & ")"
-        '    For i As Integer = 0 To sqls.getDataSet("cnt") - 1
-        '        Dim striduser As String = sqls.getDataSet("cnt", i, "iduser") 'arrvalue(i).Split("|")(0)
-        '        If striduser <> "" Then
-        '            Dim strusername As String = sqls.getDataSet("cnt", i, "username") 'arrvalue(i).Split("|")(1)
-        '            Dim stridtoken As String = sqls.getDataSet("cnt", i, "idtoken") 'arrvalue(i).Split("|")(11)
-        '            Dim strtokenkey1 As String = sqls.getDataSet("cnt", i, "tokenkey1") 'arrvalue(i).Split("|")(12)
-        '            Dim strtokenkey2 As String = sqls.getDataSet("cnt", i, "tokenkey2") 'arrvalue(i).Split("|")(13)
-        '            Dim strpassword As String = sqls.getDataSet("cnt", i, "password") 'arrvalue(i).Split("|")(2)
-        '            Dim strnamalengkap As String = sqls.getDataSet("cnt", i, "namalengkap") 'arrvalue(i).Split("|")(6)
-        '            Dim strpersonalno As String = IIf(IsDBNull(sqls.getDataSet("cnt", i, "personalno")), "", sqls.getDataSet("cnt", i, "personalno")) 'arrvalue(i).Split("|")(7)
-        '            Dim strcardtype As String = IIf(IsDBNull(sqls.getDataSet("cnt", i, "cardtype")), "", sqls.getDataSet("cnt", i, "cardtype")) 'arrvalue(i).Split("|")(8)
-        '            Dim stremail As String = sqls.getDataSet("cnt", i, "email") 'arrvalue(i).Split("|")(9)
-        '            Dim strhandphone As String = sqls.getDataSet("cnt", i, "handphone") 'arrvalue(i).Split("|")(10)
-        '            Dim strhint As String = sqls.getDataSet("cnt", i, "hint") 'arrvalue(i).Split("|")(3)
-        '            Dim strrecoveryquestion As String = sqls.getDataSet("cnt", i, "recoveryquestion") 'arrvalue(i).Split("|")(4)
-        '            Dim strrecoveryanswer As String = sqls.getDataSet("cnt", i, "recoveryanswer") 'arrvalue(i).Split("|")(5)
+            If localcnt > servercnt Then
+                'Upload to server
+                'lblLoad.Text = "UPLOAD (0/" & sqls.getDataSet("cnt") & ")"
+                For i As Integer = 0 To sqls.getDataSet("cnt") - 1
+                    Dim striduser As String = sqls.getDataSet("cnt", i, "iduser") 'arrvalue(i).Split("|")(0)
+                    If striduser <> "" Then
+                        Dim strusername As String = sqls.getDataSet("cnt", i, "username") 'arrvalue(i).Split("|")(1)
+                        Dim stridtoken As String = sqls.getDataSet("cnt", i, "idtoken") 'arrvalue(i).Split("|")(11)
+                        Dim strtokenkey1 As String = sqls.getDataSet("cnt", i, "tokenkey1") 'arrvalue(i).Split("|")(12)
+                        Dim strtokenkey2 As String = sqls.getDataSet("cnt", i, "tokenkey2") 'arrvalue(i).Split("|")(13)
+                        Dim strpassword As String = sqls.getDataSet("cnt", i, "password") 'arrvalue(i).Split("|")(2)
+                        Dim strnamalengkap As String = sqls.getDataSet("cnt", i, "namalengkap") 'arrvalue(i).Split("|")(6)
+                        Dim strpersonalno As String = IIf(IsDBNull(sqls.getDataSet("cnt", i, "personalno")), "", sqls.getDataSet("cnt", i, "personalno")) 'arrvalue(i).Split("|")(7)
+                        Dim strcardtype As String = IIf(IsDBNull(sqls.getDataSet("cnt", i, "cardtype")), "", sqls.getDataSet("cnt", i, "cardtype")) 'arrvalue(i).Split("|")(8)
+                        Dim stremail As String = sqls.getDataSet("cnt", i, "email") 'arrvalue(i).Split("|")(9)
+                        Dim strhandphone As String = sqls.getDataSet("cnt", i, "handphone") 'arrvalue(i).Split("|")(10)
+                        Dim strhint As String = sqls.getDataSet("cnt", i, "hint") 'arrvalue(i).Split("|")(3)
+                        Dim strrecoveryquestion As String = sqls.getDataSet("cnt", i, "recoveryquestion") 'arrvalue(i).Split("|")(4)
+                        Dim strrecoveryanswer As String = sqls.getDataSet("cnt", i, "recoveryanswer") 'arrvalue(i).Split("|")(5)
 
-        '            mys = New SQLs(mystring)
-        '            mys.DMLQuery("select iduser from " & mydb & "." & myusr & ".[user] where username='" & sqls.getDataSet("cnt", i, "username") & "'", "cekusername")
+                        'MYs = New SQLs(mystring)
+                        'MYs.DMLQuery("select iduser from " & mydb & "." & myusr & ".[user] where username='" & sqls.getDataSet("cnt", i, "username") & "'", "cekusername")
 
-        '            Dim field As New List(Of String)
-        '            Dim value As New List(Of Object)
-        '            If mys.getDataSet("cekusername") > 0 Then
-        '                idData = mys.getDataSet("cekusername", 0, "iduser")
-        '                field.AddRange(New String() {"iduser", "username", "idtoken", "tokenkey1", "tokenkey2", "password", "hint", "recoveryquestion", "recoveryanswer", "namalengkap", "personalno", "cardtype", "email", "isemailverified", "address", "zipcode", "isaddressverified", "handphone", "ishandphoneverified", "isuserverified", "isdeleted", "deletereason", "publicv4ipaddress", "computername", "updatedby", "updateddate"})
-        '            Else
-        '                idData = "-1"
-        '                field.AddRange(New String() {"iduser", "username", "idtoken", "tokenkey1", "tokenkey2", "password", "hint", "recoveryquestion", "recoveryanswer", "namalengkap", "personalno", "cardtype", "email", "isemailverified", "address", "zipcode", "isaddressverified", "handphone", "ishandphoneverified", "isuserverified", "isdeleted", "deletereason", "publicv4ipaddress", "computername", "createdby", "createddate"})
-        '            End If
-        '            myset.DMLQuery("select idtoken from " & mydb & "." & myusr & ".token where idtoken=" & sqls.getDataSet("cnt", i, "idtokenonline"), "getidtoken")
-        '            idtoken = 1
+                        mparam.Clear()
+                        mvalue.Clear()
+                        table.Clear()
+                        json_result = ""
+                        mparam.AddRange(New String() {"param", "value", "tkey1", "tkey2"})
+                        mvalue.AddRange(New String() {"cekusername", sqls.getDataSet("cnt", i, "username"), tmptokenkey1, tmptokenkey2})
+                        json_result = modCore.HttpPOSTRequestSelect(mysite & "user", mparam, mvalue)
+                        table = Newtonsoft.Json.JsonConvert.DeserializeObject(Of DataTable)(json_result)
 
-        '            idtoken = sqls.getDataSet("cnt", i, "idtokenonline")
-        '            If myset.getDataSetRowCount("getidtoken") > 0 Then
-        '                idtoken = CInt(myset.getDataSetValue("getidtoken", 0, 0))
-        '            End If
+                        Dim statdata As statusData = statusData.Baru
+                        Dim field As New List(Of String)
+                        Dim value As New List(Of Object)
+                        If table.Rows.Count > 0 Then 'MYs.getDataSet("cekusername") > 0 Then
+                            statdata = statusData.Edit
+                            idData = table.Rows(0).Item("iduser") 'MYs.getDataSet("cekusername", 0, "iduser")
+                            field.AddRange(New String() {"iduser", "username", "idtoken", "tokenkey1", "tokenkey2", "password", "hint", "recoveryquestion", "recoveryanswer", "namalengkap", "personalno", "cardtype", "email", "isemailverified", "address", "zipcode", "isaddressverified", "handphone", "ishandphoneverified", "isuserverified", "isdeleted", "deletereason", "publicv4ipaddress", "computername", "updatedby", "updateddate"})
+                        Else
+                            statdata = statusData.Baru
+                            idData = GenerateGUID()
+                            field.AddRange(New String() {"iduser", "username", "idtoken", "tokenkey1", "tokenkey2", "password", "hint", "recoveryquestion", "recoveryanswer", "namalengkap", "personalno", "cardtype", "email", "isemailverified", "address", "zipcode", "isaddressverified", "handphone", "ishandphoneverified", "isuserverified", "isdeleted", "deletereason", "publicv4ipaddress", "computername", "createdby", "createddate"})
+                        End If
 
-        '            value.Add(idData)
-        '            value.Add(sqls.getDataSet("cnt", i, "username"))
-        '            value.Add(idtoken)
-        '            value.Add(sqls.getDataSet("cnt", i, "tokenkey1"))
-        '            value.Add(sqls.getDataSet("cnt", i, "tokenkey2"))
-        '            value.Add(sqls.getDataSet("cnt", i, "password"))
-        '            value.Add(sqls.getDataSet("cnt", i, "hint"))
-        '            value.Add(sqls.getDataSet("cnt", i, "recoveryquestion"))
-        '            value.Add(sqls.getDataSet("cnt", i, "recoveryanswer"))
-        '            value.Add(sqls.getDataSet("cnt", i, "namalengkap"))
-        '            value.Add(IIf(IsDBNull(sqls.getDataSet("cnt", i, "personalno")), DBNull.Value, sqls.getDataSet("cnt", i, "personalno")))
-        '            value.Add(IIf(IsDBNull(sqls.getDataSet("cnt", i, "cardtype")), DBNull.Value, sqls.getDataSet("cnt", i, "cardtype")))
-        '            value.Add(sqls.getDataSet("cnt", i, "email"))
-        '            value.Add(0)
-        '            value.Add("-")
-        '            value.Add("0")
-        '            value.Add(0)
-        '            value.Add(sqls.getDataSet("cnt", i, "handphone"))
-        '            value.Add(0)
-        '            value.Add(0)
-        '            value.Add(0)
-        '            value.Add("-")
-        '            value.Add(ippublic)
-        '            value.Add(hostname)
-        '            value.Add(1)
-        '            value.Add(nowTime)
+                        mparam.Clear()
+                        mvalue.Clear()
+                        table.Clear()
+                        json_result = ""
+                        mparam.AddRange(New String() {"value"})
+                        mvalue.AddRange(New String() {sqls.getDataSet("cnt", i, "idtoken")})
+                        json_result = modCore.HttpPOSTRequestSelect(mysite & "token", mparam, mvalue)
+                        table = Newtonsoft.Json.JsonConvert.DeserializeObject(Of DataTable)(json_result)
+                        'myset.DMLQuery("select idtoken from " & mydb & "." & myusr & ".token where idtoken=" & sqls.getDataSet("cnt", i, "idtokenonline"), "getidtoken")
+                        idtoken = "E82EC129-868C-4FEB-9AEB-0ADB46428F1E"
 
-        '            myset = New dtsetSQLS(mystring)
-        '            Application.DoEvents()
-        '            'Threading.Thread.Sleep(100)
-        '            If myset.datasetSave(mydb & "." & myusr & ".[user]", idData, field, value, False) = False Then
-        '                'lblLoad.Text = "UPLOAD (ERROR)"
-        '            Else
-        '                'lblLoad.Text = "UPLOAD (" & i & "/" & sqls.getDataSet("cnt") & ")"
-        '            End If
-        '        End If
-        '    Next
-        '    'End If
-        'End If
+                        idtoken = sqls.getDataSet("cnt", i, "idtokenonline")
+                        If table.Rows.Count > 0 Then 'myset.getDataSetRowCount("getidtoken") > 0 Then
+                            idtoken = table.Rows(0).Item("idtoken") 'CInt(myset.getDataSetValue("getidtoken", 0, 0))
+                        End If
+
+                        value.Add(idData)
+                        value.Add(sqls.getDataSet("cnt", i, "username"))
+                        value.Add(idtoken)
+                        value.Add(sqls.getDataSet("cnt", i, "tokenkey1"))
+                        value.Add(sqls.getDataSet("cnt", i, "tokenkey2"))
+                        value.Add(sqls.getDataSet("cnt", i, "password"))
+                        value.Add(sqls.getDataSet("cnt", i, "hint"))
+                        value.Add(sqls.getDataSet("cnt", i, "recoveryquestion"))
+                        value.Add(sqls.getDataSet("cnt", i, "recoveryanswer"))
+                        value.Add(sqls.getDataSet("cnt", i, "namalengkap"))
+                        value.Add(IIf(IsDBNull(sqls.getDataSet("cnt", i, "personalno")), DBNull.Value, sqls.getDataSet("cnt", i, "personalno")))
+                        value.Add(IIf(IsDBNull(sqls.getDataSet("cnt", i, "cardtype")), DBNull.Value, sqls.getDataSet("cnt", i, "cardtype")))
+                        value.Add(sqls.getDataSet("cnt", i, "email"))
+                        value.Add(0)
+                        value.Add("-")
+                        value.Add("0")
+                        value.Add(0)
+                        value.Add(sqls.getDataSet("cnt", i, "handphone"))
+                        value.Add(0)
+                        value.Add(0)
+                        value.Add(0)
+                        value.Add("-")
+                        value.Add(ippublic)
+                        value.Add(hostname)
+                        value.Add(1)
+                        value.Add(nowTime)
+
+                        'myset = New dtsetSQLS(mystring)
+                        Application.DoEvents()
+                        'Threading.Thread.Sleep(100)
+                        mparam.Clear()
+                        mvalue.Clear()
+                        table.Clear()
+                        json_result = ""
+                        mparam.AddRange(New String() {"param", "value", "tkey1", "tkey2"})
+                        If statdata = statusData.Baru Then
+                            mvalue.AddRange(New String() {"baru", idData, tmptokenkey1, tmptokenkey2})
+                        Else
+                            mvalue.AddRange(New String() {"baru", idData, tmptokenkey1, tmptokenkey2})
+                        End If
+                        json_result = modCore.HttpPOSTRequestInsert(mysite & "user", mparam, mvalue)
+                        'table = Newtonsoft.Json.JsonConvert.DeserializeObject(Of DataTable)(json_result)
+
+                        If json_result = "true" Then 'table.Rows.Count > 0 Then 'myset.datasetSave(mydb & "." & myusr & ".[user]", idData, field, value, False) = False Then
+                            'lblLoad.Text = "UPLOAD (ERROR)"
+                        Else
+                            'lblLoad.Text = "UPLOAD (" & i & "/" & sqls.getDataSet("cnt") & ")"
+                        End If
+                    End If
+                Next
+            End If
+        End If
 
         localcnt = 0
         sqls = New SQLs(dbstring)
@@ -383,105 +450,140 @@
     Private Sub syncToken()
         isSync = True
         Dim lite As New SQLi(dblite)
-        lite.DMLQuery("select databasename || '|' || ipserver || '|' || port || '|' || username || '|' || password as dbstring from dbconn where dbtype='SQLS' and dblocation='DOMAIN'", "getdbstring")
+        lite.DMLQuery("select siteurl from siteconn where active=1 order by idsiteconn desc", "getdbstring")
         If lite.getDataSet("getdbstring") > 0 Then
-            mystring = lite.getDataSet("getdbstring", 0, "dbstring")
-
-            lite.DMLQuery("select databasename,ipserver,port,username,password from dbconn where dbtype='SQLS' and dblocation='DOMAIN'", "getdbseparate")
-
-            mydb = lite.getDataSet("getdbseparate", 0, "databasename")
-            mysvr = lite.getDataSet("getdbseparate", 0, "ipserver")
-            myport = lite.getDataSet("getdbseparate", 0, "port")
-            myusr = lite.getDataSet("getdbseparate", 0, "username")
-            mypass = lite.getDataSet("getdbseparate", 0, "password")
+            'mystring = lite.getDataSet("getdbstring", 0, "dbstring")
+            mysite = lite.getDataSet("getdbstring", 0, "siteurl")
+            mysite = CheckAndRepairValidURL(mysite)
         End If
+        'lite.DMLQuery("select databasename || '|' || ipserver || '|' || port || '|' || username || '|' || password as dbstring from dbconn where dbtype='SQLS' and dblocation='DOMAIN'", "getdbstring")
+        'If lite.getDataSet("getdbstring") > 0 Then
+        '    mystring = lite.getDataSet("getdbstring", 0, "dbstring")
+
+        '    lite.DMLQuery("select databasename,ipserver,port,username,password from dbconn where dbtype='SQLS' and dblocation='DOMAIN'", "getdbseparate")
+
+        '    mydb = lite.getDataSet("getdbseparate", 0, "databasename")
+        '    mysvr = lite.getDataSet("getdbseparate", 0, "ipserver")
+        '    myport = lite.getDataSet("getdbseparate", 0, "port")
+        '    myusr = lite.getDataSet("getdbseparate", 0, "username")
+        '    mypass = lite.getDataSet("getdbseparate", 0, "password")
+        'End If
 
         'Dim mys As New SQLs(mystring)
-        'Dim sqlset As New dtsetSQLS(dbstring)
+        Dim sqlset As New dtsetSQLS(dbstring)
 
-        'Dim sqls As New SQLs(dbstring)
-        'Dim localcnt As Integer = 0
-        'Dim servercnt As Integer = 0
-        'sqls.DMLQuery("select idtoken,idtokenonline,tokenkey1,tokenkey2,isdeleted,deletereason from sys_token order by createddate asc", "cnt")
-        'mys.DMLQuery("select idtoken,tokenkey1,tokenkey2,isdeleted,deletereason from " & mydb & "." & myusr & ".token order by createddate asc", "cnt")
-        'If sqls.getDataSet("cnt") > 0 Then
-        '    localcnt = sqls.getDataSet("cnt")
-        'End If
-        'If mys.getDataSet("cnt") > 0 Then
-        '    servercnt = CInt(mys.getDataSet("cnt"))
-        'End If
-        'If localcnt <> servercnt Then
-        '    For i As Integer = 0 To mys.getDataSet("cnt") - 1
-        '        Dim stridtoken As String = mys.getDataSet("cnt", i, "idtoken")
-        '        Dim strtokenkey1 As String = mys.getDataSet("cnt", i, "tokenkey1")
-        '        Dim strtokenkey2 As String = mys.getDataSet("cnt", i, "tokenkey2")
-        '        Dim strisdeleted As String = mys.getDataSet("cnt", i, "isdeleted")
-        '        Dim strdeletereason As String = mys.getDataSet("cnt", i, "deletereason")
-        '        Dim strcreatedby As String = mys.getDataSet("cnt", i, "createdby")
-        '        Dim strcreateddate As String = mys.getDataSet("cnt", i, "created")
-        '        Dim dtcreateddate As Date = strdatetime2datetime(strcreateddate)
+        Dim sqls As New SQLs(dbstring)
+        Dim localcnt As Long = 0
+        Dim servercnt As Long = 0
+        sqls.DMLQuery("select idtoken,idtokenonline,tokenkey1,tokenkey2,isdeleted,deletereason from sys_token order by createddate asc", "cnt")
 
-        '        Dim field As New List(Of String)
-        '        Dim value As New List(Of Object)
+        Dim json_result As String = ""
+        Dim table As DataTable = Nothing
+        Dim mparam As New List(Of String)
+        Dim mvalue As New List(Of String)
+        mparam.AddRange(New String() {"param", "tkey1", "tkey2"})
+        mvalue.AddRange(New String() {"token", tmptokenkey1, tmptokenkey2})
+        json_result = modCore.HttpPOSTRequestSelect(mysite & "core", mparam, mvalue)
+        table = Newtonsoft.Json.JsonConvert.DeserializeObject(Of DataTable)(json_result)
 
-        '        field.AddRange(New String() {"idtoken", "idtokenonline", "tokenkey1", "tokenkey2", "isdeleted", "deletereason", "createdby", "createddate"})
-        '        sqls.DMLQuery("select idtoken from sys_token where idtokenonline=" & stridtoken, "getid")
-        '        If sqls.getDataSet("getid") = 0 Then
-        '            idData = "-1"
-        '            value.Add(-1)
-        '        Else
-        '            idData = sqls.getDataSet("getid", i, "idtoken")
-        '            value.Add(sqls.getDataSet("getid", i, "idtoken"))
-        '        End If
-        '        value.Add(stridtoken) 'MYs.getDataSet("cnt", i, "idtoken"))
-        '        value.Add(strtokenkey1) 'MYs.getDataSet("cnt", i, "tokenkey1"))
-        '        value.Add(strtokenkey2) 'MYs.getDataSet("cnt", i, "tokenkey2"))
-        '        value.Add(strisdeleted) 'MYs.getDataSet("cnt", i, "isdeleted"))
-        '        value.Add(strdeletereason) 'MYs.getDataSet("cnt", i, "deletereason"))
-        '        value.Add(1)
-        '        value.Add(nowTime)
-        '        sqlset.datasetSave("sys_token", idData, field, value, False)
-        '        Application.DoEvents()
-        '        'Threading.Thread.Sleep(100)
-        '        'lblLoad.Text = "TOKEN (" & i & "/" & servercnt & ")"
-        '        If i = servercnt - 1 Then
-        '            Dim sqli As New SQLi(dblite)
-        '            sqli.DMLQuery("update appsetting set value='" & stridtoken & "' where variable='TokenID'", False) 'MYs.getDataSet("cnt", i, "idtoken") 
-        '            sqli.DMLQuery("update appsetting set value='" & strtokenkey1 & "' where variable='TokenKey1'", False) 'MYs.getDataSet("cnt", i, "tokenkey1")
-        '            sqli.DMLQuery("update appsetting set value='" & strtokenkey2 & "' where variable='TokenKey2'", False) 'MYs.getDataSet("cnt", i, "tokenkey2")
+        'MYs.DMLQuery("select idtoken,tokenkey1,tokenkey2,isdeleted,deletereason from " & mydb & "." & myusr & ".token order by createddate asc", "cnt")
+        If sqls.getDataSet("cnt") > 0 Then
+            localcnt = sqls.getDataSet("cnt")
+        End If
+        If table.Rows.Count > 0 Then 'MYs.getDataSet("cnt") > 0 Then
+            servercnt = CLng(table.Rows.Count) 'MYs.getDataSet("cnt"))
+        End If
+        If localcnt <> servercnt Then
+            For i As Integer = 0 To table.Rows.Count - 1 'MYs.getDataSet("cnt") - 1
+                Dim stridtoken As String = table.Rows(i).Item("idtoken") 'MYs.getDataSet("cnt", i, "idtoken")
+                Dim strtokenkey1 As String = table.Rows(i).Item("tokenkey1") 'MYs.getDataSet("cnt", i, "tokenkey1")
+                Dim strtokenkey2 As String = table.Rows(i).Item("tokenkey2") 'MYs.getDataSet("cnt", i, "tokenkey2")
+                Dim strisdeleted As String = table.Rows(i).Item("isdeleted") 'MYs.getDataSet("cnt", i, "isdeleted")
+                Dim strdeletereason As String = table.Rows(i).Item("deletereason") 'MYs.getDataSet("cnt", i, "deletereason")
+                Dim strcreatedby As String = table.Rows(i).Item("createdby") 'MYs.getDataSet("cnt", i, "createdby")
+                Dim strcreateddate As String = table.Rows(i).Item("createddate") 'MYs.getDataSet("cnt", i, "created")
+                Dim dtcreateddate As Date = Strdatetime2Datetime(strcreateddate)
 
-        '            idtoken = stridtoken 'MYs.getDataSet("cnt", i, "idtoken")
-        '            tokenkey1 = strtokenkey1 'MYs.getDataSet("cnt", i, "tokenkey1")
-        '            tokenkey2 = strtokenkey2 'MYs.getDataSet("cnt", i, "tokenkey2")
-        '        End If
-        '    Next
-        'End If
+                Dim field As New List(Of String)
+                Dim value As New List(Of Object)
+
+                field.AddRange(New String() {"idtoken", "idtokenonline", "tokenkey1", "tokenkey2", "isdeleted", "deletereason", "createdby", "createddate"})
+                sqls.DMLQuery("select idtoken from sys_token where idtokenonline=" & stridtoken, "getid")
+                If sqls.getDataSet("getid") = 0 Then
+                    idData = "-1"
+                    value.Add(stridtoken)
+                Else
+                    idData = sqls.getDataSet("getid", i, "idtoken")
+                    value.Add(sqls.getDataSet("getid", i, "idtoken"))
+                End If
+                value.Add(stridtoken) 'MYs.getDataSet("cnt", i, "idtoken"))
+                value.Add(strtokenkey1) 'MYs.getDataSet("cnt", i, "tokenkey1"))
+                value.Add(strtokenkey2) 'MYs.getDataSet("cnt", i, "tokenkey2"))
+                value.Add(strisdeleted) 'MYs.getDataSet("cnt", i, "isdeleted"))
+                value.Add(strdeletereason) 'MYs.getDataSet("cnt", i, "deletereason"))
+                value.Add(1)
+                value.Add(nowTime)
+                sqlset.datasetSave("sys_token", idData, field, value, False)
+                Application.DoEvents()
+                'Threading.Thread.Sleep(100)
+                'lblLoad.Text = "TOKEN (" & i & "/" & servercnt & ")"
+                If i = servercnt - 1 Then
+                    Dim sqli As New SQLi(dblite)
+                    sqli.DMLQuery("update appsetting set value='" & stridtoken & "' where variable='TokenID'", False) 'MYs.getDataSet("cnt", i, "idtoken") 
+                    sqli.DMLQuery("update appsetting set value='" & strtokenkey1 & "' where variable='TokenKey1'", False) 'MYs.getDataSet("cnt", i, "tokenkey1")
+                    sqli.DMLQuery("update appsetting set value='" & strtokenkey2 & "' where variable='TokenKey2'", False) 'MYs.getDataSet("cnt", i, "tokenkey2")
+
+                    idtoken = stridtoken 'MYs.getDataSet("cnt", i, "idtoken")
+                    tokenkey1 = strtokenkey1 'MYs.getDataSet("cnt", i, "tokenkey1")
+                    tokenkey2 = strtokenkey2 'MYs.getDataSet("cnt", i, "tokenkey2")
+                End If
+            Next
+        End If
         isSync = False
     End Sub
 
     Private Function existUsername(ByVal username As String) As Integer
         Dim lite As New SQLi(dblite)
-        lite.DMLQuery("select databasename || '|' || ipserver || '|' || port || '|' || username || '|' || password as dbstring from dbconn where dbtype='SQLS' and dblocation='DOMAIN'", "getdbstring")
+        lite.DMLQuery("select siteurl from siteconn where active=1 order by idsiteconn desc", "getdbstring")
         If lite.getDataSet("getdbstring") > 0 Then
-            mystring = lite.getDataSet("getdbstring", 0, "dbstring")
-
-            lite.DMLQuery("select databasename,ipserver,port,username,password from dbconn where dbtype='SQLS' and dblocation='DOMAIN'", "getdbseparate")
-
-            mydb = lite.getDataSet("getdbseparate", 0, "databasename")
-            mysvr = lite.getDataSet("getdbseparate", 0, "ipserver")
-            myport = lite.getDataSet("getdbseparate", 0, "port")
-            myusr = lite.getDataSet("getdbseparate", 0, "username")
-            mypass = lite.getDataSet("getdbseparate", 0, "password")
+            'mystring = lite.getDataSet("getdbstring", 0, "dbstring")
+            mysite = lite.getDataSet("getdbstring", 0, "siteurl")
+            mysite = CheckAndRepairValidURL(mysite)
         End If
+        'lite.DMLQuery("select databasename || '|' || ipserver || '|' || port || '|' || username || '|' || password as dbstring from dbconn where dbtype='SQLS' and dblocation='DOMAIN'", "getdbstring")
+        'If lite.getDataSet("getdbstring") > 0 Then
+        '    mystring = lite.getDataSet("getdbstring", 0, "dbstring")
+
+        '    lite.DMLQuery("select databasename,ipserver,port,username,password from dbconn where dbtype='SQLS' and dblocation='DOMAIN'", "getdbseparate")
+
+        '    mydb = lite.getDataSet("getdbseparate", 0, "databasename")
+        '    mysvr = lite.getDataSet("getdbseparate", 0, "ipserver")
+        '    myport = lite.getDataSet("getdbseparate", 0, "port")
+        '    myusr = lite.getDataSet("getdbseparate", 0, "username")
+        '    mypass = lite.getDataSet("getdbseparate", 0, "password")
+        'End If
 
         'Dim mys As New MYs(mystring)
         Dim retval As Integer = -1
 
         'If mys.checkConnection() = True Then
-        '    mys.DMLQuery("select iduser from " & mydb & "." & myusr & ".[user] where username='" & username & "'", "cekUsername")
-        '    If mys.getDataSet("cekUsername") > 0 Then
-        '        retval = mys.getDataSet("cekUsername", 0, "iduser")
-        '    End If
+        Dim json_result As String = ""
+        Dim table As DataTable = Nothing
+        Dim mparam As New List(Of String)
+        Dim mvalue As New List(Of String)
+
+        json_result = ""
+        mparam.Clear()
+        mvalue.Clear()
+        mparam.AddRange(New String() {"param", "value", "tkey1", "tkey2"})
+        mvalue.AddRange(New String() {"cekusername", username, tmptokenkey1, tmptokenkey2})
+        json_result = modCore.HttpPOSTRequestSelect(mysite & "user", mparam, mvalue)
+        table = Newtonsoft.Json.JsonConvert.DeserializeObject(Of DataTable)(json_result)
+
+        'MYs.DMLQuery("select iduser from " & mydb & "." & myusr & ".[user] where username='" & username & "'", "cekUsername")
+        If table.Rows.Count > 0 Then 'MYs.getDataSet("cekUsername") > 0 Then
+            retval = table.Rows(0).Item("iduser") 'MYs.getDataSet("cekUsername", 0, "iduser")
+        End If
         'End If
         Return retval
     End Function
@@ -620,12 +722,13 @@
     End Sub
 
     Private ippublic As String = ""
-    Private mystring As String = ""
-    Private mydb As String = ""
-    Private mysvr As String = ""
-    Private myport As String = "0"
-    Private myusr As String = ""
-    Private mypass As String = ""
+    'Private mystring As String = ""
+    Private mysite As String = ""
+    'Private mydb As String = ""
+    'Private mysvr As String = ""
+    'Private myport As String = "0"
+    'Private myusr As String = ""
+    'Private mypass As String = ""
     Private bClose As Boolean = False
     Private Sub frmAdministrator_FormClosing(ByVal sender As Object, ByVal e As System.Windows.Forms.FormClosingEventArgs) Handles Me.FormClosing
         e.Cancel = bClose
@@ -636,18 +739,24 @@
 
         bClose = False
         Dim lite As New SQLi(dblite)
-        lite.DMLQuery("select databasename || '|' || ipserver || '|' || port || '|' || username || '|' || password as dbstring from dbconn where dbtype='SQLS' and dblocation='DOMAIN'", "getdbstring")
+        'lite.DMLQuery("select databasename || '|' || ipserver || '|' || port || '|' || username || '|' || password as dbstring from dbconn where dbtype='SQLS' and dblocation='DOMAIN'", "getdbstring")
+        lite.DMLQuery("select siteurl from siteconn where active=1 order by idsiteconn desc", "getdbstring")
         If lite.getDataSet("getdbstring") > 0 Then
-            mystring = lite.getDataSet("getdbstring", 0, "dbstring")
-
-            lite.DMLQuery("select databasename,ipserver,port,username,password from dbconn where dbtype='SQLS' and dblocation='DOMAIN'", "getdbseparate")
-
-            mydb = lite.getDataSet("getdbseparate", 0, "databasename")
-            mysvr = lite.getDataSet("getdbseparate", 0, "ipserver")
-            myport = lite.getDataSet("getdbseparate", 0, "port")
-            myusr = lite.getDataSet("getdbseparate", 0, "username")
-            mypass = lite.getDataSet("getdbseparate", 0, "password")
+            'mystring = lite.getDataSet("getdbstring", 0, "dbstring")
+            mysite = lite.getDataSet("getdbstring", 0, "siteurl")
+            mysite = CheckAndRepairValidURL(mysite)
         End If
+        'If lite.getDataSet("getdbstring") > 0 Then
+        '    mystring = lite.getDataSet("getdbstring", 0, "dbstring")
+
+        '    lite.DMLQuery("select databasename,ipserver,port,username,password from dbconn where dbtype='SQLS' and dblocation='DOMAIN'", "getdbseparate")
+
+        '    mydb = lite.getDataSet("getdbseparate", 0, "databasename")
+        '    mysvr = lite.getDataSet("getdbseparate", 0, "ipserver")
+        '    myport = lite.getDataSet("getdbseparate", 0, "port")
+        '    myusr = lite.getDataSet("getdbseparate", 0, "username")
+        '    mypass = lite.getDataSet("getdbseparate", 0, "password")
+        'End If
 
         If isLocalhost() = True Then
             isserver = True

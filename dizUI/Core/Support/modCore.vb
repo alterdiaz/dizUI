@@ -59,11 +59,9 @@ Module modCore
     Public companyname As String = ""
     Public companycode As String = ""
 
-    Public idproduct As String = "-1"
     Public productname As String = ""
-    Public productcode As String = ""
     Public productversion As String = ""
-    Public idproducttype As String = "-1"
+    Public idproducttype As New List(Of String)
 
     Public idcompanyrefferal As String = "-1"
     Public idcompanyproduct As String = "-1"
@@ -295,39 +293,39 @@ Module modCore
         End If
     End Sub
 
-    Public Function createDataTable(SourceValue As String, DatatableName As String, ColumnName As List(Of String), ColumnCaption As List(Of String), ColumnType As List(Of Type)) As DataSet
-        Dim ds As New DataSet
-        If ColumnName.Count <> ColumnCaption.Count Or ColumnCaption.Count <> ColumnType.Count Or ColumnName.Count <> ColumnType.Count Then
-            dizMsgbox("Parameter tidak benar", dizMsgboxStyle.Kesalahan)
-        Else
-            ds = New DataSet
-            Dim dttbl As New DataTable(DatatableName)
-            Dim dc As New DataColumn
+    'Public Function createDataTable(SourceValue As String, DatatableName As String, ColumnName As List(Of String), ColumnCaption As List(Of String), ColumnType As List(Of Type)) As DataSet
+    '    Dim ds As New DataSet
+    '    If ColumnName.Count <> ColumnCaption.Count Or ColumnCaption.Count <> ColumnType.Count Or ColumnName.Count <> ColumnType.Count Then
+    '        dizMsgbox("Parameter tidak benar", dizMsgboxStyle.Kesalahan)
+    '    Else
+    '        ds = New DataSet
+    '        Dim dttbl As New DataTable(DatatableName)
+    '        Dim dc As New DataColumn
 
-            For i As Integer = 0 To ColumnName.Count - 1
-                dc = New DataColumn
-                dc.Caption = ColumnCaption.Item(i)
-                dc.ColumnName = ColumnName.Item(i)
-                dc.DataType = ColumnType.Item(i)
-                dttbl.Columns.Add(dc)
-            Next
-            If SourceValue.Contains("ERROR") = False Then
-                For i As Integer = 0 To SourceValue.Split("~").Length - 1
-                    Dim arrstr() As String = SourceValue.Split("~")(i).ToString.Split("|").ToArray
-                    Dim dr As DataRow = dttbl.NewRow
-                    If arrstr(0).Length > 0 Then
-                        For a As Integer = 0 To dttbl.Columns.Count - 1
-                            dr(dttbl.Columns(a).ColumnName) = arrstr(a)
-                        Next
-                        dttbl.Rows.Add(dr)
-                    End If
-                Next
-            End If
+    '        For i As Integer = 0 To ColumnName.Count - 1
+    '            dc = New DataColumn
+    '            dc.Caption = ColumnCaption.Item(i)
+    '            dc.ColumnName = ColumnName.Item(i)
+    '            dc.DataType = ColumnType.Item(i)
+    '            dttbl.Columns.Add(dc)
+    '        Next
+    '        If SourceValue.Contains("ERROR") = False Then
+    '            For i As Integer = 0 To SourceValue.Split("~").Length - 1
+    '                Dim arrstr() As String = SourceValue.Split("~")(i).ToString.Split("|").ToArray
+    '                Dim dr As DataRow = dttbl.NewRow
+    '                If arrstr(0).Length > 0 Then
+    '                    For a As Integer = 0 To dttbl.Columns.Count - 1
+    '                        dr(dttbl.Columns(a).ColumnName) = arrstr(a)
+    '                    Next
+    '                    dttbl.Rows.Add(dr)
+    '                End If
+    '            Next
+    '        End If
 
-            ds.Tables.Add(dttbl)
-        End If
-        Return ds
-    End Function
+    '        ds.Tables.Add(dttbl)
+    '    End If
+    '    Return ds
+    'End Function
 
     Public Function GeneratePass(ByVal str As String, ByVal token1 As String, ByVal token2 As String, ByVal maxlength As Integer) As String
         Dim retval As String = ""
@@ -636,6 +634,17 @@ Module modCore
         Return retval
     End Function
 
+    Public Function CheckAndRepairValidURL(ByVal pathstring As String) As String
+        Dim retval As String = ""
+        If pathstring.Chars(pathstring.Length - 1) = "/" Then
+            retval = pathstring
+        Else
+            retval = pathstring & "/"
+        End If
+        Return retval
+    End Function
+
+
     Public Sub writeSettingFile(ByVal content As String)
         Try
             'If IO.File.Exists(pathSetting & filename) Then
@@ -928,11 +937,11 @@ Module modCore
         Return retval
     End Function
 
-    Private Function HttpPOSTRequest(ByVal url As String, Optional ByVal mparam As List(Of String) = Nothing, Optional ByVal mvalue As List(Of String) = Nothing) As String
+    Public Function HttpPOSTRequestSelect(ByVal url As String, Optional ByVal mparam As List(Of String) = Nothing, Optional ByVal mvalue As List(Of String) = Nothing) As String
         Dim retval As String = ""
         If mparam IsNot Nothing Then
             If mparam.Count <> mvalue.Count Then
-                dizMsgbox("List Parameter is not equal with List Value Parameter", dizMsgboxStyle.Kesalahan)
+                MsgBox("List Parameter is not equal with List Value Parameter")
                 Return False
                 Exit Function
             End If
@@ -944,8 +953,34 @@ Module modCore
                     reqparm.Add(mparam(i), mvalue(i))
                 Next
             End If
-            Dim responsebytes = client.UploadValues(url, "POST", reqparm)
-            Dim responsebody = (New Text.UTF8Encoding).GetString(responsebytes)
+            Dim responsebytes As Byte() = client.UploadValues(url, "POST", reqparm)
+            Dim responsebody As String = (New Text.UTF8Encoding).GetString(responsebytes) '(New Text.UTF8Encoding).GetString(responsebytes)
+            'MsgBox(responsebody)
+            retval = responsebody
+        End Using
+        Return retval
+    End Function
+
+    Public Function HttpPOSTRequestInsert(ByVal url As String, Optional ByVal mparam As List(Of String) = Nothing, Optional ByVal mvalue As List(Of String) = Nothing) As String
+        Dim retval As String = ""
+        If mparam IsNot Nothing Then
+            If mparam.Count <> mvalue.Count Then
+                MsgBox("List Parameter is not equal with List Value Parameter")
+                Return False
+                Exit Function
+            End If
+        End If
+        Using client As New Net.WebClient
+            Dim reqparm As New Specialized.NameValueCollection
+            If mparam IsNot Nothing Then
+                For i As Integer = 0 To mparam.Count - 1
+                    reqparm.Add(mparam(i), mvalue(i))
+                Next
+            End If
+            Dim responsebytes As Byte() = client.UploadValues(url, "POST", reqparm)
+            Dim responsebody As String = (New Text.UTF8Encoding).GetString(responsebytes) '(New Text.UTF8Encoding).GetString(responsebytes)
+            'MsgBox(responsebody)
+            retval = responsebody
         End Using
         Return retval
     End Function

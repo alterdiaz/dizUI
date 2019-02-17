@@ -50,26 +50,20 @@
 
     Private Sub btnRefresh_Click(sender As Object, e As EventArgs) Handles btnRefresh.Click
         Me.Cursor = Cursors.WaitCursor
-        Dim sqls As New SQLs(mystring)
-        sqls.DMLQuery("select p.paymentno,convert(varchar,p.createddate,105) as tanggalbayar,b.bank +' ('+bo.nomorrekening+')' as akunbank,p.nominalbayar,p.nominaldata,p.bankpengirim,p.norekpengirim,p.atasnamapengirim,p.remarks,case when p.isvalid=0 then 'Tidak Valid' else 'Valid' end as isvalid from payment p left join bankoption bo on p.idbankoption=bo.idbankoption left join bank b on bo.idbank=b.idbank where idcompanyproduct='" & idcp & "' order by p.createddate desc", "hp")
-        Dim val As New List(Of String)
-        val.Add(idcp)
 
-        Dim colname As New List(Of String)
-        Dim colcaption As New List(Of String)
-        Dim coltype As New List(Of Type)
-        Dim dshp As DataSet
+        Dim json_result As String = ""
+        Dim table As DataTable = Nothing
+        Dim mparam As New List(Of String)
+        Dim mvalue As New List(Of String)
+        mparam.AddRange(New String() {"param", "tkey1", "tkey2", "idcompanyproduct"})
+        mvalue.AddRange(New String() {"cekhistory", tmptokenkey1, tmptokenkey2, idcompanyproduct})
+        json_result = modCore.HttpPOSTRequestselect(mysite & "payment", mparam, mvalue)
+        table = Newtonsoft.Json.JsonConvert.DeserializeObject(Of DataTable)(json_result)
 
-        dshp = New DataSet
-        colname.Clear()
-        colcaption.Clear()
-        coltype.Clear()
-        colname.AddRange(New String() {"paymentno", "tanggalbayar", "akunbank", "nominalbayar", "nominaldata", "bankpengirim", "norekpengirim", "atasnamapengirim", "remarks", "isvalid"})
-        colcaption.AddRange(New String() {"Payment No", "Tanggal Bayar", "Akun Bank", "Nominal Bayar", "Nominal Data", "Bank Pengirim", "NoRek Pengirim", "Atas Nama Pengirim", "Remarks", "isValid"})
-        coltype.AddRange(New Type() {GetType(String), GetType(String), GetType(String), GetType(Long), GetType(Long), GetType(String), GetType(String), GetType(String), GetType(String), GetType(String)})
-        dshp = sqls.dataSet
+        'Dim sqls As New SQLs(mystring)
+        'sqls.DMLQuery("select p.paymentno,convert(varchar,p.createddate,105) as tanggalbayar,b.bank +' ('+bo.nomorrekening+')' as akunbank,p.nominalbayar,p.nominaldata,p.bankpengirim,p.norekpengirim,p.atasnamapengirim,p.remarks,case when p.isvalid=0 then 'Tidak Valid' else 'Valid' end as isvalid from payment p left join bankoption bo on p.idbankoption=bo.idbankoption left join bank b on bo.idbank=b.idbank where idcompanyproduct='" & idcp & "' order by p.createddate desc", "hp")
 
-        gcHistory.DataSource = dshp.Tables("hp")
+        gcHistory.DataSource = table
         gvHistory.BestFitColumns()
         Me.Cursor = Cursors.Default
 
@@ -93,12 +87,19 @@
         idcp = idcomprod
     End Sub
 
-    Private mystring As String = ""
+    'Private mystring As String = ""
+    Private mysite As String = ""
     Private Sub frmHistoryPayment_Load(sender As Object, e As EventArgs) Handles Me.Load
         Dim lite As New SQLi(dblite)
-        lite.DMLQuery("select databasename || '|' || ipserver || '|' || port || '|' || username || '|' || password as dbstring from dbconn where dbtype='SQLS' and dblocation='DOMAIN'", "getdbstring")
+        'lite.DMLQuery("select databasename || '|' || ipserver || '|' || port || '|' || username || '|' || password as dbstring from dbconn where dbtype='SQLS' and dblocation='DOMAIN'", "getdbstring")
+        'If lite.getDataSet("getdbstring") > 0 Then
+        '    mystring = lite.getDataSet("getdbstring", 0, "dbstring")
+        'End If
+        lite.DMLQuery("select siteurl from siteconn where active=1 order by idsiteconn desc", "getdbstring")
         If lite.getDataSet("getdbstring") > 0 Then
-            mystring = lite.getDataSet("getdbstring", 0, "dbstring")
+            'mystring = lite.getDataSet("getdbstring", 0, "dbstring")
+            mysite = lite.getDataSet("getdbstring", 0, "siteurl")
+            mysite = CheckAndRepairValidURL(mysite)
         End If
 
         xtcData.SelectedTabPage = xtpHistory

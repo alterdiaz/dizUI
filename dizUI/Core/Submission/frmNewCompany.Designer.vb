@@ -80,11 +80,11 @@ Partial Class frmNewCompany
         Me.Label11 = New System.Windows.Forms.Label()
         Me.teCPname = New DevExpress.XtraEditors.TextEdit()
         Me.pHeader = New System.Windows.Forms.Panel()
+        Me.pbSync = New System.Windows.Forms.PictureBox()
         Me.btnSave = New System.Windows.Forms.Button()
         Me.pTitle = New System.Windows.Forms.Panel()
         Me.lblTitle = New System.Windows.Forms.Label()
         Me.pExit = New System.Windows.Forms.PictureBox()
-        Me.pbSync = New System.Windows.Forms.PictureBox()
         Me.tlpForm.SuspendLayout()
         Me.pBody.SuspendLayout()
         Me.tlpEntry.SuspendLayout()
@@ -120,9 +120,9 @@ Partial Class frmNewCompany
         CType(Me.teCPno.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.teCPname.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.pHeader.SuspendLayout()
+        CType(Me.pbSync, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.pTitle.SuspendLayout()
         CType(Me.pExit, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.pbSync, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'tlpForm
@@ -158,7 +158,7 @@ Partial Class frmNewCompany
         '
         'tlpEntry
         '
-        Me.tlpEntry.BackColor = System.Drawing.color.fromargb(240, 240, 240)
+        Me.tlpEntry.BackColor = System.Drawing.Color.FromArgb(CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer))
         Me.tlpEntry.ColumnCount = 3
         Me.tlpEntry.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
         Me.tlpEntry.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 400.0!))
@@ -349,11 +349,11 @@ Partial Class frmNewCompany
         '
         'xtcEntry
         '
-        Me.xtcEntry.Appearance.BackColor = System.Drawing.color.fromargb(240, 240, 240)
+        Me.xtcEntry.Appearance.BackColor = System.Drawing.Color.FromArgb(CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer))
         Me.xtcEntry.Appearance.Font = New System.Drawing.Font("Tahoma", 9.0!)
         Me.xtcEntry.Appearance.Options.UseBackColor = True
         Me.xtcEntry.Appearance.Options.UseFont = True
-        Me.xtcEntry.AppearancePage.Header.BackColor = System.Drawing.color.fromargb(240, 240, 240)
+        Me.xtcEntry.AppearancePage.Header.BackColor = System.Drawing.Color.FromArgb(CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer))
         Me.xtcEntry.AppearancePage.Header.Font = New System.Drawing.Font("Tahoma", 9.0!)
         Me.xtcEntry.AppearancePage.Header.Options.UseBackColor = True
         Me.xtcEntry.AppearancePage.Header.Options.UseFont = True
@@ -363,7 +363,7 @@ Partial Class frmNewCompany
         Me.xtcEntry.AppearancePage.HeaderDisabled.Options.UseFont = True
         Me.xtcEntry.AppearancePage.HeaderHotTracked.Font = New System.Drawing.Font("Tahoma", 9.0!)
         Me.xtcEntry.AppearancePage.HeaderHotTracked.Options.UseFont = True
-        Me.xtcEntry.AppearancePage.PageClient.BackColor = System.Drawing.color.fromargb(240, 240, 240)
+        Me.xtcEntry.AppearancePage.PageClient.BackColor = System.Drawing.Color.FromArgb(CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer))
         Me.xtcEntry.AppearancePage.PageClient.Font = New System.Drawing.Font("Tahoma", 9.0!)
         Me.xtcEntry.AppearancePage.PageClient.ForeColor = System.Drawing.Color.Black
         Me.xtcEntry.AppearancePage.PageClient.Options.UseBackColor = True
@@ -383,7 +383,7 @@ Partial Class frmNewCompany
         '
         'xtpCompany
         '
-        Me.xtpCompany.Appearance.PageClient.BackColor = System.Drawing.color.fromargb(240, 240, 240)
+        Me.xtpCompany.Appearance.PageClient.BackColor = System.Drawing.Color.FromArgb(CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer))
         Me.xtpCompany.Appearance.PageClient.Options.UseBackColor = True
         Me.xtpCompany.Controls.Add(Me.tlpPerusahaan)
         Me.xtpCompany.Name = "xtpCompany"
@@ -513,7 +513,7 @@ Partial Class frmNewCompany
         Me.lueCompJenis.Properties.Appearance.Options.UseFont = True
         Me.lueCompJenis.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple
         Me.lueCompJenis.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.lueCompJenis.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("jenis", "Jenis"), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("idjenis", "ID", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default])})
+        Me.lueCompJenis.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("content", "Content"), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id", "ID", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default], DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default])})
         Me.lueCompJenis.Properties.NullText = "[Isian belum dipilih]"
         Me.lueCompJenis.Size = New System.Drawing.Size(187, 20)
         Me.lueCompJenis.TabIndex = 5
@@ -591,7 +591,7 @@ Partial Class frmNewCompany
         '
         'tlpAlamat
         '
-        Me.tlpAlamat.BackColor = System.Drawing.color.fromargb(240, 240, 240)
+        Me.tlpAlamat.BackColor = System.Drawing.Color.FromArgb(CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer))
         Me.tlpAlamat.ColumnCount = 4
         Me.tlpAlamat.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
         Me.tlpAlamat.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 150.0!))
@@ -705,7 +705,7 @@ Partial Class frmNewCompany
         Me.lueRegion5.Properties.Appearance.Options.UseFont = True
         Me.lueRegion5.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple
         Me.lueRegion5.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.lueRegion5.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("region", "Region"), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("idregion", "ID", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default])})
+        Me.lueRegion5.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("region", "Region"), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("idregion", "ID", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default], DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default])})
         Me.lueRegion5.Properties.NullText = "[Isian belum dipilih]"
         Me.lueRegion5.Size = New System.Drawing.Size(187, 20)
         Me.lueRegion5.TabIndex = 16
@@ -782,7 +782,7 @@ Partial Class frmNewCompany
         Me.lueRegion4.Properties.Appearance.Options.UseFont = True
         Me.lueRegion4.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple
         Me.lueRegion4.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.lueRegion4.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("region", "Region"), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("idregion", "ID", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default])})
+        Me.lueRegion4.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("region", "Region"), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("idregion", "ID", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default], DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default])})
         Me.lueRegion4.Properties.NullText = "[Isian belum dipilih]"
         Me.lueRegion4.Size = New System.Drawing.Size(187, 20)
         Me.lueRegion4.TabIndex = 15
@@ -799,7 +799,7 @@ Partial Class frmNewCompany
         Me.lueRegion3.Properties.Appearance.Options.UseFont = True
         Me.lueRegion3.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple
         Me.lueRegion3.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.lueRegion3.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("region", "Region"), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("idregion", "ID", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default])})
+        Me.lueRegion3.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("region", "Region"), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("idregion", "ID", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default], DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default])})
         Me.lueRegion3.Properties.NullText = "[Isian belum dipilih]"
         Me.lueRegion3.Size = New System.Drawing.Size(187, 20)
         Me.lueRegion3.TabIndex = 14
@@ -816,7 +816,7 @@ Partial Class frmNewCompany
         Me.lueRegion2.Properties.Appearance.Options.UseFont = True
         Me.lueRegion2.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple
         Me.lueRegion2.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.lueRegion2.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("region", "Region"), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("idregion", "ID", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default])})
+        Me.lueRegion2.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("region", "Region"), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("idregion", "ID", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default], DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default])})
         Me.lueRegion2.Properties.NullText = "[Isian belum dipilih]"
         Me.lueRegion2.Size = New System.Drawing.Size(187, 20)
         Me.lueRegion2.TabIndex = 13
@@ -833,7 +833,7 @@ Partial Class frmNewCompany
         Me.lueRegion1.Properties.Appearance.Options.UseFont = True
         Me.lueRegion1.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple
         Me.lueRegion1.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.lueRegion1.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("region", "Region"), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("idregion", "ID", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default])})
+        Me.lueRegion1.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("region", "Region"), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("idregion", "ID", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default], DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default])})
         Me.lueRegion1.Properties.NullText = "[Isian belum dipilih]"
         Me.lueRegion1.Size = New System.Drawing.Size(187, 20)
         Me.lueRegion1.TabIndex = 12
@@ -847,7 +847,7 @@ Partial Class frmNewCompany
         '
         'tlpKontak
         '
-        Me.tlpKontak.BackColor = System.Drawing.color.fromargb(240, 240, 240)
+        Me.tlpKontak.BackColor = System.Drawing.Color.FromArgb(CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer))
         Me.tlpKontak.ColumnCount = 4
         Me.tlpKontak.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
         Me.tlpKontak.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 150.0!))
@@ -1088,6 +1088,16 @@ Partial Class frmNewCompany
         Me.pHeader.Size = New System.Drawing.Size(456, 30)
         Me.pHeader.TabIndex = 111
         '
+        'pbSync
+        '
+        Me.pbSync.Dock = System.Windows.Forms.DockStyle.Left
+        Me.pbSync.Image = Global.dizUI.My.Resources.Resources.loading
+        Me.pbSync.Location = New System.Drawing.Point(0, 0)
+        Me.pbSync.Name = "pbSync"
+        Me.pbSync.Size = New System.Drawing.Size(30, 30)
+        Me.pbSync.TabIndex = 28
+        Me.pbSync.TabStop = False
+        '
         'btnSave
         '
         Me.btnSave.BackColor = System.Drawing.Color.FromArgb(CType(CType(156, Byte), Integer), CType(CType(207, Byte), Integer), CType(CType(49, Byte), Integer))
@@ -1144,21 +1154,11 @@ Partial Class frmNewCompany
         Me.pExit.TabIndex = 11
         Me.pExit.TabStop = False
         '
-        'pbSync
-        '
-        Me.pbSync.Dock = System.Windows.Forms.DockStyle.Left
-        Me.pbSync.Image = Global.dizUI.My.Resources.Resources.loading
-        Me.pbSync.Location = New System.Drawing.Point(0, 0)
-        Me.pbSync.Name = "pbSync"
-        Me.pbSync.Size = New System.Drawing.Size(30, 30)
-        Me.pbSync.TabIndex = 28
-        Me.pbSync.TabStop = False
-        '
         'frmNewCompany
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.BackColor = System.Drawing.color.fromargb(240, 240, 240)
+        Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer))
         Me.ClientSize = New System.Drawing.Size(460, 540)
         Me.ControlBox = False
         Me.Controls.Add(Me.tlpForm)
@@ -1209,9 +1209,9 @@ Partial Class frmNewCompany
         CType(Me.teCPno.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.teCPname.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.pHeader.ResumeLayout(False)
+        CType(Me.pbSync, System.ComponentModel.ISupportInitialize).EndInit()
         Me.pTitle.ResumeLayout(False)
         CType(Me.pExit, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.pbSync, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub

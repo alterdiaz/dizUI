@@ -40,47 +40,81 @@
         End If
     End Sub
 
+    Private mysite As String = ""
     Private Sub btnPayment_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnPayment.Click
         Dim newpay As New frmNewPayment()
         If newpay.ShowDialog(Me) = Windows.Forms.DialogResult.OK Then
-            Dim sqli As New SQLi(dblite)
-            Dim mystring As String = ""
-            sqli.DMLQuery("select databasename || '|' || ipserver || '|' || port || '|' || username || '|' || password as dbstring from dbconn where dbtype='SQLS' and dblocation='DOMAIN'", "getdbstring")
-            If sqli.getDataSet("getdbstring") > 0 Then
-                mystring = sqli.getDataSet("getdbstring", 0, "dbstring")
+            Dim lite As New SQLi(dblite)
+            'Dim mystring As String = ""
+            'sqli.DMLQuery("select databasename || '|' || ipserver || '|' || port || '|' || username || '|' || password as dbstring from dbconn where dbtype='SQLS' and dblocation='DOMAIN'", "getdbstring")
+            'If sqli.getDataSet("getdbstring") > 0 Then
+            '    mystring = sqli.getDataSet("getdbstring", 0, "dbstring")
+            'End If
+            lite.DMLQuery("select siteurl from siteconn where active=1 order by idsiteconn desc", "getdbstring")
+            If lite.getDataSet("getdbstring") > 0 Then
+                'mystring = lite.getDataSet("getdbstring", 0, "dbstring")
+                mysite = lite.getDataSet("getdbstring", 0, "siteurl")
+                mysite = CheckAndRepairValidURL(mysite)
             End If
-            Dim mys As New MYs(mystring)
-            mys.DMLQuery("select convert(varchar,getdate(),105) as tanggal,convert(varchar,getdate(),108) as waktu", "lasttime")
-            If mys.getDataSet("lasttime") > 0 Then
-                Dim tmptgl As String = mys.getDataSet("lasttime", 0, "tanggal")
-                Dim tmpwaktu As String = mys.getDataSet("lasttime", 0, "waktu")
+
+            'Dim mys As New MYs(mystring)
+            'mys.DMLQuery("select convert(varchar,getdate(),105) as tanggal,convert(varchar,getdate(),108) as waktu", "lasttime")
+            'If mys.getDataSet("lasttime") > 0 Then
+            '    Dim tmptgl As String = mys.getDataSet("lasttime", 0, "tanggal")
+            '    Dim tmpwaktu As String = mys.getDataSet("lasttime", 0, "waktu")
+            '    tmpnowTime = Strdatetime2Datetime(tmptgl & " " & tmpwaktu)
+            'Else
+            '    tmpnowTime = Now
+            'End If
+
+            Dim json_result As String = ""
+            Dim table As DataTable = Nothing
+            Dim mparam As New List(Of String)
+            Dim mvalue As New List(Of String)
+            mparam.Clear()
+            mvalue.Clear()
+            mparam.AddRange(New String() {"param", "tkey1", "tkey2"})
+            mvalue.AddRange(New String() {"currentdatetime", tmptokenkey1, tmptokenkey2})
+            json_result = modCore.HttpPOSTRequestselect(mysite & "core", mparam, mvalue)
+            table = Newtonsoft.Json.JsonConvert.DeserializeObject(Of DataTable)(json_result)
+            If table.Rows.Count > 0 Then 'strvalue.Contains("ERROR") = False Then
+                Dim tmptgl As String = table.Rows(0).Item("tanggal") 'strvalue.Split(" ")(0)
+                Dim tmpwaktu As String = table.Rows(0).Item("waktu") 'strvalue.Split(" ")(1)
                 tmpnowTime = Strdatetime2Datetime(tmptgl & " " & tmpwaktu)
             Else
-                tmpnowTime = Now
+                tmpnowTime = nowTime
             End If
 
             Dim datavalid As Boolean = True
             Dim dizEngine As New dizEngine.engine
-            sqli.DMLQuery("select value from appsetting where variable='QuotaAmount'", "getquotaamount")
-            If sqli.getDataSet("getquotaamount", 0, "value") = " " Then
+            lite.DMLQuery("select value from appsetting where variable='QuotaAmount'", "getquotaamount")
+            If lite.getDataSet("getquotaamount", 0, "value") = " " Then
                 datavalid = False
             Else
-                sqli.DMLQuery("select value from appsetting where variable='QuotaAmountCode'", "getquotaamountcode")
-                Dim quotaamountcode As String = dizEngine.processE(sqli.getDataSet("getquotaamount", 0, "value"))
-                If quotaamountcode = sqli.getDataSet("getquotaamountcode", 0, "value") Then
+                lite.DMLQuery("select value from appsetting where variable='QuotaAmountCode'", "getquotaamountcode")
+                Dim quotaamountcode As String = dizEngine.processE(lite.getDataSet("getquotaamount", 0, "value"))
+                If quotaamountcode = lite.getDataSet("getquotaamountcode", 0, "value") Then
                     datavalid = True
                 Else
                     datavalid = False
                 End If
             End If
-            sqli.DMLQuery("select value from appsetting where variable='CompanyID'", "getcompanyid")
-            If sqli.getDataSet("getcompanyid", 0, "value") = " " Then
+            lite.DMLQuery("select value from appsetting where variable='CompanyID'", "getcompanyid")
+            If lite.getDataSet("getcompanyid", 0, "value") = " " Then
                 datavalid = False
             Else
-                mys.DMLQuery("select companycode as value from company where idcompany='" & sqli.getDataSet("getcompanyid", 0, "value") & "'", "getcompanycode")
-                sqli.DMLQuery("select value from appsetting where variable='CompanyCode'", "getcompanycode")
-                If mys.getDataSet("getcompanycode") > 0 Then
-                    If mys.getDataSet("getcompanycode", 0, "value") = sqli.getDataSet("getcompanycode", 0, "value") Then
+                table.Clear()
+                mparam.Clear()
+                mvalue.Clear()
+                mparam.AddRange(New String() {"param", "value", "tkey1", "tkey2"})
+                mvalue.AddRange(New String() {"cekid", lite.getDataSet("getcompanyid", 0, "value"), tmptokenkey1, tmptokenkey2})
+                json_result = modCore.HttpPOSTRequestselect(mysite & "company", mparam, mvalue)
+                table = Newtonsoft.Json.JsonConvert.DeserializeObject(Of DataTable)(json_result)
+
+                'MYs.DMLQuery("select companycode as value from company where idcompany='" & lite.getDataSet("getcompanyid", 0, "value") & "'", "getcompanycode")
+                lite.DMLQuery("select value from appsetting where variable='CompanyCode'", "getcompanycode")
+                If table.Rows.Count > 0 Then 'mys.getDataSet("getcompanycode") > 0 Then '.getDataSet("getcompanycode", 0, "value") 
+                    If table.Rows(0).Item("companycode") = lite.getDataSet("getcompanycode", 0, "value") Then
                         datavalid = True
                     Else
                         datavalid = False
@@ -89,30 +123,23 @@
                     datavalid = False
                 End If
             End If
-            sqli.DMLQuery("select value from appsetting where variable='ProductID'", "getproductid")
-            If sqli.getDataSet("getproductid", 0, "value") = " " Then
+
+            lite.DMLQuery("select value from appsetting where variable='HardwareID'", "gethardwareid")
+            If lite.getDataSet("gethardwareid", 0, "value") = " " Then
                 datavalid = False
             Else
-                mys.DMLQuery("select productcode as value from product where idproduct='" & sqli.getDataSet("getproductid", 0, "value") & "'", "getproductcode")
-                sqli.DMLQuery("select value from appsetting where variable='ProductCode'", "getproductcode")
-                If mys.getDataSet("getproductcode") > 0 Then
-                    If mys.getDataSet("getproductcode", 0, "value") = sqli.getDataSet("getproductcode", 0, "value") Then
-                        datavalid = True
-                    Else
-                        datavalid = False
-                    End If
-                Else
-                    datavalid = False
-                End If
-            End If
-            sqli.DMLQuery("select value from appsetting where variable='HardwareID'", "gethardwareid")
-            If sqli.getDataSet("gethardwareid", 0, "value") = " " Then
-                datavalid = False
-            Else
-                mys.DMLQuery("select hardwarecode as value from hardware where idhardware='" & sqli.getDataSet("gethardwareid", 0, "value") & "'", "gethardwarecode")
-                sqli.DMLQuery("select value from appsetting where variable='HardwareCode'", "gethardwarecode")
-                If mys.getDataSet("gethardwarecode") > 0 Then
-                    If mys.getDataSet("gethardwarecode", 0, "value") = sqli.getDataSet("gethardwarecode", 0, "value") Then
+                table.Clear()
+                mparam.Clear()
+                mvalue.Clear()
+                mparam.AddRange(New String() {"param", "value", "tkey1", "tkey2"})
+                mvalue.AddRange(New String() {"cekid", lite.getDataSet("gethardwareid", 0, "value"), tmptokenkey1, tmptokenkey2})
+                json_result = modCore.HttpPOSTRequestselect(mysite & "hardware", mparam, mvalue)
+                table = Newtonsoft.Json.JsonConvert.DeserializeObject(Of DataTable)(json_result)
+
+                'MYs.DMLQuery("select hardwarecode as value from hardware where idhardware='" & sqli.getDataSet("gethardwareid", 0, "value") & "'", "gethardwarecode")
+                lite.DMLQuery("select value from appsetting where variable='HardwareCode'", "gethardwarecode")
+                If table.Rows.Count > 0 Then 'MYs.getDataSet("gethardwarecode") > 0 Then
+                    If table.Rows(0).Item("hardwarecode") = lite.getDataSet("gethardwarecode", 0, "value") Then 'MYs.getDataSet("gethardwarecode", 0, "value") = lite.getDataSet("gethardwarecode", 0, "value") Then
                         datavalid = True
                     Else
                         datavalid = False
@@ -124,8 +151,8 @@
             If datavalid = True Then
                 Dim StartActivated As String = Format(tmpnowTime, "dd-MM-yyyy")
                 Dim StartActivatedCode As String = dizEngine.processE(StartActivated)
-                sqli.DMLQuery("update appsetting set value='" & StartActivated & "' where variable='StartActivated'", False)
-                sqli.DMLQuery("update appsetting set value='" & StartActivatedCode & "' where variable='StartActivatedCode'", False)
+                lite.DMLQuery("update appsetting set value='" & StartActivated & "' where variable='StartActivated'", False)
+                lite.DMLQuery("update appsetting set value='" & StartActivatedCode & "' where variable='StartActivatedCode'", False)
             End If
             aktif(False, False, False, False)
         End If

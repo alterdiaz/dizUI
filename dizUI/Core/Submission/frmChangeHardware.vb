@@ -50,7 +50,8 @@
     Private statData As statusData = statusData.Baru
     Private idData As String = "-1"
 
-    Private mystring As String = ""
+    Private mysite As String = ""
+    'Private mystring As String = ""
     Private Sub Form_Load(sender As Object, e As EventArgs) Handles Me.Load
         getRegex(dbstring)
 
@@ -67,27 +68,55 @@
 
         idData = "-1"
         Dim lite As New SQLi(dblite)
-        lite.DMLQuery("select databasename || '|' || ipserver || '|' || port || '|' || username || '|' || password as dbstring from dbconn where dbtype='SQLS' and dblocation='DOMAIN'", "getdbstring")
+        'lite.DMLQuery("select databasename || '|' || ipserver || '|' || port || '|' || username || '|' || password as dbstring from dbconn where dbtype='SQLS' and dblocation='DOMAIN'", "getdbstring")
+        'If lite.getDataSet("getdbstring") > 0 Then
+        '    mystring = lite.getDataSet("getdbstring", 0, "dbstring")
+        'End If
+        lite.DMLQuery("select siteurl from siteconn where active=1 order by idsiteconn desc", "getdbstring")
         If lite.getDataSet("getdbstring") > 0 Then
-            mystring = lite.getDataSet("getdbstring", 0, "dbstring")
+            'mystring = lite.getDataSet("getdbstring", 0, "dbstring")
+            mysite = lite.getDataSet("getdbstring", 0, "siteurl")
+            mysite = CheckAndRepairValidURL(mysite)
         End If
 
-        Dim sqls As New SQLs(mystring)
-        sqls.DMLQuery("select convert(varchar,getdate(),105) as tanggal,convert(varchar,getdate(),108) as waktu", "content")
-        If sqls.getDataSet("content") > 0 Then
-            Dim tmptgl As String = sqls.getDataSet("content", 0, "tanggal")
-            Dim tmpwaktu As String = sqls.getDataSet("content", 0, "waktu")
+        'Dim sqls As New SQLs(mystring)
+        'sqls.DMLQuery("select convert(varchar,getdate(),105) as tanggal,convert(varchar,getdate(),108) as waktu", "content")
+        'If sqls.getDataSet("content") > 0 Then 'strvalue.Contains("ERROR") = False Then
+        '    Dim tmptgl As String = sqls.getDataSet("content", 0, "tanggal") 'strvalue.Split(" ")(0)
+        '    Dim tmpwaktu As String = sqls.getDataSet("content", 0, "waktu") 'strvalue.Split(" ")(1)
+        '    tmpnowTime = Strdatetime2Datetime(tmptgl & " " & tmpwaktu)
+        'Else
+        '    tmpnowTime = Now
+        'End If
+
+        Dim json_result As String = ""
+        Dim table As DataTable = Nothing
+        Dim mparam As New List(Of String)
+        Dim mvalue As New List(Of String)
+        mparam.AddRange(New String() {"param", "tkey1", "tkey2"})
+        mvalue.AddRange(New String() {"currentdatetime", tmptokenkey1, tmptokenkey2})
+        json_result = modCore.HttpPOSTRequestSelect(mysite & "core", mparam, mvalue)
+        table = Newtonsoft.Json.JsonConvert.DeserializeObject(Of DataTable)(json_result)
+        If table.Rows.Count > 0 Then 'strvalue.Contains("ERROR") = False Then
+            Dim tmptgl As String = table.Rows(0).Item("tanggal") 'strvalue.Split(" ")(0)
+            Dim tmpwaktu As String = table.Rows(0).Item("waktu") 'strvalue.Split(" ")(1)
             tmpnowTime = Strdatetime2Datetime(tmptgl & " " & tmpwaktu)
         Else
-            tmpnowTime = Now
+            tmpnowTime = nowTime
         End If
 
-        sqls = New SQLs(mystring)
-        sqls.DMLQuery("select top 1 idtoken,tokenkey1,tokenkey2 from token order by createddate desc", "content")
-        If sqls.getDataSet("content") > 0 Then
-            tmpidtoken = sqls.getDataSet("content", 0, "idtoken")
-            tmptokenkey1 = sqls.getDataSet("content", 0, "tokenkey1")
-            tmptokenkey2 = sqls.getDataSet("content", 0, "tokenkey2")
+        'sqls = New SQLs(mystring)
+        'sqls.DMLQuery("select top 1 idtoken,tokenkey1,tokenkey2 from token order by createddate desc", "content")
+        table.Clear()
+        json_result = modCore.HttpPOSTRequestSelect(mysite & "currenttoken")
+        table = Newtonsoft.Json.JsonConvert.DeserializeObject(Of DataTable)(json_result)
+        If table.Rows.Count > 0 Then 'IsNumeric(strvalue) = False Then 'MYs.getDataSet("token") > 0 Then
+            tmpidtoken = table.Rows(0).Item("idtoken")
+            tmptokenkey1 = table.Rows(0).Item("tokenkey1")
+            tmptokenkey2 = table.Rows(0).Item("tokenkey2")
+            'MYs.getDataSet("token", 0, "idtoken")
+            'MYs.getDataSet("token", 0, "tokenkey1")
+            'MYs.getDataSet("token", 0, "tokenkey2")
         Else
             tmpidtoken = "E82EC129-868C-4FEB-9AEB-0ADB46428F1E"
             tmptokenkey1 = "ABF"
@@ -97,11 +126,6 @@
         tokenkey1 = tmptokenkey1
         tokenkey2 = tmptokenkey2
 
-        teProductPIN.EditValue = Nothing
-        teNamaResmiProduk.EditValue = Nothing
-        teNamaProduk.EditValue = Nothing
-        teNamaProduk.Tag = ""
-        teJenisProduk.EditValue = Nothing
         tePerusahaanPIN.EditValue = Nothing
         teNamaPerusahaan.EditValue = Nothing
         teNamaPerusahaan.Tag = ""
@@ -110,13 +134,23 @@
         tmphardwareid = getBoardID()
 
         Dim idhw As String = -1
-        sqls.DMLQuery("select idhardware,idtoken,tokenkey1,tokenkey2 from hardware where hardwareid='" & tmphardwareid & "'", "idhw")
-        If sqls.getDataSet("idhw") > 0 Then
-            idhw = sqls.getDataSet("idhw", 0, "idhardware")
 
-            tmpidtoken = sqls.getDataSet("idhw", 0, "idtoken")
-            tmptokenkey1 = sqls.getDataSet("idhw", 0, "tokenkey1")
-            tmptokenkey2 = sqls.getDataSet("idhw", 0, "tokenkey2")
+        json_result = ""
+        table.Clear()
+        mparam.Clear()
+        mvalue.Clear()
+        mparam.AddRange(New String() {"param", "value", "tkey1", "tkey2", "hardwareid"})
+        mvalue.AddRange(New String() {"cekhwid", "", tmptokenkey1, tmptokenkey2, tmphardwareid})
+        json_result = modCore.HttpPOSTRequestSelect(mysite & "hardware", mparam, mvalue)
+        table = Newtonsoft.Json.JsonConvert.DeserializeObject(Of DataTable)(json_result)
+
+        'SQLs.DMLQuery("select idhardware,idtoken,tokenkey1,tokenkey2 from hardware where hardwareid='" & tmphardwareid & "'", "idhw")
+        If table.Rows.Count > 0 Then 'sqls.getDataSet("idhw") > 0 Then
+            idhw = table.Rows(0).Item("idhardware") 'SQLs.getDataSet("idhw", 0, "idhardware")
+
+            tmpidtoken = table.Rows(0).Item("idtoken") 'SQLs.getDataSet("idhw", 0, "idtoken")
+            tmptokenkey1 = table.Rows(0).Item("tokenkey1") 'SQLs.getDataSet("idhw", 0, "tokenkey1")
+            tmptokenkey2 = table.Rows(0).Item("tokenkey2") 'SQLs.getDataSet("idhw", 0, "tokenkey2")
         End If
 
         tmphardwarecode = getHardwareCode(tmphardwareid, tokenkey1, tokenkey2)
@@ -124,31 +158,22 @@
         teKodeHardware.EditValue = tmphardwarecode
     End Sub
 
-    Private Sub btnExistProduk_Click(sender As Object, e As EventArgs) Handles btnExistProduk.Click
-        Dim sqlss As New SQLs(mystring)
-        sqlss.DMLQuery("select p.idproduct,p.idproducttype,p.productname,p.productofficialname,t.producttype from product p left join producttype t on p.idproducttype=t.idproducttype where p.productcode='" & teProductPIN.Text & "'", "getproduct")
-
-        If sqlss.getDataSet("getproduct") > 0 Then
-            teNamaProduk.Tag = sqlss.getDataSet("getproduct", 0, "idproduct")
-            teNamaProduk.EditValue = sqlss.getDataSet("getproduct", 0, "productname")
-            teNamaResmiProduk.EditValue = sqlss.getDataSet("getproduct", 0, "productofficialname")
-            teJenisProduk.EditValue = sqlss.getDataSet("getproduct", 0, "producttype")
-        Else
-            dizMsgbox("Produk tidak ditemukan", dizMsgboxStyle.Peringatan)
-            teNamaProduk.Tag = ""
-            teNamaProduk.EditValue = Nothing
-            teNamaResmiProduk.EditValue = Nothing
-            teJenisProduk.EditValue = Nothing
-        End If
-    End Sub
-
     Private Sub btnExistCompany_Click(sender As Object, e As EventArgs) Handles btnExistCompany.Click
-        Dim sqlss As New SQLs(mystring)
-        sqlss.DMLQuery("select idcompany,companyofficialname from company where companycode='" & tePerusahaanPIN.Text & "'", "getperusahaan")
+        Dim json_result As String = ""
+        Dim table As DataTable = Nothing
+        Dim mparam As New List(Of String)
+        Dim mvalue As New List(Of String)
+        mparam.AddRange(New String() {"param", "value", "tkey1", "tkey2", "companycode"})
+        mvalue.AddRange(New String() {"cekcode", "", tmptokenkey1, tmptokenkey2, tePerusahaanPIN.EditValue})
+        json_result = modCore.HttpPOSTRequestSelect(mysite & "company", mparam, mvalue)
+        table = Newtonsoft.Json.JsonConvert.DeserializeObject(Of DataTable)(json_result)
 
-        If sqlss.getDataSet("getperusahaan") > 0 Then
-            teNamaPerusahaan.Tag = sqlss.getDataSet("getperusahaan", 0, "idcompany")
-            teNamaPerusahaan.EditValue = sqlss.getDataSet("getperusahaan", 0, "companyofficialname")
+        'Dim sqlss As New SQLs(mystring)
+        'sqlss.DMLQuery("select idcompany,companyofficialname from company where companycode='" & tePerusahaanPIN.Text & "'", "getperusahaan")
+
+        If table.Rows.Count > 0 Then 'sqlss.getDataSet("getperusahaan") > 0 Then
+            teNamaPerusahaan.Tag = table.Rows(0).Item("idcompany") 'sqlss.getDataSet("getperusahaan", 0, "idcompany")
+            teNamaPerusahaan.EditValue = table.Rows(0).Item("companyofficialname") 'sqlss.getDataSet("getperusahaan", 0, "companyofficialname")
         Else
             dizMsgbox("Perusahaan tidak ditemukan", dizMsgboxStyle.Peringatan)
             teNamaPerusahaan.Tag = ""
@@ -158,35 +183,44 @@
 
     Private Sub btnSave_Click(sender As Object, e As EventArgs) Handles btnSave.Click
         Dim bcek As Boolean = True
-        If IsNumeric(teNamaProduk.Tag) = False Then
-            If teNamaProduk.Tag = "" Then
-                bcek = False
-            End If
-        End If
-        If IsNumeric(teNamaPerusahaan.Tag) = False Then
-            If teNamaPerusahaan.Tag = "" Then
-                bcek = False
-            End If
+        If teNamaPerusahaan.Tag = "" Then
+            bcek = False
         End If
         If bcek = False Then
             dizMsgbox("Produk / Perusahaan tidak ditemukan", dizMsgboxStyle.Peringatan)
             Exit Sub
         End If
 
-        Dim sqls As New SQLs(mystring)
-        sqls.DMLQuery("select idcompanyproduct from companyproduct where idcompany='" & teNamaPerusahaan.Tag & "' and idproduct='" & teNamaProduk.Tag & "'", "getcp")
-        Dim idcp As String = -1
-        If sqls.getDataSet("getcp") > 0 Then
-            idcp = sqls.getDataSet("getcp", 0, "idcompanyproduct")
+        Dim json_result As String = ""
+        Dim table As DataTable = Nothing
+        Dim mparam As New List(Of String)
+        Dim mvalue As New List(Of String)
+        mparam.AddRange(New String() {"param", "value", "tkey1", "tkey2", "idcompany"})
+        mvalue.AddRange(New String() {"cekcomp", "", tmptokenkey1, tmptokenkey2, teNamaPerusahaan.Tag})
+        json_result = modCore.HttpPOSTRequestSelect(mysite & "companyproduct", mparam, mvalue)
+        table = Newtonsoft.Json.JsonConvert.DeserializeObject(Of DataTable)(json_result)
+        'Dim sqls As New SQLs(mystring)
+        'SQLs.DMLQuery("select idcompanyproduct from companyproduct where idcompany='" & teNamaPerusahaan.Tag & "' and idproduct='" & teNamaProduk.Tag & "'", "getcp")
+        Dim idcp As String = "-1"
+        If table.Rows.Count > 0 Then 'sqls.getDataSet("getcp") > 0 Then
+            idcp = table.Rows(0).Item("idcompanyproduct") 'SQLs.getDataSet("getcp", 0, "idcompanyproduct")
         Else
             dizMsgbox("Produk / Perusahaan tidak ditemukan", dizMsgboxStyle.Peringatan)
             Exit Sub
         End If
 
-        Dim idhw As String = -1
-        sqls.DMLQuery("select idhardware,idtoken,tokenkey1,tokenkey2 from hardware where hardwareid='" & tmphardwareid & "'", "idhw")
-        If sqls.getDataSet("idhw") > 0 Then
-            idhw = sqls.getDataSet("idhw", 0, "idhardware")
+        json_result = ""
+        table.Clear()
+        mparam.Clear()
+        mvalue.Clear()
+        mparam.AddRange(New String() {"param", "value", "tkey1", "tkey2", "hardwareid"})
+        mvalue.AddRange(New String() {"cekhwid", "", tmptokenkey1, tmptokenkey2, tmphardwareid})
+        json_result = modCore.HttpPOSTRequestSelect(mysite & "hardware", mparam, mvalue)
+        table = Newtonsoft.Json.JsonConvert.DeserializeObject(Of DataTable)(json_result)
+        Dim idhw As String = "-1"
+        'sqls.DMLQuery("select idhardware,idtoken,tokenkey1,tokenkey2 from hardware where hardwareid='" & tmphardwareid & "'", "idhw")
+        If table.Rows.Count > 0 Then 'sqls.getDataSet("idhw") > 0 Then
+            idhw = table.Rows(0).Item("idhardware") 'SQLs.getDataSet("idhw", 0, "idhardware")
         End If
 
         If idhw = "-1" Then
@@ -194,16 +228,34 @@
             Dim lite As New SQLi(dblite)
             Dim field As New List(Of String)
             Dim value As New List(Of Object)
-            Dim sqlset As New dtsetSQLS(mystring)
+            'Dim sqlset As New dtsetSQLS(mystring)
             field.AddRange(New String() {"idhardware", "hardwareid", "idtoken", "tokenkey1", "tokenkey2", "hardwarecode", "createdby", "createddate"})
-            value.AddRange(New Object() {idhw, tmphardwareid, tmpidtoken, tmptokenkey1, tmptokenkey2, tmphardwarecode, tmpUserID, nowTime})
-            sqlset.datasetSave("hardware", idhw, field, value, False)
+            value.AddRange(New Object() {idhw, tmphardwareid, tmpidtoken, tmptokenkey1, tmptokenkey2, tmphardwarecode, tmpUserID, Format(nowTime, "yyyy-MM-dd HH:mm:ss")})
+            'sqlset.datasetSave("hardware", idhw, field, value, False)
+            json_result = ""
+            table.Clear()
+            mparam.Clear()
+            mvalue.Clear()
+            mparam.AddRange(New String() {"param", "value", "tkey1", "tkey2"})
+            mvalue.AddRange(New String() {"baru", idhw, tmptokenkey1, tmptokenkey2})
+            mparam.AddRange(field)
+            mvalue.AddRange(value)
+            json_result = modCore.HttpPOSTRequestInsert(mysite & "hardware", mparam, mvalue)
+            'table = Newtonsoft.Json.JsonConvert.DeserializeObject(Of DataTable)(json_result)
 
-            sqls.DMLQuery("select idhardware,idtoken,tokenkey1,tokenkey2 from hardware where hardwareid='" & tmphardwareid & "'", "idhw1")
-            idhw = sqls.getDataSet("idhw1", 0, "idhardware")
-            tmpidtoken = sqls.getDataSet("idhw1", 0, "idtoken")
-            tmptokenkey1 = sqls.getDataSet("idhw1", 0, "tokenkey1")
-            tmptokenkey2 = sqls.getDataSet("idhw1", 0, "tokenkey2")
+            json_result = ""
+            table.Clear()
+            mparam.Clear()
+            mvalue.Clear()
+            mparam.AddRange(New String() {"param", "value", "tkey1", "tkey2", "hardwareid"})
+            mvalue.AddRange(New String() {"cekhwid", "", tmptokenkey1, tmptokenkey2, tmphardwareid})
+            json_result = modCore.HttpPOSTRequestSelect(mysite & "hardware", mparam, mvalue)
+            table = Newtonsoft.Json.JsonConvert.DeserializeObject(Of DataTable)(json_result)
+            'SQLs.DMLQuery("select idhardware,idtoken,tokenkey1,tokenkey2 from hardware where hardwareid='" & tmphardwareid & "'", "idhw1")
+            idhw = table.Rows(0).Item("idhardware") 'SQLs.getDataSet("idhw1", 0, "idhardware")
+            tmpidtoken = table.Rows(0).Item("idtoken") 'SQLs.getDataSet("idhw1", 0, "idtoken")
+            tmptokenkey1 = table.Rows(0).Item("tokenkey1") 'SQLs.getDataSet("idhw1", 0, "tokenkey1")
+            tmptokenkey2 = table.Rows(0).Item("tokenkey2") 'SQLs.getDataSet("idhw1", 0, "tokenkey2")
 
             lite.DMLQuery("update appsetting set value='" & idhw & "' where variable='HardwareID'", False)
             tmphardwareid = getBoardID()
@@ -218,19 +270,35 @@
 
     Private Sub btnUserCheck_Click(sender As Object, e As EventArgs) Handles btnUserCheck.Click
         Me.Cursor = Cursors.WaitCursor
-        Dim sqls As New SQLs(mystring)
+        'Dim sqls As New SQLs(mystring)
 
-        sqls.DMLQuery("select iduser,idtoken,tokenkey1,tokenkey2,password from [user] where username='" & texUsername.Text & "'", "user")
-        If sqls.getDataSet("user") > 0 Then
-            tmpidtoken = sqls.getDataSet("user", 0, "idtoken")
-            tmptokenkey1 = sqls.getDataSet("user", 0, "tokenkey1")
-            tmptokenkey2 = sqls.getDataSet("user", 0, "tokenkey2")
-            Dim tmppassword As String = sqls.getDataSet("user", 0, "password")
+        Dim json_result As String = ""
+        Dim table As DataTable = Nothing
+        Dim mparam As New List(Of String)
+        Dim mvalue As New List(Of String)
+        mparam.AddRange(New String() {"param", "value", "tkey1", "tkey2", "username"})
+        mvalue.AddRange(New String() {"cekusername", "", tmptokenkey1, tmptokenkey2, texUsername.EditValue})
+        json_result = modCore.HttpPOSTRequestSelect(mysite & "user", mparam, mvalue)
+        table = Newtonsoft.Json.JsonConvert.DeserializeObject(Of DataTable)(json_result)
+        'SQLs.DMLQuery("select iduser,idtoken,tokenkey1,tokenkey2,password from [user] where username='" & texUsername.Text & "'", "user")
+        If table.Rows.Count > 0 Then 'sqls.getDataSet("user") > 0 Then
+            tmpidtoken = table.Rows(0).Item("idtoken") 'SQLs.getDataSet("user", 0, "idtoken")
+            tmptokenkey1 = table.Rows(0).Item("tokenkey1") ' SQLs.getDataSet("user", 0, "tokenkey1")
+            tmptokenkey2 = table.Rows(0).Item("tokenkey2") 'SQLs.getDataSet("user", 0, "tokenkey2")
+            Dim tmppassword As String = table.Rows(0).Item("password") ' SQLs.getDataSet("user", 0, "password")
             Dim strpassword As String = GeneratePass(texPassword.Text, tmptokenkey1, tmptokenkey2, 8000)
             If tmppassword = strpassword Then
+                json_result = ""
+                table.Clear()
+                mparam.Clear()
+                mvalue.Clear()
+                mparam.AddRange(New String() {"param", "value", "tkey1", "tkey2", "username"})
+                mvalue.AddRange(New String() {"cekusername", "", tmptokenkey1, tmptokenkey2, texUsername.EditValue})
+                json_result = modCore.HttpPOSTRequestSelect(mysite & "user", mparam, mvalue)
+                table = Newtonsoft.Json.JsonConvert.DeserializeObject(Of DataTable)(json_result)
 
-                sqls.DMLQuery("select iduser,namalengkap,personalno,cardtype,address,zipcode,email,handphone,hint,recoveryquestion,recoveryanswer,username,password from [user] where username='" & texUsername.Text & "'", "useronline")
-                tmpUserID = sqls.getDataSet("useronline", 0, "iduser")
+                'SQLs.DMLQuery("select iduser,namalengkap,personalno,cardtype,address,zipcode,email,handphone,hint,recoveryquestion,recoveryanswer,username,password from [user] where username='" & texUsername.Text & "'", "useronline")
+                tmpUserID = table.Rows(0).Item("iduser") 'SQLs.getDataSet("useronline", 0, "iduser")
                 tmpUserFromOnline = True
                 Me.Cursor = Cursors.Default
 

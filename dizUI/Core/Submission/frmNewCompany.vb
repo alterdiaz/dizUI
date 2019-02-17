@@ -122,21 +122,11 @@
         End If
     End Sub
 
-    Private Function getsharecontractid(sharecontractcode As String) As Long
-        Dim retval As Long = -1
-        Dim sqls As New SQLs(mystring)
-        sqls.DMLQuery("select idcompanyreferral from sharecontract where sharecontractcode='" & sharecontractcode & "' and isdeleted=0 and duedate is null", "getcompreff")
-        
-        If sqls.getDataSet("getcompreff") > 0 Then
-            retval = sqls.getDataSet("getcompreff", 0, "idcompanyreferral")
-        End If
-        Return retval
-    End Function
-
     Private statData As statusData = statusData.Baru
     Private idData As String = "-1"
 
-    Private mystring As String = ""
+    'Private mystring As String = ""
+    Private mysite As String = ""
     Private Sub btnSave_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnSave.Click
         Me.Cursor = Cursors.WaitCursor
         If cekIsian() = False Then
@@ -145,30 +135,40 @@
             Exit Sub
         End If
         If tmpCompanyFromOnline = False Then
-            If cekCompany(teCompNPWP.Text, teCompFullname.Text, teCompEmail.Text) = False Then
+            If cekCompany(teCompNPWP.Text) = False Then
                 dizMsgbox("Perusahaan ini sudah terdaftar", dizMsgboxStyle.Kesalahan, Me)
                 Me.Cursor = Cursors.Default
                 Exit Sub
             End If
         End If
 
-        Dim sqls As New SQLs(mystring)
+        Dim json_result As String = ""
+        Dim table As DataTable = Nothing
+
         If tmpCompanyFromOnline = False Then
-            sqls.DMLQuery("select top 1 idtoken,tokenkey1,tokenkey2 from token order by createddate desc", "token")
-            If sqls.getDataSet("token") > 0 Then
-                tmpidtoken = sqls.getDataSet("token", 0, "idtoken")
-                tmptokenkey1 = sqls.getDataSet("token", 0, "tokenkey1")
-                tmptokenkey2 = sqls.getDataSet("token", 0, "tokenkey2")
+            json_result = modCore.HttpPOSTRequestSelect(mysite & "currenttoken")
+            table = Newtonsoft.Json.JsonConvert.DeserializeObject(Of DataTable)(json_result)
+            If table.Rows.Count > 0 Then
+                tmpidtoken = table.Rows(0).Item("idtoken")
+                tmptokenkey1 = table.Rows(0).Item("tokenkey2")
+                tmptokenkey2 = table.Rows(0).Item("tokenkey2")
             Else
-                tmpidtoken = 1
+                tmpidtoken = "E82EC129-868C-4FEB-9AEB-0ADB46428F1E"
                 tmptokenkey1 = "ABF"
                 tmptokenkey2 = "123"
             End If
         End If
-        sqls.DMLQuery("select convert(varchar,getdate(),105) as tanggal,convert(varchar,getdate(),108) as waktu", "lasttime")
-        If sqls.getDataSet("lasttime") > 0 Then
-            Dim tmptgl As String = sqls.getDataSet("lasttime", 0, "tanggal")
-            Dim tmpwaktu As String = sqls.getDataSet("lasttime", 0, "waktu")
+
+        table.Clear()
+        Dim mparam As New List(Of String)
+        Dim mvalue As New List(Of String)
+        mparam.AddRange(New String() {"param", "tkey1", "tkey2"})
+        mvalue.AddRange(New String() {"currentdatetime", tmptokenkey1, tmptokenkey2})
+        json_result = modCore.HttpPOSTRequestSelect(mysite & "core", mparam, mvalue)
+        table = Newtonsoft.Json.JsonConvert.DeserializeObject(Of DataTable)(json_result)
+        If table.Rows.Count > 0 Then
+            Dim tmptgl As String = table.Rows(0).Item("tanggal")
+            Dim tmpwaktu As String = table.Rows(0).Item("waktu")
             tmpnowTime = Strdatetime2Datetime(tmptgl & " " & tmpwaktu)
         Else
             tmpnowTime = Now
@@ -177,9 +177,16 @@
         If tmpCompanyFromOnline = False Then
             tmpidcompanyrefferal = -1
             If teRefferalCode.Text <> "" Then
-                sqls.DMLQuery("select idcompanyreferral from sharecontract where sharecontractcode='" & teRefferalCode.Text & "' and isdeleted=0 and duedate > getdate()", "getidcompreff")
-                If sqls.getDataSet("getidcompreff") > 0 Then
-                    tmpidcompanyrefferal = sqls.getDataSet("getidcompreff", 0, "idcompanyreferral")
+                table.Clear()
+                mparam.Clear()
+                mvalue.Clear()
+                mparam.AddRange(New String() {"param", "value", "tkey1", "tkey2"})
+                mvalue.AddRange(New String() {"cekcode", teRefferalCode.Text, tmptokenkey1, tmptokenkey2})
+                json_result = modCore.HttpPOSTRequestSelect(mysite & "sharecontract")
+                table = Newtonsoft.Json.JsonConvert.DeserializeObject(Of DataTable)(json_result)
+
+                If table.Rows.Count > 0 Then
+                    tmpidcompanyrefferal = table.Rows(0).Item("idcompanyreferral")
                 Else
                     dizMsgbox("Refferal Code tidak ditemukan", dizMsgboxStyle.Kesalahan)
                     Exit Sub
@@ -187,9 +194,11 @@
             End If
         End If
 
-        Dim dtmys As New dtsetSQLS(mystring)
+        If idData = "-1" Then
+            idData = GenerateGUID()
+        End If
         Dim field As New List(Of String)
-        Dim value As New List(Of Object)
+        Dim value As New List(Of String)
         field.AddRange(New String() {"idcompany", "idcompanyrefferal", "companycode", "companynicknameunique", "companynickname", "companyofficialname", "companytype", "companylegalnumber", "companyemail", "emailpin", "emailpinexpired", "isemailverified", "address", "zipcode", "idnegara", "idpropinsi", "idkabupaten", "idkecamatan", "idkelurahan", "addresspin", "addresspinexpired", "isaddressverified", "faxno", "phoneno1", "phoneno2", "ispersonal", "isdeleted", "deletereason", "contactpersonname", "contactpersonno", "contactpersonemail", "createdby", "createddate", "idtoken", "tokenkey1", "tokenkey2"})
         'Dim emailpin As String = GenerateUniqueID(getCharsUpperNumeric(teCompEmail.Text), 20)
         'Dim emailpin As String = getCharsNumeric(GeneratePass(teCompEmail.Text, tmptokenkey1, tmptokenkey2, 20))
@@ -202,11 +211,22 @@
         Dim compcode As String = getGenerateCode(teCompFullname.Text, tmptokenkey1, tmptokenkey2, 20, getFrom.depan)
 
         Dim compnameunique As String = getCharsNumeric(teCompFullname.Text)
-        value.AddRange(New Object() {idData, IIf(tmpidcompanyrefferal = -1, 0, tmpidcompanyrefferal), compcode, compnameunique, teCompNickname.Text, teCompFullname.Text, lueCompJenis.EditValue, teCompNPWP.Text, teCompEmail.Text, emailpin, tmpnowTime.AddDays(30), 0, teAlamat.Text, teKodepos.Text, lueRegion1.EditValue, lueRegion2.EditValue, Nothing, Nothing, Nothing, addresspin, tmpnowTime.AddDays(30), 0, teFax.Text, tePhone1.Text, tePhone2.Text, IIf(lueCompJenis.EditValue = 0, 1, 0), 0, "-", teCPname.Text, teCPno.Text, teCPemail.Text, tmpUserID, tmpnowTime, tmpidtoken, tmptokenkey1, tmptokenkey2})
+        value.AddRange(New Object() {idData, IIf(tmpidcompanyrefferal = "-1", "0", tmpidcompanyrefferal), compcode, compnameunique, teCompNickname.Text, teCompFullname.Text, lueCompJenis.EditValue, teCompNPWP.Text, teCompEmail.Text, emailpin, Format(tmpnowTime.AddDays(30), "yyyy-MM-dd"), 0, teAlamat.Text, teKodepos.Text, lueRegion1.EditValue, lueRegion2.EditValue, "", "", "", addresspin, Format(tmpnowTime.AddDays(30), "yyyy-MM-dd"), 0, teFax.Text, tePhone1.Text, tePhone2.Text, IIf(lueCompJenis.EditValue = 0, 1, 0), 0, "-", teCPname.Text, teCPno.Text, teCPemail.Text, tmpUserID, Format(tmpnowTime, "yyyy-MM-dd HH:mm:ss"), tmpidtoken, tmptokenkey1, tmptokenkey2})
 
         Me.Cursor = Cursors.Default
-        If dtmys.datasetSave("company", idData, field, value, False) = True Then
-            Dim idcomp As Integer = getIDCompany(teCompNPWP.Text, teCompFullname.Text, teCompEmail.Text)
+
+        table.Clear()
+        mparam.Clear()
+        mvalue.Clear()
+        mparam.AddRange(field)
+        mvalue.AddRange(value)
+        mparam.AddRange(New String() {"param", "value", "tkey1", "tkey2"})
+        mvalue.AddRange(New String() {"baru", "", tmptokenkey1, tmptokenkey2})
+        json_result = modCore.HttpPOSTRequestInsert(mysite & "company")
+        'table = Newtonsoft.Json.JsonConvert.DeserializeObject(Of DataTable)(json_result)
+
+        If json_result = "true" Then 'table.Rows.Count > 0 Then
+            Dim idcomp As String = getIDCompany(teCompNPWP.Text)
             Dim lite As New SQLi(dblite)
 
             modCore.idcompany = idcomp
@@ -229,39 +249,104 @@
         End If
     End Sub
 
-    Private Function getIDCompanyByEmail(ByVal emailcomp As String, ByVal emailpin As String) As Integer
-        Dim retval As Integer = 0
+    Private Function getIDCompanyByEmail(ByVal emailcomp As String, ByVal emailpin As String) As String
+        Dim retval As String = ""
+        Dim json_result As String = ""
+        Dim table As DataTable = Nothing
+        json_result = modCore.HttpPOSTRequestSelect(mysite & "currenttoken")
+        table = Newtonsoft.Json.JsonConvert.DeserializeObject(Of DataTable)(json_result)
+        Dim tkey1 As String = ""
+        Dim tkey2 As String = ""
+        If table.Rows.Count > 0 Then
+            tkey1 = table.Rows(0).Item("tokenkey1")
+            tkey2 = table.Rows(0).Item("tokenkey2")
+        End If
 
-        Dim sqls As New SQLs(mystring)
-        sqls.DMLQuery("select idcompany from company where emailpin='" & emailpin & "' and companyemail='" & emailcomp & "' and isemailverified=1", "cekcomp")
-        If sqls.getDataSet("cekcomp") > 0 Then
-            retval = sqls.getDataSet("cekcomp", 0, "idcompany")
+        table.Clear()
+        Dim param As New List(Of String)
+        Dim value As New List(Of String)
+        param.AddRange(New String() {"param", "value", "emailpin", "tkey1", "tkey2"})
+        value.AddRange(New String() {"cekemailpinvalid", emailcomp, emailpin, tkey1, tkey2})
+        json_result = modCore.HttpPOSTRequestSelect(mysite & "company", param, value)
+        table = Newtonsoft.Json.JsonConvert.DeserializeObject(Of DataTable)(json_result)
+        If table.Rows.Count > 0 Then
+            retval = table.Rows(0).Item("idcompany")
         End If
         Return retval
     End Function
 
-    Private Function getIDCompany(ByVal npwp As String, ByVal fullname As String, ByVal emailcomp As String) As Integer
-        Dim retval As Integer = 0
-        Dim strnpwp As String = npwp
-        Dim strnickunique As String = getCharsNumeric(fullname)
+    Private Function getCompanyByEmail(ByVal emailcomp As String, ByVal emailpin As String) As DataTable
+        Dim retval As DataTable = Nothing
+        Dim json_result As String = ""
+        Dim table As DataTable = Nothing
+        json_result = modCore.HttpPOSTRequestSelect(mysite & "currenttoken")
+        table = Newtonsoft.Json.JsonConvert.DeserializeObject(Of DataTable)(json_result)
+        Dim tkey1, tkey2 As String
+        If table.Rows.Count > 0 Then
+            tkey1 = table.Rows(0).Item("tokenkey1")
+            tkey2 = table.Rows(0).Item("tokenkey2")
+        End If
 
-        Dim sqls As New SQLs(mystring)
-        sqls.DMLQuery("select idcompany from company where companylegalnumber='" & strnpwp & "' or companynicknameunique='" & strnickunique & "' or companyemail='" & emailcomp & "'", "cekcomp")
-
-        If sqls.getDataSet("cekcomp") > 0 Then
-            retval = sqls.getDataSet("cekcomp", 0, "idcompany")
+        table.Clear()
+        Dim param As New List(Of String)
+        Dim value As New List(Of String)
+        param.AddRange(New String() {"param", "value", "emailpin", "tkey1", "tkey2"})
+        value.AddRange(New String() {"cekemailpinvalid", emailcomp, emailpin, tkey1, tkey2})
+        json_result = modCore.HttpPOSTRequestSelect(mysite & "company", param, value)
+        table = Newtonsoft.Json.JsonConvert.DeserializeObject(Of DataTable)(json_result)
+        If table.Rows.Count > 0 Then
+            retval = table
         End If
         Return retval
     End Function
 
-    Private Function cekCompany(ByVal npwp As String, ByVal nickname As String, ByVal emailcomp As String) As Boolean
+    Private Function getIDCompany(ByVal npwp As String) As String
+        Dim retval As String = ""
+        Dim strnpwp As String = getNumber(npwp)
+        Dim json_result As String = ""
+        Dim table As DataTable = Nothing
+        json_result = modCore.HttpPOSTRequestSelect(mysite & "currenttoken")
+        table = Newtonsoft.Json.JsonConvert.DeserializeObject(Of DataTable)(json_result)
+        Dim tkey1, tkey2 As String
+        If table.Rows.Count > 0 Then
+            tkey1 = table.Rows(0).Item("tokenkey1")
+            tkey2 = table.Rows(0).Item("tokenkey2")
+        End If
+
+        table.Clear()
+        Dim param As New List(Of String)
+        Dim value As New List(Of String)
+        param.AddRange(New String() {"param", "value", "tkey1", "tkey2"})
+        value.AddRange(New String() {"ceknpwp", npwp, tkey1, tkey2})
+        json_result = modCore.HttpPOSTRequestSelect(mysite & "company", param, value)
+        table = Newtonsoft.Json.JsonConvert.DeserializeObject(Of DataTable)(json_result)
+        If table.Rows.Count > 0 Then
+            retval = table.Rows(0).Item("idcompany")
+        End If
+        Return retval
+    End Function
+
+    Private Function cekCompany(ByVal npwp As String) As Boolean
         Dim retval As Boolean = True
         Dim strnpwp As String = getNumber(npwp)
-        Dim strnickunique As String = getCharsUpper(nickname)
+        Dim json_result As String = ""
+        Dim table As DataTable = Nothing
+        json_result = modCore.HttpPOSTRequestSelect(mysite & "currenttoken")
+        table = Newtonsoft.Json.JsonConvert.DeserializeObject(Of DataTable)(json_result)
+        Dim tkey1, tkey2 As String
+        If table.Rows.Count > 0 Then
+            tkey1 = table.Rows(0).Item("tokenkey1")
+            tkey2 = table.Rows(0).Item("tokenkey2")
+        End If
 
-        'Dim sqls As New SQLs(mystring)
-        'sqls.DMLQuery("select idcompany from company where companylegalnumber='" & strnpwp & "' or companynicknameunique='" & strnickunique & "' or companyemail='" & emailcomp & "'", "content")
-        If sqls.getDataSet("content") > 0 Then
+        table.Clear()
+        Dim param As New List(Of String)
+        Dim value As New List(Of String)
+        param.AddRange(New String() {"param", "value", "tkey1", "tkey2"})
+        value.AddRange(New String() {"ceknpwp", npwp, tkey1, tkey2})
+        json_result = modCore.HttpPOSTRequestSelect(mysite & "company", param, value)
+        table = Newtonsoft.Json.JsonConvert.DeserializeObject(Of DataTable)(json_result)
+        If table.Rows.Count > 0 Then
             retval = False
         End If
         Return retval
@@ -272,20 +357,48 @@
         tmpCompanyFromOnline = False
         idData = "-1"
         Dim lite As New SQLi(dblite)
-        lite.DMLQuery("select databasename || '|' || ipserver || '|' || port || '|' || username || '|' || password as dbstring from dbconn where dbtype='SQLS' and dblocation='DOMAIN'", "getdbstring")
+        'lite.DMLQuery("select databasename || '|' || ipserver || '|' || port || '|' || username || '|' || password as dbstring from dbconn where dbtype='SQLS' and dblocation='DOMAIN'", "getdbstring")
+        lite.DMLQuery("select siteurl from siteconn where active=1 order by idsiteconn desc", "getdbstring")
         If lite.getDataSet("getdbstring") > 0 Then
-            mystring = lite.getDataSet("getdbstring", 0, "dbstring")
+            '    mystring = lite.getDataSet("getdbstring", 0, "dbstring")
+            mysite = lite.getDataSet("getdbstring", 0, "siteurl")
+            mysite = CheckAndRepairValidURL(mysite)
         End If
 
-        Dim sqls As New SQLs(mystring)
-        sqls.DMLQuery("select idgeneral as idjenis,generalcode as jenis from generalcode where gctype='COMPANYTYPE'", "getcomptype")
-        lueCompJenis.Properties.DataSource = sqls.dataTable("getcomptype")
-        lueCompJenis.Properties.DisplayMember = "jenis"
-        lueCompJenis.Properties.ValueMember = "idjenis"
+        Dim json_result As String = ""
+        Dim table As DataTable = Nothing
+        Dim reg1 As DataTable = Nothing
+
+        json_result = modCore.HttpPOSTRequestSelect(mysite & "currenttoken")
+        table = Newtonsoft.Json.JsonConvert.DeserializeObject(Of DataTable)(json_result)
+        tmpidtoken = table.Rows(0).Item("idtoken")
+        tmptokenkey1 = table.Rows(0).Item("tokenkey2")
+        tmptokenkey2 = table.Rows(0).Item("tokenkey2")
+
+        table.Clear()
+        Dim field As New List(Of String)
+        Dim value As New List(Of String)
+        field.AddRange(New String() {"param", "value", "tkey1", "tkey2"})
+        value.AddRange(New String() {"custom", "select idgeneral as id,generalcode as content from generalcode where gctype='COMPANYTYPE'", tmptokenkey1, tmptokenkey2})
+        json_result = modCore.HttpPOSTRequestSelect(mysite & "core")
+        table = Newtonsoft.Json.JsonConvert.DeserializeObject(Of DataTable)(json_result)
+
+        'Dim sqls As New SQLs(mystring)
+        'sqls.DMLQuery("select idgeneral as idjenis,generalcode as jenis from generalcode where gctype='COMPANYTYPE'", "getcomptype")
+        lueCompJenis.Properties.DataSource = table 'sqls.dataTable("getcomptype")
+        lueCompJenis.Properties.DisplayMember = "content"
+        lueCompJenis.Properties.ValueMember = "id"
         lueCompJenis.EditValue = Nothing
 
-        sqls.DMLQuery("select idwilayah as idregion,wilayah as region from wilayah where levelwilayah=1 and isdeleted=0", "region1")
-        lueRegion1.Properties.DataSource = sqls.dataTable("region1")
+        field.Clear()
+        value.Clear()
+        field.AddRange(New String() {"param", "value", "tkey1", "tkey2"})
+        value.AddRange(New String() {"custom", "select idwilayah as idregion,wilayah as region from wilayah where levelwilayah=1 and isdeleted=0", tmptokenkey1, tmptokenkey2})
+        json_result = modCore.HttpPOSTRequestSelect(mysite & "core")
+        reg1 = Newtonsoft.Json.JsonConvert.DeserializeObject(Of DataTable)(json_result)
+
+        'SQLs.DMLQuery("select idwilayah as idregion,wilayah as region from wilayah where levelwilayah=1 and isdeleted=0", "region1")
+        lueRegion1.Properties.DataSource = reg1 'sqls.dataTable("region1")
         lueRegion1.Properties.ValueMember = "idregion"
         lueRegion1.Properties.DisplayMember = "region"
         lueRegion1.EditValue = Nothing
@@ -333,45 +446,53 @@
 
     Private Sub btnExistCheck_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnExistCheck.Click
         Me.Cursor = Cursors.WaitCursor
-        Dim sqls As New SQLs(mystring)
-        sqls.DMLQuery("select idcompany from company where companyemail='" & teExistCompEmail.Text & "' and isdeleted=0 and (emailpin='" & teExistCompEmailPIN.Text & "' or addresspin='" & teExistCompEmailPIN.Text & "')", "getidcomp")
-        If sqls.getDataSet("getidcomp") > 0 Then
-            idData = sqls.getDataSet("getidcomp", 0, "idcompany")
+        Dim idtmp As String = getIDCompanyByEmail(teExistCompEmail.Text, teExistCompEmailPIN.Text)
+        'Dim sqls As New SQLs(mystring)
+        'sqls.DMLQuery("select idcompany from company where companyemail='" & teExistCompEmail.Text & "' and isdeleted=0 and (emailpin='" & teExistCompEmailPIN.Text & "' or addresspin='" & teExistCompEmailPIN.Text & "')", "getidcomp")
+        If idtmp <> "" Then
+            Dim tabel As DataTable = getCompanyByEmail(teExistCompEmail.Text, teExistCompEmailPIN.Text)
+            idData = tabel.Rows(0).Item("idcompany")
 
-            sqls.DMLQuery("select isnull(idcompanyrefferal,-1) as idcompanyrefferal,companytype,companyofficialname,companynickname,companyemail,companylegalnumber,address,zipcode,idnegara,idpropinsi,idkabupaten,idkecamatan,idkelurahan,faxno,phoneno1,phoneno2,contactpersonname,contactpersonno,contactpersonemail,idtoken,tokenkey1,tokenkey2 from company where idcompany='" & idData & "'", "getcompdata")
+            'SQLs.DMLQuery("select isnull(idcompanyrefferal,-1) as idcompanyrefferal,companytype,companyofficialname,companynickname,companyemail,companylegalnumber,address,zipcode,idnegara,idpropinsi,idkabupaten,idkecamatan,idkelurahan,faxno,phoneno1,phoneno2,contactpersonname,contactpersonno,contactpersonemail,idtoken,tokenkey1,tokenkey2 from company where idcompany='" & idData & "'", "getcompdata")
 
-            tmpidcompanyrefferal = sqls.getDataSet("getcompdata", 0, "idcompanyrefferal")
-            lueCompJenis.EditValue = sqls.getDataSet("getcompdata", 0, "companytype")
-            teCompNickname.Text = sqls.getDataSet("getcompdata", 0, "companynickname")
-            teCompFullname.Text = sqls.getDataSet("getcompdata", 0, "companyofficialname")
-            teCompEmail.Text = sqls.getDataSet("getcompdata", 0, "companyemail")
-            teCompNPWP.Text = sqls.getDataSet("getcompdata", 0, "companylegalnumber")
+            tmpidcompanyrefferal = tabel.Rows(0).Item("idcompanyrefferal")
+            lueCompJenis.EditValue = tabel.Rows(0).Item("companytype")
+            teCompNickname.Text = tabel.Rows(0).Item("companynickname")
+            teCompFullname.Text = tabel.Rows(0).Item("companyofficialname")
+            teCompEmail.Text = tabel.Rows(0).Item("companyemail")
+            teCompNPWP.Text = tabel.Rows(0).Item("companylegalnumber")
 
-            teAlamat.Text = sqls.getDataSet("getcompdata", 0, "address")
-            teKodepos.Text = sqls.getDataSet("getcompdata", 0, "zipcode")
-            teFax.Text = sqls.getDataSet("getcompdata", 0, "faxno")
-            tePhone1.Text = sqls.getDataSet("getcompdata", 0, "phoneno1")
-            tePhone2.Text = sqls.getDataSet("getcompdata", 0, "phoneno2")
+            teAlamat.Text = tabel.Rows(0).Item("address")
+            teKodepos.Text = tabel.Rows(0).Item("zipcode")
+            teFax.Text = tabel.Rows(0).Item("faxno")
+            tePhone1.Text = tabel.Rows(0).Item("phoneno1")
+            tePhone2.Text = tabel.Rows(0).Item("phoneno2")
 
-            lueRegion1.EditValue = sqls.getDataSet("getcompdata", 0, "idnegara")
-            lueRegion2.EditValue = sqls.getDataSet("getcompdata", 0, "idpropinsi")
-            lueRegion3.EditValue = sqls.getDataSet("getcompdata", 0, "idkabupaten")
-            lueRegion4.EditValue = sqls.getDataSet("getcompdata", 0, "idkecamatan")
-            lueRegion5.EditValue = sqls.getDataSet("getcompdata", 0, "idkelurahan")
+            lueRegion1.EditValue = tabel.Rows(0).Item("idnegara")
+            lueRegion2.EditValue = tabel.Rows(0).Item("idpropinsi")
+            lueRegion3.EditValue = tabel.Rows(0).Item("idkabupaten")
+            lueRegion4.EditValue = tabel.Rows(0).Item("idkecamatan")
+            lueRegion5.EditValue = tabel.Rows(0).Item("idkelurahan")
 
-            teCPname.Text = sqls.getDataSet("getcompdata", 0, "contactpersonname")
-            teCPno.Text = sqls.getDataSet("getcompdata", 0, "contactpersonno")
-            teCPemail.Text = sqls.getDataSet("getcompdata", 0, "contactpersonemail")
+            teCPname.Text = tabel.Rows(0).Item("contactpersonname")
+            teCPno.Text = tabel.Rows(0).Item("contactpersonno")
+            teCPemail.Text = tabel.Rows(0).Item("contactpersonemail")
 
-            tmpidtoken = sqls.getDataSet("getcompdata", 0, "idtoken")
-            tmptokenkey1 = sqls.getDataSet("getcompdata", 0, "tokenkey1")
-            tmptokenkey2 = sqls.getDataSet("getcompdata", 0, "tokenkey2")
+            tmpidtoken = tabel.Rows(0).Item("idtoken")
+            tmptokenkey1 = tabel.Rows(0).Item("tokenkey1")
+            tmptokenkey2 = tabel.Rows(0).Item("tokenkey2")
             teRefferalCode.Text = ""
 
             If tmpidcompanyrefferal <> "-1" Then
-                sqls.DMLQuery("select sharecontractcode from sharecontract where idcompanyreferral='" & tmpidcompanyrefferal & "' and isdeleted=0 and duedate > getdate()", "getreff")
-                If sqls.getDataSet("getreff") > 0 Then
-                    teRefferalCode.Text = sqls.getDataSet("getreff", 0, "sharecontractcode")
+                Dim field As New List(Of String)
+                Dim value As New List(Of String)
+                field.AddRange(New String() {"param", "value", "tkey1", "tkey2"})
+                value.AddRange(New String() {"cekidreff", tmpidcompanyrefferal, tmptokenkey1, tmptokenkey2})
+                Dim json_result As String = modCore.HttpPOSTRequestSelect(mysite & "sharecontract")
+                Dim sc As DataTable = Newtonsoft.Json.JsonConvert.DeserializeObject(Of DataTable)(json_result)
+
+                If sc.Rows.Count > 0 Then
+                    teRefferalCode.Text = sc.Rows(0).Item("sharecontractcode")
                     teRefferalCode.ReadOnly = True
                     teRefferalCode.Enabled = False
                     teRefferalCode.BackColor = justRead
@@ -404,9 +525,15 @@
             lueRegion2.Properties.DataSource = Nothing
             lueRegion2.EditValue = Nothing
         Else
-            Dim sqls As New SQLs(mystring)
-            sqls.DMLQuery("select idwilayah as idregion,wilayah as region from wilayah where levelwilayah=2 and isdeleted=0 and idparent='" & sender.editvalue & "'", "region2")
-            lueRegion2.Properties.DataSource = sqls.dataTable("region2")
+            Dim field As New List(Of String)
+            Dim value As New List(Of String)
+            Dim json_result As String
+            Dim reg As DataTable = Nothing
+            field.AddRange(New String() {"param", "value", "tkey1", "tkey2"})
+            value.AddRange(New String() {"custom", "select idwilayah as idregion,wilayah as region from wilayah where levelwilayah=2 and isdeleted=0 and idparent='" & sender.editvalue & "'", tmptokenkey1, tmptokenkey2})
+            json_result = modCore.HttpPOSTRequestSelect(mysite & "core")
+            reg = Newtonsoft.Json.JsonConvert.DeserializeObject(Of DataTable)(json_result)
+            lueRegion2.Properties.DataSource = reg
             lueRegion2.Properties.ValueMember = "idregion"
             lueRegion2.Properties.DisplayMember = "region"
             lueRegion2.EditValue = Nothing
@@ -418,9 +545,15 @@
             lueRegion3.Properties.DataSource = Nothing
             lueRegion3.EditValue = Nothing
         Else
-            Dim sqls As New SQLs(mystring)
-            sqls.DMLQuery("select idwilayah as idregion,wilayah as region from wilayah where levelwilayah=3 and isdeleted=0 and idparent='" & sender.editvalue & "'", "region3")
-            lueRegion3.Properties.DataSource = sqls.dataTable("region3")
+            Dim field As New List(Of String)
+            Dim value As New List(Of String)
+            Dim json_result As String
+            Dim reg As DataTable = Nothing
+            field.AddRange(New String() {"param", "value", "tkey1", "tkey2"})
+            value.AddRange(New String() {"custom", "select idwilayah as idregion,wilayah as region from wilayah where levelwilayah=3 and isdeleted=0 and idparent='" & sender.editvalue & "'", tmptokenkey1, tmptokenkey2})
+            json_result = modCore.HttpPOSTRequestSelect(mysite & "core")
+            reg = Newtonsoft.Json.JsonConvert.DeserializeObject(Of DataTable)(json_result)
+            lueRegion3.Properties.DataSource = reg
             lueRegion3.Properties.ValueMember = "idregion"
             lueRegion3.Properties.DisplayMember = "region"
             lueRegion3.EditValue = Nothing
@@ -432,9 +565,15 @@
             lueRegion4.Properties.DataSource = Nothing
             lueRegion4.EditValue = Nothing
         Else
-            Dim sqls As New SQLs(mystring)
-            sqls.DMLQuery("select idwilayah as idregion,wilayah as region from wilayah where levelwilayah=4 and isdeleted=0 and idparent='" & sender.editvalue & "'", "region4")
-            lueRegion4.Properties.DataSource = sqls.dataTable("region4")
+            Dim field As New List(Of String)
+            Dim value As New List(Of String)
+            Dim json_result As String
+            Dim reg As DataTable = Nothing
+            field.AddRange(New String() {"param", "value", "tkey1", "tkey2"})
+            value.AddRange(New String() {"custom", "select idwilayah as idregion,wilayah as region from wilayah where levelwilayah=4 and isdeleted=0 and idparent='" & sender.editvalue & "'", tmptokenkey1, tmptokenkey2})
+            json_result = modCore.HttpPOSTRequestSelect(mysite & "core")
+            reg = Newtonsoft.Json.JsonConvert.DeserializeObject(Of DataTable)(json_result)
+            lueRegion4.Properties.DataSource = reg
             lueRegion4.Properties.ValueMember = "idregion"
             lueRegion4.Properties.DisplayMember = "region"
             lueRegion4.EditValue = Nothing
@@ -446,9 +585,15 @@
             lueRegion5.Properties.DataSource = Nothing
             lueRegion5.EditValue = Nothing
         Else
-            Dim mys As New SQLs(mystring)
-            mys.DMLQuery("select idwilayah as idregion,wilayah as region from wilayah where idregionlevel=5 and isdeleted=0 and idparent='" & sender.editvalue & "'", "region5")
-            lueRegion5.Properties.DataSource = mys.dataTable("region5")
+            Dim field As New List(Of String)
+            Dim value As New List(Of String)
+            Dim json_result As String
+            Dim reg As DataTable = Nothing
+            field.AddRange(New String() {"param", "value", "tkey1", "tkey2"})
+            value.AddRange(New String() {"custom", "select idwilayah as idregion,wilayah as region from wilayah where levelwilayah=5 and isdeleted=0 and idparent='" & sender.editvalue & "'", tmptokenkey1, tmptokenkey2})
+            json_result = modCore.HttpPOSTRequestSelect(mysite & "core")
+            reg = Newtonsoft.Json.JsonConvert.DeserializeObject(Of DataTable)(json_result)
+            lueRegion5.Properties.DataSource = reg
             lueRegion5.Properties.ValueMember = "idregion"
             lueRegion5.Properties.DisplayMember = "region"
             lueRegion5.EditValue = Nothing

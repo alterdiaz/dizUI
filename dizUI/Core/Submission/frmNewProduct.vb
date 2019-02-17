@@ -47,34 +47,52 @@
         End If
     End Sub
 
-    Private mystring As String = ""
+    'Private mystring As String = ""
+    Private mysite As String = ""
     Private Sub Form_Load(sender As Object, e As EventArgs) Handles Me.Load
         getRegex(dbstring)
         idData = "-1"
         Dim lite As New SQLi(dblite)
-        lite.DMLQuery("select databasename || '|' || ipserver || '|' || port || '|' || username || '|' || password as dbstring from dbconn where dbtype='SQLS' and dblocation='DOMAIN'", "getdbstring")
+        'lite.DMLQuery("select databasename || '|' || ipserver || '|' || port || '|' || username || '|' || password as dbstring from dbconn where dbtype='SQLS' and dblocation='DOMAIN'", "getdbstring")
+        lite.DMLQuery("select siteurl from siteconn where active=1 order by idsiteconn desc", "getdbstring")
         If lite.getDataSet("getdbstring") > 0 Then
-            mystring = lite.getDataSet("getdbstring", 0, "dbstring")
+            'mystring = lite.getDataSet("getdbstring", 0, "dbstring")
+            mysite = lite.getDataSet("getdbstring", 0, "siteurl")
+            mysite = CheckAndRepairValidURL(mysite)
         End If
 
-        Dim sqls As New SQLs(mystring)
-        sqls.DMLQuery("select convert(varchar,getdate(),105) as tanggal,convert(varchar,getdate(),108) as waktu", "content")
-        If sqls.getDataSet("content") > 0 Then
-            Dim tmptgl As String = sqls.getDataSet("content", 0, "tanggal")
-            Dim tmpwaktu As String = sqls.getDataSet("content", 0, "waktu")
+        'Dim sqls As New SQLs(mystring)
+        'sqls.DMLQuery("select convert(varchar,getdate(),105) as tanggal,convert(varchar,getdate(),108) as waktu", "content")
+        Dim json_result As String = ""
+        Dim table As DataTable = Nothing
+        Dim mparam As New List(Of String)
+        Dim mvalue As New List(Of String)
+        mparam.AddRange(New String() {"param", "tkey1", "tkey2"})
+        mvalue.AddRange(New String() {"currentdatetime", tmptokenkey1, tmptokenkey2})
+        json_result = modCore.HttpPOSTRequestSelect(mysite & "core", mparam, mvalue)
+        table = Newtonsoft.Json.JsonConvert.DeserializeObject(Of DataTable)(json_result)
+        If table.Rows.Count > 0 Then 'strvalue.Contains("ERROR") = False Then
+            Dim tmptgl As String = table.Rows(0).Item("tanggal") 'strvalue.Split(" ")(0)
+            Dim tmpwaktu As String = table.Rows(0).Item("waktu") 'strvalue.Split(" ")(1)
             tmpnowTime = Strdatetime2Datetime(tmptgl & " " & tmpwaktu)
         Else
-            tmpnowTime = Now
+            tmpnowTime = nowTime
         End If
 
-        sqls = New SQLs(mystring)
-        sqls.DMLQuery("select top 1 idtoken,tokenkey1,tokenkey2 from token order by createddate desc", "content")
-        If sqls.getDataSet("content") > 0 Then
-            tmpidtoken = sqls.getDataSet("content", 0, "idtoken")
-            tmptokenkey1 = sqls.getDataSet("content", 0, "tokenkey1") 
-            tmptokenkey2 = sqls.getDataSet("content", 0, "tokenkey2") 
+        'sqls = New SQLs(mystring)
+        'sqls.DMLQuery("select top 1 idtoken,tokenkey1,tokenkey2 from token order by createddate desc", "content")
+        table.Clear()
+        json_result = modCore.HttpPOSTRequestSelect(mysite & "currenttoken")
+        table = Newtonsoft.Json.JsonConvert.DeserializeObject(Of DataTable)(json_result)
+        If table.Rows.Count > 0 Then 'IsNumeric(strvalue) = False Then 'MYs.getDataSet("token") > 0 Then
+            tmpidtoken = table.Rows(0).Item("idtoken")
+            tmptokenkey1 = table.Rows(0).Item("tokenkey2")
+            tmptokenkey2 = table.Rows(0).Item("tokenkey2")
+            'MYs.getDataSet("token", 0, "idtoken")
+            'MYs.getDataSet("token", 0, "tokenkey1")
+            'MYs.getDataSet("token", 0, "tokenkey2")
         Else
-            tmpidtoken = 1
+            tmpidtoken = "E82EC129-868C-4FEB-9AEB-0ADB46428F1E"
             tmptokenkey1 = "ABF"
             tmptokenkey2 = "123"
         End If
@@ -82,103 +100,38 @@
         tokenkey1 = tmptokenkey1
         tokenkey2 = tmptokenkey2
 
-        teProductPIN.EditValue = Nothing
-        teKodeProduk.EditValue = Nothing
-        lueProdukType.EditValue = Nothing
-        teNamaProduk.EditValue = Nothing
-        teNamaProdukResmi.EditValue = Nothing
-        teRemarksProduk.EditValue = Nothing
+        json_result = ""
+        table.Clear()
+        mparam.Clear()
+        mvalue.Clear()
+        mparam.AddRange(New String() {"param", "value", "tkey1", "tkey2"})
+        mvalue.AddRange(New String() {"cekproducttype", "", tmptokenkey1, tmptokenkey2})
+        json_result = modCore.HttpPOSTRequestSelect(mysite & "producttype", mparam, mvalue)
+        table = Newtonsoft.Json.JsonConvert.DeserializeObject(Of DataTable)(json_result)
 
-        Dim colname As New List(Of String)
-        Dim colcaption As New List(Of String)
-        Dim coltype As New List(Of Type)
-        Dim dsproducttype As DataSet
-
-        sqls = New SQLs(mystring)
-        sqls.DMLQuery("SELECT idproducttype as id,producttype as content,remarks FROM producttype where isnull(isdeleted,0)=0 order by producttype asc", "content")
-
-        dsproducttype = New DataSet
-        colname.Clear()
-        colcaption.Clear()
-        coltype.Clear()
-        colname.AddRange(New String() {"id", "content", "remarks"})
-        colcaption.AddRange(New String() {"ID", "Content", "Remarks"})
-        coltype.AddRange(New Type() {GetType(Long), GetType(String)})
-        dsproducttype = sqls.dataSet
-
-        lueProdukType.Properties.DataSource = dsproducttype.Tables("content")
-        lueProdukType.Properties.DisplayMember = "content"
-        lueProdukType.Properties.ValueMember = "id"
-        lueProdukType.EditValue = Nothing
-        lueProdukType.Properties.BestFitMode = DevExpress.XtraEditors.Controls.BestFitMode.BestFitResizePopup
-        lueProdukType.Properties.BestFit()
-    End Sub
-
-    Private Sub teNamaProduk_TextChanged(sender As Object, e As EventArgs) Handles teNamaProduk.TextChanged
-        If teNamaProduk.EditValue Is Nothing Then
-            teKodeProduk.EditValue = Nothing
-        Else
-            If teNamaProduk.Text.Length >= 6 Then
-                teKodeProduk.Text = getGenerateCode(teNamaProduk.Text, tmptokenkey1, tmptokenkey2, 20, getFrom.depan)
-            Else
-                teKodeProduk.Text = ""
+        For i As Integer = 0 To table.Rows.Count - 1
+            Dim sqls As New SQLs(dbstring)
+            sqls.DMLQuery("select idproducttype from sys_appproducttype where idproducttype='" & table.Rows(i).Item("idproducttype") & "'", "cekpt")
+            If sqls.getDataSet("cekpt") > 0 Then
+                table.Rows(i).Item("cek") = 1
             End If
-        End If
+        Next
+
+        gcData.DataSource = table
+        gvData.BestFitColumns()
+        'SQLs = New SQLs(mystring)
+        'SQLs.DMLQuery("SELECT idproducttype as id,producttype as content,remarks FROM producttype where isnull(isdeleted,0)=0 order by producttype asc", "content")
     End Sub
 
     Private Function cekIsian() As Boolean
-        Dim retval As Boolean = True
-        If lueProdukType.EditValue Is Nothing Then
-            retval = False
-        End If
-        If teKodeProduk.Text = "" Then
-            retval = False
-        End If
-        If teNamaProduk.Text = "" Then
-            retval = False
-        End If
-        If teNamaProdukResmi.Text = "" Then
-            retval = False
-        End If
-        If teRemarksProduk.Text = "" Then
-            retval = False
-        End If
-        If teKodeProduk.EditValue Is Nothing Then
-            retval = False
-        End If
-        If teNamaProduk.EditValue Is Nothing Then
-            retval = False
-        End If
-        If teNamaProdukResmi.EditValue Is Nothing Then
-            retval = False
-        End If
-        If teRemarksProduk.EditValue Is Nothing Then
-            retval = False
-        End If
-        Return retval
-    End Function
-
-    Private Function getidproduct(prodname As String) As String
-        Dim retval As String = -1
-
-        Dim sqls As New SQLs(mystring)
-        sqls.DMLQuery("select idproduct from product where productname='" & prodname & "'", "content")
-        If sqls.getDataSet("content") > 0 Then
-            retval = sqls.getDataSet("content", 0, "idproduct")
-        End If
-
-        Return retval
-    End Function
-
-    Private Function cekproduct(prodname As String) As Boolean
-        Dim retval As Boolean = True
-
-        Dim sqls As New SQLs(mystring)
-        sqls.DMLQuery("select idproduct from product where productname='" & prodname & "'", "content")
-        If sqls.getDataSet("content") > 0 Then
-            retval = False
-        End If
-
+        Dim retval As Boolean = False
+        For i As Integer = 0 To gvData.RowCount - 1
+            Dim dr As DataRow = gvData.GetRow(i)
+            If dr("cek") = "1" Then
+                retval = True
+                Exit For
+            End If
+        Next
         Return retval
     End Function
 
@@ -189,76 +142,70 @@
             Me.Cursor = Cursors.Default
             Exit Sub
         End If
-        If tmpCompanyFromOnline = False Then
-            If cekproduct(teNamaProduk.Text) = False Then
-                dizMsgbox("Produk ini sudah terdaftar", dizMsgboxStyle.Kesalahan, Me)
-                Me.Cursor = Cursors.Default
-                Exit Sub
+
+        Dim json_result As String = ""
+        Dim table As DataTable = Nothing
+        Dim mparam As New List(Of String)
+        Dim mvalue As New List(Of String)
+        Dim cek As Boolean = False
+
+        For i As Integer = 0 To gvData.RowCount - 1
+            If table IsNot Nothing Then
+                table.Clear()
             End If
-        End If
+            mparam.Clear()
+            mvalue.Clear()
+            json_result = ""
+            mparam.AddRange(New String() {"param", "value", "tkey1", "tkey2", "idcompanyproduct", "idproducttype"})
+            mvalue.AddRange(New String() {"cekcompprotype", "", tmptokenkey1, tmptokenkey2, modCore.idcompanyproduct, gvData.GetDataRow(i).Item("idproducttype")})
+            json_result = modCore.HttpPOSTRequestSelect(mysite & "companyproducttype", mparam, mvalue)
+            table = Newtonsoft.Json.JsonConvert.DeserializeObject(Of DataTable)(json_result)
 
-        Dim sqls As New SQLs(mystring)
-        If tmpCompanyFromOnline = False Then
-            sqls.DMLQuery("select top 1 idtoken,tokenkey1,tokenkey2 from token order by createddate desc", "token")
-            If sqls.getDataSet("token") > 0 Then
-                tmpidtoken = sqls.getDataSet("token", 0, "idtoken")
-                tmptokenkey1 = sqls.getDataSet("token", 0, "tokenkey1")
-                tmptokenkey2 = sqls.getDataSet("token", 0, "tokenkey2")
-            Else
-                tmpidtoken = 1
-                tmptokenkey1 = "ABF"
-                tmptokenkey2 = "123"
+            If table.Rows.Count > 0 Then
+                table.Clear()
+                mparam.Clear()
+                mvalue.Clear()
+                json_result = ""
+                mparam.AddRange(New String() {"param", "value", "tkey1", "tkey2", "idcompanyproduct", "idproducttype"})
+                mvalue.AddRange(New String() {"hapuscompprotype", "", tmptokenkey1, tmptokenkey2, modCore.idcompanyproduct, gvData.GetDataRow(i).Item("idproducttype").ToString})
+                json_result = modCore.HttpPOSTRequestSelect(mysite & "companyproducttype", mparam, mvalue)
+                table = Newtonsoft.Json.JsonConvert.DeserializeObject(Of DataTable)(json_result)
+
+                If gvData.GetDataRow(i).Item("cek").ToString = "1" Then
+                    table.Clear()
+                    mparam.Clear()
+                    mvalue.Clear()
+                    json_result = ""
+                    mparam.AddRange(New String() {"param", "value", "tkey1", "tkey2", "idcompanyproduct", "idproducttype"})
+                    mvalue.AddRange(New String() {"baru", GenerateGUID(), tmptokenkey1, tmptokenkey2, modCore.idcompanyproduct, gvData.GetDataRow(i).Item("idproducttype").ToString})
+                    json_result = modCore.HttpPOSTRequestInsert(mysite & "companyproducttype", mparam, mvalue)
+                    'table = Newtonsoft.Json.JsonConvert.DeserializeObject(Of DataTable)(json_result)
+                    If json_result = "true" Then 'table.Rows.Count > 0 Then
+                        cek = True
+                    End If
+                End If
             End If
-        End If
-        sqls.DMLQuery("select convert(varchar,getdate(),105) as tanggal,convert(varchar,getdate(),108) as waktu", "lasttime")
-        If sqls.getDataSet("lasttime") > 0 Then
-            Dim tmptgl As String = sqls.getDataSet("lasttime", 0, "tanggal")
-            Dim tmpwaktu As String = sqls.getDataSet("lasttime", 0, "waktu")
-            tmpnowTime = Strdatetime2Datetime(tmptgl & " " & tmpwaktu)
-        Else
-            tmpnowTime = Now
-        End If
-        teKodeProduk.Text = getGenerateCode(teNamaProduk.Text, tmptokenkey1, tmptokenkey2, 20, getFrom.depan)
-
-        Dim dtmys As New dtsetSQLS(mystring)
-        Dim field As New List(Of String)
-        Dim value As New List(Of Object)
-        If idData = "-1" Then
-            idData = GenerateGUID()
-            field.AddRange(New String() {"idproduct", "idproducttype", "productcode", "productname", "productofficialname", "remarks", "databasetype", "isdeleted", "deletereason", "idtoken", "tokenkey1", "tokenkey2", "createdby", "createddate"})
-        Else
-            field.AddRange(New String() {"idproduct", "idproducttype", "productcode", "productname", "productofficialname", "remarks", "databasetype", "isdeleted", "deletereason", "idtoken", "tokenkey1", "tokenkey2", "updatedby", "updateddate"})
-        End If
-
-        value.AddRange(New Object() {idData, lueProdukType.EditValue, teKodeProduk.Text, teNamaProduk.Text, teNamaProdukResmi.Text, teRemarksProduk.Text, 1, 0, "-", tmpidtoken, tmptokenkey1, tmptokenkey2, tmpUserID, tmpnowTime})
+        Next
 
         Me.Cursor = Cursors.Default
-        If dtmys.datasetSave("product", idData, field, value, False) = True Then
-            Dim idproduct As Integer = getidproduct(teNamaProduk.Text)
+        If cek = True Then
             Dim lite As New SQLi(dblite)
-
-            modCore.idproduct = idproduct
-            modCore.productcode = teKodeProduk.Text
-            modCore.productname = teNamaProduk.Text
-            modCore.idproducttype = lueProdukType.EditValue
-
-            lite.DMLQuery("update appsetting set value='" & modCore.idproduct & "' where variable='ProductID'", False)
-            lite.DMLQuery("update appsetting set value='" & modCore.productname & "' where variable='ProductName'", False)
-            lite.DMLQuery("update appsetting set value='" & modCore.productcode & "' where variable='ProductCode'", False)
-            lite.DMLQuery("update appsetting set value='" & modCore.idproducttype & "' where variable='ProductTypeID'", False)
-            lite.DMLQuery("update appsetting set value='" & teRemarksProduk.Text & "' where variable='ProductDescription'", False)
+            lite.DMLQuery("delete from companyproducttype where idcompanyproduct='" & modCore.idcompanyproduct & "'", False)
+            For i As Integer = 0 To gvData.RowCount - 1
+                If gvData.GetDataRow(i).Item("cek").ToString = "1" Then
+                    lite.DMLQuery("insert into companyproducttype values('" & GenerateGUID() & "','" & modCore.idcompanyproduct & "','" & gvData.GetDataRow(i).Item("idproducttype").ToString & "')", False)
+                End If
+            Next
 
             Dim sqlss As New SQLs(dbstring)
-            sqlss.DMLQuery("update sys_appsetting set value='" & modCore.idproduct & "' where variable='ProductID'", False)
-            sqlss.DMLQuery("update sys_appsetting set value='" & modCore.productname & "' where variable='ProductName'", False)
-            sqlss.DMLQuery("update sys_appsetting set value='" & modCore.productcode & "' where variable='ProductCode'", False)
-            sqlss.DMLQuery("update sys_appsetting set value='" & modCore.idproducttype & "' where variable='ProductTypeID'", False)
+            sqlss.DMLQuery("delete from companyproducttype where idcompanyproduct='" & modCore.idcompanyproduct & "'", False)
+            For i As Integer = 0 To gvData.RowCount - 1
+                If gvData.GetDataRow(i).Item("cek").ToString = "1" Then
+                    sqlss.DMLQuery("insert into companyproducttype values('" & GenerateGUID() & "','" & modCore.idcompanyproduct & "','" & gvData.GetDataRow(i).Item("idproducttype").ToString & "')", False)
+                End If
+            Next
 
-            If idData = "-1" Then
-                dizMsgbox("Data Produk tersimpan", dizMsgboxStyle.Info, Me)
-            Else
-                dizMsgbox("Data Produk diperbarui", dizMsgboxStyle.Info, Me)
-            End If
+            dizMsgbox("Data Jenis Produk tersimpan", dizMsgboxStyle.Info, Me)
             Me.DialogResult = Windows.Forms.DialogResult.OK
             Me.Dispose()
         End If
@@ -266,34 +213,5 @@
 
     Private statData As statusData = statusData.Baru
     Private idData As String = "-1"
-
-    Private Sub btnExistCheck_Click(sender As Object, e As EventArgs) Handles btnExistCheck.Click
-        Me.Cursor = Cursors.WaitCursor
-        Dim sqls As New SQLs(mystring)
-        sqls.DMLQuery("select idproduct,idproducttype,productcode,productname,productofficialname,remarks from product where productcode='" & teProductPIN.Text & "'", "getvalue")
-        If sqls.getDataSet("getvalue") > 0 Then
-            idData = sqls.getDataSet("getvalue", 0, "idproduct")
-
-            lueProdukType.EditValue = sqls.getDataSet("getvalue", 0, "idproducttype")
-            teKodeProduk.Text = sqls.getDataSet("getvalue", 0, "productcode")
-            teNamaProduk.Text = sqls.getDataSet("getvalue", 0, "productname")
-            teNamaProdukResmi.Text = sqls.getDataSet("getvalue", 0, "productofficialname")
-            teRemarksProduk.Text = sqls.getDataSet("getvalue", 0, "remarks")
-
-            tmpCompanyFromOnline = True
-            Me.Cursor = Cursors.Default
-        Else
-            dizMsgbox("Data Produk tidak ditemukan atau tidak aktif", dizMsgboxStyle.Peringatan, Me)
-
-            lueProdukType.EditValue = sqls.getDataSet("getvalue", 0, "idproducttype")
-            teKodeProduk.Text = sqls.getDataSet("getvalue", 0, "productcode")
-            teNamaProduk.Text = sqls.getDataSet("getvalue", 0, "productname")
-            teNamaProdukResmi.Text = sqls.getDataSet("getvalue", 0, "productofficialname")
-            teRemarksProduk.Text = sqls.getDataSet("getvalue", 0, "remarks")
-
-            tmpCompanyFromOnline = False
-            Me.Cursor = Cursors.Default
-        End If
-    End Sub
 
 End Class

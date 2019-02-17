@@ -688,21 +688,21 @@ Public Class frmMain
                 lite.DMLQuery("select value from appsetting where variable='HardwareID'", "HID")
                 modCore.idhardware = lite.getDataSet("HID", 0, "value")
 
-                lite.DMLQuery("select value from appsetting where variable='ProductCode'", "PCD")
-                modCore.productcode = lite.getDataSet("PCD", 0, "value")
-                sqls.DMLQuery("update sys_appsetting set value='" & modCore.productcode & "' where variable='ProductCode'", False)
+                'lite.DMLQuery("select value from appsetting where variable='ProductCode'", "PCD")
+                'modCore.productcode = lite.getDataSet("PCD", 0, "value")
+                'sqls.DMLQuery("update sys_appsetting set value='" & modCore.productcode & "' where variable='ProductCode'", False)
 
                 lite.DMLQuery("select value from appsetting where variable='ProductName'", "PN")
                 modCore.productname = lite.getDataSet("PN", 0, "value")
                 sqls.DMLQuery("update sys_appsetting set value='" & modCore.productname & "' where variable='ProductName'", False)
 
-                lite.DMLQuery("select value from appsetting where variable='ProductID'", "PID")
-                modCore.idproduct = lite.getDataSet("PID", 0, "value")
-                sqls.DMLQuery("update sys_appsetting set value='" & modCore.idproduct & "' where variable='ProductID'", False)
+                'lite.DMLQuery("select value from appsetting where variable='ProductID'", "PID")
+                'modCore.idproduct = lite.getDataSet("PID", 0, "value")
+                'sqls.DMLQuery("update sys_appsetting set value='" & modCore.idproduct & "' where variable='ProductID'", False)
 
-                lite.DMLQuery("select value from appsetting where variable='ProductTypeID'", "PTypeID")
-                modCore.idproducttype = lite.getDataSet("PTypeID", 0, "value")
-                sqls.DMLQuery("update sys_appsetting set value='" & modCore.idproducttype & "' where variable='ProductTypeID'", False)
+                'lite.DMLQuery("select value from appsetting where variable='ProductTypeID'", "PTypeID")
+                'modCore.idproducttype = lite.getDataSet("PTypeID", 0, "value")
+                'sqls.DMLQuery("update sys_appsetting set value='" & modCore.idproducttype & "' where variable='ProductTypeID'", False)
             Else
                 Dim lite As New SQLi(dblite)
                 Dim sqls As New SQLs(dbstring)
@@ -715,13 +715,13 @@ Public Class frmMain
                 modCore.productname = sqls.getDataSet("PN", 0, "value")
                 lite.DMLQuery("update appsetting set value='" & ProductName & "' where variable='ProductName'", False)
 
-                sqls.DMLQuery("select value from sys_appsetting where variable='ProductID'", "PID")
-                modCore.idproduct = sqls.getDataSet("PID", 0, "value")
-                lite.DMLQuery("update appsetting set value='" & idproduct & "' where variable='ProductID'", False)
+                'sqls.DMLQuery("select value from sys_appsetting where variable='ProductID'", "PID")
+                'modCore.idproduct = sqls.getDataSet("PID", 0, "value")
+                'lite.DMLQuery("update appsetting set value='" & idproduct & "' where variable='ProductID'", False)
 
-                sqls.DMLQuery("select value from sys_appsetting where variable='ProductTypeID'", "PTypeID")
-                modCore.idproducttype = sqls.getDataSet("PTypeID", 0, "value")
-                lite.DMLQuery("update appsetting set value='" & idproducttype & "' where variable='ProductTypeID'", False)
+                'sqls.DMLQuery("select value from sys_appsetting where variable='ProductTypeID'", "PTypeID")
+                'modCore.idproducttype = sqls.getDataSet("PTypeID", 0, "value")
+                'lite.DMLQuery("update appsetting set value='" & idproducttype & "' where variable='ProductTypeID'", False)
             End If
 
             Me.Text = modCore.productname
@@ -907,9 +907,10 @@ Public Class frmMain
 
         Dim lite As New SQLi(dblite)
         'lite.DMLQuery("select databasename || '|' || ipserver || '|' || port || '|' || username || '|' || password as dbstring from dbconn where dbtype='SQLS' and dblocation='DOMAIN'", "getdbstring")
-        lite.DMLQuery("select siteurl from siteconn where active=1 order by idsiteconndesc", "getdbstring")
+        lite.DMLQuery("select siteurl from siteconn where active=1 order by idsiteconn desc", "getdbstring")
         If lite.getDataSet("getdbstring") > 0 Then
             mysite = lite.getDataSet("getdbstring", 0, "siteurl")
+            mysite = CheckAndRepairValidURL(mysite)
             'mystring = lite.getDataSet("getdbstring", 0, "dbstring")
 
             'lite.DMLQuery("select databasename,ipserver,port,username,password from dbconn where dbtype='SQLS' and dblocation='DOMAIN'", "getdbseparate")
@@ -929,23 +930,36 @@ Public Class frmMain
         Dim servercnt As Integer = 0
         sqls.DMLQuery("select idtoken,idtokenonline,tokenkey1,tokenkey2,isdeleted,deletereason from sys_token order by createddate asc", "cnt")
 
-        Dim rest As New 
+        Dim json_result As String = ""
+        Dim table As DataTable = Nothing
+        Dim mparam As New List(Of String)
+        Dim mvalue As New List(Of String)
+
         'mys.DMLQuery("select idtoken,tokenkey1,tokenkey2,isdeleted,deletereason from " & mydb & "." & myusr & ".token order by createddate asc", "cnt")
+
+        json_result = ""
+        mparam.Clear()
+        mvalue.Clear()
+        mparam.AddRange(New String() {"param", "value", "tkey1", "tkey2"})
+        mvalue.AddRange(New String() {"cekproducttype", "", tmptokenkey1, tmptokenkey2})
+        json_result = modCore.HttpPOSTRequestSelect(mysite & "producttype", mparam, mvalue)
+        table = Newtonsoft.Json.JsonConvert.DeserializeObject(Of DataTable)(json_result)
+
         If sqls.getDataSet("cnt") > 0 Then
             localcnt = sqls.getDataSet("cnt")
         End If
-        If mys.getDataSet("cnt") > 0 Then
-            servercnt = CInt(mys.getDataSet("cnt"))
+        If table.Rows.Count > 0 Then 'mys.getDataSet("cnt") > 0 Then
+            servercnt = table.Rows.Count 'CInt(MYs.getDataSet("cnt"))
         End If
         If localcnt <> servercnt Then
-            For i As Integer = 0 To mys.getDataSet("cnt") - 1
-                Dim stridtoken As String = mys.getDataSet("cnt", i, "idtoken")
-                Dim strtokenkey1 As String = mys.getDataSet("cnt", i, "tokenkey1")
-                Dim strtokenkey2 As String = mys.getDataSet("cnt", i, "tokenkey2")
-                Dim strisdeleted As String = mys.getDataSet("cnt", i, "isdeleted")
-                Dim strdeletereason As String = mys.getDataSet("cnt", i, "deletereason")
-                Dim strcreatedby As String = mys.getDataSet("cnt", i, "createdby")
-                Dim strcreateddate As String = mys.getDataSet("cnt", i, "created")
+            For i As Integer = 0 To table.Rows.Count - 1 'mys.getDataSet("cnt") - 1
+                Dim stridtoken As String = table.Rows(i).Item("idtoken") 'MYs.getDataSet("cnt", i, "idtoken")
+                Dim strtokenkey1 As String = table.Rows(i).Item("tokenkey1") 'MYs.getDataSet("cnt", i, "tokenkey1")
+                Dim strtokenkey2 As String = table.Rows(i).Item("tokenkey2") 'MYs.getDataSet("cnt", i, "tokenkey2")
+                Dim strisdeleted As String = table.Rows(i).Item("isdeleted") 'MYs.getDataSet("cnt", i, "isdeleted")
+                Dim strdeletereason As String = table.Rows(i).Item("deletereason") 'MYs.getDataSet("cnt", i, "deletereason")
+                Dim strcreatedby As String = table.Rows(i).Item("createdby") 'MYs.getDataSet("cnt", i, "createdby")
+                Dim strcreateddate As String = table.Rows(i).Item("createddate") 'MYs.getDataSet("cnt", i, "created")
                 Dim dtcreateddate As Date = Strdatetime2Datetime(strcreateddate)
 
                 Dim field As New List(Of String)
@@ -986,22 +1000,22 @@ Public Class frmMain
         Dim sqls As New SQLs(dbstring)
         Dim idP As String = ""
         If idParent = "" Then
-            sqls.DMLQuery("select m.idmenu,m.idparent,m.idiconmenu,m.menuname,m.frmname,m.description,right(replace(replace(g.filename,'\',''),':',''),22) as fakename,m.asdialog from sys_menu m left join sys_iconmenu g on g.idiconmenu=m.idiconmenu where (m.idproducttype='0' or m.idproducttype='" & idproducttype & "') and m.menuname='" & strSistem & "' order by m.menuname asc", "sistem")
+            sqls.DMLQuery("select m.idmenu,m.idparent,m.idiconmenu,m.menuname,m.frmname,m.description,right(replace(replace(g.filename,'\',''),':',''),22) as fakename,m.asdialog from sys_menu m left join sys_iconmenu g on g.idiconmenu=m.idiconmenu where (m.idproducttype='0' or m.idproducttype in ('" & String.Join("','", idproducttype) & "')) and m.menuname='" & strSistem & "' order by m.menuname asc", "sistem")
             idP = sqls.getDataSet("sistem", 0, "idmenu")
         Else
             idP = idParent
         End If
         If idParent = "" Then
             If userlevel = "SuperAdmin" Or userlevel = "Guest" Or userlevel = "Administrator" Then
-                sqls.DMLQuery("select m.idmenu,m.idparent,m.idiconmenu,m.menuname,m.frmname,m.description,right(replace(replace(g.filename,'\',''),':',''),22) as fakename,m.asdialog from sys_menu m left join sys_iconmenu g on g.idiconmenu=m.idiconmenu where (m.idproducttype='0' or m.idproducttype='" & idproducttype & "') and m.idparent='0' order by m.menuname asc", "menu")
+                sqls.DMLQuery("select m.idmenu,m.idparent,m.idiconmenu,m.menuname,m.frmname,m.description,right(replace(replace(g.filename,'\',''),':',''),22) as fakename,m.asdialog from sys_menu m left join sys_iconmenu g on g.idiconmenu=m.idiconmenu where (m.idproducttype='0' or m.idproducttype in ('" & String.Join("','", idproducttype) & "')) and m.idparent='0' order by m.menuname asc", "menu")
             Else
-                sqls.DMLQuery("select m.idmenu,m.idparent,m.idiconmenu,m.menuname,m.frmname,m.description,right(replace(replace(g.filename,'\',''),':',''),22) as fakename,m.asdialog from sys_menu m left join sys_iconmenu g on g.idiconmenu=m.idiconmenu left join sys_userpermission sup on m.idmenu=sup.idmenu where (m.idproducttype='0' or m.idproducttype='" & idproducttype & "') and m.idparent='0' and sup.iduserlevel='" & userlevelid & "' and sup.isactive=1 order by m.menuname asc", "menu")
+                sqls.DMLQuery("select m.idmenu,m.idparent,m.idiconmenu,m.menuname,m.frmname,m.description,right(replace(replace(g.filename,'\',''),':',''),22) as fakename,m.asdialog from sys_menu m left join sys_iconmenu g on g.idiconmenu=m.idiconmenu left join sys_userpermission sup on m.idmenu=sup.idmenu where (m.idproducttype='0' or m.idproducttype in ('" & String.Join("','", idproducttype) & "')) and m.idparent='0' and sup.iduserlevel='" & userlevelid & "' and sup.isactive=1 order by m.menuname asc", "menu")
             End If
         Else
             If userlevel = "SuperAdmin" Or userlevel = "Guest" Or userlevel = "Administrator" Then
-                sqls.DMLQuery("select m.idmenu,m.idparent,m.idiconmenu,m.menuname,m.frmname,m.description,right(replace(replace(g.filename,'\',''),':',''),22) as fakename,m.asdialog from sys_menu m left join sys_iconmenu g on g.idiconmenu=m.idiconmenu where (m.idproducttype='0' or m.idproducttype='" & idproducttype & "') and m.idparent='" & idP & "' order by len(m.menuname) asc,m.menuname asc", "menu")
+                sqls.DMLQuery("select m.idmenu,m.idparent,m.idiconmenu,m.menuname,m.frmname,m.description,right(replace(replace(g.filename,'\',''),':',''),22) as fakename,m.asdialog from sys_menu m left join sys_iconmenu g on g.idiconmenu=m.idiconmenu where (m.idproducttype='0' or m.idproducttype in ('" & String.Join("','", idproducttype) & "')) and m.idparent='" & idP & "' order by len(m.menuname) asc,m.menuname asc", "menu")
             Else
-                sqls.DMLQuery("select m.idmenu,m.idparent,m.idiconmenu,m.menuname,m.frmname,m.description,right(replace(replace(g.filename,'\',''),':',''),22) as fakename,m.asdialog from sys_menu m left join sys_iconmenu g on g.idiconmenu=m.idiconmenu left join sys_userpermission sup on m.idmenu=sup.idmenu where (m.idproducttype='0' or m.idproducttype='" & idproducttype & "') and m.idparent='" & idP & "' and sup.iduserlevel='" & userlevelid & "' and sup.isactive=1 order by len(m.menuname) asc,m.menuname asc", "menu")
+                sqls.DMLQuery("select m.idmenu,m.idparent,m.idiconmenu,m.menuname,m.frmname,m.description,right(replace(replace(g.filename,'\',''),':',''),22) as fakename,m.asdialog from sys_menu m left join sys_iconmenu g on g.idiconmenu=m.idiconmenu left join sys_userpermission sup on m.idmenu=sup.idmenu where (m.idproducttype='0' or m.idproducttype in ('" & String.Join("','", idproducttype) & "')) and m.idparent='" & idP & "' and sup.iduserlevel='" & userlevelid & "' and sup.isactive=1 order by len(m.menuname) asc,m.menuname asc", "menu")
             End If
         End If
         Dim menux As ToolStripMenuItem

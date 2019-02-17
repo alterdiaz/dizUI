@@ -145,15 +145,30 @@
         Return retval
     End Function
 
-    Private Function existUsernameOnline(ByVal username As String) As Integer
-        Dim sqls As New SQLs(mystring)
-        Dim retval As Integer = -1
-        If sqls.checkConnection() = True Then
-            sqls.DMLQuery("select iduser from [user] where username='" & username & "'", "cekUsername")
-            If sqls.getDataSet("cekUsername") > 0 Then
-                retval = sqls.getDataSet("cekUsername", 0, "iduser")
-            End If
-        End If
+    Private Function existUsernameOnline(ByVal username As String) As String
+        Dim retval As String = "-1"
+
+        Dim json_result As String = ""
+        Dim table As DataTable = Nothing
+        Dim mparam As New List(Of String)
+        Dim mvalue As New List(Of String)
+
+        json_result = ""
+        mparam.Clear()
+        mvalue.Clear()
+        mparam.AddRange(New String() {"param", "value", "tkey1", "tkey2", "username"})
+        mvalue.AddRange(New String() {"cekusername", "", tmptokenkey1, tmptokenkey2, texUsername.EditValue})
+        json_result = modCore.HttpPOSTRequestSelect(mysite & "user", mparam, mvalue)
+        table = Newtonsoft.Json.JsonConvert.DeserializeObject(Of DataTable)(json_result)
+
+        'Dim sqls As New SQLs(mystring)
+        'Dim retval As Integer = -1
+        'If sqls.checkConnection() = True Then
+        '    sqls.DMLQuery("select iduser from [user] where username='" & username & "'", "cekUsername")
+        '    If sqls.getDataSet("cekUsername") > 0 Then
+        '        retval = sqls.getDataSet("cekUsername", 0, "iduser")
+        '    End If
+        'End If
         Return retval
     End Function
 
@@ -183,7 +198,7 @@
             Exit Sub
         End If
         If teUsername.Text.Replace(" ", "").ToLower = "superadmin" Then
-            dizmsgbox("Username tidak boleh superadmin", dizMsgboxStyle.info, Me)
+            dizMsgbox("Username tidak boleh superadmin", dizMsgboxStyle.Info, Me)
             teUsername.Focus()
             Me.Cursor = Cursors.Default
             Exit Sub
@@ -225,23 +240,45 @@
         Dim field As New List(Of String)
         Dim value As New List(Of Object)
 
-        Dim sqlss As New SQLs(mystring)
+        Dim json_result As String = ""
+        Dim table As DataTable = Nothing
+        Dim mparam As New List(Of String)
+        Dim mvalue As New List(Of String)
+        'Dim sqlss As New SQLs(mystring)
         If tmpUserFromOnline = False Then
-            sqlss.DMLQuery("select top 1 idtoken,tokenkey1,tokenkey2 from token order by createddate desc", "lasttoken")
-            If sqlss.getDataSet("lasttoken") > 0 Then 'strvalue.Contains("ERROR") = True Then
-                tmpidtoken = sqlss.getDataSet("lasttoken", 0, "idtoken") 'strvalue.Split("|")(0)
-                tmptokenkey1 = sqlss.getDataSet("lasttoken", 0, "tokenkey1") 'strvalue.Split("|")(1)
-                tmptokenkey2 = sqlss.getDataSet("lasttoken", 0, "tokenkey2") 'strvalue.Split("|")(2)
+            json_result = ""
+            mparam.Clear()
+            mvalue.Clear()
+            json_result = modCore.HttpPOSTRequestSelect(mysite & "currenttoken")
+            table = Newtonsoft.Json.JsonConvert.DeserializeObject(Of DataTable)(json_result)
+            If table.Rows.Count > 0 Then 'IsNumeric(strvalue) = False Then 'MYs.getDataSet("token") > 0 Then
+                tmpidtoken = table.Rows(0).Item("idtoken")
+                tmptokenkey1 = table.Rows(0).Item("tokenkey2")
+                tmptokenkey2 = table.Rows(0).Item("tokenkey2")
+                'MYs.getDataSet("token", 0, "idtoken")
+                'MYs.getDataSet("token", 0, "tokenkey1")
+                'MYs.getDataSet("token", 0, "tokenkey2")
             Else
-                tmpidtoken = 1
+                tmpidtoken = "E82EC129-868C-4FEB-9AEB-0ADB46428F1E"
                 tmptokenkey1 = "ABF"
                 tmptokenkey2 = "123"
             End If
+            idtoken = tmpidtoken
+            tokenkey1 = tmptokenkey1
+            tokenkey2 = tmptokenkey2
 
-            sqlss.DMLQuery("select convert(varchar,getdate(),105) as tanggal,convert(varchar,getdate(),108) as waktu", "content")
-            If sqlss.getDataSet("content") > 0 Then 'strvalue.Contains("ERROR") = False Then
-                Dim tmptgl As String = sqlss.getDataSet("content", 0, "tanggal") 'strvalue.Split(" ")(0)
-                Dim tmpwaktu As String = sqlss.getDataSet("content", 0, "waktu") 'strvalue.Split(" ")(1)
+            'sqlss.DMLQuery("select convert(varchar,getdate(),105) as tanggal,convert(varchar,getdate(),108) as waktu", "content")
+            json_result = ""
+            table.Clear()
+            mparam.Clear()
+            mvalue.Clear()
+            mparam.AddRange(New String() {"param", "tkey1", "tkey2"})
+            mvalue.AddRange(New String() {"currentdatetime", tmptokenkey1, tmptokenkey2})
+            json_result = modCore.HttpPOSTRequestSelect(mysite & "core", mparam, mvalue)
+            table = Newtonsoft.Json.JsonConvert.DeserializeObject(Of DataTable)(json_result)
+            If table.Rows.Count > 0 Then 'strvalue.Contains("ERROR") = False Then
+                Dim tmptgl As String = table.Rows(0).Item("tanggal") 'strvalue.Split(" ")(0)
+                Dim tmpwaktu As String = table.Rows(0).Item("waktu") 'strvalue.Split(" ")(1)
                 tmpnowTime = Strdatetime2Datetime(tmptgl & " " & tmpwaktu)
             Else
                 tmpnowTime = Now
@@ -289,19 +326,30 @@
             End If
 
             If tmpUserFromOnline = False Then
-                Dim dsql As New dtsetSQLS(mystring)
+                'Dim dsql As New dtsetSQLS(mystring)
                 Dim fs As New List(Of String)
-                Dim vs As New List(Of Object)
+                Dim vs As New List(Of String)
 
-                Dim idtmp As String = GenerateGUID()
+                'Dim idtmp As String = GenerateGUID()
                 Dim emailpin As String = getGenerateCode(teEmail.Text, tmptokenkey1, tmptokenkey2, 20, getFrom.depan)
                 Dim addresspin As String = getGenerateCode(teAlamat.Text, tmptokenkey1, tmptokenkey2, 20, getFrom.depan)
                 Dim hppin As String = getGenerateCode(teHandphone.Text, tmptokenkey1, tmptokenkey2, 20, getFrom.depan)
-                Dim ippublic As String = GetIPPublic()
+                Dim ippublic As String = getIPPublic()
                 Dim pcname As String = getIPAddress(ipaddparam.Host)
                 fs.AddRange(New String() {"iduser", "username", "idtoken", "tokenkey1", "tokenkey2", "password", "hint", "recoveryquestion", "recoveryanswer", "namalengkap", "personalno", "cardtype", "email", "emailpin", "emailpinexpired", "isemailverified", "address", "zipcode", "addresspin", "addresspinexpired", "isaddressverified", "handphone", "handphonepin", "handphonepinexpired", "ishandphoneverified", "isuserverified", "isdeleted", "deletereason", "publicv4ipaddress", "computername", "createdby", "createddate"})
-                vs.AddRange(New Object() {idtmp, teUsername.Text, tmpidtoken, tmptokenkey1, tmptokenkey2, passval, teHint.Text, teRecQuest.Text, teRecAns.Text, teNamaLengkap.Text, teID.Text, lueJenis.EditValue, teEmail.Text, emailpin, tmpnowTime.AddDays(30), 0, teAlamat.Text, teKodepos.Text, addresspin, tmpnowTime.AddDays(30), 0, teHandphone.Text, hppin, tmpnowTime.AddDays(30), 0, 0, 0, "", ippublic, pcname, 1, tmpnowTime})
-                dsql.datasetSave("[user]", idtmp, fs, vs, False)
+                vs.AddRange(New String() {idData, teUsername.Text, tmpidtoken, tmptokenkey1, tmptokenkey2, passval, teHint.Text, teRecQuest.Text, teRecAns.Text, teNamaLengkap.Text, teID.Text, lueJenis.EditValue, teEmail.Text, emailpin, Format(tmpnowTime.AddDays(30), "yyyy-MM-dd"), 0, teAlamat.Text, teKodepos.Text, addresspin, Format(tmpnowTime.AddDays(30), "yyyy-MM-dd"), 0, teHandphone.Text, hppin, Format(tmpnowTime.AddDays(30), "yyyy-MM-dd"), 0, 0, 0, "", ippublic, pcname, 1, Format(tmpnowTime, "yyyy-MM-dd HH:mm:ss")})
+                'dsql.datasetSave("[user]", idtmp, fs, vs, False)
+
+                json_result = ""
+                table.Clear()
+                mparam.Clear()
+                mvalue.Clear()
+                mparam.AddRange(New String() {"param", "tkey1", "tkey2"})
+                mvalue.AddRange(New String() {"baru", tmptokenkey1, tmptokenkey2})
+                mparam.AddRange(fs)
+                mvalue.AddRange(vs)
+                json_result = modCore.HttpPOSTRequestInsert(mysite & "user", mparam, mvalue)
+                'table = Newtonsoft.Json.JsonConvert.DeserializeObject(Of DataTable)(json_result)
             End If
 
             Me.Cursor = Cursors.Default
@@ -327,14 +375,18 @@
         End If
     End Sub
 
-    Private mystring As String = ""
+    'Private mystring As String = ""
+    Private mysite As String = ""
     Private Sub Form_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         getRegex(dbstring)
         tmpUserFromOnline = False
         Dim lite As New SQLi(dblite)
-        lite.DMLQuery("select databasename || '|' || ipserver || '|' || port || '|' || username || '|' || password as dbstring from dbconn where dbtype='SQLS' and dblocation='DOMAIN'", "getdbstring")
+        'lite.DMLQuery("select databasename || '|' || ipserver || '|' || port || '|' || username || '|' || password as dbstring from dbconn where dbtype='SQLS' and dblocation='DOMAIN'", "getdbstring")
+        lite.DMLQuery("select siteurl from siteconn where active=1 order by idsiteconn desc", "getdbstring")
         If lite.getDataSet("getdbstring") > 0 Then
-            mystring = lite.getDataSet("getdbstring", 0, "dbstring")
+            'mystring = lite.getDataSet("getdbstring", 0, "dbstring")
+            mysite = lite.getDataSet("getdbstring", 0, "siteurl")
+            mysite = CheckAndRepairValidURL(mysite)
         End If
 
         checkFieldMaxLength(dbstring, tlpPengguna, "sys_user")
@@ -369,29 +421,37 @@
 
     Private Sub btnExistCheck_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnExistCheck.Click
         Me.Cursor = Cursors.WaitCursor
-        
-        Dim sqls As New SQLs(mystring)
-        sqls.DMLQuery("select iduser,idtoken,tokenkey1,tokenkey2,password from [user] where username='" & texUsername.Text & "'", "user")
-        If sqls.getDataSet("user") > 0 Then 'strvalue.Contains("ERROR") = False Then
-            tmpidtoken = sqls.getDataSet("user", 0, "idtoken") 'strvalue.Split("|")(1) 
-            tmptokenkey1 = sqls.getDataSet("user", 0, "tokenkey1") 'strvalue.Split("|")(2)
-            tmptokenkey2 = sqls.getDataSet("user", 0, "tokenkey2") 'strvalue.Split("|")(3)
-            Dim tmppassword As String = sqls.getDataSet("user", 0, "password") 'strvalue.Split("|")(4) 
+        'Dim sqls As New SQLs(mystring)
+
+        Dim json_result As String = ""
+        Dim table As DataTable = Nothing
+        Dim mparam As New List(Of String)
+        Dim mvalue As New List(Of String)
+        mparam.AddRange(New String() {"param", "value", "tkey1", "tkey2", "username"})
+        mvalue.AddRange(New String() {"cekusername", "", tmptokenkey1, tmptokenkey2, texUsername.EditValue})
+        json_result = modCore.HttpPOSTRequestSelect(mysite & "user", mparam, mvalue)
+        table = Newtonsoft.Json.JsonConvert.DeserializeObject(Of DataTable)(json_result)
+        'SQLs.DMLQuery("select iduser,idtoken,tokenkey1,tokenkey2,password from [user] where username='" & texUsername.Text & "'", "user")
+        If table.Rows.Count > 0 Then 'sqls.getDataSet("user") > 0 Then
+            tmpidtoken = table.Rows(0).Item("idtoken") 'SQLs.getDataSet("user", 0, "idtoken")
+            tmptokenkey1 = table.Rows(0).Item("tokenkey1") ' SQLs.getDataSet("user", 0, "tokenkey1")
+            tmptokenkey2 = table.Rows(0).Item("tokenkey2") 'SQLs.getDataSet("user", 0, "tokenkey2")
+            Dim tmppassword As String = table.Rows(0).Item("password") ' SQLs.getDataSet("user", 0, "password")
             Dim strpassword As String = GeneratePass(texPassword.Text, tmptokenkey1, tmptokenkey2, 8000)
             If tmppassword = strpassword Then
 
-                sqls.DMLQuery("select iduser,namalengkap,personalno,cardtype,address,zipcode,email,handphone,hint,recoveryquestion,recoveryanswer,username,password from [user] where username='" & texUsername.Text & "'", "useronline")
-                tmpUserID = sqls.getDataSet("useronline", 0, "iduser") 'strvalue.Split("|")(0) 
-                teNamaLengkap.Text = sqls.getDataSet("useronline", 0, "namalengkap") 'strvalue.Split("|")(1)
-                teID.Text = sqls.getDataSet("useronline", 0, "personalno") 'strvalue.Split("|")(2) 
-                lueJenis.EditValue = sqls.getDataSet("useronline", 0, "cardtype") 'strvalue.Split("|")(3) 
-                teEmail.Text = sqls.getDataSet("useronline", 0, "email") 'strvalue.Split("|")(6) 
-                teHandphone.Text = sqls.getDataSet("useronline", 0, "handphone") 'strvalue.Split("|")(7) 
-                teHint.Text = sqls.getDataSet("useronline", 0, "hint") 'strvalue.Split("|")(8) 
-                teRecQuest.Text = sqls.getDataSet("useronline", 0, "recoveryquestion") 'strvalue.Split("|")(9) 
-                teRecAns.Text = sqls.getDataSet("useronline", 0, "recoveryanswer") 'strvalue.Split("|")(10) 
-                teAlamat.Text = sqls.getDataSet("useronline", 0, "address") 'strvalue.Split("|")(4) 
-                teKodepos.Text = sqls.getDataSet("useronline", 0, "zipcode") 'strvalue.Split("|")(5) 
+                'SQLs.DMLQuery("select iduser,namalengkap,personalno,cardtype,address,zipcode,email,handphone,hint,recoveryquestion,recoveryanswer,username,password from [user] where username='" & texUsername.Text & "'", "useronline")
+                tmpUserID = table.Rows(0).Item("iduser") 'SQLs.getDataSet("useronline", 0, "iduser") 'strvalue.Split("|")(0) 
+                teNamaLengkap.Text = table.Rows(0).Item("namalengkap") 'SQLs.getDataSet("useronline", 0, "namalengkap") 'strvalue.Split("|")(1)
+                teID.Text = table.Rows(0).Item("iduser") 'SQLs.getDataSet("useronline", 0, "personalno") 'strvalue.Split("|")(2) 
+                lueJenis.EditValue = table.Rows(0).Item("iduser") 'SQLs.getDataSet("useronline", 0, "cardtype") 'strvalue.Split("|")(3) 
+                teEmail.Text = table.Rows(0).Item("iduser") 'SQLs.getDataSet("useronline", 0, "email") 'strvalue.Split("|")(6) 
+                teHandphone.Text = table.Rows(0).Item("iduser") 'SQLs.getDataSet("useronline", 0, "handphone") 'strvalue.Split("|")(7) 
+                teHint.Text = table.Rows(0).Item("iduser") 'SQLs.getDataSet("useronline", 0, "hint") 'strvalue.Split("|")(8) 
+                teRecQuest.Text = table.Rows(0).Item("iduser") 'SQLs.getDataSet("useronline", 0, "recoveryquestion") 'strvalue.Split("|")(9) 
+                teRecAns.Text = table.Rows(0).Item("iduser") 'SQLs.getDataSet("useronline", 0, "recoveryanswer") 'strvalue.Split("|")(10) 
+                teAlamat.Text = table.Rows(0).Item("iduser") 'SQLs.getDataSet("useronline", 0, "address") 'strvalue.Split("|")(4) 
+                teKodepos.Text = table.Rows(0).Item("iduser") 'SQLs.getDataSet("useronline", 0, "zipcode") 'strvalue.Split("|")(5) 
                 teUsername.Text = texUsername.Text
                 tePassword.Text = texPassword.Text
                 tmpUserFromOnline = True

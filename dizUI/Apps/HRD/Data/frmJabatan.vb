@@ -87,7 +87,7 @@
 
     Private Sub loadLOV()
         Dim mysqls As New SQLs(dbstring)
-        mysqls.DMLQuery("select idgeneral as idtype, generalcode as type from sys_generalcode where gctype='JABTYPE' and (idproducttype=0 or idproducttype='" & idproducttype & "')", "type")
+        mysqls.DMLQuery("select idgeneral as idtype, generalcode as type from sys_generalcode where gctype='JABTYPE' and (idproducttype=0 or idproducttype in ('" & String.Join("','", idproducttype) & "'))", "type")
         lueType.Properties.DataSource = mysqls.dataTable("type")
         lueType.Properties.DisplayMember = "type"
         lueType.Properties.ValueMember = "idtype"

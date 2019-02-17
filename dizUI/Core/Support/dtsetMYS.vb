@@ -144,18 +144,33 @@ Public Class dtsetMYS
             dCounter += dtset.GetXmlSchema.Length
 
             Dim dr As DataRow
-            If idValueData < 0 Then
-                dr = dtset.Tables(TableName).NewRow
+            If IsNumeric(idValueData) = False Then
+                If dtset.Tables(TableName).Rows.Count = 0 Then 'If idValueData < 0 Then
+                    dr = dtset.Tables(TableName).NewRow
+                Else
+                    dr = dtset.Tables(TableName).Rows(0)
+                End If
             Else
-                dr = dtset.Tables(TableName).Rows(0)
+                If idValueData < 0 Then
+                    dr = dtset.Tables(TableName).NewRow
+                Else
+                    dr = dtset.Tables(TableName).Rows(0)
+                End If
             End If
+
 
             For i As Integer = 0 To Field.Count - 1
                 dr.Item(Field(i)) = Value(i)
             Next
 
-            If idValueData < 0 Then
-                dtset.Tables(TableName).Rows.Add(dr)
+            If IsNumeric(idValueData) = False Then
+                If dtset.Tables(TableName).Rows.Count = 0 Then 'If idValueData < 0 Then
+                    dtset.Tables(TableName).Rows.Add(dr)
+                End If
+            Else
+                If idValueData < 0 Then
+                    dtset.Tables(TableName).Rows.Add(dr)
+                End If
             End If
         Catch ex As Exception
             retval = False
