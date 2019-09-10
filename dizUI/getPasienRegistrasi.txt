@@ -22,15 +22,15 @@ kc.wilayah + char(13) + char(10) +
 kl.wilayah + char(13) + char(10) + 
 a.alamat,'-') as alamat
 from rekammedis p
-left join kartu k on p.idrekammedis=k.idreff and k.tablereff='PASIEN' and k.idcompany=(select top 1 value from sys_appsetting where variable='CompanyID') 
+left join kartu k on p.idrekammedis=k.idreff and k.tablereff='PASIEN' 
 left join sys_generalcode ct on k.jeniskartu=ct.idgeneral and ct.gctype='CARDTYPE' and k.isdeleted=0
 left join sys_generalcode jk on p.jeniskelamin=jk.idgeneral and jk.gctype='SEXTYPE'
 left join sys_generalcode gd on p.golongandarah=gd.idgeneral and gd.gctype='GOLONGANDARAH'
 left join sys_generalcode rh on p.rhesus=rh.idgeneral and rh.gctype='RHESUS'
-left join wilayah w on p.kewarganegaraan=w.idwilayah and w.idcompany=(select top 1 value from sys_appsetting where variable='CompanyID') 
-left join alamat a on p.idrekammedis=a.idreff and a.idcompany=(select top 1 value from sys_appsetting where variable='CompanyID') and  a.tablereff='PASIEN' and a.isprimary=1 and isnull(a.isdeleted,0)=0
-left join wilayah ne on a.idnegara=ne.idwilayah and ne.idcompany=(select top 1 value from sys_appsetting where variable='CompanyID') 
-left join wilayah pr on a.idnegara=pr.idwilayah and pr.idcompany=(select top 1 value from sys_appsetting where variable='CompanyID') 
-left join wilayah kb on a.idnegara=kb.idwilayah and kb.idcompany=(select top 1 value from sys_appsetting where variable='CompanyID') 
-left join wilayah kc on a.idnegara=kc.idwilayah and kc.idcompany=(select top 1 value from sys_appsetting where variable='CompanyID') 
-left join wilayah kl on a.idnegara=kl.idwilayah and kl.idcompany=(select top 1 value from sys_appsetting where variable='CompanyID') 
+left join wilayah w on p.kewarganegaraan=w.idwilayah 
+left join alamat a on p.idrekammedis=a.idreff and a.tablereff='PASIEN' and a.isprimary=1 and isnull(a.isdeleted,0)=0
+left join wilayah ne on a.idnegara=ne.idwilayah 
+left join wilayah pr on a.idnegara=pr.idwilayah 
+left join wilayah kb on a.idnegara=kb.idwilayah 
+left join wilayah kc on a.idnegara=kc.idwilayah 
+left join wilayah kl on a.idnegara=kl.idwilayah 

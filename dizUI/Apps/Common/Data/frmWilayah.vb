@@ -102,7 +102,7 @@
         Me.Cursor = Cursors.WaitCursor
 
         Dim mysqls As New SQLs(dbstring)
-        mysqls.DMLQuery("select w.idwilayah, isnull(w.idparent,0) as idparent, isnull(p.wilayah,'-') as induk, w.levelwilayah, w.wilayah, w.kodepos, w.isdeleted, w.kodewilayah, del.generalcode as statdata from wilayah w left join wilayah p on p.idwilayah=w.idparent left join sys_generalcode del on del.idgeneral=w.isdeleted and del.gctype='DELETE' where w.levelwilayah>0 and w.idcompany=(select top 1 value from sys_appsetting where variable='CompanyID')", "data")
+        mysqls.DMLQuery("select w.idwilayah, isnull(w.idparent,0) as idparent, isnull(p.wilayah,'-') as induk, w.levelwilayah, w.wilayah, w.kodepos, w.isdeleted, w.kodewilayah, del.generalcode as statdata from wilayah w left join wilayah p on p.idwilayah=w.idparent left join sys_generalcode del on del.idgeneral=w.isdeleted and del.gctype='DELETE' where w.levelwilayah>0", "data")
         gcData.DataSource = mysqls.dataTable("data")
         gvData.BestFitColumns()
 
@@ -135,7 +135,7 @@
         End If
         If statData = statusData.Baru Then
             Dim sqls1 As New SQLs(dbstring)
-            sqls1.DMLQuery("select wilayah from wilayah where idcompany=(select top 1 value from sys_appsetting where variable='CompanyID') and replace(wilayah,' ','')='" & teWilayah.Text.Replace(" ", "") & "'", "exist")
+            sqls1.DMLQuery("select wilayah from wilayah where replace(wilayah,' ','')='" & teWilayah.Text.Replace(" ", "") & "'", "exist")
             If sqls1.getDataSet("exist") = 0 Then
                 idData = "-1"
             Else
@@ -145,7 +145,7 @@
             End If
         ElseIf statData = statusData.Baru Then
             Dim sqls1 As New SQLs(dbstring)
-            sqls1.DMLQuery("select wilayah from wilayah where idcompany=(select top 1 value from sys_appsetting where variable='CompanyID') and replace(wilayah,' ','')='" & teWilayah.Text.Replace(" ", "") & "' and idwilayah<>'" & idData & "'", "exist")
+            sqls1.DMLQuery("select wilayah from wilayah where replace(wilayah,' ','')='" & teWilayah.Text.Replace(" ", "") & "' and idwilayah<>'" & idData & "'", "exist")
             If sqls1.getDataSet("exist") > 0 Then
                 dizMsgbox("Data tersebut sudah ada", dizMsgboxStyle.Info, Me)
                 teWilayah.Focus()

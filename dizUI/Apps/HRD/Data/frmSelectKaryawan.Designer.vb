@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class frmSelectKaryawan
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         Try
             If disposing AndAlso components IsNot Nothing Then
@@ -20,7 +20,7 @@ Partial Class frmSelectKaryawan
     'NOTE: The following procedure is required by the Windows Form Designer
     'It can be modified using the Windows Form Designer.  
     'Do not modify it using the code editor.
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmSelectKaryawan))
         Me.tlpForm = New System.Windows.Forms.TableLayoutPanel()
@@ -28,26 +28,25 @@ Partial Class frmSelectKaryawan
         Me.lblTitle = New System.Windows.Forms.Label()
         Me.btnClose = New System.Windows.Forms.Button()
         Me.pBody = New System.Windows.Forms.Panel()
-        Me.gcData = New DevExpress.XtraGrid.GridControl()
-        Me.gvData = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.gcID = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.gcKaryawan = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.gcDepartment = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.tlpField = New System.Windows.Forms.TableLayoutPanel()
+        Me.lueKaryawan = New DevExpress.XtraEditors.SearchLookUpEdit()
+        Me.slueView = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn13 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn14 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.lblKaryawan = New System.Windows.Forms.Label()
-        Me.teKaryawan = New DevExpress.XtraEditors.TextEdit()
         Me.lblDepartment = New System.Windows.Forms.Label()
         Me.teDepartment = New DevExpress.XtraEditors.TextEdit()
         Me.pHeader = New System.Windows.Forms.Panel()
         Me.btnSave = New System.Windows.Forms.Button()
         Me.lblInfo = New System.Windows.Forms.Label()
+        Me.ComboBox1 = New System.Windows.Forms.ComboBox()
+        Me.ListBox1 = New System.Windows.Forms.ListBox()
         Me.tlpForm.SuspendLayout()
         Me.pTitle.SuspendLayout()
         Me.pBody.SuspendLayout()
-        CType(Me.gcData, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.gvData, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.tlpField.SuspendLayout()
-        CType(Me.teKaryawan.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.lueKaryawan.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.slueView, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.teDepartment.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.pHeader.SuspendLayout()
         Me.SuspendLayout()
@@ -69,7 +68,7 @@ Partial Class frmSelectKaryawan
         Me.tlpForm.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30.0!))
         Me.tlpForm.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
         Me.tlpForm.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 2.0!))
-        Me.tlpForm.Size = New System.Drawing.Size(411, 408)
+        Me.tlpForm.Size = New System.Drawing.Size(411, 155)
         Me.tlpForm.TabIndex = 0
         '
         'pTitle
@@ -117,7 +116,6 @@ Partial Class frmSelectKaryawan
         '
         'pBody
         '
-        Me.pBody.Controls.Add(Me.gcData)
         Me.pBody.Controls.Add(Me.tlpField)
         Me.pBody.Controls.Add(Me.pHeader)
         Me.pBody.Controls.Add(Me.lblInfo)
@@ -125,68 +123,8 @@ Partial Class frmSelectKaryawan
         Me.pBody.Location = New System.Drawing.Point(2, 30)
         Me.pBody.Margin = New System.Windows.Forms.Padding(0)
         Me.pBody.Name = "pBody"
-        Me.pBody.Size = New System.Drawing.Size(407, 376)
+        Me.pBody.Size = New System.Drawing.Size(407, 123)
         Me.pBody.TabIndex = 7
-        '
-        'gcData
-        '
-        Me.gcData.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.gcData.Font = New System.Drawing.Font("Tahoma", 9.0!)
-        Me.gcData.Location = New System.Drawing.Point(0, 88)
-        Me.gcData.MainView = Me.gvData
-        Me.gcData.Name = "gcData"
-        Me.gcData.Size = New System.Drawing.Size(407, 288)
-        Me.gcData.TabIndex = 8
-        Me.gcData.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gvData})
-        '
-        'gvData
-        '
-        Me.gvData.Appearance.Empty.BackColor = System.Drawing.Color.FromArgb(CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer))
-        Me.gvData.Appearance.Empty.Options.UseBackColor = True
-        Me.gvData.Appearance.EvenRow.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.gvData.Appearance.EvenRow.Options.UseBackColor = True
-        Me.gvData.Appearance.OddRow.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.gvData.Appearance.OddRow.Options.UseBackColor = True
-        Me.gvData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.gcID, Me.gcKaryawan, Me.gcDepartment})
-        Me.gvData.GridControl = Me.gcData
-        Me.gvData.Name = "gvData"
-        Me.gvData.OptionsView.EnableAppearanceEvenRow = True
-        Me.gvData.OptionsView.EnableAppearanceOddRow = True
-        Me.gvData.OptionsView.ShowGroupPanel = False
-        '
-        'gcID
-        '
-        Me.gcID.AppearanceCell.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.gcID.AppearanceCell.Options.UseBackColor = True
-        Me.gcID.Caption = "ID"
-        Me.gcID.FieldName = "idstaff"
-        Me.gcID.Name = "gcID"
-        Me.gcID.OptionsColumn.AllowEdit = False
-        Me.gcID.OptionsColumn.ReadOnly = True
-        '
-        'gcKaryawan
-        '
-        Me.gcKaryawan.AppearanceHeader.Options.UseTextOptions = True
-        Me.gcKaryawan.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.gcKaryawan.Caption = "Nama Karyawan"
-        Me.gcKaryawan.FieldName = "nama"
-        Me.gcKaryawan.Name = "gcKaryawan"
-        Me.gcKaryawan.OptionsColumn.AllowEdit = False
-        Me.gcKaryawan.OptionsColumn.ReadOnly = True
-        Me.gcKaryawan.Visible = True
-        Me.gcKaryawan.VisibleIndex = 0
-        '
-        'gcDepartment
-        '
-        Me.gcDepartment.AppearanceHeader.Options.UseTextOptions = True
-        Me.gcDepartment.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.gcDepartment.Caption = "Department"
-        Me.gcDepartment.FieldName = "department"
-        Me.gcDepartment.Name = "gcDepartment"
-        Me.gcDepartment.OptionsColumn.AllowEdit = False
-        Me.gcDepartment.OptionsColumn.ReadOnly = True
-        Me.gcDepartment.Visible = True
-        Me.gcDepartment.VisibleIndex = 1
         '
         'tlpField
         '
@@ -198,11 +136,11 @@ Partial Class frmSelectKaryawan
         Me.tlpField.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
         Me.tlpField.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
         Me.tlpField.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
+        Me.tlpField.Controls.Add(Me.lueKaryawan, 2, 1)
         Me.tlpField.Controls.Add(Me.lblKaryawan, 1, 1)
-        Me.tlpField.Controls.Add(Me.teKaryawan, 2, 1)
         Me.tlpField.Controls.Add(Me.lblDepartment, 1, 2)
         Me.tlpField.Controls.Add(Me.teDepartment, 2, 2)
-        Me.tlpField.Dock = System.Windows.Forms.DockStyle.Top
+        Me.tlpField.Dock = System.Windows.Forms.DockStyle.Fill
         Me.tlpField.Location = New System.Drawing.Point(0, 30)
         Me.tlpField.Name = "tlpField"
         Me.tlpField.RowCount = 4
@@ -210,62 +148,85 @@ Partial Class frmSelectKaryawan
         Me.tlpField.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 24.0!))
         Me.tlpField.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 24.0!))
         Me.tlpField.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
-        Me.tlpField.Size = New System.Drawing.Size(407, 58)
+        Me.tlpField.Size = New System.Drawing.Size(407, 93)
         Me.tlpField.TabIndex = 7
+        '
+        'lueKaryawan
+        '
+        Me.lueKaryawan.Anchor = System.Windows.Forms.AnchorStyles.Left
+        Me.lueKaryawan.Location = New System.Drawing.Point(198, 24)
+        Me.lueKaryawan.Margin = New System.Windows.Forms.Padding(0)
+        Me.lueKaryawan.Name = "lueKaryawan"
+        Me.lueKaryawan.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.lueKaryawan.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 9.0!)
+        Me.lueKaryawan.Properties.Appearance.ForeColor = System.Drawing.Color.Black
+        Me.lueKaryawan.Properties.Appearance.Options.UseBackColor = True
+        Me.lueKaryawan.Properties.Appearance.Options.UseFont = True
+        Me.lueKaryawan.Properties.Appearance.Options.UseForeColor = True
+        Me.lueKaryawan.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple
+        Me.lueKaryawan.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.lueKaryawan.Properties.NullText = "[Isian belum dipilih]"
+        Me.lueKaryawan.Properties.NullValuePrompt = "[Isian belum dipilih]"
+        Me.lueKaryawan.Properties.PopupBorderStyle = DevExpress.XtraEditors.Controls.PopupBorderStyles.Simple
+        Me.lueKaryawan.Properties.PopupFindMode = DevExpress.XtraEditors.FindMode.Always
+        Me.lueKaryawan.Properties.PopupView = Me.slueView
+        Me.lueKaryawan.Properties.ShowFooter = False
+        Me.lueKaryawan.Properties.ShowPopupShadow = False
+        Me.lueKaryawan.Properties.ViewType = DevExpress.XtraEditors.Repository.GridLookUpViewType.GridView
+        Me.lueKaryawan.Size = New System.Drawing.Size(150, 20)
+        Me.lueKaryawan.TabIndex = 49
+        Me.lueKaryawan.Tag = "idparamedis"
+        '
+        'slueView
+        '
+        Me.slueView.Appearance.EvenRow.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.slueView.Appearance.EvenRow.Options.UseBackColor = True
+        Me.slueView.Appearance.OddRow.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer))
+        Me.slueView.Appearance.OddRow.Options.UseBackColor = True
+        Me.slueView.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn13, Me.GridColumn14})
+        Me.slueView.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.slueView.Name = "slueView"
+        Me.slueView.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.slueView.OptionsView.EnableAppearanceEvenRow = True
+        Me.slueView.OptionsView.EnableAppearanceOddRow = True
+        Me.slueView.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn13
+        '
+        Me.GridColumn13.Caption = "ID"
+        Me.GridColumn13.FieldName = "id"
+        Me.GridColumn13.Name = "GridColumn13"
+        Me.GridColumn13.OptionsColumn.AllowEdit = False
+        Me.GridColumn13.OptionsColumn.ReadOnly = True
+        '
+        'GridColumn14
+        '
+        Me.GridColumn14.Caption = "Content"
+        Me.GridColumn14.FieldName = "content"
+        Me.GridColumn14.Name = "GridColumn14"
+        Me.GridColumn14.OptionsColumn.AllowEdit = False
+        Me.GridColumn14.OptionsColumn.ReadOnly = True
+        Me.GridColumn14.Visible = True
+        Me.GridColumn14.VisibleIndex = 0
         '
         'lblKaryawan
         '
         Me.lblKaryawan.Anchor = System.Windows.Forms.AnchorStyles.Right
         Me.lblKaryawan.AutoSize = True
         Me.lblKaryawan.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblKaryawan.Location = New System.Drawing.Point(102, 10)
+        Me.lblKaryawan.Location = New System.Drawing.Point(102, 27)
         Me.lblKaryawan.Name = "lblKaryawan"
         Me.lblKaryawan.Size = New System.Drawing.Size(93, 14)
         Me.lblKaryawan.TabIndex = 9
         Me.lblKaryawan.Text = "Nama Karyawan"
         Me.lblKaryawan.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
-        'teKaryawan
-        '
-        Me.teKaryawan.Anchor = System.Windows.Forms.AnchorStyles.Left
-        Me.teKaryawan.Enabled = False
-        Me.teKaryawan.Location = New System.Drawing.Point(198, 7)
-        Me.teKaryawan.Margin = New System.Windows.Forms.Padding(0)
-        Me.teKaryawan.Name = "teKaryawan"
-        Me.teKaryawan.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[True]
-        Me.teKaryawan.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.teKaryawan.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 9.0!)
-        Me.teKaryawan.Properties.Appearance.ForeColor = System.Drawing.Color.Black
-        Me.teKaryawan.Properties.Appearance.Options.UseBackColor = True
-        Me.teKaryawan.Properties.Appearance.Options.UseFont = True
-        Me.teKaryawan.Properties.Appearance.Options.UseForeColor = True
-        Me.teKaryawan.Properties.AppearanceDisabled.Font = New System.Drawing.Font("Tahoma", 9.0!)
-        Me.teKaryawan.Properties.AppearanceDisabled.ForeColor = System.Drawing.Color.Black
-        Me.teKaryawan.Properties.AppearanceDisabled.Options.UseFont = True
-        Me.teKaryawan.Properties.AppearanceDisabled.Options.UseForeColor = True
-        Me.teKaryawan.Properties.AppearanceFocused.Font = New System.Drawing.Font("Tahoma", 9.0!)
-        Me.teKaryawan.Properties.AppearanceFocused.ForeColor = System.Drawing.Color.Black
-        Me.teKaryawan.Properties.AppearanceFocused.Options.UseFont = True
-        Me.teKaryawan.Properties.AppearanceFocused.Options.UseForeColor = True
-        Me.teKaryawan.Properties.AppearanceReadOnly.Font = New System.Drawing.Font("Tahoma", 9.0!)
-        Me.teKaryawan.Properties.AppearanceReadOnly.ForeColor = System.Drawing.Color.Black
-        Me.teKaryawan.Properties.AppearanceReadOnly.Options.UseFont = True
-        Me.teKaryawan.Properties.AppearanceReadOnly.Options.UseForeColor = True
-        Me.teKaryawan.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple
-        Me.teKaryawan.Properties.MaxLength = 10
-        Me.teKaryawan.Properties.NullText = "[Belum Diisi]"
-        Me.teKaryawan.Properties.NullValuePrompt = "[Belum Diisi]"
-        Me.teKaryawan.Properties.ReadOnly = True
-        Me.teKaryawan.Size = New System.Drawing.Size(150, 20)
-        Me.teKaryawan.TabIndex = 17
-        Me.teKaryawan.Tag = ""
-        '
         'lblDepartment
         '
         Me.lblDepartment.Anchor = System.Windows.Forms.AnchorStyles.Right
         Me.lblDepartment.AutoSize = True
         Me.lblDepartment.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblDepartment.Location = New System.Drawing.Point(122, 34)
+        Me.lblDepartment.Location = New System.Drawing.Point(122, 51)
         Me.lblDepartment.Name = "lblDepartment"
         Me.lblDepartment.Size = New System.Drawing.Size(73, 14)
         Me.lblDepartment.TabIndex = 26
@@ -276,7 +237,7 @@ Partial Class frmSelectKaryawan
         '
         Me.teDepartment.Anchor = System.Windows.Forms.AnchorStyles.Left
         Me.teDepartment.Enabled = False
-        Me.teDepartment.Location = New System.Drawing.Point(198, 31)
+        Me.teDepartment.Location = New System.Drawing.Point(198, 48)
         Me.teDepartment.Margin = New System.Windows.Forms.Padding(0)
         Me.teDepartment.Name = "teDepartment"
         Me.teDepartment.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[True]
@@ -310,6 +271,8 @@ Partial Class frmSelectKaryawan
         'pHeader
         '
         Me.pHeader.BackColor = System.Drawing.Color.FromArgb(CType(CType(66, Byte), Integer), CType(CType(66, Byte), Integer), CType(CType(66, Byte), Integer))
+        Me.pHeader.Controls.Add(Me.ListBox1)
+        Me.pHeader.Controls.Add(Me.ComboBox1)
         Me.pHeader.Controls.Add(Me.btnSave)
         Me.pHeader.Dock = System.Windows.Forms.DockStyle.Top
         Me.pHeader.ForeColor = System.Drawing.Color.White
@@ -321,7 +284,7 @@ Partial Class frmSelectKaryawan
         '
         'btnSave
         '
-        Me.btnSave.BackColor = System.Drawing.Color.FromArgb(CType(CType(156, Byte), Integer), CType(CType(207, Byte), Integer), CType(CType(49, Byte), Integer))
+        Me.btnSave.BackColor = System.Drawing.Color.Green
         Me.btnSave.DialogResult = System.Windows.Forms.DialogResult.OK
         Me.btnSave.Dock = System.Windows.Forms.DockStyle.Right
         Me.btnSave.FlatAppearance.BorderSize = 0
@@ -342,13 +305,29 @@ Partial Class frmSelectKaryawan
         Me.lblInfo.BackColor = System.Drawing.Color.FromArgb(CType(CType(66, Byte), Integer), CType(CType(66, Byte), Integer), CType(CType(66, Byte), Integer))
         Me.lblInfo.Font = New System.Drawing.Font("Tahoma", 9.0!)
         Me.lblInfo.ForeColor = System.Drawing.Color.White
-        Me.lblInfo.Location = New System.Drawing.Point(126, 173)
+        Me.lblInfo.Location = New System.Drawing.Point(122, 91)
         Me.lblInfo.Name = "lblInfo"
         Me.lblInfo.Padding = New System.Windows.Forms.Padding(10, 0, 0, 0)
         Me.lblInfo.Size = New System.Drawing.Size(154, 30)
         Me.lblInfo.TabIndex = 17
         Me.lblInfo.Text = "Data Tidak Ditemukan"
         Me.lblInfo.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        '
+        'ComboBox1
+        '
+        Me.ComboBox1.FormattingEnabled = True
+        Me.ComboBox1.Location = New System.Drawing.Point(10, 6)
+        Me.ComboBox1.Name = "ComboBox1"
+        Me.ComboBox1.Size = New System.Drawing.Size(125, 21)
+        Me.ComboBox1.TabIndex = 16
+        '
+        'ListBox1
+        '
+        Me.ListBox1.FormattingEnabled = True
+        Me.ListBox1.Location = New System.Drawing.Point(169, 7)
+        Me.ListBox1.Name = "ListBox1"
+        Me.ListBox1.Size = New System.Drawing.Size(120, 17)
+        Me.ListBox1.TabIndex = 17
         '
         'frmSelectKaryawan
         '
@@ -357,7 +336,7 @@ Partial Class frmSelectKaryawan
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer))
         Me.CancelButton = Me.btnClose
-        Me.ClientSize = New System.Drawing.Size(411, 408)
+        Me.ClientSize = New System.Drawing.Size(411, 155)
         Me.ControlBox = False
         Me.Controls.Add(Me.tlpForm)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
@@ -370,11 +349,10 @@ Partial Class frmSelectKaryawan
         Me.tlpForm.ResumeLayout(False)
         Me.pTitle.ResumeLayout(False)
         Me.pBody.ResumeLayout(False)
-        CType(Me.gcData, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.gvData, System.ComponentModel.ISupportInitialize).EndInit()
         Me.tlpField.ResumeLayout(False)
         Me.tlpField.PerformLayout()
-        CType(Me.teKaryawan.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.lueKaryawan.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.slueView, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.teDepartment.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.pHeader.ResumeLayout(False)
         Me.ResumeLayout(False)
@@ -383,19 +361,19 @@ Partial Class frmSelectKaryawan
     Public WithEvents pHeader As System.Windows.Forms.Panel
     Public WithEvents btnSave As System.Windows.Forms.Button
     Public WithEvents pBody As System.Windows.Forms.Panel
-    Public WithEvents gcData As DevExpress.XtraGrid.GridControl
-    Public WithEvents gvData As DevExpress.XtraGrid.Views.Grid.GridView
     Public WithEvents tlpField As System.Windows.Forms.TableLayoutPanel
     Public WithEvents tlpForm As System.Windows.Forms.TableLayoutPanel
     Friend WithEvents lblKaryawan As System.Windows.Forms.Label
-    Friend WithEvents teKaryawan As DevExpress.XtraEditors.TextEdit
-    Friend WithEvents gcID As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents gcDepartment As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents lblDepartment As System.Windows.Forms.Label
     Friend WithEvents teDepartment As DevExpress.XtraEditors.TextEdit
-    Friend WithEvents gcKaryawan As DevExpress.XtraGrid.Columns.GridColumn
     Public WithEvents btnClose As System.Windows.Forms.Button
     Friend WithEvents pTitle As System.Windows.Forms.Panel
     Friend WithEvents lblTitle As System.Windows.Forms.Label
     Friend WithEvents lblInfo As Label
+    Friend WithEvents lueKaryawan As DevExpress.XtraEditors.SearchLookUpEdit
+    Friend WithEvents slueView As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumn13 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn14 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents ComboBox1 As ComboBox
+    Friend WithEvents ListBox1 As ListBox
 End Class

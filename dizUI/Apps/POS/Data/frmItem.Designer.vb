@@ -33,30 +33,49 @@ Partial Class frmItem
         Me.gvData = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.gcID = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.rlueGrup = New DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit()
+        Me.RepositoryItemSearchLookUpEdit1View = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.gcitemtype = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.rlueTipe = New DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit()
+        Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.gcidsatuan = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.rlueSatuan = New DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit()
+        Me.GridView2 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.gcisdeleted = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.rlueStatus = New DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit()
+        Me.GridView3 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.gcType = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.rlueBrand = New DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit()
+        Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.gcKode = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.riteKode = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
         Me.gcNama = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.riteNama = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
         Me.gcSatuan = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.gcStatData = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.Panel1 = New System.Windows.Forms.Panel()
+        Me.btnSaveAll = New System.Windows.Forms.Button()
         Me.tlpField = New System.Windows.Forms.TableLayoutPanel()
+        Me.lueBrand = New DevExpress.XtraEditors.LookUpEdit()
+        Me.Label3 = New System.Windows.Forms.Label()
         Me.teRemarks = New DevExpress.XtraEditors.TextEdit()
         Me.Label2 = New System.Windows.Forms.Label()
-        Me.lueGrup = New DevExpress.XtraEditors.LookUpEdit()
-        Me.Label1 = New System.Windows.Forms.Label()
         Me.teKode = New DevExpress.XtraEditors.TextEdit()
         Me.lblParent = New System.Windows.Forms.Label()
-        Me.lblDepartment = New System.Windows.Forms.Label()
-        Me.teNama = New DevExpress.XtraEditors.TextEdit()
         Me.lblKode = New System.Windows.Forms.Label()
         Me.lueSatuan = New DevExpress.XtraEditors.LookUpEdit()
         Me.lueType = New DevExpress.XtraEditors.LookUpEdit()
         Me.Label5 = New System.Windows.Forms.Label()
+        Me.teNama = New DevExpress.XtraEditors.TextEdit()
+        Me.lblDepartment = New System.Windows.Forms.Label()
+        Me.lueGrup = New DevExpress.XtraEditors.LookUpEdit()
+        Me.Label1 = New System.Windows.Forms.Label()
         Me.pHeader = New System.Windows.Forms.Panel()
+        Me.btnImportFormat = New System.Windows.Forms.Button()
+        Me.btnExportFormat = New System.Windows.Forms.Button()
         Me.btnNew = New System.Windows.Forms.Button()
         Me.btnSave = New System.Windows.Forms.Button()
         Me.btnDelete = New System.Windows.Forms.Button()
@@ -69,13 +88,26 @@ Partial Class frmItem
         Me.pBody.SuspendLayout()
         CType(Me.gcData, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gvData, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.rlueGrup, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemSearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.rlueTipe, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.rlueSatuan, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridView2, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.rlueStatus, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridView3, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.rlueBrand, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.riteKode, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.riteNama, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.Panel1.SuspendLayout()
         Me.tlpField.SuspendLayout()
+        CType(Me.lueBrand.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.teRemarks.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.lueGrup.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.teKode.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.teNama.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.lueSatuan.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.lueType.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.teNama.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.lueGrup.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.pHeader.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -169,6 +201,7 @@ Partial Class frmItem
         'pBody
         '
         Me.pBody.Controls.Add(Me.gcData)
+        Me.pBody.Controls.Add(Me.Panel1)
         Me.pBody.Controls.Add(Me.tlpField)
         Me.pBody.Controls.Add(Me.pHeader)
         Me.pBody.Dock = System.Windows.Forms.DockStyle.Fill
@@ -181,22 +214,23 @@ Partial Class frmItem
         'gcData
         '
         Me.gcData.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.gcData.Location = New System.Drawing.Point(0, 114)
+        Me.gcData.Location = New System.Drawing.Point(0, 168)
         Me.gcData.MainView = Me.gvData
         Me.gcData.Name = "gcData"
-        Me.gcData.Size = New System.Drawing.Size(786, 264)
+        Me.gcData.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.rlueGrup, Me.rlueTipe, Me.riteKode, Me.riteNama, Me.rlueSatuan, Me.rlueStatus, Me.rlueBrand})
+        Me.gcData.Size = New System.Drawing.Size(786, 210)
         Me.gcData.TabIndex = 8
         Me.gcData.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gvData})
         '
         'gvData
         '
-        Me.gvData.Appearance.Empty.BackColor = System.Drawing.color.fromargb(240, 240, 240)
+        Me.gvData.Appearance.Empty.BackColor = System.Drawing.Color.FromArgb(CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer))
         Me.gvData.Appearance.Empty.Options.UseBackColor = True
-        Me.gvData.Appearance.EvenRow.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.gvData.Appearance.EvenRow.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
         Me.gvData.Appearance.EvenRow.Options.UseBackColor = True
-        Me.gvData.Appearance.OddRow.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.gvData.Appearance.OddRow.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
         Me.gvData.Appearance.OddRow.Options.UseBackColor = True
-        Me.gvData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.gcID, Me.GridColumn2, Me.gcitemtype, Me.gcidsatuan, Me.gcisdeleted, Me.GridColumn1, Me.gcType, Me.gcKode, Me.gcNama, Me.gcSatuan, Me.gcStatData, Me.GridColumn3})
+        Me.gvData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.gcID, Me.GridColumn2, Me.gcitemtype, Me.gcidsatuan, Me.gcisdeleted, Me.GridColumn1, Me.gcType, Me.GridColumn4, Me.GridColumn5, Me.gcKode, Me.gcNama, Me.gcSatuan, Me.gcStatData, Me.GridColumn3})
         Me.gvData.GridControl = Me.gcData
         Me.gvData.Name = "gvData"
         Me.gvData.OptionsView.EnableAppearanceEvenRow = True
@@ -215,29 +249,103 @@ Partial Class frmItem
         '
         'GridColumn2
         '
-        Me.GridColumn2.Caption = "GridColumn2"
-        Me.GridColumn2.FieldName = "itemgrup"
+        Me.GridColumn2.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn2.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn2.Caption = "Grup Item"
+        Me.GridColumn2.ColumnEdit = Me.rlueGrup
+        Me.GridColumn2.FieldName = "iditemgrup"
         Me.GridColumn2.Name = "GridColumn2"
+        Me.GridColumn2.Visible = True
+        Me.GridColumn2.VisibleIndex = 0
+        '
+        'rlueGrup
+        '
+        Me.rlueGrup.AutoHeight = False
+        Me.rlueGrup.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.rlueGrup.Name = "rlueGrup"
+        Me.rlueGrup.PopupView = Me.RepositoryItemSearchLookUpEdit1View
+        '
+        'RepositoryItemSearchLookUpEdit1View
+        '
+        Me.RepositoryItemSearchLookUpEdit1View.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.RepositoryItemSearchLookUpEdit1View.Name = "RepositoryItemSearchLookUpEdit1View"
+        Me.RepositoryItemSearchLookUpEdit1View.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.RepositoryItemSearchLookUpEdit1View.OptionsView.ShowGroupPanel = False
         '
         'gcitemtype
         '
-        Me.gcitemtype.Caption = "itemtype"
+        Me.gcitemtype.AppearanceHeader.Options.UseTextOptions = True
+        Me.gcitemtype.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.gcitemtype.Caption = "Tipe Item"
+        Me.gcitemtype.ColumnEdit = Me.rlueTipe
         Me.gcitemtype.FieldName = "itemtype"
         Me.gcitemtype.Name = "gcitemtype"
+        Me.gcitemtype.Visible = True
+        Me.gcitemtype.VisibleIndex = 1
+        '
+        'rlueTipe
+        '
+        Me.rlueTipe.AutoHeight = False
+        Me.rlueTipe.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.rlueTipe.Name = "rlueTipe"
+        Me.rlueTipe.PopupView = Me.GridView1
+        '
+        'GridView1
+        '
+        Me.GridView1.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.GridView1.Name = "GridView1"
+        Me.GridView1.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.GridView1.OptionsView.ShowGroupPanel = False
         '
         'gcidsatuan
         '
-        Me.gcidsatuan.Caption = "idsatuan"
+        Me.gcidsatuan.AppearanceHeader.Options.UseTextOptions = True
+        Me.gcidsatuan.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.gcidsatuan.Caption = "Satuan"
+        Me.gcidsatuan.ColumnEdit = Me.rlueSatuan
         Me.gcidsatuan.FieldName = "idsatuan"
         Me.gcidsatuan.Name = "gcidsatuan"
+        Me.gcidsatuan.Visible = True
+        Me.gcidsatuan.VisibleIndex = 5
+        '
+        'rlueSatuan
+        '
+        Me.rlueSatuan.AutoHeight = False
+        Me.rlueSatuan.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.rlueSatuan.Name = "rlueSatuan"
+        Me.rlueSatuan.PopupView = Me.GridView2
+        '
+        'GridView2
+        '
+        Me.GridView2.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.GridView2.Name = "GridView2"
+        Me.GridView2.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.GridView2.OptionsView.ShowGroupPanel = False
         '
         'gcisdeleted
         '
-        Me.gcisdeleted.Caption = "isdeleted"
+        Me.gcisdeleted.AppearanceHeader.Options.UseTextOptions = True
+        Me.gcisdeleted.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.gcisdeleted.Caption = "Status Data"
+        Me.gcisdeleted.ColumnEdit = Me.rlueStatus
         Me.gcisdeleted.FieldName = "isdeleted"
         Me.gcisdeleted.Name = "gcisdeleted"
-        Me.gcisdeleted.OptionsColumn.AllowEdit = False
-        Me.gcisdeleted.OptionsColumn.ReadOnly = True
+        Me.gcisdeleted.Visible = True
+        Me.gcisdeleted.VisibleIndex = 6
+        '
+        'rlueStatus
+        '
+        Me.rlueStatus.AutoHeight = False
+        Me.rlueStatus.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.rlueStatus.Name = "rlueStatus"
+        Me.rlueStatus.PopupView = Me.GridView3
+        '
+        'GridView3
+        '
+        Me.GridView3.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.GridView3.Name = "GridView3"
+        Me.GridView3.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.GridView3.OptionsView.ShowGroupPanel = False
         '
         'GridColumn1
         '
@@ -248,8 +356,6 @@ Partial Class frmItem
         Me.GridColumn1.Name = "GridColumn1"
         Me.GridColumn1.OptionsColumn.AllowEdit = False
         Me.GridColumn1.OptionsColumn.ReadOnly = True
-        Me.GridColumn1.Visible = True
-        Me.GridColumn1.VisibleIndex = 1
         '
         'gcType
         '
@@ -260,32 +366,66 @@ Partial Class frmItem
         Me.gcType.Name = "gcType"
         Me.gcType.OptionsColumn.AllowEdit = False
         Me.gcType.OptionsColumn.ReadOnly = True
-        Me.gcType.Visible = True
-        Me.gcType.VisibleIndex = 0
+        '
+        'GridColumn4
+        '
+        Me.GridColumn4.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn4.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn4.Caption = "Merk"
+        Me.GridColumn4.ColumnEdit = Me.rlueBrand
+        Me.GridColumn4.FieldName = "iditembrand"
+        Me.GridColumn4.Name = "GridColumn4"
+        Me.GridColumn4.Visible = True
+        Me.GridColumn4.VisibleIndex = 3
+        '
+        'rlueBrand
+        '
+        Me.rlueBrand.AutoHeight = False
+        Me.rlueBrand.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.rlueBrand.Name = "rlueBrand"
+        Me.rlueBrand.PopupView = Me.RepositoryItemSearchLookUpEdit1View
+        '
+        'GridColumn5
+        '
+        Me.GridColumn5.Caption = "Brand"
+        Me.GridColumn5.FieldName = "itembrand"
+        Me.GridColumn5.Name = "GridColumn5"
+        Me.GridColumn5.OptionsColumn.AllowEdit = False
+        Me.GridColumn5.OptionsColumn.ReadOnly = True
         '
         'gcKode
         '
         Me.gcKode.AppearanceHeader.Options.UseTextOptions = True
         Me.gcKode.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.gcKode.Caption = "Kode"
+        Me.gcKode.ColumnEdit = Me.riteKode
         Me.gcKode.FieldName = "kode"
         Me.gcKode.Name = "gcKode"
-        Me.gcKode.OptionsColumn.AllowEdit = False
-        Me.gcKode.OptionsColumn.ReadOnly = True
         Me.gcKode.Visible = True
         Me.gcKode.VisibleIndex = 2
+        '
+        'riteKode
+        '
+        Me.riteKode.AutoHeight = False
+        Me.riteKode.MaxLength = 20
+        Me.riteKode.Name = "riteKode"
         '
         'gcNama
         '
         Me.gcNama.AppearanceHeader.Options.UseTextOptions = True
         Me.gcNama.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.gcNama.Caption = "Nama"
+        Me.gcNama.ColumnEdit = Me.riteNama
         Me.gcNama.FieldName = "item"
         Me.gcNama.Name = "gcNama"
-        Me.gcNama.OptionsColumn.AllowEdit = False
-        Me.gcNama.OptionsColumn.ReadOnly = True
         Me.gcNama.Visible = True
-        Me.gcNama.VisibleIndex = 3
+        Me.gcNama.VisibleIndex = 4
+        '
+        'riteNama
+        '
+        Me.riteNama.AutoHeight = False
+        Me.riteNama.MaxLength = 200
+        Me.riteNama.Name = "riteNama"
         '
         'gcSatuan
         '
@@ -296,8 +436,6 @@ Partial Class frmItem
         Me.gcSatuan.Name = "gcSatuan"
         Me.gcSatuan.OptionsColumn.AllowEdit = False
         Me.gcSatuan.OptionsColumn.ReadOnly = True
-        Me.gcSatuan.Visible = True
-        Me.gcSatuan.VisibleIndex = 4
         '
         'gcStatData
         '
@@ -308,8 +446,6 @@ Partial Class frmItem
         Me.gcStatData.Name = "gcStatData"
         Me.gcStatData.OptionsColumn.AllowEdit = False
         Me.gcStatData.OptionsColumn.ReadOnly = True
-        Me.gcStatData.Visible = True
-        Me.gcStatData.VisibleIndex = 5
         '
         'GridColumn3
         '
@@ -319,10 +455,40 @@ Partial Class frmItem
         Me.GridColumn3.OptionsColumn.AllowEdit = False
         Me.GridColumn3.OptionsColumn.ReadOnly = True
         '
+        'Panel1
+        '
+        Me.Panel1.BackColor = System.Drawing.Color.FromArgb(CType(CType(66, Byte), Integer), CType(CType(66, Byte), Integer), CType(CType(66, Byte), Integer))
+        Me.Panel1.Controls.Add(Me.btnSaveAll)
+        Me.Panel1.Dock = System.Windows.Forms.DockStyle.Top
+        Me.Panel1.ForeColor = System.Drawing.Color.White
+        Me.Panel1.Location = New System.Drawing.Point(0, 138)
+        Me.Panel1.Margin = New System.Windows.Forms.Padding(0)
+        Me.Panel1.Name = "Panel1"
+        Me.Panel1.Size = New System.Drawing.Size(786, 30)
+        Me.Panel1.TabIndex = 9
+        '
+        'btnSaveAll
+        '
+        Me.btnSaveAll.BackColor = System.Drawing.Color.Green
+        Me.btnSaveAll.Dock = System.Windows.Forms.DockStyle.Right
+        Me.btnSaveAll.FlatAppearance.BorderSize = 0
+        Me.btnSaveAll.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DimGray
+        Me.btnSaveAll.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DarkGray
+        Me.btnSaveAll.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnSaveAll.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnSaveAll.Location = New System.Drawing.Point(686, 0)
+        Me.btnSaveAll.Margin = New System.Windows.Forms.Padding(0)
+        Me.btnSaveAll.Name = "btnSaveAll"
+        Me.btnSaveAll.Size = New System.Drawing.Size(100, 30)
+        Me.btnSaveAll.TabIndex = 15
+        Me.btnSaveAll.Text = "SIMPAN TABEL"
+        Me.btnSaveAll.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
+        Me.btnSaveAll.UseVisualStyleBackColor = False
+        '
         'tlpField
         '
         Me.tlpField.AutoSize = True
-        Me.tlpField.BackColor = System.Drawing.color.fromargb(240, 240, 240)
+        Me.tlpField.BackColor = System.Drawing.Color.FromArgb(CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer))
         Me.tlpField.ColumnCount = 6
         Me.tlpField.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
         Me.tlpField.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 140.0!))
@@ -330,35 +496,69 @@ Partial Class frmItem
         Me.tlpField.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 140.0!))
         Me.tlpField.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 150.0!))
         Me.tlpField.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
-        Me.tlpField.Controls.Add(Me.teRemarks, 2, 3)
-        Me.tlpField.Controls.Add(Me.Label2, 1, 3)
-        Me.tlpField.Controls.Add(Me.lueGrup, 4, 1)
-        Me.tlpField.Controls.Add(Me.Label1, 3, 1)
+        Me.tlpField.Controls.Add(Me.lueBrand, 2, 3)
+        Me.tlpField.Controls.Add(Me.Label3, 1, 3)
+        Me.tlpField.Controls.Add(Me.teRemarks, 2, 4)
+        Me.tlpField.Controls.Add(Me.Label2, 1, 4)
         Me.tlpField.Controls.Add(Me.teKode, 2, 1)
         Me.tlpField.Controls.Add(Me.lblParent, 1, 1)
-        Me.tlpField.Controls.Add(Me.lblDepartment, 1, 2)
+        Me.tlpField.Controls.Add(Me.lblKode, 3, 4)
+        Me.tlpField.Controls.Add(Me.lueSatuan, 4, 4)
+        Me.tlpField.Controls.Add(Me.lueType, 4, 3)
+        Me.tlpField.Controls.Add(Me.Label5, 3, 3)
         Me.tlpField.Controls.Add(Me.teNama, 2, 2)
-        Me.tlpField.Controls.Add(Me.lblKode, 3, 3)
-        Me.tlpField.Controls.Add(Me.lueSatuan, 4, 3)
-        Me.tlpField.Controls.Add(Me.lueType, 4, 2)
-        Me.tlpField.Controls.Add(Me.Label5, 3, 2)
+        Me.tlpField.Controls.Add(Me.lblDepartment, 1, 2)
+        Me.tlpField.Controls.Add(Me.lueGrup, 4, 2)
+        Me.tlpField.Controls.Add(Me.Label1, 3, 2)
         Me.tlpField.Dock = System.Windows.Forms.DockStyle.Top
         Me.tlpField.Location = New System.Drawing.Point(0, 30)
         Me.tlpField.Name = "tlpField"
-        Me.tlpField.RowCount = 5
+        Me.tlpField.RowCount = 6
         Me.tlpField.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 6.0!))
         Me.tlpField.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 24.0!))
         Me.tlpField.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 24.0!))
         Me.tlpField.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 24.0!))
+        Me.tlpField.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 24.0!))
         Me.tlpField.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 6.0!))
-        Me.tlpField.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
-        Me.tlpField.Size = New System.Drawing.Size(786, 84)
+        Me.tlpField.Size = New System.Drawing.Size(786, 108)
         Me.tlpField.TabIndex = 7
+        '
+        'lueBrand
+        '
+        Me.lueBrand.Anchor = System.Windows.Forms.AnchorStyles.Left
+        Me.lueBrand.Location = New System.Drawing.Point(218, 56)
+        Me.lueBrand.Margin = New System.Windows.Forms.Padding(0)
+        Me.lueBrand.Name = "lueBrand"
+        Me.lueBrand.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[False]
+        Me.lueBrand.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.lueBrand.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 9.0!)
+        Me.lueBrand.Properties.Appearance.Options.UseBackColor = True
+        Me.lueBrand.Properties.Appearance.Options.UseFont = True
+        Me.lueBrand.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple
+        Me.lueBrand.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.lueBrand.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id", "ID", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default], DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("content", "Content")})
+        Me.lueBrand.Properties.NullText = "[Isian belum dipilih]"
+        Me.lueBrand.Properties.NullValuePrompt = "[Isian belum dipilih]"
+        Me.lueBrand.Size = New System.Drawing.Size(150, 20)
+        Me.lueBrand.TabIndex = 50
+        Me.lueBrand.Tag = "itemgrup"
+        '
+        'Label3
+        '
+        Me.Label3.Anchor = System.Windows.Forms.AnchorStyles.Right
+        Me.Label3.AutoSize = True
+        Me.Label3.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label3.Location = New System.Drawing.Point(182, 59)
+        Me.Label3.Name = "Label3"
+        Me.Label3.Size = New System.Drawing.Size(33, 14)
+        Me.Label3.TabIndex = 23
+        Me.Label3.Text = "Merk"
+        Me.Label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
         'teRemarks
         '
         Me.teRemarks.Anchor = System.Windows.Forms.AnchorStyles.Left
-        Me.teRemarks.Location = New System.Drawing.Point(218, 56)
+        Me.teRemarks.Location = New System.Drawing.Point(218, 80)
         Me.teRemarks.Margin = New System.Windows.Forms.Padding(0)
         Me.teRemarks.Name = "teRemarks"
         Me.teRemarks.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[True]
@@ -379,44 +579,12 @@ Partial Class frmItem
         Me.Label2.Anchor = System.Windows.Forms.AnchorStyles.Right
         Me.Label2.AutoSize = True
         Me.Label2.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label2.Location = New System.Drawing.Point(145, 59)
+        Me.Label2.Location = New System.Drawing.Point(145, 83)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(70, 14)
         Me.Label2.TabIndex = 19
         Me.Label2.Text = "Keterangan"
         Me.Label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        '
-        'lueGrup
-        '
-        Me.lueGrup.Anchor = System.Windows.Forms.AnchorStyles.Left
-        Me.lueGrup.Location = New System.Drawing.Point(558, 8)
-        Me.lueGrup.Margin = New System.Windows.Forms.Padding(0)
-        Me.lueGrup.Name = "lueGrup"
-        Me.lueGrup.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[False]
-        Me.lueGrup.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.lueGrup.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 9.0!)
-        Me.lueGrup.Properties.Appearance.Options.UseBackColor = True
-        Me.lueGrup.Properties.Appearance.Options.UseFont = True
-        Me.lueGrup.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple
-        Me.lueGrup.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.lueGrup.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id", "ID", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default], DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("content", "Content")})
-        Me.lueGrup.Properties.NullText = "[Isian belum dipilih]"
-        Me.lueGrup.Properties.NullValuePrompt = "[Isian belum dipilih]"
-        Me.lueGrup.Size = New System.Drawing.Size(150, 20)
-        Me.lueGrup.TabIndex = 49
-        Me.lueGrup.Tag = "itemgrup"
-        '
-        'Label1
-        '
-        Me.Label1.Anchor = System.Windows.Forms.AnchorStyles.Right
-        Me.Label1.AutoSize = True
-        Me.Label1.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label1.Location = New System.Drawing.Point(492, 11)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(63, 14)
-        Me.Label1.TabIndex = 22
-        Me.Label1.Text = "Grup Item"
-        Me.Label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
         'teKode
         '
@@ -454,53 +622,22 @@ Partial Class frmItem
         Me.lblParent.Text = "Kode"
         Me.lblParent.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
-        'lblDepartment
-        '
-        Me.lblDepartment.Anchor = System.Windows.Forms.AnchorStyles.Right
-        Me.lblDepartment.AutoSize = True
-        Me.lblDepartment.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblDepartment.Location = New System.Drawing.Point(182, 35)
-        Me.lblDepartment.Name = "lblDepartment"
-        Me.lblDepartment.Size = New System.Drawing.Size(33, 14)
-        Me.lblDepartment.TabIndex = 9
-        Me.lblDepartment.Text = "Item"
-        Me.lblDepartment.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        '
-        'teNama
-        '
-        Me.teNama.Anchor = System.Windows.Forms.AnchorStyles.Left
-        Me.teNama.Location = New System.Drawing.Point(218, 32)
-        Me.teNama.Margin = New System.Windows.Forms.Padding(0)
-        Me.teNama.Name = "teNama"
-        Me.teNama.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[True]
-        Me.teNama.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.teNama.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 9.0!)
-        Me.teNama.Properties.Appearance.Options.UseBackColor = True
-        Me.teNama.Properties.Appearance.Options.UseFont = True
-        Me.teNama.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple
-        Me.teNama.Properties.MaxLength = 300
-        Me.teNama.Properties.NullText = "[Belum Diisi]"
-        Me.teNama.Properties.NullValuePrompt = "[Belum Diisi]"
-        Me.teNama.Size = New System.Drawing.Size(197, 20)
-        Me.teNama.TabIndex = 17
-        Me.teNama.Tag = "item"
-        '
         'lblKode
         '
         Me.lblKode.Anchor = System.Windows.Forms.AnchorStyles.Right
         Me.lblKode.AutoSize = True
         Me.lblKode.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblKode.Location = New System.Drawing.Point(464, 59)
+        Me.lblKode.Location = New System.Drawing.Point(510, 83)
         Me.lblKode.Name = "lblKode"
-        Me.lblKode.Size = New System.Drawing.Size(91, 14)
+        Me.lblKode.Size = New System.Drawing.Size(45, 14)
         Me.lblKode.TabIndex = 18
-        Me.lblKode.Text = "Satuan Terkecil"
+        Me.lblKode.Text = "Satuan"
         Me.lblKode.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
         'lueSatuan
         '
         Me.lueSatuan.Anchor = System.Windows.Forms.AnchorStyles.Left
-        Me.lueSatuan.Location = New System.Drawing.Point(558, 56)
+        Me.lueSatuan.Location = New System.Drawing.Point(558, 80)
         Me.lueSatuan.Margin = New System.Windows.Forms.Padding(0)
         Me.lueSatuan.Name = "lueSatuan"
         Me.lueSatuan.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[False]
@@ -520,7 +657,7 @@ Partial Class frmItem
         'lueType
         '
         Me.lueType.Anchor = System.Windows.Forms.AnchorStyles.Left
-        Me.lueType.Location = New System.Drawing.Point(558, 32)
+        Me.lueType.Location = New System.Drawing.Point(558, 56)
         Me.lueType.Margin = New System.Windows.Forms.Padding(0)
         Me.lueType.Name = "lueType"
         Me.lueType.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[False]
@@ -542,16 +679,81 @@ Partial Class frmItem
         Me.Label5.Anchor = System.Windows.Forms.AnchorStyles.Right
         Me.Label5.AutoSize = True
         Me.Label5.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label5.Location = New System.Drawing.Point(494, 35)
+        Me.Label5.Location = New System.Drawing.Point(494, 59)
         Me.Label5.Name = "Label5"
         Me.Label5.Size = New System.Drawing.Size(61, 14)
         Me.Label5.TabIndex = 21
         Me.Label5.Text = "Tipe Item"
         Me.Label5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
+        'teNama
+        '
+        Me.teNama.Anchor = System.Windows.Forms.AnchorStyles.Left
+        Me.teNama.Location = New System.Drawing.Point(218, 32)
+        Me.teNama.Margin = New System.Windows.Forms.Padding(0)
+        Me.teNama.Name = "teNama"
+        Me.teNama.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[True]
+        Me.teNama.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.teNama.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 9.0!)
+        Me.teNama.Properties.Appearance.Options.UseBackColor = True
+        Me.teNama.Properties.Appearance.Options.UseFont = True
+        Me.teNama.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple
+        Me.teNama.Properties.MaxLength = 300
+        Me.teNama.Properties.NullText = "[Belum Diisi]"
+        Me.teNama.Properties.NullValuePrompt = "[Belum Diisi]"
+        Me.teNama.Size = New System.Drawing.Size(197, 20)
+        Me.teNama.TabIndex = 17
+        Me.teNama.Tag = "item"
+        '
+        'lblDepartment
+        '
+        Me.lblDepartment.Anchor = System.Windows.Forms.AnchorStyles.Right
+        Me.lblDepartment.AutoSize = True
+        Me.lblDepartment.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblDepartment.Location = New System.Drawing.Point(182, 35)
+        Me.lblDepartment.Name = "lblDepartment"
+        Me.lblDepartment.Size = New System.Drawing.Size(33, 14)
+        Me.lblDepartment.TabIndex = 9
+        Me.lblDepartment.Text = "Item"
+        Me.lblDepartment.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        '
+        'lueGrup
+        '
+        Me.lueGrup.Anchor = System.Windows.Forms.AnchorStyles.Left
+        Me.lueGrup.Location = New System.Drawing.Point(558, 32)
+        Me.lueGrup.Margin = New System.Windows.Forms.Padding(0)
+        Me.lueGrup.Name = "lueGrup"
+        Me.lueGrup.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[False]
+        Me.lueGrup.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.lueGrup.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 9.0!)
+        Me.lueGrup.Properties.Appearance.Options.UseBackColor = True
+        Me.lueGrup.Properties.Appearance.Options.UseFont = True
+        Me.lueGrup.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple
+        Me.lueGrup.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.lueGrup.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id", "ID", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default], DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("content", "Content")})
+        Me.lueGrup.Properties.NullText = "[Isian belum dipilih]"
+        Me.lueGrup.Properties.NullValuePrompt = "[Isian belum dipilih]"
+        Me.lueGrup.Size = New System.Drawing.Size(150, 20)
+        Me.lueGrup.TabIndex = 49
+        Me.lueGrup.Tag = "itemgrup"
+        '
+        'Label1
+        '
+        Me.Label1.Anchor = System.Windows.Forms.AnchorStyles.Right
+        Me.Label1.AutoSize = True
+        Me.Label1.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label1.Location = New System.Drawing.Point(492, 35)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(63, 14)
+        Me.Label1.TabIndex = 22
+        Me.Label1.Text = "Grup Item"
+        Me.Label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        '
         'pHeader
         '
         Me.pHeader.BackColor = System.Drawing.Color.FromArgb(CType(CType(66, Byte), Integer), CType(CType(66, Byte), Integer), CType(CType(66, Byte), Integer))
+        Me.pHeader.Controls.Add(Me.btnImportFormat)
+        Me.pHeader.Controls.Add(Me.btnExportFormat)
         Me.pHeader.Controls.Add(Me.btnNew)
         Me.pHeader.Controls.Add(Me.btnSave)
         Me.pHeader.Controls.Add(Me.btnDelete)
@@ -562,6 +764,42 @@ Partial Class frmItem
         Me.pHeader.Name = "pHeader"
         Me.pHeader.Size = New System.Drawing.Size(786, 30)
         Me.pHeader.TabIndex = 4
+        '
+        'btnImportFormat
+        '
+        Me.btnImportFormat.BackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer))
+        Me.btnImportFormat.Dock = System.Windows.Forms.DockStyle.Left
+        Me.btnImportFormat.FlatAppearance.BorderSize = 0
+        Me.btnImportFormat.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DimGray
+        Me.btnImportFormat.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DarkGray
+        Me.btnImportFormat.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnImportFormat.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnImportFormat.Location = New System.Drawing.Point(120, 0)
+        Me.btnImportFormat.Name = "btnImportFormat"
+        Me.btnImportFormat.Size = New System.Drawing.Size(120, 30)
+        Me.btnImportFormat.TabIndex = 22
+        Me.btnImportFormat.Text = "IMPORT DATA"
+        Me.btnImportFormat.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
+        Me.btnImportFormat.UseMnemonic = False
+        Me.btnImportFormat.UseVisualStyleBackColor = False
+        '
+        'btnExportFormat
+        '
+        Me.btnExportFormat.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(0, Byte), Integer))
+        Me.btnExportFormat.Dock = System.Windows.Forms.DockStyle.Left
+        Me.btnExportFormat.FlatAppearance.BorderSize = 0
+        Me.btnExportFormat.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DimGray
+        Me.btnExportFormat.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DarkGray
+        Me.btnExportFormat.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnExportFormat.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnExportFormat.Location = New System.Drawing.Point(0, 0)
+        Me.btnExportFormat.Name = "btnExportFormat"
+        Me.btnExportFormat.Size = New System.Drawing.Size(120, 30)
+        Me.btnExportFormat.TabIndex = 21
+        Me.btnExportFormat.Text = "EXPORT FORMAT"
+        Me.btnExportFormat.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
+        Me.btnExportFormat.UseMnemonic = False
+        Me.btnExportFormat.UseVisualStyleBackColor = False
         '
         'btnNew
         '
@@ -581,7 +819,7 @@ Partial Class frmItem
         '
         'btnSave
         '
-        Me.btnSave.BackColor = System.Drawing.Color.FromArgb(CType(CType(156, Byte), Integer), CType(CType(207, Byte), Integer), CType(CType(49, Byte), Integer))
+        Me.btnSave.BackColor = System.Drawing.Color.Green
         Me.btnSave.Dock = System.Windows.Forms.DockStyle.Right
         Me.btnSave.FlatAppearance.BorderSize = 0
         Me.btnSave.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DimGray
@@ -629,7 +867,7 @@ Partial Class frmItem
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.BackColor = System.Drawing.color.fromargb(240, 240, 240)
+        Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer))
         Me.ClientSize = New System.Drawing.Size(790, 408)
         Me.Controls.Add(Me.tlpForm)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
@@ -645,14 +883,27 @@ Partial Class frmItem
         Me.pBody.PerformLayout()
         CType(Me.gcData, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.gvData, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.rlueGrup, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemSearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.rlueTipe, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.rlueSatuan, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridView2, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.rlueStatus, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridView3, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.rlueBrand, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.riteKode, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.riteNama, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.Panel1.ResumeLayout(False)
         Me.tlpField.ResumeLayout(False)
         Me.tlpField.PerformLayout()
+        CType(Me.lueBrand.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.teRemarks.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.lueGrup.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.teKode.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.teNama.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.lueSatuan.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.lueType.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.teNama.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.lueGrup.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.pHeader.ResumeLayout(False)
         Me.ResumeLayout(False)
 
@@ -696,4 +947,23 @@ Partial Class frmItem
     Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn3 As DevExpress.XtraGrid.Columns.GridColumn
+    Public WithEvents btnImportFormat As Button
+    Public WithEvents btnExportFormat As Button
+    Friend WithEvents rlueGrup As DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit
+    Friend WithEvents RepositoryItemSearchLookUpEdit1View As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents rlueTipe As DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit
+    Friend WithEvents GridView1 As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents rlueSatuan As DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit
+    Friend WithEvents GridView2 As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents rlueStatus As DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit
+    Friend WithEvents GridView3 As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents riteKode As DevExpress.XtraEditors.Repository.RepositoryItemTextEdit
+    Friend WithEvents riteNama As DevExpress.XtraEditors.Repository.RepositoryItemTextEdit
+    Public WithEvents Panel1 As Panel
+    Public WithEvents btnSaveAll As Button
+    Friend WithEvents GridColumn4 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents rlueBrand As DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit
+    Friend WithEvents GridColumn5 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents lueBrand As DevExpress.XtraEditors.LookUpEdit
+    Friend WithEvents Label3 As Label
 End Class

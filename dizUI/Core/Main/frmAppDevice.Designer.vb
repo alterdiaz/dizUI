@@ -48,6 +48,9 @@ Partial Class frmAppDevice
         Me.btnSave = New System.Windows.Forms.Button()
         Me.btnDelete = New System.Windows.Forms.Button()
         Me.lblSep5 = New System.Windows.Forms.Label()
+        Me.teIPAddress = New DevExpress.XtraEditors.TextEdit()
+        Me.Label2 = New System.Windows.Forms.Label()
+        Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.tlpForm.SuspendLayout()
         Me.pTitle.SuspendLayout()
         CType(Me.pMinimize, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -60,6 +63,7 @@ Partial Class frmAppDevice
         CType(Me.lueDevice.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.lueEventCode.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.pHeader.SuspendLayout()
+        CType(Me.teIPAddress.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'tlpForm
@@ -164,10 +168,10 @@ Partial Class frmAppDevice
         'gcData
         '
         Me.gcData.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.gcData.Location = New System.Drawing.Point(0, 66)
+        Me.gcData.Location = New System.Drawing.Point(0, 90)
         Me.gcData.MainView = Me.gvData
         Me.gcData.Name = "gcData"
-        Me.gcData.Size = New System.Drawing.Size(786, 312)
+        Me.gcData.Size = New System.Drawing.Size(786, 288)
         Me.gcData.TabIndex = 8
         Me.gcData.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gvData})
         '
@@ -181,7 +185,7 @@ Partial Class frmAppDevice
         Me.gvData.Appearance.OddRow.Options.UseBackColor = True
         Me.gvData.Appearance.Row.Font = New System.Drawing.Font("Tahoma", 9.0!)
         Me.gvData.Appearance.Row.Options.UseFont = True
-        Me.gvData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn3, Me.GridColumn4, Me.GridColumn2, Me.GridColumn5, Me.GridColumn6, Me.GridColumn7, Me.GridColumn8})
+        Me.gvData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn3, Me.GridColumn4, Me.GridColumn2, Me.GridColumn5, Me.GridColumn1, Me.GridColumn6, Me.GridColumn7, Me.GridColumn8})
         Me.gvData.GridControl = Me.gcData
         Me.gvData.Name = "gvData"
         Me.gvData.OptionsView.EnableAppearanceEvenRow = True
@@ -228,7 +232,7 @@ Partial Class frmAppDevice
         Me.GridColumn6.OptionsColumn.AllowEdit = False
         Me.GridColumn6.OptionsColumn.ReadOnly = True
         Me.GridColumn6.Visible = True
-        Me.GridColumn6.VisibleIndex = 0
+        Me.GridColumn6.VisibleIndex = 1
         '
         'GridColumn7
         '
@@ -240,7 +244,7 @@ Partial Class frmAppDevice
         Me.GridColumn7.OptionsColumn.AllowEdit = False
         Me.GridColumn7.OptionsColumn.ReadOnly = True
         Me.GridColumn7.Visible = True
-        Me.GridColumn7.VisibleIndex = 1
+        Me.GridColumn7.VisibleIndex = 2
         '
         'GridColumn8
         '
@@ -252,7 +256,7 @@ Partial Class frmAppDevice
         Me.GridColumn8.OptionsColumn.AllowEdit = False
         Me.GridColumn8.OptionsColumn.ReadOnly = True
         Me.GridColumn8.Visible = True
-        Me.GridColumn8.VisibleIndex = 2
+        Me.GridColumn8.VisibleIndex = 3
         '
         'tlpField
         '
@@ -265,6 +269,8 @@ Partial Class frmAppDevice
         Me.tlpField.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 120.0!))
         Me.tlpField.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 200.0!))
         Me.tlpField.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
+        Me.tlpField.Controls.Add(Me.Label2, 1, 2)
+        Me.tlpField.Controls.Add(Me.teIPAddress, 2, 2)
         Me.tlpField.Controls.Add(Me.lueDevice, 4, 1)
         Me.tlpField.Controls.Add(Me.Label5, 1, 1)
         Me.tlpField.Controls.Add(Me.lueEventCode, 2, 1)
@@ -273,12 +279,12 @@ Partial Class frmAppDevice
         Me.tlpField.Location = New System.Drawing.Point(0, 30)
         Me.tlpField.Margin = New System.Windows.Forms.Padding(0)
         Me.tlpField.Name = "tlpField"
-        Me.tlpField.RowCount = 3
+        Me.tlpField.RowCount = 4
         Me.tlpField.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 6.0!))
         Me.tlpField.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 24.0!))
+        Me.tlpField.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 24.0!))
         Me.tlpField.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 6.0!))
-        Me.tlpField.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
-        Me.tlpField.Size = New System.Drawing.Size(786, 36)
+        Me.tlpField.Size = New System.Drawing.Size(786, 60)
         Me.tlpField.TabIndex = 7
         '
         'lueDevice
@@ -377,7 +383,7 @@ Partial Class frmAppDevice
         '
         'btnSave
         '
-        Me.btnSave.BackColor = System.Drawing.Color.FromArgb(CType(CType(156, Byte), Integer), CType(CType(207, Byte), Integer), CType(CType(49, Byte), Integer))
+        Me.btnSave.BackColor = System.Drawing.Color.green
         Me.btnSave.Dock = System.Windows.Forms.DockStyle.Right
         Me.btnSave.FlatAppearance.BorderSize = 0
         Me.btnSave.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DimGray
@@ -421,6 +427,49 @@ Partial Class frmAppDevice
         Me.lblSep5.Text = "|"
         Me.lblSep5.TextAlign = System.Drawing.ContentAlignment.TopCenter
         '
+        'teIPAddress
+        '
+        Me.teIPAddress.Anchor = System.Windows.Forms.AnchorStyles.Left
+        Me.teIPAddress.Location = New System.Drawing.Point(193, 32)
+        Me.teIPAddress.Margin = New System.Windows.Forms.Padding(0)
+        Me.teIPAddress.Name = "teIPAddress"
+        Me.teIPAddress.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[True]
+        Me.teIPAddress.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.teIPAddress.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 9.0!)
+        Me.teIPAddress.Properties.Appearance.Options.UseBackColor = True
+        Me.teIPAddress.Properties.Appearance.Options.UseFont = True
+        Me.teIPAddress.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple
+        Me.teIPAddress.Properties.MaxLength = 300
+        Me.teIPAddress.Properties.NullText = "[Belum Diisi]"
+        Me.teIPAddress.Properties.NullValuePrompt = "[Belum Diisi]"
+        Me.teIPAddress.Size = New System.Drawing.Size(150, 20)
+        Me.teIPAddress.TabIndex = 22
+        Me.teIPAddress.Tag = "remarks"
+        '
+        'Label2
+        '
+        Me.Label2.Anchor = System.Windows.Forms.AnchorStyles.Right
+        Me.Label2.AutoSize = True
+        Me.Label2.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label2.Location = New System.Drawing.Point(125, 35)
+        Me.Label2.Name = "Label2"
+        Me.Label2.Size = New System.Drawing.Size(65, 14)
+        Me.Label2.TabIndex = 22
+        Me.Label2.Text = "IP Address"
+        Me.Label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        '
+        'GridColumn1
+        '
+        Me.GridColumn1.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn1.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn1.Caption = "IP Address"
+        Me.GridColumn1.FieldName = "ipaddress"
+        Me.GridColumn1.Name = "GridColumn1"
+        Me.GridColumn1.OptionsColumn.AllowEdit = False
+        Me.GridColumn1.OptionsColumn.ReadOnly = True
+        Me.GridColumn1.Visible = True
+        Me.GridColumn1.VisibleIndex = 0
+        '
         'frmAppDevice
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -431,6 +480,7 @@ Partial Class frmAppDevice
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
         Me.Name = "frmAppDevice"
         Me.ShowInTaskbar = False
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Device Lokasi"
         Me.tlpForm.ResumeLayout(False)
         Me.pTitle.ResumeLayout(False)
@@ -446,6 +496,7 @@ Partial Class frmAppDevice
         CType(Me.lueDevice.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.lueEventCode.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.pHeader.ResumeLayout(False)
+        CType(Me.teIPAddress.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -475,4 +526,7 @@ Partial Class frmAppDevice
     Friend WithEvents Label1 As System.Windows.Forms.Label
     Friend WithEvents lueDevice As DevExpress.XtraEditors.LookUpEdit
     Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents Label2 As Label
+    Friend WithEvents teIPAddress As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
 End Class

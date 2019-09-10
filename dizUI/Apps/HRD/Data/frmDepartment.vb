@@ -104,7 +104,7 @@ Public Class frmDepartment
         Me.Cursor = Cursors.WaitCursor
 
         Dim mysqls As New SQLs(dbstring)
-        mysqls.DMLQuery("select d.iddepartment, d.idparent, isnull(p.department,'-') as induk, d.department, d.kode,d.kodeangka, d.isdeleted, s.generalcode as statdata from department d left join department p on p.iddepartment=d.idparent and p.idcompany=(select top 1 value from sys_appsetting where variable='CompanyID') left join sys_generalcode s on s.idgeneral=d.isdeleted and s.gctype='DELETE' where d.idcompany=(select top 1 value from sys_appsetting where variable='CompanyID') and d.department <>'SYSTEM' and d.department <>'VENDOR'", "data")
+        mysqls.DMLQuery("select d.iddepartment, d.idparent, isnull(p.department,'-') as induk, d.department, d.kode,d.kodeangka, d.isdeleted, s.generalcode as statdata from department d left join department p on p.iddepartment=d.idparent left join sys_generalcode s on s.idgeneral=d.isdeleted and s.gctype='DELETE' where d.department <>'SYSTEM' and d.department <>'VENDOR'", "data")
         gcData.DataSource = mysqls.dataTable("data")
         gvData.BestFitColumns()
         tlData.DataSource = Nothing
@@ -142,18 +142,18 @@ Public Class frmDepartment
         Dim cnt As Integer = 0
         Dim sqls As New SQLs(dbstring)
         If statData = statusData.Baru Then
-            sqls.DMLQuery("select count(kode) as kode from department where idcompany=(select top 1 value from sys_appsetting where variable='CompanyID') and kode='" & teKode.Text & "'", "dept")
+            sqls.DMLQuery("select count(kode) as kode from department where kode='" & teKode.Text & "'", "dept")
             cnt = CInt(sqls.getDataSet("dept", 0, "kode"))
 
             If cnt = 0 Then
-                sqls.DMLQuery("select count(kodeangka) as kode from department where idcompany=(select top 1 value from sys_appsetting where variable='CompanyID') and kodeangka='" & teKodeAngka.Text & "'", "deptangka")
+                sqls.DMLQuery("select count(kodeangka) as kode from department where kodeangka='" & teKodeAngka.Text & "'", "deptangka")
                 cnt = CInt(sqls.getDataSet("deptangka", 0, "kode"))
             End If
         ElseIf statData = statusData.Edit Then
-            sqls.DMLQuery("select count(kode) as kode from department where idcompany=(select top 1 value from sys_appsetting where variable='CompanyID') and kode='" & teKode.Text & "' and iddepartment <>'" & idData & "'", "dept")
+            sqls.DMLQuery("select count(kode) as kode from department where kode='" & teKode.Text & "' and iddepartment <>'" & idData & "'", "dept")
             cnt = CInt(sqls.getDataSet("dept", 0, "kode"))
             If cnt = 0 Then
-                sqls.DMLQuery("select count(kodeangka) as kode from department where idcompany=(select top 1 value from sys_appsetting where variable='CompanyID') and kodeangka='" & teKodeAngka.Text & "' and iddepartment <>'" & idData & "'", "deptangka")
+                sqls.DMLQuery("select count(kodeangka) as kode from department where kodeangka='" & teKodeAngka.Text & "' and iddepartment <>'" & idData & "'", "deptangka")
                 cnt = CInt(sqls.getDataSet("deptangka", 0, "kode"))
             End If
         End If
@@ -168,7 +168,7 @@ Public Class frmDepartment
             Exit Sub
         End If
         If statData = statusData.Baru Then
-            sqls.DMLQuery("select department from department where idcompany=(select top 1 value from sys_appsetting where variable='CompanyID') and replace(department,' ','')='" & teDepartment.Text.Replace(" ", "") & "'", "cek")
+            sqls.DMLQuery("select department from department where replace(department,' ','')='" & teDepartment.Text.Replace(" ", "") & "'", "cek")
             If sqls.getDataSet("cek") = 0 Then
                 idData = "-1"
             Else
@@ -177,7 +177,7 @@ Public Class frmDepartment
                 Exit Sub
             End If
         ElseIf statData = statusData.Edit Then
-            sqls.DMLQuery("select department from department where idcompany=(select top 1 value from sys_appsetting where variable='CompanyID') and replace(department,' ','')='" & teDepartment.Text.Replace(" ", "") & "' and iddepartment<>'" & idData & "'", "cek")
+            sqls.DMLQuery("select department from department where replace(department,' ','')='" & teDepartment.Text.Replace(" ", "") & "' and iddepartment<>'" & idData & "'", "cek")
             If sqls.getDataSet("cek") > 0 Then
                 dizMsgbox("Data tersebut sudah ada", dizMsgboxStyle.Info, Me)
                 teDepartment.Focus()

@@ -144,7 +144,7 @@ Public Class frmLokasi
             Exit Sub
         End If
         If statData = statusData.Baru Then
-            sqls.DMLQuery("select nama from lokasi where idcompany=(select top 1 value from sys_appsetting where variable='CompanyID') and replace(nama,' ','')='" & teNama.Text.Replace(" ", "") & "'", "cek")
+            sqls.DMLQuery("select nama from lokasi where replace(nama,' ','')='" & teNama.Text.Replace(" ", "") & "'", "cek")
             If sqls.getDataSet("cek") = 0 Then
                 idData = "-1"
             Else
@@ -153,7 +153,7 @@ Public Class frmLokasi
                 Exit Sub
             End If
         ElseIf statData = statusData.Edit Then
-            sqls.DMLQuery("select nama from lokasi where idcompany=(select top 1 value from sys_appsetting where variable='CompanyID') and replace(lokasi,' ','')='" & teNama.Text.Replace(" ", "") & "' and idlokasi<>" & idData, "cek")
+            sqls.DMLQuery("select nama from lokasi where replace(lokasi,' ','')='" & teNama.Text.Replace(" ", "") & "' and idlokasi<>" & idData, "cek")
             If sqls.getDataSet("cek") > 0 Then
                 dizMsgbox("Data tersebut sudah ada", dizMsgboxStyle.Info, Me)
                 teNama.Focus()

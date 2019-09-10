@@ -43,6 +43,7 @@ Partial Class frmAdministrator
         Me.gcHandphone = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.gcLastCheck = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.tlpEntry = New System.Windows.Forms.TableLayoutPanel()
+        Me.btnUserimages = New System.Windows.Forms.Button()
         Me.xtcProfile = New DevExpress.XtraTab.XtraTabControl()
         Me.xtpUsername = New DevExpress.XtraTab.XtraTabPage()
         Me.tlpPengguna = New System.Windows.Forms.TableLayoutPanel()
@@ -74,7 +75,9 @@ Partial Class frmAdministrator
         Me.lueLevel = New DevExpress.XtraEditors.LookUpEdit()
         Me.pHeader = New System.Windows.Forms.Panel()
         Me.btnSetting = New System.Windows.Forms.Button()
+        Me.btnAppDevice = New System.Windows.Forms.Button()
         Me.btnDevice = New System.Windows.Forms.Button()
+        Me.btnNotifikasi = New System.Windows.Forms.Button()
         Me.lblLoad = New System.Windows.Forms.Label()
         Me.pbSync = New System.Windows.Forms.PictureBox()
         Me.btnAuthorization = New System.Windows.Forms.Button()
@@ -88,7 +91,6 @@ Partial Class frmAdministrator
         Me.pExit = New System.Windows.Forms.PictureBox()
         Me.tmrCounter = New System.Windows.Forms.Timer(Me.components)
         Me.bwServer = New System.ComponentModel.BackgroundWorker()
-        Me.btnAppDevice = New System.Windows.Forms.Button()
         Me.tlpForm.SuspendLayout()
         Me.pBody.SuspendLayout()
         CType(Me.gcData, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -354,6 +356,7 @@ Partial Class frmAdministrator
         Me.tlpEntry.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
         Me.tlpEntry.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 356.0!))
         Me.tlpEntry.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
+        Me.tlpEntry.Controls.Add(Me.btnUserimages, 1, 2)
         Me.tlpEntry.Controls.Add(Me.xtcProfile, 1, 1)
         Me.tlpEntry.Dock = System.Windows.Forms.DockStyle.Left
         Me.tlpEntry.Location = New System.Drawing.Point(0, 30)
@@ -362,10 +365,29 @@ Partial Class frmAdministrator
         Me.tlpEntry.RowCount = 4
         Me.tlpEntry.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 22.0!))
         Me.tlpEntry.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 232.0!))
-        Me.tlpEntry.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 180.0!))
         Me.tlpEntry.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
+        Me.tlpEntry.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 22.0!))
         Me.tlpEntry.Size = New System.Drawing.Size(380, 538)
         Me.tlpEntry.TabIndex = 17
+        '
+        'btnUserimages
+        '
+        Me.btnUserimages.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.btnUserimages.BackColor = System.Drawing.Color.Green
+        Me.btnUserimages.FlatAppearance.BorderSize = 0
+        Me.btnUserimages.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DimGray
+        Me.btnUserimages.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DarkGray
+        Me.btnUserimages.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnUserimages.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnUserimages.ForeColor = System.Drawing.Color.White
+        Me.btnUserimages.Location = New System.Drawing.Point(12, 486)
+        Me.btnUserimages.Margin = New System.Windows.Forms.Padding(0)
+        Me.btnUserimages.Name = "btnUserimages"
+        Me.btnUserimages.Size = New System.Drawing.Size(110, 30)
+        Me.btnUserimages.TabIndex = 32
+        Me.btnUserimages.Text = "USER IMAGES"
+        Me.btnUserimages.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
+        Me.btnUserimages.UseVisualStyleBackColor = False
         '
         'xtcProfile
         '
@@ -506,6 +528,7 @@ Partial Class frmAdministrator
         Me.teRecAnswer.Properties.Appearance.Options.UseBackColor = True
         Me.teRecAnswer.Properties.Appearance.Options.UseFont = True
         Me.teRecAnswer.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple
+        Me.teRecAnswer.Properties.MaxLength = 200
         Me.teRecAnswer.Properties.NullText = "[Kosong]"
         Me.teRecAnswer.Properties.NullValuePrompt = "[Belum Diisi]"
         Me.teRecAnswer.Size = New System.Drawing.Size(187, 20)
@@ -525,6 +548,7 @@ Partial Class frmAdministrator
         Me.teEmail.Properties.Appearance.Options.UseFont = True
         Me.teEmail.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple
         Me.teEmail.Properties.CharacterCasing = System.Windows.Forms.CharacterCasing.Lower
+        Me.teEmail.Properties.MaxLength = 100
         Me.teEmail.Properties.NullText = "[Kosong]"
         Me.teEmail.Properties.NullValuePrompt = "[Belum Diisi]"
         Me.teEmail.Size = New System.Drawing.Size(187, 20)
@@ -543,6 +567,7 @@ Partial Class frmAdministrator
         Me.teRecQuestion.Properties.Appearance.Options.UseBackColor = True
         Me.teRecQuestion.Properties.Appearance.Options.UseFont = True
         Me.teRecQuestion.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple
+        Me.teRecQuestion.Properties.MaxLength = 200
         Me.teRecQuestion.Properties.NullText = "[Kosong]"
         Me.teRecQuestion.Properties.NullValuePrompt = "[Belum Diisi]"
         Me.teRecQuestion.Size = New System.Drawing.Size(187, 20)
@@ -562,6 +587,7 @@ Partial Class frmAdministrator
         Me.teHandphone.Properties.Appearance.Options.UseFont = True
         Me.teHandphone.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple
         Me.teHandphone.Properties.CharacterCasing = System.Windows.Forms.CharacterCasing.Lower
+        Me.teHandphone.Properties.MaxLength = 20
         Me.teHandphone.Properties.NullText = "[Kosong]"
         Me.teHandphone.Properties.NullValuePrompt = "[Belum Diisi]"
         Me.teHandphone.Size = New System.Drawing.Size(187, 20)
@@ -580,6 +606,7 @@ Partial Class frmAdministrator
         Me.teHint.Properties.Appearance.Options.UseBackColor = True
         Me.teHint.Properties.Appearance.Options.UseFont = True
         Me.teHint.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple
+        Me.teHint.Properties.MaxLength = 200
         Me.teHint.Properties.NullText = "[Kosong]"
         Me.teHint.Properties.NullValuePrompt = "[Belum Diisi]"
         Me.teHint.Size = New System.Drawing.Size(187, 20)
@@ -598,6 +625,7 @@ Partial Class frmAdministrator
         Me.teNama.Properties.Appearance.Options.UseBackColor = True
         Me.teNama.Properties.Appearance.Options.UseFont = True
         Me.teNama.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple
+        Me.teNama.Properties.MaxLength = 2000
         Me.teNama.Properties.NullText = "[Kosong]"
         Me.teNama.Properties.NullValuePrompt = "[Belum Diisi]"
         Me.teNama.Size = New System.Drawing.Size(187, 20)
@@ -694,6 +722,7 @@ Partial Class frmAdministrator
         Me.teReason.Properties.Appearance.Options.UseFont = True
         Me.teReason.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple
         Me.teReason.Properties.CharacterCasing = System.Windows.Forms.CharacterCasing.Lower
+        Me.teReason.Properties.MaxLength = 500
         Me.teReason.Properties.NullText = "[Kosong]"
         Me.teReason.Properties.NullValuePrompt = "[Belum Diisi]"
         Me.teReason.Size = New System.Drawing.Size(187, 20)
@@ -713,6 +742,7 @@ Partial Class frmAdministrator
         Me.tePassword.Properties.Appearance.Options.UseFont = True
         Me.tePassword.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple
         Me.tePassword.Properties.CharacterCasing = System.Windows.Forms.CharacterCasing.Lower
+        Me.tePassword.Properties.MaxLength = 20
         Me.tePassword.Properties.NullText = "[Kosong]"
         Me.tePassword.Properties.NullValuePrompt = "[Belum Diisi]"
         Me.tePassword.Properties.UseSystemPasswordChar = True
@@ -739,7 +769,7 @@ Partial Class frmAdministrator
         Me.teUsername.Properties.AppearanceDisabled.Options.UseForeColor = True
         Me.teUsername.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple
         Me.teUsername.Properties.CharacterCasing = System.Windows.Forms.CharacterCasing.Lower
-        Me.teUsername.Properties.MaxLength = 10
+        Me.teUsername.Properties.MaxLength = 500
         Me.teUsername.Properties.NullText = "[Kosong]"
         Me.teUsername.Properties.NullValuePrompt = "[Belum Diisi]"
         Me.teUsername.Size = New System.Drawing.Size(187, 20)
@@ -838,9 +868,10 @@ Partial Class frmAdministrator
         'pHeader
         '
         Me.pHeader.BackColor = System.Drawing.Color.FromArgb(CType(CType(66, Byte), Integer), CType(CType(66, Byte), Integer), CType(CType(66, Byte), Integer))
-        Me.pHeader.Controls.Add(Me.btnAppDevice)
         Me.pHeader.Controls.Add(Me.btnSetting)
+        Me.pHeader.Controls.Add(Me.btnAppDevice)
         Me.pHeader.Controls.Add(Me.btnDevice)
+        Me.pHeader.Controls.Add(Me.btnNotifikasi)
         Me.pHeader.Controls.Add(Me.lblLoad)
         Me.pHeader.Controls.Add(Me.pbSync)
         Me.pHeader.Controls.Add(Me.btnAuthorization)
@@ -865,13 +896,29 @@ Partial Class frmAdministrator
         Me.btnSetting.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DarkGray
         Me.btnSetting.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnSetting.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnSetting.Location = New System.Drawing.Point(334, 0)
+        Me.btnSetting.Location = New System.Drawing.Point(234, 0)
         Me.btnSetting.Name = "btnSetting"
         Me.btnSetting.Size = New System.Drawing.Size(100, 30)
         Me.btnSetting.TabIndex = 26
         Me.btnSetting.Text = "PENGATURAN"
         Me.btnSetting.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
         Me.btnSetting.UseVisualStyleBackColor = True
+        '
+        'btnAppDevice
+        '
+        Me.btnAppDevice.Dock = System.Windows.Forms.DockStyle.Right
+        Me.btnAppDevice.FlatAppearance.BorderSize = 0
+        Me.btnAppDevice.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DimGray
+        Me.btnAppDevice.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DarkGray
+        Me.btnAppDevice.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnAppDevice.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnAppDevice.Location = New System.Drawing.Point(334, 0)
+        Me.btnAppDevice.Name = "btnAppDevice"
+        Me.btnAppDevice.Size = New System.Drawing.Size(100, 30)
+        Me.btnAppDevice.TabIndex = 30
+        Me.btnAppDevice.Text = "APP DEVICE"
+        Me.btnAppDevice.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
+        Me.btnAppDevice.UseVisualStyleBackColor = True
         '
         'btnDevice
         '
@@ -888,6 +935,22 @@ Partial Class frmAdministrator
         Me.btnDevice.Text = "DEVICE"
         Me.btnDevice.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
         Me.btnDevice.UseVisualStyleBackColor = True
+        '
+        'btnNotifikasi
+        '
+        Me.btnNotifikasi.Dock = System.Windows.Forms.DockStyle.Right
+        Me.btnNotifikasi.FlatAppearance.BorderSize = 0
+        Me.btnNotifikasi.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DimGray
+        Me.btnNotifikasi.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DarkGray
+        Me.btnNotifikasi.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnNotifikasi.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnNotifikasi.Location = New System.Drawing.Point(514, 0)
+        Me.btnNotifikasi.Name = "btnNotifikasi"
+        Me.btnNotifikasi.Size = New System.Drawing.Size(90, 30)
+        Me.btnNotifikasi.TabIndex = 31
+        Me.btnNotifikasi.Text = "MAN. NOTIF"
+        Me.btnNotifikasi.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
+        Me.btnNotifikasi.UseVisualStyleBackColor = True
         '
         'lblLoad
         '
@@ -919,11 +982,11 @@ Partial Class frmAdministrator
         Me.btnAuthorization.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DarkGray
         Me.btnAuthorization.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnAuthorization.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnAuthorization.Location = New System.Drawing.Point(514, 0)
+        Me.btnAuthorization.Location = New System.Drawing.Point(604, 0)
         Me.btnAuthorization.Name = "btnAuthorization"
-        Me.btnAuthorization.Size = New System.Drawing.Size(150, 30)
+        Me.btnAuthorization.Size = New System.Drawing.Size(90, 30)
         Me.btnAuthorization.TabIndex = 21
-        Me.btnAuthorization.Text = "MANAJEMEN AKSES"
+        Me.btnAuthorization.Text = "MAN. AKSES"
         Me.btnAuthorization.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
         Me.btnAuthorization.UseVisualStyleBackColor = True
         '
@@ -935,11 +998,11 @@ Partial Class frmAdministrator
         Me.btnIconMenu.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DarkGray
         Me.btnIconMenu.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnIconMenu.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnIconMenu.Location = New System.Drawing.Point(664, 0)
+        Me.btnIconMenu.Location = New System.Drawing.Point(694, 0)
         Me.btnIconMenu.Name = "btnIconMenu"
-        Me.btnIconMenu.Size = New System.Drawing.Size(120, 30)
+        Me.btnIconMenu.Size = New System.Drawing.Size(90, 30)
         Me.btnIconMenu.TabIndex = 23
-        Me.btnIconMenu.Text = "MANAJEMEN ICON"
+        Me.btnIconMenu.Text = "MAN. ICON"
         Me.btnIconMenu.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
         Me.btnIconMenu.UseVisualStyleBackColor = True
         '
@@ -990,7 +1053,7 @@ Partial Class frmAdministrator
         '
         'btnSave
         '
-        Me.btnSave.BackColor = System.Drawing.Color.FromArgb(CType(CType(156, Byte), Integer), CType(CType(207, Byte), Integer), CType(CType(49, Byte), Integer))
+        Me.btnSave.BackColor = System.Drawing.Color.Green
         Me.btnSave.Dock = System.Windows.Forms.DockStyle.Right
         Me.btnSave.FlatAppearance.BorderSize = 0
         Me.btnSave.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DimGray
@@ -1045,27 +1108,11 @@ Partial Class frmAdministrator
         '
         'tmrCounter
         '
-        Me.tmrCounter.Interval = 5000
+        Me.tmrCounter.Interval = 1000
         '
         'bwServer
         '
         Me.bwServer.WorkerSupportsCancellation = True
-        '
-        'btnAppDevice
-        '
-        Me.btnAppDevice.Dock = System.Windows.Forms.DockStyle.Right
-        Me.btnAppDevice.FlatAppearance.BorderSize = 0
-        Me.btnAppDevice.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DimGray
-        Me.btnAppDevice.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DarkGray
-        Me.btnAppDevice.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btnAppDevice.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnAppDevice.Location = New System.Drawing.Point(234, 0)
-        Me.btnAppDevice.Name = "btnAppDevice"
-        Me.btnAppDevice.Size = New System.Drawing.Size(100, 30)
-        Me.btnAppDevice.TabIndex = 30
-        Me.btnAppDevice.Text = "APP DEVICE"
-        Me.btnAppDevice.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
-        Me.btnAppDevice.UseVisualStyleBackColor = True
         '
         'frmAdministrator
         '
@@ -1178,4 +1225,6 @@ Partial Class frmAdministrator
     Friend WithEvents pExit As System.Windows.Forms.PictureBox
     Public WithEvents btnDevice As System.Windows.Forms.Button
     Public WithEvents btnAppDevice As Button
+    Public WithEvents btnNotifikasi As Button
+    Public WithEvents btnUserimages As Button
 End Class

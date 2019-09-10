@@ -112,12 +112,11 @@
         kosongkanIsian(tlpUntuk)
 
         Dim sqls As New SQLs(dbstring)
-        sqls.DMLQuery("select dt.idaruspengajuandt,dt.idpengajuan,dt.jumlahuang,dt.keperluan,dt.nodokumen,dt.nomorurut,dt.posisidk,dt.idcoa,c.coa,dt.idunit from aruspengajuandt dt left join coa c on dt.idcoa=c.idcoa and c.idcompany=(select top 1 value from sys_appsetting where variable='CompanyID') where dt.idcompany=(select top 1 value from sys_appsetting where variable='CompanyID') and dt.idaruspengajuandt=-1 and dt.posisidk=1", "penerimaan")
-        sqls.DMLQuery("select dt.idaruspengajuandt,dt.idpengajuan,dt.jumlahuang,dt.keperluan,dt.nodokumen,dt.nomorurut,dt.posisidk,dt.idcoa,c.coa,dt.idunit from aruspengajuandt dt left join coa c on dt.idcoa=c.idcoa and c.idcompany=(select top 1 value from sys_appsetting where variable='CompanyID') where dt.idcompany=(select top 1 value from sys_appsetting where variable='CompanyID') and dt.idaruspengajuandt=-1 and dt.posisidk=2", "pengeluaran")
+        sqls.DMLQuery("select dt.idaruspengajuandt,dt.idpengajuan,dt.jumlahuang,dt.keperluan,dt.nodokumen,dt.nomorurut,dt.posisidk,dt.idcoa,c.coa,dt.idunit from aruspengajuandt dt left join coa c on dt.idcoa=c.idcoa where dt.idaruspengajuandt=-1 and dt.posisidk=1", "penerimaan")
+        sqls.DMLQuery("select dt.idaruspengajuandt,dt.idpengajuan,dt.jumlahuang,dt.keperluan,dt.nodokumen,dt.nomorurut,dt.posisidk,dt.idcoa,c.coa,dt.idunit from aruspengajuandt dt left join coa c on dt.idcoa=c.idcoa where dt.idaruspengajuandt=-1 and dt.posisidk=2", "pengeluaran")
         gcPenerimaanData.DataSource = sqls.dataTable("penerimaan")
         gcPengeluaranData.DataSource = sqls.dataTable("pengeluaran")
         idselect = ""
-        idunique = ""
     End Sub
 
     Private staffid As String
@@ -129,7 +128,6 @@
     Private deptname As String
     Private idcoabank As String
     Private idselect As String
-    Private idunique As String = ""
     Private saveDate As Date
     Private bdisetujui As Boolean = False
     Private iddisetujui As String
@@ -140,7 +138,7 @@
     Private Sub btnNew_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnNew.Click
         baru()
         Dim mys As New SQLs(dbstring)
-        mys.DMLQuery("select value from sys_appsetting where variable='IDDirekturUtama'", "level3")
+        mys.DMLQuery("select ''''+value+'''' as value from sys_appsetting where variable='IDDirekturUtama'", "level3")
         Dim iddirut As String = mys.getDataSet("level3", 0, "value")
 
         If usersuper = 1 Then
@@ -148,15 +146,15 @@
             For i As Integer = 0 To mys.getDataSet("level3") - 1
                 idlist.Add(mys.getDataSet("level3", i, "value"))
             Next
-            Dim selkary As New frmSelectKaryawan()
-            selkary.dept(idlist)
+            Dim selkary As New frmSelectKaryawanUnit()
+            selkary.kary(idlist)
             tambahChild(selkary)
             If selkary.ShowDialog() = Windows.Forms.DialogResult.Cancel Then
                 Exit Sub
             End If
             staffid = selkary.getID(0)
 
-            mys.DMLQuery("select k.idstaff,k.nama,p.idposition,p.position,d.iddepartment,d.kode,d.department from staff k left join position p on k.idposition=p.idposition and p.idcompany=(select top 1 value from sys_appsetting where variable='CompanyID') left join department d on k.iddepartment=d.iddepartment and d.idcompany=(select top 1 value from sys_appsetting where variable='CompanyID') where k.idcompany=(select top 1 value from sys_appsetting where variable='CompanyID') and k.idstaff='" & staffid & "'", "datakary")
+            mys.DMLQuery("select k.idstaff,k.nama,p.idposition,p.position,d.iddepartment,d.kode,d.department from staff k left join position p on k.idposition=p.idposition left join department d on k.iddepartment=d.iddepartment where k.idstaff='" & staffid & "'", "datakary")
 
             staffname = mys.getDataSet("datakary", 0, "nama")
             levelid = mys.getDataSet("datakary", 0, "idposition")
@@ -174,10 +172,10 @@
                 idkary &= "'" & str & "'" & ","
             Next
             idkary = idkary.Remove(idkary.Length - 1, 1)
-            mys.DMLQuery("select k.idstaff,k.nama,p.idposition,p.position,d.iddepartment,d.kode,d.department,k.idunit,un.unit from staff k left join unit un on k.idunit=un.idunit and un.idcompany=(select top 1 value from sys_appsetting where variable='CompanyID') left join position p on k.idposition=p.idposition and p.idcompany=(select top 1 value from sys_appsetting where variable='CompanyID') left join department d on k.iddepartment=d.iddepartment and d.idcompany=(select top 1 value from sys_appsetting where variable='CompanyID') where k.idcompany=(select top 1 value from sys_appsetting where variable='CompanyID') and k.idstaff in (" & idkary & ") and k.iduser='" & userid & "'", "getuser")
+            mys.DMLQuery("select k.idstaff,k.nama,p.idposition,p.position,d.iddepartment,d.kode,d.department,k.idunit,un.unit from staff k left join unit un on k.idunit=un.idunit left join position p on k.idposition=p.idposition left join department d on k.iddepartment=d.iddepartment where k.idstaff in (" & idkary & ") and k.iduser='" & userid & "'", "getuser")
 
             If mys.getDataSet("getuser") > 0 Then
-                mys.DMLQuery("select k.idstaff,k.nama,p.idposition,p.position,d.iddepartment,d.kode,d.department,k.idunit,un.unit from staff k left join unit un on k.idunit=un.idunit and un.idcompany=(select top 1 value from sys_appsetting where variable='CompanyID') left join position p on k.idposition=p.idposition and p.idcompany=(select top 1 value from sys_appsetting where variable='CompanyID') left join department d on k.iddepartment=d.iddepartment and d.idcompany=(select top 1 value from sys_appsetting where variable='CompanyID') where k.idcompany=(select top 1 value from sys_appsetting where variable='CompanyID') and k.iduser='" & userid & "'", "datakary")
+                mys.DMLQuery("select k.idstaff,k.nama,p.idposition,p.position,d.iddepartment,d.kode,d.department,k.idunit,un.unit from staff k left join unit un on k.idunit=un.idunit left join position p on k.idposition=p.idposition left join department d on k.iddepartment=d.iddepartment where k.iduser='" & userid & "'", "datakary")
 
                 If mys.getDataSet("datakary") > 0 Then
                     staffid = mys.getDataSet("datakary", 0, "idstaff")
@@ -202,7 +200,7 @@
         mys.DMLQuery("select value from sys_appsetting where variable='IDDirekturKeuangan'", "dirkeu")
         If mys.getDataSet("dirkeu") > 0 Then
             bdisetujui = True
-            mys.DMLQuery("select k.idstaff,k.nama,p.idposition,p.position,d.iddepartment,d.kode,d.department from staff k left join position p on k.idposition=p.idposition and p.idcompany=(select top 1 value from sys_appsetting where variable='CompanyID') left join department d on k.iddepartment=d.iddepartment and d.idcompany=(select top 1 value from sys_appsetting where variable='CompanyID') where k.idcompany=(select top 1 value from sys_appsetting where variable='CompanyID') and k.idstaff='" & mys.getDataSet("dirkeu", 0, "value") & "'", "disetujui")
+            mys.DMLQuery("select k.idstaff,k.nama,p.idposition,p.position,d.iddepartment,d.kode,d.department from staff k left join position p on k.idposition=p.idposition left join department d on k.iddepartment=d.iddepartment where k.idstaff='" & mys.getDataSet("dirkeu", 0, "value") & "'", "disetujui")
             iddisetujui = mys.getDataSet("disetujui", 0, "idstaff")
             namadisetujui = mys.getDataSet("disetujui", 0, "nama")
             jabatandisetujui = mys.getDataSet("disetujui", 0, "position")
@@ -211,15 +209,14 @@
             bdisetujui = False
         End If
 
-        mys.DMLQuery("select ap.idaruspengajuan,ap.idbank,ba.bank,ap.noaruspengajuan, convert(varchar,ap.tanggalpemohon,105) +' '+ convert(varchar,ap.tanggalpemohon,108) as tanggalpemohon, ap.idpemohon,ap.namapemohon,ap.jabatanpemohon,ap.deptpemohon, isnull(dbt.jumlahuang,0) as totaldebet, isnull(kre.jumlahuang,0) as totalkredit from aruspengajuan ap left join bank ba on ap.idbank=ba.idbank and ba.idcompany=(select top 1 value from sys_appsetting where variable='CompanyID') left join sys_generalcode gc on ap.isdeleted=gc.idgeneral and gc.gctype='REJECT' left join (select ddt.idaruspengajuan,sum(isnull(ddt.jumlahuang,0)) as jumlahuang from aruspengajuandt ddt where ddt.idcompany=(select top 1 value from sys_appsetting where variable='CompanyID') and ddt.posisidk=1 group by ddt.idaruspengajuan) dbt on ap.idaruspengajuan=dbt.idaruspengajuan left join (select kdt.idaruspengajuan,sum(isnull(kdt.jumlahuang,0)) as jumlahuang from aruspengajuandt kdt where kdt.idcompany=(select top 1 value from sys_appsetting where variable='CompanyID') and kdt.posisidk=2 group by kdt.idaruspengajuan) kre on ap.idaruspengajuan=kre.idaruspengajuan where ap.idcompany=(select top 1 value from sys_appsetting where variable='CompanyID') and year(ap.tanggalpemohon)='" & nowTime.Year & "' and isnull(ap.iddiketahui,-1)='-1' order by ap.tanggalpemohon desc", "data")
+        mys.DMLQuery("select ap.idaruspengajuan,ap.idbank,ba.bank,ap.noaruspengajuan, convert(varchar,ap.tanggalpemohon,105) +' '+ convert(varchar,ap.tanggalpemohon,108) as tanggalpemohon, ap.idpemohon,ap.namapemohon,ap.jabatanpemohon,ap.deptpemohon, isnull(dbt.jumlahuang,0) as totaldebet, isnull(kre.jumlahuang,0) as totalkredit from aruspengajuan ap left join bank ba on ap.idbank=ba.idbank left join sys_generalcode gc on ap.isdeleted=gc.idgeneral and gc.gctype='REJECT' left join (select ddt.idaruspengajuan,sum(isnull(ddt.jumlahuang,0)) as jumlahuang from aruspengajuandt ddt where ddt.posisidk=1 group by ddt.idaruspengajuan) dbt on ap.idaruspengajuan=dbt.idaruspengajuan left join (select kdt.idaruspengajuan,sum(isnull(kdt.jumlahuang,0)) as jumlahuang from aruspengajuandt kdt where kdt.posisidk=2 group by kdt.idaruspengajuan) kre on ap.idaruspengajuan=kre.idaruspengajuan where year(ap.tanggalpemohon)='" & nowTime.Year & "' and (isnull(ap.iddiketahui,'0')='0' or isnull(ap.iddiketahui,'-1')='-1') order by ap.tanggalpemohon desc", "data")
         Dim cari As New frmSearch(mys.dataSet, "data", "idaruspengajuan")
         tambahChild(cari)
         If cari.ShowDialog = Windows.Forms.DialogResult.OK Then
             idselect = cari.GetIDSelectData
 
-            mys.DMLQuery("select ap.idunique,ap.idaruspengajuan,ap.idbank,ba.bank,ba.idcoa,ap.noaruspengajuan, convert(varchar,ap.tanggalpemohon,105) +' '+ convert(varchar,ap.tanggalpemohon,108) as tanggalpemohon, ap.idpemohon,ap.namapemohon,ap.jabatanpemohon,ap.deptpemohon, isnull(dbt.jumlahuang,0) as totaldebet, isnull(kre.jumlahuang,0) as totalkredit from aruspengajuan ap left join bank ba on ap.idbank=ba.idbank and ba.idcompany=(select top 1 value from sys_appsetting where variable='CompanyID') left join sys_generalcode gc on ap.isdeleted=gc.idgeneral and gc.gctype='REJECT' left join (select ddt.idaruspengajuan,sum(isnull(ddt.jumlahuang,0)) as jumlahuang from aruspengajuandt ddt where ddt.idcompany=(select top 1 value from sys_appsetting where variable='CompanyID') and ddt.posisidk=1 group by ddt.idaruspengajuan) dbt on ap.idaruspengajuan=dbt.idaruspengajuan left join (select kdt.idaruspengajuan,sum(isnull(kdt.jumlahuang,0)) as jumlahuang from aruspengajuandt kdt where kdt.idcompany=(select top 1 value from sys_appsetting where variable='CompanyID') and kdt.posisidk=2 group by kdt.idaruspengajuan) kre on ap.idaruspengajuan=kre.idaruspengajuan where ap.idcompany=(select top 1 value from sys_appsetting where variable='CompanyID') and ap.idaruspengajuan='" & idselect & "'", "getdata")
+            mys.DMLQuery("select ap.idaruspengajuan,ap.idbank,ba.bank,ba.idcoa,ap.noaruspengajuan, convert(varchar,ap.tanggalpemohon,105) +' '+ convert(varchar,ap.tanggalpemohon,108) as tanggalpemohon, ap.idpemohon,ap.namapemohon,ap.jabatanpemohon,ap.deptpemohon, isnull(dbt.jumlahuang,0) as totaldebet, isnull(kre.jumlahuang,0) as totalkredit from aruspengajuan ap left join bank ba on ap.idbank=ba.idbank left join sys_generalcode gc on ap.isdeleted=gc.idgeneral and gc.gctype='REJECT' left join (select ddt.idaruspengajuan,sum(isnull(ddt.jumlahuang,0)) as jumlahuang from aruspengajuandt ddt where ddt.posisidk=1 group by ddt.idaruspengajuan) dbt on ap.idaruspengajuan=dbt.idaruspengajuan left join (select kdt.idaruspengajuan,sum(isnull(kdt.jumlahuang,0)) as jumlahuang from aruspengajuandt kdt where kdt.posisidk=2 group by kdt.idaruspengajuan) kre on ap.idaruspengajuan=kre.idaruspengajuan where ap.idaruspengajuan='" & idselect & "'", "getdata")
 
-            idunique = mys.getDataSet("getdata", 0, "idunique")
             idcoabank = mys.getDataSet("getdata", 0, "idcoa")
             tearuspengajuanNo.Text = mys.getDataSet("getdata", 0, "noaruspengajuan")
             saveDate = CDate(mys.getDataSet("getdata", 0, "tanggalpemohon"))
@@ -229,8 +226,8 @@
             seTotalPengeluaran.Value = mys.getDataSet("getdata", 0, "totaldebet")
             ceCheck.EditValue = False
 
-            mys.DMLQuery("select dt.idaruspengajuandt,dt.idpengajuan,dt.jumlahuang,dt.keperluan,dt.nodokumen,dt.nomorurut,dt.posisidk,0 as isdeleted,dt.deletereason,dt.idcoa,c.coa,dt.idunit from aruspengajuandt dt left join coa c on dt.idcoa=c.idcoa and c.idcompany=(select top 1 value from sys_appsetting where variable='CompanyID') where dt.idcompany=(select top 1 value from sys_appsetting where variable='CompanyID') and dt.idaruspengajuan='" & idselect & "' and dt.posisidk=2 order by dt.idaruspengajuandt asc", "penerimaan")
-            mys.DMLQuery("select dt.idaruspengajuandt,dt.idpengajuan,dt.jumlahuang,dt.keperluan,dt.nodokumen,dt.nomorurut,dt.posisidk,0 as isdeleted,dt.deletereason,dt.idcoa,c.coa,dt.idunit from aruspengajuandt dt left join coa c on dt.idcoa=c.idcoa and c.idcompany=(select top 1 value from sys_appsetting where variable='CompanyID') where dt.idcompany=(select top 1 value from sys_appsetting where variable='CompanyID') and dt.idaruspengajuan='" & idselect & "' and dt.posisidk=1 order by dt.idaruspengajuandt asc", "pengeluaran")
+            mys.DMLQuery("select dt.idaruspengajuandt,dt.idpengajuan,dt.jumlahuang,dt.keperluan,dt.nodokumen,dt.nomorurut,dt.posisidk,0 as isdeleted,dt.deletereason,dt.idcoa,c.coa,dt.idunit from aruspengajuandt dt left join coa c on dt.idcoa=c.idcoa where dt.idaruspengajuan='" & idselect & "' and dt.posisidk=2 order by dt.idaruspengajuandt asc", "penerimaan")
+            mys.DMLQuery("select dt.idaruspengajuandt,dt.idpengajuan,dt.jumlahuang,dt.keperluan,dt.nodokumen,dt.nomorurut,dt.posisidk,0 as isdeleted,dt.deletereason,dt.idcoa,c.coa,dt.idunit from aruspengajuandt dt left join coa c on dt.idcoa=c.idcoa where dt.idaruspengajuan='" & idselect & "' and dt.posisidk=1 order by dt.idaruspengajuandt asc", "pengeluaran")
 
             gcPenerimaanData.DataSource = mys.dataTable("penerimaan")
             gcPengeluaranData.DataSource = mys.dataTable("pengeluaran")
@@ -357,7 +354,7 @@
             Dim value As New List(Of Object)
             Dim fjurnal As New List(Of String)
             Dim vjurnal As New List(Of Object)
-            fjurnal.AddRange(New String() {"idjurnal", "idcompany", "idunit", "idcoalama", "idcoa", "idreff", "tbreff", "idunique", "tanggaljurnal", "jumlahuang", "remarks", "nodokumen", "posisidk", "isdeleted", "createdby", "createddate", "idreff2", "tbreff2", "nobukti", "issystem", "jurnaltype"})
+            fjurnal.AddRange(New String() {"idjurnal", "idcompany", "idunit", "idcoalama", "idcoa", "idreff", "tablereff", "tanggaljurnal", "jumlahuang", "remarks", "nodokumen", "posisidk", "isdeleted", "createdby", "createddate", "idreff2", "tablereff2", "nobukti", "issystem", "jurnaltype"})
             If bdisetujui = False Then
                 field.AddRange(New String() {"idaruspengajuan", "iddiketahui", "namadiketahui", "jabatandiketahui", "deptdiketahui", "tanggaldiketahui", "isdeleted", "deletereason"})
                 value.AddRange(New Object() {idselect, staffid, staffname, levelname, deptname, nowTime, ceReject.EditValue, teAlasan.Text})
@@ -385,7 +382,7 @@
                 isiLog(userid, dbstring, field, value, "aruspengajuandt")
                 If dr("isdeleted") = 0 Then
                     vjurnal.Clear()
-                    vjurnal.AddRange(New Object() {idtmp, idcomp, dr("idunit"), dr("idcoa"), dr("idcoa"), dr("idaruspengajuandt"), "aruspengajuandt", idunique, saveDate, dr("jumlahuang"), dr("keperluan"), dr("nodokumen"), dr("posisidk"), 0, userid, nowTime, idselect, "aruspengajuan", tearuspengajuanNo.Text, 0, 1})
+                    vjurnal.AddRange(New Object() {idtmp, idcomp, dr("idunit"), dr("idcoa"), dr("idcoa"), dr("idaruspengajuandt"), "aruspengajuandt", saveDate, dr("jumlahuang"), dr("keperluan"), dr("nodokumen"), dr("posisidk"), 0, userid, nowTime, idselect, "aruspengajuan", tearuspengajuanNo.Text, 0, 1})
                     dtset.datasetSave("jurnal", idtmp, fjurnal, vjurnal, False)
                     isiLog(userid, dbstring, fjurnal, vjurnal, "jurnal")
                 End If
@@ -399,7 +396,7 @@
                 Dim idtmp As String = GenerateGUID()
                 dtset = New dtsetSQLS(dbstring)
                 vjurnal.Clear()
-                vjurnal.AddRange(New Object() {idtmp, idcomp, -1, idcoabank, idcoabank, -1, "AUTOPOST KREDIT", idunique, saveDate, seTotalPenerimaan.Value, "KAS (" & teBank.Text & ")", "-", 1, 0, userid, nowTime, idselect, "aruspengajuan", tearuspengajuanNo.Text, 1, 1})
+                vjurnal.AddRange(New Object() {idtmp, idcomp, "-1", idcoabank, idcoabank, "-1", "AUTOPOST KREDIT", saveDate, seTotalPenerimaan.Value, "KAS (" & teBank.Text & ")", "-", 1, 0, userid, nowTime, idselect, "aruspengajuan", tearuspengajuanNo.Text, 1, 1})
                 dtset.datasetSave("jurnal", idtmp, fjurnal, vjurnal, False)
             End If
 
@@ -413,7 +410,7 @@
                 isiLog(userid, dbstring, field, value, "aruspengajuandt")
                 If dr("isdeleted") = 0 Then
                     vjurnal.Clear()
-                    vjurnal.AddRange(New Object() {idtmp, idcomp, dr("idunit"), dr("idcoa"), dr("idcoa"), dr("idaruspengajuandt"), "aruspengajuandt", idunique, saveDate, dr("jumlahuang"), dr("keperluan"), dr("nodokumen"), dr("posisidk"), 0, userid, nowTime, idselect, "aruspengajuan", tearuspengajuanNo.Text, 0, 1})
+                    vjurnal.AddRange(New Object() {idtmp, idcomp, dr("idunit"), dr("idcoa"), dr("idcoa"), dr("idaruspengajuandt"), "aruspengajuandt", saveDate, dr("jumlahuang"), dr("keperluan"), dr("nodokumen"), dr("posisidk"), 0, userid, nowTime, idselect, "aruspengajuan", tearuspengajuanNo.Text, 0, 1})
                     dtset.datasetSave("jurnal", idtmp, fjurnal, vjurnal, False)
                     isiLog(userid, dbstring, fjurnal, vjurnal, "jurnal")
                 End If
@@ -427,13 +424,13 @@
                 Dim idtmp As String = GenerateGUID()
                 dtset = New dtsetSQLS(dbstring)
                 vjurnal.Clear()
-                vjurnal.AddRange(New Object() {idtmp, idcomp, -1, idcoabank, idcoabank, -1, "AUTOPOST KREDIT", idunique, saveDate, seTotalPengeluaran.Value, "KAS (" & teBank.Text & ")", "-", 2, 0, userid, nowTime, idselect, "aruspengajuan", tearuspengajuanNo.Text, 1, 1})
+                vjurnal.AddRange(New Object() {idtmp, idcomp, "-1", idcoabank, idcoabank, "-1", "AUTOPOST KREDIT", saveDate, seTotalPengeluaran.Value, "KAS (" & teBank.Text & ")", "-", 2, 0, userid, nowTime, idselect, "aruspengajuan", tearuspengajuanNo.Text, 1, 1})
                 dtset.datasetSave("jurnal", idtmp, fjurnal, vjurnal, False)
             End If
 
             If issuccess = True Then
                 Dim updppp As New SQLs(dbstring)
-                updppp.DMLQuery("select distinct(idreff2) as idreff2,tbreff2 from jurnal where tbreff2='aruspengajuan' and year(tanggaljurnal)='" & nowTime.Year & "'", "jur")
+                updppp.DMLQuery("select distinct(idreff2) as idreff2,tablereff2 from jurnal where tablereff2='aruspengajuan' and year(tanggaljurnal)='" & nowTime.Year & "'", "jur")
                 For i As Integer = 0 To updppp.getDataSet("jur") - 1
                     Dim dr As DataRow = updppp.dataTable("jur").Rows(i)
                     updppp.DMLQuery("update jurnal set nobukti=(select noaruspengajuan from aruspengajuan where idaruspengajuan='" & dr("idreff2") & "') where idreff2='" & dr("idreff2") & "'", False)

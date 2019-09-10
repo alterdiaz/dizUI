@@ -124,7 +124,7 @@ Public Class frmPermintaanPembelian
         gcQtyAsk.OptionsColumn.AllowEdit = False
 
         btnSearch.Enabled = True
-        btnNew.Enabled = False
+        btnNew.Enabled = True
         btnSave.Enabled = True
         btnDelete.Enabled = False
         btnDelete.Text = "VOID"
@@ -137,12 +137,12 @@ Public Class frmPermintaanPembelian
         End If
 
         Dim sqls As New SQLs(dbstring)
-        sqls.DMLQuery("select [value] from sys_appsetting where variable='IDLogisticsDept'", "getidlog")
+        sqls.DMLQuery("select [value] from sys_appsetting where variable='IDLogDept'", "getidlog")
         If sqls.getDataSet("getidlog") > 0 Then
             iddept = sqls.getDataSet("getidlog", 0, "value")
         End If
 
-        Dim pair As KeyValuePair(Of String, String) = generateno2(idunit, iddept, "Permintaan Pembelian", True)
+        Dim pair As KeyValuePair(Of String, String) = generateno2(idunit, iddept, "Permintaan Pembelian Barang", True)
         Dim idtrans As String = pair.Key
         Dim notrans As String = pair.Value
         teKode.Text = notrans
@@ -267,7 +267,7 @@ Public Class frmPermintaanPembelian
     End Function
     Private Sub btnSearch_Click(sender As Object, e As EventArgs) Handles btnSearch.Click
         Dim sqls As New SQLs(dbstring)
-        sqls.DMLQuery("select t.idtransaksi,t.transaksino,t.remarks,dt.counter as totalitem,dtot.total as totalbarang,convert(varchar,t.createddate,105)+' '+convert(varchar,t.createddate,108) as createddate,c.username from transaksi t left join sys_user c on c.iduser=t.createdby left join (select idtransaksi,count(idtransaksidt) as counter from transaksidt dt group by idtransaksi) dt on t.idtransaksi=dt.idtransaksi left join (select idtransaksi,sum(qtycharges) as total from transaksidt dt group by idtransaksi) dtot on t.idtransaksi=dtot.idtransaksi where t.transaksitype in (select tt.idtransactiontype from transactiontype tt where tt.kodetransaksi=(select [value] from sys_appsetting where [variable]='KodePermintaanPembelian')) and t.idcompany=(select [value] from sys_appsetting where [variable]='CompanyID') and t.transaksistatus in (1) and reviewedby is null and t.isdeleted=0 order by t.createddate desc", "search")
+        sqls.DMLQuery("select t.idtransaksi,t.transaksino,t.remarks,dt.counter as totalitem,dtot.total as totalbarang,convert(varchar,t.createddate,105)+' '+convert(varchar,t.createddate,108) as createddate,c.username from transaksi t left join sys_user c on c.iduser=t.createdby left join (select idtransaksi,count(idtransaksidt) as counter from transaksidt dt group by idtransaksi) dt on t.idtransaksi=dt.idtransaksi left join (select idtransaksi,sum(qtycharges) as total from transaksidt dt group by idtransaksi) dtot on t.idtransaksi=dtot.idtransaksi where t.transaksitype in (select tt.idtransactiontype from transactiontype tt where tt.kodetransaksi=(select [value] from sys_appsetting where [variable]='KodePermintaanPembelianBarang')) and t.transaksistatus in (1) and reviewedby is null and t.isdeleted=0 order by t.createddate desc", "search")
         Dim cari As New frmSearch(sqls.dataSet, "search", "idtransaksi")
         tambahChild(cari)
 
@@ -327,7 +327,7 @@ Public Class frmPermintaanPembelian
             Exit Sub
         End If
 
-        Dim pair As KeyValuePair(Of String, String) = generateno2(idunit, iddept, "Permintaan Pembelian", False)
+        Dim pair As KeyValuePair(Of String, String) = generateno2(idunit, iddept, "Permintaan Pembelian Barang", False)
         Dim idtrans As String = pair.Key
         Dim notrans As String = pair.Value
         teKode.Text = notrans
@@ -346,12 +346,21 @@ Public Class frmPermintaanPembelian
         Dim sqlscomp As New SQLs(dbstring)
         sqlscomp.CallSP("spGetCompany", "CompID")
         Dim idcomp As String = sqlscomp.getDataSet("CompID", 0, "value")
+
+        sqls.DMLQuery("select top 1 convert(bigint,value) as value from sys_appsetting where variable='AllowAutoReviewSPP'", "autoreview")
+        Dim isautoreview As String = sqls.getDataSet("autoreview", 0, "value")
+
         idData = GenerateGUID()
 
         Dim field As New List(Of String)
         Dim value As New List(Of Object)
-        field.AddRange(New String() {"idtransaksi", "transaksitype", "transaksino", "transaksistatus", "idasal", "asaltype", "iddeptasal", "isdeleted", "remarks", "createdby", "createddate", "createdfromip", "createdfromhostname", "idcompany"})
-        value.AddRange(New Object() {idData, idtrans, teKode.Text, 1, idunit, "Unit", iddept, 0, teNote.Text, userid, nowTime, getIPAddress(ipaddparam.IP), getIPAddress(ipaddparam.Host), idcomp})
+        If isautoreview = "0" Then
+            field.AddRange(New String() {"idtransaksi", "transaksitype", "transaksino", "transaksistatus", "idasal", "asaltype", "iddeptasal", "isdeleted", "remarks", "createdby", "createddate", "createdfromip", "createdfromhostname", "idcompany"})
+            value.AddRange(New Object() {idData, idtrans, teKode.Text, 1, idunit, "Unit", iddept, 0, teNote.Text, userid, nowTime, getIPAddress(ipaddparam.IP), getIPAddress(ipaddparam.Host), idcomp})
+        Else
+            field.AddRange(New String() {"idtransaksi", "transaksitype", "transaksino", "transaksistatus", "idasal", "asaltype", "iddeptasal", "isdeleted", "remarks", "createdby", "createddate", "createdfromip", "createdfromhostname", "updatedby", "updateddate", "updatedfromip", "updatedfromhostname", "reviewedby", "revieweddate", "reviewedfromip", "reviewedfromhostname", "idcompany"})
+            value.AddRange(New Object() {idData, idtrans, teKode.Text, 6, idunit, "Unit", iddept, 0, teNote.Text, userid, nowTime, getIPAddress(ipaddparam.IP), getIPAddress(ipaddparam.Host), userid, nowTime, getIPAddress(ipaddparam.IP), getIPAddress(ipaddparam.Host), userid, nowTime, getIPAddress(ipaddparam.IP), getIPAddress(ipaddparam.Host), idcomp})
+        End If
         retval = dtsql.datasetSave("transaksi", idData, field, value, False)
         'sqls.DMLQuery("select idtransaksi from transaksi where guid='" & hashcode & "'", "getid")
         'idData = sqls.getDataSet("getid", 0, "idtransaksi")
@@ -373,7 +382,11 @@ Public Class frmPermintaanPembelian
     Declare Function GetDC Lib "user32.dll" (ByVal hwnd As Int32) As Int32
     Declare Function ReleaseDC Lib "user32.dll" (ByVal hwnd As Int32, ByVal hdc As Int32) As Int32
     Private Sub btnDelete_Click(sender As Object, e As EventArgs) Handles btnDelete.Click
-        If dizMsgbox("Anda akan melakukan void Permintaan Barang ini?", dizMsgboxStyle.Konfirmasi, Me) = dizMsgboxValue.OK Then
+        If idData = "-1" Then
+            dizMsgbox("Belum memilih transaksi", dizMsgboxStyle.Peringatan, Me)
+            Exit Sub
+        End If
+        If dizMsgbox("Anda akan melakukan void Permintaan Pembelian ini?", dizMsgboxStyle.Konfirmasi, Me) = dizMsgboxValue.OK Then
 
             Dim reason As New frmDeleteReason
             Dim strreason As String = ""

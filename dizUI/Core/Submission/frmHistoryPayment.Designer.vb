@@ -39,6 +39,7 @@ Partial Class frmHistoryPayment
         Me.gcTglBayar = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.gcAkunbank = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.gcNominal = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepositoryItemSpinEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit()
         Me.gcKuota = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.gcBank = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.gcNorek = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -62,6 +63,7 @@ Partial Class frmHistoryPayment
         Me.xtpHistory.SuspendLayout()
         CType(Me.gcHistory, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gvHistory, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemSpinEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.pHeader.SuspendLayout()
         CType(Me.pbSync, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.pTitle.SuspendLayout()
@@ -90,7 +92,7 @@ Partial Class frmHistoryPayment
         '
         'pBody
         '
-        Me.pBody.BackColor = System.Drawing.color.fromargb(240, 240, 240)
+        Me.pBody.BackColor = System.Drawing.Color.FromArgb(CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer))
         Me.pBody.Controls.Add(Me.xtcData)
         Me.pBody.Controls.Add(Me.pHeader)
         Me.pBody.Dock = System.Windows.Forms.DockStyle.Fill
@@ -102,7 +104,7 @@ Partial Class frmHistoryPayment
         '
         'xtcData
         '
-        Me.xtcData.Appearance.BackColor = System.Drawing.color.fromargb(240, 240, 240)
+        Me.xtcData.Appearance.BackColor = System.Drawing.Color.FromArgb(CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer))
         Me.xtcData.Appearance.Options.UseBackColor = True
         Me.xtcData.AppearancePage.Header.Font = New System.Drawing.Font("Tahoma", 9.0!)
         Me.xtcData.AppearancePage.Header.Options.UseFont = True
@@ -130,7 +132,7 @@ Partial Class frmHistoryPayment
         '
         'xtpUsage
         '
-        Me.xtpUsage.Appearance.PageClient.BackColor = System.Drawing.color.fromargb(240, 240, 240)
+        Me.xtpUsage.Appearance.PageClient.BackColor = System.Drawing.Color.FromArgb(CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer))
         Me.xtpUsage.Appearance.PageClient.Options.UseBackColor = True
         Me.xtpUsage.Controls.Add(Me.pEntry)
         Me.xtpUsage.Name = "xtpUsage"
@@ -140,7 +142,7 @@ Partial Class frmHistoryPayment
         'pEntry
         '
         Me.pEntry.AutoScroll = True
-        Me.pEntry.BackColor = System.Drawing.color.fromargb(240, 240, 240)
+        Me.pEntry.BackColor = System.Drawing.Color.FromArgb(CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer))
         Me.pEntry.Controls.Add(Me.gcUsage)
         Me.pEntry.Dock = System.Windows.Forms.DockStyle.Fill
         Me.pEntry.Location = New System.Drawing.Point(0, 0)
@@ -161,7 +163,7 @@ Partial Class frmHistoryPayment
         '
         'gvUsage
         '
-        Me.gvUsage.Appearance.Empty.BackColor = System.Drawing.color.fromargb(240, 240, 240)
+        Me.gvUsage.Appearance.Empty.BackColor = System.Drawing.Color.FromArgb(CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer))
         Me.gvUsage.Appearance.Empty.Options.UseBackColor = True
         Me.gvUsage.Appearance.EvenRow.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer))
         Me.gvUsage.Appearance.EvenRow.Options.UseBackColor = True
@@ -194,6 +196,7 @@ Partial Class frmHistoryPayment
         Me.gcValue.AppearanceHeader.Options.UseTextOptions = True
         Me.gcValue.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.gcValue.Caption = "Jml Data"
+        Me.gcValue.ColumnEdit = Me.seNominal
         Me.gcValue.DisplayFormat.FormatString = "n0"
         Me.gcValue.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.gcValue.FieldName = "rowtotal"
@@ -230,25 +233,30 @@ Partial Class frmHistoryPayment
         Me.gcHistory.Location = New System.Drawing.Point(0, 0)
         Me.gcHistory.MainView = Me.gvHistory
         Me.gcHistory.Name = "gcHistory"
+        Me.gcHistory.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemSpinEdit1})
         Me.gcHistory.Size = New System.Drawing.Size(703, 441)
         Me.gcHistory.TabIndex = 112
         Me.gcHistory.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gvHistory})
         '
         'gvHistory
         '
-        Me.gvHistory.Appearance.Empty.BackColor = System.Drawing.color.fromargb(240, 240, 240)
+        Me.gvHistory.Appearance.Empty.BackColor = System.Drawing.Color.FromArgb(CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer))
         Me.gvHistory.Appearance.Empty.Options.UseBackColor = True
+        Me.gvHistory.Appearance.EvenRow.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.gvHistory.Appearance.EvenRow.Options.UseBackColor = True
+        Me.gvHistory.Appearance.OddRow.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.gvHistory.Appearance.OddRow.Options.UseBackColor = True
         Me.gvHistory.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.gcPaymentNo, Me.gcTglBayar, Me.gcAkunbank, Me.gcNominal, Me.gcKuota, Me.gcBank, Me.gcNorek, Me.gcNamaPengirim, Me.gcValid})
         Me.gvHistory.GridControl = Me.gcHistory
         Me.gvHistory.Name = "gvHistory"
         Me.gvHistory.OptionsDetail.ShowDetailTabs = False
         Me.gvHistory.OptionsView.ColumnAutoWidth = False
+        Me.gvHistory.OptionsView.EnableAppearanceEvenRow = True
+        Me.gvHistory.OptionsView.EnableAppearanceOddRow = True
         Me.gvHistory.OptionsView.ShowGroupPanel = False
         '
         'gcPaymentNo
         '
-        Me.gcPaymentNo.AppearanceCell.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.gcPaymentNo.AppearanceCell.Options.UseBackColor = True
         Me.gcPaymentNo.AppearanceHeader.Options.UseTextOptions = True
         Me.gcPaymentNo.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.gcPaymentNo.Caption = "No Pembayaran"
@@ -261,8 +269,6 @@ Partial Class frmHistoryPayment
         '
         'gcTglBayar
         '
-        Me.gcTglBayar.AppearanceCell.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.gcTglBayar.AppearanceCell.Options.UseBackColor = True
         Me.gcTglBayar.AppearanceHeader.Options.UseTextOptions = True
         Me.gcTglBayar.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.gcTglBayar.Caption = "Tgl Bayar"
@@ -271,12 +277,10 @@ Partial Class frmHistoryPayment
         Me.gcTglBayar.OptionsColumn.AllowEdit = False
         Me.gcTglBayar.OptionsColumn.ReadOnly = True
         Me.gcTglBayar.Visible = True
-        Me.gcTglBayar.VisibleIndex = 5
+        Me.gcTglBayar.VisibleIndex = 4
         '
         'gcAkunbank
         '
-        Me.gcAkunbank.AppearanceCell.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.gcAkunbank.AppearanceCell.Options.UseBackColor = True
         Me.gcAkunbank.AppearanceHeader.Options.UseTextOptions = True
         Me.gcAkunbank.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.gcAkunbank.Caption = "No Rek Tujuan"
@@ -289,11 +293,12 @@ Partial Class frmHistoryPayment
         '
         'gcNominal
         '
-        Me.gcNominal.AppearanceCell.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.gcNominal.AppearanceCell.Options.UseBackColor = True
+        Me.gcNominal.AppearanceCell.Options.UseTextOptions = True
+        Me.gcNominal.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
         Me.gcNominal.AppearanceHeader.Options.UseTextOptions = True
         Me.gcNominal.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.gcNominal.Caption = "Jml Bayar"
+        Me.gcNominal.ColumnEdit = Me.RepositoryItemSpinEdit1
         Me.gcNominal.DisplayFormat.FormatString = "n2"
         Me.gcNominal.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.gcNominal.FieldName = "nominalbayar"
@@ -303,13 +308,24 @@ Partial Class frmHistoryPayment
         Me.gcNominal.Visible = True
         Me.gcNominal.VisibleIndex = 2
         '
+        'RepositoryItemSpinEdit1
+        '
+        Me.RepositoryItemSpinEdit1.AutoHeight = False
+        Me.RepositoryItemSpinEdit1.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.RepositoryItemSpinEdit1.DisplayFormat.FormatString = "n2"
+        Me.RepositoryItemSpinEdit1.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.RepositoryItemSpinEdit1.EditFormat.FormatString = "n2"
+        Me.RepositoryItemSpinEdit1.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.RepositoryItemSpinEdit1.IsFloatValue = False
+        Me.RepositoryItemSpinEdit1.Mask.EditMask = "N00"
+        Me.RepositoryItemSpinEdit1.Name = "RepositoryItemSpinEdit1"
+        '
         'gcKuota
         '
-        Me.gcKuota.AppearanceCell.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.gcKuota.AppearanceCell.Options.UseBackColor = True
         Me.gcKuota.AppearanceHeader.Options.UseTextOptions = True
         Me.gcKuota.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.gcKuota.Caption = "Kuota"
+        Me.gcKuota.ColumnEdit = Me.RepositoryItemSpinEdit1
         Me.gcKuota.DisplayFormat.FormatString = "n0"
         Me.gcKuota.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.gcKuota.FieldName = "nominaldata"
@@ -321,8 +337,6 @@ Partial Class frmHistoryPayment
         '
         'gcBank
         '
-        Me.gcBank.AppearanceCell.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.gcBank.AppearanceCell.Options.UseBackColor = True
         Me.gcBank.AppearanceHeader.Options.UseTextOptions = True
         Me.gcBank.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.gcBank.Caption = "Bank Pengirim"
@@ -331,12 +345,10 @@ Partial Class frmHistoryPayment
         Me.gcBank.OptionsColumn.AllowEdit = False
         Me.gcBank.OptionsColumn.ReadOnly = True
         Me.gcBank.Visible = True
-        Me.gcBank.VisibleIndex = 4
+        Me.gcBank.VisibleIndex = 5
         '
         'gcNorek
         '
-        Me.gcNorek.AppearanceCell.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.gcNorek.AppearanceCell.Options.UseBackColor = True
         Me.gcNorek.AppearanceHeader.Options.UseTextOptions = True
         Me.gcNorek.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.gcNorek.Caption = "No Rek Pengirim"
@@ -349,8 +361,6 @@ Partial Class frmHistoryPayment
         '
         'gcNamaPengirim
         '
-        Me.gcNamaPengirim.AppearanceCell.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.gcNamaPengirim.AppearanceCell.Options.UseBackColor = True
         Me.gcNamaPengirim.AppearanceHeader.Options.UseTextOptions = True
         Me.gcNamaPengirim.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.gcNamaPengirim.Caption = "a/n Pengirim"
@@ -363,8 +373,6 @@ Partial Class frmHistoryPayment
         '
         'gcValid
         '
-        Me.gcValid.AppearanceCell.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.gcValid.AppearanceCell.Options.UseBackColor = True
         Me.gcValid.AppearanceHeader.Options.UseTextOptions = True
         Me.gcValid.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.gcValid.Caption = "Validasi"
@@ -400,14 +408,14 @@ Partial Class frmHistoryPayment
         '
         'btnRefresh
         '
-        Me.btnRefresh.BackColor = System.Drawing.Color.FromArgb(CType(CType(156, Byte), Integer), CType(CType(207, Byte), Integer), CType(CType(49, Byte), Integer))
+        Me.btnRefresh.BackColor = System.Drawing.Color.Green
         Me.btnRefresh.Dock = System.Windows.Forms.DockStyle.Right
         Me.btnRefresh.FlatAppearance.BorderSize = 0
         Me.btnRefresh.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DimGray
         Me.btnRefresh.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DarkGray
         Me.btnRefresh.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnRefresh.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnRefresh.ForeColor = System.Drawing.Color.Black
+        Me.btnRefresh.ForeColor = System.Drawing.Color.White
         Me.btnRefresh.Location = New System.Drawing.Point(609, 0)
         Me.btnRefresh.Name = "btnRefresh"
         Me.btnRefresh.Size = New System.Drawing.Size(100, 30)
@@ -458,7 +466,7 @@ Partial Class frmHistoryPayment
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.BackColor = System.Drawing.color.fromargb(240, 240, 240)
+        Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer))
         Me.ClientSize = New System.Drawing.Size(713, 532)
         Me.ControlBox = False
         Me.Controls.Add(Me.tlpForm)
@@ -480,6 +488,7 @@ Partial Class frmHistoryPayment
         Me.xtpHistory.ResumeLayout(False)
         CType(Me.gcHistory, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.gvHistory, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemSpinEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.pHeader.ResumeLayout(False)
         CType(Me.pbSync, System.ComponentModel.ISupportInitialize).EndInit()
         Me.pTitle.ResumeLayout(False)
@@ -515,4 +524,5 @@ Partial Class frmHistoryPayment
     Friend WithEvents gcValue As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents xtpHistory As DevExpress.XtraTab.XtraTabPage
     Friend WithEvents seNominal As DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit
+    Friend WithEvents RepositoryItemSpinEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit
 End Class

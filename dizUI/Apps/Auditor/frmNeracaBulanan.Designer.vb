@@ -382,7 +382,7 @@ Partial Class frmNeracaBulanan
         '
         'btnPrint
         '
-        Me.btnPrint.BackColor = System.Drawing.Color.FromArgb(CType(CType(156, Byte), Integer), CType(CType(207, Byte), Integer), CType(CType(49, Byte), Integer))
+        Me.btnPrint.BackColor = System.Drawing.Color.green
         Me.btnPrint.Dock = System.Windows.Forms.DockStyle.Right
         Me.btnPrint.FlatAppearance.BorderSize = 0
         Me.btnPrint.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DimGray

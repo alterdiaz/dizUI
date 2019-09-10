@@ -11,7 +11,7 @@ Imports System.Runtime.InteropServices
 <Assembly: AssemblyTitle("Sistem Informasi Enterprise")>
 <Assembly: AssemblyDescription("Sistem Informasi Enterprise dari Diznet Indo Zahira")>
 <Assembly: AssemblyCompany("Diznet Indo Zahira")>
-<Assembly: AssemblyProduct("Sistem Informasi Enterprise - SIEPAM")>
+<Assembly: AssemblyProduct("Sistem Informasi Enterprise - Datacube")>
 <Assembly: AssemblyCopyright("Copyright © Diznet Indo Zahira 2015")> 
 <Assembly: AssemblyTrademark("Trademark ™ Diznet Indo Zahira 2015")> 
 
@@ -31,5 +31,5 @@ Imports System.Runtime.InteropServices
 ' by using the '*' as shown below:
 ' <Assembly: AssemblyVersion("1.0.*")> 
 
-<Assembly: AssemblyVersion("7.0.0.1")>
-<Assembly: AssemblyFileVersion("7.0.0.1")>
+<Assembly: AssemblyVersion("8.4.3.1")>
+<Assembly: AssemblyFileVersion("8.4.3.1")>

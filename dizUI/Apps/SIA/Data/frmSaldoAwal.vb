@@ -109,7 +109,7 @@
         Me.Cursor = Cursors.WaitCursor
 
         Dim sqls As New SQLs(dbstring)
-        sqls.DMLQuery("select convert(bigint,ISNULL(j.idjurnal,-1)) as idjurnal,c.idcoa,c.coa,c.remarks as rekening,convert(decimal(20,2),isnull(j.jumlahuang,0)) as jumlahuang,isnull(j.posisidk,0) as posisidk from (select c.idcoa,c.coa,c.remarks from coa c where LEN(c.coa)>=3) c left join (select j.idjurnal,j.idcoa,j.jumlahuang,j.posisidk from jurnal j where j.idreff='-1' and j.tbreff='SALDOAWAL" & CDate(deTanggal.EditValue).Year & "') j on c.idcoa=j.idcoa order by c.coa asc", "data")
+        sqls.DMLQuery("select convert(bigint,ISNULL(j.idjurnal,-1)) as idjurnal,c.idcoa,c.coa,c.remarks as rekening,convert(decimal(20,2),isnull(j.jumlahuang,0)) as jumlahuang,isnull(j.posisidk,0) as posisidk from (select c.idcoa,c.coa,c.remarks from coa c where LEN(c.coa)>=3) c left join (select j.idjurnal,j.idcoa,j.jumlahuang,j.posisidk from jurnal j where j.idreff='-1' and j.tablereff='SALDOAWAL" & CDate(deTanggal.EditValue).Year & "') j on c.idcoa=j.idcoa order by c.coa asc", "data")
         gcData.DataSource = sqls.dataTable("data")
         gvData.BestFitColumns()
 
@@ -225,14 +225,14 @@
         tglsaldo = New Date(strtgl.Split("-")(2), 1, 1, 1, 1, 1)
 
         Dim mys As New SQLs(dbstring)
-        mys.DMLQuery("delete from jurnal where idreff= '-1' and tbreff='SALDOAWAL" & CDate(deTanggal.EditValue).Year & "'", False)
+        mys.DMLQuery("delete from jurnal where idreff= '-1' and tablereff='SALDOAWAL" & CDate(deTanggal.EditValue).Year & "'", False)
         mys.DMLQuery("delete from aruspengajuandt where keperluan= 'SALDO AWAL " & CDate(deTanggal.EditValue).Year & "'", False)
         mys.DMLQuery("delete from aruspengajuan where namapemohon = 'SYSTEM'", False)
 
         Dim setsql As New dtsetSQLS(dbstring)
         Dim field As New List(Of String)
         Dim value As New List(Of Object)
-        field.AddRange(New String() {"idjurnal", "idcoalama", "idcoa", "idreff", "tbreff", "idunit", "tanggaljurnal", "jumlahuang", "remarks", "nodokumen", "posisidk", "isdeleted", "createdby", "createddate", "idreff2", "tbreff2", "nobukti", "issystem", "jurnaltype"})
+        field.AddRange(New String() {"idjurnal", "idcoalama", "idcoa", "idreff", "tablereff", "idunit", "tanggaljurnal", "jumlahuang", "remarks", "nodokumen", "posisidk", "isdeleted", "createdby", "createddate", "idreff2", "tablereff2", "nobukti", "issystem", "jurnaltype"})
         Dim datehd As Date = Nothing
 
         Dim jabdept As String = "SYSTEM"
@@ -254,7 +254,7 @@
         Dim fielddt As New List(Of String)
         Dim valuehd As New List(Of Object)
         Dim valuedt As New List(Of Object)
-        fieldhd.AddRange(New String() {"idaruspengajuan", "idunique", "idbank", "noaruspengajuan", "idpemohon", "namapemohon", "jabatanpemohon", "deptpemohon", "tanggalpemohon", "iddisetujui", "namadisetujui", "jabatandisetujui", "deptdisetujui", "tanggaldisetujui", "iddiketahui", "namadiketahui", "jabatandiketahui", "deptdiketahui", "tanggaldiketahui", "isdeleted", "deletereason"})
+        fieldhd.AddRange(New String() {"idaruspengajuan", "idbank", "noaruspengajuan", "idpemohon", "namapemohon", "jabatanpemohon", "deptpemohon", "tanggalpemohon", "iddisetujui", "namadisetujui", "jabatandisetujui", "deptdisetujui", "tanggaldisetujui", "iddiketahui", "namadiketahui", "jabatandiketahui", "deptdiketahui", "tanggaldiketahui", "isdeleted", "deletereason"})
         fielddt.AddRange(New String() {"idaruspengajuandt", "idaruspengajuan", "idbank", "idpengajuan", "idunit", "idcoa", "nomorurut", "keperluan", "nodokumen", "jumlahuang", "posisidk", "isdeleted", "deletereason"})
 
         Dim acak As New Random
@@ -301,12 +301,12 @@
                                 If CDec(dr("posisidk")) = 1 Then
                                     valuedt = New List(Of Object)
                                     valuedt.Clear()
-                                    valuedt.AddRange(New Object() {idtmp, idhd, idbank, -1, idunit, dr("idcoa"), "1", "SALDO AWAL " & CDate(deTanggal.EditValue).Year, "SALDO AWAL " & CDate(deTanggal.EditValue).Year, dr("jumlahuang"), 2, 0, "-"})
+                                    valuedt.AddRange(New Object() {idtmp, idhd, idbank, "-1", idunit, dr("idcoa"), "1", "SALDO AWAL " & CDate(deTanggal.EditValue).Year, "SALDO AWAL " & CDate(deTanggal.EditValue).Year, dr("jumlahuang"), 2, 0, "-"})
                                     setsql.datasetSave("aruspengajuandt", idtmp, fielddt, valuedt, False)
                                 ElseIf CDec(dr("posisidk")) = 2 Then
                                     valuedt = New List(Of Object)
                                     valuedt.Clear()
-                                    valuedt.AddRange(New Object() {idtmp, idhd, idbank, -1, idunit, dr("idcoa"), "1", "SALDO AWAL " & CDate(deTanggal.EditValue).Year, "SALDO AWAL " & CDate(deTanggal.EditValue).Year, dr("jumlahuang"), 1, 0, "-"})
+                                    valuedt.AddRange(New Object() {idtmp, idhd, idbank, "-1", idunit, dr("idcoa"), "1", "SALDO AWAL " & CDate(deTanggal.EditValue).Year, "SALDO AWAL " & CDate(deTanggal.EditValue).Year, dr("jumlahuang"), 1, 0, "-"})
                                     setsql.datasetSave("aruspengajuandt", idtmp, fielddt, valuedt, False)
                                 End If
 

@@ -77,7 +77,7 @@ Partial Class ucChatbox
         'btnSelect
         '
         Me.btnSelect.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.btnSelect.BackColor = System.Drawing.Color.FromArgb(CType(CType(156, Byte), Integer), CType(CType(207, Byte), Integer), CType(CType(49, Byte), Integer))
+        Me.btnSelect.BackColor = System.Drawing.Color.green
         Me.btnSelect.FlatAppearance.BorderSize = 0
         Me.btnSelect.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DimGray
         Me.btnSelect.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DarkGray

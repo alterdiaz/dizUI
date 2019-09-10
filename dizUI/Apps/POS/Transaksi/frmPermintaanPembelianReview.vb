@@ -133,13 +133,7 @@ Public Class frmPermintaanPembelianReview
         statData = statusData.Baru
 
         If usersuper = 1 Then
-            Dim iddept As New List(Of String)
-            iddept.AddRange(New String() {"*"})
-            Dim iddeptexcept As New List(Of String)
-            iddeptexcept.AddRange(New String() {55, 57})
-
-            Dim selkary As New frmSelectKaryawan()
-            selkary.deptdeptexcept(iddept, iddeptexcept)
+            Dim selkary As New frmSelectKaryawan2()
             tambahChild(selkary)
             If selkary.ShowDialog() = Windows.Forms.DialogResult.Cancel Then
                 Exit Sub
@@ -202,6 +196,26 @@ Public Class frmPermintaanPembelianReview
                 iddetil.Add(curriddetil)
             End If
         Next
+    End Sub
+
+    Private Sub kosongkan()
+        kosongkangrid()
+        kosongkanIsian(tlpField)
+
+        idData = "-1"
+        isVoid = False
+
+        teKode.Text = ""
+
+        deTanggal.EditValue = nowTime
+        teNote.Text = ""
+
+        gcData.Enabled = False
+
+        btnSearch.Enabled = True
+        btnSave.Enabled = False
+        btnDelete.Enabled = True
+        btnDelete.Text = "VOID"
     End Sub
 
     Private Function generateNO(idunit As String, iddept As String, isbaru As Boolean) As KeyValuePair(Of String, String)
@@ -279,7 +293,7 @@ Public Class frmPermintaanPembelianReview
     End Function
     Private Sub btnSearch_Click(sender As Object, e As EventArgs) Handles btnSearch.Click
         Dim sqls As New SQLs(dbstring)
-        sqls.DMLQuery("select t.idtransaksi,t.transaksino,t.remarks,dt.counter as totalitem,dtot.total as totalbarang,c.username as createdby,convert(varchar,t.createddate,105)+' '+convert(varchar,t.createddate,108) as createddate from transaksi t left join sys_user c on t.createdby=c.iduser left join (select idtransaksi2 as idtransaksi,count(idtransaksidt) as counter from transaksidt dt group by idtransaksi2) dt on t.idtransaksi=dt.idtransaksi left join (select idtransaksi2 as idtransaksi,sum(qtycharges) as total from transaksidt dt group by idtransaksi2) dtot on t.idtransaksi=dtot.idtransaksi where t.transaksitype in (select tt.idtransactiontype from transactiontype tt where tt.kodetransaksi=(select [value] from sys_appsetting where [variable]='KodePermintaanPembelian')) and t.idcompany=(select [value] from sys_appsetting where [variable]='CompanyID') and t.reviewedby is null and t.isdeleted=0 and t.transaksistatus=1 order by t.createddate desc", "search")
+        sqls.DMLQuery("select t.idtransaksi,t.transaksino,t.remarks,dt.counter as totalitem,dtot.total as totalbarang,c.username as createdby,convert(varchar,t.createddate,105)+' '+convert(varchar,t.createddate,108) as createddate from transaksi t left join sys_user c on t.createdby=c.iduser left join (select idtransaksi2 as idtransaksi,count(idtransaksidt) as counter from transaksidt dt group by idtransaksi2) dt on t.idtransaksi=dt.idtransaksi left join (select idtransaksi2 as idtransaksi,sum(qtycharges) as total from transaksidt dt group by idtransaksi2) dtot on t.idtransaksi=dtot.idtransaksi where t.transaksitype in (select tt.idtransactiontype from transactiontype tt where tt.kodetransaksi=(select [value] from sys_appsetting where [variable]='KodePermintaanPembelianBarang')) and t.reviewedby is null and t.isdeleted=0 and t.transaksistatus=1 order by t.createddate desc", "search")
         Dim cari As New frmSearch(sqls.dataSet, "search", "idtransaksi")
         tambahChild(cari)
 
@@ -359,14 +373,18 @@ Public Class frmPermintaanPembelianReview
 
         If retval = True Then
             dizMsgbox("Data telah tersimpan", dizMsgboxStyle.Info, Me)
-            btnNew_Click(Me, Nothing)
+            kosongkan()
         End If
     End Sub
 
     Declare Function GetDC Lib "user32.dll" (ByVal hwnd As Int32) As Int32
     Declare Function ReleaseDC Lib "user32.dll" (ByVal hwnd As Int32, ByVal hdc As Int32) As Int32
     Private Sub btnDelete_Click(sender As Object, e As EventArgs) Handles btnDelete.Click
-        If dizMsgbox("Anda akan melakukan void Permintaan Barang ini?", dizMsgboxStyle.Konfirmasi, Me) = dizMsgboxValue.OK Then
+        If idData = "-1" Then
+            dizMsgbox("Belum memilih transaksi", dizMsgboxStyle.Peringatan, Me)
+            Exit Sub
+        End If
+        If dizMsgbox("Anda akan melakukan void Permintaan Pembelian ini?", dizMsgboxStyle.Konfirmasi, Me) = dizMsgboxValue.OK Then
 
             Dim reason As New frmDeleteReason
             Dim strreason As String = ""

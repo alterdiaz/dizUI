@@ -94,7 +94,7 @@
         Me.Cursor = Cursors.WaitCursor
 
         Dim mysqls As New SQLs(dbstring)
-        mysqls.DMLQuery("select k.idbank, k.bank, k.norekening, k.remarks, k.isdeleted, del.generalcode as statdata,k.idcoa,isnull(c.coa,'-') as coa,isnull(c.remarks,'-') as rcoa from bank k left join coa c on k.idcoa=c.idcoa and c.idcompany=(select top 1 value from sys_appsetting where variable='CompanyID') left join sys_generalcode del on del.idgeneral=k.isdeleted and del.gctype='DELETE' where k.idcompany=(select top 1 value from sys_appsetting where variable='CompanyID')", "data")
+        mysqls.DMLQuery("select k.idbank, k.bank, k.norekening, k.remarks, k.isdeleted, del.generalcode as statdata,k.idcoa,isnull(c.coa,'-') as coa,isnull(c.remarks,'-') as rcoa from bank k left join coa c on k.idcoa=c.idcoa left join sys_generalcode del on del.idgeneral=k.isdeleted and del.gctype='DELETE'", "data")
         gcData.DataSource = mysqls.dataTable("data")
         gvData.BestFitColumns()
 
@@ -130,7 +130,7 @@
         End If
         If statData = statusData.Baru Then
             Dim sqls As New SQLs(dbstring)
-            sqls.DMLQuery("select bank from bank where idcompany=(select top 1 value from sys_appsetting where variable='CompanyID') and replace(bank,' ','')='" & teBank.Text.Replace(" ", "") & "'", "exist")
+            sqls.DMLQuery("select bank from bank where replace(bank,' ','')='" & teBank.Text.Replace(" ", "") & "'", "exist")
             If sqls.getDataSet("exist") = 0 Then
                 idData = "-1"
             Else
@@ -140,7 +140,7 @@
             End If
 
             If slueCOA.EditValue IsNot Nothing Then
-                sqls.DMLQuery("select bank from bank where idcompany=(select top 1 value from sys_appsetting where variable='CompanyID') and idcoa='" & slueCOA.EditValue & "'", "idcoa")
+                sqls.DMLQuery("select bank from bank where idcoa='" & slueCOA.EditValue & "'", "idcoa")
                 If sqls.getDataSet("idcoa") = 0 Then
                     idData = "-1"
                 Else
@@ -151,7 +151,7 @@
             End If
         ElseIf statData = statusData.Edit Then
             Dim sqls As New SQLs(dbstring)
-            sqls.DMLQuery("select bank from bank where idcompany=(select top 1 value from sys_appsetting where variable='CompanyID') and replace(bank,' ','')='" & teBank.Text.Replace(" ", "") & "' and idbank<>'" & idData & "'", "exist")
+            sqls.DMLQuery("select bank from bank where replace(bank,' ','')='" & teBank.Text.Replace(" ", "") & "' and idbank<>'" & idData & "'", "exist")
             If sqls.getDataSet("exist") > 0 Then
                 dizMsgbox("Data tersebut sudah ada", dizMsgboxStyle.Info, Me)
                 teBank.Focus()
@@ -159,7 +159,7 @@
             End If
 
             If slueCOA.EditValue IsNot Nothing Then
-                sqls.DMLQuery("select bank from bank where idcompany=(select top 1 value from sys_appsetting where variable='CompanyID') and idbank<>'" & idData & "' and idcoa='" & slueCOA.EditValue & "'", "idcoa")
+                sqls.DMLQuery("select bank from bank where idbank<>'" & idData & "' and idcoa='" & slueCOA.EditValue & "'", "idcoa")
                 If sqls.getDataSet("idcoa") > 0 Then
                     dizMsgbox("Data Bank dengan COA tersebut sudah ada", dizMsgboxStyle.Info, Me)
                     slueCOA.Focus()
@@ -250,7 +250,7 @@
             idData = dcol("idbank")
             statData = statusData.Edit
             isdeleted = dcol("isdeleted")
-            If isdeleted = 1 Then
+            If isdeleted = "1" Then
                 btnDelete.Text = "AKTIF"
             Else
                 btnDelete.Text = "HAPUS"
@@ -294,7 +294,7 @@
         End If
 
         Dim sqls As New SQLs(dbstring)
-        sqls.DMLQuery("select idcoa, coa, remarks from coa where idcompany=(select top 1 value from sys_appsetting where variable='CompanyID') and  and len(convert(decimal(20,0),COA))>=3 and (isnull(isdeleted,0)=0 or coa<>'-1') order by convert(varchar(20),COA) asc", "coa")
+        sqls.DMLQuery("select idcoa, coa, remarks from coa where len(convert(decimal(20,0),COA))>=3 and (isnull(isdeleted,0)=0 or coa<>'-1') order by convert(varchar(20),COA) asc", "coa")
         slueCOA.Properties.DataSource = sqls.dataTable("coa")
         slueCOA.Properties.DisplayMember = "coa"
         slueCOA.Properties.ValueMember = "idcoa"

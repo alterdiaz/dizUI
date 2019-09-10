@@ -595,7 +595,7 @@ Partial Class frmItemBOM
         '
         'btnLockItem
         '
-        Me.btnLockItem.BackColor = System.Drawing.Color.FromArgb(CType(CType(156, Byte), Integer), CType(CType(207, Byte), Integer), CType(CType(49, Byte), Integer))
+        Me.btnLockItem.BackColor = System.Drawing.Color.green
         Me.btnLockItem.FlatAppearance.BorderSize = 0
         Me.btnLockItem.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DimGray
         Me.btnLockItem.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DarkGray
@@ -613,7 +613,7 @@ Partial Class frmItemBOM
         '
         'btnLockUnit
         '
-        Me.btnLockUnit.BackColor = System.Drawing.Color.FromArgb(CType(CType(156, Byte), Integer), CType(CType(207, Byte), Integer), CType(CType(49, Byte), Integer))
+        Me.btnLockUnit.BackColor = System.Drawing.Color.green
         Me.btnLockUnit.FlatAppearance.BorderSize = 0
         Me.btnLockUnit.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DimGray
         Me.btnLockUnit.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DarkGray
@@ -956,7 +956,7 @@ Partial Class frmItemBOM
         '
         'btnAllItem
         '
-        Me.btnAllItem.BackColor = System.Drawing.Color.FromArgb(CType(CType(156, Byte), Integer), CType(CType(207, Byte), Integer), CType(CType(49, Byte), Integer))
+        Me.btnAllItem.BackColor = System.Drawing.Color.green
         Me.btnAllItem.Dock = System.Windows.Forms.DockStyle.Left
         Me.btnAllItem.FlatAppearance.BorderSize = 0
         Me.btnAllItem.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DimGray
@@ -973,7 +973,7 @@ Partial Class frmItemBOM
         '
         'btnItemSelect
         '
-        Me.btnItemSelect.BackColor = System.Drawing.Color.FromArgb(CType(CType(156, Byte), Integer), CType(CType(207, Byte), Integer), CType(CType(49, Byte), Integer))
+        Me.btnItemSelect.BackColor = System.Drawing.Color.green
         Me.btnItemSelect.Dock = System.Windows.Forms.DockStyle.Right
         Me.btnItemSelect.FlatAppearance.BorderSize = 0
         Me.btnItemSelect.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DimGray
@@ -1020,7 +1020,7 @@ Partial Class frmItemBOM
         '
         'btnSave
         '
-        Me.btnSave.BackColor = System.Drawing.Color.FromArgb(CType(CType(156, Byte), Integer), CType(CType(207, Byte), Integer), CType(CType(49, Byte), Integer))
+        Me.btnSave.BackColor = System.Drawing.Color.green
         Me.btnSave.Dock = System.Windows.Forms.DockStyle.Right
         Me.btnSave.FlatAppearance.BorderSize = 0
         Me.btnSave.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DimGray

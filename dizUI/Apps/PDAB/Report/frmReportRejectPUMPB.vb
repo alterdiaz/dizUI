@@ -176,7 +176,7 @@
             idSelect = dr(idFieldName)
 
             Dim mys As New SQLs(dbstring)
-            mys.DMLQuery("select * from xrPUMPB where idcompany=(select top 1 value from sys_appsetting where variable='CompanyID') and idpengajuan='" & idSelect & "'", "xrpumpb")
+            mys.DMLQuery("select * from xrPUMPB where idpengajuan='" & idSelect & "'", "xrpumpb")
 
             Dim rpt As New xrRejectPUMPB
             rpt.RequestParameters = False
@@ -199,7 +199,7 @@
     End Sub
     Private Sub deTanggal_EditValueChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles deTanggal.EditValueChanged
         Dim mys As New SQLs(dbstring)
-        mys.DMLQuery("select p.idpengajuan, p.nopengajuan, convert(varchar,p.tanggalpengajuan,105) + ' ' + convert(varchar,p.tanggalpengajuan,108) as tanggalpengajuan, p.idpemohon, p.namapemohon, p.jabatanpemohon, p.deptpemohon, p.jumlahuang, p.keperluan, p.idreview, p.namareview, p.jabatanreview, p.deptreview from pengajuan p where p.idcompany=(select top 1 value from sys_appsetting where variable='CompanyID') and convert(varchar,p.tanggalpengajuan,105) like '%" & Format(deTanggal.EditValue, "MM-yyyy") & "' and p.isdeleted=1 order by p.tanggalpengajuan desc", "data")
+        mys.DMLQuery("select p.idpengajuan, p.nopengajuan, convert(varchar,p.tanggalpengajuan,105) + ' ' + convert(varchar,p.tanggalpengajuan,108) as tanggalpengajuan, p.idpemohon, p.namapemohon, p.jabatanpemohon, p.deptpemohon, p.jumlahuang, p.keperluan, p.idreview, p.namareview, p.jabatanreview, p.deptreview from pengajuan p where convert(varchar,p.tanggalpengajuan,105) like '%" & Format(deTanggal.EditValue, "MM-yyyy") & "' and p.isdeleted=1 order by p.tanggalpengajuan desc", "data")
         CekData(mys.dataSet, "data", "idpengajuan")
 
         If dtset.Tables(dttblname).Rows.Count = 0 Then

@@ -5,32 +5,31 @@ from coa c
 left join 
 (
 select sum(bd.jumlahuang) as debet,bd.idcoa from jurnal bd 
-where bd.posisidk=1 and bd.idcompany=(select top 1 value from sys_appsetting where variable='CompanyID') 
+where bd.posisidk=1 
 and LEFT(CONVERT(VARCHAR, bd.tanggaljurnal, 120), 10) like '*BULANTAHUN*%' 
 group by bd.idcoa
 ) bd on c.idcoa=bd.idcoa 
 left join 
 (
 select sum(bk.jumlahuang) as kredit,bk.idcoa from jurnal bk 
-where bk.posisidk=2 and bk.idcompany=(select top 1 value from sys_appsetting where variable='CompanyID') 
+where bk.posisidk=2 
 and LEFT(CONVERT(VARCHAR, bk.tanggaljurnal, 120), 10) like '*BULANTAHUN*%' 
 group by bk.idcoa
 ) bk on c.idcoa=bk.idcoa 
 left join 
 (
 select sum(d.jumlahuang) as debet,d.idcoa from jurnal d 
-where d.posisidk=1 and d.idcompany=(select top 1 value from sys_appsetting where variable='CompanyID') 
+where d.posisidk=1 
 and LEFT(CONVERT(VARCHAR, d.tanggaljurnal, 120), 10) like '*BULANTAHUN*%' 
 group by d.idcoa
 ) d on c.idcoa=d.idcoa 
 left join 
 (
 select sum(k.jumlahuang) as kredit,k.idcoa from jurnal k 
-where k.posisidk=2 and k.idcompany=(select top 1 value from sys_appsetting where variable='CompanyID') 
+where k.posisidk=2 
 and LEFT(CONVERT(VARCHAR, k.tanggaljurnal, 120), 10) like '*BULANTAHUN*%' 
 group by k.idcoa
 ) k on c.idcoa=k.idcoa 
 ) j on j.coa like c.coa + '%' 
-where c.idcompany=(select top 1 value from sys_appsetting where variable='CompanyID') 
-and len(c.coa)>=6 and convert(bigint,c.coa)>=0 
+where len(c.coa)>=6 and convert(bigint,c.coa)>=0 
 order by convert(varchar(20),c.coa)

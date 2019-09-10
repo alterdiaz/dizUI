@@ -22,7 +22,11 @@ Partial Class frmAnggaran
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Dim SerializableAppearanceObject1 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
+        Dim EditorButtonImageOptions2 As DevExpress.XtraEditors.Controls.EditorButtonImageOptions = New DevExpress.XtraEditors.Controls.EditorButtonImageOptions()
+        Dim SerializableAppearanceObject5 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
+        Dim SerializableAppearanceObject6 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
+        Dim SerializableAppearanceObject7 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
+        Dim SerializableAppearanceObject8 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
         Me.tlpForm = New System.Windows.Forms.TableLayoutPanel()
         Me.pTitle = New System.Windows.Forms.Panel()
         Me.lblTitle = New System.Windows.Forms.Label()
@@ -43,7 +47,6 @@ Partial Class frmAnggaran
         Me.gcStatData = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.tlpField = New System.Windows.Forms.TableLayoutPanel()
         Me.lblBank = New System.Windows.Forms.Label()
-        Me.lueCOA = New DevExpress.XtraEditors.LookUpEdit()
         Me.nudJumlahUang = New DevExpress.XtraEditors.SpinEdit()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.lueJenis = New DevExpress.XtraEditors.LookUpEdit()
@@ -53,16 +56,16 @@ Partial Class frmAnggaran
         Me.Label4 = New System.Windows.Forms.Label()
         Me.teCOA = New DevExpress.XtraEditors.TextEdit()
         Me.pHeader = New System.Windows.Forms.Panel()
-        Me.btnNew = New System.Windows.Forms.Button()
-        Me.btnSave = New System.Windows.Forms.Button()
-        Me.btnDelete = New System.Windows.Forms.Button()
-        Me.lblSep5 = New System.Windows.Forms.Label()
-        Me.btnPrint = New System.Windows.Forms.Button()
         Me.slueCOA = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.slueCOAView = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.btnNew = New System.Windows.Forms.Button()
+        Me.btnSave = New System.Windows.Forms.Button()
+        Me.btnDelete = New System.Windows.Forms.Button()
+        Me.lblSep5 = New System.Windows.Forms.Label()
+        Me.btnPrint = New System.Windows.Forms.Button()
         Me.tlpForm.SuspendLayout()
         Me.pTitle.SuspendLayout()
         CType(Me.pMinimize, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -72,7 +75,6 @@ Partial Class frmAnggaran
         CType(Me.gcData, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gvData, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.tlpField.SuspendLayout()
-        CType(Me.lueCOA.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.nudJumlahUang.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.lueJenis.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.dePeriode.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -194,7 +196,7 @@ Partial Class frmAnggaran
         '
         'gvData
         '
-        Me.gvData.Appearance.Empty.BackColor = System.Drawing.color.fromargb(240, 240, 240)
+        Me.gvData.Appearance.Empty.BackColor = System.Drawing.Color.FromArgb(CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer))
         Me.gvData.Appearance.Empty.Options.UseBackColor = True
         Me.gvData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.gcID, Me.gcIDStatData, Me.gcIDCOA, Me.gcCOA, Me.gcRemarks, Me.gcJenis, Me.gcPeriode, Me.gcJumlahUang, Me.gcStatData})
         Me.gvData.GridControl = Me.gcData
@@ -304,7 +306,7 @@ Partial Class frmAnggaran
         '
         'tlpField
         '
-        Me.tlpField.BackColor = System.Drawing.color.fromargb(240, 240, 240)
+        Me.tlpField.BackColor = System.Drawing.Color.FromArgb(CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer))
         Me.tlpField.ColumnCount = 6
         Me.tlpField.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
         Me.tlpField.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 140.0!))
@@ -312,8 +314,8 @@ Partial Class frmAnggaran
         Me.tlpField.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 140.0!))
         Me.tlpField.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 150.0!))
         Me.tlpField.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
+        Me.tlpField.Controls.Add(Me.slueCOA, 2, 1)
         Me.tlpField.Controls.Add(Me.lblBank, 1, 1)
-        Me.tlpField.Controls.Add(Me.lueCOA, 2, 1)
         Me.tlpField.Controls.Add(Me.nudJumlahUang, 4, 3)
         Me.tlpField.Controls.Add(Me.Label2, 3, 3)
         Me.tlpField.Controls.Add(Me.lueJenis, 4, 1)
@@ -346,24 +348,6 @@ Partial Class frmAnggaran
         Me.lblBank.Text = "Kode Rekening"
         Me.lblBank.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
-        'lueCOA
-        '
-        Me.lueCOA.Anchor = System.Windows.Forms.AnchorStyles.Left
-        Me.lueCOA.Location = New System.Drawing.Point(243, 13)
-        Me.lueCOA.Margin = New System.Windows.Forms.Padding(0)
-        Me.lueCOA.Name = "lueCOA"
-        Me.lueCOA.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.lueCOA.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 9.0!)
-        Me.lueCOA.Properties.Appearance.Options.UseBackColor = True
-        Me.lueCOA.Properties.Appearance.Options.UseFont = True
-        Me.lueCOA.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple
-        Me.lueCOA.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.lueCOA.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("idcoa", "ID", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("coa", "Kode Rekening"), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("remarks", "Remarks")})
-        Me.lueCOA.Properties.NullText = "[Isian belum dipilih]"
-        Me.lueCOA.Properties.NullValuePrompt = "[Isian belum dipilih]"
-        Me.lueCOA.Size = New System.Drawing.Size(150, 20)
-        Me.lueCOA.TabIndex = 52
-        '
         'nudJumlahUang
         '
         Me.nudJumlahUang.Anchor = System.Windows.Forms.AnchorStyles.Left
@@ -377,7 +361,7 @@ Partial Class frmAnggaran
         Me.nudJumlahUang.Properties.Appearance.Options.UseBackColor = True
         Me.nudJumlahUang.Properties.Appearance.Options.UseFont = True
         Me.nudJumlahUang.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple
-        Me.nudJumlahUang.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis, "", -1, True, False, False, DevExpress.XtraEditors.ImageLocation.MiddleCenter, Nothing, New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject1, "", Nothing, Nothing, True)})
+        Me.nudJumlahUang.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis, "", -1, True, False, False, EditorButtonImageOptions2, New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject5, SerializableAppearanceObject6, SerializableAppearanceObject7, SerializableAppearanceObject8, "", Nothing, Nothing, DevExpress.Utils.ToolTipAnchor.[Default])})
         Me.nudJumlahUang.Properties.DisplayFormat.FormatString = "n2"
         Me.nudJumlahUang.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.nudJumlahUang.Properties.EditFormat.FormatString = "n2"
@@ -414,7 +398,7 @@ Partial Class frmAnggaran
         Me.lueJenis.Properties.Appearance.Options.UseFont = True
         Me.lueJenis.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple
         Me.lueJenis.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.lueJenis.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("idjenis", "ID", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("jenis", "Jenis Anggaran")})
+        Me.lueJenis.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("idjenis", "ID", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default], DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("jenis", "Jenis Anggaran")})
         Me.lueJenis.Properties.NullText = "[Isian belum dipilih]"
         Me.lueJenis.Properties.NullValuePrompt = "[Isian belum dipilih]"
         Me.lueJenis.Size = New System.Drawing.Size(150, 20)
@@ -443,22 +427,22 @@ Partial Class frmAnggaran
         Me.dePeriode.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 9.0!)
         Me.dePeriode.Properties.Appearance.Options.UseBackColor = True
         Me.dePeriode.Properties.Appearance.Options.UseFont = True
+        Me.dePeriode.Properties.AppearanceCalendar.DayCellHighlighted.Font = New System.Drawing.Font("Tahoma", 9.0!)
+        Me.dePeriode.Properties.AppearanceCalendar.DayCellHighlighted.Options.UseFont = True
+        Me.dePeriode.Properties.AppearanceCalendar.Header.Font = New System.Drawing.Font("Tahoma", 9.0!)
+        Me.dePeriode.Properties.AppearanceCalendar.Header.Options.UseFont = True
+        Me.dePeriode.Properties.AppearanceCalendar.HeaderHighlighted.Font = New System.Drawing.Font("Tahoma", 9.0!)
+        Me.dePeriode.Properties.AppearanceCalendar.HeaderHighlighted.Options.UseFont = True
+        Me.dePeriode.Properties.AppearanceCalendar.WeekNumber.Font = New System.Drawing.Font("Tahoma", 9.0!)
+        Me.dePeriode.Properties.AppearanceCalendar.WeekNumber.Options.UseFont = True
         Me.dePeriode.Properties.AppearanceDisabled.Font = New System.Drawing.Font("Tahoma", 9.0!)
         Me.dePeriode.Properties.AppearanceDisabled.Options.UseFont = True
         Me.dePeriode.Properties.AppearanceDropDown.Font = New System.Drawing.Font("Tahoma", 9.0!)
         Me.dePeriode.Properties.AppearanceDropDown.Options.UseFont = True
-        Me.dePeriode.Properties.AppearanceDropDownHeader.Font = New System.Drawing.Font("Tahoma", 9.0!)
-        Me.dePeriode.Properties.AppearanceDropDownHeader.Options.UseFont = True
-        Me.dePeriode.Properties.AppearanceDropDownHeaderHighlight.Font = New System.Drawing.Font("Tahoma", 9.0!)
-        Me.dePeriode.Properties.AppearanceDropDownHeaderHighlight.Options.UseFont = True
-        Me.dePeriode.Properties.AppearanceDropDownHighlight.Font = New System.Drawing.Font("Tahoma", 9.0!)
-        Me.dePeriode.Properties.AppearanceDropDownHighlight.Options.UseFont = True
         Me.dePeriode.Properties.AppearanceFocused.Font = New System.Drawing.Font("Tahoma", 9.0!)
         Me.dePeriode.Properties.AppearanceFocused.Options.UseFont = True
         Me.dePeriode.Properties.AppearanceReadOnly.Font = New System.Drawing.Font("Tahoma", 9.0!)
         Me.dePeriode.Properties.AppearanceReadOnly.Options.UseFont = True
-        Me.dePeriode.Properties.AppearanceWeekNumber.Font = New System.Drawing.Font("Tahoma", 9.0!)
-        Me.dePeriode.Properties.AppearanceWeekNumber.Options.UseFont = True
         Me.dePeriode.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple
         Me.dePeriode.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.dePeriode.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
@@ -518,7 +502,6 @@ Partial Class frmAnggaran
         'pHeader
         '
         Me.pHeader.BackColor = System.Drawing.Color.FromArgb(CType(CType(66, Byte), Integer), CType(CType(66, Byte), Integer), CType(CType(66, Byte), Integer))
-        Me.pHeader.Controls.Add(Me.slueCOA)
         Me.pHeader.Controls.Add(Me.btnNew)
         Me.pHeader.Controls.Add(Me.btnSave)
         Me.pHeader.Controls.Add(Me.btnDelete)
@@ -529,6 +512,73 @@ Partial Class frmAnggaran
         Me.pHeader.Name = "pHeader"
         Me.pHeader.Size = New System.Drawing.Size(786, 30)
         Me.pHeader.TabIndex = 4
+        '
+        'slueCOA
+        '
+        Me.slueCOA.Anchor = System.Windows.Forms.AnchorStyles.Left
+        Me.slueCOA.Location = New System.Drawing.Point(243, 13)
+        Me.slueCOA.Margin = New System.Windows.Forms.Padding(0)
+        Me.slueCOA.Name = "slueCOA"
+        Me.slueCOA.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.slueCOA.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 9.0!)
+        Me.slueCOA.Properties.Appearance.ForeColor = System.Drawing.Color.Black
+        Me.slueCOA.Properties.Appearance.Options.UseBackColor = True
+        Me.slueCOA.Properties.Appearance.Options.UseFont = True
+        Me.slueCOA.Properties.Appearance.Options.UseForeColor = True
+        Me.slueCOA.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple
+        Me.slueCOA.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.slueCOA.Properties.NullText = "[Isian belum dipilih]"
+        Me.slueCOA.Properties.NullValuePrompt = "[Isian belum dipilih]"
+        Me.slueCOA.Properties.PopupBorderStyle = DevExpress.XtraEditors.Controls.PopupBorderStyles.Simple
+        Me.slueCOA.Properties.PopupFindMode = DevExpress.XtraEditors.FindMode.Always
+        Me.slueCOA.Properties.PopupView = Me.slueCOAView
+        Me.slueCOA.Properties.ShowFooter = False
+        Me.slueCOA.Properties.ShowPopupShadow = False
+        Me.slueCOA.Properties.ViewType = DevExpress.XtraEditors.Repository.GridLookUpViewType.GridView
+        Me.slueCOA.Size = New System.Drawing.Size(150, 20)
+        Me.slueCOA.TabIndex = 24
+        '
+        'slueCOAView
+        '
+        Me.slueCOAView.Appearance.EvenRow.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.slueCOAView.Appearance.EvenRow.Options.UseBackColor = True
+        Me.slueCOAView.Appearance.OddRow.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer))
+        Me.slueCOAView.Appearance.OddRow.Options.UseBackColor = True
+        Me.slueCOAView.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn3})
+        Me.slueCOAView.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.slueCOAView.Name = "slueCOAView"
+        Me.slueCOAView.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.slueCOAView.OptionsView.EnableAppearanceEvenRow = True
+        Me.slueCOAView.OptionsView.EnableAppearanceOddRow = True
+        Me.slueCOAView.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn1
+        '
+        Me.GridColumn1.Caption = "ID"
+        Me.GridColumn1.FieldName = "idcoa"
+        Me.GridColumn1.Name = "GridColumn1"
+        Me.GridColumn1.OptionsColumn.AllowEdit = False
+        Me.GridColumn1.OptionsColumn.ReadOnly = True
+        '
+        'GridColumn2
+        '
+        Me.GridColumn2.Caption = "COA"
+        Me.GridColumn2.FieldName = "coa"
+        Me.GridColumn2.Name = "GridColumn2"
+        Me.GridColumn2.OptionsColumn.AllowEdit = False
+        Me.GridColumn2.OptionsColumn.ReadOnly = True
+        Me.GridColumn2.Visible = True
+        Me.GridColumn2.VisibleIndex = 0
+        '
+        'GridColumn3
+        '
+        Me.GridColumn3.Caption = "Remarks"
+        Me.GridColumn3.FieldName = "remarks"
+        Me.GridColumn3.Name = "GridColumn3"
+        Me.GridColumn3.OptionsColumn.AllowEdit = False
+        Me.GridColumn3.OptionsColumn.ReadOnly = True
+        Me.GridColumn3.Visible = True
+        Me.GridColumn3.VisibleIndex = 1
         '
         'btnNew
         '
@@ -548,7 +598,7 @@ Partial Class frmAnggaran
         '
         'btnSave
         '
-        Me.btnSave.BackColor = System.Drawing.Color.FromArgb(CType(CType(156, Byte), Integer), CType(CType(207, Byte), Integer), CType(CType(49, Byte), Integer))
+        Me.btnSave.BackColor = System.Drawing.Color.Green
         Me.btnSave.Dock = System.Windows.Forms.DockStyle.Right
         Me.btnSave.FlatAppearance.BorderSize = 0
         Me.btnSave.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DimGray
@@ -609,78 +659,11 @@ Partial Class frmAnggaran
         Me.btnPrint.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
         Me.btnPrint.UseVisualStyleBackColor = True
         '
-        'slueCOA
-        '
-        Me.slueCOA.Anchor = System.Windows.Forms.AnchorStyles.Left
-        Me.slueCOA.Location = New System.Drawing.Point(304, 5)
-        Me.slueCOA.Margin = New System.Windows.Forms.Padding(0)
-        Me.slueCOA.Name = "slueCOA"
-        Me.slueCOA.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.slueCOA.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 9.0!)
-        Me.slueCOA.Properties.Appearance.ForeColor = System.Drawing.Color.Black
-        Me.slueCOA.Properties.Appearance.Options.UseBackColor = True
-        Me.slueCOA.Properties.Appearance.Options.UseFont = True
-        Me.slueCOA.Properties.Appearance.Options.UseForeColor = True
-        Me.slueCOA.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple
-        Me.slueCOA.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.slueCOA.Properties.NullText = "[Isian belum dipilih]"
-        Me.slueCOA.Properties.NullValuePrompt = "[Isian belum dipilih]"
-        Me.slueCOA.Properties.PopupBorderStyle = DevExpress.XtraEditors.Controls.PopupBorderStyles.Simple
-        Me.slueCOA.Properties.PopupFindMode = DevExpress.XtraEditors.FindMode.Always
-        Me.slueCOA.Properties.ShowFooter = False
-        Me.slueCOA.Properties.ShowPopupShadow = False
-        Me.slueCOA.Properties.View = Me.slueCOAView
-        Me.slueCOA.Properties.ViewType = DevExpress.XtraEditors.Repository.GridLookUpViewType.GridView
-        Me.slueCOA.Size = New System.Drawing.Size(178, 20)
-        Me.slueCOA.TabIndex = 24
-        '
-        'slueCOAView
-        '
-        Me.slueCOAView.Appearance.EvenRow.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.slueCOAView.Appearance.EvenRow.Options.UseBackColor = True
-        Me.slueCOAView.Appearance.OddRow.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer))
-        Me.slueCOAView.Appearance.OddRow.Options.UseBackColor = True
-        Me.slueCOAView.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn3})
-        Me.slueCOAView.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
-        Me.slueCOAView.Name = "slueCOAView"
-        Me.slueCOAView.OptionsSelection.EnableAppearanceFocusedCell = False
-        Me.slueCOAView.OptionsView.EnableAppearanceEvenRow = True
-        Me.slueCOAView.OptionsView.EnableAppearanceOddRow = True
-        Me.slueCOAView.OptionsView.ShowGroupPanel = False
-        '
-        'GridColumn1
-        '
-        Me.GridColumn1.Caption = "ID"
-        Me.GridColumn1.FieldName = "idcoa"
-        Me.GridColumn1.Name = "GridColumn1"
-        Me.GridColumn1.OptionsColumn.AllowEdit = False
-        Me.GridColumn1.OptionsColumn.ReadOnly = True
-        '
-        'GridColumn2
-        '
-        Me.GridColumn2.Caption = "COA"
-        Me.GridColumn2.FieldName = "coa"
-        Me.GridColumn2.Name = "GridColumn2"
-        Me.GridColumn2.OptionsColumn.AllowEdit = False
-        Me.GridColumn2.OptionsColumn.ReadOnly = True
-        Me.GridColumn2.Visible = True
-        Me.GridColumn2.VisibleIndex = 0
-        '
-        'GridColumn3
-        '
-        Me.GridColumn3.Caption = "Remarks"
-        Me.GridColumn3.FieldName = "remarks"
-        Me.GridColumn3.Name = "GridColumn3"
-        Me.GridColumn3.OptionsColumn.AllowEdit = False
-        Me.GridColumn3.OptionsColumn.ReadOnly = True
-        Me.GridColumn3.Visible = True
-        Me.GridColumn3.VisibleIndex = 1
-        '
         'frmAnggaran
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.BackColor = System.Drawing.color.fromargb(240, 240, 240)
+        Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer))
         Me.ClientSize = New System.Drawing.Size(790, 408)
         Me.Controls.Add(Me.tlpForm)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
@@ -697,7 +680,6 @@ Partial Class frmAnggaran
         CType(Me.gvData, System.ComponentModel.ISupportInitialize).EndInit()
         Me.tlpField.ResumeLayout(False)
         Me.tlpField.PerformLayout()
-        CType(Me.lueCOA.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.nudJumlahUang.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.lueJenis.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.dePeriode.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -728,7 +710,6 @@ Partial Class frmAnggaran
     Friend WithEvents gcJenis As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents Label1 As System.Windows.Forms.Label
     Friend WithEvents Label2 As System.Windows.Forms.Label
-    Friend WithEvents lueCOA As DevExpress.XtraEditors.LookUpEdit
     Friend WithEvents Label3 As System.Windows.Forms.Label
     Friend WithEvents dePeriode As DevExpress.XtraEditors.DateEdit
     Friend WithEvents lueJenis As DevExpress.XtraEditors.LookUpEdit

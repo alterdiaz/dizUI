@@ -89,7 +89,7 @@ Public Class frmUnit
 
     Private Sub loadLOV()
         Dim mysqls As New SQLs(dbstring)
-        mysqls.DMLQuery("select idwilayah as id, wilayah as content from wilayah where idcompany=(select top 1 value from sys_appsetting where variable='CompanyID') and isdeleted=0 and levelwilayah=1", "negara")
+        mysqls.DMLQuery("select idwilayah as id, wilayah as content from wilayah where isdeleted=0 and levelwilayah=1", "negara")
         lueNegara.Properties.DataSource = mysqls.dataTable("negara")
         lueNegara.Properties.DisplayMember = "content"
         lueNegara.Properties.ValueMember = "id"
@@ -136,7 +136,7 @@ Public Class frmUnit
         Me.Cursor = Cursors.WaitCursor
 
         Dim mysqls As New SQLs(dbstring)
-        mysqls.DMLQuery("select k.idunit, k.unit, k.kode, k.kodeangka,k.alias,k.npwp, k.remarks, k.isdeleted, del.generalcode as statdata from unit k left join sys_generalcode del on del.idgeneral=k.isdeleted and del.gctype='DELETE' where k.idcompany=(select top 1 value from sys_appsetting where variable='CompanyID') and k.idunit not in (select value from sys_appsetting where variable in ('IDSystemUnit','IDVendorUnit')) ", "data")
+        mysqls.DMLQuery("select k.idunit, k.unit, k.kode, k.kodeangka,k.alias,k.npwp, k.remarks, k.isdeleted, del.generalcode as statdata from unit k left join sys_generalcode del on del.idgeneral=k.isdeleted and del.gctype='DELETE' where k.idunit not in (select value from sys_appsetting where variable in ('IDSystemUnit','IDVendorUnit')) order by k.unit asc", "data")
         gcData.DataSource = mysqls.dataTable("data")
         gvData.BestFitColumns()
 
@@ -189,18 +189,18 @@ Public Class frmUnit
         Dim cnt As Integer = 0
         Dim sqls As New SQLs(dbstring)
         If statData = statusData.Baru Then
-            sqls.DMLQuery("select count(kode) as kode from unit where idcompany=(select top 1 value from sys_appsetting where variable='CompanyID') and kode='" & teKode.Text & "'", "unit")
+            sqls.DMLQuery("select count(kode) as kode from unit where kode='" & teKode.Text & "'", "unit")
             cnt = CInt(sqls.getDataSet("unit", 0, "kode"))
 
             If cnt = 0 Then
-                sqls.DMLQuery("select count(kodeangka) as kode from unit where idcompany=(select top 1 value from sys_appsetting where variable='CompanyID') and kodeangka='" & teKodeAngka.Text & "'", "unitangka")
+                sqls.DMLQuery("select count(kodeangka) as kode from unit where kodeangka='" & teKodeAngka.Text & "'", "unitangka")
                 cnt = CInt(sqls.getDataSet("unitangka", 0, "kode"))
             End If
         ElseIf statData = statusData.Edit Then
-            sqls.DMLQuery("select count(kode) as kode from unit where idcompany=(select top 1 value from sys_appsetting where variable='CompanyID') and kode='" & teKode.Text & "' and idunit <>" & idData, "dept")
+            sqls.DMLQuery("select count(kode) as kode from unit where kode='" & teKode.Text & "' and idunit <>" & idData, "dept")
             cnt = CInt(sqls.getDataSet("dept", 0, "kode"))
             If cnt = 0 Then
-                sqls.DMLQuery("select count(kodeangka) as kode from unit where idcompany=(select top 1 value from sys_appsetting where variable='CompanyID') and kodeangka='" & teKodeAngka.Text & "' and idunit <>" & idData, "deptangka")
+                sqls.DMLQuery("select count(kodeangka) as kode from unit where kodeangka='" & teKodeAngka.Text & "' and idunit <>" & idData, "deptangka")
                 cnt = CInt(sqls.getDataSet("deptangka", 0, "kode"))
             End If
         End If
@@ -215,7 +215,7 @@ Public Class frmUnit
         End If
         If statData = statusData.Baru Then
             Dim sqls1 As New SQLs(dbstring)
-            sqls1.DMLQuery("select unit from unit where idcompany=(select top 1 value from sys_appsetting where variable='CompanyID') and replace(unit,' ','')='" & teUnit.Text.Replace(" ", "") & "'", "exist")
+            sqls1.DMLQuery("select unit from unit where replace(unit,' ','')='" & teUnit.Text.Replace(" ", "") & "'", "exist")
             If sqls1.getDataSet("exist") = 0 Then
                 idData = GenerateGUID()
             Else
@@ -225,7 +225,7 @@ Public Class frmUnit
             End If
         ElseIf statData = statusData.edit Then
             Dim sqls1 As New SQLs(dbstring)
-            sqls1.DMLQuery("select unit from unit where idcompany=(select top 1 value from sys_appsetting where variable='CompanyID') and replace(unit,' ','')='" & teUnit.Text.Replace(" ", "") & "' and idunit<>'" & idData & "'", "exist")
+            sqls1.DMLQuery("select unit from unit where replace(unit,' ','')='" & teUnit.Text.Replace(" ", "") & "' and idunit<>'" & idData & "'", "exist")
             If sqls1.getDataSet("exist") > 0 Then
                 dizMsgbox("Data tersebut sudah ada", dizMsgboxStyle.Info, Me)
                 teUnit.Focus()
@@ -353,7 +353,7 @@ Public Class frmUnit
     Private Sub loadAlamat(idreff As String)
         fromGridChild = False
         Dim sqls As New SQLs(dbstring)
-        sqls.DMLQuery("select a.idalamat,a.idnegara,a.idpropinsi,a.idkabupaten,a.idkecamatan,a.idkelurahan,a.alamat,a.addresstype,a.isdeleted,a.isprimary,n.wilayah as negara,p.wilayah as propinsi,b.wilayah as kabupaten,c.wilayah as kecamatan,l.wilayah as kelurahan,del.generalcode as statdata,pri.generalcode as [primary],adt.generalcode as jenisalamat,a.kodepos from alamat a left join wilayah n on a.idnegara=n.idwilayah left join wilayah p on a.idpropinsi=p.idwilayah left join wilayah b on a.idkabupaten=b.idwilayah left join wilayah c on a.idkecamatan=c.idwilayah left join wilayah l on a.idkelurahan=l.idwilayah left join sys_generalcode del on a.isdeleted=del.idgeneral and del.gctype='DELETE' left join sys_generalcode pri on a.isprimary=pri.idgeneral and pri.gctype='ISPRIMARY' left join sys_generalcode adt on a.addresstype=adt.idgeneral and adt.gctype='ADDRESSTYPE' where a.idcompany=(select top 1 value from sys_appsetting where variable='CompanyID') and a.tablereff='UNIT' and a.idreff='" & idreff & "'", "alamat")
+        sqls.DMLQuery("select a.idalamat,a.idnegara,a.idpropinsi,a.idkabupaten,a.idkecamatan,a.idkelurahan,a.alamat,a.addresstype,a.isdeleted,a.isprimary,n.wilayah as negara,p.wilayah as propinsi,b.wilayah as kabupaten,c.wilayah as kecamatan,l.wilayah as kelurahan,del.generalcode as statdata,pri.generalcode as [primary],adt.generalcode as jenisalamat,a.kodepos from alamat a left join wilayah n on a.idnegara=n.idwilayah left join wilayah p on a.idpropinsi=p.idwilayah left join wilayah b on a.idkabupaten=b.idwilayah left join wilayah c on a.idkecamatan=c.idwilayah left join wilayah l on a.idkelurahan=l.idwilayah left join sys_generalcode del on a.isdeleted=del.idgeneral and del.gctype='DELETE' left join sys_generalcode pri on a.isprimary=pri.idgeneral and pri.gctype='ISPRIMARY' left join sys_generalcode adt on a.addresstype=adt.idgeneral and adt.gctype='ADDRESSTYPE' where a.tablereff='UNIT' and a.idreff='" & idreff & "'", "alamat")
         gcAlamat.DataSource = sqls.dataTable("alamat")
         gvAlamat.BestFitColumns()
         fromGridChild = True
@@ -362,7 +362,7 @@ Public Class frmUnit
     Private Sub loadEmail(idreff As String)
         fromGridChild = False
         Dim sqls As New SQLs(dbstring)
-        sqls.DMLQuery("select e.idemail,e.email,e.emailtype,e.isdeleted,e.isprimary,del.generalcode as statdata,pri.generalcode as [primary],et.generalcode as jenisemail from email e left join sys_generalcode et on e.emailtype=et.idgeneral and et.gctype='EMAILTYPE' left join sys_generalcode del on e.isdeleted=del.idgeneral and del.gctype='DELETE' left join sys_generalcode pri on e.isprimary=pri.idgeneral and pri.gctype='ISPRIMARY' where e.idcompany=(select top 1 value from sys_appsetting where variable='CompanyID') and e.tablereff='UNIT' and e.idreff='" & idreff & "'", "email")
+        sqls.DMLQuery("select e.idemail,e.email,e.emailtype,e.isdeleted,e.isprimary,del.generalcode as statdata,pri.generalcode as [primary],et.generalcode as jenisemail from email e left join sys_generalcode et on e.emailtype=et.idgeneral and et.gctype='EMAILTYPE' left join sys_generalcode del on e.isdeleted=del.idgeneral and del.gctype='DELETE' left join sys_generalcode pri on e.isprimary=pri.idgeneral and pri.gctype='ISPRIMARY' where e.tablereff='UNIT' and e.idreff='" & idreff & "'", "email")
         gcEmail.DataSource = sqls.dataTable("email")
         gvEmail.BestFitColumns()
         fromGridChild = True
@@ -371,7 +371,7 @@ Public Class frmUnit
     Private Sub loadPhone(idreff As String)
         fromGridChild = False
         Dim sqls As New SQLs(dbstring)
-        sqls.DMLQuery("select p.idphone,p.phone,p.extension,p.phonetype,p.isdeleted,p.isprimary,del.generalcode as statdata,pri.generalcode as [primary],et.generalcode as jenistelepon from phone p left join sys_generalcode et on p.phonetype=et.idgeneral and et.gctype='PHONETYPE' left join sys_generalcode del on p.isdeleted=del.idgeneral and del.gctype='DELETE' left join sys_generalcode pri on p.isprimary=pri.idgeneral and pri.gctype='ISPRIMARY' where p.idcompany=(select top 1 value from sys_appsetting where variable='CompanyID') and p.tablereff='UNIT' and p.idreff='" & idreff & "'", "phone")
+        sqls.DMLQuery("select p.idphone,p.phone,p.extension,p.phonetype,p.isdeleted,p.isprimary,del.generalcode as statdata,pri.generalcode as [primary],et.generalcode as jenistelepon from phone p left join sys_generalcode et on p.phonetype=et.idgeneral and et.gctype='PHONETYPE' left join sys_generalcode del on p.isdeleted=del.idgeneral and del.gctype='DELETE' left join sys_generalcode pri on p.isprimary=pri.idgeneral and pri.gctype='ISPRIMARY' where p.tablereff='UNIT' and p.idreff='" & idreff & "'", "phone")
         gcTelepon.DataSource = sqls.dataTable("phone")
         gvTelepon.BestFitColumns()
         fromGridChild = True
@@ -440,7 +440,7 @@ Public Class frmUnit
             Exit Sub
         End If
         If statDataChild = statusData.Baru Then
-            idData = GenerateGUID()
+            idDataChild = GenerateGUID()
             Dim dtsql As New dtsetSQLS(dbstring)
             Dim field As New List(Of String)
             Dim value As New List(Of Object)
@@ -698,7 +698,7 @@ Public Class frmUnit
         End If
         If statDataChild = statusData.Baru Then
             Dim sqls As New SQLs(dbstring)
-            sqls.DMLQuery("select phone from phone where idcompany=(select top 1 value from sys_appsetting where variable='CompanyID') and tablereff='UNIT' and idreff='" & idData & "' and phone='" & tePhone.Text & "'", "cek")
+            sqls.DMLQuery("select phone from phone where tablereff='UNIT' and idreff='" & idData & "' and phone='" & tePhone.Text & "'", "cek")
             If sqls.getDataSet("cek") = 0 Then
                 idDataChild = GenerateGUID()
             Else
@@ -775,7 +775,7 @@ Public Class frmUnit
         Try
             If fromGridChild = True Then Exit Sub
             Dim mysqls As New SQLs(dbstring)
-            mysqls.DMLQuery("select idwilayah as id, wilayah as content from wilayah where idcompany=(select top 1 value from sys_appsetting where variable='CompanyID') and isdeleted=0 and idparent='" & sender.EditValue & "'", "propinsi")
+            mysqls.DMLQuery("select idwilayah as id, wilayah as content from wilayah where isdeleted=0 and idparent='" & sender.EditValue & "'", "propinsi")
             luePropinsi.Properties.DataSource = mysqls.dataTable("propinsi")
             luePropinsi.Properties.DisplayMember = "content"
             luePropinsi.Properties.ValueMember = "id"

@@ -6,8 +6,9 @@ Imports System.Management
 Imports System.Net
 Module modCore
 
+    Public isDemo As Integer = 0
     Public timeoutApps As Integer = 180
-    Public siteonline As String = ""
+    'Public siteonline As String = ""
     Public dbonline As String = ""
     Public dblite As String = ""
     Public bClose As Boolean = True
@@ -64,7 +65,7 @@ Module modCore
     Public idproducttype As New List(Of String)
 
     Public idcompanyrefferal As String = "-1"
-    Public idcompanyproduct As String = "-1"
+    'Public idcompanyproduct As String = "-1"
 
     Public formTitle As String = ""
     'Public statData As statusData = statusData.Baru
@@ -82,7 +83,7 @@ Module modCore
 
     Public userid As String = 0
     Public username As String = ""
-    Public userlevelid As String = 0
+    Public userlevelid As String = "0"
     Public userlevel As String = ""
     Public usersuper As Long = 0
     Public userdata As Long = 0
@@ -107,10 +108,21 @@ Module modCore
 
     Public retForm As String = ""
 
+    Public Function ContainsNumber(str As String) As Boolean
+        Dim retval As Boolean = False
+        Const numbers = "0123456789"
+        If str.IndexOfAny(numbers.ToArray) > -1 Then
+            retval = True
+        Else
+            retval = False
+        End If
+        Return retval
+    End Function
+
     Public Sub cetakWristband(data As List(Of String), printername As String)
         If data.Count <> 8 Then Exit Sub
 
-        Dim strdata As String = "^XA^FWR^FO140,1320^BQN,2,5,H,7^FD---*IDREG*^FS^CF0,60^FO190,1470^A0,90,60^FD*HEADER*^FS^CF0,50^FO158,1470^A0,40,40^FD*NORM*^FS^CF0,50^FO158,1880^A0,40,40^FD*TGLLAHIR*^FS^CF0,50^FO120,1470^A0,40,40^FD*NOREG*^FS^FO120,2040^A0,40,40^FD*SEX*^FS^CF0,50^FO80,1880^A0,40,40^FD*UMUR*^FS^CF0,50^FO80,1470^A0,40,40^FD*FOOTER*^FS^CF0,50^XZ"
+        Dim strdata As String = "^XA^FWR^FO140,1300^BQN,2,5,H,7^FD--*IDREG*^FS^CF0,60^FO190,1470^A0,90,60^FD*HEADER*^FS^CF0,50^FO160,1470^A0,40,40^FD*NORM*^FS^CF0,50^FO160,1880^A0,40,40^FD*TGLLAHIR*^FS^CF0,50^FO120,1470^A0,40,40^FD*NOREG*^FS^FO120,2040^A0,40,40^FD*SEX*^FS^CF0,50^FO80,1880^A0,40,40^FD*UMUR*^FS^CF0,50^FO80,1470^A0,40,40^FD*FOOTER*^FS^CF0,50^XZ"
         Dim id As String = data(0)
         strdata = strdata.Replace("*IDREG*", id)
         Dim header As String = data(1)
@@ -148,7 +160,8 @@ Module modCore
         Dim table As DataTable
 
         Try
-            table = Newtonsoft.Json.JsonConvert.DeserializeObject(Of DataTable)(json_result)
+            Dim setting = New Newtonsoft.Json.JsonSerializerSettings With {.Converters = {New TypeInferringDataTableConverter()}}
+            table = Newtonsoft.Json.JsonConvert.DeserializeObject(Of DataTable)(json_result, setting)
             Return table
         Catch ex As Exception
             MsgBox("An exception occured: " & ex.Message)
@@ -156,12 +169,14 @@ Module modCore
     End Function
 
     Public Function getPrinter(param As String)
+        Dim ipaddress As String = "0"
+        ipaddress = getIPAddress(ipaddparam.IP)
         Dim sharename As String = ""
         Dim sqlsp As New SQLs(dbstring)
         Dim fieldp As New List(Of String)
         Dim valuep As New List(Of Object)
-        fieldp.Add("@eventcode")
-        valuep.Add(param)
+        fieldp.AddRange(New String() {"@eventcode", "@ipaddress"})
+        valuep.AddRange(New String() {param, ipaddress})
         sqlsp.CallSP("spGetPrinter", "getp", fieldp, valuep)
         If sqlsp.getDataSet("getp") > 0 Then
             sharename = CStr(sqlsp.getDataSet("getp", 0, "sharename"))
@@ -296,7 +311,7 @@ Module modCore
     'Public Function createDataTable(SourceValue As String, DatatableName As String, ColumnName As List(Of String), ColumnCaption As List(Of String), ColumnType As List(Of Type)) As DataSet
     '    Dim ds As New DataSet
     '    If ColumnName.Count <> ColumnCaption.Count Or ColumnCaption.Count <> ColumnType.Count Or ColumnName.Count <> ColumnType.Count Then
-    '        dizMsgbox("Parameter tidak benar", dizMsgboxStyle.Kesalahan)
+    '        dizMsgbox("Parameter tidak benar", dizMsgboxStyle.Kesalahan, me)
     '    Else
     '        ds = New DataSet
     '        Dim dttbl As New DataTable(DatatableName)
@@ -620,7 +635,7 @@ Module modCore
 
     Public Function getHardwareCode(hardwareid As String, tokenkey1 As String, tokenkey2 As String) As String
         Dim retval As String = ""
-        retval = getGenerateCode(hardwareid, tokenkey1, tokenkey2, 40, getFrom.belakang)
+        retval = getGenerateCode(hardwareid, tokenkey1, tokenkey2, 2000, getFrom.belakang)
         Return retval
     End Function
 
@@ -680,7 +695,11 @@ Module modCore
         'retval = IO.File.ReadAllLines(pathSetting & filename)(0)
 
         Dim myi As New SQLi(dblite)
-        myi.DMLQuery("select databasename || '|' || ipserver || '|' || instance || '|' || port || '|' || schema || '|' || username || '|' || password as dbstring from dbconn where dbtype='SQLS' and dblocation='SERVER'", "getdbstring")
+        If isDemo = 0 Then
+            myi.DMLQuery("select databasename || '|' || ipserver || '|' || instance || '|' || port || '|' || schema || '|' || username || '|' || password as dbstring from dbconn where dbtype='SQLS' and dblocation='SERVER'", "getdbstring")
+        Else
+            myi.DMLQuery("select databasename || '_DEMO|' || ipserver || '|' || instance || '|' || port || '|' || schema || '|' || username || '|' || password as dbstring from dbconn where dbtype='SQLS' and dblocation='SERVER'", "getdbstring")
+        End If
         myi.DMLQuery("select ipserver from dbconn where dbtype='SQLS' and dblocation='SERVER'", "getipsvr")
         If myi.getDataSet("getdbstring") > 0 Then
             dbsvr = myi.getDataSet("getipsvr", 0, "ipserver")
@@ -689,15 +708,28 @@ Module modCore
         Return retval
     End Function
 
-    Public Function readSiteOnline() As String
+    Public Function readSettingOnline() As String
         Dim retval As String = ""
-        Dim myi As New SQLi(dblite)
-        myi.DMLQuery("select siteurl from siteconn order by idsiteconn asc limit 1", "getsite")
-        If myi.getDataSet("getsite") > 0 Then
-            retval = myi.getDataSet("getsite", 0, "siteurl")
+        Dim lite As New SQLi(dblite)
+        lite.DMLQuery("select siteurl from siteconn where active=1 order by idsiteconn desc", "getdbstring")
+        If lite.getDataSet("getdbstring") > 0 Then
+            'mystring = lite.getDataSet("getdbstring", 0, "dbstring")
+            retval = lite.getDataSet("getdbstring", 0, "siteurl")
+            retval = CheckAndRepairValidURL(retval)
         End If
         Return retval
     End Function
+
+
+    'Public Function readSiteOnline() As String
+    '    Dim retval As String = ""
+    '    Dim myi As New SQLi(dblite)
+    '    myi.DMLQuery("select siteurl from siteconn order by idsiteconn asc limit 1", "getsite")
+    '    If myi.getDataSet("getsite") > 0 Then
+    '        retval = myi.getDataSet("getsite", 0, "siteurl")
+    '    End If
+    '    Return retval
+    'End Function
 
     Public Function readSettingFileOnline() As String
         Dim retval As String = ""
@@ -938,6 +970,8 @@ Module modCore
     End Function
 
     Public Function HttpPOSTRequestSelect(ByVal url As String, Optional ByVal mparam As List(Of String) = Nothing, Optional ByVal mvalue As List(Of String) = Nothing) As String
+        System.Net.ServicePointManager.Expect100Continue = False
+
         Dim retval As String = ""
         If mparam IsNot Nothing Then
             If mparam.Count <> mvalue.Count Then
@@ -946,22 +980,50 @@ Module modCore
                 Exit Function
             End If
         End If
-        Using client As New Net.WebClient
-            Dim reqparm As New Specialized.NameValueCollection
+
+        Dim client As New Net.WebClient
+        client.Proxy = Nothing
+        Dim reqparm As New Specialized.NameValueCollection
+        If mparam IsNot Nothing Then
+            For i As Integer = 0 To mparam.Count - 1
+                reqparm.Add(mparam(i), mvalue(i))
+            Next
+        Else
+            reqparm.Add("test", "aaaa")
+        End If
+
+        Dim strdebug As String = "" '"[{"
+        Try
+            client.Headers.Add("user-agent", "Datacube Engine (diznet)")
             If mparam IsNot Nothing Then
                 For i As Integer = 0 To mparam.Count - 1
-                    reqparm.Add(mparam(i), mvalue(i))
-                Next
+                strdebug &= mparam(i) & ":" & mvalue(i)
+                If i <> mparam.Count - 1 Then
+                    strdebug &= vbCrLf
+                End If
+            Next
             End If
+            'strdebug &= "}]"
+            'strdebug = strdebug.Replace("`", Chr(34))
+            'writeLog(strdebug)
+            'writeLog(url)
+            'Clipboard.SetText(strdebug)
             Dim responsebytes As Byte() = client.UploadValues(url, "POST", reqparm)
             Dim responsebody As String = (New Text.UTF8Encoding).GetString(responsebytes) '(New Text.UTF8Encoding).GetString(responsebytes)
-            'MsgBox(responsebody)
+            If responsebody = "" Then writeLog("kosong") Else writeLog(responsebody)
             retval = responsebody
-        End Using
+        Catch ex As Exception
+            'MsgBox(url & vbCrLf & ex.Message)
+            'dizMsgbox(ex.Message, dizMsgboxStyle.Kesalahan)
+            'Environment.Exit(0)
+        End Try
+        client.Dispose()
         Return retval
     End Function
 
     Public Function HttpPOSTRequestInsert(ByVal url As String, Optional ByVal mparam As List(Of String) = Nothing, Optional ByVal mvalue As List(Of String) = Nothing) As String
+        System.Net.ServicePointManager.Expect100Continue = False
+
         Dim retval As String = ""
         If mparam IsNot Nothing Then
             If mparam.Count <> mvalue.Count Then
@@ -970,18 +1032,42 @@ Module modCore
                 Exit Function
             End If
         End If
-        Using client As New Net.WebClient
-            Dim reqparm As New Specialized.NameValueCollection
+        Dim client As New Net.WebClient
+        client.Proxy = Nothing
+        Dim reqparm As New Specialized.NameValueCollection
+        If mparam IsNot Nothing Then
+            For i As Integer = 0 To mparam.Count - 1
+                reqparm.Add(mparam(i), mvalue(i))
+            Next
+        Else
+            reqparm.Add("test", "aaaa")
+        End If
+        Try
+            client.Headers.Add("user-agent", "Datacube Engine (diznet)")
+            Dim strdebug As String = "" ' "[{"
             If mparam IsNot Nothing Then
                 For i As Integer = 0 To mparam.Count - 1
-                    reqparm.Add(mparam(i), mvalue(i))
+                    strdebug &= mparam(i) & ":" & mvalue(i)
+                    If i <> mparam.Count - 1 Then
+                        strdebug &= vbCrLf
+                    End If
                 Next
             End If
+            'strdebug &= "}]"
+            'strdebug = strdebug.Replace("`", Chr(34))
+            'writeLog(strdebug)
+            'writeLog(url)
             Dim responsebytes As Byte() = client.UploadValues(url, "POST", reqparm)
             Dim responsebody As String = (New Text.UTF8Encoding).GetString(responsebytes) '(New Text.UTF8Encoding).GetString(responsebytes)
+            If responsebody = "" Then writeLog("kosong") Else writeLog(responsebody)
             'MsgBox(responsebody)
             retval = responsebody
-        End Using
+        Catch ex As Exception
+            'MsgBox(url & vbCrLf & ex.Message)
+            'dizMsgbox(ex.Message, dizMsgboxStyle.Kesalahan)
+            'Environment.Exit(0)
+        End Try
+        client.Dispose()
         Return retval
     End Function
 
@@ -1634,7 +1720,14 @@ Module modCore
         sqls.DMLQuery("select tt.idtransactiontype,tt.formatstring,tt.formatperiode,tt.positionnumber,tt.digitnumber,u.kode as kodeunit,d.kode as kodedept from transactiontype tt left join unit u on tt.idunit=u.idunit left join department d on tt.iddepartment=d.iddepartment where tt.jenistransaksi='" & jenistransaksi & "' and tt.idunit='" & idunit & "' and tt.iddepartment='" & iddept & "'", "getformat")
 
         Dim idtrans As String = sqls.getDataSet("getformat", 0, "idtransactiontype")
-        Dim formatstr As String = sqls.getDataSet("getformat", 0, "kodeunit") & "/" & sqls.getDataSet("getformat", 0, "kodedept") & "/" & sqls.getDataSet("getformat", 0, "formatstring")
+        Dim formatstr As String = ""
+        If idunit = "" Then
+            formatstr = sqls.getDataSet("getformat", 0, "formatstring")
+        ElseIf idunit <> "" And iddept = "" Then
+            formatstr = sqls.getDataSet("getformat", 0, "kodeunit") & "/" & sqls.getDataSet("getformat", 0, "formatstring")
+        ElseIf idunit <> "" And iddept <> "" Then
+            formatstr = sqls.getDataSet("getformat", 0, "kodeunit") & "/" & sqls.getDataSet("getformat", 0, "kodedept") & "/" & sqls.getDataSet("getformat", 0, "formatstring")
+        End If
         Dim formatperiode As String = sqls.getDataSet("getformat", 0, "formatperiode")
         Dim posnumber As String = sqls.getDataSet("getformat", 0, "positionnumber")
         Dim digitno As String = sqls.getDataSet("getformat", 0, "digitnumber")
@@ -1914,14 +2007,14 @@ Module modCore
         End Try
     End Sub
 
-    Public Sub disposechild(ByVal sender As Object, ByVal e As System.EventArgs)
+    Public Sub disposeChild(ByVal sender As Object, ByVal e As System.EventArgs)
         Try
             coll_child.Remove(CType(sender, Windows.Forms.Form).Name)
         Catch ex As Exception
         End Try
     End Sub
 
-    Public Sub clearchild()
+    Public Sub clearChild()
         coll_child.Clear()
     End Sub
 

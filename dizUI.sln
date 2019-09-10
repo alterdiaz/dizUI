@@ -45,6 +45,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "consoleTest", "consoleTest\
 EndProject
 Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "MigrasiUser", "MigrasiUser\MigrasiUser.vbproj", "{F4B1D447-D792-4611-B0C2-91BD11055092}"
 EndProject
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "GetIDKomputer", "GetIDKomputer\GetIDKomputer.vbproj", "{1B60E742-7BD0-40CF-BB0C-424B98C06F53}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -223,6 +225,14 @@ Global
 		{F4B1D447-D792-4611-B0C2-91BD11055092}.Live|Any CPU.Build.0 = Release|Any CPU
 		{F4B1D447-D792-4611-B0C2-91BD11055092}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F4B1D447-D792-4611-B0C2-91BD11055092}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1B60E742-7BD0-40CF-BB0C-424B98C06F53}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1B60E742-7BD0-40CF-BB0C-424B98C06F53}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1B60E742-7BD0-40CF-BB0C-424B98C06F53}.Demo|Any CPU.ActiveCfg = Debug|Any CPU
+		{1B60E742-7BD0-40CF-BB0C-424B98C06F53}.Demo|Any CPU.Build.0 = Debug|Any CPU
+		{1B60E742-7BD0-40CF-BB0C-424B98C06F53}.Live|Any CPU.ActiveCfg = Release|Any CPU
+		{1B60E742-7BD0-40CF-BB0C-424B98C06F53}.Live|Any CPU.Build.0 = Release|Any CPU
+		{1B60E742-7BD0-40CF-BB0C-424B98C06F53}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1B60E742-7BD0-40CF-BB0C-424B98C06F53}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

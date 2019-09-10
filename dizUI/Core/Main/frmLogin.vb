@@ -22,18 +22,22 @@
         btnOK.DialogResult = DialogResult.None
 
         Dim sqls As New SQLs(dbstring)
-        sqls.DMLQuery("select value from sys_appsetting where variable='ProductVersion'", "cekver")
-        dbstring = readSettingFile()
-        Dim versi As String = sqls.getDataSet("cekver", 0, "value")
-        versi = versi.Replace(".", "")
-        Dim thisversi As String = modCore.productversion
-        thisversi = thisversi.Replace(".", "")
-        If CInt(versi) <> CInt(thisversi) Then
-            statLogin = False
-            lblWarning.Text = "Harap gunakan versi " & sqls.getDataSet("cekver", 0, "value")
-            lblWarning.Visible = True
-            Exit Sub
-        End If
+
+        'If IO.Path.GetFileNameWithoutExtension(Application.ExecutablePath) = "dizUI" Then
+        '    sqls.DMLQuery("select value from sys_appsetting where variable='ProductVersion'", "cekver")
+        '    dbstring = readSettingFile()
+        '    Dim versi As String = sqls.getDataSet("cekver", 0, "value")
+        '    versi = versi.Replace(".", "")
+        '    Dim thisversi As String = modCore.productversion
+        '    thisversi = thisversi.Replace(".", "")
+        '    If CInt(versi) <> CInt(thisversi) Then
+        '        statLogin = False
+        '        lblWarning.Text = "Harap gunakan versi " & sqls.getDataSet("cekver", 0, "value")
+        '        lblWarning.Visible = True
+        '        Exit Sub
+        '    End If
+        'End If
+
         'sqls.DMLQuery("select value from sys_appsetting where variable='LastActive'", "cekval")
         'If sqls.getDataSet("cekval") = 0 Then
         '    statLogin = False

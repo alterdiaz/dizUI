@@ -108,7 +108,8 @@
         End If
         Me.Cursor = Cursors.WaitCursor
         Dim sqls As New SQLs(dbstring)
-        'sqls.DMLQuery("delete from sys_AppFiles", False)
+        sqls.DMLQuery("delete from sys_appfiles", False)
+        sqls.DMLQuery("delete from sys_appversion where appversion='" & versionstr & "'", False)
 
         'Dim img As Image = Nothing
         Dim retval As Boolean = False
@@ -121,13 +122,15 @@
         value.AddRange(New Object() {idtmp, versionstr, versionint, nowTime, nowTime})
 
         dtsql = New dtsetSQLS(dbstring)
-        retval = dtsql.datasetSave("sys_AppVersion", idtmp, field, value, False)
+        retval = dtsql.datasetSave("sys_appversion", idtmp, field, value, False)
 
         field.Clear()
         value.Clear()
 
+        Dim strlbl As String = lblVersion.Text
         field.AddRange(New String() {"idappfiles", "filename", "appversion", "createddate", "postdate", "filebinary"})
         'Dim fs As IO.FileStream
+        Dim counter As Long = 0
         For Each Str As String In lbFilenames.Items
             If Str.ToLower <> IO.Path.GetFileName(Application.ExecutablePath).ToLower Then
                 Try
@@ -137,8 +140,9 @@
                     imgByteArray = Nothing
 
                     Dim fi As New IO.FileInfo(tboPath.Text & Str)
-                    Dim createddate As Date = fi.CreationTime
+                    Dim createddate As Date = System.IO.File.GetLastWriteTime(tboPath.Text & Str)
                     imgByteArray = IO.File.ReadAllBytes(tboPath.Text & Str)
+                    Dim lenfile As Long = imgByteArray.LongLength
                     'fs = Nothing
                     'fs = New IO.FileStream(tboPath.Text & Str, IO.FileMode.Open)
                     'Dim sr As IO.Stream
@@ -150,18 +154,49 @@
                     'img.Save(imgMemoryStream, System.Drawing.Imaging.ImageFormat.Jpeg)
                     'imgByteArray = imgMemoryStream.GetBuffer()
 
-                    value.AddRange(New Object() {idtmp, Str, versionstr, createddate, nowTime, imgByteArray})
-                    retval = dtsql.datasetSave("sys_AppFiles", idtmp, field, value, False)
+                    sqls = New SQLs(dbstring)
+                    If Str.ToLower = "dizui.exe" Then
+                        sqls.DMLQuery("delete from sys_appfiles where filename='dizui.exe'", False)
+                    ElseIf Str.ToLower = "dizuidemo.exe" Then
+                        sqls.DMLQuery("delete from sys_appfiles where filename='dizuidemo.exe'", False)
+                    ElseIf Str.ToLower = "diznotifikasi.exe" Then
+                        sqls.DMLQuery("delete from sys_appfiles where filename='diznotifikasi.exe'", False)
+                    ElseIf Str.ToLower = "dizsetting.exe" Then
+                        sqls.DMLQuery("delete from sys_appfiles where filename='dizsetting.exe'", False)
+                    End If
+                    sqls.DMLQuery("select top 1 convert(varchar,createddate,105)+' '+convert(varchar,createddate,108) as createddate,len(filebinary) as length from sys_appfiles where filename='" & Str & "' order by postdate desc", "cekfiles")
+
+                    Dim excreateddate As Date
+                    Dim exlenfile As Long
+                    If sqls.getDataSet("cekfiles") > 0 Then
+                        excreateddate = Strdatetime2Datetime(sqls.getDataSet("cekfiles", 0, "createddate"))
+                        exlenfile = sqls.getDataSet("cekfiles", 0, "length")
+
+                        'MsgBox(Format(createddate, "dd-MM-yyyy HH:mm:ss") & " " & Format(excreateddate, "dd-MM-yyyy HH:mm:ss") & vbCrLf & lenfile & " " & exlenfile)
+                        If Format(createddate, "dd-MM-yyyy HH:mm:ss") <> Format(excreateddate, "dd-MM-yyyy HH:mm:ss") Then
+                            value.AddRange(New Object() {idtmp, Str, versionstr, createddate, nowTime, imgByteArray})
+                            retval = dtsql.datasetSave("sys_AppFiles", idtmp, field, value, False)
+                        End If
+                    Else
+                        value.AddRange(New Object() {idtmp, Str, versionstr, createddate, nowTime, imgByteArray})
+                        retval = dtsql.datasetSave("sys_AppFiles", idtmp, field, value, False)
+                    End If
+
                     'sqls = New mySQLs(dbstring)
                     'retval = sqls.InsertImage("sys_AppFiles", "filename,appversion,createddate", "'" & Str & "','" & versionstr & "','" & Format(Now, "MM/dd/yyyy HH:mm:ss") & "'", "filebinary", "filebinary", imgByteArray, False)
                     If retval = False Then
-                        MsgBox(Str)
+                        'MsgBox(Str)
                         Exit For
                     End If
-                    Threading.Thread.Sleep(100)
-                    GC.Collect()
                     'fs.Close()
                     'img = Nothing
+
+                    counter += 1
+                    lblVersion.Text = strlbl & " (" & counter & "/" & lbFilenames.Items.Count & ")"
+                    Me.Refresh()
+                    Application.DoEvents()
+                    Threading.Thread.Sleep(100)
+                    GC.Collect()
                 Catch ex As Exception
                 End Try
             End If
@@ -195,11 +230,11 @@
         Dim de As New dizEngine.engine
         dblite = appPath & de.processD("VSnIwDye76lhomWNjDb5gA==")
         dbstring = readSettingFile()
-        Dim mys As New SQLs(dbstring)
-        If mys.checkConnection() = False Then
-            MsgBox("Harap dijalankan di komputer server", MsgBoxStyle.Critical, "Kesalahan")
-            Environment.Exit(0)
-        End If
+        'Dim mys As New SQLs(dbstring)
+        'If mys.checkConnection() = False Then
+        '    MsgBox("Harap dijalankan di komputer server", MsgBoxStyle.Critical, "Kesalahan")
+        '    Environment.Exit(0)
+        'End If
     End Sub
 
     Dim appPath As String = ""
@@ -210,7 +245,7 @@
         'retval = IO.File.ReadAllLines(pathSetting & filename)(0)
 
         Dim myi As New SQLi(dblite)
-        myi.DMLQuery("select databasename || '|' || '127.0.0.1' || '|' || port || '|' || username || '|' || password as dbstring from dbconn where dbtype='SQLS' and dblocation='SERVER'", "getdbstring")
+        myi.DMLQuery("select databasename || '|' || ipserver || '|' || port || '|' || username || '|' || password as dbstring from dbconn where dbtype='SQLS' and dblocation='SERVER'", "getdbstring")
         myi.DMLQuery("select ipserver from dbconn where dbtype='SQLS' and dblocation='SERVER'", "getipsvr")
         If myi.getDataSet("getdbstring") > 0 Then
             dbsvr = myi.getDataSet("getipsvr", 0, "ipserver")

@@ -26,6 +26,7 @@ Partial Class frmSplash
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmSplash))
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
         Me.pbSync = New System.Windows.Forms.PictureBox()
+        Me.lnkTG = New System.Windows.Forms.LinkLabel()
         CType(Me.pbSync, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -37,18 +38,34 @@ Partial Class frmSplash
         '
         Me.pbSync.BackColor = System.Drawing.Color.Transparent
         Me.pbSync.Image = Global.dizUI.My.Resources.Resources.loading2
-        Me.pbSync.Location = New System.Drawing.Point(2, 126)
+        Me.pbSync.Location = New System.Drawing.Point(428, 126)
         Me.pbSync.Margin = New System.Windows.Forms.Padding(4)
         Me.pbSync.Name = "pbSync"
         Me.pbSync.Size = New System.Drawing.Size(30, 30)
         Me.pbSync.TabIndex = 29
         Me.pbSync.TabStop = False
         '
+        'lnkTG
+        '
+        Me.lnkTG.AutoSize = True
+        Me.lnkTG.BackColor = System.Drawing.Color.FromArgb(CType(CType(222, Byte), Integer), CType(CType(222, Byte), Integer), CType(CType(222, Byte), Integer))
+        Me.lnkTG.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lnkTG.LinkBehavior = System.Windows.Forms.LinkBehavior.NeverUnderline
+        Me.lnkTG.LinkColor = System.Drawing.Color.Purple
+        Me.lnkTG.Location = New System.Drawing.Point(273, 7)
+        Me.lnkTG.Margin = New System.Windows.Forms.Padding(2)
+        Me.lnkTG.Name = "lnkTG"
+        Me.lnkTG.Size = New System.Drawing.Size(184, 15)
+        Me.lnkTG.TabIndex = 30
+        Me.lnkTG.TabStop = True
+        Me.lnkTG.Text = "https://t.me/datacube_enterprise"
+        '
         'frmSplash
         '
         Me.BackColor = System.Drawing.Color.Gray
         Me.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.ClientSize = New System.Drawing.Size(464, 162)
+        Me.Controls.Add(Me.lnkTG)
         Me.Controls.Add(Me.pbSync)
         Me.DoubleBuffered = True
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
@@ -61,9 +78,11 @@ Partial Class frmSplash
         Me.TopMost = True
         CType(Me.pbSync, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
+        Me.PerformLayout()
 
     End Sub
     Friend WithEvents tmrClose As System.Windows.Forms.Timer
     Friend WithEvents Timer1 As System.Windows.Forms.Timer
     Friend WithEvents pbSync As System.Windows.Forms.PictureBox
+    Friend WithEvents lnkTG As LinkLabel
 End Class

@@ -172,7 +172,7 @@ Partial Class frmLogin
         Me.tboPassword.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.tboPassword.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.tboPassword.Location = New System.Drawing.Point(86, 58)
-        Me.tboPassword.MaxLength = 10
+        Me.tboPassword.MaxLength = 20
         Me.tboPassword.Name = "tboPassword"
         Me.tboPassword.Size = New System.Drawing.Size(129, 22)
         Me.tboPassword.TabIndex = 2
@@ -185,7 +185,7 @@ Partial Class frmLogin
         Me.tboUsername.CharacterCasing = System.Windows.Forms.CharacterCasing.Lower
         Me.tboUsername.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.tboUsername.Location = New System.Drawing.Point(86, 29)
-        Me.tboUsername.MaxLength = 10
+        Me.tboUsername.MaxLength = 500
         Me.tboUsername.Name = "tboUsername"
         Me.tboUsername.Size = New System.Drawing.Size(129, 22)
         Me.tboUsername.TabIndex = 1

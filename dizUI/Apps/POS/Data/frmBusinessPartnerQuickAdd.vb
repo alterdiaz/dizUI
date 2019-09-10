@@ -148,7 +148,7 @@
         End If
 
         Dim sqls As New SQLs(dbstring)
-        sqls.DMLQuery("select nama from businesspartner where idcompany=(select top 1 value from sys_appsetting where variable='CompanyID') and replace(nama,' ','')='" & teNama.Text.Replace(" ", "") & "' and businesspartnertype='" & lueType.EditValue & "'", "exist")
+        sqls.DMLQuery("select nama from businesspartner where replace(nama,' ','')='" & teNama.Text.Replace(" ", "") & "' and businesspartnertype='" & lueType.EditValue & "'", "exist")
         If sqls.getDataSet("exist") = 0 Then
                 idData = "-1"
             Else

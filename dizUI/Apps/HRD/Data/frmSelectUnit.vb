@@ -27,7 +27,7 @@ Public Class frmSelectUnit
 
     Private Sub loadGrid()
         Dim mysqls As New SQLs(dbstring)
-        mysqls.DMLQuery("select idunit,unit from unit where (idunit<>(select isnull(value,0) from sys_appsetting where variable='IDSystemUnit') and idunit<>(select isnull(value,0) from sys_appsetting where variable='IDVendorUnit')) and idcompany=(select top 1 value from sys_appsetting where variable='CompanyID') and isdeleted=0", "unit")
+        mysqls.DMLQuery("select idunit,unit from unit where (idunit<>(select isnull(value,0) from sys_appsetting where variable='IDSystemUnit') and idunit<>(select isnull(value,0) from sys_appsetting where variable='IDVendorUnit')) and isdeleted=0", "unit")
         gcData.DataSource = mysqls.dataTable("unit")
         gvData.BestFitColumns()
 
@@ -86,14 +86,14 @@ Public Class frmSelectUnit
         If idunit = "" Then
             dizMsgbox("Belum memilih nama", dizMsgboxStyle.Peringatan, Me)
             Exit Sub
-        Else
-            If gvData.RowCount = 1 Then
-                idxFocus = 0
-            End If
-            dr = gvData.GetDataRow(idxFocus)
-            idunit = dr("idunit")
-            Me.Close()
         End If
+
+        If gvData.RowCount = 1 Then
+            idxFocus = 0
+        End If
+        dr = gvData.GetDataRow(idxFocus)
+        idunit = dr("idunit")
+        Me.Close()
     End Sub
 
     Public Sub New()

@@ -135,7 +135,7 @@ Public Class frmKaryawanCuti
         Me.Cursor = Cursors.WaitCursor
 
         Dim mysqls As New SQLs(dbstring)
-        mysqls.DMLQuery("select v.idvacation,convert(varchar,v.vacationdate,105) as vacationdate,v.idreff,s.nama as karyawan,v.kehadiran,hdr.generalcode as stathadir,v.remarks,v.isdeleted,del.generalcode as statdata from vacation v left join staff s on v.idreff=s.idstaff and v.tablereff='KARYAWAN' left join sys_generalcode hdr on v.kehadiran=hdr.idgeneral and hdr.gctype='KEHADIRAN' left join sys_generalcode del on v.isdeleted=del.idgeneral and del.gctype='DELETE' where s.isdeleted=0 and v.idcompany=(select top 1 value from sys_appsetting where variable='CompanyID') and v.tablereff='KARYAWAN' order by s.nama asc,v.vacationdate desc", "kc")
+        mysqls.DMLQuery("select v.idvacation,convert(varchar,v.vacationdate,105) as vacationdate,v.idreff,s.nama as karyawan,v.kehadiran,hdr.generalcode as stathadir,v.remarks,v.isdeleted,del.generalcode as statdata from vacation v left join staff s on v.idreff=s.idstaff and v.tablereff='KARYAWAN' left join sys_generalcode hdr on v.kehadiran=hdr.idgeneral and hdr.gctype='KEHADIRAN' left join sys_generalcode del on v.isdeleted=del.idgeneral and del.gctype='DELETE' where s.isdeleted=0 and v.tablereff='KARYAWAN' order by s.nama asc,v.vacationdate desc", "kc")
         If mysqls.getDataSet("kc") = 0 Then
             gcData.DataSource = Nothing
             gvData.ViewCaption = "Karyawan Cuti"
@@ -150,9 +150,19 @@ Public Class frmKaryawanCuti
     End Sub
 
     Private Sub gvData_FocusedRowChanged(sender As Object, e As FocusedRowChangedEventArgs) Handles gvData.FocusedRowChanged
-        If gvData.FocusedRowHandle < 0 Then
-        Else
-        End If
+        Try
+            Dim dcol As DataRow = gvData.GetDataRow(e.FocusedRowHandle)
+            idData = dcol("idvacation")
+            Dim isdeleted As Long = dcol("isdeleted")
+            If isdeleted = 1 Then
+                btnDelete.Text = "AKTIF"
+            Else
+                btnDelete.Text = "HAPUS"
+            End If
+            btnDelete.Enabled = True
+        Catch ex As Exception
+            btnNew_Click(Me, Nothing)
+        End Try
     End Sub
 
     Private Sub btnExport_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnExport.Click
@@ -304,6 +314,27 @@ Public Class frmKaryawanCuti
         teRemarks.Text = "-"
         lblTanggalAwal.Text = "Tanggal"
         statData = statusData.Baru
+    End Sub
+
+    Private Sub btnDelete_Click(sender As Object, e As EventArgs) Handles btnDelete.Click
+        If idData = "-1" Then
+            dizMsgbox("Belum memilih Data Cuti", dizMsgboxStyle.Peringatan, Me)
+            Exit Sub
+        End If
+        Dim dtsqls As New dtsetSQLS(dbstring)
+        Dim field As New List(Of String)
+        Dim value As New List(Of Object)
+        If btnDelete.Text = "HAPUS" Then
+            field.AddRange(New String() {"idvacation", "isdeleted", "updatedby", "updateddate"})
+            value.AddRange(New Object() {idData, 1, userid, nowTime})
+        ElseIf btnDelete.Text = "AKTIF" Then
+            field.AddRange(New String() {"idvacation", "isdeleted", "updatedby", "updateddate"})
+            value.AddRange(New Object() {idData, 0, userid, nowTime})
+        End If
+        If dtsqls.datasetSave("vacation", idData, field, value, False) Then
+            dizMsgbox("Data tersimpan", dizMsgboxStyle.Info, Me)
+            btnNew_Click(Me, Nothing)
+        End If
     End Sub
 
 End Class

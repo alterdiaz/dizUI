@@ -5,9 +5,10 @@ Imports System.Threading
 Imports System.Management
 Imports System.Net
 Module modCore
-    Public idnotes As New List(Of String)
-    Public idreg As New List(Of String)
-    Public idregi As New List(Of String)
+    'Public idnotes As New List(Of String)
+    'Public idreg As New List(Of String)
+    'Public idregi As New List(Of String)
+    Public idnotif As New List(Of String)
 
     Public timeoutApps As Integer = 180
     Public siteonline As String = ""
@@ -83,7 +84,7 @@ Module modCore
 
     Public userid As String = 0
     Public username As String = ""
-    Public userlevelid As Long = 0
+    Public userlevelid As String = "0"
     Public userlevel As String = ""
     Public usersuper As Long = 0
     Public userdata As Long = 0
@@ -1812,7 +1813,7 @@ Module modCore
 
     Public Sub disposechild(ByVal sender As Object, ByVal e As System.EventArgs)
         Try
-            idreg.Remove(CType(sender, frmInfoboxRegPrepare).getid)
+            idnotif.Remove(CType(sender, frmNotifbox).getid)
             coll_child.Remove(CType(sender, Windows.Forms.Form).Name)
         Catch ex As Exception
         End Try

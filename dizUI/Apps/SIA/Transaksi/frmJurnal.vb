@@ -117,8 +117,8 @@
         Me.Cursor = Cursors.WaitCursor
 
         Dim sqls As New SQLs(dbstring)
-        sqls.DMLQuery("select j.issystem,j.idjurnal,convert(varchar,j.tanggaljurnal,105) +' '+ convert(varchar,j.tanggaljurnal,108) as tanggaljurnal,j.idunique,j.idreff,j.tbreff,j.idcoalama,j.idcoa,l.coa as coalama,c.remarks as rekening,j.nodokumen,j.remarks,isnull(d.jumlahuang,0) as debet, isnull(k.jumlahuang,0) as kredit,j.isdeleted from jurnal j left join coa c on j.idcoa=c.idcoa left join coa l on j.idcoalama=l.idcoa left join (select j.idjurnal,isnull(j.jumlahuang,0) as jumlahuang from jurnal j where j.posisidk=1 and convert(varchar,j.tanggaljurnal,105)='" & Format(CDate(deTanggal.EditValue), "dd-MM-yyyy") & "') d on j.idjurnal=d.idjurnal left join (select j.idjurnal,isnull(j.jumlahuang,0) as jumlahuang from jurnal j where j.posisidk=2 and convert(varchar,j.tanggaljurnal,105)='" & Format(CDate(deTanggal.EditValue), "dd-MM-yyyy") & "') k on j.idjurnal=k.idjurnal where j.tbreff<>'SALDOAWAL" & CDate(deTanggal.EditValue).Year & "' and j.nobukti='" & lueNoBukti.EditValue & "' and convert(varchar,j.tanggaljurnal,105)='" & Format(CDate(deTanggal.EditValue), "dd-MM-yyyy") & "' order by j.tanggaljurnal asc", "data")
-        'sqls.DMLQuery("select j.idjurnal,convert(varchar,j.tanggaljurnal,105) +' '+ convert(varchar,j.tanggaljurnal,108) as tanggaljurnal,j.idunique,j.idreff,j.tbreff,j.idcoalama,j.idcoa,l.coa as coalama,c.remarks as rekening,j.remarks,j.jumlahuang,j.posisidk,gc.generalcode as dk,j.isdeleted from jurnal j left join coa c on j.idcoa=c.idcoa left join coa l on j.idcoalama=l.idcoa left join sys_generalcode gc on j.posisidk=gc.idgeneral and gc.gctype='POSISIDK' where convert(varchar,j.tanggaljurnal,105)='" & Format(CDate(deTanggal.EditValue), "dd-MM-yyyy") & "' order by j.tanggaljurnal asc", "data")
+        sqls.DMLQuery("select j.issystem,j.idjurnal,convert(varchar,j.tanggaljurnal,105) +' '+ convert(varchar,j.tanggaljurnal,108) as tanggaljurnal,j.idreff,j.tablereff,j.idreff2,j.tablereff2,j.idcoalama,j.idcoa,l.coa as coalama,c.remarks as rekening,j.nodokumen,j.remarks,isnull(d.jumlahuang,0) as debet, isnull(k.jumlahuang,0) as kredit,j.isdeleted from jurnal j left join coa c on j.idcoa=c.idcoa left join coa l on j.idcoalama=l.idcoa left join (select j.idjurnal,isnull(j.jumlahuang,0) as jumlahuang from jurnal j where j.posisidk=1 and convert(varchar,j.tanggaljurnal,105)='" & Format(CDate(deTanggal.EditValue), "dd-MM-yyyy") & "') d on j.idjurnal=d.idjurnal left join (select j.idjurnal,isnull(j.jumlahuang,0) as jumlahuang from jurnal j where j.posisidk=2 and convert(varchar,j.tanggaljurnal,105)='" & Format(CDate(deTanggal.EditValue), "dd-MM-yyyy") & "') k on j.idjurnal=k.idjurnal where j.tablereff<>'SALDOAWAL" & CDate(deTanggal.EditValue).Year & "' and j.nobukti='" & lueNoBukti.EditValue & "' and convert(varchar,j.tanggaljurnal,105)='" & Format(CDate(deTanggal.EditValue), "dd-MM-yyyy") & "' order by j.tanggaljurnal asc,j.posisidk asc", "data")
+        'sqls.DMLQuery("select j.idjurnal,convert(varchar,j.tanggaljurnal,105) +' '+ convert(varchar,j.tanggaljurnal,108) as tanggaljurnal,j.idreff,j.tablereff,j.idcoalama,j.idcoa,l.coa as coalama,c.remarks as rekening,j.remarks,j.jumlahuang,j.posisidk,gc.generalcode as dk,j.isdeleted from jurnal j left join coa c on j.idcoa=c.idcoa left join coa l on j.idcoalama=l.idcoa left join sys_generalcode gc on j.posisidk=gc.idgeneral and gc.gctype='POSISIDK' where convert(varchar,j.tanggaljurnal,105)='" & Format(CDate(deTanggal.EditValue), "dd-MM-yyyy") & "' order by j.tanggaljurnal asc", "data")
         gcData.DataSource = sqls.dataTable("data")
         gvData.BestFitColumns()
         gvData.ViewCaption = "Jurnal Tanggal " & Format(CDate(deTanggal.EditValue), "dd-MM-yyyy")
@@ -140,7 +140,7 @@
 
         If sender Is deTanggal Then
             Dim sqls As New SQLs(dbstring)
-            sqls.DMLQuery("select distinct(nobukti) as nobukti from jurnal where tbreff not like 'JUM" & Format(CDate(deTanggal.EditValue), "yyyy") & "%' and tbreff<>'SALDOAWAL" & CDate(deTanggal.EditValue).Year & "' and convert(varchar,tanggaljurnal,105)='" & Format(CDate(deTanggal.EditValue), "dd-MM-yyyy") & "'", "nb")
+            sqls.DMLQuery("select distinct(nobukti) as nobukti from jurnal where tablereff not like 'JUM" & Format(CDate(deTanggal.EditValue), "yyyy") & "%' and tablereff<>'SALDOAWAL" & CDate(deTanggal.EditValue).Year & "' and convert(varchar,tanggaljurnal,105)='" & Format(CDate(deTanggal.EditValue), "dd-MM-yyyy") & "'", "nb")
             lueNoBukti.Properties.DataSource = sqls.dataTable("nb")
             lueNoBukti.Properties.ValueMember = "nobukti"
             lueNoBukti.Properties.DisplayMember = "nobukti"
@@ -234,14 +234,14 @@
             If dr("issystem") = 0 Then
                 If dr("isdeleted") = 1 Then
                     mys = New SQLs(dbstring)
-                    mys.DMLQuery("select * from sys.all_objects o where o.name = '" & dr("tbreff") & "'", "cektbl")
+                    mys.DMLQuery("select * from sys.all_objects o where o.name = '" & dr("tablereff") & "'", "cektbl")
                     If mys.getDataSet("cektbl") > 0 Then
 
                         issuccess = mys.DMLQuery("delete from jurnal where idreff='" & dr("idreff") & "'", False)
-                        issuccess = mys.DMLQuery("delete from " & dr("tbreff").ToString & " where id" & dr("tbreff") & "='" & dr("idreff") & "'", False)
-                        mys.DMLQuery("select dt.id" & dr("tbreff").ToString & " as counter from " & dr("tbreff").ToString.Remove(dr("tbreff").ToString.Length - 2, 2) & " hd inner join " & dr("tbreff").ToString.Remove(dr("tbreff").ToString.Length - 2, 2) & "dt dt on hd.id" & dr("tbreff").ToString.Remove(dr("tbreff").ToString.Length - 2, 2) & "=dt.id" & dr("tbreff").ToString.Remove(dr("tbreff").ToString.Length - 2, 2) & " where hd.idunique='" & dr("idunique") & "'", "cekhd")
+                        issuccess = mys.DMLQuery("delete from " & dr("tablereff").ToString & " where id" & dr("tablereff") & "='" & dr("idreff") & "'", False)
+                        mys.DMLQuery("select dt.id" & dr("tablereff").ToString & " as counter from " & dr("tablereff2") & " hd inner join " & dr("tablereff") & " dt on hd.id" & dr("tablereff2") & "=dt.id" & dr("tablereff2") & " where hd.id" & dr("tablereff2") & "='" & dr("idreff2") & "'", "cekhd")
                         If mys.getDataSet("cekhd") = 0 Then
-                            issuccess = mys.DMLQuery("delete from " & dr("tbreff").ToString.Remove(dr("tbreff").ToString.Length - 2, 2) & " where idunique='" & dr("idunique") & "'", False)
+                            issuccess = mys.DMLQuery("delete from " & dr("tablereff").ToString.Remove(dr("tablereff").ToString.Length - 2, 2) & " where id" & dr("tablereff2") & "='" & dr("idreff2") & "'", False)
                             issuccess = mys.DMLQuery("delete from jurnal where nobukti='" & lueNoBukti.EditValue & "'", False)
                             iskosong = True
                         End If
@@ -273,7 +273,7 @@
         End If
         If issuccess = True Then
             Dim updppp As New SQLs(dbstring)
-            updppp.DMLQuery("select distinct(idreff2) as idreff2,tbreff2 from jurnal where tbreff2='aruspengajuan' and year(tanggaljurnal)='" & nowTime.Year & "'", "jur")
+            updppp.DMLQuery("select distinct(idreff2) as idreff2,tablereff2 from jurnal where tablereff2='aruspengajuan' and year(tanggaljurnal)='" & nowTime.Year & "'", "jur")
             For i As Integer = 0 To updppp.getDataSet("jur") - 1
                 Dim dr As DataRow = updppp.dataTable("jur").Rows(i)
                 updppp.DMLQuery("update jurnal set nobukti=(select noaruspengajuan from aruspengajuan where idaruspengajuan='" & dr("idreff2") & "') where idreff2='" & dr("idreff2") & "'", False)

@@ -175,7 +175,7 @@ Partial Class frmProfile
         '
         'tlpEntry
         '
-        Me.tlpEntry.BackColor = System.Drawing.color.fromargb(240, 240, 240)
+        Me.tlpEntry.BackColor = System.Drawing.Color.FromArgb(CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer))
         Me.tlpEntry.ColumnCount = 3
         Me.tlpEntry.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
         Me.tlpEntry.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 356.0!))
@@ -194,7 +194,6 @@ Partial Class frmProfile
         '
         'xtcProfile
         '
-        Me.xtcProfile.Font = New System.Drawing.Font("Tahoma", 9.0!)
         Me.xtcProfile.Location = New System.Drawing.Point(47, 22)
         Me.xtcProfile.Margin = New System.Windows.Forms.Padding(0)
         Me.xtcProfile.Name = "xtcProfile"
@@ -237,7 +236,7 @@ Partial Class frmProfile
         Me.tlpPengguna.Location = New System.Drawing.Point(0, 0)
         Me.tlpPengguna.Margin = New System.Windows.Forms.Padding(0)
         Me.tlpPengguna.Name = "tlpPengguna"
-        Me.tlpPengguna.RowCount = 11
+        Me.tlpPengguna.RowCount = 10
         Me.tlpPengguna.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
         Me.tlpPengguna.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 24.0!))
         Me.tlpPengguna.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 24.0!))
@@ -246,16 +245,15 @@ Partial Class frmProfile
         Me.tlpPengguna.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 24.0!))
         Me.tlpPengguna.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 24.0!))
         Me.tlpPengguna.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 24.0!))
+        Me.tlpPengguna.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 24.0!))
         Me.tlpPengguna.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
-        Me.tlpPengguna.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
-        Me.tlpPengguna.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
         Me.tlpPengguna.Size = New System.Drawing.Size(350, 272)
         Me.tlpPengguna.TabIndex = 15
         '
         'lueJenis
         '
         Me.lueJenis.Anchor = System.Windows.Forms.AnchorStyles.Left
-        Me.lueJenis.Location = New System.Drawing.Point(145, 82)
+        Me.lueJenis.Location = New System.Drawing.Point(145, 90)
         Me.lueJenis.Margin = New System.Windows.Forms.Padding(0)
         Me.lueJenis.Name = "lueJenis"
         Me.lueJenis.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
@@ -264,7 +262,7 @@ Partial Class frmProfile
         Me.lueJenis.Properties.Appearance.Options.UseFont = True
         Me.lueJenis.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple
         Me.lueJenis.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.lueJenis.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("content", "Jenis", 20, DevExpress.Utils.FormatType.None, "", True, DevExpress.Utils.HorzAlignment.[Default], DevExpress.Data.ColumnSortOrder.Ascending), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id", "ID", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default])})
+        Me.lueJenis.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("content", "Jenis", 20, DevExpress.Utils.FormatType.None, "", True, DevExpress.Utils.HorzAlignment.[Default], DevExpress.Data.ColumnSortOrder.Ascending, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id", "ID", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default], DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default])})
         Me.lueJenis.Properties.NullText = "[Isian belum dipilih]"
         Me.lueJenis.Size = New System.Drawing.Size(146, 20)
         Me.lueJenis.TabIndex = 31
@@ -272,7 +270,7 @@ Partial Class frmProfile
         'teID
         '
         Me.teID.Anchor = System.Windows.Forms.AnchorStyles.Left
-        Me.teID.Location = New System.Drawing.Point(145, 58)
+        Me.teID.Location = New System.Drawing.Point(145, 66)
         Me.teID.Margin = New System.Windows.Forms.Padding(0)
         Me.teID.Name = "teID"
         Me.teID.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[True]
@@ -281,7 +279,7 @@ Partial Class frmProfile
         Me.teID.Properties.Appearance.Options.UseBackColor = True
         Me.teID.Properties.Appearance.Options.UseFont = True
         Me.teID.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple
-        Me.teID.Properties.MaxLength = 300
+        Me.teID.Properties.MaxLength = 200
         Me.teID.Properties.NullText = "[Kosong]"
         Me.teID.Properties.NullValuePrompt = "[Belum Diisi]"
         Me.teID.Properties.Tag = "namalengkap"
@@ -294,7 +292,7 @@ Partial Class frmProfile
         Me.Label2.Anchor = System.Windows.Forms.AnchorStyles.Right
         Me.Label2.AutoSize = True
         Me.Label2.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label2.Location = New System.Drawing.Point(24, 85)
+        Me.Label2.Location = New System.Drawing.Point(24, 93)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(118, 14)
         Me.Label2.TabIndex = 27
@@ -306,7 +304,7 @@ Partial Class frmProfile
         Me.Label1.Anchor = System.Windows.Forms.AnchorStyles.Right
         Me.Label1.AutoSize = True
         Me.Label1.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label1.Location = New System.Drawing.Point(68, 61)
+        Me.Label1.Location = New System.Drawing.Point(68, 69)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(74, 14)
         Me.Label1.TabIndex = 26
@@ -318,7 +316,7 @@ Partial Class frmProfile
         Me.lblAnswer.Anchor = System.Windows.Forms.AnchorStyles.Right
         Me.lblAnswer.AutoSize = True
         Me.lblAnswer.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblAnswer.Location = New System.Drawing.Point(40, 209)
+        Me.lblAnswer.Location = New System.Drawing.Point(40, 213)
         Me.lblAnswer.Name = "lblAnswer"
         Me.lblAnswer.Size = New System.Drawing.Size(102, 14)
         Me.lblAnswer.TabIndex = 8
@@ -330,7 +328,7 @@ Partial Class frmProfile
         Me.lblQuestion.Anchor = System.Windows.Forms.AnchorStyles.Right
         Me.lblQuestion.AutoSize = True
         Me.lblQuestion.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblQuestion.Location = New System.Drawing.Point(32, 181)
+        Me.lblQuestion.Location = New System.Drawing.Point(32, 189)
         Me.lblQuestion.Name = "lblQuestion"
         Me.lblQuestion.Size = New System.Drawing.Size(110, 14)
         Me.lblQuestion.TabIndex = 7
@@ -342,7 +340,7 @@ Partial Class frmProfile
         Me.lblHint.Anchor = System.Windows.Forms.AnchorStyles.Right
         Me.lblHint.AutoSize = True
         Me.lblHint.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblHint.Location = New System.Drawing.Point(113, 157)
+        Me.lblHint.Location = New System.Drawing.Point(113, 165)
         Me.lblHint.Name = "lblHint"
         Me.lblHint.Size = New System.Drawing.Size(29, 14)
         Me.lblHint.TabIndex = 6
@@ -354,7 +352,7 @@ Partial Class frmProfile
         Me.lblHandphone.Anchor = System.Windows.Forms.AnchorStyles.Right
         Me.lblHandphone.AutoSize = True
         Me.lblHandphone.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblHandphone.Location = New System.Drawing.Point(72, 133)
+        Me.lblHandphone.Location = New System.Drawing.Point(72, 141)
         Me.lblHandphone.Name = "lblHandphone"
         Me.lblHandphone.Size = New System.Drawing.Size(70, 14)
         Me.lblHandphone.TabIndex = 5
@@ -366,7 +364,7 @@ Partial Class frmProfile
         Me.lblEmail.Anchor = System.Windows.Forms.AnchorStyles.Right
         Me.lblEmail.AutoSize = True
         Me.lblEmail.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblEmail.Location = New System.Drawing.Point(108, 109)
+        Me.lblEmail.Location = New System.Drawing.Point(108, 117)
         Me.lblEmail.Name = "lblEmail"
         Me.lblEmail.Size = New System.Drawing.Size(34, 14)
         Me.lblEmail.TabIndex = 4
@@ -378,7 +376,7 @@ Partial Class frmProfile
         Me.lblNama.Anchor = System.Windows.Forms.AnchorStyles.Right
         Me.lblNama.AutoSize = True
         Me.lblNama.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblNama.Location = New System.Drawing.Point(55, 37)
+        Me.lblNama.Location = New System.Drawing.Point(55, 45)
         Me.lblNama.Name = "lblNama"
         Me.lblNama.Size = New System.Drawing.Size(87, 14)
         Me.lblNama.TabIndex = 3
@@ -388,7 +386,7 @@ Partial Class frmProfile
         'teRecAns
         '
         Me.teRecAns.Anchor = System.Windows.Forms.AnchorStyles.Left
-        Me.teRecAns.Location = New System.Drawing.Point(145, 206)
+        Me.teRecAns.Location = New System.Drawing.Point(145, 210)
         Me.teRecAns.Margin = New System.Windows.Forms.Padding(0)
         Me.teRecAns.Name = "teRecAns"
         Me.teRecAns.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[True]
@@ -397,6 +395,7 @@ Partial Class frmProfile
         Me.teRecAns.Properties.Appearance.Options.UseBackColor = True
         Me.teRecAns.Properties.Appearance.Options.UseFont = True
         Me.teRecAns.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple
+        Me.teRecAns.Properties.MaxLength = 200
         Me.teRecAns.Properties.NullText = "[Kosong]"
         Me.teRecAns.Properties.NullValuePrompt = "[Belum Diisi]"
         Me.teRecAns.Size = New System.Drawing.Size(187, 20)
@@ -406,7 +405,7 @@ Partial Class frmProfile
         'teNamaLengkap
         '
         Me.teNamaLengkap.Anchor = System.Windows.Forms.AnchorStyles.Left
-        Me.teNamaLengkap.Location = New System.Drawing.Point(145, 34)
+        Me.teNamaLengkap.Location = New System.Drawing.Point(145, 42)
         Me.teNamaLengkap.Margin = New System.Windows.Forms.Padding(0)
         Me.teNamaLengkap.Name = "teNamaLengkap"
         Me.teNamaLengkap.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[True]
@@ -415,6 +414,7 @@ Partial Class frmProfile
         Me.teNamaLengkap.Properties.Appearance.Options.UseBackColor = True
         Me.teNamaLengkap.Properties.Appearance.Options.UseFont = True
         Me.teNamaLengkap.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple
+        Me.teNamaLengkap.Properties.MaxLength = 2000
         Me.teNamaLengkap.Properties.NullText = "[Kosong]"
         Me.teNamaLengkap.Properties.NullValuePrompt = "[Belum Diisi]"
         Me.teNamaLengkap.Size = New System.Drawing.Size(187, 20)
@@ -424,7 +424,7 @@ Partial Class frmProfile
         'teEmail
         '
         Me.teEmail.Anchor = System.Windows.Forms.AnchorStyles.Left
-        Me.teEmail.Location = New System.Drawing.Point(145, 106)
+        Me.teEmail.Location = New System.Drawing.Point(145, 114)
         Me.teEmail.Margin = New System.Windows.Forms.Padding(0)
         Me.teEmail.Name = "teEmail"
         Me.teEmail.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[True]
@@ -433,6 +433,7 @@ Partial Class frmProfile
         Me.teEmail.Properties.Appearance.Options.UseBackColor = True
         Me.teEmail.Properties.Appearance.Options.UseFont = True
         Me.teEmail.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple
+        Me.teEmail.Properties.MaxLength = 100
         Me.teEmail.Properties.NullText = "[Kosong]"
         Me.teEmail.Properties.NullValuePrompt = "[Belum Diisi]"
         Me.teEmail.Size = New System.Drawing.Size(187, 20)
@@ -442,7 +443,7 @@ Partial Class frmProfile
         'teRecQuest
         '
         Me.teRecQuest.Anchor = System.Windows.Forms.AnchorStyles.Left
-        Me.teRecQuest.Location = New System.Drawing.Point(145, 178)
+        Me.teRecQuest.Location = New System.Drawing.Point(145, 186)
         Me.teRecQuest.Margin = New System.Windows.Forms.Padding(0)
         Me.teRecQuest.Name = "teRecQuest"
         Me.teRecQuest.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[True]
@@ -451,6 +452,7 @@ Partial Class frmProfile
         Me.teRecQuest.Properties.Appearance.Options.UseBackColor = True
         Me.teRecQuest.Properties.Appearance.Options.UseFont = True
         Me.teRecQuest.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple
+        Me.teRecQuest.Properties.MaxLength = 200
         Me.teRecQuest.Properties.NullText = "[Kosong]"
         Me.teRecQuest.Properties.NullValuePrompt = "[Belum Diisi]"
         Me.teRecQuest.Size = New System.Drawing.Size(187, 20)
@@ -460,7 +462,7 @@ Partial Class frmProfile
         'teHandphone
         '
         Me.teHandphone.Anchor = System.Windows.Forms.AnchorStyles.Left
-        Me.teHandphone.Location = New System.Drawing.Point(145, 130)
+        Me.teHandphone.Location = New System.Drawing.Point(145, 138)
         Me.teHandphone.Margin = New System.Windows.Forms.Padding(0)
         Me.teHandphone.Name = "teHandphone"
         Me.teHandphone.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[True]
@@ -469,6 +471,7 @@ Partial Class frmProfile
         Me.teHandphone.Properties.Appearance.Options.UseBackColor = True
         Me.teHandphone.Properties.Appearance.Options.UseFont = True
         Me.teHandphone.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple
+        Me.teHandphone.Properties.MaxLength = 20
         Me.teHandphone.Properties.NullText = "[Kosong]"
         Me.teHandphone.Properties.NullValuePrompt = "[Belum Diisi]"
         Me.teHandphone.Size = New System.Drawing.Size(187, 20)
@@ -478,7 +481,7 @@ Partial Class frmProfile
         'teHint
         '
         Me.teHint.Anchor = System.Windows.Forms.AnchorStyles.Left
-        Me.teHint.Location = New System.Drawing.Point(145, 154)
+        Me.teHint.Location = New System.Drawing.Point(145, 162)
         Me.teHint.Margin = New System.Windows.Forms.Padding(0)
         Me.teHint.Name = "teHint"
         Me.teHint.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[True]
@@ -487,6 +490,7 @@ Partial Class frmProfile
         Me.teHint.Properties.Appearance.Options.UseBackColor = True
         Me.teHint.Properties.Appearance.Options.UseFont = True
         Me.teHint.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple
+        Me.teHint.Properties.MaxLength = 200
         Me.teHint.Properties.NullText = "[Kosong]"
         Me.teHint.Properties.NullValuePrompt = "[Belum Diisi]"
         Me.teHint.Size = New System.Drawing.Size(187, 20)
@@ -663,6 +667,7 @@ Partial Class frmProfile
         Me.tePassword.Properties.Appearance.Options.UseBackColor = True
         Me.tePassword.Properties.Appearance.Options.UseFont = True
         Me.tePassword.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple
+        Me.tePassword.Properties.MaxLength = 20
         Me.tePassword.Properties.NullText = "[Kosong]"
         Me.tePassword.Properties.NullValuePrompt = "[Belum Diisi]"
         Me.tePassword.Size = New System.Drawing.Size(187, 20)
@@ -774,7 +779,7 @@ Partial Class frmProfile
         '
         'tlpField
         '
-        Me.tlpField.BackColor = System.Drawing.color.fromargb(240, 240, 240)
+        Me.tlpField.BackColor = System.Drawing.Color.FromArgb(CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer))
         Me.tlpField.ColumnCount = 3
         Me.tlpField.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
         Me.tlpField.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 200.0!))
@@ -913,7 +918,7 @@ Partial Class frmProfile
         '
         'btnSave
         '
-        Me.btnSave.BackColor = System.Drawing.Color.FromArgb(CType(CType(156, Byte), Integer), CType(CType(207, Byte), Integer), CType(CType(49, Byte), Integer))
+        Me.btnSave.BackColor = System.Drawing.Color.green
         Me.btnSave.Dock = System.Windows.Forms.DockStyle.Right
         Me.btnSave.FlatAppearance.BorderSize = 0
         Me.btnSave.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DimGray
@@ -932,7 +937,7 @@ Partial Class frmProfile
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.BackColor = System.Drawing.color.fromargb(240, 240, 240)
+        Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer))
         Me.ClientSize = New System.Drawing.Size(728, 418)
         Me.Controls.Add(Me.tlpForm)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None

@@ -38,6 +38,7 @@ Partial Class frmAuthentication
         Me.tlcAktif = New DevExpress.XtraTreeList.Columns.TreeListColumn()
         Me.lueAktif = New DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit()
         Me.pHeader = New System.Windows.Forms.Panel()
+        Me.btnSalinPermission = New System.Windows.Forms.Button()
         Me.btnNonAktif = New System.Windows.Forms.Button()
         Me.btnAktif = New System.Windows.Forms.Button()
         Me.Label1 = New System.Windows.Forms.Label()
@@ -180,6 +181,9 @@ Partial Class frmAuthentication
         Me.lueLevel.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 9.0!)
         Me.lueLevel.Properties.Appearance.Options.UseBackColor = True
         Me.lueLevel.Properties.Appearance.Options.UseFont = True
+        Me.lueLevel.Properties.AppearanceDropDown.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.lueLevel.Properties.AppearanceDropDown.Options.UseBackColor = True
+        Me.lueLevel.Properties.BestFitMode = DevExpress.XtraEditors.Controls.BestFitMode.BestFitResizePopup
         Me.lueLevel.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple
         Me.lueLevel.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.lueLevel.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("userlevel", "User Level", 20, DevExpress.Utils.FormatType.None, "", True, DevExpress.Utils.HorzAlignment.[Default], DevExpress.Data.ColumnSortOrder.Ascending, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("userdata", "User"), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("assuper", "Super"), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("iduserlevel", "id", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default], DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default])})
@@ -204,6 +208,7 @@ Partial Class frmAuthentication
         Me.tlData.Location = New System.Drawing.Point(6, 30)
         Me.tlData.Margin = New System.Windows.Forms.Padding(0)
         Me.tlData.Name = "tlData"
+        Me.tlData.OptionsView.AnimationType = DevExpress.XtraTreeList.TreeListAnimationType.AnimateAllContent
         Me.tlData.OptionsView.EnableAppearanceEvenRow = True
         Me.tlData.OptionsView.EnableAppearanceOddRow = True
         Me.tlData.OptionsView.ShowIndicator = False
@@ -266,6 +271,7 @@ Partial Class frmAuthentication
         'pHeader
         '
         Me.pHeader.BackColor = System.Drawing.Color.FromArgb(CType(CType(66, Byte), Integer), CType(CType(66, Byte), Integer), CType(CType(66, Byte), Integer))
+        Me.pHeader.Controls.Add(Me.btnSalinPermission)
         Me.pHeader.Controls.Add(Me.btnNonAktif)
         Me.pHeader.Controls.Add(Me.btnAktif)
         Me.pHeader.Controls.Add(Me.Label1)
@@ -279,6 +285,24 @@ Partial Class frmAuthentication
         Me.pHeader.Name = "pHeader"
         Me.pHeader.Size = New System.Drawing.Size(1020, 30)
         Me.pHeader.TabIndex = 4
+        '
+        'btnSalinPermission
+        '
+        Me.btnSalinPermission.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
+        Me.btnSalinPermission.Dock = System.Windows.Forms.DockStyle.Left
+        Me.btnSalinPermission.FlatAppearance.BorderSize = 0
+        Me.btnSalinPermission.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DimGray
+        Me.btnSalinPermission.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DarkGray
+        Me.btnSalinPermission.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnSalinPermission.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnSalinPermission.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.btnSalinPermission.Location = New System.Drawing.Point(0, 0)
+        Me.btnSalinPermission.Name = "btnSalinPermission"
+        Me.btnSalinPermission.Size = New System.Drawing.Size(120, 30)
+        Me.btnSalinPermission.TabIndex = 35
+        Me.btnSalinPermission.Text = "SALIN HAK AKSES"
+        Me.btnSalinPermission.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
+        Me.btnSalinPermission.UseVisualStyleBackColor = True
         '
         'btnNonAktif
         '
@@ -360,7 +384,7 @@ Partial Class frmAuthentication
         '
         'btnSave
         '
-        Me.btnSave.BackColor = System.Drawing.Color.FromArgb(CType(CType(156, Byte), Integer), CType(CType(207, Byte), Integer), CType(CType(49, Byte), Integer))
+        Me.btnSave.BackColor = System.Drawing.Color.Green
         Me.btnSave.Dock = System.Windows.Forms.DockStyle.Right
         Me.btnSave.FlatAppearance.BorderSize = 0
         Me.btnSave.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DimGray
@@ -423,4 +447,5 @@ Partial Class frmAuthentication
     Friend WithEvents pTitle As System.Windows.Forms.Panel
     Friend WithEvents lblTitle As System.Windows.Forms.Label
     Friend WithEvents pExit As System.Windows.Forms.PictureBox
+    Public WithEvents btnSalinPermission As Button
 End Class

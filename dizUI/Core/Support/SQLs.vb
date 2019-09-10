@@ -207,11 +207,14 @@ Public Class SQLs
                 sqlComm.Parameters.Add(ListParameter(p), listType(p)).Value = ListValueParameter(p)
             Next
             sqlAdapt = New System.Data.SqlClient.SqlDataAdapter(sqlComm)
+            Threading.Thread.Sleep(1000)
             If count = 0 Then
                 sqlAdapt.Fill(dtset, TableName)
+                Threading.Thread.Sleep(500)
             Else
                 For i As Integer = 0 To count - 1
                     sqlAdapt.Fill(dtset, TableName)
+                    Threading.Thread.Sleep(500)
                 Next
             End If
             'MsgBox(dtset.Tables(TableName).Rows.Count)
@@ -252,7 +255,7 @@ Public Class SQLs
             Using socket = New Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp)
                 Dim asyncResult As IAsyncResult = socket.BeginConnect(dbServer, dbPort, Nothing, Nothing)
                 result = asyncResult.AsyncWaitHandle.WaitOne(timeout, True)
-                Threading.Thread.Sleep(1000)
+                Threading.Thread.Sleep(100)
                 socket.Close()
             End Using
             dbStat = result
@@ -276,6 +279,28 @@ Public Class SQLs
             Return dbStat
         End Get
     End Property
+
+    Public Overloads Function getData(ByVal TableName As String, ByVal FieldData As String, ByVal FieldSearch As String, ByVal ValueSearch As String, ByVal ShowMsg As Boolean) As Byte()
+        Dim retVal As Byte() = Nothing
+        Try
+            sqlConn.ConnectionString = strConn
+            sqlConn.Open()
+        Catch ex As Exception
+            Return retVal
+            Exit Function
+        End Try
+        Try
+            Dim selectQuery As String = "select " & FieldData & " from " & TableName & " where " & FieldSearch & "='" & ValueSearch & "'"
+
+            sqlComm = New System.Data.SqlClient.SqlCommand(selectQuery, sqlConn)
+            retVal = DirectCast(sqlComm.ExecuteScalar(), Byte())
+            sqlConn.Close()
+        Catch ex As Exception
+            retVal = Nothing
+            'MsgBox(ex.Message, MsgBoxStyle.Critical, "Kesalahan")
+        End Try
+        Return retVal
+    End Function
 
     Private fileByte As Byte()
     Public Overloads Function getFile(TableFile As String, FieldFile As String, ID As String, FieldID As String) As Boolean
@@ -379,6 +404,9 @@ Public Class SQLs
         'End If
         Try
             sqlConn.ConnectionString = strConn
+            If sqlConn.State <> ConnectionState.Closed Then
+                sqlConn.Close()
+            End If
             sqlConn.Open()
         Catch ex As Exception
             'MsgBox(ex.Message, dizMsgboxStyle.Kesalahan, me)
@@ -425,6 +453,9 @@ Public Class SQLs
         'End If
         Try
             sqlConn.ConnectionString = strConn
+            If sqlConn.State <> ConnectionState.Closed Then
+                sqlConn.Close()
+            End If
             sqlConn.Open()
         Catch ex As Exception
             'MsgBox(ex.Message)

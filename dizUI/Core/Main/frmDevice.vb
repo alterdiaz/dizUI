@@ -72,6 +72,10 @@
             dizMsgbox("IP Address tidak valid", dizMsgboxStyle.Kesalahan, Me)
             Exit Sub
         End If
+        If lueJenisDevice.EditValue Is Nothing Then
+            dizMsgbox("Jenis Device tidak valid", dizMsgboxStyle.Kesalahan, Me)
+            Exit Sub
+        End If
         Dim sqls As New dtsetSQLS(dbstring)
         sqls.DMLQuery("select ipaddress from sys_device where device='" & tboDevice.Text & "' and ipaddress='" & ipclient & "' and iddevice<>" & iddevice, "cek")
         If sqls.getDataSetRowCount("cek") > 0 Then
@@ -151,7 +155,7 @@
             sqls.DMLQuery("delete from sys_device where iddevice='" & dcol("iddevice") & "'", False)
             sqls.DMLQuery("delete from devicelokasi where iddevice='" & dcol("iddevice") & "'", False)
 
-            dizMsgbox("Device ini sudah dihapus", dizMsgboxStyle.Info)
+            dizMsgbox("Device ini sudah dihapus", dizMsgboxStyle.Info, me)
 
             btnNew_Click(btnNew, Nothing)
         End If
@@ -174,6 +178,7 @@
         tboDevice.EditValue = Nothing
         tboIPAddress.EditValue = Nothing
         tboShare.EditValue = Nothing
+        lueJenisDevice.EditValue = Nothing
 
         btnNew.Enabled = True
         btnSave.Enabled = True
@@ -195,12 +200,14 @@
             tboDevice.EditValue = Nothing
             tboIPAddress.EditValue = Nothing
             tboShare.EditValue = Nothing
+            lueJenisDevice.EditValue = Nothing
 
             Dim dcol As DataRow = gvData.GetDataRow(e.FocusedRowHandle)
             iddevice = dcol("iddevice")
             tboDevice.Text = dcol("device")
             tboIPAddress.Text = dcol("ipaddress")
             tboShare.Text = dcol("sharename")
+            lueJenisDevice.EditValue = dcol("devicetype")
         Catch ex As Exception
             btnNew_Click(Me, Nothing)
         End Try

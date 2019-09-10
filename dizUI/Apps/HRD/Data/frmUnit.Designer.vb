@@ -152,6 +152,17 @@ Partial Class frmUnit
         Me.GridColumn57 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn58 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn59 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
+        Me.lueJenisCOA = New DevExpress.XtraEditors.LookUpEdit()
+        Me.Label7 = New System.Windows.Forms.Label()
+        Me.slueCOA = New DevExpress.XtraEditors.SearchLookUpEdit()
+        Me.slueCOAView = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn60 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn61 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn62 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.lblJabatan = New System.Windows.Forms.Label()
+        Me.teCOA = New DevExpress.XtraEditors.TextEdit()
+        Me.Label5 = New System.Windows.Forms.Label()
         Me.Panel2 = New System.Windows.Forms.Panel()
         Me.Button1 = New System.Windows.Forms.Button()
         Me.Button2 = New System.Windows.Forms.Button()
@@ -189,17 +200,6 @@ Partial Class frmUnit
         Me.btnDelete = New System.Windows.Forms.Button()
         Me.lblSep5 = New System.Windows.Forms.Label()
         Me.btnPrint = New System.Windows.Forms.Button()
-        Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
-        Me.lueJenisCOA = New DevExpress.XtraEditors.LookUpEdit()
-        Me.Label7 = New System.Windows.Forms.Label()
-        Me.slueCOA = New DevExpress.XtraEditors.SearchLookUpEdit()
-        Me.slueCOAView = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.GridColumn60 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn61 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn62 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.lblJabatan = New System.Windows.Forms.Label()
-        Me.teCOA = New DevExpress.XtraEditors.TextEdit()
-        Me.Label5 = New System.Windows.Forms.Label()
         Me.tlpForm.SuspendLayout()
         Me.pTitle.SuspendLayout()
         CType(Me.pMinimize, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -248,6 +248,11 @@ Partial Class frmUnit
         Me.Panel1.SuspendLayout()
         CType(Me.GridControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.TableLayoutPanel1.SuspendLayout()
+        CType(Me.lueJenisCOA.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.slueCOA.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.slueCOAView, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.teCOA.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel2.SuspendLayout()
         Me.tlpField.SuspendLayout()
         CType(Me.teNPWP.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -260,11 +265,6 @@ Partial Class frmUnit
         CType(Me.gcData, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gvData, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.pHeader.SuspendLayout()
-        Me.TableLayoutPanel1.SuspendLayout()
-        CType(Me.lueJenisCOA.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.slueCOA.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.slueCOAView, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.teCOA.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'tlpForm
@@ -1022,7 +1022,7 @@ Partial Class frmUnit
         '
         'btnSaveAlamat
         '
-        Me.btnSaveAlamat.BackColor = System.Drawing.Color.FromArgb(CType(CType(156, Byte), Integer), CType(CType(207, Byte), Integer), CType(CType(49, Byte), Integer))
+        Me.btnSaveAlamat.BackColor = System.Drawing.Color.Green
         Me.btnSaveAlamat.Dock = System.Windows.Forms.DockStyle.Right
         Me.btnSaveAlamat.FlatAppearance.BorderSize = 0
         Me.btnSaveAlamat.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DimGray
@@ -1339,7 +1339,7 @@ Partial Class frmUnit
         '
         'btnSaveEmail
         '
-        Me.btnSaveEmail.BackColor = System.Drawing.Color.FromArgb(CType(CType(156, Byte), Integer), CType(CType(207, Byte), Integer), CType(CType(49, Byte), Integer))
+        Me.btnSaveEmail.BackColor = System.Drawing.Color.Green
         Me.btnSaveEmail.Dock = System.Windows.Forms.DockStyle.Right
         Me.btnSaveEmail.FlatAppearance.BorderSize = 0
         Me.btnSaveEmail.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DimGray
@@ -1698,7 +1698,7 @@ Partial Class frmUnit
         '
         'btnSaveTelepon
         '
-        Me.btnSaveTelepon.BackColor = System.Drawing.Color.FromArgb(CType(CType(156, Byte), Integer), CType(CType(207, Byte), Integer), CType(CType(49, Byte), Integer))
+        Me.btnSaveTelepon.BackColor = System.Drawing.Color.Green
         Me.btnSaveTelepon.Dock = System.Windows.Forms.DockStyle.Right
         Me.btnSaveTelepon.FlatAppearance.BorderSize = 0
         Me.btnSaveTelepon.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DimGray
@@ -2001,6 +2001,180 @@ Partial Class frmUnit
         Me.GridColumn59.Visible = True
         Me.GridColumn59.VisibleIndex = 8
         '
+        'TableLayoutPanel1
+        '
+        Me.TableLayoutPanel1.AutoSize = True
+        Me.TableLayoutPanel1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
+        Me.TableLayoutPanel1.BackColor = System.Drawing.Color.FromArgb(CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer))
+        Me.TableLayoutPanel1.ColumnCount = 4
+        Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
+        Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 140.0!))
+        Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 440.0!))
+        Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
+        Me.TableLayoutPanel1.Controls.Add(Me.lueJenisCOA, 2, 3)
+        Me.TableLayoutPanel1.Controls.Add(Me.Label7, 1, 3)
+        Me.TableLayoutPanel1.Controls.Add(Me.slueCOA, 2, 1)
+        Me.TableLayoutPanel1.Controls.Add(Me.lblJabatan, 1, 1)
+        Me.TableLayoutPanel1.Controls.Add(Me.teCOA, 2, 2)
+        Me.TableLayoutPanel1.Controls.Add(Me.Label5, 1, 2)
+        Me.TableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Top
+        Me.TableLayoutPanel1.Location = New System.Drawing.Point(0, 0)
+        Me.TableLayoutPanel1.Margin = New System.Windows.Forms.Padding(0)
+        Me.TableLayoutPanel1.Name = "TableLayoutPanel1"
+        Me.TableLayoutPanel1.RowCount = 5
+        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 6.0!))
+        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 24.0!))
+        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 24.0!))
+        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 24.0!))
+        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 6.0!))
+        Me.TableLayoutPanel1.Size = New System.Drawing.Size(780, 84)
+        Me.TableLayoutPanel1.TabIndex = 48
+        '
+        'lueJenisCOA
+        '
+        Me.lueJenisCOA.Anchor = System.Windows.Forms.AnchorStyles.Left
+        Me.lueJenisCOA.Location = New System.Drawing.Point(240, 56)
+        Me.lueJenisCOA.Margin = New System.Windows.Forms.Padding(0)
+        Me.lueJenisCOA.Name = "lueJenisCOA"
+        Me.lueJenisCOA.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[False]
+        Me.lueJenisCOA.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.lueJenisCOA.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 9.0!)
+        Me.lueJenisCOA.Properties.Appearance.Options.UseBackColor = True
+        Me.lueJenisCOA.Properties.Appearance.Options.UseFont = True
+        Me.lueJenisCOA.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple
+        Me.lueJenisCOA.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.lueJenisCOA.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id", "ID", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default], DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("content", "Content")})
+        Me.lueJenisCOA.Properties.NullText = "[Isian belum dipilih]"
+        Me.lueJenisCOA.Properties.NullValuePrompt = "[Isian belum dipilih]"
+        Me.lueJenisCOA.Size = New System.Drawing.Size(150, 20)
+        Me.lueJenisCOA.TabIndex = 50
+        '
+        'Label7
+        '
+        Me.Label7.Anchor = System.Windows.Forms.AnchorStyles.Right
+        Me.Label7.AutoSize = True
+        Me.Label7.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label7.Location = New System.Drawing.Point(140, 59)
+        Me.Label7.Name = "Label7"
+        Me.Label7.Size = New System.Drawing.Size(97, 14)
+        Me.Label7.TabIndex = 35
+        Me.Label7.Text = "Jenis Kode Akun"
+        Me.Label7.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        '
+        'slueCOA
+        '
+        Me.slueCOA.Anchor = System.Windows.Forms.AnchorStyles.Left
+        Me.slueCOA.Location = New System.Drawing.Point(240, 8)
+        Me.slueCOA.Margin = New System.Windows.Forms.Padding(0)
+        Me.slueCOA.Name = "slueCOA"
+        Me.slueCOA.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.slueCOA.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 9.0!)
+        Me.slueCOA.Properties.Appearance.ForeColor = System.Drawing.Color.Black
+        Me.slueCOA.Properties.Appearance.Options.UseBackColor = True
+        Me.slueCOA.Properties.Appearance.Options.UseFont = True
+        Me.slueCOA.Properties.Appearance.Options.UseForeColor = True
+        Me.slueCOA.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple
+        Me.slueCOA.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.slueCOA.Properties.NullText = "[Isian belum dipilih]"
+        Me.slueCOA.Properties.NullValuePrompt = "[Isian belum dipilih]"
+        Me.slueCOA.Properties.PopupBorderStyle = DevExpress.XtraEditors.Controls.PopupBorderStyles.Simple
+        Me.slueCOA.Properties.PopupFindMode = DevExpress.XtraEditors.FindMode.Always
+        Me.slueCOA.Properties.PopupView = Me.slueCOAView
+        Me.slueCOA.Properties.ShowFooter = False
+        Me.slueCOA.Properties.ShowPopupShadow = False
+        Me.slueCOA.Properties.ViewType = DevExpress.XtraEditors.Repository.GridLookUpViewType.GridView
+        Me.slueCOA.Size = New System.Drawing.Size(150, 20)
+        Me.slueCOA.TabIndex = 35
+        '
+        'slueCOAView
+        '
+        Me.slueCOAView.Appearance.EvenRow.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.slueCOAView.Appearance.EvenRow.Options.UseBackColor = True
+        Me.slueCOAView.Appearance.OddRow.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer))
+        Me.slueCOAView.Appearance.OddRow.Options.UseBackColor = True
+        Me.slueCOAView.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn60, Me.GridColumn61, Me.GridColumn62})
+        Me.slueCOAView.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.slueCOAView.Name = "slueCOAView"
+        Me.slueCOAView.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.slueCOAView.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn60
+        '
+        Me.GridColumn60.Caption = "ID"
+        Me.GridColumn60.FieldName = "idcoa"
+        Me.GridColumn60.Name = "GridColumn60"
+        Me.GridColumn60.OptionsColumn.AllowEdit = False
+        Me.GridColumn60.OptionsColumn.ReadOnly = True
+        '
+        'GridColumn61
+        '
+        Me.GridColumn61.Caption = "COA"
+        Me.GridColumn61.FieldName = "coa"
+        Me.GridColumn61.Name = "GridColumn61"
+        Me.GridColumn61.OptionsColumn.AllowEdit = False
+        Me.GridColumn61.OptionsColumn.ReadOnly = True
+        Me.GridColumn61.Visible = True
+        Me.GridColumn61.VisibleIndex = 0
+        '
+        'GridColumn62
+        '
+        Me.GridColumn62.Caption = "Remarks"
+        Me.GridColumn62.FieldName = "remarks"
+        Me.GridColumn62.Name = "GridColumn62"
+        Me.GridColumn62.OptionsColumn.AllowEdit = False
+        Me.GridColumn62.OptionsColumn.ReadOnly = True
+        Me.GridColumn62.Visible = True
+        Me.GridColumn62.VisibleIndex = 1
+        '
+        'lblJabatan
+        '
+        Me.lblJabatan.Anchor = System.Windows.Forms.AnchorStyles.Right
+        Me.lblJabatan.AutoSize = True
+        Me.lblJabatan.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblJabatan.Location = New System.Drawing.Point(148, 11)
+        Me.lblJabatan.Name = "lblJabatan"
+        Me.lblJabatan.Size = New System.Drawing.Size(89, 14)
+        Me.lblJabatan.TabIndex = 9
+        Me.lblJabatan.Text = "Kode Rekening"
+        Me.lblJabatan.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        '
+        'teCOA
+        '
+        Me.teCOA.Anchor = System.Windows.Forms.AnchorStyles.Left
+        Me.teCOA.Location = New System.Drawing.Point(240, 32)
+        Me.teCOA.Margin = New System.Windows.Forms.Padding(0)
+        Me.teCOA.Name = "teCOA"
+        Me.teCOA.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[True]
+        Me.teCOA.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.teCOA.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 9.0!)
+        Me.teCOA.Properties.Appearance.Options.UseBackColor = True
+        Me.teCOA.Properties.Appearance.Options.UseFont = True
+        Me.teCOA.Properties.AppearanceDisabled.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.teCOA.Properties.AppearanceDisabled.Options.UseBackColor = True
+        Me.teCOA.Properties.AppearanceReadOnly.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.teCOA.Properties.AppearanceReadOnly.Options.UseBackColor = True
+        Me.teCOA.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple
+        Me.teCOA.Properties.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
+        Me.teCOA.Properties.MaxLength = 10
+        Me.teCOA.Properties.NullText = "[Belum Diisi]"
+        Me.teCOA.Properties.NullValuePrompt = "[Belum Diisi]"
+        Me.teCOA.Properties.ReadOnly = True
+        Me.teCOA.Size = New System.Drawing.Size(432, 20)
+        Me.teCOA.TabIndex = 29
+        Me.teCOA.Tag = "remarks"
+        '
+        'Label5
+        '
+        Me.Label5.Anchor = System.Windows.Forms.AnchorStyles.Right
+        Me.Label5.AutoSize = True
+        Me.Label5.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label5.Location = New System.Drawing.Point(180, 35)
+        Me.Label5.Name = "Label5"
+        Me.Label5.Size = New System.Drawing.Size(57, 14)
+        Me.Label5.TabIndex = 30
+        Me.Label5.Text = "Rekening"
+        Me.Label5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        '
         'Panel2
         '
         Me.Panel2.BackColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer))
@@ -2034,7 +2208,7 @@ Partial Class frmUnit
         '
         'Button2
         '
-        Me.Button2.BackColor = System.Drawing.Color.FromArgb(CType(CType(156, Byte), Integer), CType(CType(207, Byte), Integer), CType(CType(49, Byte), Integer))
+        Me.Button2.BackColor = System.Drawing.Color.Green
         Me.Button2.Dock = System.Windows.Forms.DockStyle.Right
         Me.Button2.FlatAppearance.BorderSize = 0
         Me.Button2.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DimGray
@@ -2493,7 +2667,7 @@ Partial Class frmUnit
         '
         'btnSave
         '
-        Me.btnSave.BackColor = System.Drawing.Color.FromArgb(CType(CType(156, Byte), Integer), CType(CType(207, Byte), Integer), CType(CType(49, Byte), Integer))
+        Me.btnSave.BackColor = System.Drawing.Color.Green
         Me.btnSave.Dock = System.Windows.Forms.DockStyle.Right
         Me.btnSave.FlatAppearance.BorderSize = 0
         Me.btnSave.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DimGray
@@ -2553,180 +2727,6 @@ Partial Class frmUnit
         Me.btnPrint.Text = "PRINT"
         Me.btnPrint.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
         Me.btnPrint.UseVisualStyleBackColor = True
-        '
-        'TableLayoutPanel1
-        '
-        Me.TableLayoutPanel1.AutoSize = True
-        Me.TableLayoutPanel1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
-        Me.TableLayoutPanel1.BackColor = System.Drawing.Color.FromArgb(CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer))
-        Me.TableLayoutPanel1.ColumnCount = 4
-        Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
-        Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 140.0!))
-        Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 440.0!))
-        Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
-        Me.TableLayoutPanel1.Controls.Add(Me.lueJenisCOA, 2, 3)
-        Me.TableLayoutPanel1.Controls.Add(Me.Label7, 1, 3)
-        Me.TableLayoutPanel1.Controls.Add(Me.slueCOA, 2, 1)
-        Me.TableLayoutPanel1.Controls.Add(Me.lblJabatan, 1, 1)
-        Me.TableLayoutPanel1.Controls.Add(Me.teCOA, 2, 2)
-        Me.TableLayoutPanel1.Controls.Add(Me.Label5, 1, 2)
-        Me.TableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Top
-        Me.TableLayoutPanel1.Location = New System.Drawing.Point(0, 0)
-        Me.TableLayoutPanel1.Margin = New System.Windows.Forms.Padding(0)
-        Me.TableLayoutPanel1.Name = "TableLayoutPanel1"
-        Me.TableLayoutPanel1.RowCount = 5
-        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 6.0!))
-        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 24.0!))
-        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 24.0!))
-        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 24.0!))
-        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 6.0!))
-        Me.TableLayoutPanel1.Size = New System.Drawing.Size(780, 84)
-        Me.TableLayoutPanel1.TabIndex = 48
-        '
-        'lueJenisCOA
-        '
-        Me.lueJenisCOA.Anchor = System.Windows.Forms.AnchorStyles.Left
-        Me.lueJenisCOA.Location = New System.Drawing.Point(240, 56)
-        Me.lueJenisCOA.Margin = New System.Windows.Forms.Padding(0)
-        Me.lueJenisCOA.Name = "lueJenisCOA"
-        Me.lueJenisCOA.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[False]
-        Me.lueJenisCOA.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.lueJenisCOA.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 9.0!)
-        Me.lueJenisCOA.Properties.Appearance.Options.UseBackColor = True
-        Me.lueJenisCOA.Properties.Appearance.Options.UseFont = True
-        Me.lueJenisCOA.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple
-        Me.lueJenisCOA.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.lueJenisCOA.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id", "ID", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default], DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("content", "Content")})
-        Me.lueJenisCOA.Properties.NullText = "[Isian belum dipilih]"
-        Me.lueJenisCOA.Properties.NullValuePrompt = "[Isian belum dipilih]"
-        Me.lueJenisCOA.Size = New System.Drawing.Size(150, 20)
-        Me.lueJenisCOA.TabIndex = 50
-        '
-        'Label7
-        '
-        Me.Label7.Anchor = System.Windows.Forms.AnchorStyles.Right
-        Me.Label7.AutoSize = True
-        Me.Label7.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label7.Location = New System.Drawing.Point(140, 59)
-        Me.Label7.Name = "Label7"
-        Me.Label7.Size = New System.Drawing.Size(97, 14)
-        Me.Label7.TabIndex = 35
-        Me.Label7.Text = "Jenis Kode Akun"
-        Me.Label7.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        '
-        'slueCOA
-        '
-        Me.slueCOA.Anchor = System.Windows.Forms.AnchorStyles.Left
-        Me.slueCOA.Location = New System.Drawing.Point(240, 8)
-        Me.slueCOA.Margin = New System.Windows.Forms.Padding(0)
-        Me.slueCOA.Name = "slueCOA"
-        Me.slueCOA.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.slueCOA.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 9.0!)
-        Me.slueCOA.Properties.Appearance.ForeColor = System.Drawing.Color.Black
-        Me.slueCOA.Properties.Appearance.Options.UseBackColor = True
-        Me.slueCOA.Properties.Appearance.Options.UseFont = True
-        Me.slueCOA.Properties.Appearance.Options.UseForeColor = True
-        Me.slueCOA.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple
-        Me.slueCOA.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.slueCOA.Properties.NullText = "[Isian belum dipilih]"
-        Me.slueCOA.Properties.NullValuePrompt = "[Isian belum dipilih]"
-        Me.slueCOA.Properties.PopupBorderStyle = DevExpress.XtraEditors.Controls.PopupBorderStyles.Simple
-        Me.slueCOA.Properties.PopupFindMode = DevExpress.XtraEditors.FindMode.Always
-        Me.slueCOA.Properties.PopupView = Me.slueCOAView
-        Me.slueCOA.Properties.ShowFooter = False
-        Me.slueCOA.Properties.ShowPopupShadow = False
-        Me.slueCOA.Properties.ViewType = DevExpress.XtraEditors.Repository.GridLookUpViewType.GridView
-        Me.slueCOA.Size = New System.Drawing.Size(150, 20)
-        Me.slueCOA.TabIndex = 35
-        '
-        'slueCOAView
-        '
-        Me.slueCOAView.Appearance.EvenRow.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.slueCOAView.Appearance.EvenRow.Options.UseBackColor = True
-        Me.slueCOAView.Appearance.OddRow.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer))
-        Me.slueCOAView.Appearance.OddRow.Options.UseBackColor = True
-        Me.slueCOAView.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn60, Me.GridColumn61, Me.GridColumn62})
-        Me.slueCOAView.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
-        Me.slueCOAView.Name = "slueCOAView"
-        Me.slueCOAView.OptionsSelection.EnableAppearanceFocusedCell = False
-        Me.slueCOAView.OptionsView.ShowGroupPanel = False
-        '
-        'GridColumn60
-        '
-        Me.GridColumn60.Caption = "ID"
-        Me.GridColumn60.FieldName = "idcoa"
-        Me.GridColumn60.Name = "GridColumn60"
-        Me.GridColumn60.OptionsColumn.AllowEdit = False
-        Me.GridColumn60.OptionsColumn.ReadOnly = True
-        '
-        'GridColumn61
-        '
-        Me.GridColumn61.Caption = "COA"
-        Me.GridColumn61.FieldName = "coa"
-        Me.GridColumn61.Name = "GridColumn61"
-        Me.GridColumn61.OptionsColumn.AllowEdit = False
-        Me.GridColumn61.OptionsColumn.ReadOnly = True
-        Me.GridColumn61.Visible = True
-        Me.GridColumn61.VisibleIndex = 0
-        '
-        'GridColumn62
-        '
-        Me.GridColumn62.Caption = "Remarks"
-        Me.GridColumn62.FieldName = "remarks"
-        Me.GridColumn62.Name = "GridColumn62"
-        Me.GridColumn62.OptionsColumn.AllowEdit = False
-        Me.GridColumn62.OptionsColumn.ReadOnly = True
-        Me.GridColumn62.Visible = True
-        Me.GridColumn62.VisibleIndex = 1
-        '
-        'lblJabatan
-        '
-        Me.lblJabatan.Anchor = System.Windows.Forms.AnchorStyles.Right
-        Me.lblJabatan.AutoSize = True
-        Me.lblJabatan.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblJabatan.Location = New System.Drawing.Point(148, 11)
-        Me.lblJabatan.Name = "lblJabatan"
-        Me.lblJabatan.Size = New System.Drawing.Size(89, 14)
-        Me.lblJabatan.TabIndex = 9
-        Me.lblJabatan.Text = "Kode Rekening"
-        Me.lblJabatan.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        '
-        'teCOA
-        '
-        Me.teCOA.Anchor = System.Windows.Forms.AnchorStyles.Left
-        Me.teCOA.Location = New System.Drawing.Point(240, 32)
-        Me.teCOA.Margin = New System.Windows.Forms.Padding(0)
-        Me.teCOA.Name = "teCOA"
-        Me.teCOA.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[True]
-        Me.teCOA.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.teCOA.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 9.0!)
-        Me.teCOA.Properties.Appearance.Options.UseBackColor = True
-        Me.teCOA.Properties.Appearance.Options.UseFont = True
-        Me.teCOA.Properties.AppearanceDisabled.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.teCOA.Properties.AppearanceDisabled.Options.UseBackColor = True
-        Me.teCOA.Properties.AppearanceReadOnly.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.teCOA.Properties.AppearanceReadOnly.Options.UseBackColor = True
-        Me.teCOA.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple
-        Me.teCOA.Properties.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
-        Me.teCOA.Properties.MaxLength = 10
-        Me.teCOA.Properties.NullText = "[Belum Diisi]"
-        Me.teCOA.Properties.NullValuePrompt = "[Belum Diisi]"
-        Me.teCOA.Properties.ReadOnly = True
-        Me.teCOA.Size = New System.Drawing.Size(432, 20)
-        Me.teCOA.TabIndex = 29
-        Me.teCOA.Tag = "remarks"
-        '
-        'Label5
-        '
-        Me.Label5.Anchor = System.Windows.Forms.AnchorStyles.Right
-        Me.Label5.AutoSize = True
-        Me.Label5.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label5.Location = New System.Drawing.Point(180, 35)
-        Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(57, 14)
-        Me.Label5.TabIndex = 30
-        Me.Label5.Text = "Rekening"
-        Me.Label5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
         'frmUnit
         '
@@ -2794,6 +2794,12 @@ Partial Class frmUnit
         Me.Panel1.PerformLayout()
         CType(Me.GridControl1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.TableLayoutPanel1.ResumeLayout(False)
+        Me.TableLayoutPanel1.PerformLayout()
+        CType(Me.lueJenisCOA.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.slueCOA.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.slueCOAView, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.teCOA.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Panel2.ResumeLayout(False)
         Me.tlpField.ResumeLayout(False)
         Me.tlpField.PerformLayout()
@@ -2807,12 +2813,6 @@ Partial Class frmUnit
         CType(Me.gcData, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.gvData, System.ComponentModel.ISupportInitialize).EndInit()
         Me.pHeader.ResumeLayout(False)
-        Me.TableLayoutPanel1.ResumeLayout(False)
-        Me.TableLayoutPanel1.PerformLayout()
-        CType(Me.lueJenisCOA.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.slueCOA.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.slueCOAView, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.teCOA.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub

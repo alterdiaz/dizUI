@@ -127,8 +127,8 @@ Public Class frmPermintaanBarangReview
     Private statData As statusData = statusData.Baru
     Private idData As String = "-1"
 
-    Private idunit As New List(Of Long)
-    Private iddept As New List(Of Long)
+    Private idunit As New List(Of String)
+    Private iddept As New List(Of String)
     Private Sub btnNew_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
         loadgrid()
         kosongkanIsian(tlpField)
@@ -153,13 +153,7 @@ Public Class frmPermintaanBarangReview
         statData = statusData.Baru
 
         If usersuper = 1 Then
-            Dim iddept As New List(Of String)
-            iddept.AddRange(New String() {"*"})
-            Dim iddeptexcept As New List(Of String)
-            iddeptexcept.AddRange(New String() {55, 57})
-
-            Dim selkary As New frmSelectKaryawan()
-            selkary.deptdeptexcept(iddept, iddeptexcept)
+            Dim selkary As New frmSelectKaryawan2()
             tambahChild(selkary)
             If selkary.ShowDialog() = Windows.Forms.DialogResult.Cancel Then
                 Exit Sub
@@ -220,7 +214,7 @@ Public Class frmPermintaanBarangReview
 
         If retval = True Then
             dizMsgbox("Data telah tersimpan", dizMsgboxStyle.Info, Me)
-            btnNew_Click(Me, Nothing)
+            kosongkan()
         End If
     End Sub
 
@@ -228,9 +222,9 @@ Public Class frmPermintaanBarangReview
         Dim sqls As New SQLs(dbstring)
         Dim dset As New DataSet
         If usersuper = 1 Then
-            sqls.DMLQuery("select t.idtransaksi,t.transaksino,t.remarks,dt.counter as totalitem,dtot.total as totalbarang,c.username as createdby,convert(varchar,t.createddate,105)+' '+convert(varchar,t.createddate,108) as createddate from transaksi t left join sys_user c on t.createdby=c.iduser left join (select idtransaksi,count(idtransaksidt) as counter from transaksidt dt group by idtransaksi) dt on t.idtransaksi=dt.idtransaksi left join (select idtransaksi,sum(qtycharges) as total from transaksidt dt group by idtransaksi) dtot on t.idtransaksi=dtot.idtransaksi where t.transaksitype in (select idtransactiontype from transactiontype where kodetransaksi like 'SPB%') and t.isdeleted=0 and t.transaksistatus=1", "gettotal")
+            sqls.DMLQuery("select t.idtransaksi,t.transaksino,t.remarks,dt.counter as totalitem,dtot.total as totalbarang,c.username as createdby,convert(varchar,t.createddate,105)+' '+convert(varchar,t.createddate,108) as createddate from transaksi t left join sys_user c on t.createdby=c.iduser left join (select idtransaksi,count(idtransaksidt) as counter from transaksidt dt group by idtransaksi) dt on t.idtransaksi=dt.idtransaksi left join (select idtransaksi,sum(qtycharges) as total from transaksidt dt group by idtransaksi) dtot on t.idtransaksi=dtot.idtransaksi where t.transaksitype in (select idtransactiontype from transactiontype where jenistransaksi='Permintaan Barang') and t.isdeleted=0 and t.transaksistatus=1", "gettotal")
         Else
-            sqls.DMLQuery("select t.idtransaksi,t.transaksino,t.remarks,dt.counter as totalitem,dtot.total as totalbarang,c.username as createdby,convert(varchar,t.createddate,105)+' '+convert(varchar,t.createddate,108) as createddate from transaksi t left join sys_user c on t.createdby=c.iduser left join (select idtransaksi,count(idtransaksidt) as counter from transaksidt dt group by idtransaksi) dt on t.idtransaksi=dt.idtransaksi left join (select idtransaksi,sum(qtycharges) as total from transaksidt dt group by idtransaksi) dtot on t.idtransaksi=dtot.idtransaksi where t.transaksitype in (select idtransactiontype from transactiontype where kodetransaksi like '%SPB%' and iddepartment='" & iddept(0) & "' and idunit='" & idunit(0) & "') and t.idcompany=(select [value] from sys_appsetting where [variable]='CompanyID') and t.isdeleted=0 and t.transaksistatus=1", "gettotal")
+            sqls.DMLQuery("select t.idtransaksi,t.transaksino,t.remarks,dt.counter as totalitem,dtot.total as totalbarang,c.username as createdby,convert(varchar,t.createddate,105)+' '+convert(varchar,t.createddate,108) as createddate from transaksi t left join sys_user c on t.createdby=c.iduser left join (select idtransaksi,count(idtransaksidt) as counter from transaksidt dt group by idtransaksi) dt on t.idtransaksi=dt.idtransaksi left join (select idtransaksi,sum(qtycharges) as total from transaksidt dt group by idtransaksi) dtot on t.idtransaksi=dtot.idtransaksi where t.transaksitype in (select idtransactiontype from transactiontype where jenistransaksi='Permintaan Barang' and iddepartment='" & iddept(0) & "' and idunit='" & idunit(0) & "') and t.isdeleted=0 and t.transaksistatus=1", "gettotal")
         End If
         dset = sqls.dataSet
         Dim cari As New frmSearch(dset, "gettotal", "idtransaksi")
@@ -265,8 +259,35 @@ Public Class frmPermintaanBarangReview
         End If
     End Sub
 
-    Declare Function GetDC Lib "user32.dll" (ByVal hwnd As Int32) As Int32
+    Private Sub kosongkan()
+        kosongkangrid()
+        kosongkanIsian(tlpField)
 
+        idData = "-1"
+        isVoid = False
+
+        teKode.Text = ""
+        teUnit.Text = ""
+
+        deTanggal.EditValue = nowTime
+        teNote.Text = ""
+
+        gcData.Enabled = False
+
+        btnSearch.Enabled = True
+        btnSave.Enabled = False
+        btnDelete.Enabled = True
+        btnDelete.Text = "VOID"
+    End Sub
+
+    Private Sub kosongkangrid()
+        Dim sqls As New SQLs(dbstring)
+        sqls.DMLQuery("select i.iditem,i.itemtype,i.idsatuan,gc.generalcode as type,i.kode,i.item,s.satuan,0 as qty,0 as qtylalu,0 as qtyask,'-' as remarks from item i left join sys_generalcode gc on gc.idgeneral=i.itemtype and gc.gctype='ITEMTYPE' left join satuan s on s.idsatuan=i.idsatuan where 1=0", "getnull")
+        dttbl = sqls.dataTable("getnull")
+        gcData.DataSource = dttbl
+    End Sub
+
+    Declare Function GetDC Lib "user32.dll" (ByVal hwnd As Int32) As Int32
     Declare Function ReleaseDC Lib "user32.dll" (ByVal hwnd As Int32, ByVal hdc As Int32) As Int32
 
     Private Sub btnDelete_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnDelete.Click

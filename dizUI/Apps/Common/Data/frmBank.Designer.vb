@@ -178,16 +178,16 @@ Partial Class frmBank
         'gcData
         '
         Me.gcData.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.gcData.Location = New System.Drawing.Point(0, 101)
+        Me.gcData.Location = New System.Drawing.Point(0, 90)
         Me.gcData.MainView = Me.gvData
         Me.gcData.Name = "gcData"
-        Me.gcData.Size = New System.Drawing.Size(786, 277)
+        Me.gcData.Size = New System.Drawing.Size(786, 288)
         Me.gcData.TabIndex = 8
         Me.gcData.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gvData})
         '
         'gvData
         '
-        Me.gvData.Appearance.Empty.BackColor = System.Drawing.color.fromargb(240, 240, 240)
+        Me.gvData.Appearance.Empty.BackColor = System.Drawing.Color.FromArgb(CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer))
         Me.gvData.Appearance.Empty.Options.UseBackColor = True
         Me.gvData.Appearance.EvenRow.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(192, Byte), Integer))
         Me.gvData.Appearance.EvenRow.Options.UseBackColor = True
@@ -303,7 +303,9 @@ Partial Class frmBank
         '
         'tlpField
         '
-        Me.tlpField.BackColor = System.Drawing.color.fromargb(240, 240, 240)
+        Me.tlpField.AutoSize = True
+        Me.tlpField.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
+        Me.tlpField.BackColor = System.Drawing.Color.FromArgb(CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer))
         Me.tlpField.ColumnCount = 6
         Me.tlpField.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
         Me.tlpField.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100.0!))
@@ -324,17 +326,17 @@ Partial Class frmBank
         Me.tlpField.Location = New System.Drawing.Point(0, 30)
         Me.tlpField.Name = "tlpField"
         Me.tlpField.RowCount = 4
-        Me.tlpField.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
+        Me.tlpField.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 6.0!))
         Me.tlpField.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 24.0!))
         Me.tlpField.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 24.0!))
-        Me.tlpField.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
-        Me.tlpField.Size = New System.Drawing.Size(786, 71)
+        Me.tlpField.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 6.0!))
+        Me.tlpField.Size = New System.Drawing.Size(786, 60)
         Me.tlpField.TabIndex = 7
         '
         'slueCOA
         '
         Me.slueCOA.Anchor = System.Windows.Forms.AnchorStyles.Left
-        Me.slueCOA.Location = New System.Drawing.Point(503, 13)
+        Me.slueCOA.Location = New System.Drawing.Point(503, 8)
         Me.slueCOA.Margin = New System.Windows.Forms.Padding(0)
         Me.slueCOA.Name = "slueCOA"
         Me.slueCOA.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
@@ -349,9 +351,9 @@ Partial Class frmBank
         Me.slueCOA.Properties.NullValuePrompt = "[Isian belum dipilih]"
         Me.slueCOA.Properties.PopupBorderStyle = DevExpress.XtraEditors.Controls.PopupBorderStyles.Simple
         Me.slueCOA.Properties.PopupFindMode = DevExpress.XtraEditors.FindMode.Always
+        Me.slueCOA.Properties.PopupView = Me.slueCOAView
         Me.slueCOA.Properties.ShowFooter = False
         Me.slueCOA.Properties.ShowPopupShadow = False
-        Me.slueCOA.Properties.View = Me.slueCOAView
         Me.slueCOA.Properties.ViewType = DevExpress.XtraEditors.Repository.GridLookUpViewType.GridView
         Me.slueCOA.Size = New System.Drawing.Size(150, 20)
         Me.slueCOA.TabIndex = 24
@@ -403,7 +405,7 @@ Partial Class frmBank
         Me.lblBank.Anchor = System.Windows.Forms.AnchorStyles.Right
         Me.lblBank.AutoSize = True
         Me.lblBank.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblBank.Location = New System.Drawing.Point(197, 16)
+        Me.lblBank.Location = New System.Drawing.Point(197, 11)
         Me.lblBank.Name = "lblBank"
         Me.lblBank.Size = New System.Drawing.Size(33, 14)
         Me.lblBank.TabIndex = 9
@@ -413,7 +415,7 @@ Partial Class frmBank
         'teBank
         '
         Me.teBank.Anchor = System.Windows.Forms.AnchorStyles.Left
-        Me.teBank.Location = New System.Drawing.Point(233, 13)
+        Me.teBank.Location = New System.Drawing.Point(233, 8)
         Me.teBank.Margin = New System.Windows.Forms.Padding(0)
         Me.teBank.Name = "teBank"
         Me.teBank.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[True]
@@ -435,7 +437,7 @@ Partial Class frmBank
         Me.Label1.Anchor = System.Windows.Forms.AnchorStyles.Right
         Me.Label1.AutoSize = True
         Me.Label1.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label1.Location = New System.Drawing.Point(154, 40)
+        Me.Label1.Location = New System.Drawing.Point(154, 35)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(76, 14)
         Me.Label1.TabIndex = 27
@@ -445,7 +447,7 @@ Partial Class frmBank
         'teNoRekening
         '
         Me.teNoRekening.Anchor = System.Windows.Forms.AnchorStyles.Left
-        Me.teNoRekening.Location = New System.Drawing.Point(233, 37)
+        Me.teNoRekening.Location = New System.Drawing.Point(233, 32)
         Me.teNoRekening.Margin = New System.Windows.Forms.Padding(0)
         Me.teNoRekening.Name = "teNoRekening"
         Me.teNoRekening.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[True]
@@ -467,7 +469,7 @@ Partial Class frmBank
         Me.Label2.Anchor = System.Windows.Forms.AnchorStyles.Right
         Me.Label2.AutoSize = True
         Me.Label2.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label2.Location = New System.Drawing.Point(430, 40)
+        Me.Label2.Location = New System.Drawing.Point(430, 35)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(70, 14)
         Me.Label2.TabIndex = 29
@@ -477,7 +479,7 @@ Partial Class frmBank
         'teRemarks
         '
         Me.teRemarks.Anchor = System.Windows.Forms.AnchorStyles.Left
-        Me.teRemarks.Location = New System.Drawing.Point(503, 37)
+        Me.teRemarks.Location = New System.Drawing.Point(503, 32)
         Me.teRemarks.Margin = New System.Windows.Forms.Padding(0)
         Me.teRemarks.Name = "teRemarks"
         Me.teRemarks.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[True]
@@ -498,7 +500,7 @@ Partial Class frmBank
         Me.Label3.Anchor = System.Windows.Forms.AnchorStyles.Right
         Me.Label3.AutoSize = True
         Me.Label3.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label3.Location = New System.Drawing.Point(402, 16)
+        Me.Label3.Location = New System.Drawing.Point(402, 11)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(98, 14)
         Me.Label3.TabIndex = 31
@@ -514,7 +516,7 @@ Partial Class frmBank
         Me.btnClearCOA.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnClearCOA.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnClearCOA.ForeColor = System.Drawing.Color.White
-        Me.btnClearCOA.Location = New System.Drawing.Point(657, 11)
+        Me.btnClearCOA.Location = New System.Drawing.Point(657, 6)
         Me.btnClearCOA.Margin = New System.Windows.Forms.Padding(4, 0, 0, 0)
         Me.btnClearCOA.Name = "btnClearCOA"
         Me.btnClearCOA.Size = New System.Drawing.Size(120, 24)
@@ -555,7 +557,7 @@ Partial Class frmBank
         '
         'btnSave
         '
-        Me.btnSave.BackColor = System.Drawing.Color.FromArgb(CType(CType(156, Byte), Integer), CType(CType(207, Byte), Integer), CType(CType(49, Byte), Integer))
+        Me.btnSave.BackColor = System.Drawing.Color.Green
         Me.btnSave.Dock = System.Windows.Forms.DockStyle.Right
         Me.btnSave.FlatAppearance.BorderSize = 0
         Me.btnSave.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DimGray
@@ -620,7 +622,7 @@ Partial Class frmBank
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.BackColor = System.Drawing.color.fromargb(240, 240, 240)
+        Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer))
         Me.ClientSize = New System.Drawing.Size(790, 408)
         Me.Controls.Add(Me.tlpForm)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
@@ -633,6 +635,7 @@ Partial Class frmBank
         CType(Me.pMaximize, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.pExit, System.ComponentModel.ISupportInitialize).EndInit()
         Me.pBody.ResumeLayout(False)
+        Me.pBody.PerformLayout()
         CType(Me.gcData, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.gvData, System.ComponentModel.ISupportInitialize).EndInit()
         Me.tlpField.ResumeLayout(False)

@@ -76,6 +76,7 @@ Partial Class frmPermintaanBarangNQLMA
         Me.btnCetak = New System.Windows.Forms.Button()
         Me.btnDelete = New System.Windows.Forms.Button()
         Me.lblSep5 = New System.Windows.Forms.Label()
+        Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.tlpForm.SuspendLayout()
         Me.pTitle.SuspendLayout()
         CType(Me.pMinimize, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -244,7 +245,7 @@ Partial Class frmPermintaanBarangNQLMA
         Me.gvData.Appearance.EvenRow.Options.UseBackColor = True
         Me.gvData.Appearance.OddRow.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer))
         Me.gvData.Appearance.OddRow.Options.UseBackColor = True
-        Me.gvData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.gcID, Me.gcitemtype, Me.gcidsatuan, Me.gcType, Me.gcKode, Me.gcNama, Me.gcSatuan, Me.gcQtyLalu, Me.gcQtyAsk, Me.gcQty, Me.GridColumn1})
+        Me.gvData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn2, Me.gcID, Me.gcitemtype, Me.gcidsatuan, Me.gcType, Me.gcKode, Me.gcNama, Me.gcSatuan, Me.gcQtyLalu, Me.gcQtyAsk, Me.gcQty, Me.GridColumn1})
         Me.gvData.GridControl = Me.gcData
         Me.gvData.Name = "gvData"
         Me.gvData.OptionsView.ColumnAutoWidth = False
@@ -491,7 +492,7 @@ Partial Class frmPermintaanBarangNQLMA
         '
         'btnLock
         '
-        Me.btnLock.BackColor = System.Drawing.Color.FromArgb(CType(CType(156, Byte), Integer), CType(CType(207, Byte), Integer), CType(CType(49, Byte), Integer))
+        Me.btnLock.BackColor = System.Drawing.Color.green
         Me.btnLock.FlatAppearance.BorderSize = 0
         Me.btnLock.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DimGray
         Me.btnLock.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DarkGray
@@ -785,7 +786,7 @@ Partial Class frmPermintaanBarangNQLMA
         '
         'btnAllItem
         '
-        Me.btnAllItem.BackColor = System.Drawing.Color.FromArgb(CType(CType(156, Byte), Integer), CType(CType(207, Byte), Integer), CType(CType(49, Byte), Integer))
+        Me.btnAllItem.BackColor = System.Drawing.Color.green
         Me.btnAllItem.Dock = System.Windows.Forms.DockStyle.Left
         Me.btnAllItem.FlatAppearance.BorderSize = 0
         Me.btnAllItem.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DimGray
@@ -802,7 +803,7 @@ Partial Class frmPermintaanBarangNQLMA
         '
         'btnItemSelect
         '
-        Me.btnItemSelect.BackColor = System.Drawing.Color.FromArgb(CType(CType(156, Byte), Integer), CType(CType(207, Byte), Integer), CType(CType(49, Byte), Integer))
+        Me.btnItemSelect.BackColor = System.Drawing.Color.green
         Me.btnItemSelect.Dock = System.Windows.Forms.DockStyle.Right
         Me.btnItemSelect.FlatAppearance.BorderSize = 0
         Me.btnItemSelect.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DimGray
@@ -841,7 +842,7 @@ Partial Class frmPermintaanBarangNQLMA
         Me.btnSearch.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DarkGray
         Me.btnSearch.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnSearch.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnSearch.Location = New System.Drawing.Point(432, 0)
+        Me.btnSearch.Location = New System.Drawing.Point(452, 0)
         Me.btnSearch.Name = "btnSearch"
         Me.btnSearch.Size = New System.Drawing.Size(60, 30)
         Me.btnSearch.TabIndex = 18
@@ -857,7 +858,7 @@ Partial Class frmPermintaanBarangNQLMA
         Me.btnNew.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DarkGray
         Me.btnNew.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnNew.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnNew.Location = New System.Drawing.Point(492, 0)
+        Me.btnNew.Location = New System.Drawing.Point(512, 0)
         Me.btnNew.Name = "btnNew"
         Me.btnNew.Size = New System.Drawing.Size(60, 30)
         Me.btnNew.TabIndex = 17
@@ -867,14 +868,14 @@ Partial Class frmPermintaanBarangNQLMA
         '
         'btnSave
         '
-        Me.btnSave.BackColor = System.Drawing.Color.FromArgb(CType(CType(156, Byte), Integer), CType(CType(207, Byte), Integer), CType(CType(49, Byte), Integer))
+        Me.btnSave.BackColor = System.Drawing.Color.green
         Me.btnSave.Dock = System.Windows.Forms.DockStyle.Right
         Me.btnSave.FlatAppearance.BorderSize = 0
         Me.btnSave.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DimGray
         Me.btnSave.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DarkGray
         Me.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnSave.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnSave.Location = New System.Drawing.Point(552, 0)
+        Me.btnSave.Location = New System.Drawing.Point(572, 0)
         Me.btnSave.Name = "btnSave"
         Me.btnSave.Size = New System.Drawing.Size(80, 30)
         Me.btnSave.TabIndex = 15
@@ -891,11 +892,11 @@ Partial Class frmPermintaanBarangNQLMA
         Me.btnCetak.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DarkGray
         Me.btnCetak.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnCetak.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnCetak.Location = New System.Drawing.Point(632, 0)
+        Me.btnCetak.Location = New System.Drawing.Point(652, 0)
         Me.btnCetak.Name = "btnCetak"
-        Me.btnCetak.Size = New System.Drawing.Size(120, 30)
+        Me.btnCetak.Size = New System.Drawing.Size(100, 30)
         Me.btnCetak.TabIndex = 19
-        Me.btnCetak.Text = "SIMPAN & CETAK"
+        Me.btnCetak.Text = "SIMPAN CETAK"
         Me.btnCetak.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
         Me.btnCetak.UseMnemonic = False
         Me.btnCetak.UseVisualStyleBackColor = False
@@ -929,6 +930,12 @@ Partial Class frmPermintaanBarangNQLMA
         Me.lblSep5.TabIndex = 19
         Me.lblSep5.Text = "|"
         Me.lblSep5.TextAlign = System.Drawing.ContentAlignment.TopCenter
+        '
+        'GridColumn2
+        '
+        Me.GridColumn2.Caption = "idtrans"
+        Me.GridColumn2.FieldName = "idtransaksidt"
+        Me.GridColumn2.Name = "GridColumn2"
         '
         'frmPermintaanBarangNQLMA
         '
@@ -1026,4 +1033,5 @@ Partial Class frmPermintaanBarangNQLMA
     Friend WithEvents gcQtyLalu As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents gcQtyAsk As DevExpress.XtraGrid.Columns.GridColumn
     Public WithEvents btnCetak As Button
+    Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Columns.GridColumn
 End Class

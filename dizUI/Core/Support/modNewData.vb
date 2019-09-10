@@ -24,6 +24,6 @@
     Public tmphardwarecode As String = ""
 
     Public tmpidcompanyrefferal As String = "-1"
-    Public tmpidcompanyproduct As String = "-1"
+    'Public tmpidcompanyproduct As String = "-1"
 
 End Module

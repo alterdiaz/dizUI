@@ -22,11 +22,18 @@ Partial Class frmNewPayment
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Dim EditorButtonImageOptions1 As DevExpress.XtraEditors.Controls.EditorButtonImageOptions = New DevExpress.XtraEditors.Controls.EditorButtonImageOptions()
+        Dim SerializableAppearanceObject1 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
+        Dim SerializableAppearanceObject2 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
+        Dim SerializableAppearanceObject3 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
+        Dim SerializableAppearanceObject4 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
         Me.tlpForm = New System.Windows.Forms.TableLayoutPanel()
         Me.pBody = New System.Windows.Forms.Panel()
         Me.tlpEntry = New System.Windows.Forms.TableLayoutPanel()
         Me.lblInfo = New System.Windows.Forms.Label()
         Me.tlpPengguna = New System.Windows.Forms.TableLayoutPanel()
+        Me.seNominal = New DevExpress.XtraEditors.SpinEdit()
+        Me.Label7 = New System.Windows.Forms.Label()
         Me.tePaymentNo = New DevExpress.XtraEditors.TextEdit()
         Me.Label6 = New System.Windows.Forms.Label()
         Me.tePaket = New DevExpress.XtraEditors.TextEdit()
@@ -56,18 +63,20 @@ Partial Class frmNewPayment
         Me.teVoucher = New DevExpress.XtraEditors.TextEdit()
         Me.Label15 = New System.Windows.Forms.Label()
         Me.Label9 = New System.Windows.Forms.Label()
+        Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.pHeader = New System.Windows.Forms.Panel()
         Me.btnCheckQuota = New System.Windows.Forms.Button()
+        Me.pbSync = New System.Windows.Forms.PictureBox()
         Me.btnHistory = New System.Windows.Forms.Button()
         Me.btnSave = New System.Windows.Forms.Button()
         Me.pTitle = New System.Windows.Forms.Panel()
         Me.lblTitle = New System.Windows.Forms.Label()
-        Me.pbSync = New System.Windows.Forms.PictureBox()
         Me.pExit = New System.Windows.Forms.PictureBox()
         Me.tlpForm.SuspendLayout()
         Me.pBody.SuspendLayout()
         Me.tlpEntry.SuspendLayout()
         Me.tlpPengguna.SuspendLayout()
+        CType(Me.seNominal.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.tePaymentNo.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.tePaket.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.luePaket.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -83,9 +92,10 @@ Partial Class frmNewPayment
         CType(Me.teBank.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.pExist.SuspendLayout()
         CType(Me.teVoucher.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.pHeader.SuspendLayout()
-        Me.pTitle.SuspendLayout()
         CType(Me.pbSync, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.pTitle.SuspendLayout()
         CType(Me.pExit, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -106,23 +116,25 @@ Partial Class frmNewPayment
         Me.tlpForm.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30.0!))
         Me.tlpForm.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
         Me.tlpForm.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 2.0!))
-        Me.tlpForm.Size = New System.Drawing.Size(460, 532)
+        Me.tlpForm.Size = New System.Drawing.Size(720, 540)
         Me.tlpForm.TabIndex = 1
         '
         'pBody
         '
+        Me.pBody.BackColor = System.Drawing.Color.FromArgb(CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer))
         Me.pBody.Controls.Add(Me.tlpEntry)
+        Me.pBody.Controls.Add(Me.PictureBox1)
         Me.pBody.Controls.Add(Me.pHeader)
         Me.pBody.Dock = System.Windows.Forms.DockStyle.Fill
         Me.pBody.Location = New System.Drawing.Point(2, 30)
         Me.pBody.Margin = New System.Windows.Forms.Padding(0)
         Me.pBody.Name = "pBody"
-        Me.pBody.Size = New System.Drawing.Size(456, 500)
+        Me.pBody.Size = New System.Drawing.Size(716, 508)
         Me.pBody.TabIndex = 7
         '
         'tlpEntry
         '
-        Me.tlpEntry.BackColor = System.Drawing.color.fromargb(240, 240, 240)
+        Me.tlpEntry.BackColor = System.Drawing.Color.FromArgb(CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer))
         Me.tlpEntry.ColumnCount = 3
         Me.tlpEntry.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
         Me.tlpEntry.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 400.0!))
@@ -131,16 +143,16 @@ Partial Class frmNewPayment
         Me.tlpEntry.Controls.Add(Me.tlpPengguna, 1, 2)
         Me.tlpEntry.Controls.Add(Me.pExist, 1, 1)
         Me.tlpEntry.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.tlpEntry.Location = New System.Drawing.Point(0, 30)
+        Me.tlpEntry.Location = New System.Drawing.Point(298, 30)
         Me.tlpEntry.Margin = New System.Windows.Forms.Padding(0)
         Me.tlpEntry.Name = "tlpEntry"
         Me.tlpEntry.RowCount = 5
         Me.tlpEntry.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
         Me.tlpEntry.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 80.0!))
-        Me.tlpEntry.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 322.0!))
+        Me.tlpEntry.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 346.0!))
         Me.tlpEntry.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 58.0!))
         Me.tlpEntry.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
-        Me.tlpEntry.Size = New System.Drawing.Size(456, 470)
+        Me.tlpEntry.Size = New System.Drawing.Size(418, 478)
         Me.tlpEntry.TabIndex = 112
         '
         'lblInfo
@@ -149,7 +161,7 @@ Partial Class frmNewPayment
         Me.lblInfo.AutoSize = True
         Me.lblInfo.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblInfo.ForeColor = System.Drawing.Color.Black
-        Me.lblInfo.Location = New System.Drawing.Point(184, 429)
+        Me.lblInfo.Location = New System.Drawing.Point(165, 445)
         Me.lblInfo.Name = "lblInfo"
         Me.lblInfo.Size = New System.Drawing.Size(87, 14)
         Me.lblInfo.TabIndex = 18
@@ -164,6 +176,8 @@ Partial Class frmNewPayment
         Me.tlpPengguna.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 160.0!))
         Me.tlpPengguna.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 220.0!))
         Me.tlpPengguna.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
+        Me.tlpPengguna.Controls.Add(Me.seNominal, 2, 9)
+        Me.tlpPengguna.Controls.Add(Me.Label7, 1, 9)
         Me.tlpPengguna.Controls.Add(Me.tePaymentNo, 2, 1)
         Me.tlpPengguna.Controls.Add(Me.Label6, 1, 1)
         Me.tlpPengguna.Controls.Add(Me.tePaket, 2, 8)
@@ -171,29 +185,30 @@ Partial Class frmNewPayment
         Me.tlpPengguna.Controls.Add(Me.luePaket, 2, 7)
         Me.tlpPengguna.Controls.Add(Me.teHardwareCode, 2, 4)
         Me.tlpPengguna.Controls.Add(Me.Label4, 1, 4)
-        Me.tlpPengguna.Controls.Add(Me.teNama, 2, 11)
-        Me.tlpPengguna.Controls.Add(Me.Label3, 1, 11)
+        Me.tlpPengguna.Controls.Add(Me.teNama, 2, 12)
+        Me.tlpPengguna.Controls.Add(Me.Label3, 1, 12)
         Me.tlpPengguna.Controls.Add(Me.deTanggal, 2, 6)
-        Me.tlpPengguna.Controls.Add(Me.meRemarks, 2, 12)
+        Me.tlpPengguna.Controls.Add(Me.meRemarks, 2, 13)
         Me.tlpPengguna.Controls.Add(Me.teNamaProduk, 2, 3)
         Me.tlpPengguna.Controls.Add(Me.lueRekening, 2, 5)
-        Me.tlpPengguna.Controls.Add(Me.lblAnswer, 1, 12)
+        Me.tlpPengguna.Controls.Add(Me.lblAnswer, 1, 13)
         Me.tlpPengguna.Controls.Add(Me.lblNama, 1, 5)
-        Me.tlpPengguna.Controls.Add(Me.lblHint, 1, 9)
+        Me.tlpPengguna.Controls.Add(Me.lblHint, 1, 10)
         Me.tlpPengguna.Controls.Add(Me.lblHandphone, 1, 7)
         Me.tlpPengguna.Controls.Add(Me.lblEmail, 1, 6)
         Me.tlpPengguna.Controls.Add(Me.teNamaPerusahaan, 2, 2)
-        Me.tlpPengguna.Controls.Add(Me.teNorek, 2, 10)
-        Me.tlpPengguna.Controls.Add(Me.teBank, 2, 9)
+        Me.tlpPengguna.Controls.Add(Me.teNorek, 2, 11)
+        Me.tlpPengguna.Controls.Add(Me.teBank, 2, 10)
         Me.tlpPengguna.Controls.Add(Me.Label1, 1, 2)
         Me.tlpPengguna.Controls.Add(Me.Label2, 1, 3)
-        Me.tlpPengguna.Controls.Add(Me.lblQuestion, 1, 10)
+        Me.tlpPengguna.Controls.Add(Me.lblQuestion, 1, 11)
         Me.tlpPengguna.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.tlpPengguna.Location = New System.Drawing.Point(28, 85)
+        Me.tlpPengguna.Location = New System.Drawing.Point(9, 77)
         Me.tlpPengguna.Margin = New System.Windows.Forms.Padding(0)
         Me.tlpPengguna.Name = "tlpPengguna"
-        Me.tlpPengguna.RowCount = 14
+        Me.tlpPengguna.RowCount = 15
         Me.tlpPengguna.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
+        Me.tlpPengguna.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 24.0!))
         Me.tlpPengguna.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 24.0!))
         Me.tlpPengguna.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 24.0!))
         Me.tlpPengguna.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 24.0!))
@@ -207,8 +222,55 @@ Partial Class frmNewPayment
         Me.tlpPengguna.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 24.0!))
         Me.tlpPengguna.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 48.0!))
         Me.tlpPengguna.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
-        Me.tlpPengguna.Size = New System.Drawing.Size(400, 322)
+        Me.tlpPengguna.Size = New System.Drawing.Size(400, 346)
         Me.tlpPengguna.TabIndex = 114
+        '
+        'seNominal
+        '
+        Me.seNominal.Anchor = System.Windows.Forms.AnchorStyles.Left
+        Me.seNominal.EditValue = New Decimal(New Integer() {0, 0, 0, 0})
+        Me.seNominal.Location = New System.Drawing.Point(170, 199)
+        Me.seNominal.Margin = New System.Windows.Forms.Padding(0)
+        Me.seNominal.Name = "seNominal"
+        Me.seNominal.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[False]
+        Me.seNominal.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.seNominal.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 9.0!)
+        Me.seNominal.Properties.Appearance.Options.UseBackColor = True
+        Me.seNominal.Properties.Appearance.Options.UseFont = True
+        Me.seNominal.Properties.AppearanceDisabled.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.seNominal.Properties.AppearanceDisabled.Font = New System.Drawing.Font("Tahoma", 9.0!)
+        Me.seNominal.Properties.AppearanceDisabled.Options.UseBackColor = True
+        Me.seNominal.Properties.AppearanceDisabled.Options.UseFont = True
+        Me.seNominal.Properties.AppearanceReadOnly.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.seNominal.Properties.AppearanceReadOnly.Font = New System.Drawing.Font("Tahoma", 9.0!)
+        Me.seNominal.Properties.AppearanceReadOnly.Options.UseBackColor = True
+        Me.seNominal.Properties.AppearanceReadOnly.Options.UseFont = True
+        Me.seNominal.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple
+        Me.seNominal.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis, "", -1, True, False, False, EditorButtonImageOptions1, New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject1, SerializableAppearanceObject2, SerializableAppearanceObject3, SerializableAppearanceObject4, "", Nothing, Nothing, DevExpress.Utils.ToolTipAnchor.[Default])})
+        Me.seNominal.Properties.DisplayFormat.FormatString = "n2"
+        Me.seNominal.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.seNominal.Properties.EditFormat.FormatString = "n2"
+        Me.seNominal.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.seNominal.Properties.IsFloatValue = False
+        Me.seNominal.Properties.Mask.EditMask = "N00"
+        Me.seNominal.Properties.MaxLength = 11
+        Me.seNominal.Properties.MaxValue = New Decimal(New Integer() {1215752191, 23, 0, 0})
+        Me.seNominal.Properties.ReadOnly = True
+        Me.seNominal.Size = New System.Drawing.Size(150, 20)
+        Me.seNominal.TabIndex = 52
+        Me.seNominal.Tag = ""
+        '
+        'Label7
+        '
+        Me.Label7.Anchor = System.Windows.Forms.AnchorStyles.Right
+        Me.Label7.AutoSize = True
+        Me.Label7.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label7.Location = New System.Drawing.Point(85, 202)
+        Me.Label7.Name = "Label7"
+        Me.Label7.Size = New System.Drawing.Size(82, 14)
+        Me.Label7.TabIndex = 7
+        Me.Label7.Text = "Nominal Bayar"
+        Me.Label7.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
         'tePaymentNo
         '
@@ -293,7 +355,7 @@ Partial Class frmNewPayment
         Me.luePaket.Properties.Appearance.Options.UseForeColor = True
         Me.luePaket.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple
         Me.luePaket.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.luePaket.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("content", "Content", 20, DevExpress.Utils.FormatType.None, "", True, DevExpress.Utils.HorzAlignment.[Default], DevExpress.Data.ColumnSortOrder.Ascending), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id", "ID", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default])})
+        Me.luePaket.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("content", "Content", 20, DevExpress.Utils.FormatType.None, "", True, DevExpress.Utils.HorzAlignment.[Default], DevExpress.Data.ColumnSortOrder.Ascending, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id", "ID", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default], DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default])})
         Me.luePaket.Properties.NullText = "[Isian belum dipilih]"
         Me.luePaket.Size = New System.Drawing.Size(187, 20)
         Me.luePaket.TabIndex = 10
@@ -336,7 +398,7 @@ Partial Class frmNewPayment
         'teNama
         '
         Me.teNama.Anchor = System.Windows.Forms.AnchorStyles.Left
-        Me.teNama.Location = New System.Drawing.Point(170, 247)
+        Me.teNama.Location = New System.Drawing.Point(170, 271)
         Me.teNama.Margin = New System.Windows.Forms.Padding(0)
         Me.teNama.Name = "teNama"
         Me.teNama.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[True]
@@ -359,7 +421,7 @@ Partial Class frmNewPayment
         Me.Label3.Anchor = System.Windows.Forms.AnchorStyles.Right
         Me.Label3.AutoSize = True
         Me.Label3.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label3.Location = New System.Drawing.Point(26, 250)
+        Me.Label3.Location = New System.Drawing.Point(26, 274)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(141, 14)
         Me.Label3.TabIndex = 20
@@ -379,22 +441,22 @@ Partial Class frmNewPayment
         Me.deTanggal.Properties.Appearance.Options.UseBackColor = True
         Me.deTanggal.Properties.Appearance.Options.UseFont = True
         Me.deTanggal.Properties.Appearance.Options.UseForeColor = True
+        Me.deTanggal.Properties.AppearanceCalendar.DayCellHighlighted.Font = New System.Drawing.Font("Tahoma", 9.0!)
+        Me.deTanggal.Properties.AppearanceCalendar.DayCellHighlighted.Options.UseFont = True
+        Me.deTanggal.Properties.AppearanceCalendar.Header.Font = New System.Drawing.Font("Tahoma", 9.0!)
+        Me.deTanggal.Properties.AppearanceCalendar.Header.Options.UseFont = True
+        Me.deTanggal.Properties.AppearanceCalendar.HeaderHighlighted.Font = New System.Drawing.Font("Tahoma", 9.0!)
+        Me.deTanggal.Properties.AppearanceCalendar.HeaderHighlighted.Options.UseFont = True
+        Me.deTanggal.Properties.AppearanceCalendar.WeekNumber.Font = New System.Drawing.Font("Tahoma", 9.0!)
+        Me.deTanggal.Properties.AppearanceCalendar.WeekNumber.Options.UseFont = True
         Me.deTanggal.Properties.AppearanceDisabled.Font = New System.Drawing.Font("Tahoma", 9.0!)
         Me.deTanggal.Properties.AppearanceDisabled.Options.UseFont = True
         Me.deTanggal.Properties.AppearanceDropDown.Font = New System.Drawing.Font("Tahoma", 9.0!)
         Me.deTanggal.Properties.AppearanceDropDown.Options.UseFont = True
-        Me.deTanggal.Properties.AppearanceDropDownHeader.Font = New System.Drawing.Font("Tahoma", 9.0!)
-        Me.deTanggal.Properties.AppearanceDropDownHeader.Options.UseFont = True
-        Me.deTanggal.Properties.AppearanceDropDownHeaderHighlight.Font = New System.Drawing.Font("Tahoma", 9.0!)
-        Me.deTanggal.Properties.AppearanceDropDownHeaderHighlight.Options.UseFont = True
-        Me.deTanggal.Properties.AppearanceDropDownHighlight.Font = New System.Drawing.Font("Tahoma", 9.0!)
-        Me.deTanggal.Properties.AppearanceDropDownHighlight.Options.UseFont = True
         Me.deTanggal.Properties.AppearanceFocused.Font = New System.Drawing.Font("Tahoma", 9.0!)
         Me.deTanggal.Properties.AppearanceFocused.Options.UseFont = True
         Me.deTanggal.Properties.AppearanceReadOnly.Font = New System.Drawing.Font("Tahoma", 9.0!)
         Me.deTanggal.Properties.AppearanceReadOnly.Options.UseFont = True
-        Me.deTanggal.Properties.AppearanceWeekNumber.Font = New System.Drawing.Font("Tahoma", 9.0!)
-        Me.deTanggal.Properties.AppearanceWeekNumber.Options.UseFont = True
         Me.deTanggal.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple
         Me.deTanggal.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.deTanggal.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
@@ -409,7 +471,7 @@ Partial Class frmNewPayment
         'meRemarks
         '
         Me.meRemarks.Anchor = System.Windows.Forms.AnchorStyles.Left
-        Me.meRemarks.Location = New System.Drawing.Point(170, 269)
+        Me.meRemarks.Location = New System.Drawing.Point(170, 293)
         Me.meRemarks.Margin = New System.Windows.Forms.Padding(0)
         Me.meRemarks.Name = "meRemarks"
         Me.meRemarks.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
@@ -466,7 +528,7 @@ Partial Class frmNewPayment
         Me.lueRekening.Properties.Appearance.Options.UseForeColor = True
         Me.lueRekening.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple
         Me.lueRekening.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.lueRekening.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("content", "Content", 20, DevExpress.Utils.FormatType.None, "", True, DevExpress.Utils.HorzAlignment.[Default], DevExpress.Data.ColumnSortOrder.Ascending), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id", "ID", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default])})
+        Me.lueRekening.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("content", "Content", 20, DevExpress.Utils.FormatType.None, "", True, DevExpress.Utils.HorzAlignment.[Default], DevExpress.Data.ColumnSortOrder.Ascending, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id", "ID", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default], DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default])})
         Me.lueRekening.Properties.NullText = "[Isian belum dipilih]"
         Me.lueRekening.Size = New System.Drawing.Size(218, 20)
         Me.lueRekening.TabIndex = 8
@@ -476,7 +538,7 @@ Partial Class frmNewPayment
         Me.lblAnswer.Anchor = System.Windows.Forms.AnchorStyles.Right
         Me.lblAnswer.AutoSize = True
         Me.lblAnswer.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblAnswer.Location = New System.Drawing.Point(118, 286)
+        Me.lblAnswer.Location = New System.Drawing.Point(118, 310)
         Me.lblAnswer.Name = "lblAnswer"
         Me.lblAnswer.Size = New System.Drawing.Size(49, 14)
         Me.lblAnswer.TabIndex = 8
@@ -500,7 +562,7 @@ Partial Class frmNewPayment
         Me.lblHint.Anchor = System.Windows.Forms.AnchorStyles.Right
         Me.lblHint.AutoSize = True
         Me.lblHint.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblHint.Location = New System.Drawing.Point(50, 202)
+        Me.lblHint.Location = New System.Drawing.Point(50, 226)
         Me.lblHint.Name = "lblHint"
         Me.lblHint.Size = New System.Drawing.Size(117, 14)
         Me.lblHint.TabIndex = 6
@@ -556,7 +618,7 @@ Partial Class frmNewPayment
         'teNorek
         '
         Me.teNorek.Anchor = System.Windows.Forms.AnchorStyles.Left
-        Me.teNorek.Location = New System.Drawing.Point(170, 223)
+        Me.teNorek.Location = New System.Drawing.Point(170, 247)
         Me.teNorek.Margin = New System.Windows.Forms.Padding(0)
         Me.teNorek.Name = "teNorek"
         Me.teNorek.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[True]
@@ -577,7 +639,7 @@ Partial Class frmNewPayment
         'teBank
         '
         Me.teBank.Anchor = System.Windows.Forms.AnchorStyles.Left
-        Me.teBank.Location = New System.Drawing.Point(170, 199)
+        Me.teBank.Location = New System.Drawing.Point(170, 223)
         Me.teBank.Margin = New System.Windows.Forms.Padding(0)
         Me.teBank.Name = "teBank"
         Me.teBank.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[True]
@@ -624,7 +686,7 @@ Partial Class frmNewPayment
         Me.lblQuestion.Anchor = System.Windows.Forms.AnchorStyles.Right
         Me.lblQuestion.AutoSize = True
         Me.lblQuestion.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblQuestion.Location = New System.Drawing.Point(20, 226)
+        Me.lblQuestion.Location = New System.Drawing.Point(20, 250)
         Me.lblQuestion.Name = "lblQuestion"
         Me.lblQuestion.Size = New System.Drawing.Size(147, 14)
         Me.lblQuestion.TabIndex = 7
@@ -638,7 +700,7 @@ Partial Class frmNewPayment
         Me.pExist.Controls.Add(Me.Label15)
         Me.pExist.Controls.Add(Me.Label9)
         Me.pExist.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.pExist.Location = New System.Drawing.Point(28, 5)
+        Me.pExist.Location = New System.Drawing.Point(9, -3)
         Me.pExist.Margin = New System.Windows.Forms.Padding(0)
         Me.pExist.Name = "pExist"
         Me.pExist.Size = New System.Drawing.Size(400, 80)
@@ -646,13 +708,13 @@ Partial Class frmNewPayment
         '
         'btnExistCheck
         '
-        Me.btnExistCheck.BackColor = System.Drawing.Color.FromArgb(CType(CType(156, Byte), Integer), CType(CType(207, Byte), Integer), CType(CType(49, Byte), Integer))
+        Me.btnExistCheck.BackColor = System.Drawing.Color.Green
         Me.btnExistCheck.FlatAppearance.BorderColor = System.Drawing.Color.Black
         Me.btnExistCheck.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DimGray
         Me.btnExistCheck.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DarkGray
         Me.btnExistCheck.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnExistCheck.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnExistCheck.ForeColor = System.Drawing.Color.Black
+        Me.btnExistCheck.ForeColor = System.Drawing.Color.White
         Me.btnExistCheck.Location = New System.Drawing.Point(170, 48)
         Me.btnExistCheck.Name = "btnExistCheck"
         Me.btnExistCheck.Size = New System.Drawing.Size(100, 26)
@@ -706,6 +768,16 @@ Partial Class frmNewPayment
         Me.Label9.Text = "Jika memiliki kode voucher yang masih aktif"
         Me.Label9.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
+        'PictureBox1
+        '
+        Me.PictureBox1.Dock = System.Windows.Forms.DockStyle.Left
+        Me.PictureBox1.Image = Global.dizUI.My.Resources.Resources.Sidebar02
+        Me.PictureBox1.Location = New System.Drawing.Point(0, 30)
+        Me.PictureBox1.Name = "PictureBox1"
+        Me.PictureBox1.Size = New System.Drawing.Size(298, 478)
+        Me.PictureBox1.TabIndex = 115
+        Me.PictureBox1.TabStop = False
+        '
         'pHeader
         '
         Me.pHeader.BackColor = System.Drawing.Color.FromArgb(CType(CType(66, Byte), Integer), CType(CType(66, Byte), Integer), CType(CType(66, Byte), Integer))
@@ -718,20 +790,20 @@ Partial Class frmNewPayment
         Me.pHeader.Location = New System.Drawing.Point(0, 0)
         Me.pHeader.Margin = New System.Windows.Forms.Padding(0)
         Me.pHeader.Name = "pHeader"
-        Me.pHeader.Size = New System.Drawing.Size(456, 30)
+        Me.pHeader.Size = New System.Drawing.Size(716, 30)
         Me.pHeader.TabIndex = 111
         '
         'btnCheckQuota
         '
-        Me.btnCheckQuota.BackColor = System.Drawing.Color.FromArgb(CType(CType(156, Byte), Integer), CType(CType(207, Byte), Integer), CType(CType(49, Byte), Integer))
+        Me.btnCheckQuota.BackColor = System.Drawing.Color.Green
         Me.btnCheckQuota.Dock = System.Windows.Forms.DockStyle.Right
         Me.btnCheckQuota.FlatAppearance.BorderSize = 0
         Me.btnCheckQuota.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DimGray
         Me.btnCheckQuota.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DarkGray
         Me.btnCheckQuota.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnCheckQuota.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnCheckQuota.ForeColor = System.Drawing.Color.Black
-        Me.btnCheckQuota.Location = New System.Drawing.Point(136, 0)
+        Me.btnCheckQuota.ForeColor = System.Drawing.Color.White
+        Me.btnCheckQuota.Location = New System.Drawing.Point(396, 0)
         Me.btnCheckQuota.Name = "btnCheckQuota"
         Me.btnCheckQuota.Size = New System.Drawing.Size(120, 30)
         Me.btnCheckQuota.TabIndex = 29
@@ -739,17 +811,27 @@ Partial Class frmNewPayment
         Me.btnCheckQuota.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
         Me.btnCheckQuota.UseVisualStyleBackColor = False
         '
+        'pbSync
+        '
+        Me.pbSync.Dock = System.Windows.Forms.DockStyle.Left
+        Me.pbSync.Image = Global.dizUI.My.Resources.Resources.loading
+        Me.pbSync.Location = New System.Drawing.Point(0, 0)
+        Me.pbSync.Name = "pbSync"
+        Me.pbSync.Size = New System.Drawing.Size(30, 30)
+        Me.pbSync.TabIndex = 28
+        Me.pbSync.TabStop = False
+        '
         'btnHistory
         '
-        Me.btnHistory.BackColor = System.Drawing.Color.FromArgb(CType(CType(156, Byte), Integer), CType(CType(207, Byte), Integer), CType(CType(49, Byte), Integer))
+        Me.btnHistory.BackColor = System.Drawing.Color.Green
         Me.btnHistory.Dock = System.Windows.Forms.DockStyle.Right
         Me.btnHistory.FlatAppearance.BorderSize = 0
         Me.btnHistory.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DimGray
         Me.btnHistory.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DarkGray
         Me.btnHistory.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnHistory.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnHistory.ForeColor = System.Drawing.Color.Black
-        Me.btnHistory.Location = New System.Drawing.Point(256, 0)
+        Me.btnHistory.ForeColor = System.Drawing.Color.White
+        Me.btnHistory.Location = New System.Drawing.Point(516, 0)
         Me.btnHistory.Name = "btnHistory"
         Me.btnHistory.Size = New System.Drawing.Size(100, 30)
         Me.btnHistory.TabIndex = 16
@@ -759,15 +841,15 @@ Partial Class frmNewPayment
         '
         'btnSave
         '
-        Me.btnSave.BackColor = System.Drawing.Color.FromArgb(CType(CType(156, Byte), Integer), CType(CType(207, Byte), Integer), CType(CType(49, Byte), Integer))
+        Me.btnSave.BackColor = System.Drawing.Color.Green
         Me.btnSave.Dock = System.Windows.Forms.DockStyle.Right
         Me.btnSave.FlatAppearance.BorderSize = 0
         Me.btnSave.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DimGray
         Me.btnSave.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DarkGray
         Me.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnSave.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnSave.ForeColor = System.Drawing.Color.Black
-        Me.btnSave.Location = New System.Drawing.Point(356, 0)
+        Me.btnSave.ForeColor = System.Drawing.Color.White
+        Me.btnSave.Location = New System.Drawing.Point(616, 0)
         Me.btnSave.Name = "btnSave"
         Me.btnSave.Size = New System.Drawing.Size(100, 30)
         Me.btnSave.TabIndex = 1
@@ -783,7 +865,7 @@ Partial Class frmNewPayment
         Me.pTitle.Location = New System.Drawing.Point(2, 0)
         Me.pTitle.Margin = New System.Windows.Forms.Padding(0)
         Me.pTitle.Name = "pTitle"
-        Me.pTitle.Size = New System.Drawing.Size(456, 30)
+        Me.pTitle.Size = New System.Drawing.Size(716, 30)
         Me.pTitle.TabIndex = 8
         '
         'lblTitle
@@ -795,27 +877,17 @@ Partial Class frmNewPayment
         Me.lblTitle.Location = New System.Drawing.Point(0, 0)
         Me.lblTitle.Margin = New System.Windows.Forms.Padding(0)
         Me.lblTitle.Name = "lblTitle"
-        Me.lblTitle.Size = New System.Drawing.Size(426, 30)
+        Me.lblTitle.Size = New System.Drawing.Size(686, 30)
         Me.lblTitle.TabIndex = 6
         Me.lblTitle.Text = "Konfirm Pembayaran"
         Me.lblTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-        '
-        'pbSync
-        '
-        Me.pbSync.Dock = System.Windows.Forms.DockStyle.Left
-        Me.pbSync.Image = Global.dizUI.My.Resources.Resources.loading
-        Me.pbSync.Location = New System.Drawing.Point(0, 0)
-        Me.pbSync.Name = "pbSync"
-        Me.pbSync.Size = New System.Drawing.Size(30, 30)
-        Me.pbSync.TabIndex = 28
-        Me.pbSync.TabStop = False
         '
         'pExit
         '
         Me.pExit.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.pExit.Dock = System.Windows.Forms.DockStyle.Right
         Me.pExit.Image = Global.dizUI.My.Resources.Resources.exit_w
-        Me.pExit.Location = New System.Drawing.Point(426, 0)
+        Me.pExit.Location = New System.Drawing.Point(686, 0)
         Me.pExit.Margin = New System.Windows.Forms.Padding(0)
         Me.pExit.Name = "pExit"
         Me.pExit.Size = New System.Drawing.Size(30, 30)
@@ -827,8 +899,8 @@ Partial Class frmNewPayment
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.BackColor = System.Drawing.color.fromargb(240, 240, 240)
-        Me.ClientSize = New System.Drawing.Size(460, 532)
+        Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer))
+        Me.ClientSize = New System.Drawing.Size(720, 540)
         Me.ControlBox = False
         Me.Controls.Add(Me.tlpForm)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
@@ -843,6 +915,7 @@ Partial Class frmNewPayment
         Me.tlpEntry.PerformLayout()
         Me.tlpPengguna.ResumeLayout(False)
         Me.tlpPengguna.PerformLayout()
+        CType(Me.seNominal.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.tePaymentNo.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.tePaket.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.luePaket.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -859,9 +932,10 @@ Partial Class frmNewPayment
         Me.pExist.ResumeLayout(False)
         Me.pExist.PerformLayout()
         CType(Me.teVoucher.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.pHeader.ResumeLayout(False)
-        Me.pTitle.ResumeLayout(False)
         CType(Me.pbSync, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.pTitle.ResumeLayout(False)
         CType(Me.pExit, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
@@ -908,4 +982,7 @@ Partial Class frmNewPayment
     Friend WithEvents Label6 As System.Windows.Forms.Label
     Friend WithEvents pbSync As System.Windows.Forms.PictureBox
     Public WithEvents btnCheckQuota As System.Windows.Forms.Button
+    Friend WithEvents Label7 As Label
+    Friend WithEvents seNominal As DevExpress.XtraEditors.SpinEdit
+    Friend WithEvents PictureBox1 As PictureBox
 End Class

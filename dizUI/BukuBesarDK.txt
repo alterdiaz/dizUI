@@ -17,17 +17,14 @@ inner join jurnal j on c.idcoa=j.idcoa
 left join ( 
 select j.idjurnal,j.jumlahuang 
 from jurnal j 
-where j.idcompany=(select top 1 value from sys_appsetting where variable='CompanyID') 
-and j.posisidk=1 
+where j.posisidk=1 
 ) d on d.idjurnal=j.idjurnal 
 left join ( 
 select j.idjurnal,j.jumlahuang 
 from jurnal j 
-where j.idcompany=(select top 1 value from sys_appsetting where variable='CompanyID') 
-and j.posisidk=2 
+where j.posisidk=2 
 ) k on k.idjurnal=j.idjurnal 
-where c.idcompany=(select top 1 value from sys_appsetting where variable='CompanyID') 
-and convert(bigint,c.coa) like '*COA*%' 
+where convert(bigint,c.coa) like '*COA*%' 
 and convert(varchar,j.tanggaljurnal,120) like '*TAHUNBULAN*-%' 
 ) a 
 full outer join 
@@ -51,16 +48,14 @@ left join
 (
 select sum(d.jumlahuang) as debet,d.idcoa 
 from jurnal d 
-where d.idcompany=(select top 1 value from sys_appsetting where variable='CompanyID') 
-and d.posisidk=1 and LEFT(CONVERT(VARCHAR, d.tanggaljurnal, 120), 10)>='*TAHUN*-01-01' and LEFT(CONVERT(VARCHAR, d.tanggaljurnal, 120), 10) < '*TAHUNBULAN*-01' 
+where d.posisidk=1 and LEFT(CONVERT(VARCHAR, d.tanggaljurnal, 120), 10)>='*TAHUN*-01-01' and LEFT(CONVERT(VARCHAR, d.tanggaljurnal, 120), 10) < '*TAHUNBULAN*-01' 
 group by d.idcoa
 ) d on c.idcoa=d.idcoa 
 left join 
 (
 select sum(d.jumlahuang) as kredit,d.idcoa 
 from jurnal d 
-where d.idcompany=(select top 1 value from sys_appsetting where variable='CompanyID') 
-and d.posisidk=2 and LEFT(CONVERT(VARCHAR, d.tanggaljurnal, 120), 10)>='*TAHUN*-01-01' and LEFT(CONVERT(VARCHAR, d.tanggaljurnal, 120), 10) < '*TAHUNBULAN*-01' 
+where d.posisidk=2 and LEFT(CONVERT(VARCHAR, d.tanggaljurnal, 120), 10)>='*TAHUN*-01-01' and LEFT(CONVERT(VARCHAR, d.tanggaljurnal, 120), 10) < '*TAHUNBULAN*-01' 
 group by d.idcoa
 ) k on c.idcoa=k.idcoa 
 ) j on convert(bigint,j.coa) like convert(varchar,c.coa) + '%' 

@@ -43,7 +43,6 @@ Partial Class frmJurnalBulanan
         Me.gcRemarks = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemMemoEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit()
         Me.gcDebet = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.gcUnique = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.gcKredit = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.gcSys = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.tlpField = New System.Windows.Forms.TableLayoutPanel()
@@ -156,7 +155,7 @@ Partial Class frmJurnalBulanan
         '
         'pBody
         '
-        Me.pBody.BackColor = System.Drawing.color.fromargb(240, 240, 240)
+        Me.pBody.BackColor = System.Drawing.Color.FromArgb(CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer))
         Me.pBody.Controls.Add(Me.gcData)
         Me.pBody.Controls.Add(Me.tlpField)
         Me.pBody.Controls.Add(Me.pHeader)
@@ -192,7 +191,7 @@ Partial Class frmJurnalBulanan
         '
         'gvData
         '
-        Me.gvData.Appearance.Empty.BackColor = System.Drawing.color.fromargb(240, 240, 240)
+        Me.gvData.Appearance.Empty.BackColor = System.Drawing.Color.FromArgb(CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer))
         Me.gvData.Appearance.Empty.Options.UseBackColor = True
         Me.gvData.Appearance.EvenRow.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(192, Byte), Integer))
         Me.gvData.Appearance.EvenRow.Options.UseBackColor = True
@@ -200,7 +199,7 @@ Partial Class frmJurnalBulanan
         Me.gvData.Appearance.OddRow.Options.UseBackColor = True
         Me.gvData.Appearance.TopNewRow.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
         Me.gvData.Appearance.TopNewRow.Options.UseBackColor = True
-        Me.gvData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.gcID, Me.gcTanggal, Me.gcNoBukti, Me.gcIDReff, Me.gcTBReff, Me.gcIDCOALama, Me.gcIDDK, Me.gcKDCOA, Me.gcRekening, Me.gcRemarks, Me.gcDebet, Me.gcUnique, Me.gcKredit, Me.gcSys})
+        Me.gvData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.gcID, Me.gcTanggal, Me.gcNoBukti, Me.gcIDReff, Me.gcTBReff, Me.gcIDCOALama, Me.gcIDDK, Me.gcKDCOA, Me.gcRekening, Me.gcRemarks, Me.gcDebet, Me.gcKredit, Me.gcSys})
         Me.gvData.GridControl = Me.gcData
         Me.gvData.Name = "gvData"
         Me.gvData.NewItemRowText = "Tambah Data Disini"
@@ -270,7 +269,7 @@ Partial Class frmJurnalBulanan
         Me.gcTBReff.AppearanceHeader.Options.UseTextOptions = True
         Me.gcTBReff.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.gcTBReff.Caption = "TBReff"
-        Me.gcTBReff.FieldName = "tbreff"
+        Me.gcTBReff.FieldName = "tablereff"
         Me.gcTBReff.MinWidth = 10
         Me.gcTBReff.Name = "gcTBReff"
         Me.gcTBReff.OptionsColumn.AllowEdit = False
@@ -366,13 +365,6 @@ Partial Class frmJurnalBulanan
         Me.gcDebet.VisibleIndex = 5
         Me.gcDebet.Width = 150
         '
-        'gcUnique
-        '
-        Me.gcUnique.Caption = "IDUnique"
-        Me.gcUnique.FieldName = "idunique"
-        Me.gcUnique.MinWidth = 10
-        Me.gcUnique.Name = "gcUnique"
-        '
         'gcKredit
         '
         Me.gcKredit.AppearanceCell.Options.UseTextOptions = True
@@ -401,7 +393,7 @@ Partial Class frmJurnalBulanan
         '
         'tlpField
         '
-        Me.tlpField.BackColor = System.Drawing.color.fromargb(240, 240, 240)
+        Me.tlpField.BackColor = System.Drawing.Color.FromArgb(CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer))
         Me.tlpField.ColumnCount = 6
         Me.tlpField.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
         Me.tlpField.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 130.0!))
@@ -446,22 +438,22 @@ Partial Class frmJurnalBulanan
         Me.deTanggal.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 9.0!)
         Me.deTanggal.Properties.Appearance.Options.UseBackColor = True
         Me.deTanggal.Properties.Appearance.Options.UseFont = True
+        Me.deTanggal.Properties.AppearanceCalendar.DayCellHighlighted.Font = New System.Drawing.Font("Tahoma", 9.0!)
+        Me.deTanggal.Properties.AppearanceCalendar.DayCellHighlighted.Options.UseFont = True
+        Me.deTanggal.Properties.AppearanceCalendar.Header.Font = New System.Drawing.Font("Tahoma", 9.0!)
+        Me.deTanggal.Properties.AppearanceCalendar.Header.Options.UseFont = True
+        Me.deTanggal.Properties.AppearanceCalendar.HeaderHighlighted.Font = New System.Drawing.Font("Tahoma", 9.0!)
+        Me.deTanggal.Properties.AppearanceCalendar.HeaderHighlighted.Options.UseFont = True
+        Me.deTanggal.Properties.AppearanceCalendar.WeekNumber.Font = New System.Drawing.Font("Tahoma", 9.0!)
+        Me.deTanggal.Properties.AppearanceCalendar.WeekNumber.Options.UseFont = True
         Me.deTanggal.Properties.AppearanceDisabled.Font = New System.Drawing.Font("Tahoma", 9.0!)
         Me.deTanggal.Properties.AppearanceDisabled.Options.UseFont = True
         Me.deTanggal.Properties.AppearanceDropDown.Font = New System.Drawing.Font("Tahoma", 9.0!)
         Me.deTanggal.Properties.AppearanceDropDown.Options.UseFont = True
-        Me.deTanggal.Properties.AppearanceDropDownHeader.Font = New System.Drawing.Font("Tahoma", 9.0!)
-        Me.deTanggal.Properties.AppearanceDropDownHeader.Options.UseFont = True
-        Me.deTanggal.Properties.AppearanceDropDownHeaderHighlight.Font = New System.Drawing.Font("Tahoma", 9.0!)
-        Me.deTanggal.Properties.AppearanceDropDownHeaderHighlight.Options.UseFont = True
-        Me.deTanggal.Properties.AppearanceDropDownHighlight.Font = New System.Drawing.Font("Tahoma", 9.0!)
-        Me.deTanggal.Properties.AppearanceDropDownHighlight.Options.UseFont = True
         Me.deTanggal.Properties.AppearanceFocused.Font = New System.Drawing.Font("Tahoma", 9.0!)
         Me.deTanggal.Properties.AppearanceFocused.Options.UseFont = True
         Me.deTanggal.Properties.AppearanceReadOnly.Font = New System.Drawing.Font("Tahoma", 9.0!)
         Me.deTanggal.Properties.AppearanceReadOnly.Options.UseFont = True
-        Me.deTanggal.Properties.AppearanceWeekNumber.Font = New System.Drawing.Font("Tahoma", 9.0!)
-        Me.deTanggal.Properties.AppearanceWeekNumber.Options.UseFont = True
         Me.deTanggal.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple
         Me.deTanggal.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.deTanggal.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
@@ -493,7 +485,7 @@ Partial Class frmJurnalBulanan
         '
         'btnPrint
         '
-        Me.btnPrint.BackColor = System.Drawing.Color.FromArgb(CType(CType(156, Byte), Integer), CType(CType(207, Byte), Integer), CType(CType(49, Byte), Integer))
+        Me.btnPrint.BackColor = System.Drawing.Color.Green
         Me.btnPrint.Dock = System.Windows.Forms.DockStyle.Right
         Me.btnPrint.FlatAppearance.BorderSize = 0
         Me.btnPrint.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DimGray
@@ -542,7 +534,7 @@ Partial Class frmJurnalBulanan
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.BackColor = System.Drawing.color.fromargb(240, 240, 240)
+        Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer))
         Me.ClientSize = New System.Drawing.Size(922, 430)
         Me.Controls.Add(Me.tlpForm)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
@@ -588,7 +580,6 @@ Partial Class frmJurnalBulanan
     Friend WithEvents gcDebet As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents gcIDDK As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents RepositoryItemMemoEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit
-    Friend WithEvents gcUnique As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents gcKredit As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents gcSys As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents gcNoBukti As DevExpress.XtraGrid.Columns.GridColumn

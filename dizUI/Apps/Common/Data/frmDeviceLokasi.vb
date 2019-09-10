@@ -109,7 +109,7 @@
         lueDevice.Properties.ValueMember = "id"
         lueDevice.Properties.DisplayMember = "content"
 
-        mysqls.DMLQuery("select idlokasi as id,nama as content from lokasi where idcompany=(select top 1 value from sys_appsetting where variable='CompanyID') order by nama asc ", "lokasi")
+        mysqls.DMLQuery("select idlokasi as id,nama as content from lokasi order by nama asc ", "lokasi")
         lueLokasi.Properties.DataSource = mysqls.dataTable("lokasi")
         lueLokasi.Properties.ValueMember = "id"
         lueLokasi.Properties.DisplayMember = "content"
@@ -134,7 +134,7 @@
         End If
         If statData = statusData.Baru Then
             Dim sqls As New SQLs(dbstring)
-            sqls.DMLQuery("select iddevicelokasi from devicelokasi where idcompany=(select top 1 value from sys_appsetting where variable='CompanyID') and iddevice='" & lueDevice.EditValue & "' and idlokasi='" & lueLokasi.EditValue & "'", "exist")
+            sqls.DMLQuery("select iddevicelokasi from devicelokasi where iddevice='" & lueDevice.EditValue & "' and idlokasi='" & lueLokasi.EditValue & "'", "exist")
             If sqls.getDataSet("exist") = 0 Then
                 idData = "-1"
             Else
@@ -144,7 +144,7 @@
             End If
         ElseIf statData = statusData.Edit Then
             Dim sqls As New SQLs(dbstring)
-            sqls.DMLQuery("select iddevicelokasi from devicelokasi where idcompany=(select top 1 value from sys_appsetting where variable='CompanyID') and iddevice='" & lueDevice.EditValue & "' and idlokasi='" & lueLokasi.EditValue & "' and iddevicelokasi<>'" & idData & "'", "exist")
+            sqls.DMLQuery("select iddevicelokasi from devicelokasi where iddevice='" & lueDevice.EditValue & "' and idlokasi='" & lueLokasi.EditValue & "' and iddevicelokasi<>'" & idData & "'", "exist")
             If sqls.getDataSet("exist") > 0 Then
                 dizMsgbox("Data tersebut sudah ada", dizMsgboxStyle.Info, Me)
                 lueDevice.Focus()

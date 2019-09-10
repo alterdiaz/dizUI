@@ -250,11 +250,11 @@
 
     Private Sub btnSend_Click(sender As Object, e As EventArgs) Handles btnSend.Click
         If meMessage.EditValue Is Nothing Then
-            dizMsgbox("Pesan kosong", dizMsgboxStyle.Kesalahan)
+            dizMsgbox("Pesan kosong", dizMsgboxStyle.Kesalahan, me)
             Exit Sub
         End If
         If meMessage.Text.Length = 0 Then
-            dizMsgbox("Pesan kosong", dizMsgboxStyle.Kesalahan)
+            dizMsgbox("Pesan kosong", dizMsgboxStyle.Kesalahan, me)
             Exit Sub
         End If
 

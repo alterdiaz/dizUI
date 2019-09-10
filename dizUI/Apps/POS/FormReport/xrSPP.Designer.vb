@@ -21,8 +21,6 @@ Partial Public Class xrSPP
     Private Sub InitializeComponent()
         Dim QrCodeGenerator1 As DevExpress.XtraPrinting.BarCode.QRCodeGenerator = New DevExpress.XtraPrinting.BarCode.QRCodeGenerator()
         Me.Detail = New DevExpress.XtraReports.UI.DetailBand()
-        Me.XrLabel16 = New DevExpress.XtraReports.UI.XRLabel()
-        Me.XrLabel15 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel14 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel13 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel12 = New DevExpress.XtraReports.UI.XRLabel()
@@ -30,17 +28,15 @@ Partial Public Class xrSPP
         Me.XrLabel10 = New DevExpress.XtraReports.UI.XRLabel()
         Me.TopMargin = New DevExpress.XtraReports.UI.TopMarginBand()
         Me.BottomMargin = New DevExpress.XtraReports.UI.BottomMarginBand()
-        Me.SpSPB1 = New dizUI.spSPB()
         Me.SpSPBTableAdapter = New dizUI.spSPBTableAdapters.spSPBTableAdapter()
         Me.XrLabel1 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel2 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel3 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrPictureBox1 = New DevExpress.XtraReports.UI.XRPictureBox()
         Me.PageHeader = New DevExpress.XtraReports.UI.PageHeaderBand()
+        Me.XrLine1 = New DevExpress.XtraReports.UI.XRLine()
         Me.XrLabel23 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel22 = New DevExpress.XtraReports.UI.XRLabel()
-        Me.XrLabel21 = New DevExpress.XtraReports.UI.XRLabel()
-        Me.XrLabel20 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel19 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel18 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel17 = New DevExpress.XtraReports.UI.XRLabel()
@@ -68,62 +64,35 @@ Partial Public Class xrSPP
         Me.XrCrossBandLine1 = New DevExpress.XtraReports.UI.XRCrossBandLine()
         Me.XrCrossBandLine2 = New DevExpress.XtraReports.UI.XRCrossBandLine()
         Me.XrCrossBandLine3 = New DevExpress.XtraReports.UI.XRCrossBandLine()
-        Me.XrCrossBandLine4 = New DevExpress.XtraReports.UI.XRCrossBandLine()
-        Me.XrCrossBandLine5 = New DevExpress.XtraReports.UI.XRCrossBandLine()
         Me.XrCrossBandLine6 = New DevExpress.XtraReports.UI.XRCrossBandLine()
         Me.XrCrossBandBox1 = New DevExpress.XtraReports.UI.XRCrossBandBox()
         Me.pID = New DevExpress.XtraReports.Parameters.Parameter()
         Me.pNo = New DevExpress.XtraReports.Parameters.Parameter()
         Me.pFooter = New DevExpress.XtraReports.Parameters.Parameter()
-        CType(Me.SpSPB1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.SpSPP1 = New dizUI.spSPP()
+        Me.SpSPPHDTableAdapter = New dizUI.spSPPTableAdapters.spSPPHDTableAdapter()
+        CType(Me.SpSPP1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me, System.ComponentModel.ISupportInitialize).BeginInit()
         '
         'Detail
         '
-        Me.Detail.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrLabel16, Me.XrLabel15, Me.XrLabel14, Me.XrLabel13, Me.XrLabel12, Me.XrLabel11, Me.XrLabel10})
+        Me.Detail.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrLabel14, Me.XrLabel13, Me.XrLabel12, Me.XrLabel11, Me.XrLabel10})
         Me.Detail.Dpi = 254.0!
-        Me.Detail.HeightF = 60.0!
+        Me.Detail.HeightF = 40.0!
         Me.Detail.Name = "Detail"
         Me.Detail.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 254.0!)
         Me.Detail.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
         '
-        'XrLabel16
-        '
-        Me.XrLabel16.Dpi = 254.0!
-        Me.XrLabel16.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[spSPBLMA].[qtylalu]")})
-        Me.XrLabel16.Font = New System.Drawing.Font("Tahoma", 9.0!)
-        Me.XrLabel16.LocationFloat = New DevExpress.Utils.PointFloat(1230.0!, 0!)
-        Me.XrLabel16.Name = "XrLabel16"
-        Me.XrLabel16.Padding = New DevExpress.XtraPrinting.PaddingInfo(5, 5, 0, 0, 254.0!)
-        Me.XrLabel16.SizeF = New System.Drawing.SizeF(90.0!, 60.0!)
-        Me.XrLabel16.StylePriority.UseFont = False
-        Me.XrLabel16.StylePriority.UseTextAlignment = False
-        Me.XrLabel16.Text = "XrLabel16"
-        Me.XrLabel16.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
-        '
-        'XrLabel15
-        '
-        Me.XrLabel15.Dpi = 254.0!
-        Me.XrLabel15.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[spSPBLMA].[qtyask]")})
-        Me.XrLabel15.Font = New System.Drawing.Font("Tahoma", 9.0!)
-        Me.XrLabel15.LocationFloat = New DevExpress.Utils.PointFloat(1325.0!, 0!)
-        Me.XrLabel15.Name = "XrLabel15"
-        Me.XrLabel15.Padding = New DevExpress.XtraPrinting.PaddingInfo(5, 5, 0, 0, 254.0!)
-        Me.XrLabel15.SizeF = New System.Drawing.SizeF(89.99976!, 60.0!)
-        Me.XrLabel15.StylePriority.UseFont = False
-        Me.XrLabel15.StylePriority.UseTextAlignment = False
-        Me.XrLabel15.Text = "XrLabel15"
-        Me.XrLabel15.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
-        '
         'XrLabel14
         '
+        Me.XrLabel14.CanGrow = False
         Me.XrLabel14.Dpi = 254.0!
-        Me.XrLabel14.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[spSPBLMA].[qtycharges]")})
+        Me.XrLabel14.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[qty]")})
         Me.XrLabel14.Font = New System.Drawing.Font("Tahoma", 9.0!)
-        Me.XrLabel14.LocationFloat = New DevExpress.Utils.PointFloat(1420.0!, 0!)
+        Me.XrLabel14.LocationFloat = New DevExpress.Utils.PointFloat(1345.0!, 0!)
         Me.XrLabel14.Name = "XrLabel14"
         Me.XrLabel14.Padding = New DevExpress.XtraPrinting.PaddingInfo(5, 5, 0, 0, 254.0!)
-        Me.XrLabel14.SizeF = New System.Drawing.SizeF(90.0!, 60.0!)
+        Me.XrLabel14.SizeF = New System.Drawing.SizeF(150.0!, 40.0!)
         Me.XrLabel14.StylePriority.UseFont = False
         Me.XrLabel14.StylePriority.UseTextAlignment = False
         Me.XrLabel14.Text = "XrLabel14"
@@ -131,13 +100,14 @@ Partial Public Class xrSPP
         '
         'XrLabel13
         '
+        Me.XrLabel13.CanGrow = False
         Me.XrLabel13.Dpi = 254.0!
-        Me.XrLabel13.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[spSPBLMA].[satuan]")})
+        Me.XrLabel13.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[satuan]")})
         Me.XrLabel13.Font = New System.Drawing.Font("Tahoma", 9.0!)
         Me.XrLabel13.LocationFloat = New DevExpress.Utils.PointFloat(1515.0!, 0!)
         Me.XrLabel13.Name = "XrLabel13"
         Me.XrLabel13.Padding = New DevExpress.XtraPrinting.PaddingInfo(5, 5, 0, 0, 254.0!)
-        Me.XrLabel13.SizeF = New System.Drawing.SizeF(164.9996!, 60.0!)
+        Me.XrLabel13.SizeF = New System.Drawing.SizeF(165.0!, 40.0!)
         Me.XrLabel13.StylePriority.UseFont = False
         Me.XrLabel13.StylePriority.UseTextAlignment = False
         Me.XrLabel13.Text = "XrLabel13"
@@ -145,13 +115,14 @@ Partial Public Class xrSPP
         '
         'XrLabel12
         '
+        Me.XrLabel12.CanGrow = False
         Me.XrLabel12.Dpi = 254.0!
-        Me.XrLabel12.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[spSPBLMA].[item]")})
+        Me.XrLabel12.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[item]")})
         Me.XrLabel12.Font = New System.Drawing.Font("Tahoma", 9.0!)
-        Me.XrLabel12.LocationFloat = New DevExpress.Utils.PointFloat(340.0001!, 0!)
+        Me.XrLabel12.LocationFloat = New DevExpress.Utils.PointFloat(499.9999!, 0!)
         Me.XrLabel12.Name = "XrLabel12"
         Me.XrLabel12.Padding = New DevExpress.XtraPrinting.PaddingInfo(5, 5, 0, 0, 254.0!)
-        Me.XrLabel12.SizeF = New System.Drawing.SizeF(884.9999!, 60.0!)
+        Me.XrLabel12.SizeF = New System.Drawing.SizeF(830.0!, 40.0!)
         Me.XrLabel12.StylePriority.UseFont = False
         Me.XrLabel12.StylePriority.UseTextAlignment = False
         Me.XrLabel12.Text = "XrLabel12"
@@ -159,13 +130,14 @@ Partial Public Class xrSPP
         '
         'XrLabel11
         '
+        Me.XrLabel11.CanGrow = False
         Me.XrLabel11.Dpi = 254.0!
-        Me.XrLabel11.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[spSPBLMA].[kode]")})
+        Me.XrLabel11.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[kode]")})
         Me.XrLabel11.Font = New System.Drawing.Font("Tahoma", 9.0!)
-        Me.XrLabel11.LocationFloat = New DevExpress.Utils.PointFloat(130.0!, 0!)
+        Me.XrLabel11.LocationFloat = New DevExpress.Utils.PointFloat(140.0!, 0!)
         Me.XrLabel11.Name = "XrLabel11"
         Me.XrLabel11.Padding = New DevExpress.XtraPrinting.PaddingInfo(5, 5, 0, 0, 254.0!)
-        Me.XrLabel11.SizeF = New System.Drawing.SizeF(205.0!, 60.0!)
+        Me.XrLabel11.SizeF = New System.Drawing.SizeF(330.0!, 40.0!)
         Me.XrLabel11.StylePriority.UseFont = False
         Me.XrLabel11.StylePriority.UseTextAlignment = False
         Me.XrLabel11.Text = "XrLabel11"
@@ -173,13 +145,14 @@ Partial Public Class xrSPP
         '
         'XrLabel10
         '
+        Me.XrLabel10.CanGrow = False
         Me.XrLabel10.Dpi = 254.0!
-        Me.XrLabel10.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[spSPBLMA].[nomor]")})
+        Me.XrLabel10.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[nomor]")})
         Me.XrLabel10.Font = New System.Drawing.Font("Tahoma", 9.0!)
         Me.XrLabel10.LocationFloat = New DevExpress.Utils.PointFloat(39.99997!, 0!)
         Me.XrLabel10.Name = "XrLabel10"
         Me.XrLabel10.Padding = New DevExpress.XtraPrinting.PaddingInfo(5, 5, 0, 0, 254.0!)
-        Me.XrLabel10.SizeF = New System.Drawing.SizeF(85.00005!, 60.0!)
+        Me.XrLabel10.SizeF = New System.Drawing.SizeF(85.0!, 40.0!)
         Me.XrLabel10.StylePriority.UseFont = False
         Me.XrLabel10.StylePriority.UseTextAlignment = False
         Me.XrLabel10.Text = "XrLabel10"
@@ -201,24 +174,20 @@ Partial Public Class xrSPP
         Me.BottomMargin.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 254.0!)
         Me.BottomMargin.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
         '
-        'SpSPB1
-        '
-        Me.SpSPB1.DataSetName = "spSPB"
-        Me.SpSPB1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
-        '
         'SpSPBTableAdapter
         '
         Me.SpSPBTableAdapter.ClearBeforeFill = True
         '
         'XrLabel1
         '
+        Me.XrLabel1.CanGrow = False
         Me.XrLabel1.Dpi = 254.0!
-        Me.XrLabel1.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[unit]")})
+        Me.XrLabel1.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[spSPPHD].[unit]")})
         Me.XrLabel1.Font = New System.Drawing.Font("Tahoma", 10.0!)
-        Me.XrLabel1.LocationFloat = New DevExpress.Utils.PointFloat(1140.0!, 59.99997!)
+        Me.XrLabel1.LocationFloat = New DevExpress.Utils.PointFloat(1100.0!, 59.99997!)
         Me.XrLabel1.Name = "XrLabel1"
         Me.XrLabel1.Padding = New DevExpress.XtraPrinting.PaddingInfo(5, 5, 0, 0, 254.0!)
-        Me.XrLabel1.SizeF = New System.Drawing.SizeF(540.0!, 60.00005!)
+        Me.XrLabel1.SizeF = New System.Drawing.SizeF(580.0!, 40.0!)
         Me.XrLabel1.StylePriority.UseFont = False
         Me.XrLabel1.StylePriority.UseTextAlignment = False
         Me.XrLabel1.Text = "XrLabel1"
@@ -226,13 +195,14 @@ Partial Public Class xrSPP
         '
         'XrLabel2
         '
+        Me.XrLabel2.CanGrow = False
         Me.XrLabel2.Dpi = 254.0!
-        Me.XrLabel2.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[createddate]")})
+        Me.XrLabel2.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[spSPPHD].[createddate]")})
         Me.XrLabel2.Font = New System.Drawing.Font("Tahoma", 10.0!)
-        Me.XrLabel2.LocationFloat = New DevExpress.Utils.PointFloat(1140.0!, 180.0!)
+        Me.XrLabel2.LocationFloat = New DevExpress.Utils.PointFloat(1100.0!, 140.0!)
         Me.XrLabel2.Name = "XrLabel2"
         Me.XrLabel2.Padding = New DevExpress.XtraPrinting.PaddingInfo(5, 5, 0, 0, 254.0!)
-        Me.XrLabel2.SizeF = New System.Drawing.SizeF(540.0!, 60.0!)
+        Me.XrLabel2.SizeF = New System.Drawing.SizeF(580.0!, 40.0!)
         Me.XrLabel2.StylePriority.UseFont = False
         Me.XrLabel2.StylePriority.UseTextAlignment = False
         Me.XrLabel2.Text = "XrLabel2"
@@ -240,13 +210,14 @@ Partial Public Class xrSPP
         '
         'XrLabel3
         '
+        Me.XrLabel3.CanGrow = False
         Me.XrLabel3.Dpi = 254.0!
-        Me.XrLabel3.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[transaksino]")})
+        Me.XrLabel3.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[spSPPHD].[transaksino]")})
         Me.XrLabel3.Font = New System.Drawing.Font("Tahoma", 10.0!)
-        Me.XrLabel3.LocationFloat = New DevExpress.Utils.PointFloat(1140.0!, 120.0!)
+        Me.XrLabel3.LocationFloat = New DevExpress.Utils.PointFloat(1100.0!, 100.0!)
         Me.XrLabel3.Name = "XrLabel3"
         Me.XrLabel3.Padding = New DevExpress.XtraPrinting.PaddingInfo(5, 5, 0, 0, 254.0!)
-        Me.XrLabel3.SizeF = New System.Drawing.SizeF(540.0!, 60.00001!)
+        Me.XrLabel3.SizeF = New System.Drawing.SizeF(580.0!, 40.0!)
         Me.XrLabel3.StylePriority.UseFont = False
         Me.XrLabel3.StylePriority.UseTextAlignment = False
         Me.XrLabel3.Text = "XrLabel3"
@@ -258,25 +229,32 @@ Partial Public Class xrSPP
         Me.XrPictureBox1.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Image", "[spCompanyLogoCaptionSquare].[images]")})
         Me.XrPictureBox1.LocationFloat = New DevExpress.Utils.PointFloat(39.99998!, 0!)
         Me.XrPictureBox1.Name = "XrPictureBox1"
-        Me.XrPictureBox1.SizeF = New System.Drawing.SizeF(170.0!, 190.0!)
+        Me.XrPictureBox1.SizeF = New System.Drawing.SizeF(180.0!, 180.0!)
         Me.XrPictureBox1.Sizing = DevExpress.XtraPrinting.ImageSizeMode.ZoomImage
         '
         'PageHeader
         '
-        Me.PageHeader.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrLabel23, Me.XrLabel22, Me.XrLabel21, Me.XrLabel20, Me.XrLabel19, Me.XrLabel18, Me.XrLabel17, Me.XrLabel9, Me.XrLabel8, Me.XrLabel7, Me.XrLabel2, Me.XrLabel3, Me.XrLabel1, Me.XrLabel6, Me.XrLabel5, Me.XrLabel4, Me.XrPictureBox1})
+        Me.PageHeader.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrLine1, Me.XrLabel23, Me.XrLabel22, Me.XrLabel19, Me.XrLabel18, Me.XrLabel17, Me.XrLabel9, Me.XrLabel8, Me.XrLabel7, Me.XrLabel2, Me.XrLabel3, Me.XrLabel1, Me.XrLabel6, Me.XrLabel5, Me.XrLabel4, Me.XrPictureBox1})
         Me.PageHeader.Dpi = 254.0!
-        Me.PageHeader.HeightF = 320.0!
+        Me.PageHeader.HeightF = 270.0001!
         Me.PageHeader.Name = "PageHeader"
+        '
+        'XrLine1
+        '
+        Me.XrLine1.Dpi = 254.0!
+        Me.XrLine1.LocationFloat = New DevExpress.Utils.PointFloat(29.99999!, 260.0001!)
+        Me.XrLine1.Name = "XrLine1"
+        Me.XrLine1.SizeF = New System.Drawing.SizeF(1659.417!, 9.999969!)
         '
         'XrLabel23
         '
         Me.XrLabel23.BorderWidth = 0!
         Me.XrLabel23.Dpi = 254.0!
         Me.XrLabel23.Font = New System.Drawing.Font("Tahoma", 9.0!)
-        Me.XrLabel23.LocationFloat = New DevExpress.Utils.PointFloat(1515.0!, 260.0!)
+        Me.XrLabel23.LocationFloat = New DevExpress.Utils.PointFloat(1515.0!, 220.0!)
         Me.XrLabel23.Name = "XrLabel23"
         Me.XrLabel23.Padding = New DevExpress.XtraPrinting.PaddingInfo(5, 5, 0, 0, 254.0!)
-        Me.XrLabel23.SizeF = New System.Drawing.SizeF(164.9996!, 60.0!)
+        Me.XrLabel23.SizeF = New System.Drawing.SizeF(165.0!, 40.0!)
         Me.XrLabel23.StylePriority.UseBorderWidth = False
         Me.XrLabel23.StylePriority.UseFont = False
         Me.XrLabel23.StylePriority.UseTextAlignment = False
@@ -288,55 +266,25 @@ Partial Public Class xrSPP
         Me.XrLabel22.BorderWidth = 0!
         Me.XrLabel22.Dpi = 254.0!
         Me.XrLabel22.Font = New System.Drawing.Font("Tahoma", 9.0!)
-        Me.XrLabel22.LocationFloat = New DevExpress.Utils.PointFloat(1420.0!, 260.0!)
+        Me.XrLabel22.LocationFloat = New DevExpress.Utils.PointFloat(1345.0!, 220.0!)
         Me.XrLabel22.Name = "XrLabel22"
         Me.XrLabel22.Padding = New DevExpress.XtraPrinting.PaddingInfo(5, 5, 0, 0, 254.0!)
-        Me.XrLabel22.SizeF = New System.Drawing.SizeF(90.0!, 60.0!)
+        Me.XrLabel22.SizeF = New System.Drawing.SizeF(150.0!, 40.0!)
         Me.XrLabel22.StylePriority.UseBorderWidth = False
         Me.XrLabel22.StylePriority.UseFont = False
         Me.XrLabel22.StylePriority.UseTextAlignment = False
-        Me.XrLabel22.Text = "Acc"
+        Me.XrLabel22.Text = "Qty"
         Me.XrLabel22.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
-        '
-        'XrLabel21
-        '
-        Me.XrLabel21.BorderWidth = 0!
-        Me.XrLabel21.Dpi = 254.0!
-        Me.XrLabel21.Font = New System.Drawing.Font("Tahoma", 9.0!)
-        Me.XrLabel21.LocationFloat = New DevExpress.Utils.PointFloat(1325.0!, 260.0!)
-        Me.XrLabel21.Name = "XrLabel21"
-        Me.XrLabel21.Padding = New DevExpress.XtraPrinting.PaddingInfo(5, 5, 0, 0, 254.0!)
-        Me.XrLabel21.SizeF = New System.Drawing.SizeF(90.0!, 60.0!)
-        Me.XrLabel21.StylePriority.UseBorderWidth = False
-        Me.XrLabel21.StylePriority.UseFont = False
-        Me.XrLabel21.StylePriority.UseTextAlignment = False
-        Me.XrLabel21.Text = "Mnt"
-        Me.XrLabel21.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
-        '
-        'XrLabel20
-        '
-        Me.XrLabel20.BorderWidth = 0!
-        Me.XrLabel20.Dpi = 254.0!
-        Me.XrLabel20.Font = New System.Drawing.Font("Tahoma", 9.0!)
-        Me.XrLabel20.LocationFloat = New DevExpress.Utils.PointFloat(1230.0!, 260.0!)
-        Me.XrLabel20.Name = "XrLabel20"
-        Me.XrLabel20.Padding = New DevExpress.XtraPrinting.PaddingInfo(5, 5, 0, 0, 254.0!)
-        Me.XrLabel20.SizeF = New System.Drawing.SizeF(90.0!, 60.0!)
-        Me.XrLabel20.StylePriority.UseBorderWidth = False
-        Me.XrLabel20.StylePriority.UseFont = False
-        Me.XrLabel20.StylePriority.UseTextAlignment = False
-        Me.XrLabel20.Text = "Lalu"
-        Me.XrLabel20.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
         '
         'XrLabel19
         '
         Me.XrLabel19.BorderWidth = 0!
         Me.XrLabel19.Dpi = 254.0!
         Me.XrLabel19.Font = New System.Drawing.Font("Tahoma", 9.0!)
-        Me.XrLabel19.LocationFloat = New DevExpress.Utils.PointFloat(340.0001!, 260.0!)
+        Me.XrLabel19.LocationFloat = New DevExpress.Utils.PointFloat(490.0001!, 220.0001!)
         Me.XrLabel19.Name = "XrLabel19"
         Me.XrLabel19.Padding = New DevExpress.XtraPrinting.PaddingInfo(5, 5, 0, 0, 254.0!)
-        Me.XrLabel19.SizeF = New System.Drawing.SizeF(884.9999!, 60.0!)
+        Me.XrLabel19.SizeF = New System.Drawing.SizeF(840.0!, 40.00003!)
         Me.XrLabel19.StylePriority.UseBorderWidth = False
         Me.XrLabel19.StylePriority.UseFont = False
         Me.XrLabel19.StylePriority.UseTextAlignment = False
@@ -348,10 +296,10 @@ Partial Public Class xrSPP
         Me.XrLabel18.BorderWidth = 0!
         Me.XrLabel18.Dpi = 254.0!
         Me.XrLabel18.Font = New System.Drawing.Font("Tahoma", 9.0!)
-        Me.XrLabel18.LocationFloat = New DevExpress.Utils.PointFloat(130.0!, 260.0!)
+        Me.XrLabel18.LocationFloat = New DevExpress.Utils.PointFloat(140.0!, 220.0!)
         Me.XrLabel18.Name = "XrLabel18"
         Me.XrLabel18.Padding = New DevExpress.XtraPrinting.PaddingInfo(5, 5, 0, 0, 254.0!)
-        Me.XrLabel18.SizeF = New System.Drawing.SizeF(205.0!, 60.0!)
+        Me.XrLabel18.SizeF = New System.Drawing.SizeF(330.0!, 40.0!)
         Me.XrLabel18.StylePriority.UseBorderWidth = False
         Me.XrLabel18.StylePriority.UseFont = False
         Me.XrLabel18.StylePriority.UseTextAlignment = False
@@ -363,10 +311,10 @@ Partial Public Class xrSPP
         Me.XrLabel17.BorderWidth = 0!
         Me.XrLabel17.Dpi = 254.0!
         Me.XrLabel17.Font = New System.Drawing.Font("Tahoma", 9.0!)
-        Me.XrLabel17.LocationFloat = New DevExpress.Utils.PointFloat(39.99997!, 260.0!)
+        Me.XrLabel17.LocationFloat = New DevExpress.Utils.PointFloat(39.99997!, 220.0!)
         Me.XrLabel17.Name = "XrLabel17"
         Me.XrLabel17.Padding = New DevExpress.XtraPrinting.PaddingInfo(5, 5, 0, 0, 254.0!)
-        Me.XrLabel17.SizeF = New System.Drawing.SizeF(85.00005!, 60.0!)
+        Me.XrLabel17.SizeF = New System.Drawing.SizeF(85.0!, 40.0!)
         Me.XrLabel17.StylePriority.UseBorderWidth = False
         Me.XrLabel17.StylePriority.UseFont = False
         Me.XrLabel17.StylePriority.UseTextAlignment = False
@@ -378,10 +326,10 @@ Partial Public Class xrSPP
         Me.XrLabel9.BorderWidth = 0!
         Me.XrLabel9.Dpi = 254.0!
         Me.XrLabel9.Font = New System.Drawing.Font("Tahoma", 10.0!)
-        Me.XrLabel9.LocationFloat = New DevExpress.Utils.PointFloat(980.0001!, 180.0!)
+        Me.XrLabel9.LocationFloat = New DevExpress.Utils.PointFloat(940.0002!, 140.0!)
         Me.XrLabel9.Name = "XrLabel9"
         Me.XrLabel9.Padding = New DevExpress.XtraPrinting.PaddingInfo(5, 5, 0, 0, 254.0!)
-        Me.XrLabel9.SizeF = New System.Drawing.SizeF(149.9999!, 60.0!)
+        Me.XrLabel9.SizeF = New System.Drawing.SizeF(160.0!, 40.0!)
         Me.XrLabel9.StylePriority.UseBorderWidth = False
         Me.XrLabel9.StylePriority.UseFont = False
         Me.XrLabel9.StylePriority.UseTextAlignment = False
@@ -393,10 +341,10 @@ Partial Public Class xrSPP
         Me.XrLabel8.BorderWidth = 0!
         Me.XrLabel8.Dpi = 254.0!
         Me.XrLabel8.Font = New System.Drawing.Font("Tahoma", 10.0!)
-        Me.XrLabel8.LocationFloat = New DevExpress.Utils.PointFloat(980.0001!, 120.0!)
+        Me.XrLabel8.LocationFloat = New DevExpress.Utils.PointFloat(940.0002!, 100.0!)
         Me.XrLabel8.Name = "XrLabel8"
         Me.XrLabel8.Padding = New DevExpress.XtraPrinting.PaddingInfo(5, 5, 0, 0, 254.0!)
-        Me.XrLabel8.SizeF = New System.Drawing.SizeF(149.9999!, 60.00001!)
+        Me.XrLabel8.SizeF = New System.Drawing.SizeF(160.0!, 40.0!)
         Me.XrLabel8.StylePriority.UseBorderWidth = False
         Me.XrLabel8.StylePriority.UseFont = False
         Me.XrLabel8.StylePriority.UseTextAlignment = False
@@ -408,10 +356,10 @@ Partial Public Class xrSPP
         Me.XrLabel7.BorderWidth = 0!
         Me.XrLabel7.Dpi = 254.0!
         Me.XrLabel7.Font = New System.Drawing.Font("Tahoma", 10.0!)
-        Me.XrLabel7.LocationFloat = New DevExpress.Utils.PointFloat(980.0001!, 60.00005!)
+        Me.XrLabel7.LocationFloat = New DevExpress.Utils.PointFloat(940.0002!, 60.00005!)
         Me.XrLabel7.Name = "XrLabel7"
         Me.XrLabel7.Padding = New DevExpress.XtraPrinting.PaddingInfo(5, 5, 0, 0, 254.0!)
-        Me.XrLabel7.SizeF = New System.Drawing.SizeF(149.9999!, 60.0!)
+        Me.XrLabel7.SizeF = New System.Drawing.SizeF(160.0!, 40.0!)
         Me.XrLabel7.StylePriority.UseBorderWidth = False
         Me.XrLabel7.StylePriority.UseFont = False
         Me.XrLabel7.StylePriority.UseTextAlignment = False
@@ -422,26 +370,28 @@ Partial Public Class xrSPP
         '
         Me.XrLabel6.BorderWidth = 0!
         Me.XrLabel6.Dpi = 254.0!
-        Me.XrLabel6.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.XrLabel6.LocationFloat = New DevExpress.Utils.PointFloat(980.0001!, 0!)
+        Me.XrLabel6.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.XrLabel6.LocationFloat = New DevExpress.Utils.PointFloat(940.0001!, 0!)
         Me.XrLabel6.Name = "XrLabel6"
-        Me.XrLabel6.Padding = New DevExpress.XtraPrinting.PaddingInfo(5, 5, 0, 0, 254.0!)
-        Me.XrLabel6.SizeF = New System.Drawing.SizeF(700.0!, 60.0!)
+        Me.XrLabel6.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 254.0!)
+        Me.XrLabel6.SizeF = New System.Drawing.SizeF(740.0!, 60.0!)
         Me.XrLabel6.StylePriority.UseBorderWidth = False
         Me.XrLabel6.StylePriority.UseFont = False
+        Me.XrLabel6.StylePriority.UsePadding = False
         Me.XrLabel6.StylePriority.UseTextAlignment = False
         Me.XrLabel6.Text = "SURAT PERMINTAAN PEMBELIAN"
         Me.XrLabel6.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
         '
         'XrLabel5
         '
+        Me.XrLabel5.CanGrow = False
         Me.XrLabel5.Dpi = 254.0!
         Me.XrLabel5.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[Parameters].[pUnit]")})
         Me.XrLabel5.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Bold)
-        Me.XrLabel5.LocationFloat = New DevExpress.Utils.PointFloat(210.0!, 0!)
+        Me.XrLabel5.LocationFloat = New DevExpress.Utils.PointFloat(220.0!, 0!)
         Me.XrLabel5.Name = "XrLabel5"
         Me.XrLabel5.Padding = New DevExpress.XtraPrinting.PaddingInfo(5, 5, 0, 0, 254.0!)
-        Me.XrLabel5.SizeF = New System.Drawing.SizeF(740.0001!, 60.0!)
+        Me.XrLabel5.SizeF = New System.Drawing.SizeF(720.0!, 60.0!)
         Me.XrLabel5.StylePriority.UseFont = False
         Me.XrLabel5.StylePriority.UseTextAlignment = False
         Me.XrLabel5.Text = "XrLabel5"
@@ -449,13 +399,15 @@ Partial Public Class xrSPP
         '
         'XrLabel4
         '
+        Me.XrLabel4.CanGrow = False
         Me.XrLabel4.Dpi = 254.0!
         Me.XrLabel4.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[Parameters].[pNotes]")})
         Me.XrLabel4.Font = New System.Drawing.Font("Tahoma", 9.75!)
-        Me.XrLabel4.LocationFloat = New DevExpress.Utils.PointFloat(210.0!, 59.99997!)
+        Me.XrLabel4.LocationFloat = New DevExpress.Utils.PointFloat(220.0!, 59.99997!)
+        Me.XrLabel4.Multiline = True
         Me.XrLabel4.Name = "XrLabel4"
         Me.XrLabel4.Padding = New DevExpress.XtraPrinting.PaddingInfo(5, 5, 0, 0, 254.0!)
-        Me.XrLabel4.SizeF = New System.Drawing.SizeF(740.0001!, 160.0!)
+        Me.XrLabel4.SizeF = New System.Drawing.SizeF(720.0!, 120.0!)
         Me.XrLabel4.StylePriority.UseFont = False
         Me.XrLabel4.Text = "XrLabel4"
         '
@@ -468,17 +420,18 @@ Partial Public Class xrSPP
         '
         'xrbcQR
         '
-        Me.xrbcQR.Alignment = DevExpress.XtraPrinting.TextAlignment.MiddleJustify
+        Me.xrbcQR.Alignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
         Me.xrbcQR.AutoModule = True
         Me.xrbcQR.Dpi = 254.0!
         Me.xrbcQR.Font = New System.Drawing.Font("Tahoma", 7.0!)
         Me.xrbcQR.LocationFloat = New DevExpress.Utils.PointFloat(1540.0!, 19.99999!)
         Me.xrbcQR.Module = 5.08!
         Me.xrbcQR.Name = "xrbcQR"
-        Me.xrbcQR.Padding = New DevExpress.XtraPrinting.PaddingInfo(25, 25, 0, 0, 254.0!)
+        Me.xrbcQR.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 254.0!)
         Me.xrbcQR.ShowText = False
-        Me.xrbcQR.SizeF = New System.Drawing.SizeF(140.0006!, 110.0!)
+        Me.xrbcQR.SizeF = New System.Drawing.SizeF(140.0!, 140.0!)
         Me.xrbcQR.StylePriority.UseFont = False
+        Me.xrbcQR.StylePriority.UsePadding = False
         Me.xrbcQR.StylePriority.UseTextAlignment = False
         QrCodeGenerator1.CompactionMode = DevExpress.XtraPrinting.BarCode.QRCodeCompactionMode.[Byte]
         Me.xrbcQR.Symbology = QrCodeGenerator1
@@ -504,10 +457,10 @@ Partial Public Class xrSPP
         Me.XrLabel32.BorderWidth = 0!
         Me.XrLabel32.Dpi = 254.0!
         Me.XrLabel32.Font = New System.Drawing.Font("Tahoma", 9.0!)
-        Me.XrLabel32.LocationFloat = New DevExpress.Utils.PointFloat(1390.0!, 140.0!)
+        Me.XrLabel32.LocationFloat = New DevExpress.Utils.PointFloat(1390.0!, 170.0!)
         Me.XrLabel32.Name = "XrLabel32"
         Me.XrLabel32.Padding = New DevExpress.XtraPrinting.PaddingInfo(5, 5, 0, 0, 254.0!)
-        Me.XrLabel32.SizeF = New System.Drawing.SizeF(290.0001!, 60.0!)
+        Me.XrLabel32.SizeF = New System.Drawing.SizeF(290.0!, 40.0!)
         Me.XrLabel32.StylePriority.UseBorderWidth = False
         Me.XrLabel32.StylePriority.UseFont = False
         Me.XrLabel32.StylePriority.UseTextAlignment = False
@@ -534,10 +487,10 @@ Partial Public Class xrSPP
         Me.XrLabel30.BorderWidth = 0!
         Me.XrLabel30.Dpi = 254.0!
         Me.XrLabel30.Font = New System.Drawing.Font("Tahoma", 9.0!)
-        Me.XrLabel30.LocationFloat = New DevExpress.Utils.PointFloat(940.0!, 140.0!)
+        Me.XrLabel30.LocationFloat = New DevExpress.Utils.PointFloat(940.0!, 170.0!)
         Me.XrLabel30.Name = "XrLabel30"
         Me.XrLabel30.Padding = New DevExpress.XtraPrinting.PaddingInfo(5, 5, 0, 0, 254.0!)
-        Me.XrLabel30.SizeF = New System.Drawing.SizeF(290.0001!, 60.0!)
+        Me.XrLabel30.SizeF = New System.Drawing.SizeF(290.0!, 40.0!)
         Me.XrLabel30.StylePriority.UseBorderWidth = False
         Me.XrLabel30.StylePriority.UseFont = False
         Me.XrLabel30.StylePriority.UseTextAlignment = False
@@ -564,10 +517,10 @@ Partial Public Class xrSPP
         Me.XrLabel28.BorderWidth = 0!
         Me.XrLabel28.Dpi = 254.0!
         Me.XrLabel28.Font = New System.Drawing.Font("Tahoma", 9.0!)
-        Me.XrLabel28.LocationFloat = New DevExpress.Utils.PointFloat(490.0!, 140.0!)
+        Me.XrLabel28.LocationFloat = New DevExpress.Utils.PointFloat(490.0!, 170.0!)
         Me.XrLabel28.Name = "XrLabel28"
         Me.XrLabel28.Padding = New DevExpress.XtraPrinting.PaddingInfo(5, 5, 0, 0, 254.0!)
-        Me.XrLabel28.SizeF = New System.Drawing.SizeF(290.0001!, 60.0!)
+        Me.XrLabel28.SizeF = New System.Drawing.SizeF(290.0!, 40.0!)
         Me.XrLabel28.StylePriority.UseBorderWidth = False
         Me.XrLabel28.StylePriority.UseFont = False
         Me.XrLabel28.StylePriority.UseTextAlignment = False
@@ -592,7 +545,9 @@ Partial Public Class xrSPP
         'XrLabel27
         '
         Me.XrLabel27.BorderWidth = 0!
+        Me.XrLabel27.CanGrow = False
         Me.XrLabel27.Dpi = 254.0!
+        Me.XrLabel27.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[spSPPHD].[namalengkap]")})
         Me.XrLabel27.Font = New System.Drawing.Font("Tahoma", 9.0!)
         Me.XrLabel27.LocationFloat = New DevExpress.Utils.PointFloat(39.99998!, 290.0!)
         Me.XrLabel27.Name = "XrLabel27"
@@ -609,10 +564,10 @@ Partial Public Class xrSPP
         Me.XrLabel26.BorderWidth = 0!
         Me.XrLabel26.Dpi = 254.0!
         Me.XrLabel26.Font = New System.Drawing.Font("Tahoma", 9.0!)
-        Me.XrLabel26.LocationFloat = New DevExpress.Utils.PointFloat(39.99998!, 140.0!)
+        Me.XrLabel26.LocationFloat = New DevExpress.Utils.PointFloat(39.99998!, 170.0!)
         Me.XrLabel26.Name = "XrLabel26"
         Me.XrLabel26.Padding = New DevExpress.XtraPrinting.PaddingInfo(5, 5, 0, 0, 254.0!)
-        Me.XrLabel26.SizeF = New System.Drawing.SizeF(290.0001!, 60.0!)
+        Me.XrLabel26.SizeF = New System.Drawing.SizeF(290.0!, 40.0!)
         Me.XrLabel26.StylePriority.UseBorderWidth = False
         Me.XrLabel26.StylePriority.UseFont = False
         Me.XrLabel26.StylePriority.UseTextAlignment = False
@@ -627,7 +582,7 @@ Partial Public Class xrSPP
         Me.XrLabel25.LocationFloat = New DevExpress.Utils.PointFloat(39.99998!, 20.00002!)
         Me.XrLabel25.Name = "XrLabel25"
         Me.XrLabel25.Padding = New DevExpress.XtraPrinting.PaddingInfo(5, 5, 0, 0, 254.0!)
-        Me.XrLabel25.SizeF = New System.Drawing.SizeF(200.0!, 109.9999!)
+        Me.XrLabel25.SizeF = New System.Drawing.SizeF(200.0!, 140.0!)
         Me.XrLabel25.StylePriority.UseBorderWidth = False
         Me.XrLabel25.StylePriority.UseFont = False
         Me.XrLabel25.StylePriority.UseTextAlignment = False
@@ -636,13 +591,15 @@ Partial Public Class xrSPP
         '
         'XrLabel24
         '
+        Me.XrLabel24.CanGrow = False
         Me.XrLabel24.Dpi = 254.0!
-        Me.XrLabel24.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[remarks]")})
+        Me.XrLabel24.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[spSPPHD].[remarks]")})
         Me.XrLabel24.Font = New System.Drawing.Font("Tahoma", 9.0!)
         Me.XrLabel24.LocationFloat = New DevExpress.Utils.PointFloat(239.9999!, 20.00002!)
+        Me.XrLabel24.Multiline = True
         Me.XrLabel24.Name = "XrLabel24"
         Me.XrLabel24.Padding = New DevExpress.XtraPrinting.PaddingInfo(5, 5, 0, 0, 254.0!)
-        Me.XrLabel24.SizeF = New System.Drawing.SizeF(1110.0!, 110.0!)
+        Me.XrLabel24.SizeF = New System.Drawing.SizeF(1110.0!, 140.0!)
         Me.XrLabel24.StylePriority.UseFont = False
         Me.XrLabel24.StylePriority.UseTextAlignment = False
         Me.XrLabel24.Text = "XrLabel24"
@@ -664,72 +621,48 @@ Partial Public Class xrSPP
         '
         Me.XrCrossBandLine1.Dpi = 254.0!
         Me.XrCrossBandLine1.EndBand = Me.PageFooter
-        Me.XrCrossBandLine1.EndPointFloat = New DevExpress.Utils.PointFloat(125.0!, 9.999985!)
+        Me.XrCrossBandLine1.EndPointFloat = New DevExpress.Utils.PointFloat(130.0!, 10.00003!)
         Me.XrCrossBandLine1.LineStyle = System.Drawing.Drawing2D.DashStyle.Custom
-        Me.XrCrossBandLine1.LocationFloat = New DevExpress.Utils.PointFloat(125.0!, 255.2917!)
+        Me.XrCrossBandLine1.LocationFloat = New DevExpress.Utils.PointFloat(130.0!, 210.0!)
         Me.XrCrossBandLine1.Name = "XrCrossBandLine1"
         Me.XrCrossBandLine1.StartBand = Me.PageHeader
-        Me.XrCrossBandLine1.StartPointFloat = New DevExpress.Utils.PointFloat(125.0!, 255.2917!)
-        Me.XrCrossBandLine1.WidthF = 5.000008!
+        Me.XrCrossBandLine1.StartPointFloat = New DevExpress.Utils.PointFloat(130.0!, 210.0!)
+        Me.XrCrossBandLine1.WidthF = 5.0!
         '
         'XrCrossBandLine2
         '
         Me.XrCrossBandLine2.Dpi = 254.0!
         Me.XrCrossBandLine2.EndBand = Me.PageFooter
-        Me.XrCrossBandLine2.EndPointFloat = New DevExpress.Utils.PointFloat(335.0!, 10.09656!)
+        Me.XrCrossBandLine2.EndPointFloat = New DevExpress.Utils.PointFloat(480.0!, 10.0966!)
         Me.XrCrossBandLine2.LineStyle = System.Drawing.Drawing2D.DashStyle.Custom
-        Me.XrCrossBandLine2.LocationFloat = New DevExpress.Utils.PointFloat(335.0!, 255.2917!)
+        Me.XrCrossBandLine2.LocationFloat = New DevExpress.Utils.PointFloat(480.0!, 210.0!)
         Me.XrCrossBandLine2.Name = "XrCrossBandLine2"
         Me.XrCrossBandLine2.StartBand = Me.PageHeader
-        Me.XrCrossBandLine2.StartPointFloat = New DevExpress.Utils.PointFloat(335.0!, 255.2917!)
+        Me.XrCrossBandLine2.StartPointFloat = New DevExpress.Utils.PointFloat(480.0!, 210.0!)
         Me.XrCrossBandLine2.WidthF = 5.000061!
         '
         'XrCrossBandLine3
         '
         Me.XrCrossBandLine3.Dpi = 254.0!
         Me.XrCrossBandLine3.EndBand = Me.PageFooter
-        Me.XrCrossBandLine3.EndPointFloat = New DevExpress.Utils.PointFloat(1225.0!, 9.999985!)
+        Me.XrCrossBandLine3.EndPointFloat = New DevExpress.Utils.PointFloat(1335.0!, 10.00003!)
         Me.XrCrossBandLine3.LineStyle = System.Drawing.Drawing2D.DashStyle.Custom
-        Me.XrCrossBandLine3.LocationFloat = New DevExpress.Utils.PointFloat(1225.0!, 255.2917!)
+        Me.XrCrossBandLine3.LocationFloat = New DevExpress.Utils.PointFloat(1335.0!, 210.0!)
         Me.XrCrossBandLine3.Name = "XrCrossBandLine3"
         Me.XrCrossBandLine3.StartBand = Me.PageHeader
-        Me.XrCrossBandLine3.StartPointFloat = New DevExpress.Utils.PointFloat(1225.0!, 255.2917!)
+        Me.XrCrossBandLine3.StartPointFloat = New DevExpress.Utils.PointFloat(1335.0!, 210.0!)
         Me.XrCrossBandLine3.WidthF = 4.999756!
-        '
-        'XrCrossBandLine4
-        '
-        Me.XrCrossBandLine4.Dpi = 254.0!
-        Me.XrCrossBandLine4.EndBand = Me.PageFooter
-        Me.XrCrossBandLine4.EndPointFloat = New DevExpress.Utils.PointFloat(1320.0!, 10.00005!)
-        Me.XrCrossBandLine4.LineStyle = System.Drawing.Drawing2D.DashStyle.Custom
-        Me.XrCrossBandLine4.LocationFloat = New DevExpress.Utils.PointFloat(1320.0!, 255.2917!)
-        Me.XrCrossBandLine4.Name = "XrCrossBandLine4"
-        Me.XrCrossBandLine4.StartBand = Me.PageHeader
-        Me.XrCrossBandLine4.StartPointFloat = New DevExpress.Utils.PointFloat(1320.0!, 255.2917!)
-        Me.XrCrossBandLine4.WidthF = 5.0!
-        '
-        'XrCrossBandLine5
-        '
-        Me.XrCrossBandLine5.Dpi = 254.0!
-        Me.XrCrossBandLine5.EndBand = Me.PageFooter
-        Me.XrCrossBandLine5.EndPointFloat = New DevExpress.Utils.PointFloat(1415.0!, 10.00005!)
-        Me.XrCrossBandLine5.LineStyle = System.Drawing.Drawing2D.DashStyle.Custom
-        Me.XrCrossBandLine5.LocationFloat = New DevExpress.Utils.PointFloat(1415.0!, 255.2917!)
-        Me.XrCrossBandLine5.Name = "XrCrossBandLine5"
-        Me.XrCrossBandLine5.StartBand = Me.PageHeader
-        Me.XrCrossBandLine5.StartPointFloat = New DevExpress.Utils.PointFloat(1415.0!, 255.2917!)
-        Me.XrCrossBandLine5.WidthF = 5.000122!
         '
         'XrCrossBandLine6
         '
         Me.XrCrossBandLine6.Dpi = 254.0!
         Me.XrCrossBandLine6.EndBand = Me.PageFooter
-        Me.XrCrossBandLine6.EndPointFloat = New DevExpress.Utils.PointFloat(1510.0!, 10.00005!)
+        Me.XrCrossBandLine6.EndPointFloat = New DevExpress.Utils.PointFloat(1500.0!, 10.00003!)
         Me.XrCrossBandLine6.LineStyle = System.Drawing.Drawing2D.DashStyle.Custom
-        Me.XrCrossBandLine6.LocationFloat = New DevExpress.Utils.PointFloat(1510.0!, 255.2917!)
+        Me.XrCrossBandLine6.LocationFloat = New DevExpress.Utils.PointFloat(1500.0!, 210.0!)
         Me.XrCrossBandLine6.Name = "XrCrossBandLine6"
         Me.XrCrossBandLine6.StartBand = Me.PageHeader
-        Me.XrCrossBandLine6.StartPointFloat = New DevExpress.Utils.PointFloat(1510.0!, 255.2917!)
+        Me.XrCrossBandLine6.StartPointFloat = New DevExpress.Utils.PointFloat(1500.0!, 210.0!)
         Me.XrCrossBandLine6.WidthF = 5.0!
         '
         'XrCrossBandBox1
@@ -737,11 +670,11 @@ Partial Public Class xrSPP
         Me.XrCrossBandBox1.BorderWidth = 2.0!
         Me.XrCrossBandBox1.Dpi = 254.0!
         Me.XrCrossBandBox1.EndBand = Me.PageFooter
-        Me.XrCrossBandBox1.EndPointFloat = New DevExpress.Utils.PointFloat(29.99997!, 10.00005!)
-        Me.XrCrossBandBox1.LocationFloat = New DevExpress.Utils.PointFloat(29.99997!, 250.0!)
+        Me.XrCrossBandBox1.EndPointFloat = New DevExpress.Utils.PointFloat(29.99994!, 10.00009!)
+        Me.XrCrossBandBox1.LocationFloat = New DevExpress.Utils.PointFloat(29.99994!, 210.0!)
         Me.XrCrossBandBox1.Name = "XrCrossBandBox1"
         Me.XrCrossBandBox1.StartBand = Me.PageHeader
-        Me.XrCrossBandBox1.StartPointFloat = New DevExpress.Utils.PointFloat(29.99997!, 250.0!)
+        Me.XrCrossBandBox1.StartPointFloat = New DevExpress.Utils.PointFloat(29.99994!, 210.0!)
         Me.XrCrossBandBox1.WidthF = 1660.0!
         '
         'pID
@@ -764,14 +697,23 @@ Partial Public Class xrSPP
         Me.pFooter.Name = "pFooter"
         Me.pFooter.Visible = False
         '
+        'SpSPP1
+        '
+        Me.SpSPP1.DataSetName = "spSPP"
+        Me.SpSPP1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
+        '
+        'SpSPPHDTableAdapter
+        '
+        Me.SpSPPHDTableAdapter.ClearBeforeFill = True
+        '
         'xrSPP
         '
         Me.Bands.AddRange(New DevExpress.XtraReports.UI.Band() {Me.Detail, Me.TopMargin, Me.BottomMargin, Me.PageHeader, Me.PageFooter})
-        Me.ComponentStorage.AddRange(New System.ComponentModel.IComponent() {Me.SpSPB1})
-        Me.CrossBandControls.AddRange(New DevExpress.XtraReports.UI.XRCrossBandControl() {Me.XrCrossBandBox1, Me.XrCrossBandLine1, Me.XrCrossBandLine2, Me.XrCrossBandLine3, Me.XrCrossBandLine4, Me.XrCrossBandLine5, Me.XrCrossBandLine6})
-        Me.DataAdapter = Me.SpSPBTableAdapter
-        Me.DataMember = "spSPB"
-        Me.DataSource = Me.SpSPB1
+        Me.ComponentStorage.AddRange(New System.ComponentModel.IComponent() {Me.SpSPP1})
+        Me.CrossBandControls.AddRange(New DevExpress.XtraReports.UI.XRCrossBandControl() {Me.XrCrossBandBox1, Me.XrCrossBandLine1, Me.XrCrossBandLine2, Me.XrCrossBandLine3, Me.XrCrossBandLine6})
+        Me.DataAdapter = Me.SpSPPHDTableAdapter
+        Me.DataMember = "spSPPcurrent"
+        Me.DataSource = Me.SpSPP1
         Me.Dpi = 254.0!
         Me.Margins = New System.Drawing.Printing.Margins(50, 50, 40, 40)
         Me.PageHeight = 1175
@@ -783,7 +725,7 @@ Partial Public Class xrSPP
         Me.SnapGridSize = 10.0!
         Me.SnappingMode = CType((DevExpress.XtraReports.UI.SnappingMode.SnapLines Or DevExpress.XtraReports.UI.SnappingMode.SnapToGrid), DevExpress.XtraReports.UI.SnappingMode)
         Me.Version = "17.2"
-        CType(Me.SpSPB1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.SpSPP1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me, System.ComponentModel.ISupportInitialize).EndInit()
 
     End Sub
@@ -791,7 +733,6 @@ Partial Public Class xrSPP
     Friend WithEvents TopMargin As DevExpress.XtraReports.UI.TopMarginBand
     Friend WithEvents BottomMargin As DevExpress.XtraReports.UI.BottomMarginBand
     Friend WithEvents XrLabel1 As DevExpress.XtraReports.UI.XRLabel
-    Friend WithEvents SpSPB1 As spSPB
     Friend WithEvents SpSPBTableAdapter As spSPBTableAdapters.spSPBTableAdapter
     Friend WithEvents XrPictureBox1 As DevExpress.XtraReports.UI.XRPictureBox
     Friend WithEvents XrLabel3 As DevExpress.XtraReports.UI.XRLabel
@@ -806,8 +747,6 @@ Partial Public Class xrSPP
     Friend WithEvents XrLabel8 As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents XrLabel7 As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents XrLabel6 As DevExpress.XtraReports.UI.XRLabel
-    Friend WithEvents XrLabel16 As DevExpress.XtraReports.UI.XRLabel
-    Friend WithEvents XrLabel15 As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents XrLabel14 As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents XrLabel13 As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents XrLabel12 As DevExpress.XtraReports.UI.XRLabel
@@ -815,8 +754,6 @@ Partial Public Class xrSPP
     Friend WithEvents XrLabel10 As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents XrLabel23 As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents XrLabel22 As DevExpress.XtraReports.UI.XRLabel
-    Friend WithEvents XrLabel21 As DevExpress.XtraReports.UI.XRLabel
-    Friend WithEvents XrLabel20 As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents XrLabel19 As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents XrLabel18 As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents XrLabel17 As DevExpress.XtraReports.UI.XRLabel
@@ -833,8 +770,6 @@ Partial Public Class xrSPP
     Friend WithEvents XrCrossBandLine1 As DevExpress.XtraReports.UI.XRCrossBandLine
     Friend WithEvents XrCrossBandLine2 As DevExpress.XtraReports.UI.XRCrossBandLine
     Friend WithEvents XrCrossBandLine3 As DevExpress.XtraReports.UI.XRCrossBandLine
-    Friend WithEvents XrCrossBandLine4 As DevExpress.XtraReports.UI.XRCrossBandLine
-    Friend WithEvents XrCrossBandLine5 As DevExpress.XtraReports.UI.XRCrossBandLine
     Friend WithEvents XrCrossBandLine6 As DevExpress.XtraReports.UI.XRCrossBandLine
     Friend WithEvents XrCrossBandBox1 As DevExpress.XtraReports.UI.XRCrossBandBox
     Friend WithEvents pID As DevExpress.XtraReports.Parameters.Parameter
@@ -842,4 +777,7 @@ Partial Public Class xrSPP
     Friend WithEvents XrLabel34 As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents pFooter As DevExpress.XtraReports.Parameters.Parameter
     Friend WithEvents xrbcQR As DevExpress.XtraReports.UI.XRBarCode
+    Friend WithEvents SpSPP1 As spSPP
+    Friend WithEvents SpSPPHDTableAdapter As spSPPTableAdapters.spSPPHDTableAdapter
+    Friend WithEvents XrLine1 As DevExpress.XtraReports.UI.XRLine
 End Class

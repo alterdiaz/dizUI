@@ -146,11 +146,11 @@
         Dim table As DataTable = Nothing
 
         If tmpCompanyFromOnline = False Then
-            json_result = modCore.HttpPOSTRequestSelect(mysite & "currenttoken")
-            table = Newtonsoft.Json.JsonConvert.DeserializeObject(Of DataTable)(json_result)
-            If table.Rows.Count > 0 Then
+            json_result = modCore.HttpPOSTRequestSelect(mysite & "CurrentToken")
+            If json_result.Length > 2 Then 'table.Rows.Count > 0 Then
+                table = Newtonsoft.Json.JsonConvert.DeserializeObject(Of DataTable)(json_result)
                 tmpidtoken = table.Rows(0).Item("idtoken")
-                tmptokenkey1 = table.Rows(0).Item("tokenkey2")
+                tmptokenkey1 = table.Rows(0).Item("tokenkey1")
                 tmptokenkey2 = table.Rows(0).Item("tokenkey2")
             Else
                 tmpidtoken = "E82EC129-868C-4FEB-9AEB-0ADB46428F1E"
@@ -159,14 +159,14 @@
             End If
         End If
 
-        table.Clear()
+        If table IsNot Nothing Then table.Clear()
         Dim mparam As New List(Of String)
         Dim mvalue As New List(Of String)
         mparam.AddRange(New String() {"param", "tkey1", "tkey2"})
         mvalue.AddRange(New String() {"currentdatetime", tmptokenkey1, tmptokenkey2})
-        json_result = modCore.HttpPOSTRequestSelect(mysite & "core", mparam, mvalue)
-        table = Newtonsoft.Json.JsonConvert.DeserializeObject(Of DataTable)(json_result)
-        If table.Rows.Count > 0 Then
+        json_result = modCore.HttpPOSTRequestSelect(mysite & "Core", mparam, mvalue)
+        If json_result.Length > 2 Then 'table.Rows.Count > 0 Then
+            table = Newtonsoft.Json.JsonConvert.DeserializeObject(Of DataTable)(json_result)
             Dim tmptgl As String = table.Rows(0).Item("tanggal")
             Dim tmpwaktu As String = table.Rows(0).Item("waktu")
             tmpnowTime = Strdatetime2Datetime(tmptgl & " " & tmpwaktu)
@@ -175,31 +175,39 @@
         End If
 
         If tmpCompanyFromOnline = False Then
-            tmpidcompanyrefferal = -1
+            tmpidcompanyrefferal = "-1"
             If teRefferalCode.Text <> "" Then
-                table.Clear()
+                If table IsNot Nothing Then table.Clear()
                 mparam.Clear()
                 mvalue.Clear()
                 mparam.AddRange(New String() {"param", "value", "tkey1", "tkey2"})
                 mvalue.AddRange(New String() {"cekcode", teRefferalCode.Text, tmptokenkey1, tmptokenkey2})
                 json_result = modCore.HttpPOSTRequestSelect(mysite & "sharecontract")
-                table = Newtonsoft.Json.JsonConvert.DeserializeObject(Of DataTable)(json_result)
 
-                If table.Rows.Count > 0 Then
+                If json_result.Length > 2 Then 'table.Rows.Count > 0 Then
+                    table = Newtonsoft.Json.JsonConvert.DeserializeObject(Of DataTable)(json_result)
                     tmpidcompanyrefferal = table.Rows(0).Item("idcompanyreferral")
                 Else
-                    dizMsgbox("Refferal Code tidak ditemukan", dizMsgboxStyle.Kesalahan)
+                    dizMsgbox("Refferal Code tidak ditemukan", dizMsgboxStyle.Kesalahan, me)
                     Exit Sub
                 End If
             End If
         End If
 
+
         If idData = "-1" Then
+            statData = statusData.Baru
             idData = GenerateGUID()
+        Else
+            statData = statusData.Edit
         End If
         Dim field As New List(Of String)
         Dim value As New List(Of String)
-        field.AddRange(New String() {"idcompany", "idcompanyrefferal", "companycode", "companynicknameunique", "companynickname", "companyofficialname", "companytype", "companylegalnumber", "companyemail", "emailpin", "emailpinexpired", "isemailverified", "address", "zipcode", "idnegara", "idpropinsi", "idkabupaten", "idkecamatan", "idkelurahan", "addresspin", "addresspinexpired", "isaddressverified", "faxno", "phoneno1", "phoneno2", "ispersonal", "isdeleted", "deletereason", "contactpersonname", "contactpersonno", "contactpersonemail", "createdby", "createddate", "idtoken", "tokenkey1", "tokenkey2"})
+        If statData = statusData.Baru Then
+            field.AddRange(New String() {"idcompany", "idcompanyrefferal", "companycode", "companynicknameunique", "companynickname", "companyofficialname", "companytype", "companylegalnumber", "companyemail", "emailpin", "emailpinexpired", "isemailverified", "address", "zipcode", "idnegara", "idpropinsi", "idkabupaten", "idkecamatan", "idkelurahan", "addresspin", "addresspinexpired", "isaddressverified", "faxno", "phoneno1", "phoneno2", "ispersonal", "isdeleted", "deletereason", "contactpersonname", "contactpersonno", "contactpersonemail", "createdby", "createddate", "idtoken", "tokenkey1", "tokenkey2"})
+        ElseIf statData = statusData.Edit Then
+            field.AddRange(New String() {"idcompany", "idcompanyrefferal", "companycode", "companynicknameunique", "companynickname", "companyofficialname", "companytype", "companylegalnumber", "companyemail", "emailpin", "emailpinexpired", "isemailverified", "address", "zipcode", "idnegara", "idpropinsi", "idkabupaten", "idkecamatan", "idkelurahan", "addresspin", "addresspinexpired", "isaddressverified", "faxno", "phoneno1", "phoneno2", "ispersonal", "isdeleted", "deletereason", "contactpersonname", "contactpersonno", "contactpersonemail", "updatedby", "updateddate", "idtoken", "tokenkey1", "tokenkey2"})
+        End If
         'Dim emailpin As String = GenerateUniqueID(getCharsUpperNumeric(teCompEmail.Text), 20)
         'Dim emailpin As String = getCharsNumeric(GeneratePass(teCompEmail.Text, tmptokenkey1, tmptokenkey2, 20))
         Dim emailpin As String = getGenerateCode(teCompEmail.Text, tmptokenkey1, tmptokenkey2, 20, getFrom.depan)
@@ -208,24 +216,27 @@
         Dim addresspin As String = getGenerateCode(teAlamat.Text, tmptokenkey1, tmptokenkey2, 20, getFrom.depan)
         'Dim compcode As String = GenerateUniqueID(getCharsUpper(teCompFullname.Text), 20)
         'Dim compcode As String = getCharsNumeric(GeneratePass(getCharsNumeric(teCompFullname.Text), tmptokenkey1, tmptokenkey2, 20))
-        Dim compcode As String = getGenerateCode(teCompFullname.Text, tmptokenkey1, tmptokenkey2, 20, getFrom.depan)
+        Dim compcode As String = getGenerateCode(teCompFullname.Text, tmptokenkey1, tmptokenkey2, 2000, getFrom.depan)
 
         Dim compnameunique As String = getCharsNumeric(teCompFullname.Text)
-        value.AddRange(New Object() {idData, IIf(tmpidcompanyrefferal = "-1", "0", tmpidcompanyrefferal), compcode, compnameunique, teCompNickname.Text, teCompFullname.Text, lueCompJenis.EditValue, teCompNPWP.Text, teCompEmail.Text, emailpin, Format(tmpnowTime.AddDays(30), "yyyy-MM-dd"), 0, teAlamat.Text, teKodepos.Text, lueRegion1.EditValue, lueRegion2.EditValue, "", "", "", addresspin, Format(tmpnowTime.AddDays(30), "yyyy-MM-dd"), 0, teFax.Text, tePhone1.Text, tePhone2.Text, IIf(lueCompJenis.EditValue = 0, 1, 0), 0, "-", teCPname.Text, teCPno.Text, teCPemail.Text, tmpUserID, Format(tmpnowTime, "yyyy-MM-dd HH:mm:ss"), tmpidtoken, tmptokenkey1, tmptokenkey2})
+        value.AddRange(New String() {idData, IIf(tmpidcompanyrefferal = "-1", "0", tmpidcompanyrefferal), compcode, compnameunique, teCompNickname.Text, teCompFullname.Text, lueCompJenis.EditValue, teCompNPWP.Text, teCompEmail.Text, emailpin, Format(tmpnowTime.AddDays(30), "yyyy-MM-dd"), 0, teAlamat.Text, teKodepos.Text, If(lueRegion1.EditValue, ""), If(lueRegion2.EditValue, ""), If(lueRegion3.EditValue, ""), If(lueRegion4.EditValue, ""), If(lueRegion5.EditValue, ""), addresspin, Format(tmpnowTime.AddDays(30), "yyyy-MM-dd"), 0, teFax.Text, tePhone1.Text, tePhone2.Text, IIf(lueCompJenis.EditValue = 0, 1, 0), 0, "-", teCPname.Text, teCPno.Text, teCPemail.Text, tmpUserID, Format(tmpnowTime, "yyyy-MM-dd HH:mm:ss"), tmpidtoken, tmptokenkey1, tmptokenkey2})
 
         Me.Cursor = Cursors.Default
 
-        table.Clear()
+        If table IsNot Nothing Then table.Clear()
         mparam.Clear()
         mvalue.Clear()
         mparam.AddRange(field)
         mvalue.AddRange(value)
         mparam.AddRange(New String() {"param", "value", "tkey1", "tkey2"})
-        mvalue.AddRange(New String() {"baru", "", tmptokenkey1, tmptokenkey2})
-        json_result = modCore.HttpPOSTRequestInsert(mysite & "company")
-        'table = Newtonsoft.Json.JsonConvert.DeserializeObject(Of DataTable)(json_result)
+        If statData = statusData.Baru Then
+            mvalue.AddRange(New String() {"baru", idData, tmptokenkey1, tmptokenkey2})
+        ElseIf statData = statusData.Edit Then
+            mvalue.AddRange(New String() {"edit", idData, tmptokenkey1, tmptokenkey2})
+        End If
+        json_result = modCore.HttpPOSTRequestInsert(mysite & "Company", mparam, mvalue)
 
-        If json_result = "true" Then 'table.Rows.Count > 0 Then
+        If json_result = "true" Then
             Dim idcomp As String = getIDCompany(teCompNPWP.Text)
             Dim lite As New SQLi(dblite)
 
@@ -243,6 +254,12 @@
             sqlss.DMLQuery("update sys_appsetting set value='" & teCompFullname.Text & "' where variable='CompanyName'", False)
             sqlss.DMLQuery("update sys_appsetting set value='" & compcode & "' where variable='CompanyCode'", False)
 
+            sqlss.DMLQuery("select tb.table_name from information_schema.columns tb where column_name='idcompany'", "alltable")
+            For i As Integer = 0 To sqlss.getDataSet("alltable") - 1
+                Dim nmtable As String = sqlss.getDataSet("alltable", i, "table_name")
+                sqlss.DMLQuery("update " & nmtable & " set idcompany='" & idcomp & "'", False)
+            Next
+
             dizMsgbox("Data Perusahaan tersimpan", dizMsgboxStyle.Info, Me)
             Me.DialogResult = Windows.Forms.DialogResult.OK
             Me.Dispose()
@@ -253,23 +270,23 @@
         Dim retval As String = ""
         Dim json_result As String = ""
         Dim table As DataTable = Nothing
-        json_result = modCore.HttpPOSTRequestSelect(mysite & "currenttoken")
-        table = Newtonsoft.Json.JsonConvert.DeserializeObject(Of DataTable)(json_result)
+        json_result = modCore.HttpPOSTRequestSelect(mysite & "CurrentToken")
         Dim tkey1 As String = ""
         Dim tkey2 As String = ""
-        If table.Rows.Count > 0 Then
+        If json_result.Length > 2 Then
+            table = Newtonsoft.Json.JsonConvert.DeserializeObject(Of DataTable)(json_result)
             tkey1 = table.Rows(0).Item("tokenkey1")
             tkey2 = table.Rows(0).Item("tokenkey2")
         End If
 
-        table.Clear()
+        If table IsNot Nothing Then table.Clear()
         Dim param As New List(Of String)
         Dim value As New List(Of String)
-        param.AddRange(New String() {"param", "value", "emailpin", "tkey1", "tkey2"})
-        value.AddRange(New String() {"cekemailpinvalid", emailcomp, emailpin, tkey1, tkey2})
-        json_result = modCore.HttpPOSTRequestSelect(mysite & "company", param, value)
-        table = Newtonsoft.Json.JsonConvert.DeserializeObject(Of DataTable)(json_result)
-        If table.Rows.Count > 0 Then
+        param.AddRange(New String() {"param", "value", "companyemail", "emailpin", "tkey1", "tkey2"})
+        value.AddRange(New String() {"cekemailpinvalid", emailcomp, emailcomp, emailpin, tkey1, tkey2})
+        json_result = modCore.HttpPOSTRequestSelect(mysite & "Company", param, value)
+        If json_result.Length > 2 Then
+            table = Newtonsoft.Json.JsonConvert.DeserializeObject(Of DataTable)(json_result)
             retval = table.Rows(0).Item("idcompany")
         End If
         Return retval
@@ -279,22 +296,22 @@
         Dim retval As DataTable = Nothing
         Dim json_result As String = ""
         Dim table As DataTable = Nothing
-        json_result = modCore.HttpPOSTRequestSelect(mysite & "currenttoken")
-        table = Newtonsoft.Json.JsonConvert.DeserializeObject(Of DataTable)(json_result)
+        json_result = modCore.HttpPOSTRequestSelect(mysite & "CurrentToken")
         Dim tkey1, tkey2 As String
-        If table.Rows.Count > 0 Then
+        If json_result.Length > 2 Then
+            table = Newtonsoft.Json.JsonConvert.DeserializeObject(Of DataTable)(json_result)
             tkey1 = table.Rows(0).Item("tokenkey1")
             tkey2 = table.Rows(0).Item("tokenkey2")
         End If
 
-        table.Clear()
+        If table IsNot Nothing Then table.Clear()
         Dim param As New List(Of String)
         Dim value As New List(Of String)
-        param.AddRange(New String() {"param", "value", "emailpin", "tkey1", "tkey2"})
-        value.AddRange(New String() {"cekemailpinvalid", emailcomp, emailpin, tkey1, tkey2})
-        json_result = modCore.HttpPOSTRequestSelect(mysite & "company", param, value)
-        table = Newtonsoft.Json.JsonConvert.DeserializeObject(Of DataTable)(json_result)
-        If table.Rows.Count > 0 Then
+        param.AddRange(New String() {"param", "value", "companyemail", "emailpin", "tkey1", "tkey2"})
+        value.AddRange(New String() {"cekemailpinvalid", emailcomp, emailcomp, emailpin, tkey1, tkey2})
+        json_result = modCore.HttpPOSTRequestSelect(mysite & "Company", param, value)
+        If json_result.Length > 2 Then
+            table = Newtonsoft.Json.JsonConvert.DeserializeObject(Of DataTable)(json_result)
             retval = table
         End If
         Return retval
@@ -305,22 +322,22 @@
         Dim strnpwp As String = getNumber(npwp)
         Dim json_result As String = ""
         Dim table As DataTable = Nothing
-        json_result = modCore.HttpPOSTRequestSelect(mysite & "currenttoken")
-        table = Newtonsoft.Json.JsonConvert.DeserializeObject(Of DataTable)(json_result)
+        json_result = modCore.HttpPOSTRequestSelect(mysite & "CurrentToken")
         Dim tkey1, tkey2 As String
-        If table.Rows.Count > 0 Then
+        If json_result.Length > 2 Then
+            table = Newtonsoft.Json.JsonConvert.DeserializeObject(Of DataTable)(json_result)
             tkey1 = table.Rows(0).Item("tokenkey1")
             tkey2 = table.Rows(0).Item("tokenkey2")
         End If
 
-        table.Clear()
+        If table IsNot Nothing Then table.Clear()
         Dim param As New List(Of String)
         Dim value As New List(Of String)
-        param.AddRange(New String() {"param", "value", "tkey1", "tkey2"})
-        value.AddRange(New String() {"ceknpwp", npwp, tkey1, tkey2})
-        json_result = modCore.HttpPOSTRequestSelect(mysite & "company", param, value)
-        table = Newtonsoft.Json.JsonConvert.DeserializeObject(Of DataTable)(json_result)
-        If table.Rows.Count > 0 Then
+        param.AddRange(New String() {"param", "value", "tkey1", "tkey2", "companylegalnumber"})
+        value.AddRange(New String() {"ceknpwp", npwp, tkey1, tkey2, npwp})
+        json_result = modCore.HttpPOSTRequestSelect(mysite & "Company", param, value)
+        If json_result.Length > 2 Then
+            table = Newtonsoft.Json.JsonConvert.DeserializeObject(Of DataTable)(json_result)
             retval = table.Rows(0).Item("idcompany")
         End If
         Return retval
@@ -331,22 +348,22 @@
         Dim strnpwp As String = getNumber(npwp)
         Dim json_result As String = ""
         Dim table As DataTable = Nothing
-        json_result = modCore.HttpPOSTRequestSelect(mysite & "currenttoken")
-        table = Newtonsoft.Json.JsonConvert.DeserializeObject(Of DataTable)(json_result)
+        json_result = modCore.HttpPOSTRequestSelect(mysite & "CurrentToken")
         Dim tkey1, tkey2 As String
-        If table.Rows.Count > 0 Then
+        If json_result.Length > 2 Then
+            table = Newtonsoft.Json.JsonConvert.DeserializeObject(Of DataTable)(json_result)
             tkey1 = table.Rows(0).Item("tokenkey1")
             tkey2 = table.Rows(0).Item("tokenkey2")
         End If
 
-        table.Clear()
+        If table IsNot Nothing Then table.Clear()
         Dim param As New List(Of String)
         Dim value As New List(Of String)
-        param.AddRange(New String() {"param", "value", "tkey1", "tkey2"})
-        value.AddRange(New String() {"ceknpwp", npwp, tkey1, tkey2})
-        json_result = modCore.HttpPOSTRequestSelect(mysite & "company", param, value)
-        table = Newtonsoft.Json.JsonConvert.DeserializeObject(Of DataTable)(json_result)
-        If table.Rows.Count > 0 Then
+        param.AddRange(New String() {"param", "value", "tkey1", "tkey2", "companylegalnumber"})
+        value.AddRange(New String() {"ceknpwp", npwp, tkey1, tkey2, npwp})
+        json_result = modCore.HttpPOSTRequestSelect(mysite & "Company", param, value)
+        If json_result.Length > 2 Then
+            table = Newtonsoft.Json.JsonConvert.DeserializeObject(Of DataTable)(json_result)
             retval = False
         End If
         Return retval
@@ -369,39 +386,49 @@
         Dim table As DataTable = Nothing
         Dim reg1 As DataTable = Nothing
 
-        json_result = modCore.HttpPOSTRequestSelect(mysite & "currenttoken")
-        table = Newtonsoft.Json.JsonConvert.DeserializeObject(Of DataTable)(json_result)
-        tmpidtoken = table.Rows(0).Item("idtoken")
-        tmptokenkey1 = table.Rows(0).Item("tokenkey2")
-        tmptokenkey2 = table.Rows(0).Item("tokenkey2")
+        json_result = modCore.HttpPOSTRequestSelect(mysite & "CurrentToken")
+        If json_result.Length > 2 Then
+            table = Newtonsoft.Json.JsonConvert.DeserializeObject(Of DataTable)(json_result)
+            tmpidtoken = table.Rows(0).Item("idtoken")
+            tmptokenkey1 = table.Rows(0).Item("tokenkey1")
+            tmptokenkey2 = table.Rows(0).Item("tokenkey2")
+        Else
+            tmpidtoken = "E82EC129-868C-4FEB-9AEB-0ADB46428F1E"
+            tmptokenkey1 = "ABF"
+            tmptokenkey2 = "123"
+        End If
 
-        table.Clear()
+        If table IsNot Nothing Then table.Clear()
         Dim field As New List(Of String)
         Dim value As New List(Of String)
         field.AddRange(New String() {"param", "value", "tkey1", "tkey2"})
         value.AddRange(New String() {"custom", "select idgeneral as id,generalcode as content from generalcode where gctype='COMPANYTYPE'", tmptokenkey1, tmptokenkey2})
-        json_result = modCore.HttpPOSTRequestSelect(mysite & "core")
-        table = Newtonsoft.Json.JsonConvert.DeserializeObject(Of DataTable)(json_result)
+        json_result = modCore.HttpPOSTRequestSelect(mysite & "Core", field, value)
+        If json_result.Length > 2 Then
+            table = Newtonsoft.Json.JsonConvert.DeserializeObject(Of DataTable)(json_result)
 
-        'Dim sqls As New SQLs(mystring)
-        'sqls.DMLQuery("select idgeneral as idjenis,generalcode as jenis from generalcode where gctype='COMPANYTYPE'", "getcomptype")
-        lueCompJenis.Properties.DataSource = table 'sqls.dataTable("getcomptype")
-        lueCompJenis.Properties.DisplayMember = "content"
-        lueCompJenis.Properties.ValueMember = "id"
-        lueCompJenis.EditValue = Nothing
+            'Dim sqls As New SQLs(mystring)
+            'sqls.DMLQuery("select idgeneral as idjenis,generalcode as jenis from generalcode where gctype='COMPANYTYPE'", "getcomptype")
+            lueCompJenis.Properties.DataSource = table 'sqls.dataTable("getcomptype")
+            lueCompJenis.Properties.DisplayMember = "content"
+            lueCompJenis.Properties.ValueMember = "id"
+            lueCompJenis.EditValue = Nothing
+        End If
 
         field.Clear()
         value.Clear()
         field.AddRange(New String() {"param", "value", "tkey1", "tkey2"})
         value.AddRange(New String() {"custom", "select idwilayah as idregion,wilayah as region from wilayah where levelwilayah=1 and isdeleted=0", tmptokenkey1, tmptokenkey2})
-        json_result = modCore.HttpPOSTRequestSelect(mysite & "core")
-        reg1 = Newtonsoft.Json.JsonConvert.DeserializeObject(Of DataTable)(json_result)
+        json_result = modCore.HttpPOSTRequestSelect(mysite & "Core", field, value)
+        If json_result.Length > 2 Then
+            reg1 = Newtonsoft.Json.JsonConvert.DeserializeObject(Of DataTable)(json_result)
 
-        'SQLs.DMLQuery("select idwilayah as idregion,wilayah as region from wilayah where levelwilayah=1 and isdeleted=0", "region1")
-        lueRegion1.Properties.DataSource = reg1 'sqls.dataTable("region1")
-        lueRegion1.Properties.ValueMember = "idregion"
-        lueRegion1.Properties.DisplayMember = "region"
-        lueRegion1.EditValue = Nothing
+            'SQLs.DMLQuery("select idwilayah as idregion,wilayah as region from wilayah where levelwilayah=1 and isdeleted=0", "region1")
+            lueRegion1.Properties.DataSource = reg1 'sqls.dataTable("region1")
+            lueRegion1.Properties.ValueMember = "idregion"
+            lueRegion1.Properties.DisplayMember = "region"
+            lueRegion1.EditValue = Nothing
+        End If
 
         teFax.Text = 0
         tePhone1.Text = 0
@@ -456,6 +483,9 @@
             'SQLs.DMLQuery("select isnull(idcompanyrefferal,-1) as idcompanyrefferal,companytype,companyofficialname,companynickname,companyemail,companylegalnumber,address,zipcode,idnegara,idpropinsi,idkabupaten,idkecamatan,idkelurahan,faxno,phoneno1,phoneno2,contactpersonname,contactpersonno,contactpersonemail,idtoken,tokenkey1,tokenkey2 from company where idcompany='" & idData & "'", "getcompdata")
 
             tmpidcompanyrefferal = tabel.Rows(0).Item("idcompanyrefferal")
+            If tmpidcompanyrefferal = "0" Then
+                tmpidcompanyrefferal = "-1"
+            End If
             lueCompJenis.EditValue = tabel.Rows(0).Item("companytype")
             teCompNickname.Text = tabel.Rows(0).Item("companynickname")
             teCompFullname.Text = tabel.Rows(0).Item("companyofficialname")
@@ -486,12 +516,12 @@
             If tmpidcompanyrefferal <> "-1" Then
                 Dim field As New List(Of String)
                 Dim value As New List(Of String)
-                field.AddRange(New String() {"param", "value", "tkey1", "tkey2"})
-                value.AddRange(New String() {"cekidreff", tmpidcompanyrefferal, tmptokenkey1, tmptokenkey2})
-                Dim json_result As String = modCore.HttpPOSTRequestSelect(mysite & "sharecontract")
-                Dim sc As DataTable = Newtonsoft.Json.JsonConvert.DeserializeObject(Of DataTable)(json_result)
+                field.AddRange(New String() {"param", "value", "idcompanyrefferal", "tkey1", "tkey2"})
+                value.AddRange(New String() {"cekidreff", tmpidcompanyrefferal, tmpidcompanyrefferal, tmptokenkey1, tmptokenkey2})
+                Dim json_result As String = modCore.HttpPOSTRequestSelect(mysite & "ShareContract")
 
-                If sc.Rows.Count > 0 Then
+                If json_result.Length > 2 Then
+                    Dim sc As DataTable = Newtonsoft.Json.JsonConvert.DeserializeObject(Of DataTable)(json_result)
                     teRefferalCode.Text = sc.Rows(0).Item("sharecontractcode")
                     teRefferalCode.ReadOnly = True
                     teRefferalCode.Enabled = False
@@ -531,11 +561,14 @@
             Dim reg As DataTable = Nothing
             field.AddRange(New String() {"param", "value", "tkey1", "tkey2"})
             value.AddRange(New String() {"custom", "select idwilayah as idregion,wilayah as region from wilayah where levelwilayah=2 and isdeleted=0 and idparent='" & sender.editvalue & "'", tmptokenkey1, tmptokenkey2})
-            json_result = modCore.HttpPOSTRequestSelect(mysite & "core")
-            reg = Newtonsoft.Json.JsonConvert.DeserializeObject(Of DataTable)(json_result)
-            lueRegion2.Properties.DataSource = reg
-            lueRegion2.Properties.ValueMember = "idregion"
-            lueRegion2.Properties.DisplayMember = "region"
+            json_result = modCore.HttpPOSTRequestSelect(mysite & "Core", field, value)
+
+            If json_result.Length > 2 Then
+                reg = Newtonsoft.Json.JsonConvert.DeserializeObject(Of DataTable)(json_result)
+                lueRegion2.Properties.DataSource = reg
+                lueRegion2.Properties.ValueMember = "idregion"
+                lueRegion2.Properties.DisplayMember = "region"
+            End If
             lueRegion2.EditValue = Nothing
         End If
     End Sub
@@ -551,11 +584,13 @@
             Dim reg As DataTable = Nothing
             field.AddRange(New String() {"param", "value", "tkey1", "tkey2"})
             value.AddRange(New String() {"custom", "select idwilayah as idregion,wilayah as region from wilayah where levelwilayah=3 and isdeleted=0 and idparent='" & sender.editvalue & "'", tmptokenkey1, tmptokenkey2})
-            json_result = modCore.HttpPOSTRequestSelect(mysite & "core")
-            reg = Newtonsoft.Json.JsonConvert.DeserializeObject(Of DataTable)(json_result)
-            lueRegion3.Properties.DataSource = reg
-            lueRegion3.Properties.ValueMember = "idregion"
-            lueRegion3.Properties.DisplayMember = "region"
+            json_result = modCore.HttpPOSTRequestSelect(mysite & "Core", field, value)
+            If json_result.Length > 2 Then
+                reg = Newtonsoft.Json.JsonConvert.DeserializeObject(Of DataTable)(json_result)
+                lueRegion3.Properties.DataSource = reg
+                lueRegion3.Properties.ValueMember = "idregion"
+                lueRegion3.Properties.DisplayMember = "region"
+            End If
             lueRegion3.EditValue = Nothing
         End If
     End Sub
@@ -571,11 +606,13 @@
             Dim reg As DataTable = Nothing
             field.AddRange(New String() {"param", "value", "tkey1", "tkey2"})
             value.AddRange(New String() {"custom", "select idwilayah as idregion,wilayah as region from wilayah where levelwilayah=4 and isdeleted=0 and idparent='" & sender.editvalue & "'", tmptokenkey1, tmptokenkey2})
-            json_result = modCore.HttpPOSTRequestSelect(mysite & "core")
-            reg = Newtonsoft.Json.JsonConvert.DeserializeObject(Of DataTable)(json_result)
-            lueRegion4.Properties.DataSource = reg
-            lueRegion4.Properties.ValueMember = "idregion"
-            lueRegion4.Properties.DisplayMember = "region"
+            json_result = modCore.HttpPOSTRequestSelect(mysite & "Core", field, value)
+            If json_result.Length > 2 Then
+                reg = Newtonsoft.Json.JsonConvert.DeserializeObject(Of DataTable)(json_result)
+                lueRegion4.Properties.DataSource = reg
+                lueRegion4.Properties.ValueMember = "idregion"
+                lueRegion4.Properties.DisplayMember = "region"
+            End If
             lueRegion4.EditValue = Nothing
         End If
     End Sub
@@ -591,13 +628,15 @@
             Dim reg As DataTable = Nothing
             field.AddRange(New String() {"param", "value", "tkey1", "tkey2"})
             value.AddRange(New String() {"custom", "select idwilayah as idregion,wilayah as region from wilayah where levelwilayah=5 and isdeleted=0 and idparent='" & sender.editvalue & "'", tmptokenkey1, tmptokenkey2})
-            json_result = modCore.HttpPOSTRequestSelect(mysite & "core")
-            reg = Newtonsoft.Json.JsonConvert.DeserializeObject(Of DataTable)(json_result)
-            lueRegion5.Properties.DataSource = reg
-            lueRegion5.Properties.ValueMember = "idregion"
-            lueRegion5.Properties.DisplayMember = "region"
+            json_result = modCore.HttpPOSTRequestSelect(mysite & "Core", field, value)
+            If json_result.Length > 2 Then
+                reg = Newtonsoft.Json.JsonConvert.DeserializeObject(Of DataTable)(json_result)
+                lueRegion5.Properties.DataSource = reg
+                lueRegion5.Properties.ValueMember = "idregion"
+                lueRegion5.Properties.DisplayMember = "region"
+            End If
             lueRegion5.EditValue = Nothing
-        End If
+            End If
     End Sub
 
     Private Sub teCompNPWP_KeyPress(sender As Object, e As KeyPressEventArgs) Handles teCompNPWP.KeyPress

@@ -94,7 +94,7 @@
         Me.Cursor = Cursors.WaitCursor
 
         Dim mysqls As New SQLs(dbstring)
-        mysqls.DMLQuery("select dl.idappdevice,dl.iddevice,dl.idappeventcode,d.device,l.appeventcode,dl.isdeleted,del.generalcode as statdata from sys_appdevice dl left join sys_device d on dl.iddevice=d.iddevice left join sys_appeventcode l on dl.idappeventcode=l.idappeventcode left join sys_generalcode del on dl.isdeleted=del.idgeneral and del.gctype='DELETE' order by d.device asc,l.appeventcode asc", "data")
+        mysqls.DMLQuery("select dl.ipaddress,dl.idappdevice,dl.iddevice,dl.idappeventcode,d.device,l.appeventcode,dl.isdeleted,del.generalcode as statdata from sys_appdevice dl left join sys_device d on dl.iddevice=d.iddevice left join sys_appeventcode l on dl.idappeventcode=l.idappeventcode left join sys_generalcode del on dl.isdeleted=del.idgeneral and del.gctype='DELETE' order by d.device asc,l.appeventcode asc", "data")
         gcData.DataSource = mysqls.dataTable("data")
         gvData.BestFitColumns()
 
@@ -134,7 +134,7 @@
         End If
         If statData = statusData.Baru Then
             Dim sqls As New SQLs(dbstring)
-            sqls.DMLQuery("select idappdevice from sys_idappdevice where idcompany=(select top 1 value from sys_appsetting where variable='CompanyID') and idappeventcode='" & lueEventCode.EditValue & "'", "exist")
+            sqls.DMLQuery("select idappdevice from sys_appdevice where idappeventcode='" & lueEventCode.EditValue & "' and ipaddress='" & teIPAddress.EditValue & "' and iddevice='" & lueDevice.EditValue & "'", "exist")
             If sqls.getDataSet("exist") = 0 Then
                 idData = "-1"
             Else
@@ -144,7 +144,7 @@
             End If
         ElseIf statData = statusData.Edit Then
             Dim sqls As New SQLs(dbstring)
-            sqls.DMLQuery("select idappdevice from sys_idappdevice where idcompany=(select top 1 value from sys_appsetting where variable='CompanyID') and idappeventcode='" & lueEventCode.EditValue & "' and idappdevice<>'" & idData & "'", "exist")
+            sqls.DMLQuery("select idappdevice from sys_appdevice where idappeventcode='" & lueEventCode.EditValue & "' and ipaddress='" & teIPAddress.EditValue & "' and iddevice='" & lueDevice.EditValue & "' and idappdevice<>'" & idData & "'", "exist")
             If sqls.getDataSet("exist") > 0 Then
                 dizMsgbox("Data tersebut sudah ada", dizMsgboxStyle.Info, Me)
                 lueDevice.Focus()
@@ -162,11 +162,11 @@
 
         If statData = statusData.Baru Then
             idData = GenerateGUID()
-            field.AddRange(New String() {"idappdevice", "iddevice", "idappeventcode", "isdeleted", "createdby", "createddate", "idcompany"})
-            value.AddRange(New Object() {idData, lueDevice.EditValue, lueEventCode.EditValue, 0, userid, nowTime, idcomp})
+            field.AddRange(New String() {"idappdevice", "iddevice", "idappeventcode", "ipaddress", "isdeleted", "createdby", "createddate", "idcompany"})
+            value.AddRange(New Object() {idData, lueDevice.EditValue, lueEventCode.EditValue, teIPAddress.EditValue, 0, userid, nowTime, idcomp})
         Else
-            field.AddRange(New String() {"idappdevice", "iddevice", "idappeventcode", "isdeleted", "updatedby", "updateddate"})
-            value.AddRange(New Object() {idData, lueDevice.EditValue, lueEventCode.EditValue, 0, userid, nowTime})
+            field.AddRange(New String() {"idappdevice", "iddevice", "idappeventcode", "ipaddress", "isdeleted", "updatedby", "updateddate"})
+            value.AddRange(New Object() {idData, lueDevice.EditValue, lueEventCode.EditValue, teIPAddress.EditValue, 0, userid, nowTime})
         End If
 
         If dtSQL.datasetSave("sys_appdevice", idData, field, value, False) = True Then
@@ -218,6 +218,7 @@
             Dim dcol As DataRow = gvData.GetDataRow(e.FocusedRowHandle)
             lueDevice.EditValue = dcol("iddevice")
             lueEventCode.EditValue = dcol("idappeventcode")
+            teIPAddress.EditValue = dcol("ipaddress")
 
             idData = dcol("idappdevice")
             statData = statusData.Edit
@@ -238,11 +239,6 @@
 
     Private Sub Form_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         getRegex(dbstring)
-        If formTitle <> "" Then
-            Me.Text = formTitle
-            lblTitle.Text = formTitle
-        End If
-
         loadLOV()
 
         checkFieldMaxLength(dbstring, tlpField, "sys_appdevice")

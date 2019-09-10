@@ -22,14 +22,15 @@ Partial Class frmMain
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmMain))
-        Me.niNotify = New System.Windows.Forms.NotifyIcon(Me.components)
-        Me.cmsMenu = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.niNotify = New System.Windows.Forms.NotifyIcon()
+        Me.cmsMenu = New System.Windows.Forms.ContextMenuStrip()
         Me.tsmiTampilkan = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripSeparator1 = New System.Windows.Forms.ToolStripSeparator()
         Me.tsmiLogout = New System.Windows.Forms.ToolStripMenuItem()
         Me.tsmiKeluar = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripSeparator2 = New System.Windows.Forms.ToolStripSeparator()
+        Me.tsmiForceClose = New System.Windows.Forms.ToolStripMenuItem()
         Me.tlpForm = New System.Windows.Forms.TableLayoutPanel()
         Me.pTitle = New System.Windows.Forms.Panel()
         Me.lblTitle = New System.Windows.Forms.Label()
@@ -48,13 +49,14 @@ Partial Class frmMain
         Me.tboUsername = New System.Windows.Forms.TextBox()
         Me.lblPassword = New System.Windows.Forms.Label()
         Me.lblUsername = New System.Windows.Forms.Label()
-        Me.tmrRM = New System.Windows.Forms.Timer(Me.components)
-        Me.tmrCek = New System.Windows.Forms.Timer(Me.components)
-        Me.tmrIRNA = New System.Windows.Forms.Timer(Me.components)
-        Me.tmrIGD = New System.Windows.Forms.Timer(Me.components)
-        Me.tmrIRJ = New System.Windows.Forms.Timer(Me.components)
-        Me.tmrNotes = New System.Windows.Forms.Timer(Me.components)
-        Me.tmrIRM = New System.Windows.Forms.Timer(Me.components)
+        Me.tmrRM = New System.Windows.Forms.Timer()
+        Me.tmrCek = New System.Windows.Forms.Timer()
+        Me.tmrIRNA = New System.Windows.Forms.Timer()
+        Me.tmrIGD = New System.Windows.Forms.Timer()
+        Me.tmrIRJ = New System.Windows.Forms.Timer()
+        Me.tmrNotes = New System.Windows.Forms.Timer()
+        Me.tmrIRM = New System.Windows.Forms.Timer()
+        Me.tmrProses = New System.Windows.Forms.Timer()
         Me.cmsMenu.SuspendLayout()
         Me.tlpForm.SuspendLayout()
         Me.pTitle.SuspendLayout()
@@ -73,32 +75,43 @@ Partial Class frmMain
         '
         'cmsMenu
         '
-        Me.cmsMenu.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.tsmiTampilkan, Me.ToolStripSeparator1, Me.tsmiLogout, Me.tsmiKeluar})
+        Me.cmsMenu.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.tsmiTampilkan, Me.ToolStripSeparator1, Me.tsmiLogout, Me.tsmiKeluar, Me.ToolStripSeparator2, Me.tsmiForceClose})
         Me.cmsMenu.Name = "cmsMenu"
-        Me.cmsMenu.Size = New System.Drawing.Size(130, 76)
+        Me.cmsMenu.Size = New System.Drawing.Size(153, 126)
         '
         'tsmiTampilkan
         '
         Me.tsmiTampilkan.Name = "tsmiTampilkan"
-        Me.tsmiTampilkan.Size = New System.Drawing.Size(129, 22)
+        Me.tsmiTampilkan.Size = New System.Drawing.Size(152, 22)
         Me.tsmiTampilkan.Text = "Tampilkan"
         '
         'ToolStripSeparator1
         '
         Me.ToolStripSeparator1.Name = "ToolStripSeparator1"
-        Me.ToolStripSeparator1.Size = New System.Drawing.Size(126, 6)
+        Me.ToolStripSeparator1.Size = New System.Drawing.Size(149, 6)
         '
         'tsmiLogout
         '
         Me.tsmiLogout.Name = "tsmiLogout"
-        Me.tsmiLogout.Size = New System.Drawing.Size(129, 22)
+        Me.tsmiLogout.Size = New System.Drawing.Size(152, 22)
         Me.tsmiLogout.Text = "Log out"
         '
         'tsmiKeluar
         '
         Me.tsmiKeluar.Name = "tsmiKeluar"
-        Me.tsmiKeluar.Size = New System.Drawing.Size(129, 22)
-        Me.tsmiKeluar.Text = "Keluar"
+        Me.tsmiKeluar.Size = New System.Drawing.Size(152, 22)
+        Me.tsmiKeluar.Text = "Tutup"
+        '
+        'ToolStripSeparator2
+        '
+        Me.ToolStripSeparator2.Name = "ToolStripSeparator2"
+        Me.ToolStripSeparator2.Size = New System.Drawing.Size(149, 6)
+        '
+        'tsmiForceClose
+        '
+        Me.tsmiForceClose.Name = "tsmiForceClose"
+        Me.tsmiForceClose.Size = New System.Drawing.Size(152, 22)
+        Me.tsmiForceClose.Text = "Tutup Paksa"
         '
         'tlpForm
         '
@@ -385,6 +398,10 @@ Partial Class frmMain
         '
         Me.tmrIRM.Interval = 1000
         '
+        'tmrProses
+        '
+        Me.tmrProses.Interval = 1000
+        '
         'frmMain
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -443,4 +460,7 @@ Partial Class frmMain
     Friend WithEvents tsmiLogout As ToolStripMenuItem
     Friend WithEvents tmrNotes As Timer
     Friend WithEvents tmrIRM As Timer
+    Friend WithEvents tmrProses As Timer
+    Friend WithEvents ToolStripSeparator2 As ToolStripSeparator
+    Friend WithEvents tsmiForceClose As ToolStripMenuItem
 End Class

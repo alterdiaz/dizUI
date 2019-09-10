@@ -50,15 +50,15 @@
 
     Private Sub loadData()
         Dim mysqls As New SQLs(dbstring)
-        mysqls.DMLQuery("select ul.iduserlevel, ul.userlevel, ul.userdata as iduserdata, ul.issuperadmin as idassuper, ud.generalcode as userdata, ass.generalcode as assuper from sys_userlevel ul left join sys_generalcode ud on ud.gctype='USERDATA' and ul.userdata=ud.idgeneral left join sys_generalcode ass on ass.gctype='ISSUPERADMIN' and ul.issuperadmin=ass.idgeneral", "userlevel")
+        mysqls.DMLQuery("select ul.iduserlevel, ul.userlevel, ul.userdata as iduserdata, ul.issuperadmin as idassuper, ud.generalcode as userdata, ass.generalcode as assuper from sys_userlevel ul left join sys_generalcode ud on ud.gctype='USERDATA' and ul.userdata=ud.idgeneral left join sys_generalcode ass on ass.gctype='ISSUPERADMIN' and ul.issuperadmin=ass.idgeneral order by ul.userlevel asc", "userlevel")
         gcData.DataSource = mysqls.dataTable("userlevel")
 
-        mysqls.DMLQuery("select gc.idgeneral, gc.generalcode,gc.gctype from sys_generalcode gc where gc.gctype='USERDATA'", "SD")
+        mysqls.DMLQuery("select gc.idgeneral, gc.generalcode,gc.gctype from sys_generalcode gc where gc.gctype='USERDATA' order by gc.generalcode asc", "SD")
         lueUserData.Properties.DataSource = mysqls.dataTable("SD")
         lueUserData.Properties.DisplayMember = "generalcode"
         lueUserData.Properties.ValueMember = "idgeneral"
 
-        mysqls.DMLQuery("select gc.idgeneral, gc.generalcode,gc.gctype from sys_generalcode gc where gc.gctype='ISSUPERADMIN'", "SU")
+        mysqls.DMLQuery("select gc.idgeneral, gc.generalcode,gc.gctype from sys_generalcode gc where gc.gctype='ISSUPERADMIN' order by gc.generalcode asc", "SU")
         lueSuperUser.Properties.DataSource = mysqls.dataTable("SU")
         lueSuperUser.Properties.DisplayMember = "generalcode"
         lueSuperUser.Properties.ValueMember = "idgeneral"
@@ -66,8 +66,8 @@
 
     Private Sub newData()
         idData = "-1"
-        lueSuperUser.EditValue = Nothing
-        lueUserData.EditValue = Nothing
+        lueSuperUser.EditValue = CLng(0)
+        lueUserData.EditValue = CLng(0)
         teNama.EditValue = Nothing
         statData = statusData.Baru
     End Sub
@@ -86,11 +86,11 @@
 
         lueSuperUser.EditValue = dr("idassuper")
         lueUserData.EditValue = dr("iduserdata")
-        If teNama.Text = "Administrator" Or teNama.Text = "SuperAdmin" Or teNama.Text = "Guest" Then
-            btnSave.Enabled = False
-        Else
-            btnSave.Enabled = True
-        End If
+        'If teNama.Text = "Administrator" Or teNama.Text = "SuperAdmin" Or teNama.Text = "Guest" Then
+        '    btnSave.Enabled = False
+        'Else
+        '    btnSave.Enabled = True
+        'End If
     End Sub
 
     Private Sub btnNew_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnNew.Click
@@ -125,7 +125,11 @@
         End If
 
         Dim sqls As New SQLs(dbstring)
-        sqls.DMLQuery("select userlevel from sys_userlevel where replace(lower(userlevel),' ','')='" & teNama.Text.ToLower.Replace(" ", "") & "'", "cekexist")
+        If statData = statusData.Baru Then
+            sqls.DMLQuery("select userlevel from sys_userlevel where replace(lower(userlevel),' ','')='" & teNama.Text.ToLower.Replace(" ", "") & "'", "cekexist")
+        Else
+            sqls.DMLQuery("select userlevel from sys_userlevel where iduserlevel<>'" & idData & "' and replace(lower(userlevel),' ','')='" & teNama.Text.ToLower.Replace(" ", "") & "'", "cekexist")
+        End If
         If sqls.getDataSet("cekexist") > 0 Then
             dizMsgbox("User Level sudah ada", dizMsgboxStyle.Peringatan, Me)
             Exit Sub
@@ -150,11 +154,11 @@
     End Sub
 
     Private Sub lueSuperUser_EditValueChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles lueSuperUser.EditValueChanged
-        If lueSuperUser.EditValue = 2 Then
-            btnSave.Enabled = False
-        Else
-            btnSave.Enabled = True
-        End If
+        'If lueSuperUser.EditValue = 2 Then
+        '    btnSave.Enabled = False
+        'Else
+        '    btnSave.Enabled = True
+        'End If
     End Sub
 
     Private Sub btnClose_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)

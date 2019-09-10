@@ -95,7 +95,7 @@
     Private Sub loadGrid()
         Dim sqls As New SQLs(dbstring)
         Dim Str As String = "select j.idjurnal,convert(varchar,j.tanggaljurnal,105) +' '+ convert(varchar,j.tanggaljurnal,108) as tanggaljurnal,j.idcoa, l.coa as coalama, c.coa, c.remarks as rekening,j.remarks as keterangan, isnull(d.jumlahuang,0) as debet, isnull(k.jumlahuang,0) as kredit from jurnal j left join coa c on j.idcoa=c.idcoa left join coa l on j.idcoalama=l.idcoa left join (select j.idjurnal,isnull(j.jumlahuang,0) as jumlahuang from jurnal j where j.posisidk=1 and convert(varchar,j.tanggaljurnal,105)='" & Format(CDate(deTanggal.EditValue), "dd-MM-yyyy") & "') d on j.idjurnal=d.idjurnal left join (select j.idjurnal,isnull(j.jumlahuang,0) as jumlahuang from jurnal j where j.posisidk=2 and convert(varchar,j.tanggaljurnal,105)='" & Format(CDate(deTanggal.EditValue), "dd-MM-yyyy") & "') k on j.idjurnal=k.idjurnal where convert(varchar,j.tanggaljurnal,105)='" & Format(CDate(deTanggal.EditValue), "dd-MM-yyyy") & "' order by j.tanggaljurnal asc"
-        'sqls.DMLQuery("select j.idjurnal,convert(varchar,j.tanggaljurnal,105)+' '+ convert(varchar,j.tanggaljurnal,108) as tanggaljurnal,j.idreff,j.tbreff,j.idcoalama,j.idcoa,c.coa as coabaru,l.coa as coalama,c.remarks as rekening,j.remarks,j.jumlahuang,j.posisidk,gc.generalcode as dk,j.isdeleted from jurnal j left join coa c on j.idcoa=c.idcoa left join coa l on j.idcoalama=l.idcoa left join sys_generalcode gc on j.posisidk=gc.idgeneral and gc.gctype='POSISIDK' where convert(varchar,j.tanggaljurnal,105)='" & Format(CDate(deTanggal.EditValue), "dd-MM-yyyy") & "' order by j.tanggaljurnal asc", "data")
+        'sqls.DMLQuery("select j.idjurnal,convert(varchar,j.tanggaljurnal,105)+' '+ convert(varchar,j.tanggaljurnal,108) as tanggaljurnal,j.idreff,j.tablereff,j.idcoalama,j.idcoa,c.coa as coabaru,l.coa as coalama,c.remarks as rekening,j.remarks,j.jumlahuang,j.posisidk,gc.generalcode as dk,j.isdeleted from jurnal j left join coa c on j.idcoa=c.idcoa left join coa l on j.idcoalama=l.idcoa left join sys_generalcode gc on j.posisidk=gc.idgeneral and gc.gctype='POSISIDK' where convert(varchar,j.tanggaljurnal,105)='" & Format(CDate(deTanggal.EditValue), "dd-MM-yyyy") & "' order by j.tanggaljurnal asc", "data")
         sqls.DMLQuery(Str, "data")
         gcData.DataSource = sqls.dataTable("data")
         gvData.BestFitColumns()
@@ -132,7 +132,6 @@
             'Next
             'Dim str As String = strQuery
             'str = str.Replace("*tanggal*", Format(CDate(deTanggal.EditValue), "dd-MM-yyyy"))
-            'clipboard.settext(str)
             'Dim mys As New SQLs(dbstring)
             'mys.DMLQuery(str, "xrjurnal")
 

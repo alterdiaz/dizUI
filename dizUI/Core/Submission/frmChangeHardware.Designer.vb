@@ -25,7 +25,6 @@ Partial Class frmChangeHardware
         Me.tlpForm = New System.Windows.Forms.TableLayoutPanel()
         Me.pBody = New System.Windows.Forms.Panel()
         Me.tlpEntry = New System.Windows.Forms.TableLayoutPanel()
-        Me.tlpPengguna = New System.Windows.Forms.TableLayoutPanel()
         Me.teNamaPerusahaan = New DevExpress.XtraEditors.TextEdit()
         Me.Label9 = New System.Windows.Forms.Label()
         Me.tePerusahaanPIN = New DevExpress.XtraEditors.TextEdit()
@@ -33,6 +32,7 @@ Partial Class frmChangeHardware
         Me.btnExistCompany = New System.Windows.Forms.Button()
         Me.teKodeHardware = New DevExpress.XtraEditors.TextEdit()
         Me.Label4 = New System.Windows.Forms.Label()
+        Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.pHeader = New System.Windows.Forms.Panel()
         Me.pbSync = New System.Windows.Forms.PictureBox()
         Me.btnSave = New System.Windows.Forms.Button()
@@ -49,10 +49,10 @@ Partial Class frmChangeHardware
         Me.tlpForm.SuspendLayout()
         Me.pBody.SuspendLayout()
         Me.tlpEntry.SuspendLayout()
-        Me.tlpPengguna.SuspendLayout()
         CType(Me.teNamaPerusahaan.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.tePerusahaanPIN.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.teKodeHardware.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.pHeader.SuspendLayout()
         CType(Me.pbSync, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.panelLogin.SuspendLayout()
@@ -79,77 +79,58 @@ Partial Class frmChangeHardware
         Me.tlpForm.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30.0!))
         Me.tlpForm.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
         Me.tlpForm.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 2.0!))
-        Me.tlpForm.Size = New System.Drawing.Size(460, 190)
+        Me.tlpForm.Size = New System.Drawing.Size(720, 540)
         Me.tlpForm.TabIndex = 1
         '
         'pBody
         '
         Me.pBody.BackColor = System.Drawing.Color.FromArgb(CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer))
         Me.pBody.Controls.Add(Me.tlpEntry)
+        Me.pBody.Controls.Add(Me.PictureBox1)
         Me.pBody.Controls.Add(Me.pHeader)
         Me.pBody.Controls.Add(Me.panelLogin)
         Me.pBody.Dock = System.Windows.Forms.DockStyle.Fill
         Me.pBody.Location = New System.Drawing.Point(2, 30)
         Me.pBody.Margin = New System.Windows.Forms.Padding(0)
         Me.pBody.Name = "pBody"
-        Me.pBody.Size = New System.Drawing.Size(456, 158)
+        Me.pBody.Size = New System.Drawing.Size(716, 508)
         Me.pBody.TabIndex = 7
         '
         'tlpEntry
         '
-        Me.tlpEntry.BackColor = System.Drawing.Color.FromArgb(CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer))
-        Me.tlpEntry.ColumnCount = 3
-        Me.tlpEntry.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 4.0!))
-        Me.tlpEntry.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
-        Me.tlpEntry.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 4.0!))
-        Me.tlpEntry.Controls.Add(Me.tlpPengguna, 1, 1)
+        Me.tlpEntry.AutoSize = True
+        Me.tlpEntry.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
+        Me.tlpEntry.ColumnCount = 4
+        Me.tlpEntry.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 29.0!))
+        Me.tlpEntry.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 140.0!))
+        Me.tlpEntry.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 220.0!))
+        Me.tlpEntry.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 29.0!))
+        Me.tlpEntry.Controls.Add(Me.teNamaPerusahaan, 2, 3)
+        Me.tlpEntry.Controls.Add(Me.Label9, 1, 3)
+        Me.tlpEntry.Controls.Add(Me.tePerusahaanPIN, 2, 1)
+        Me.tlpEntry.Controls.Add(Me.Label5, 1, 1)
+        Me.tlpEntry.Controls.Add(Me.btnExistCompany, 2, 2)
+        Me.tlpEntry.Controls.Add(Me.teKodeHardware, 2, 5)
+        Me.tlpEntry.Controls.Add(Me.Label4, 1, 5)
         Me.tlpEntry.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.tlpEntry.Location = New System.Drawing.Point(0, 30)
+        Me.tlpEntry.Location = New System.Drawing.Point(298, 30)
         Me.tlpEntry.Margin = New System.Windows.Forms.Padding(0)
         Me.tlpEntry.Name = "tlpEntry"
-        Me.tlpEntry.RowCount = 3
-        Me.tlpEntry.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 4.0!))
+        Me.tlpEntry.RowCount = 7
+        Me.tlpEntry.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
+        Me.tlpEntry.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 24.0!))
+        Me.tlpEntry.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 24.0!))
+        Me.tlpEntry.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 24.0!))
+        Me.tlpEntry.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 6.0!))
+        Me.tlpEntry.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 24.0!))
         Me.tlpEntry.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
-        Me.tlpEntry.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 4.0!))
-        Me.tlpEntry.Size = New System.Drawing.Size(456, 128)
-        Me.tlpEntry.TabIndex = 112
-        '
-        'tlpPengguna
-        '
-        Me.tlpPengguna.AutoSize = True
-        Me.tlpPengguna.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
-        Me.tlpPengguna.ColumnCount = 4
-        Me.tlpPengguna.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
-        Me.tlpPengguna.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 160.0!))
-        Me.tlpPengguna.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 220.0!))
-        Me.tlpPengguna.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
-        Me.tlpPengguna.Controls.Add(Me.teNamaPerusahaan, 2, 3)
-        Me.tlpPengguna.Controls.Add(Me.Label9, 1, 3)
-        Me.tlpPengguna.Controls.Add(Me.tePerusahaanPIN, 2, 1)
-        Me.tlpPengguna.Controls.Add(Me.Label5, 1, 1)
-        Me.tlpPengguna.Controls.Add(Me.btnExistCompany, 2, 2)
-        Me.tlpPengguna.Controls.Add(Me.teKodeHardware, 2, 5)
-        Me.tlpPengguna.Controls.Add(Me.Label4, 1, 5)
-        Me.tlpPengguna.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.tlpPengguna.Location = New System.Drawing.Point(4, 4)
-        Me.tlpPengguna.Margin = New System.Windows.Forms.Padding(0)
-        Me.tlpPengguna.Name = "tlpPengguna"
-        Me.tlpPengguna.RowCount = 7
-        Me.tlpPengguna.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
-        Me.tlpPengguna.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 24.0!))
-        Me.tlpPengguna.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 24.0!))
-        Me.tlpPengguna.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 24.0!))
-        Me.tlpPengguna.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 6.0!))
-        Me.tlpPengguna.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 24.0!))
-        Me.tlpPengguna.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
-        Me.tlpPengguna.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
-        Me.tlpPengguna.Size = New System.Drawing.Size(448, 120)
-        Me.tlpPengguna.TabIndex = 114
+        Me.tlpEntry.Size = New System.Drawing.Size(418, 478)
+        Me.tlpEntry.TabIndex = 114
         '
         'teNamaPerusahaan
         '
         Me.teNamaPerusahaan.Anchor = System.Windows.Forms.AnchorStyles.Left
-        Me.teNamaPerusahaan.Location = New System.Drawing.Point(194, 59)
+        Me.teNamaPerusahaan.Location = New System.Drawing.Point(169, 70)
         Me.teNamaPerusahaan.Margin = New System.Windows.Forms.Padding(0)
         Me.teNamaPerusahaan.Name = "teNamaPerusahaan"
         Me.teNamaPerusahaan.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[True]
@@ -174,7 +155,7 @@ Partial Class frmChangeHardware
         Me.Label9.Anchor = System.Windows.Forms.AnchorStyles.Right
         Me.Label9.AutoSize = True
         Me.Label9.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label9.Location = New System.Drawing.Point(88, 62)
+        Me.Label9.Location = New System.Drawing.Point(63, 73)
         Me.Label9.Name = "Label9"
         Me.Label9.Size = New System.Drawing.Size(103, 14)
         Me.Label9.TabIndex = 29
@@ -184,7 +165,7 @@ Partial Class frmChangeHardware
         'tePerusahaanPIN
         '
         Me.tePerusahaanPIN.Anchor = System.Windows.Forms.AnchorStyles.Left
-        Me.tePerusahaanPIN.Location = New System.Drawing.Point(194, 11)
+        Me.tePerusahaanPIN.Location = New System.Drawing.Point(169, 22)
         Me.tePerusahaanPIN.Margin = New System.Windows.Forms.Padding(0)
         Me.tePerusahaanPIN.Name = "tePerusahaanPIN"
         Me.tePerusahaanPIN.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[True]
@@ -214,7 +195,7 @@ Partial Class frmChangeHardware
         Me.Label5.Anchor = System.Windows.Forms.AnchorStyles.Right
         Me.Label5.AutoSize = True
         Me.Label5.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label5.Location = New System.Drawing.Point(90, 14)
+        Me.Label5.Location = New System.Drawing.Point(65, 25)
         Me.Label5.Name = "Label5"
         Me.Label5.Size = New System.Drawing.Size(101, 14)
         Me.Label5.TabIndex = 29
@@ -223,14 +204,14 @@ Partial Class frmChangeHardware
         '
         'btnExistCompany
         '
-        Me.btnExistCompany.BackColor = System.Drawing.Color.FromArgb(CType(CType(156, Byte), Integer), CType(CType(207, Byte), Integer), CType(CType(49, Byte), Integer))
+        Me.btnExistCompany.BackColor = System.Drawing.Color.Green
         Me.btnExistCompany.FlatAppearance.BorderColor = System.Drawing.Color.Black
         Me.btnExistCompany.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DimGray
         Me.btnExistCompany.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DarkGray
         Me.btnExistCompany.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnExistCompany.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnExistCompany.ForeColor = System.Drawing.Color.Black
-        Me.btnExistCompany.Location = New System.Drawing.Point(194, 33)
+        Me.btnExistCompany.ForeColor = System.Drawing.Color.White
+        Me.btnExistCompany.Location = New System.Drawing.Point(169, 44)
         Me.btnExistCompany.Margin = New System.Windows.Forms.Padding(0)
         Me.btnExistCompany.Name = "btnExistCompany"
         Me.btnExistCompany.Size = New System.Drawing.Size(100, 24)
@@ -242,7 +223,7 @@ Partial Class frmChangeHardware
         'teKodeHardware
         '
         Me.teKodeHardware.Anchor = System.Windows.Forms.AnchorStyles.Left
-        Me.teKodeHardware.Location = New System.Drawing.Point(194, 89)
+        Me.teKodeHardware.Location = New System.Drawing.Point(169, 100)
         Me.teKodeHardware.Margin = New System.Windows.Forms.Padding(0)
         Me.teKodeHardware.Name = "teKodeHardware"
         Me.teKodeHardware.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[True]
@@ -267,12 +248,22 @@ Partial Class frmChangeHardware
         Me.Label4.Anchor = System.Windows.Forms.AnchorStyles.Right
         Me.Label4.AutoSize = True
         Me.Label4.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label4.Location = New System.Drawing.Point(100, 92)
+        Me.Label4.Location = New System.Drawing.Point(75, 103)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(91, 14)
         Me.Label4.TabIndex = 20
         Me.Label4.Text = "Kode Hardware"
         Me.Label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        '
+        'PictureBox1
+        '
+        Me.PictureBox1.Dock = System.Windows.Forms.DockStyle.Left
+        Me.PictureBox1.Image = Global.dizUI.My.Resources.Resources.Sidebar03
+        Me.PictureBox1.Location = New System.Drawing.Point(0, 30)
+        Me.PictureBox1.Name = "PictureBox1"
+        Me.PictureBox1.Size = New System.Drawing.Size(298, 478)
+        Me.PictureBox1.TabIndex = 117
+        Me.PictureBox1.TabStop = False
         '
         'pHeader
         '
@@ -284,7 +275,7 @@ Partial Class frmChangeHardware
         Me.pHeader.Location = New System.Drawing.Point(0, 0)
         Me.pHeader.Margin = New System.Windows.Forms.Padding(0)
         Me.pHeader.Name = "pHeader"
-        Me.pHeader.Size = New System.Drawing.Size(456, 30)
+        Me.pHeader.Size = New System.Drawing.Size(716, 30)
         Me.pHeader.TabIndex = 111
         '
         'pbSync
@@ -299,15 +290,15 @@ Partial Class frmChangeHardware
         '
         'btnSave
         '
-        Me.btnSave.BackColor = System.Drawing.Color.FromArgb(CType(CType(156, Byte), Integer), CType(CType(207, Byte), Integer), CType(CType(49, Byte), Integer))
+        Me.btnSave.BackColor = System.Drawing.Color.Green
         Me.btnSave.Dock = System.Windows.Forms.DockStyle.Right
         Me.btnSave.FlatAppearance.BorderSize = 0
         Me.btnSave.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DimGray
         Me.btnSave.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DarkGray
         Me.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnSave.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnSave.ForeColor = System.Drawing.Color.Black
-        Me.btnSave.Location = New System.Drawing.Point(356, 0)
+        Me.btnSave.ForeColor = System.Drawing.Color.White
+        Me.btnSave.Location = New System.Drawing.Point(616, 0)
         Me.btnSave.Name = "btnSave"
         Me.btnSave.Size = New System.Drawing.Size(100, 30)
         Me.btnSave.TabIndex = 1
@@ -324,15 +315,15 @@ Partial Class frmChangeHardware
         Me.panelLogin.Controls.Add(Me.Label16)
         Me.panelLogin.Controls.Add(Me.Label7)
         Me.panelLogin.Controls.Add(Me.Label8)
-        Me.panelLogin.Location = New System.Drawing.Point(28, 61)
+        Me.panelLogin.Location = New System.Drawing.Point(298, 30)
         Me.panelLogin.Margin = New System.Windows.Forms.Padding(0)
         Me.panelLogin.Name = "panelLogin"
-        Me.panelLogin.Size = New System.Drawing.Size(400, 100)
+        Me.panelLogin.Size = New System.Drawing.Size(418, 100)
         Me.panelLogin.TabIndex = 113
         '
         'btnUserCheck
         '
-        Me.btnUserCheck.BackColor = System.Drawing.Color.FromArgb(CType(CType(156, Byte), Integer), CType(CType(207, Byte), Integer), CType(CType(49, Byte), Integer))
+        Me.btnUserCheck.BackColor = System.Drawing.Color.Green
         Me.btnUserCheck.FlatAppearance.BorderColor = System.Drawing.Color.Black
         Me.btnUserCheck.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DimGray
         Me.btnUserCheck.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DarkGray
@@ -390,7 +381,6 @@ Partial Class frmChangeHardware
         '
         'Label16
         '
-        Me.Label16.Anchor = System.Windows.Forms.AnchorStyles.Right
         Me.Label16.AutoSize = True
         Me.Label16.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label16.Location = New System.Drawing.Point(114, 49)
@@ -402,7 +392,6 @@ Partial Class frmChangeHardware
         '
         'Label7
         '
-        Me.Label7.Anchor = System.Windows.Forms.AnchorStyles.Right
         Me.Label7.AutoSize = True
         Me.Label7.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label7.Location = New System.Drawing.Point(111, 26)
@@ -414,7 +403,6 @@ Partial Class frmChangeHardware
         '
         'Label8
         '
-        Me.Label8.Anchor = System.Windows.Forms.AnchorStyles.Right
         Me.Label8.AutoSize = True
         Me.Label8.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label8.Location = New System.Drawing.Point(8, 6)
@@ -432,7 +420,7 @@ Partial Class frmChangeHardware
         Me.pTitle.Location = New System.Drawing.Point(2, 0)
         Me.pTitle.Margin = New System.Windows.Forms.Padding(0)
         Me.pTitle.Name = "pTitle"
-        Me.pTitle.Size = New System.Drawing.Size(456, 30)
+        Me.pTitle.Size = New System.Drawing.Size(716, 30)
         Me.pTitle.TabIndex = 8
         '
         'lblTitle
@@ -444,7 +432,7 @@ Partial Class frmChangeHardware
         Me.lblTitle.Location = New System.Drawing.Point(0, 0)
         Me.lblTitle.Margin = New System.Windows.Forms.Padding(0)
         Me.lblTitle.Name = "lblTitle"
-        Me.lblTitle.Size = New System.Drawing.Size(426, 30)
+        Me.lblTitle.Size = New System.Drawing.Size(686, 30)
         Me.lblTitle.TabIndex = 6
         Me.lblTitle.Text = "Update Hardware"
         Me.lblTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
@@ -454,7 +442,7 @@ Partial Class frmChangeHardware
         Me.pExit.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.pExit.Dock = System.Windows.Forms.DockStyle.Right
         Me.pExit.Image = Global.dizUI.My.Resources.Resources.exit_w
-        Me.pExit.Location = New System.Drawing.Point(426, 0)
+        Me.pExit.Location = New System.Drawing.Point(686, 0)
         Me.pExit.Margin = New System.Windows.Forms.Padding(0)
         Me.pExit.Name = "pExit"
         Me.pExit.Size = New System.Drawing.Size(30, 30)
@@ -467,7 +455,7 @@ Partial Class frmChangeHardware
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer))
-        Me.ClientSize = New System.Drawing.Size(460, 190)
+        Me.ClientSize = New System.Drawing.Size(720, 540)
         Me.ControlBox = False
         Me.Controls.Add(Me.tlpForm)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
@@ -478,13 +466,13 @@ Partial Class frmChangeHardware
         Me.Text = "Konfirm Pembayaran"
         Me.tlpForm.ResumeLayout(False)
         Me.pBody.ResumeLayout(False)
+        Me.pBody.PerformLayout()
         Me.tlpEntry.ResumeLayout(False)
         Me.tlpEntry.PerformLayout()
-        Me.tlpPengguna.ResumeLayout(False)
-        Me.tlpPengguna.PerformLayout()
         CType(Me.teNamaPerusahaan.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.tePerusahaanPIN.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.teKodeHardware.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.pHeader.ResumeLayout(False)
         CType(Me.pbSync, System.ComponentModel.ISupportInitialize).EndInit()
         Me.panelLogin.ResumeLayout(False)
@@ -501,7 +489,6 @@ Partial Class frmChangeHardware
     Friend WithEvents pBody As System.Windows.Forms.Panel
     Friend WithEvents pHeader As System.Windows.Forms.Panel
     Public WithEvents btnSave As System.Windows.Forms.Button
-    Friend WithEvents tlpPengguna As System.Windows.Forms.TableLayoutPanel
     Friend WithEvents tlpEntry As System.Windows.Forms.TableLayoutPanel
     Friend WithEvents pTitle As System.Windows.Forms.Panel
     Friend WithEvents pExit As System.Windows.Forms.PictureBox
@@ -520,4 +507,5 @@ Partial Class frmChangeHardware
     Friend WithEvents Label5 As System.Windows.Forms.Label
     Public WithEvents btnExistCompany As System.Windows.Forms.Button
     Friend WithEvents teNamaPerusahaan As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents PictureBox1 As PictureBox
 End Class

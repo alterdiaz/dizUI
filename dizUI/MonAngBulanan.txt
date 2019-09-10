@@ -27,12 +27,12 @@ ad.idcoa,sum(isnull(ad.jumlahuang,0)) as realjan
 from aruspengajuan ap 
 left join 
 aruspengajuandt ad 
-on ap.idaruspengajuan=ad.idaruspengajuan and ad.posisidk=2 and ad.idcompany=(select top 1 value from sys_appsetting where variable='CompanyID') 
+on ap.idaruspengajuan=ad.idaruspengajuan and ad.posisidk=2 
 where ap.isdeleted=0 and ad.isdeleted=0 
 and left(convert(varchar,ap.tanggalpemohon,121),7)='*TAHUN*-01' 
 group by ad.idcoa 
 ) jan on a.idcoa=jan.idcoa 
-where a.periode='*TAHUN*-01' and a.idcompany=(select top 1 value from sys_appsetting where variable='CompanyID') 
+where a.periode='*TAHUN*-01' 
 ) jan on a.idcoa=jan.idcoa 
 
 left join ( 
@@ -46,12 +46,12 @@ ad.idcoa,sum(isnull(ad.jumlahuang,0)) as realfeb
 from aruspengajuan ap 
 left join 
 aruspengajuandt ad 
-on ap.idaruspengajuan=ad.idaruspengajuan and ad.posisidk=2 and ad.idcompany=(select top 1 value from sys_appsetting where variable='CompanyID') 
+on ap.idaruspengajuan=ad.idaruspengajuan and ad.posisidk=2 
 where ap.isdeleted=0 and ad.isdeleted=0 
 and left(convert(varchar,ap.tanggalpemohon,121),7)='*TAHUN*-02' 
 group by ad.idcoa 
 ) feb on a.idcoa=feb.idcoa 
-where a.periode='*TAHUN*-02' and a.idcompany=(select top 1 value from sys_appsetting where variable='CompanyID') 
+where a.periode='*TAHUN*-02' 
 ) feb on a.idcoa=feb.idcoa 
 
 left join ( 
@@ -64,12 +64,12 @@ ad.idcoa,sum(isnull(ad.jumlahuang,0)) as realmar
 from aruspengajuan ap 
 left join 
 aruspengajuandt ad 
-on ap.idaruspengajuan=ad.idaruspengajuan and ad.posisidk=2 and ad.idcompany=(select top 1 value from sys_appsetting where variable='CompanyID') 
+on ap.idaruspengajuan=ad.idaruspengajuan and ad.posisidk=2 
 where ap.isdeleted=0 and ad.isdeleted=0 
 and left(convert(varchar,ap.tanggalpemohon,121),7)='*TAHUN*-03' 
 group by ad.idcoa 
 ) mar on a.idcoa=mar.idcoa 
-where a.periode='*TAHUN*-03' and a.idcompany=(select top 1 value from sys_appsetting where variable='CompanyID') 
+where a.periode='*TAHUN*-03' 
 ) mar on a.idcoa=mar.idcoa 
 
 left join ( 
@@ -81,12 +81,12 @@ ad.idcoa,sum(isnull(ad.jumlahuang,0)) as realapr
 from aruspengajuan ap 
 left join 
 aruspengajuandt ad 
-on ap.idaruspengajuan=ad.idaruspengajuan and ad.posisidk=2 and ad.idcompany=(select top 1 value from sys_appsetting where variable='CompanyID') 
+on ap.idaruspengajuan=ad.idaruspengajuan and ad.posisidk=2 
 where ap.isdeleted=0 and ad.isdeleted=0 
 and left(convert(varchar,ap.tanggalpemohon,121),7)='*TAHUN*-04' 
 group by ad.idcoa 
 ) apr on a.idcoa=apr.idcoa 
-where a.periode='*TAHUN*-04' and a.idcompany=(select top 1 value from sys_appsetting where variable='CompanyID') 
+where a.periode='*TAHUN*-04' 
 ) apr on a.idcoa=apr.idcoa 
 
 left join ( 
@@ -98,12 +98,12 @@ ad.idcoa,sum(isnull(ad.jumlahuang,0)) as realmei
 from aruspengajuan ap 
 left join 
 aruspengajuandt ad 
-on ap.idaruspengajuan=ad.idaruspengajuan and ad.posisidk=2 and ad.idcompany=(select top 1 value from sys_appsetting where variable='CompanyID') 
+on ap.idaruspengajuan=ad.idaruspengajuan and ad.posisidk=2 
 where ap.isdeleted=0 and ad.isdeleted=0 
 and left(convert(varchar,ap.tanggalpemohon,121),7)='*TAHUN*-05' 
 group by ad.idcoa 
 ) mei on a.idcoa=mei.idcoa 
-where a.periode='*TAHUN*-05' and a.idcompany=(select top 1 value from sys_appsetting where variable='CompanyID') 
+where a.periode='*TAHUN*-05' 
 ) mei on a.idcoa=mei.idcoa 
 
 left join ( 
@@ -115,12 +115,12 @@ ad.idcoa,sum(isnull(ad.jumlahuang,0)) as realjun
 from aruspengajuan ap 
 left join 
 aruspengajuandt ad 
-on ap.idaruspengajuan=ad.idaruspengajuan and ad.posisidk=2 and ad.idcompany=(select top 1 value from sys_appsetting where variable='CompanyID') 
+on ap.idaruspengajuan=ad.idaruspengajuan and ad.posisidk=2 
 where ap.isdeleted=0 and ad.isdeleted=0 
 and left(convert(varchar,ap.tanggalpemohon,121),7)='*TAHUN*-06' 
 group by ad.idcoa 
 ) jun on a.idcoa=jun.idcoa 
-where a.periode='*TAHUN*-06' and a.idcompany=(select top 1 value from sys_appsetting where variable='CompanyID') 
+where a.periode='*TAHUN*-06' 
 ) jun on a.idcoa=jun.idcoa 
 
 left join ( 
@@ -132,12 +132,12 @@ ad.idcoa,sum(isnull(ad.jumlahuang,0)) as realjul
 from aruspengajuan ap 
 left join 
 aruspengajuandt ad 
-on ap.idaruspengajuan=ad.idaruspengajuan and ad.posisidk=2 and ad.idcompany=(select top 1 value from sys_appsetting where variable='CompanyID') 
+on ap.idaruspengajuan=ad.idaruspengajuan and ad.posisidk=2 
 where ap.isdeleted=0 and ad.isdeleted=0 
 and left(convert(varchar,ap.tanggalpemohon,121),7)='*TAHUN*-07' 
 group by ad.idcoa 
 ) jul on a.idcoa=jul.idcoa 
-where a.periode='*TAHUN*-07' and a.idcompany=(select top 1 value from sys_appsetting where variable='CompanyID') 
+where a.periode='*TAHUN*-07' 
 ) jul on a.idcoa=jul.idcoa 
 
 left join ( 
@@ -149,12 +149,12 @@ ad.idcoa,sum(isnull(ad.jumlahuang,0)) as realaug
 from aruspengajuan ap 
 left join 
 aruspengajuandt ad 
-on ap.idaruspengajuan=ad.idaruspengajuan and ad.posisidk=2 and ad.idcompany=(select top 1 value from sys_appsetting where variable='CompanyID') 
+on ap.idaruspengajuan=ad.idaruspengajuan and ad.posisidk=2 
 where ap.isdeleted=0 and ad.isdeleted=0 
 and left(convert(varchar,ap.tanggalpemohon,121),7)='*TAHUN*-08' 
 group by ad.idcoa 
 ) aug on a.idcoa=aug.idcoa 
-where a.periode='*TAHUN*-08' and a.idcompany=(select top 1 value from sys_appsetting where variable='CompanyID') 
+where a.periode='*TAHUN*-08' 
 ) aug on a.idcoa=aug.idcoa 
 
 left join ( 
@@ -166,12 +166,12 @@ ad.idcoa,sum(isnull(ad.jumlahuang,0)) as realsept
 from aruspengajuan ap 
 left join 
 aruspengajuandt ad 
-on ap.idaruspengajuan=ad.idaruspengajuan and ad.posisidk=2 and ad.idcompany=(select top 1 value from sys_appsetting where variable='CompanyID') 
+on ap.idaruspengajuan=ad.idaruspengajuan and ad.posisidk=2 
 where ap.isdeleted=0 and ad.isdeleted=0 
 and left(convert(varchar,ap.tanggalpemohon,121),7)='*TAHUN*-09' 
 group by ad.idcoa 
 ) sept on a.idcoa=sept.idcoa 
-where a.periode='*TAHUN*-09' and a.idcompany=(select top 1 value from sys_appsetting where variable='CompanyID') 
+where a.periode='*TAHUN*-09' 
 ) sept on a.idcoa=sept.idcoa 
 
 left join ( 
@@ -183,12 +183,12 @@ ad.idcoa,sum(isnull(ad.jumlahuang,0)) as realokt
 from aruspengajuan ap 
 left join 
 aruspengajuandt ad 
-on ap.idaruspengajuan=ad.idaruspengajuan and ad.posisidk=2 and ad.idcompany=(select top 1 value from sys_appsetting where variable='CompanyID') 
+on ap.idaruspengajuan=ad.idaruspengajuan and ad.posisidk=2 
 where ap.isdeleted=0 and ad.isdeleted=0 
 and left(convert(varchar,ap.tanggalpemohon,121),7)='*TAHUN*-10' 
 group by ad.idcoa 
 ) okt on a.idcoa=okt.idcoa 
-where a.periode='*TAHUN*-10' and a.idcompany=(select top 1 value from sys_appsetting where variable='CompanyID') 
+where a.periode='*TAHUN*-10' 
 ) okt on a.idcoa=okt.idcoa 
 
 left join ( 
@@ -200,12 +200,12 @@ ad.idcoa,sum(isnull(ad.jumlahuang,0)) as realnov
 from aruspengajuan ap 
 left join 
 aruspengajuandt ad 
-on ap.idaruspengajuan=ad.idaruspengajuan and ad.posisidk=2 and ad.idcompany=(select top 1 value from sys_appsetting where variable='CompanyID') 
+on ap.idaruspengajuan=ad.idaruspengajuan and ad.posisidk=2 
 where ap.isdeleted=0 and ad.isdeleted=0 
 and left(convert(varchar,ap.tanggalpemohon,121),7)='*TAHUN*-11' 
 group by ad.idcoa 
 ) nov on a.idcoa=nov.idcoa 
-where a.periode='*TAHUN*-11' and a.idcompany=(select top 1 value from sys_appsetting where variable='CompanyID') 
+where a.periode='*TAHUN*-11' 
 ) nov on a.idcoa=nov.idcoa 
 
 left join ( 
@@ -217,12 +217,12 @@ ad.idcoa,sum(isnull(ad.jumlahuang,0)) as realdes
 from aruspengajuan ap 
 left join 
 aruspengajuandt ad 
-on ap.idaruspengajuan=ad.idaruspengajuan and ad.posisidk=2 and ad.idcompany=(select top 1 value from sys_appsetting where variable='CompanyID') 
+on ap.idaruspengajuan=ad.idaruspengajuan and ad.posisidk=2 
 where ap.isdeleted=0 and ad.isdeleted=0 
 and left(convert(varchar,ap.tanggalpemohon,121),7)='*TAHUN*-12' 
 group by ad.idcoa 
 ) des on a.idcoa=des.idcoa 
-where a.periode='*TAHUN*-12' and a.idcompany=(select top 1 value from sys_appsetting where variable='CompanyID') 
+where a.periode='*TAHUN*-12' 
 ) des on a.idcoa=des.idcoa 
 
 left join ( 
@@ -234,12 +234,12 @@ ad.idcoa,sum(isnull(ad.jumlahuang,0)) as realtot
 from aruspengajuan ap 
 left join 
 aruspengajuandt ad 
-on ap.idaruspengajuan=ad.idaruspengajuan and ad.posisidk=2 and ad.idcompany=(select top 1 value from sys_appsetting where variable='CompanyID') 
+on ap.idaruspengajuan=ad.idaruspengajuan and ad.posisidk=2 
 where ap.isdeleted=0 and ad.isdeleted=0 
 and left(convert(varchar,ap.tanggalpemohon,121),7)='*TAHUN*-%' 
 group by ad.idcoa 
 ) tot on a.idcoa=tot.idcoa 
-where a.periode like '*TAHUN*-%' and a.idcompany=(select top 1 value from sys_appsetting where variable='CompanyID') 
+where a.periode like '*TAHUN*-%' 
 ) tot on a.idcoa=tot.idcoa 
-where a.periode like '*TAHUN*-%' and a.idcompany=(select top 1 value from sys_appsetting where variable='CompanyID') 
+where a.periode like '*TAHUN*-%' 
 order by convert(bigint,c.coa) asc

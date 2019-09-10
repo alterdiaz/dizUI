@@ -26,7 +26,7 @@
         Return retval
     End Function
 
-    Public Function HttpPOSTRequest(ByVal url As String, Optional ByVal mparam As List(Of String) = Nothing, Optional ByVal mvalue As List(Of String) = Nothing) As String
+    Public Function HttpPOSTRequestSelect(ByVal url As String, Optional ByVal mparam As List(Of String) = Nothing, Optional ByVal mvalue As List(Of String) = Nothing) As String
         Dim retval As String = ""
         If mparam IsNot Nothing Then
             If mparam.Count <> mvalue.Count Then
@@ -39,12 +39,38 @@
             Dim reqparm As New Specialized.NameValueCollection
             If mparam IsNot Nothing Then
                 For i As Integer = 0 To mparam.Count - 1
-                    MsgBox(mparam(i))
                     reqparm.Add(mparam(i), mvalue(i))
                 Next
             End If
-            Dim responsebytes = client.UploadValues(url, "POST", reqparm)
-            Dim responsebody As String = (New Text.UTF8Encoding).GetString(responsebytes)
+            client.Headers.Add("user-agent", "Datacube Engine (diznet)")
+            Dim responsebytes As Byte() = client.UploadValues(url, "POST", reqparm)
+            Dim responsebody As String = (New Text.UTF8Encoding).GetString(responsebytes) '(New Text.UTF8Encoding).GetString(responsebytes)
+            'MsgBox(responsebody)
+            retval = responsebody
+        End Using
+        Return retval
+    End Function
+
+    Public Function HttpPOSTRequestInsert(ByVal url As String, Optional ByVal mparam As List(Of String) = Nothing, Optional ByVal mvalue As List(Of String) = Nothing) As String
+        Dim retval As String = ""
+        If mparam IsNot Nothing Then
+            If mparam.Count <> mvalue.Count Then
+                MsgBox("List Parameter is not equal with List Value Parameter")
+                Return False
+                Exit Function
+            End If
+        End If
+        Using client As New Net.WebClient
+            Dim reqparm As New Specialized.NameValueCollection
+            If mparam IsNot Nothing Then
+                For i As Integer = 0 To mparam.Count - 1
+                    reqparm.Add(mparam(i), mvalue(i))
+                Next
+            End If
+            client.Headers.Add("user-agent", "Datacube Engine (diznet)")
+            Dim responsebytes As Byte() = client.UploadValues(url, "POST", reqparm)
+            Dim responsebody As String = (New Text.UTF8Encoding).GetString(responsebytes) '(New Text.UTF8Encoding).GetString(responsebytes)
+            'MsgBox(responsebody)
             retval = responsebody
         End Using
         Return retval
@@ -80,11 +106,10 @@
         'Dim mys As New SQLs(dbstring)
         'Dim val As New List(Of String)
         Dim json_result As String = ""
+        Dim table As DataTable = Nothing
         Dim mparam As New List(Of String)
         Dim mvalue As New List(Of String)
-        Dim table As DataTable = Nothing
-
-        json_result = HttpPOSTRequest(mysite & "currenttoken")
+        json_result = HttpPOSTRequestSelect(mysite & "CurrentToken")
         table = Newtonsoft.Json.JsonConvert.DeserializeObject(Of DataTable)(json_result)
         'mys.DMLQuery("select top 1 idtoken,tokenkey1,tokenkey2 from token order by createddate desc", "token")
         If table.Rows.Count > 0 Then 'mys.getDataSet("token") > 0 Then
@@ -115,8 +140,8 @@
         mvalue.AddRange(New String() {"baru", idvoucher, tboKey1.Text, tboKey2.Text})
         mparam.AddRange(fs)
         mvalue.AddRange(vs)
-        json_result = HttpPOSTRequest(mysite & "voucher", mparam, mvalue)
-        table = Newtonsoft.Json.JsonConvert.DeserializeObject(Of DataTable)(json_result)
+        json_result = HttpPOSTRequestInsert(mysite & "Voucher", mparam, mvalue)
+        'table = Newtonsoft.Json.JsonConvert.DeserializeObject(Of DataTable)(json_result)
         'dtmys.datasetSave("voucher", -1, fs, vs, False)
     End Sub
 

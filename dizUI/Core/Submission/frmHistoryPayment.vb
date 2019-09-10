@@ -55,10 +55,12 @@
         Dim table As DataTable = Nothing
         Dim mparam As New List(Of String)
         Dim mvalue As New List(Of String)
-        mparam.AddRange(New String() {"param", "tkey1", "tkey2", "idcompanyproduct"})
-        mvalue.AddRange(New String() {"cekhistory", tmptokenkey1, tmptokenkey2, idcompanyproduct})
-        json_result = modCore.HttpPOSTRequestselect(mysite & "payment", mparam, mvalue)
-        table = Newtonsoft.Json.JsonConvert.DeserializeObject(Of DataTable)(json_result)
+        mparam.AddRange(New String() {"param", "tkey1", "tkey2", "idcompany"})
+        mvalue.AddRange(New String() {"cekhistoryc", tmptokenkey1, tmptokenkey2, idcompany})
+        json_result = modCore.HttpPOSTRequestselect(mysite & "Payment", mparam, mvalue)
+        If json_result.Length > 2 Then
+            table = Newtonsoft.Json.JsonConvert.DeserializeObject(Of DataTable)(json_result)
+        End If
 
         'Dim sqls As New SQLs(mystring)
         'sqls.DMLQuery("select p.paymentno,convert(varchar,p.createddate,105) as tanggalbayar,b.bank +' ('+bo.nomorrekening+')' as akunbank,p.nominalbayar,p.nominaldata,p.bankpengirim,p.norekpengirim,p.atasnamapengirim,p.remarks,case when p.isvalid=0 then 'Tidak Valid' else 'Valid' end as isvalid from payment p left join bankoption bo on p.idbankoption=bo.idbankoption left join bank b on bo.idbank=b.idbank where idcompanyproduct='" & idcp & "' order by p.createddate desc", "hp")
@@ -78,13 +80,13 @@
     End Sub
 
     Private idcp As String = -1
-    Public Sub New(idcomprod As String)
+    Public Sub New(idcom As String)
 
         ' This call is required by the designer.
         InitializeComponent()
 
         ' Add any initialization after the InitializeComponent() call.
-        idcp = idcomprod
+        idcp = idcom
     End Sub
 
     'Private mystring As String = ""

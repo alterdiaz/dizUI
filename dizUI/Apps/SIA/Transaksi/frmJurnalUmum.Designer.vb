@@ -24,7 +24,11 @@ Partial Class frmJurnalUmum
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmJurnalUmum))
+        Dim EditorButtonImageOptions1 As DevExpress.XtraEditors.Controls.EditorButtonImageOptions = New DevExpress.XtraEditors.Controls.EditorButtonImageOptions()
+        Dim SerializableAppearanceObject1 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
         Dim SerializableAppearanceObject2 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
+        Dim SerializableAppearanceObject3 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
+        Dim SerializableAppearanceObject4 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
         Me.tlpForm = New System.Windows.Forms.TableLayoutPanel()
         Me.pTitle = New System.Windows.Forms.Panel()
         Me.lblTitle = New System.Windows.Forms.Label()
@@ -48,7 +52,6 @@ Partial Class frmJurnalUmum
         Me.seDebet = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit()
         Me.gcIsDeleted = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.gcStatusData = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.gcUnique = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.gcPosisiDK = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.gcDebetKredit = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.tlpPenerimaan2 = New System.Windows.Forms.TableLayoutPanel()
@@ -206,7 +209,7 @@ Partial Class frmJurnalUmum
         '
         'pBody
         '
-        Me.pBody.BackColor = System.Drawing.color.fromargb(240, 240, 240)
+        Me.pBody.BackColor = System.Drawing.Color.FromArgb(CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer))
         Me.pBody.Controls.Add(Me.gcData)
         Me.pBody.Controls.Add(Me.tlpPenerimaan2)
         Me.pBody.Controls.Add(Me.tlpPenerimaan1)
@@ -254,15 +257,15 @@ Partial Class frmJurnalUmum
         '
         'gvData
         '
-        Me.gvData.Appearance.Empty.BackColor = System.Drawing.color.fromargb(240, 240, 240)
+        Me.gvData.Appearance.Empty.BackColor = System.Drawing.Color.FromArgb(CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer))
         Me.gvData.Appearance.Empty.Options.UseBackColor = True
         Me.gvData.Appearance.EvenRow.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(192, Byte), Integer))
         Me.gvData.Appearance.EvenRow.Options.UseBackColor = True
-        Me.gvData.Appearance.OddRow.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer))
+        Me.gvData.Appearance.OddRow.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer))
         Me.gvData.Appearance.OddRow.Options.UseBackColor = True
         Me.gvData.Appearance.TopNewRow.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
         Me.gvData.Appearance.TopNewRow.Options.UseBackColor = True
-        Me.gvData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.gcID, Me.gcNoDokumen, Me.gcIDCOALama, Me.gcKDCOALama, Me.gcIDCOA, Me.gcKDCOA, Me.gcRekening, Me.gcRemarks, Me.gcSaldo, Me.gcIsDeleted, Me.gcStatusData, Me.gcUnique, Me.gcPosisiDK, Me.gcDebetKredit})
+        Me.gvData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.gcID, Me.gcNoDokumen, Me.gcIDCOALama, Me.gcKDCOALama, Me.gcIDCOA, Me.gcKDCOA, Me.gcRekening, Me.gcRemarks, Me.gcSaldo, Me.gcIsDeleted, Me.gcStatusData, Me.gcPosisiDK, Me.gcDebetKredit})
         Me.gvData.GridControl = Me.gcData
         Me.gvData.Name = "gvData"
         Me.gvData.NewItemRowText = "Tambah Data Disini"
@@ -424,12 +427,6 @@ Partial Class frmJurnalUmum
         Me.gcStatusData.VisibleIndex = 7
         Me.gcStatusData.Width = 80
         '
-        'gcUnique
-        '
-        Me.gcUnique.Caption = "IDUnique"
-        Me.gcUnique.FieldName = "idunique"
-        Me.gcUnique.Name = "gcUnique"
-        '
         'gcPosisiDK
         '
         Me.gcPosisiDK.Caption = "PosisiDK"
@@ -454,7 +451,7 @@ Partial Class frmJurnalUmum
         '
         'tlpPenerimaan2
         '
-        Me.tlpPenerimaan2.BackColor = System.Drawing.color.fromargb(240, 240, 240)
+        Me.tlpPenerimaan2.BackColor = System.Drawing.Color.FromArgb(CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer))
         Me.tlpPenerimaan2.ColumnCount = 4
         Me.tlpPenerimaan2.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
         Me.tlpPenerimaan2.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 130.0!))
@@ -510,7 +507,7 @@ Partial Class frmJurnalUmum
         '
         'tlpPenerimaan1
         '
-        Me.tlpPenerimaan1.BackColor = System.Drawing.color.fromargb(240, 240, 240)
+        Me.tlpPenerimaan1.BackColor = System.Drawing.Color.FromArgb(CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer))
         Me.tlpPenerimaan1.ColumnCount = 6
         Me.tlpPenerimaan1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
         Me.tlpPenerimaan1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 130.0!))
@@ -562,9 +559,9 @@ Partial Class frmJurnalUmum
         Me.slueCOA.Properties.NullValuePrompt = "[Isian belum dipilih]"
         Me.slueCOA.Properties.PopupBorderStyle = DevExpress.XtraEditors.Controls.PopupBorderStyles.Simple
         Me.slueCOA.Properties.PopupFindMode = DevExpress.XtraEditors.FindMode.Always
+        Me.slueCOA.Properties.PopupView = Me.slueCOAView
         Me.slueCOA.Properties.ShowFooter = False
         Me.slueCOA.Properties.ShowPopupShadow = False
-        Me.slueCOA.Properties.View = Me.slueCOAView
         Me.slueCOA.Properties.ViewType = DevExpress.XtraEditors.Repository.GridLookUpViewType.GridView
         Me.slueCOA.Size = New System.Drawing.Size(150, 20)
         Me.slueCOA.TabIndex = 20
@@ -711,7 +708,7 @@ Partial Class frmJurnalUmum
         Me.seSaldo.Properties.Appearance.Options.UseFont = True
         Me.seSaldo.Properties.Appearance.Options.UseForeColor = True
         Me.seSaldo.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple
-        Me.seSaldo.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis, "", -1, True, False, False, DevExpress.XtraEditors.ImageLocation.MiddleCenter, Nothing, New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject2, "", Nothing, Nothing, True)})
+        Me.seSaldo.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis, "", -1, True, False, False, EditorButtonImageOptions1, New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject1, SerializableAppearanceObject2, SerializableAppearanceObject3, SerializableAppearanceObject4, "", Nothing, Nothing, DevExpress.Utils.ToolTipAnchor.[Default])})
         Me.seSaldo.Properties.DisplayFormat.FormatString = "n2"
         Me.seSaldo.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.seSaldo.Properties.EditFormat.FormatString = "n2"
@@ -770,7 +767,7 @@ Partial Class frmJurnalUmum
         Me.luePosisiDK.Properties.AppearanceReadOnly.Options.UseForeColor = True
         Me.luePosisiDK.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple
         Me.luePosisiDK.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.luePosisiDK.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id", "ID", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("content", "Debet / Kredit")})
+        Me.luePosisiDK.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id", "ID", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default], DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("content", "Debet / Kredit")})
         Me.luePosisiDK.Properties.NullText = "[Isian belum dipilih]"
         Me.luePosisiDK.Properties.NullValuePrompt = "[Isian belum dipilih]"
         Me.luePosisiDK.Size = New System.Drawing.Size(130, 20)
@@ -806,7 +803,7 @@ Partial Class frmJurnalUmum
         Me.lueStatusData.Properties.AppearanceReadOnly.Options.UseForeColor = True
         Me.lueStatusData.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple
         Me.lueStatusData.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.lueStatusData.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id", "ID", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("content", "Status Data")})
+        Me.lueStatusData.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id", "ID", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default], DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("content", "Status Data")})
         Me.lueStatusData.Properties.NullText = "[Isian belum dipilih]"
         Me.lueStatusData.Properties.NullValuePrompt = "[Isian belum dipilih]"
         Me.lueStatusData.Size = New System.Drawing.Size(130, 20)
@@ -875,7 +872,7 @@ Partial Class frmJurnalUmum
         '
         'btnSaveRow
         '
-        Me.btnSaveRow.BackColor = System.Drawing.Color.FromArgb(CType(CType(156, Byte), Integer), CType(CType(207, Byte), Integer), CType(CType(49, Byte), Integer))
+        Me.btnSaveRow.BackColor = System.Drawing.Color.Green
         Me.btnSaveRow.Dock = System.Windows.Forms.DockStyle.Right
         Me.btnSaveRow.FlatAppearance.BorderSize = 0
         Me.btnSaveRow.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DimGray
@@ -892,7 +889,7 @@ Partial Class frmJurnalUmum
         '
         'tlpField
         '
-        Me.tlpField.BackColor = System.Drawing.color.fromargb(240, 240, 240)
+        Me.tlpField.BackColor = System.Drawing.Color.FromArgb(CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer))
         Me.tlpField.ColumnCount = 6
         Me.tlpField.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
         Me.tlpField.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 130.0!))
@@ -930,7 +927,7 @@ Partial Class frmJurnalUmum
         Me.lueUnit.Properties.Appearance.Options.UseFont = True
         Me.lueUnit.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple
         Me.lueUnit.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.lueUnit.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("idunit", "ID", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("unit", "Unit")})
+        Me.lueUnit.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("idunit", "ID", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default], DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("unit", "Unit")})
         Me.lueUnit.Properties.NullText = "[Isian belum dipilih]"
         Me.lueUnit.Properties.NullValuePrompt = "[Isian belum dipilih]"
         Me.lueUnit.Size = New System.Drawing.Size(150, 20)
@@ -993,22 +990,22 @@ Partial Class frmJurnalUmum
         Me.deTanggal.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 9.0!)
         Me.deTanggal.Properties.Appearance.Options.UseBackColor = True
         Me.deTanggal.Properties.Appearance.Options.UseFont = True
+        Me.deTanggal.Properties.AppearanceCalendar.DayCellHighlighted.Font = New System.Drawing.Font("Tahoma", 9.0!)
+        Me.deTanggal.Properties.AppearanceCalendar.DayCellHighlighted.Options.UseFont = True
+        Me.deTanggal.Properties.AppearanceCalendar.Header.Font = New System.Drawing.Font("Tahoma", 9.0!)
+        Me.deTanggal.Properties.AppearanceCalendar.Header.Options.UseFont = True
+        Me.deTanggal.Properties.AppearanceCalendar.HeaderHighlighted.Font = New System.Drawing.Font("Tahoma", 9.0!)
+        Me.deTanggal.Properties.AppearanceCalendar.HeaderHighlighted.Options.UseFont = True
+        Me.deTanggal.Properties.AppearanceCalendar.WeekNumber.Font = New System.Drawing.Font("Tahoma", 9.0!)
+        Me.deTanggal.Properties.AppearanceCalendar.WeekNumber.Options.UseFont = True
         Me.deTanggal.Properties.AppearanceDisabled.Font = New System.Drawing.Font("Tahoma", 9.0!)
         Me.deTanggal.Properties.AppearanceDisabled.Options.UseFont = True
         Me.deTanggal.Properties.AppearanceDropDown.Font = New System.Drawing.Font("Tahoma", 9.0!)
         Me.deTanggal.Properties.AppearanceDropDown.Options.UseFont = True
-        Me.deTanggal.Properties.AppearanceDropDownHeader.Font = New System.Drawing.Font("Tahoma", 9.0!)
-        Me.deTanggal.Properties.AppearanceDropDownHeader.Options.UseFont = True
-        Me.deTanggal.Properties.AppearanceDropDownHeaderHighlight.Font = New System.Drawing.Font("Tahoma", 9.0!)
-        Me.deTanggal.Properties.AppearanceDropDownHeaderHighlight.Options.UseFont = True
-        Me.deTanggal.Properties.AppearanceDropDownHighlight.Font = New System.Drawing.Font("Tahoma", 9.0!)
-        Me.deTanggal.Properties.AppearanceDropDownHighlight.Options.UseFont = True
         Me.deTanggal.Properties.AppearanceFocused.Font = New System.Drawing.Font("Tahoma", 9.0!)
         Me.deTanggal.Properties.AppearanceFocused.Options.UseFont = True
         Me.deTanggal.Properties.AppearanceReadOnly.Font = New System.Drawing.Font("Tahoma", 9.0!)
         Me.deTanggal.Properties.AppearanceReadOnly.Options.UseFont = True
-        Me.deTanggal.Properties.AppearanceWeekNumber.Font = New System.Drawing.Font("Tahoma", 9.0!)
-        Me.deTanggal.Properties.AppearanceWeekNumber.Options.UseFont = True
         Me.deTanggal.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple
         Me.deTanggal.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.deTanggal.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
@@ -1082,7 +1079,7 @@ Partial Class frmJurnalUmum
         '
         'btnSave
         '
-        Me.btnSave.BackColor = System.Drawing.Color.FromArgb(CType(CType(156, Byte), Integer), CType(CType(207, Byte), Integer), CType(CType(49, Byte), Integer))
+        Me.btnSave.BackColor = System.Drawing.Color.Green
         Me.btnSave.Dock = System.Windows.Forms.DockStyle.Right
         Me.btnSave.FlatAppearance.BorderSize = 0
         Me.btnSave.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DimGray
@@ -1114,7 +1111,7 @@ Partial Class frmJurnalUmum
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.BackColor = System.Drawing.color.fromargb(240, 240, 240)
+        Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer))
         Me.ClientSize = New System.Drawing.Size(1150, 560)
         Me.Controls.Add(Me.tlpForm)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
@@ -1176,7 +1173,6 @@ Partial Class frmJurnalUmum
     Friend WithEvents gcSaldo As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents gcStatusData As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents RepositoryItemMemoEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit
-    Friend WithEvents gcUnique As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents gcDebetKredit As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents Label2 As System.Windows.Forms.Label
     Public WithEvents btnNew As System.Windows.Forms.Button

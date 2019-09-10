@@ -25,7 +25,7 @@ Public Class Form1
         dbstring = readSettingFile()
 
         Dim str As String = GenerateUUID(dbstring)
-        Clipboard.SetText(str)
+        'Clipboard.SetText(str)
 
         'Dim str As String = "AlterDiaz"
         'Dim tmp As Byte() = MD5.ComputeHash(ASCIIEncoding.ASCII.GetBytes(str))
@@ -37,7 +37,7 @@ Public Class Form1
 
     Private Sub Form1_Click(sender As Object, e As EventArgs) Handles Me.Click
         Dim str As String = GenerateUUID(dbstring)
-        Clipboard.SetText(str)
+        'Clipboard.SetText(str)
     End Sub
 
 End Class

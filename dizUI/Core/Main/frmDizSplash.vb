@@ -36,7 +36,7 @@
 
     Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Timer1.Tick
         Application.DoEvents()
-        Threading.Thread.Sleep(1000)
+        Threading.Thread.Sleep(100)
         If splashClosed Then
             Timer1.Stop()
             Me.Dispose()

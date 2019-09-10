@@ -32,6 +32,8 @@
             End If
         End If
 
+        lnkTG.BringToFront()
+
         pbSync.Image = dizUI.My.Resources.Resources.loading2
         pbSync.BringToFront()
         pbSync.Invalidate()
@@ -46,6 +48,10 @@
             Timer1.Stop()
             Me.Dispose()
         End If
+    End Sub
+
+    Private Sub lnkTG_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles lnkTG.LinkClicked
+        System.Diagnostics.Process.Start("https://t.me/datacube_enterprise")
     End Sub
 
 End Class

@@ -27,11 +27,15 @@ Partial Class frmDevice
         Me.gcData = New DevExpress.XtraGrid.GridControl()
         Me.gvData = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.rimeNote = New DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit()
         Me.tlpTop = New System.Windows.Forms.TableLayoutPanel()
+        Me.lueJenisDevice = New DevExpress.XtraEditors.LookUpEdit()
+        Me.Label3 = New System.Windows.Forms.Label()
         Me.tboShare = New DevExpress.XtraEditors.TextEdit()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.tboDevice = New DevExpress.XtraEditors.TextEdit()
@@ -45,23 +49,19 @@ Partial Class frmDevice
         Me.Panel1 = New System.Windows.Forms.Panel()
         Me.lblTitle = New System.Windows.Forms.Label()
         Me.pExit = New System.Windows.Forms.PictureBox()
-        Me.Label3 = New System.Windows.Forms.Label()
-        Me.lueJenisDevice = New DevExpress.XtraEditors.LookUpEdit()
-        Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.tlpForm.SuspendLayout()
         Me.pBody.SuspendLayout()
         CType(Me.gcData, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gvData, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.rimeNote, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.tlpTop.SuspendLayout()
+        CType(Me.lueJenisDevice.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.tboShare.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.tboDevice.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.tboIPAddress.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.pHeader.SuspendLayout()
         Me.Panel1.SuspendLayout()
         CType(Me.pExit, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.lueJenisDevice.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'tlpForm
@@ -158,6 +158,26 @@ Partial Class frmDevice
         Me.GridColumn1.OptionsColumn.AllowEdit = False
         Me.GridColumn1.OptionsColumn.ReadOnly = True
         '
+        'GridColumn6
+        '
+        Me.GridColumn6.Caption = "GridColumn6"
+        Me.GridColumn6.FieldName = "devicetype"
+        Me.GridColumn6.Name = "GridColumn6"
+        '
+        'GridColumn5
+        '
+        Me.GridColumn5.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn5.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn5.Caption = "Jenis Device"
+        Me.GridColumn5.FieldName = "jenisdevice"
+        Me.GridColumn5.MinWidth = 100
+        Me.GridColumn5.Name = "GridColumn5"
+        Me.GridColumn5.OptionsColumn.AllowEdit = False
+        Me.GridColumn5.OptionsColumn.ReadOnly = True
+        Me.GridColumn5.Visible = True
+        Me.GridColumn5.VisibleIndex = 0
+        Me.GridColumn5.Width = 123
+        '
         'GridColumn2
         '
         Me.GridColumn2.AppearanceHeader.Options.UseTextOptions = True
@@ -234,6 +254,38 @@ Partial Class frmDevice
         Me.tlpTop.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 6.0!))
         Me.tlpTop.Size = New System.Drawing.Size(715, 108)
         Me.tlpTop.TabIndex = 5
+        '
+        'lueJenisDevice
+        '
+        Me.lueJenisDevice.Anchor = System.Windows.Forms.AnchorStyles.Left
+        Me.lueJenisDevice.Location = New System.Drawing.Point(282, 80)
+        Me.lueJenisDevice.Margin = New System.Windows.Forms.Padding(0)
+        Me.lueJenisDevice.Name = "lueJenisDevice"
+        Me.lueJenisDevice.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[False]
+        Me.lueJenisDevice.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.lueJenisDevice.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 9.0!)
+        Me.lueJenisDevice.Properties.Appearance.Options.UseBackColor = True
+        Me.lueJenisDevice.Properties.Appearance.Options.UseFont = True
+        Me.lueJenisDevice.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple
+        Me.lueJenisDevice.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.lueJenisDevice.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id", "ID", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default], DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("content", "Content")})
+        Me.lueJenisDevice.Properties.NullText = "[Isian belum dipilih]"
+        Me.lueJenisDevice.Properties.NullValuePrompt = "[Isian belum dipilih]"
+        Me.lueJenisDevice.Size = New System.Drawing.Size(150, 20)
+        Me.lueJenisDevice.TabIndex = 49
+        Me.lueJenisDevice.Tag = "idlokasi"
+        '
+        'Label3
+        '
+        Me.Label3.Anchor = System.Windows.Forms.AnchorStyles.Right
+        Me.Label3.AutoSize = True
+        Me.Label3.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label3.Location = New System.Drawing.Point(206, 83)
+        Me.Label3.Name = "Label3"
+        Me.Label3.Size = New System.Drawing.Size(73, 14)
+        Me.Label3.TabIndex = 34
+        Me.Label3.Text = "Jenis Device"
+        Me.Label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
         'tboShare
         '
@@ -443,58 +495,6 @@ Partial Class frmDevice
         Me.pExit.TabIndex = 12
         Me.pExit.TabStop = False
         '
-        'Label3
-        '
-        Me.Label3.Anchor = System.Windows.Forms.AnchorStyles.Right
-        Me.Label3.AutoSize = True
-        Me.Label3.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label3.Location = New System.Drawing.Point(206, 83)
-        Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(73, 14)
-        Me.Label3.TabIndex = 34
-        Me.Label3.Text = "Jenis Device"
-        Me.Label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        '
-        'lueJenisDevice
-        '
-        Me.lueJenisDevice.Anchor = System.Windows.Forms.AnchorStyles.Left
-        Me.lueJenisDevice.Location = New System.Drawing.Point(282, 80)
-        Me.lueJenisDevice.Margin = New System.Windows.Forms.Padding(0)
-        Me.lueJenisDevice.Name = "lueJenisDevice"
-        Me.lueJenisDevice.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[False]
-        Me.lueJenisDevice.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.lueJenisDevice.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 9.0!)
-        Me.lueJenisDevice.Properties.Appearance.Options.UseBackColor = True
-        Me.lueJenisDevice.Properties.Appearance.Options.UseFont = True
-        Me.lueJenisDevice.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple
-        Me.lueJenisDevice.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.lueJenisDevice.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id", "ID", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default], DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("content", "Content")})
-        Me.lueJenisDevice.Properties.NullText = "[Isian belum dipilih]"
-        Me.lueJenisDevice.Properties.NullValuePrompt = "[Isian belum dipilih]"
-        Me.lueJenisDevice.Size = New System.Drawing.Size(150, 20)
-        Me.lueJenisDevice.TabIndex = 49
-        Me.lueJenisDevice.Tag = "idlokasi"
-        '
-        'GridColumn5
-        '
-        Me.GridColumn5.AppearanceHeader.Options.UseTextOptions = True
-        Me.GridColumn5.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GridColumn5.Caption = "Jenis Device"
-        Me.GridColumn5.FieldName = "jenisdevice"
-        Me.GridColumn5.MinWidth = 100
-        Me.GridColumn5.Name = "GridColumn5"
-        Me.GridColumn5.OptionsColumn.AllowEdit = False
-        Me.GridColumn5.OptionsColumn.ReadOnly = True
-        Me.GridColumn5.Visible = True
-        Me.GridColumn5.VisibleIndex = 0
-        Me.GridColumn5.Width = 123
-        '
-        'GridColumn6
-        '
-        Me.GridColumn6.Caption = "GridColumn6"
-        Me.GridColumn6.FieldName = "devicetype"
-        Me.GridColumn6.Name = "GridColumn6"
-        '
         'frmDevice
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -518,13 +518,13 @@ Partial Class frmDevice
         CType(Me.rimeNote, System.ComponentModel.ISupportInitialize).EndInit()
         Me.tlpTop.ResumeLayout(False)
         Me.tlpTop.PerformLayout()
+        CType(Me.lueJenisDevice.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.tboShare.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.tboDevice.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.tboIPAddress.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.pHeader.ResumeLayout(False)
         Me.Panel1.ResumeLayout(False)
         CType(Me.pExit, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.lueJenisDevice.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub

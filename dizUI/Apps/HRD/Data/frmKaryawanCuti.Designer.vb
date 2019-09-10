@@ -60,9 +60,10 @@ Partial Class frmKaryawanCuti
         Me.lblTanggalAwal = New System.Windows.Forms.Label()
         Me.pHeader = New System.Windows.Forms.Panel()
         Me.btnExport = New System.Windows.Forms.Button()
+        Me.btnNew = New System.Windows.Forms.Button()
         Me.btnSave = New System.Windows.Forms.Button()
         Me.lblSep5 = New System.Windows.Forms.Label()
-        Me.btnNew = New System.Windows.Forms.Button()
+        Me.btnDelete = New System.Windows.Forms.Button()
         Me.tlpForm.SuspendLayout()
         Me.pTitle.SuspendLayout()
         CType(Me.pMinimize, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -199,7 +200,7 @@ Partial Class frmKaryawanCuti
         '
         'gvData
         '
-        Me.gvData.Appearance.Empty.BackColor = System.Drawing.color.fromargb(240, 240, 240)
+        Me.gvData.Appearance.Empty.BackColor = System.Drawing.Color.FromArgb(CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer))
         Me.gvData.Appearance.Empty.Options.UseBackColor = True
         Me.gvData.Appearance.EvenRow.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer))
         Me.gvData.Appearance.EvenRow.Options.UseBackColor = True
@@ -310,7 +311,7 @@ Partial Class frmKaryawanCuti
         'tlpJadwal2
         '
         Me.tlpJadwal2.AutoSize = True
-        Me.tlpJadwal2.BackColor = System.Drawing.color.fromargb(240, 240, 240)
+        Me.tlpJadwal2.BackColor = System.Drawing.Color.FromArgb(CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer))
         Me.tlpJadwal2.ColumnCount = 4
         Me.tlpJadwal2.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
         Me.tlpJadwal2.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 130.0!))
@@ -491,7 +492,7 @@ Partial Class frmKaryawanCuti
         'tlpJadwal1
         '
         Me.tlpJadwal1.AutoSize = True
-        Me.tlpJadwal1.BackColor = System.Drawing.color.fromargb(240, 240, 240)
+        Me.tlpJadwal1.BackColor = System.Drawing.Color.FromArgb(CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer))
         Me.tlpJadwal1.ColumnCount = 6
         Me.tlpJadwal1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
         Me.tlpJadwal1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 130.0!))
@@ -672,6 +673,7 @@ Partial Class frmKaryawanCuti
         Me.pHeader.Controls.Add(Me.btnExport)
         Me.pHeader.Controls.Add(Me.btnNew)
         Me.pHeader.Controls.Add(Me.btnSave)
+        Me.pHeader.Controls.Add(Me.btnDelete)
         Me.pHeader.Dock = System.Windows.Forms.DockStyle.Top
         Me.pHeader.ForeColor = System.Drawing.Color.White
         Me.pHeader.Location = New System.Drawing.Point(0, 0)
@@ -688,7 +690,7 @@ Partial Class frmKaryawanCuti
         Me.btnExport.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DarkGray
         Me.btnExport.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnExport.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnExport.Location = New System.Drawing.Point(546, 0)
+        Me.btnExport.Location = New System.Drawing.Point(466, 0)
         Me.btnExport.Name = "btnExport"
         Me.btnExport.Size = New System.Drawing.Size(100, 30)
         Me.btnExport.TabIndex = 18
@@ -696,16 +698,32 @@ Partial Class frmKaryawanCuti
         Me.btnExport.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
         Me.btnExport.UseVisualStyleBackColor = True
         '
+        'btnNew
+        '
+        Me.btnNew.Dock = System.Windows.Forms.DockStyle.Right
+        Me.btnNew.FlatAppearance.BorderSize = 0
+        Me.btnNew.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DimGray
+        Me.btnNew.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DarkGray
+        Me.btnNew.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnNew.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnNew.Location = New System.Drawing.Point(566, 0)
+        Me.btnNew.Name = "btnNew"
+        Me.btnNew.Size = New System.Drawing.Size(60, 30)
+        Me.btnNew.TabIndex = 19
+        Me.btnNew.Text = "BARU"
+        Me.btnNew.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
+        Me.btnNew.UseVisualStyleBackColor = True
+        '
         'btnSave
         '
-        Me.btnSave.BackColor = System.Drawing.Color.FromArgb(CType(CType(156, Byte), Integer), CType(CType(207, Byte), Integer), CType(CType(49, Byte), Integer))
+        Me.btnSave.BackColor = System.Drawing.Color.green
         Me.btnSave.Dock = System.Windows.Forms.DockStyle.Right
         Me.btnSave.FlatAppearance.BorderSize = 0
         Me.btnSave.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DimGray
         Me.btnSave.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DarkGray
         Me.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnSave.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnSave.Location = New System.Drawing.Point(706, 0)
+        Me.btnSave.Location = New System.Drawing.Point(626, 0)
         Me.btnSave.Name = "btnSave"
         Me.btnSave.Size = New System.Drawing.Size(80, 30)
         Me.btnSave.TabIndex = 15
@@ -726,27 +744,27 @@ Partial Class frmKaryawanCuti
         Me.lblSep5.Text = "|"
         Me.lblSep5.TextAlign = System.Drawing.ContentAlignment.TopCenter
         '
-        'btnNew
+        'btnDelete
         '
-        Me.btnNew.Dock = System.Windows.Forms.DockStyle.Right
-        Me.btnNew.FlatAppearance.BorderSize = 0
-        Me.btnNew.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DimGray
-        Me.btnNew.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DarkGray
-        Me.btnNew.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btnNew.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnNew.Location = New System.Drawing.Point(646, 0)
-        Me.btnNew.Name = "btnNew"
-        Me.btnNew.Size = New System.Drawing.Size(60, 30)
-        Me.btnNew.TabIndex = 19
-        Me.btnNew.Text = "BARU"
-        Me.btnNew.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
-        Me.btnNew.UseVisualStyleBackColor = True
+        Me.btnDelete.Dock = System.Windows.Forms.DockStyle.Right
+        Me.btnDelete.FlatAppearance.BorderSize = 0
+        Me.btnDelete.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DimGray
+        Me.btnDelete.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DarkGray
+        Me.btnDelete.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnDelete.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnDelete.Location = New System.Drawing.Point(706, 0)
+        Me.btnDelete.Name = "btnDelete"
+        Me.btnDelete.Size = New System.Drawing.Size(80, 30)
+        Me.btnDelete.TabIndex = 21
+        Me.btnDelete.Text = "HAPUS"
+        Me.btnDelete.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
+        Me.btnDelete.UseVisualStyleBackColor = True
         '
         'frmKaryawanCuti
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.BackColor = System.Drawing.color.fromargb(240, 240, 240)
+        Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer))
         Me.ClientSize = New System.Drawing.Size(790, 408)
         Me.Controls.Add(Me.tlpForm)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
@@ -820,4 +838,5 @@ Partial Class frmKaryawanCuti
     Friend WithEvents GridColumn10 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents teRemarks As DevExpress.XtraEditors.TextEdit
     Public WithEvents btnNew As Button
+    Public WithEvents btnDelete As Button
 End Class

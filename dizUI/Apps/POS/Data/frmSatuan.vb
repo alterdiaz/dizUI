@@ -185,7 +185,7 @@
         End If
         If statData = statusData.Baru Then
             Dim sqls As New SQLs(dbstring)
-            sqls.DMLQuery("select satuan from satuan where idcompany=(select top 1 value from sys_appsetting where variable='CompanyID') and replace(satuan,' ','')='" & teNama.Text.Replace(" ", "") & "'", "exist")
+            sqls.DMLQuery("select satuan from satuan where replace(satuan,' ','')='" & teNama.Text.Replace(" ", "") & "'", "exist")
             If sqls.getDataSet("exist") = 0 Then
                 idData = "-1"
             Else
@@ -195,7 +195,7 @@
             End If
         ElseIf statData = statusData.Edit Then
             Dim sqls As New SQLs(dbstring)
-            sqls.DMLQuery("select satuan from satuan where idcompany=(select top 1 value from sys_appsetting where variable='CompanyID') and replace(satuan,' ','')='" & teNama.Text.Replace(" ", "") & "' and idsatuan<>'" & idData & "'", "exist")
+            sqls.DMLQuery("select satuan from satuan where replace(satuan,' ','')='" & teNama.Text.Replace(" ", "") & "' and idsatuan<>'" & idData & "'", "exist")
             If sqls.getDataSet("exist") > 0 Then
                 dizMsgbox("Data tersebut sudah ada", dizMsgboxStyle.info, Me)
                 teNama.Focus()

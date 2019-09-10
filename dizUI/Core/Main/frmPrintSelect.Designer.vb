@@ -103,7 +103,7 @@ Partial Class frmPrintSelect
         Me.btnOK.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.btnOK.BackColor = System.Drawing.Color.Transparent
         Me.btnOK.DialogResult = System.Windows.Forms.DialogResult.OK
-        Me.btnOK.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(0, Byte), Integer))
+        Me.btnOK.FlatAppearance.BorderColor = System.Drawing.Color.green
         Me.btnOK.FlatAppearance.BorderSize = 0
         Me.btnOK.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
         Me.btnOK.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Lime

@@ -87,7 +87,7 @@
 
     Private Sub loadLOV()
         Dim mysqls As New SQLs(dbstring)
-        mysqls.DMLQuery("select idunit as id, unit as content from unit where idcompany=(select top 1 value from sys_appsetting where variable='CompanyID') and isdeleted=0 and idunit not in (select value from sys_appsetting where variable in ('IDSystemUnit','IDVendorUnit')) order by unit asc", "munit")
+        mysqls.DMLQuery("select idunit as id, unit as content from unit where isdeleted=0 and idunit not in (select value from sys_appsetting where variable in ('IDSystemUnit','IDVendorUnit')) order by unit asc", "munit")
         lueUnit.Properties.DataSource = mysqls.dataTable("munit")
         lueUnit.Properties.DisplayMember = "content"
         lueUnit.Properties.ValueMember = "id"
@@ -99,7 +99,7 @@
             Exit Sub
         End If
 
-        mysqls.DMLQuery("select iddepartment as id, department as content from department where idcompany=(select top 1 value from sys_appsetting where variable='CompanyID') and isdeleted=0 and department<>'SYSTEM'", "mdepartment")
+        mysqls.DMLQuery("select iddepartment as id, department as content from department where isdeleted=0 and department<>'SYSTEM'", "mdepartment")
         lueDepartment.Properties.DataSource = mysqls.dataTable("mdepartment")
         lueDepartment.Properties.DisplayMember = "content"
         lueDepartment.Properties.ValueMember = "id"
@@ -111,7 +111,7 @@
             Exit Sub
         End If
 
-        mysqls.DMLQuery("select idposition as id, position as content from position where idcompany=(select top 1 value from sys_appsetting where variable='CompanyID') and isdeleted=0 and (idposition<>(select isnull(value,0) from sys_appsetting where variable='IDSystemJabatan') and idposition<>(select isnull(value,0) from sys_appsetting where variable='IDVendorJabatan')) order by priority", "mposition")
+        mysqls.DMLQuery("select idposition as id, position as content from position where isdeleted=0 and (idposition<>(select isnull(value,0) from sys_appsetting where variable='IDSystemJabatan') and idposition<>(select isnull(value,0) from sys_appsetting where variable='IDVendorJabatan')) order by priority", "mposition")
         lueJabatan.Properties.DataSource = mysqls.dataTable("mposition")
         lueJabatan.Properties.DisplayMember = "content"
         lueJabatan.Properties.ValueMember = "id"
@@ -123,7 +123,7 @@
             Exit Sub
         End If
 
-        mysqls.DMLQuery("select idstaff as id, nama as content from staff where idcompany=(select top 1 value from sys_appsetting where variable='CompanyID') and isdeleted=0 and (idposition<>(select isnull(value,0) from sys_appsetting where variable='IDSystemJabatan') and idposition<>(select isnull(value,0) from sys_appsetting where variable='IDVendorJabatan')) order by nama asc", "mstaff")
+        mysqls.DMLQuery("select idstaff as id, nama as content from staff where isdeleted=0 and (idposition<>(select isnull(value,0) from sys_appsetting where variable='IDSystemJabatan') and idposition<>(select isnull(value,0) from sys_appsetting where variable='IDVendorJabatan')) order by nama asc", "mstaff")
         lueStaff.Properties.DataSource = mysqls.dataTable("mstaff")
         lueStaff.Properties.DisplayMember = "content"
         lueStaff.Properties.ValueMember = "id"
@@ -181,6 +181,7 @@
             dtSQL = New dtsetSQLS(dbstring)
             field = New List(Of String)
             value = New List(Of Object)
+            sqls = New SQLs(dbstring)
 
             Dim dr As DataRow = gvData.GetDataRow(i)
             idData = dr("idstandardgaji")
@@ -188,9 +189,20 @@
             Dim sg As Long = dr("standardgaji")
             Dim periode As String = dr("periode")
             statData = statusData.Edit
-            If Format(nowTime, "MM-yyyy") <> periode Then
+
+            sqls.DMLQuery("select * from standardgaji where substring(convert(varchar,s.periode,105),4,7)='" & Format(nowTime, "MM-yyyy") & "' and idunit='" & If(lueUnit.EditValue, "0") & "' and iddepartment='" & If(lueDepartment.EditValue, "0") & "' and idposition='" & If(lueJabatan.EditValue, "0") & "' and idstaff='" & If(lueStaff.EditValue, "0") & "'", "cekid")
+            If sqls.getDataSet("cekid") > 0 Then
+                statData = statusData.Edit
+            Else
                 statData = statusData.Baru
             End If
+            If idData = "-1" Then
+                idData = GenerateGUID()
+                statData = statusData.Baru
+            Else
+                statData = statusData.Edit
+            End If
+
             If statData = statusData.Baru Then
                 idData = GenerateGUID()
                 field.AddRange(New String() {"idstandardgaji", "idcompany", "idunit", "iddepartment", "idposition", "idstaff", "idkomponengaji", "isdeleted", "periode", "standardgaji", "createdby", "createddate"})
@@ -219,12 +231,16 @@
             Me.Text = formTitle
             lblTitle.Text = formTitle
         End If
-        checkFieldMaxLength(dbstring, tlpField, "komponengaji")
+        checkFieldMaxLength(dbstring, tlpField, "standardgaji")
         loadLOV()
         btnNew_Click(Me, Nothing)
     End Sub
 
     Private Sub btnCheck_Click(sender As Object, e As EventArgs) Handles btnCheck.Click
+        If lueUnit.EditValue Is Nothing Then
+            dizMsgbox("Unit belum dipilih", dizMsgboxStyle.Info, Me)
+            Exit Sub
+        End If
         loadGrid()
     End Sub
 

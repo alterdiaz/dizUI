@@ -22,10 +22,14 @@ Partial Class Form1
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Me.ListBox1 = New System.Windows.Forms.ListBox()
         Me.btnRefresh = New System.Windows.Forms.Button()
         Me.btnImport = New System.Windows.Forms.Button()
         Me.Button1 = New System.Windows.Forms.Button()
+        Me.Button2 = New System.Windows.Forms.Button()
+        Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
+        Me.Label1 = New System.Windows.Forms.Label()
         Me.SuspendLayout()
         '
         'ListBox1
@@ -68,11 +72,35 @@ Partial Class Form1
         Me.Button1.UseVisualStyleBackColor = True
         Me.Button1.Visible = False
         '
+        'Button2
+        '
+        Me.Button2.Location = New System.Drawing.Point(378, 274)
+        Me.Button2.Name = "Button2"
+        Me.Button2.Size = New System.Drawing.Size(80, 40)
+        Me.Button2.TabIndex = 4
+        Me.Button2.Text = "Loop REST API"
+        Me.Button2.UseVisualStyleBackColor = True
+        '
+        'Timer1
+        '
+        Me.Timer1.Interval = 3000
+        '
+        'Label1
+        '
+        Me.Label1.Location = New System.Drawing.Point(378, 185)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(80, 80)
+        Me.Label1.TabIndex = 5
+        Me.Label1.Text = "Label1"
+        Me.Label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(463, 422)
+        Me.Controls.Add(Me.Label1)
+        Me.Controls.Add(Me.Button2)
         Me.Controls.Add(Me.Button1)
         Me.Controls.Add(Me.btnImport)
         Me.Controls.Add(Me.btnRefresh)
@@ -89,4 +117,7 @@ Partial Class Form1
     Friend WithEvents btnRefresh As Button
     Friend WithEvents btnImport As Button
     Friend WithEvents Button1 As Button
+    Friend WithEvents Button2 As Button
+    Friend WithEvents Timer1 As Timer
+    Friend WithEvents Label1 As Label
 End Class

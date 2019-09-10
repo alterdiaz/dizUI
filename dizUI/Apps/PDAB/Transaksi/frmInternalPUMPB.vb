@@ -148,17 +148,14 @@
         kosongkanIsian(tlpPemohon)
         kosongkanIsian(tlpUntuk)
         kosongkanIsian(tlpMengetahui)
-        tePengajuanNo.Text = "UM" & Format(nowTime, "yyyy") & "/XXXX"
+
+        tePengajuanNo.Text = ""
+
+        'tePengajuanNo.Text = "UM" & Format(nowTime, "yyyy") & "/XXXX"
         teHurufUang.Text = "nol rupiah"
 
         If usersuper = 1 Then
-            Dim iddept As New List(Of String)
-            iddept.AddRange(New String() {"*"})
-            Dim iddeptexcept As New List(Of String)
-            iddeptexcept.AddRange(New String() {55})
-
-            Dim selkary As New frmSelectKaryawan()
-            selkary.deptdeptexceptpost(iddept, iddeptexcept, 1)
+            Dim selkary As New frmSelectKaryawan2()
             tambahChild(selkary)
             If selkary.ShowDialog() = Windows.Forms.DialogResult.Cancel Then
                 Exit Sub
@@ -166,7 +163,7 @@
             staffid = String.Join(",", selkary.getID)
 
             Dim mys As New SQLs(dbstring)
-            mys.DMLQuery("select k.idstaff,k.nama,p.idposition,p.position,d.iddepartment,d.kode,d.department,k.idunit,un.unit from staff k left join unit un on k.idunit=un.idunit and un.idcompany=(select top 1 value from sys_appsetting where variable='CompanyID') left join position p on k.idposition=p.idposition and p.idcompany=(select top 1 value from sys_appsetting where variable='CompanyID') and left join department d on k.iddepartment=d.iddepartment and d.idcompany=(select top 1 value from sys_appsetting where variable='CompanyID') where k.idcompany=(select top 1 value from sys_appsetting where variable='CompanyID') and k.idstaff='" & staffid & "'", "datakary")
+            mys.DMLQuery("select k.idstaff,k.nama,p.idposition,p.position,d.iddepartment,d.kode,d.department,k.idunit,un.unit from staff k left join unit un on k.idunit=un.idunit left join position p on k.idposition=p.idposition left join department d on k.iddepartment=d.iddepartment where k.idstaff='" & staffid & "'", "datakary")
 
             staffname = mys.getDataSet("datakary", 0, "nama")
             levelid = mys.getDataSet("datakary", 0, "idposition")
@@ -181,7 +178,7 @@
             teJabatanPemohon.Text = unitname
         Else
             Dim mys As New SQLs(dbstring)
-            mys.DMLQuery("select k.idstaff,k.nama,p.idposition,p.position,d.iddepartment,d.kode,d.department,k.idunit,un.unit from staff k left join unit un on k.idunit=un.idunit and un.idcompany=(select top 1 value from sys_appsetting where variable='CompanyID') left join position p on k.idposition=p.idposition and p.idcompany=(select top 1 value from sys_appsetting where variable='CompanyID') left join department d on k.iddepartment=d.iddepartment and d.idcompany=(select top 1 value from sys_appsetting where variable='CompanyID') where p.idcompany=(select top 1 value from sys_appsetting where variable='CompanyID') and p.positiontype=1 and k.iduser='" & userid & "'", "datakary")
+            mys.DMLQuery("select k.idstaff,k.nama,p.idposition,p.position,d.iddepartment,d.kode,d.department,k.idunit,un.unit from staff k left join unit un on k.idunit=un.idunit left join position p on k.idposition=p.idposition left join department d on k.iddepartment=d.iddepartment where p.positiontype=1 and k.iduser='" & userid & "'", "datakary")
 
             If mys.getDataSet("datakary") > 0 Then
                 staffid = mys.getDataSet("datakary", 0, "idstaff")
@@ -196,11 +193,6 @@
 
                 teNamaPemohon.Text = staffname
                 teJabatanPemohon.Text = unitname
-
-                Dim pair As KeyValuePair(Of String, String) = generateno2(unitid, deptid, "Pengajuan Int", True)
-                Dim idtrans As String = pair.Key
-                Dim notrans As String = pair.Value
-                tePengajuanNo.Text = notrans
             Else
                 dizMsgbox("User anda tidak terkait dengan data karyawan", dizMsgboxStyle.Peringatan, Me)
                 btnSave.Enabled = False
@@ -210,6 +202,9 @@
 
         deTanggal.Properties.MinValue = New Date(nowTime.Year, 1, 1)
         deTanggal.Properties.MaxValue = New Date(nowTime.Year, 12, 31)
+
+        Dim pair2 As KeyValuePair(Of String, String) = generateno2("", "", "Pengajuan Int", True)
+        tePengajuanNo.Text = pair2.Value
 
         'generateNO()
     End Sub
@@ -241,7 +236,7 @@
         meUntuk.Properties.MaxLength = 4800
 
         Dim mysqls As New SQLs(dbstring)
-        mysqls.DMLQuery("select idkategoriuntuk, kategoriuntuk from kategoriuntuk where idcompany=(select top 1 value from sys_appsetting where variable='CompanyID') and isnull(isdeleted,0)=0", "kategoriuntuk")
+        mysqls.DMLQuery("select idkategoriuntuk, kategoriuntuk from kategoriuntuk where isnull(isdeleted,0)=0", "kategoriuntuk")
         lueKategori.Properties.DataSource = mysqls.dataTable("kategoriuntuk")
         lueKategori.Properties.DisplayMember = "kategoriuntuk"
         lueKategori.Properties.ValueMember = "idkategoriuntuk"
@@ -251,7 +246,7 @@
             Exit Sub
         End If
 
-        mysqls.DMLQuery("select idcoa, coa, remarks from coa where idcompany=(select top 1 value from sys_appsetting where variable='CompanyID') and len(convert(decimal(20,0),COA))>=3 and (isnull(isdeleted,0)=0 or coa<>'-1') order by convert(varchar(20),COA) asc", "coa")
+        mysqls.DMLQuery("select idcoa, coa, remarks from coa where len(convert(decimal(20,0),COA))>=3 and (isnull(isdeleted,0)=0 or coa<>'-1') order by convert(varchar(20),COA) asc", "coa")
         slueCOA.Properties.DataSource = mysqls.dataTable("coa")
         slueCOA.Properties.DisplayMember = "coa"
         slueCOA.Properties.ValueMember = "idcoa"
@@ -309,7 +304,7 @@
             Application.DoEvents()
             Me.Cursor = Cursors.WaitCursor
 
-            Dim pair As KeyValuePair(Of String, String) = generateno2(unitid, deptid, "Pengajuan Int", True)
+            Dim pair As KeyValuePair(Of String, String) = generateno2("", "", "Pengajuan Int", True)
             Dim idtrans As String = pair.Key
             Dim notrans As String = pair.Value
 
@@ -334,14 +329,25 @@
             If statSave Then
                 dizMsgbox("Data Pengajuan berhasil disimpan", dizMsgboxStyle.Info, Me)
                 If Format(CDate(deTanggal.EditValue), "dd-MM-yyyy") <> Format(nowTime, "dd-MM-yyyy") Then
+                    Dim loadScr1 As New frmLoading()
+                    splashClosed = False
+                    loadScr1.Show(Me)
+                    loadScr1.BringToFront()
+                    Application.DoEvents()
 
                     Dim recall As New clsRenumberingDocument
-                    recall.calculate("Pengajuan", "", CDate(deTanggal.EditValue).Year, "UM" & CDate(deTanggal.EditValue).Year & "/", "nopengajuan", "idpengajuan", "tanggalpengajuan", "Belakang", 4)
+                    recall.calculate("Pengajuan", "", CDate(deTanggal.EditValue).Year, "UM/" & CDate(deTanggal.EditValue).Year & "/", "nopengajuan", "idpengajuan", "tanggalpengajuan", "Belakang", 4)
+
+                    Me.Cursor = Cursors.Default
+                    splashClosed = True
                 End If
                 Me.Cursor = Cursors.Default
                 splashClosed = True
 
                 btnNew_Click(btnNew, Nothing)
+            Else
+                Me.Cursor = Cursors.Default
+                splashClosed = True
             End If
         End If
     End Sub
@@ -354,7 +360,7 @@
         End If
 
         Dim mys As New SQLs(dbstring)
-        Dim strquery As String = "select c.idcoa,c.coa,c.remarks,isnull(angjur.sisaang,0) as sisaang from coa c left join (select a.idcoa,a.jumlahuang-isnull(jur.saldo,0) as sisaang from anggaran a left join ( select j.idcoa, dbt.totaldbt-krd.totalkrd as saldo from jurnal j left join (select idcoa,convert(varchar,tanggaljurnal,121) as periode, sum(jumlahuang) as totaldbt from jurnal where idcompany=(select top 1 value from sys_appsetting where variable='CompanyID') and convert(varchar,tanggaljurnal,121) like 'PERIODEFORMAT%' and isnull(isdeleted,0)=0 and posisidk=1 and idcoa=IDCOASELECT group by convert(varchar,tanggaljurnal,121), idcoa ) dbt on j.idcoa=dbt.idcoa left join ( select idcoa,convert(varchar,tanggaljurnal,121) as periode, sum(jumlahuang) as totalkrd from jurnal where idcompany=(select top 1 value from sys_appsetting where variable='CompanyID') and convert(varchar,tanggaljurnal,121) like 'PERIODEFORMAT%' and isdeleted=0 and posisidk=2 and idcoa=IDCOASELECT group by convert(varchar,tanggaljurnal,121), idcoa ) krd on j.idcoa=krd.idcoa group by j.idcoa,dbt.totaldbt,krd.totalkrd ) jur on a.idcoa=jur.idcoa where a.idcompany=(select top 1 value from sys_appsetting where variable='CompanyID') and ((len(a.periode)=4 and a.periode='YEARFORMAT') or (len(a.periode)=7 and a.periode = 'PERIODEFORMAT')) ) angjur on c.idcoa=angjur.idcoa where c.idcoa=IDCOASELECT"
+        Dim strquery As String = "select c.idcoa,c.coa,c.remarks,isnull(angjur.sisaang,0) as sisaang from coa c left join (select a.idcoa,a.jumlahuang-isnull(jur.saldo,0) as sisaang from anggaran a left join ( select j.idcoa, dbt.totaldbt-krd.totalkrd as saldo from jurnal j left join (select idcoa,convert(varchar,tanggaljurnal,121) as periode, sum(jumlahuang) as totaldbt from jurnal where convert(varchar,tanggaljurnal,121) like 'PERIODEFORMAT%' and isnull(isdeleted,0)=0 and posisidk=1 and idcoa='IDCOASELECT' group by convert(varchar,tanggaljurnal,121), idcoa ) dbt on j.idcoa=dbt.idcoa left join ( select idcoa,convert(varchar,tanggaljurnal,121) as periode, sum(jumlahuang) as totalkrd from jurnal where convert(varchar,tanggaljurnal,121) like 'PERIODEFORMAT%' and isdeleted=0 and posisidk=2 and idcoa='IDCOASELECT' group by convert(varchar,tanggaljurnal,121), idcoa ) krd on j.idcoa=krd.idcoa group by j.idcoa,dbt.totaldbt,krd.totalkrd ) jur on a.idcoa=jur.idcoa where ((len(a.periode)=4 and a.periode='YEARFORMAT') or (len(a.periode)=7 and a.periode = 'PERIODEFORMAT')) ) angjur on c.idcoa=angjur.idcoa where c.idcoa='IDCOASELECT'"
         strquery = strquery.Replace("IDCOASELECT", slueCOA.EditValue)
         strquery = strquery.Replace("PERIODEFORMAT", Format(CDate(deTanggal.EditValue), "yyyy-MM"))
         strquery = strquery.Replace("YEARFORMAT", Format(CDate(deTanggal.EditValue), "yyyy"))

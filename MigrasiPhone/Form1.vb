@@ -116,4 +116,75 @@ Public Class Form1
         Next
     End Sub
 
+    Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
+        If Timer1.Enabled = False Then
+            Timer1.Start()
+        Else
+            Timer1.Stop()
+        End If
+    End Sub
+
+    Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Timer1.Tick
+        Dim json_result As String = ""
+        Dim table As DataTable = Nothing
+        Dim mparam As New List(Of String)
+        Dim mvalue As New List(Of String)
+        mparam.AddRange(New String() {"param", "value", "tkey1", "tkey2"})
+        mvalue.AddRange(New String() {"user", "", "ABF", "123"})
+        json_result = HttpPOSTRequestSelect("http://datacube.diznet.co.id/40/index.php/Core", mparam, mvalue)
+        If json_result.Length > 2 Then
+            Label1.Text = "Done"
+        Else
+            Label1.Text = "Empty"
+        End If
+        Label1.Text &= vbCrLf & Format(Now, "dd-MM-yyyy") & vbCrLf & Format(Now, "HH:mm:ss")
+    End Sub
+
+    Public Function HttpPOSTRequestSelect(ByVal url As String, Optional ByVal mparam As List(Of String) = Nothing, Optional ByVal mvalue As List(Of String) = Nothing) As String
+        Dim retval As String = ""
+        If mparam IsNot Nothing Then
+            If mparam.Count <> mvalue.Count Then
+                MsgBox("List Parameter is not equal with List Value Parameter")
+                Return False
+                Exit Function
+            End If
+        End If
+        Using client As New Net.WebClient
+            client.Proxy = Nothing
+            Dim reqparm As New Specialized.NameValueCollection
+            If mparam IsNot Nothing Then
+                For i As Integer = 0 To mparam.Count - 1
+                    reqparm.Add(mparam(i), mvalue(i))
+                Next
+            End If
+            Try
+                client.Headers.Add("user-agent", "Datacube Engine (diznet)")
+                Dim strdebug As String = "" ' "[{"
+                For i As Integer = 0 To mparam.Count - 1
+                    strdebug &= mparam(i) & ":" & mvalue(i)
+                    If i <> mparam.Count - 1 Then
+                        strdebug &= vbCrLf
+                    End If
+                Next
+                'strdebug &= "}]"
+                'strdebug = strdebug.Replace("`", Chr(34))
+                'writeLog(strdebug)
+                'writeLog(url)
+                Dim responsebytes As Byte() = client.UploadValues(url, "POST", reqparm)
+                Dim responsebody As String = (New Text.UTF8Encoding).GetString(responsebytes) '(New Text.UTF8Encoding).GetString(responsebytes)
+                'MsgBox(responsebody)
+                retval = responsebody
+            Catch ex As Exception
+                'dizMsgbox(ex.Message, dizMsgboxStyle.Kesalahan)
+                'Environment.Exit(0)
+            End Try
+        End Using
+        Return retval
+    End Function
+
+    Private Sub Form1_Load(sender As Object, e As EventArgs) Handles Me.Load
+        System.Net.WebRequest.DefaultWebProxy = Nothing
+        Button2_Click(Button2, Nothing)
+    End Sub
+
 End Class

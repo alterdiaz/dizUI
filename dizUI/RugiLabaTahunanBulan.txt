@@ -14,7 +14,6 @@ left join
 select sum(d.jumlahuang) as debet,d.idcoa 
 from jurnal d 
 where d.posisidk=1 
-and d.idcompany=(select top 1 value from sys_appsetting where variable='CompanyID') 
 and CONVERT(VARCHAR, d.tanggaljurnal, 105) like '%-*BULANTAHUN*' 
 group by d.idcoa
 ) d on c.idcoa=d.idcoa 
@@ -23,14 +22,12 @@ left join
 select sum(d.jumlahuang) as kredit,d.idcoa 
 from jurnal d 
 where d.posisidk=2 
-and d.idcompany=(select top 1 value from sys_appsetting where variable='CompanyID') 
 and CONVERT(VARCHAR, d.tanggaljurnal, 105) like '%-*BULANTAHUN*' 
 group by d.idcoa
 ) k on c.idcoa=k.idcoa 
 ) sal on sal.coa like c.coa + '%' 
 
-where c.idcompany=(select top 1 value from sys_appsetting where variable='CompanyID') 
-and len(c.coa)<=4 
+where len(c.coa)<=4 
 and convert(bigint,c.coa)>=0 
 and convert(bigint,left(c.coa,1)) in (4,5,6,7) 
 group by c.idcoa,c.coa,c.remarks 

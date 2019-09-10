@@ -90,9 +90,6 @@
         If deTanggal.EditValue Is Nothing Then
             iscek = True
         End If
-        If lueDepartment.EditValue Is Nothing Then
-            iscek = True
-        End If
         If lueUnit.EditValue Is Nothing Then
             iscek = True
         End If
@@ -109,42 +106,81 @@
         Application.DoEvents()
         Me.Cursor = Cursors.WaitCursor
 
+        'MsgBox(CDate(deTanggal.EditValue).Year & vbCrLf & CDate(deTanggal.EditValue).Month & vbCrLf & lueDepartment.EditValue & vbCrLf & lueUnit.EditValue)
+
         Try
-            Dim sqls As New SQLs(dbstring)
-            Dim field As New List(Of String)
-            Dim value As New List(Of Object)
-            field.AddRange(New String() {"@tahun", "@bulan", "@iddept", "@idunit"})
-            value.AddRange(New Object() {CDate(deTanggal.EditValue).Year, CDate(deTanggal.EditValue).Month, lueDepartment.EditValue, lueUnit.EditValue})
-            sqls.CallSP("spMonSPB", "parent", field, value)
-            Dim field2 As New List(Of String)
-            Dim value2 As New List(Of Object)
-            field2.AddRange(New String() {"@tahun", "@bulan", "@iddept", "@idunit"})
-            value2.AddRange(New Object() {CDate(deTanggal.EditValue).Year, CDate(deTanggal.EditValue).Month, lueDepartment.EditValue, lueUnit.EditValue})
-            sqls.CallSP("spMonSPBdt", "child", field2, value2)
-            Threading.Thread.Sleep(500)
+            If lueDepartment.EditValue Is Nothing Then
+                Dim sqls As New SQLs(dbstring)
+                Dim field As New List(Of String)
+                Dim value As New List(Of Object)
+                field.AddRange(New String() {"@tahun", "@bulan", "@idunit"})
+                value.AddRange(New Object() {CDate(deTanggal.EditValue).Year, CDate(deTanggal.EditValue).Month, lueUnit.EditValue})
+                sqls.CallSP("spMonSPBUnit", "parent", field, value)
+                Dim field2 As New List(Of String)
+                Dim value2 As New List(Of Object)
+                field2.AddRange(New String() {"@tahun", "@bulan", "@idunit"})
+                value2.AddRange(New Object() {CDate(deTanggal.EditValue).Year, CDate(deTanggal.EditValue).Month, lueUnit.EditValue})
+                sqls.CallSP("spMonSPBUnitdt", "child", field2, value2)
+                Threading.Thread.Sleep(200)
 
-            dtset = New DataSet
-            dtset = sqls.dataSet
-            Dim dret As DataRelation
-            dret = dtset.Relations.Add("Detail", dtset.Tables("parent").Columns("idtransaksi"), dtset.Tables("child").Columns("idtransaksi"))
-            Threading.Thread.Sleep(500)
-            gcData.DataSource = dtset.Tables("parent")
-            gcData.LevelTree.Nodes.Add("Detail", gvDetil)
-            gvData.BestFitColumns()
-            gvDetil.BestFitColumns()
-            gvData.OptionsView.ColumnAutoWidth = True
-            gvDetil.OptionsView.ColumnAutoWidth = True
-            gvData.OptionsDetail.AllowOnlyOneMasterRowExpanded = False
-            For i As Integer = 0 To gvData.RowCount - 1
-                gvData.ExpandMasterRow(i, "Detail")
-            Next
+                dtset = New DataSet
+                dtset = sqls.dataSet
+                Dim dret As DataRelation
+                dret = dtset.Relations.Add("Detail", dtset.Tables("parent").Columns("idtransaksi"), dtset.Tables("child").Columns("idtransaksi"))
+                Threading.Thread.Sleep(100)
+                gcData.DataSource = dtset.Tables("parent")
+                gcData.LevelTree.Nodes.Add("Detail", gvDetil)
+                gvData.BestFitColumns()
+                gvDetil.BestFitColumns()
+                gvData.OptionsView.ColumnAutoWidth = True
+                gvData.OptionsDetail.AllowOnlyOneMasterRowExpanded = False
+                For i As Integer = 0 To gvData.RowCount - 1
+                    gvData.ExpandMasterRow(i, "Detail")
+                Next
 
-            'For i As Integer = 0 To gvData.RowCount - 1
-            '    gvData.SetRowCellValue(i, GridColumn1, i + 1)
-            'Next
-            gvData.BestFitColumns()
-            gvData.ViewCaption = "Permintaan Barang - " & NamaBulan(CDate(deTanggal.EditValue).Month) & " " & CDate(deTanggal.EditValue).Year & " " & lueUnit.Text & " - " & lueDepartment.Text
-        Catch ex As exception
+                'For i As Integer = 0 To gvData.RowCount - 1
+                '    gvData.SetRowCellValue(i, GridColumn1, i + 1)
+                'Next
+                gvData.BestFitColumns()
+                gvDetil.BestFitColumns()
+                gvData.ViewCaption = "Permintaan Barang - " & NamaBulan(CDate(deTanggal.EditValue).Month) & " " & CDate(deTanggal.EditValue).Year & " " & lueUnit.Text
+            Else
+                Dim sqls As New SQLs(dbstring)
+                Dim field As New List(Of String)
+                Dim value As New List(Of Object)
+                field.AddRange(New String() {"@tahun", "@bulan", "@iddept", "@idunit"})
+                value.AddRange(New Object() {CDate(deTanggal.EditValue).Year, CDate(deTanggal.EditValue).Month, lueDepartment.EditValue, lueUnit.EditValue})
+                sqls.CallSP("spMonSPB", "parent", field, value)
+                Dim field2 As New List(Of String)
+                Dim value2 As New List(Of Object)
+                field2.AddRange(New String() {"@tahun", "@bulan", "@iddept", "@idunit"})
+                value2.AddRange(New Object() {CDate(deTanggal.EditValue).Year, CDate(deTanggal.EditValue).Month, lueDepartment.EditValue, lueUnit.EditValue})
+                sqls.CallSP("spMonSPBdt", "child", field2, value2)
+                Threading.Thread.Sleep(200)
+
+                dtset = New DataSet
+                dtset = sqls.dataSet
+                Dim dret As DataRelation
+                dret = dtset.Relations.Add("Detail", dtset.Tables("parent").Columns("idtransaksi"), dtset.Tables("child").Columns("idtransaksi"))
+                Threading.Thread.Sleep(100)
+                gcData.DataSource = dtset.Tables("parent")
+                gcData.LevelTree.Nodes.Add("Detail", gvDetil)
+                gvData.BestFitColumns()
+                gvDetil.BestFitColumns()
+                gvData.OptionsView.ColumnAutoWidth = True
+                gvData.OptionsDetail.AllowOnlyOneMasterRowExpanded = False
+                For i As Integer = 0 To gvData.RowCount - 1
+                    gvData.ExpandMasterRow(i, "Detail")
+                Next
+
+                'For i As Integer = 0 To gvData.RowCount - 1
+                '    gvData.SetRowCellValue(i, GridColumn1, i + 1)
+                'Next
+                gvData.BestFitColumns()
+                gvDetil.BestFitColumns()
+                gvData.ViewCaption = "Permintaan Barang - " & NamaBulan(CDate(deTanggal.EditValue).Month) & " " & CDate(deTanggal.EditValue).Year & " " & lueUnit.Text & " - " & lueDepartment.Text
+            End If
+        Catch ex As Exception
         End Try
 
         Me.Cursor = Cursors.Default
@@ -192,6 +228,172 @@
 
     Private Sub btnRefresh_Click(sender As Object, e As EventArgs) Handles btnRefresh.Click
         deTanggal_EditValueChanged(deTanggal, Nothing)
+    End Sub
+
+    Private Sub btnCetak_Click(sender As Object, e As EventArgs) Handles btnCetak.Click
+        If gvData.RowCount = 0 Then
+            dizMsgbox("SPB tidak ditemukan", dizMsgboxStyle.Kesalahan, Me)
+            Exit Sub
+        End If
+        If gvData.FocusedRowHandle < 0 Then
+            dizMsgbox("Belum memilih SPB", dizMsgboxStyle.Kesalahan, Me)
+            Exit Sub
+        End If
+
+        Dim dr As DataRow = gvData.GetDataRow(gvData.FocusedRowHandle)
+        Dim idselect As String = dr("idtransaksi")
+        Dim selectPrint As New frmPrintSelect()
+        tambahChild(selectPrint)
+        selectPrint.ShowDialog()
+
+        If selectPrint.getStringPilih = "PREVIEW" Then
+            cetakBerkas(idselect, cu.preview, "")
+        ElseIf selectPrint.getStringPilih = "CETAK" Then
+            Dim prntname As String = ""
+            prntname = getPrinter("SPB")
+            'Dim sd As New frmSelectDevice
+            'tambahChild(sd)
+            'If sd.ShowDialog() = DialogResult.OK Then
+            'prntname = sd.getdevicename
+            cetakBerkas(idselect, cu.cetak, prntname)
+            'End If
+            'cetakBerkas(idselectu, cu.cetak, "")
+        End If
+    End Sub
+
+    Enum cu
+        preview = 1
+        cetak = 2
+    End Enum
+
+    Private Sub cetakBerkas(iddata As String, cetaktype As cu, Optional printername As String = "")
+        Dim field2 As New List(Of String)
+        Dim value2 As New List(Of Object)
+        field2.AddRange(New String() {"@id"})
+        value2.AddRange(New Object() {lueUnit.EditValue})
+
+        Dim mysUnit As New SQLs(dbstring)
+        mysUnit.CallSP("spGetParentUnitGrup", "parentunit", field2, value2)
+        value2.Clear()
+
+        mysUnit.DMLQuery("select transaksistatus from transaksi where idtransaksi='" & iddata & "'", "transstat")
+
+        If mysUnit.getDataSet("parentunit") > 0 Then
+            Dim idparent As String = mysUnit.getDataSet("parentunit", 0, "idunit")
+            value2.AddRange(New Object() {idparent})
+        Else
+            value2.AddRange(New Object() {lueUnit.EditValue})
+        End If
+        mysUnit.CallSP("spUnit", "unit", field2, value2)
+
+        Dim mys As New SQLs(dbstring)
+        Dim fieldctk As New List(Of String)
+        Dim valuectk As New List(Of Object)
+        fieldctk.AddRange(New String() {"@id"})
+        valuectk.AddRange(New Object() {iddata})
+        mys.CallSP("spSPB", "spSPB", fieldctk, valuectk)
+        mys.CallSP("spSPBLMA", "spSPBLMA", fieldctk, valuectk)
+
+        Dim spbs As New frmSPBCetakSelect
+        tambahChild(spbs)
+        spbs.ShowDialog()
+        Dim spbstr As String = ""
+        spbstr = spbs.getStringPilih
+
+        If spbstr = "" Then
+            Exit Sub
+        End If
+
+        Dim rpt As New Object
+        If spbstr = "QtyLMA" Then
+            rpt = New xrSPBLMA
+        ElseIf spbstr = "QtyM" Then
+            rpt = New xrSPBM
+        End If
+
+        'If mysUnit.getDataSet("transstat", 0, "transaksistatus") = "2" Then
+        '    rpt.Watermark.Image = My.Resources.stampVoid
+        '    rpt.Watermark.ImageAlign = ContentAlignment.MiddleCenter
+        '    rpt.Watermark.ImageTiling = False
+        '    rpt.Watermark.ImageViewMode = DevExpress.XtraPrinting.Drawing.ImageViewMode.Clip
+        '    rpt.Watermark.ImageTransparency = 150
+        '    rpt.Watermark.ShowBehind = True
+        'ElseIf mysUnit.getDataSet("transstat", 0, "transaksistatus") = "6" Then
+        '    rpt.Watermark.Image = My.Resources.stampReview
+        '    rpt.Watermark.ImageAlign = ContentAlignment.MiddleCenter
+        '    rpt.Watermark.ImageTiling = False
+        '    rpt.Watermark.ImageViewMode = DevExpress.XtraPrinting.Drawing.ImageViewMode.Clip
+        '    rpt.Watermark.ImageTransparency = 150
+        '    rpt.Watermark.ShowBehind = True
+        'ElseIf mysUnit.getDataSet("transstat", 0, "transaksistatus") = "3" Then
+        '    rpt.Watermark.Image = My.Resources.stampAccept
+        '    rpt.Watermark.ImageAlign = ContentAlignment.MiddleCenter
+        '    rpt.Watermark.ImageTiling = False
+        '    rpt.Watermark.ImageViewMode = DevExpress.XtraPrinting.Drawing.ImageViewMode.Clip
+        '    rpt.Watermark.ImageTransparency = 150
+        '    rpt.Watermark.ShowBehind = True
+        'ElseIf mysUnit.getDataSet("transstat", 0, "transaksistatus") = "8" Then
+        '    rpt.Watermark.Image = My.Resources.stampAccept
+        '    rpt.Watermark.ImageAlign = ContentAlignment.MiddleCenter
+        '    rpt.Watermark.ImageTiling = False
+        '    rpt.Watermark.ImageViewMode = DevExpress.XtraPrinting.Drawing.ImageViewMode.Clip
+        '    rpt.Watermark.ImageTransparency = 150
+        '    rpt.Watermark.ShowBehind = True
+        'End If
+
+        rpt.RequestParameters = False
+        rpt.DataAdapter = mys.getDataAdapter
+        rpt.DataSource = mys.dataSet
+        rpt.DataMember = "spSPBLMA"
+        If spbstr = "QtyLMA" Then
+            rpt.DisplayName = "SPBLMA"
+        ElseIf spbstr = "QtyM" Then
+            rpt.DisplayName = "SPBM"
+        End If
+        rpt.Parameters("pID").Value = iddata
+        rpt.Parameters("pNo").Value = iddata
+        rpt.Parameters("pUnit").Value = mysUnit.getDataSet("unit", 0, "unit")
+        rpt.Parameters("pNotes").Value = mysUnit.getDataSet("unit", 0, "notes")
+        rpt.Parameters("pFooter").Value = "dicetak oleh " & username & " pada " & Format(nowTime, "dd ") & NamaBulan(nowTime.Month) & Format(nowTime, " yyyy HH: mm")
+        rpt.ShowPrintMarginsWarning = False
+
+        Dim pt As New DevExpress.XtraReports.UI.ReportPrintTool(rpt)
+        pt.Report.CreateDocument(False)
+        AddHandler pt.PreviewForm.Load, AddressOf PreviewForm_Load
+        If cetaktype = cu.cetak Then
+            If printername = "" Then
+                pt.PrintDialog()
+            Else
+                Dim sharename As String = ""
+                If spbstr = "QtyLMA" Then
+                    sharename = getPrinter("SPBLMA")
+                ElseIf spbstr = "QtyM" Then
+                    sharename = getPrinter("SPBM")
+                End If
+                If sharename <> "" Then
+                    Try
+                        pt.Print(sharename)
+                    Catch ex As Exception
+                        dizMsgbox("Printer tidak ditemukan/tidak ada akses", dizMsgboxStyle.Peringatan, Me)
+                    End Try
+                Else
+                    dizMsgbox("Printer belum disetting untuk cetak dokumen ini", dizMsgboxStyle.Peringatan, Me)
+                End If
+                'pt.PrintDialog()
+            End If
+        ElseIf cetaktype = cu.preview Then
+            pt.AutoShowParametersPanel = False
+            pt.ShowPreview()
+        End If
+    End Sub
+
+    Private Sub PrintPageHandler(ByVal sender As Object,
+      ByVal args As Printing.PrintPageEventArgs)
+    End Sub
+
+    Private Sub PreviewForm_Load(sender As Object, ByVal e As EventArgs)
+        Dim frm As DevExpress.XtraPrinting.Preview.PrintPreviewFormEx = CType(sender, DevExpress.XtraPrinting.Preview.PrintPreviewFormEx)
+        frm.PrintingSystem.ExecCommand(DevExpress.XtraPrinting.PrintingSystemCommand.Scale, New Object() {1.0F})
     End Sub
 
 End Class

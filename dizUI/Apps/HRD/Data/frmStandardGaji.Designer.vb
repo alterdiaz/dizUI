@@ -215,7 +215,7 @@ Partial Class frmStandardGaji
         'gcIDtype
         '
         Me.gcIDtype.Caption = "ID Type"
-        Me.gcIDtype.FieldName = "jeniskomponengaji"
+        Me.gcIDtype.FieldName = "faktorkomponengaji"
         Me.gcIDtype.Name = "gcIDtype"
         '
         'gcKomponenGaji
@@ -441,12 +441,13 @@ Partial Class frmStandardGaji
         '
         'btnCheck
         '
-        Me.btnCheck.BackColor = System.Drawing.Color.FromArgb(CType(CType(156, Byte), Integer), CType(CType(207, Byte), Integer), CType(CType(49, Byte), Integer))
+        Me.btnCheck.BackColor = System.Drawing.Color.Green
         Me.btnCheck.FlatAppearance.BorderSize = 0
         Me.btnCheck.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DimGray
         Me.btnCheck.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DarkGray
         Me.btnCheck.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnCheck.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnCheck.ForeColor = System.Drawing.Color.White
         Me.btnCheck.Location = New System.Drawing.Point(243, 54)
         Me.btnCheck.Margin = New System.Windows.Forms.Padding(0)
         Me.btnCheck.Name = "btnCheck"
@@ -487,7 +488,7 @@ Partial Class frmStandardGaji
         '
         'btnSave
         '
-        Me.btnSave.BackColor = System.Drawing.Color.FromArgb(CType(CType(156, Byte), Integer), CType(CType(207, Byte), Integer), CType(CType(49, Byte), Integer))
+        Me.btnSave.BackColor = System.Drawing.Color.Green
         Me.btnSave.Dock = System.Windows.Forms.DockStyle.Right
         Me.btnSave.FlatAppearance.BorderSize = 0
         Me.btnSave.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DimGray

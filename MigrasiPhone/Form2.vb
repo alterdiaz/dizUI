@@ -11,6 +11,7 @@
             End If
         End If
         Using client As New Net.WebClient
+            client.Proxy = Nothing
             Dim reqparm As New Specialized.NameValueCollection
             If mparam IsNot Nothing Then
                 For i As Integer = 0 To mparam.Count - 1

@@ -175,14 +175,14 @@
             field.AddRange(New String() {"iditemunit", "iditem", "iddepartment", "idunit", "qty", "hargaawal", "hargadisc", "hargaakhir", "hargarata", "createdby", "createddate"})
             value.AddRange(New Object() {idData, lueItem.EditValue, lueDept.EditValue, lueUnit.EditValue, seQty.Value, sePrice.Value, 0, sePrice.Value, sePrice.Value, userid, New Date(nowTime.Year, 1, 1, 1, 1, 1)})
             sqls.DMLQuery("delete from itemlog where iditem='" & lueItem.EditValue & "' and idunit='" & lueUnit.EditValue & "' and trfreff='SaldoAwal " & nowTime.Year & "'", False)
-            fieldLog.AddRange(New String() {"iditemlog", "iditem", "iddepartment", "idunit", "idreff", "idreff2", "noreff", "trfreff", "qty", "hargalama", "hargaawal", "hargadisc", "hargaakhir", "hargarata", "io", "remarks", "createdby", "createddate"})
-            valueLog.AddRange(New Object() {iditemlog, lueItem.EditValue, lueDept.EditValue, lueUnit.EditValue, idData, 0, 0, "SaldoAwal " & nowTime.Year, seQty.Value, 0, sePrice.Value, 0, sePrice.Value, sePrice.Value, "in", "Saldo Awal " & nowTime.Year, userid, New Date(nowTime.Year, 1, 1, 1, 1, 1)})
+            fieldLog.AddRange(New String() {"iditemlog", "iditem", "iddepartment", "idunit", "idreff", "idreff2", "noreff", "trfreff", "qty", "hargarata", "io", "remarks", "createdby", "createddate"})
+            valueLog.AddRange(New Object() {iditemlog, lueItem.EditValue, lueDept.EditValue, lueUnit.EditValue, idData, 0, 0, "SaldoAwal " & nowTime.Year, seQty.Value, sePrice.Value, "in", "Saldo Awal " & nowTime.Year, userid, New Date(nowTime.Year, 1, 1, 1, 1, 1)})
         Else
             field.AddRange(New String() {"iditemunit", "qty", "hargaawal", "hargadisc", "hargaakhir", "hargarata", "updatedby", "updateddate"})
             value.AddRange(New Object() {idData, seQty.Value, sePrice.Value, 0, sePrice.Value, sePrice.Value, userid, nowTime})
             sqls.DMLQuery("delete from itemlog where iditem='" & lueItem.EditValue & "' And iddepartment='" & lueDept.EditValue & "' and idunit='" & lueUnit.EditValue & "' And trfreff='SaldoAwal " & nowTime.Year & "'", False)
-            fieldLog.AddRange(New String() {"iditemlog", "iditem", "iddepartment", "idunit", "idreff", "idreff2", "noreff", "trfreff", "qty", "hargalama", "hargaawal", "hargadisc", "hargaakhir", "hargarata", "io", "remarks", "createdby", "createddate"})
-            valueLog.AddRange(New Object() {iditemlog, lueItem.EditValue, lueDept.EditValue, lueUnit.EditValue, idData, 0, 0, "SaldoAwal " & nowTime.Year, seQty.Value, 0, sePrice.Value, 0, sePrice.Value, sePrice.Value, "in", "Saldo Awal " & nowTime.Year, userid, New Date(nowTime.Year, 1, 1, 1, 1, 1)})
+            fieldLog.AddRange(New String() {"iditemlog", "iditem", "iddepartment", "idunit", "idreff", "idreff2", "noreff", "trfreff", "qty", "hargarata", "io", "remarks", "createdby", "createddate"})
+            valueLog.AddRange(New Object() {iditemlog, lueItem.EditValue, lueDept.EditValue, lueUnit.EditValue, idData, 0, 0, "SaldoAwal " & nowTime.Year, seQty.Value, sePrice.Value, "in", "Saldo Awal " & nowTime.Year, userid, New Date(nowTime.Year, 1, 1, 1, 1, 1)})
         End If
 
         If dtSQL.datasetSave("itemunit", idData, field, value, False) = True Then

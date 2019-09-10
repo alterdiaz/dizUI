@@ -102,7 +102,7 @@
         Me.Cursor = Cursors.WaitCursor
 
         Dim mysqls As New SQLs(dbstring)
-        mysqls.DMLQuery("select k.idposition, k.priority, k.positiontype, k.position, k.isdeleted, del.generalcode as statdata, t.generalcode as jenisjabatan from position k left join sys_generalcode t on t.idgeneral=k.positiontype and t.gctype='JABTYPE' left join sys_generalcode del on del.idgeneral=k.isdeleted and del.gctype='DELETE' where k.idcompany=(select top 1 value from sys_appsetting where variable='CompanyID') and (k.idposition<>(select isnull(value,0) from sys_appsetting where variable='IDSystemJabatan') and k.idposition<>(select isnull(value,0) from sys_appsetting where variable='IDVendorJabatan')) order by k.priority asc", "data")
+        mysqls.DMLQuery("select k.idposition, k.priority, k.positiontype, k.position, k.isdeleted, del.generalcode as statdata, t.generalcode as jenisjabatan from position k left join sys_generalcode t on t.idgeneral=k.positiontype and t.gctype='JABTYPE' left join sys_generalcode del on del.idgeneral=k.isdeleted and del.gctype='DELETE' where (k.idposition<>(select isnull(value,0) from sys_appsetting where variable='IDSystemJabatan') and k.idposition<>(select isnull(value,0) from sys_appsetting where variable='IDVendorJabatan')) order by k.priority asc", "data")
         gcData.DataSource = mysqls.dataTable("data")
         gvData.BestFitColumns()
 
@@ -132,7 +132,7 @@
         End If
         If statData = statusData.Baru Then
             Dim sqls1 As New SQLs(dbstring)
-            sqls1.DMLQuery("select position from position where idcompany=(select top 1 value from sys_appsetting where variable='CompanyID') and replace(position,' ','')='" & teJabatan.Text.Replace(" ", "") & "'", "exist")
+            sqls1.DMLQuery("select position from position where replace(position,' ','')='" & teJabatan.Text.Replace(" ", "") & "'", "exist")
             If sqls1.getDataSet("exist") = 0 Then
                 idData = "-1"
             Else
@@ -142,7 +142,7 @@
             End If
         ElseIf statData = statusData.Edit Then
             Dim sqls1 As New SQLs(dbstring)
-            sqls1.DMLQuery("select position from position where idcompany=(select top 1 value from sys_appsetting where variable='CompanyID') and replace(position,' ','')='" & teJabatan.Text.Replace(" ", "") & "' and idposition<>'" & idData & "'", "exist")
+            sqls1.DMLQuery("select position from position where replace(position,' ','')='" & teJabatan.Text.Replace(" ", "") & "' and idposition<>'" & idData & "'", "exist")
             If sqls1.getDataSet("exist") > 0 Then
                 dizMsgbox("Data tersebut sudah ada", dizMsgboxStyle.Info, Me)
                 teJabatan.Focus()

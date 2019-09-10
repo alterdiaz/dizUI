@@ -312,7 +312,6 @@ Public Class frmItemPriceKelas
             dttbl.Rows.Remove(dr)
             gcData.DataSource = dttbl
         End If
-
     End Sub
 
     Private Sub btnSave_Click(sender As Object, e As EventArgs) Handles btnSave.Click
@@ -418,7 +417,7 @@ Public Class frmItemPriceKelas
             Next
             gvtmp.BestFitColumns()
 
-            Dim exp As New frmExportExcel(gvtmp)
+            Dim exp As New frmExportExcel(gvtmp, True, False, False)
             tambahChild(exp)
             exp.ShowDialog()
 
@@ -441,10 +440,10 @@ Public Class frmItemPriceKelas
             open.AutoUpgradeEnabled = True
             open.CheckFileExists = True
             open.CheckPathExists = True
-            open.DefaultExt = "xlsx"
-            open.Filter = "Old Excel Files|*.xls|Excel Files|*.xlsx"
+            open.DefaultExt = "xls"
+            open.Filter = "Old Excel Files|*.xls"
             open.FilterIndex = 1
-            open.InitialDirectory = pathIcon
+            open.InitialDirectory = pathTemp
             open.Multiselect = False
             open.ShowHelp = False
 
@@ -480,7 +479,7 @@ Public Class frmItemPriceKelas
                                     Dim dr1 As DataRow = dt.Rows(b)
                                     Dim dr2 As DataRow = gvData.GetDataRow(b)
                                     If CStr(dr1(i)) <> "0" Then
-                                        dr2(a) = dr1(i)
+                                        dr2(a - 1) = dr1(i)
                                     End If
                                 Next
                             End If
@@ -498,7 +497,7 @@ Public Class frmItemPriceKelas
         Dim odbcConn = New Data.Odbc.OdbcConnection()
         Try
             Dim path As String = System.IO.Path.GetFullPath(FileName)
-            odbcConn = New Data.Odbc.OdbcConnection(" Driver={Microsoft Excel Driver (*.xls)};Dbq=" & path & ";ReadOnly=0;")
+            odbcConn = New Data.Odbc.OdbcConnection("Driver={Microsoft Excel Driver (*.xls)};Dbq=" & path & ";ReadOnly=0;")
             odbcConn.Open()
             Dim cmd As Data.Odbc.OdbcCommand = New Data.Odbc.OdbcCommand()
             Dim oleda As Data.Odbc.OdbcDataAdapter = New Data.Odbc.OdbcDataAdapter()

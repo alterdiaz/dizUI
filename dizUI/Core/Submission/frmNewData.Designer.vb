@@ -23,8 +23,6 @@ Partial Class frmNewData
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.tlpForm = New System.Windows.Forms.TableLayoutPanel()
-        Me.pHeader = New System.Windows.Forms.Panel()
-        Me.lblTitle = New System.Windows.Forms.Label()
         Me.pBody = New System.Windows.Forms.Panel()
         Me.btnProduk = New System.Windows.Forms.Button()
         Me.btnPengguna = New System.Windows.Forms.Button()
@@ -34,12 +32,16 @@ Partial Class frmNewData
         Me.Label1 = New System.Windows.Forms.Label()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
         Me.lblNama = New System.Windows.Forms.Label()
+        Me.PictureBox1 = New System.Windows.Forms.PictureBox()
+        Me.pHeader = New System.Windows.Forms.Panel()
+        Me.lblTitle = New System.Windows.Forms.Label()
         Me.pExit = New System.Windows.Forms.PictureBox()
         Me.tlpForm.SuspendLayout()
-        Me.pHeader.SuspendLayout()
         Me.pBody.SuspendLayout()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
+        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.pHeader.SuspendLayout()
         CType(Me.pExit, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -60,39 +62,13 @@ Partial Class frmNewData
         Me.tlpForm.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30.0!))
         Me.tlpForm.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
         Me.tlpForm.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 2.0!))
-        Me.tlpForm.Size = New System.Drawing.Size(600, 300)
+        Me.tlpForm.Size = New System.Drawing.Size(720, 540)
         Me.tlpForm.TabIndex = 8
-        '
-        'pHeader
-        '
-        Me.pHeader.Controls.Add(Me.lblTitle)
-        Me.pHeader.Controls.Add(Me.pExit)
-        Me.pHeader.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.pHeader.Location = New System.Drawing.Point(2, 0)
-        Me.pHeader.Margin = New System.Windows.Forms.Padding(0)
-        Me.pHeader.Name = "pHeader"
-        Me.pHeader.Size = New System.Drawing.Size(596, 30)
-        Me.pHeader.TabIndex = 8
-        '
-        'lblTitle
-        '
-        Me.lblTitle.BackColor = System.Drawing.Color.FromArgb(CType(CType(128, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(0, Byte), Integer))
-        Me.lblTitle.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.lblTitle.Font = New System.Drawing.Font("Tahoma", 12.0!)
-        Me.lblTitle.ForeColor = System.Drawing.Color.White
-        Me.lblTitle.Location = New System.Drawing.Point(0, 0)
-        Me.lblTitle.Margin = New System.Windows.Forms.Padding(0)
-        Me.lblTitle.Name = "lblTitle"
-        Me.lblTitle.Size = New System.Drawing.Size(566, 30)
-        Me.lblTitle.TabIndex = 6
-        Me.lblTitle.Text = "Selamat Datang di Aplikasi Kami"
-        Me.lblTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
         'pBody
         '
-        Me.pBody.BackColor = System.Drawing.color.fromargb(240, 240, 240)
-        Me.pBody.BackgroundImage = Global.dizUI.My.Resources.Resources.splashImage
-        Me.pBody.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
+        Me.pBody.BackColor = System.Drawing.Color.FromArgb(CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer))
+        Me.pBody.BackgroundImage = Global.dizUI.My.Resources.Resources.tiles01
         Me.pBody.Controls.Add(Me.btnProduk)
         Me.pBody.Controls.Add(Me.btnPengguna)
         Me.pBody.Controls.Add(Me.btnCompany)
@@ -100,15 +76,17 @@ Partial Class frmNewData
         Me.pBody.Controls.Add(Me.btnPayment)
         Me.pBody.Controls.Add(Me.Label1)
         Me.pBody.Controls.Add(Me.PanelControl1)
+        Me.pBody.Controls.Add(Me.PictureBox1)
         Me.pBody.Dock = System.Windows.Forms.DockStyle.Fill
         Me.pBody.Location = New System.Drawing.Point(2, 30)
         Me.pBody.Margin = New System.Windows.Forms.Padding(0)
         Me.pBody.Name = "pBody"
-        Me.pBody.Size = New System.Drawing.Size(596, 268)
+        Me.pBody.Size = New System.Drawing.Size(716, 508)
         Me.pBody.TabIndex = 7
         '
         'btnProduk
         '
+        Me.btnProduk.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.btnProduk.BackColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer))
         Me.btnProduk.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(143, Byte), Integer), CType(CType(215, Byte), Integer))
         Me.btnProduk.FlatAppearance.CheckedBackColor = System.Drawing.Color.Green
@@ -117,19 +95,20 @@ Partial Class frmNewData
         Me.btnProduk.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnProduk.Font = New System.Drawing.Font("Tahoma", 9.0!)
         Me.btnProduk.ForeColor = System.Drawing.Color.White
-        Me.btnProduk.Location = New System.Drawing.Point(348, 108)
+        Me.btnProduk.Location = New System.Drawing.Point(468, 212)
         Me.btnProduk.Margin = New System.Windows.Forms.Padding(4)
         Me.btnProduk.Name = "btnProduk"
         Me.btnProduk.Padding = New System.Windows.Forms.Padding(8)
         Me.btnProduk.Size = New System.Drawing.Size(210, 40)
         Me.btnProduk.TabIndex = 12
         Me.btnProduk.Tag = ""
-        Me.btnProduk.Text = "Tahap 3. Data Produk"
+        Me.btnProduk.Text = "Tahap 4. Data Produk"
         Me.btnProduk.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.btnProduk.UseVisualStyleBackColor = False
         '
         'btnPengguna
         '
+        Me.btnPengguna.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.btnPengguna.BackColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer))
         Me.btnPengguna.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(143, Byte), Integer), CType(CType(215, Byte), Integer))
         Me.btnPengguna.FlatAppearance.CheckedBackColor = System.Drawing.Color.Green
@@ -138,7 +117,7 @@ Partial Class frmNewData
         Me.btnPengguna.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnPengguna.Font = New System.Drawing.Font("Tahoma", 9.0!)
         Me.btnPengguna.ForeColor = System.Drawing.Color.White
-        Me.btnPengguna.Location = New System.Drawing.Point(348, 12)
+        Me.btnPengguna.Location = New System.Drawing.Point(468, 12)
         Me.btnPengguna.Margin = New System.Windows.Forms.Padding(4)
         Me.btnPengguna.Name = "btnPengguna"
         Me.btnPengguna.Padding = New System.Windows.Forms.Padding(8)
@@ -151,6 +130,7 @@ Partial Class frmNewData
         '
         'btnCompany
         '
+        Me.btnCompany.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.btnCompany.BackColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer))
         Me.btnCompany.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(143, Byte), Integer), CType(CType(215, Byte), Integer))
         Me.btnCompany.FlatAppearance.CheckedBackColor = System.Drawing.Color.Green
@@ -159,7 +139,7 @@ Partial Class frmNewData
         Me.btnCompany.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnCompany.Font = New System.Drawing.Font("Tahoma", 9.0!)
         Me.btnCompany.ForeColor = System.Drawing.Color.White
-        Me.btnCompany.Location = New System.Drawing.Point(348, 60)
+        Me.btnCompany.Location = New System.Drawing.Point(468, 74)
         Me.btnCompany.Margin = New System.Windows.Forms.Padding(4)
         Me.btnCompany.Name = "btnCompany"
         Me.btnCompany.Padding = New System.Windows.Forms.Padding(8)
@@ -176,17 +156,18 @@ Partial Class frmNewData
         Me.Label2.BackColor = System.Drawing.Color.FromArgb(CType(CType(128, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(0, Byte), Integer))
         Me.Label2.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label2.ForeColor = System.Drawing.Color.White
-        Me.Label2.Location = New System.Drawing.Point(0, 213)
+        Me.Label2.Location = New System.Drawing.Point(353, 410)
         Me.Label2.Name = "Label2"
         Me.Label2.Padding = New System.Windows.Forms.Padding(8, 0, 0, 0)
         Me.Label2.Size = New System.Drawing.Size(363, 46)
         Me.Label2.TabIndex = 9
-        Me.Label2.Text = "Entry data ini membutuhkan koneksi internet" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Kami tidak mengambil data pribadi ap" & _
+        Me.Label2.Text = "Entry data ini membutuhkan koneksi internet" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Kami tidak mengambil data pribadi ap" &
     "apun dari komputer anda" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Data yang telah anda entry, bersifat rahasia"
         Me.Label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
         'btnPayment
         '
+        Me.btnPayment.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.btnPayment.BackColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer))
         Me.btnPayment.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(143, Byte), Integer), CType(CType(215, Byte), Integer))
         Me.btnPayment.FlatAppearance.CheckedBackColor = System.Drawing.Color.Green
@@ -195,14 +176,14 @@ Partial Class frmNewData
         Me.btnPayment.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnPayment.Font = New System.Drawing.Font("Tahoma", 9.0!)
         Me.btnPayment.ForeColor = System.Drawing.Color.White
-        Me.btnPayment.Location = New System.Drawing.Point(348, 156)
+        Me.btnPayment.Location = New System.Drawing.Point(468, 136)
         Me.btnPayment.Margin = New System.Windows.Forms.Padding(4)
         Me.btnPayment.Name = "btnPayment"
         Me.btnPayment.Padding = New System.Windows.Forms.Padding(8)
         Me.btnPayment.Size = New System.Drawing.Size(210, 54)
         Me.btnPayment.TabIndex = 7
         Me.btnPayment.Tag = ""
-        Me.btnPayment.Text = "Tahap 4. Konfirmasi Pembayaran" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "             Entry Kode Voucher"
+        Me.btnPayment.Text = "Tahap 3. Konfirmasi Pembayaran" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "             Entry Kode Voucher"
         Me.btnPayment.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.btnPayment.UseVisualStyleBackColor = False
         '
@@ -212,7 +193,7 @@ Partial Class frmNewData
         Me.Label1.BackColor = System.Drawing.Color.FromArgb(CType(CType(128, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(0, Byte), Integer))
         Me.Label1.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label1.ForeColor = System.Drawing.Color.White
-        Me.Label1.Location = New System.Drawing.Point(431, 229)
+        Me.Label1.Location = New System.Drawing.Point(551, 469)
         Me.Label1.Name = "Label1"
         Me.Label1.Padding = New System.Windows.Forms.Padding(0, 0, 8, 0)
         Me.Label1.Size = New System.Drawing.Size(165, 24)
@@ -222,12 +203,12 @@ Partial Class frmNewData
         '
         'PanelControl1
         '
-        Me.PanelControl1.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.PanelControl1.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.PanelControl1.Appearance.BackColor = System.Drawing.Color.FromArgb(CType(CType(66, Byte), Integer), CType(CType(66, Byte), Integer), CType(CType(66, Byte), Integer))
         Me.PanelControl1.Appearance.Options.UseBackColor = True
         Me.PanelControl1.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.HotFlat
         Me.PanelControl1.Controls.Add(Me.lblNama)
-        Me.PanelControl1.Location = New System.Drawing.Point(25, 132)
+        Me.PanelControl1.Location = New System.Drawing.Point(402, 318)
         Me.PanelControl1.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.Flat
         Me.PanelControl1.LookAndFeel.UseDefaultLookAndFeel = False
         Me.PanelControl1.Margin = New System.Windows.Forms.Padding(0)
@@ -245,16 +226,53 @@ Partial Class frmNewData
         Me.lblNama.Name = "lblNama"
         Me.lblNama.Size = New System.Drawing.Size(223, 45)
         Me.lblNama.TabIndex = 4
-        Me.lblNama.Text = "Sebelum menggunakan aplikasi kami, anda harus membuat pengguna dan mendaftarkan p" & _
+        Me.lblNama.Text = "Sebelum menggunakan aplikasi kami, anda harus membuat pengguna dan mendaftarkan p" &
     "erusahaan anda."
         Me.lblNama.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        '
+        'PictureBox1
+        '
+        Me.PictureBox1.Dock = System.Windows.Forms.DockStyle.Left
+        Me.PictureBox1.Image = Global.dizUI.My.Resources.Resources.Sidebar01
+        Me.PictureBox1.Location = New System.Drawing.Point(0, 0)
+        Me.PictureBox1.Margin = New System.Windows.Forms.Padding(0)
+        Me.PictureBox1.Name = "PictureBox1"
+        Me.PictureBox1.Size = New System.Drawing.Size(317, 508)
+        Me.PictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
+        Me.PictureBox1.TabIndex = 115
+        Me.PictureBox1.TabStop = False
+        '
+        'pHeader
+        '
+        Me.pHeader.Controls.Add(Me.lblTitle)
+        Me.pHeader.Controls.Add(Me.pExit)
+        Me.pHeader.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.pHeader.Location = New System.Drawing.Point(2, 0)
+        Me.pHeader.Margin = New System.Windows.Forms.Padding(0)
+        Me.pHeader.Name = "pHeader"
+        Me.pHeader.Size = New System.Drawing.Size(716, 30)
+        Me.pHeader.TabIndex = 8
+        '
+        'lblTitle
+        '
+        Me.lblTitle.BackColor = System.Drawing.Color.FromArgb(CType(CType(128, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(0, Byte), Integer))
+        Me.lblTitle.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.lblTitle.Font = New System.Drawing.Font("Tahoma", 12.0!)
+        Me.lblTitle.ForeColor = System.Drawing.Color.White
+        Me.lblTitle.Location = New System.Drawing.Point(0, 0)
+        Me.lblTitle.Margin = New System.Windows.Forms.Padding(0)
+        Me.lblTitle.Name = "lblTitle"
+        Me.lblTitle.Size = New System.Drawing.Size(686, 30)
+        Me.lblTitle.TabIndex = 6
+        Me.lblTitle.Text = "Selamat Datang di Datacube"
+        Me.lblTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
         'pExit
         '
         Me.pExit.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.pExit.Dock = System.Windows.Forms.DockStyle.Right
         Me.pExit.Image = Global.dizUI.My.Resources.Resources.exit_w
-        Me.pExit.Location = New System.Drawing.Point(566, 0)
+        Me.pExit.Location = New System.Drawing.Point(686, 0)
         Me.pExit.Margin = New System.Windows.Forms.Padding(0)
         Me.pExit.Name = "pExit"
         Me.pExit.Size = New System.Drawing.Size(30, 30)
@@ -266,8 +284,8 @@ Partial Class frmNewData
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.BackColor = System.Drawing.color.fromargb(240, 240, 240)
-        Me.ClientSize = New System.Drawing.Size(600, 300)
+        Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer))
+        Me.ClientSize = New System.Drawing.Size(720, 540)
         Me.ControlBox = False
         Me.Controls.Add(Me.tlpForm)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
@@ -279,10 +297,11 @@ Partial Class frmNewData
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Selamat Datang"
         Me.tlpForm.ResumeLayout(False)
-        Me.pHeader.ResumeLayout(False)
         Me.pBody.ResumeLayout(False)
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
+        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.pHeader.ResumeLayout(False)
         CType(Me.pExit, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
@@ -300,4 +319,5 @@ Partial Class frmNewData
     Friend WithEvents btnCompany As System.Windows.Forms.Button
     Friend WithEvents btnPengguna As System.Windows.Forms.Button
     Friend WithEvents btnProduk As System.Windows.Forms.Button
+    Friend WithEvents PictureBox1 As PictureBox
 End Class

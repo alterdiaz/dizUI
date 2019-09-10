@@ -119,7 +119,7 @@ Partial Class frmPermintaanPembelian
         Me.lblTitle.Padding = New System.Windows.Forms.Padding(10, 0, 0, 0)
         Me.lblTitle.Size = New System.Drawing.Size(742, 30)
         Me.lblTitle.TabIndex = 6
-        Me.lblTitle.Text = "Permintaan Pembelian"
+        Me.lblTitle.Text = "Permintaan Pembelian Barang"
         Me.lblTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
         'pMinimize
@@ -275,7 +275,7 @@ Partial Class frmPermintaanPembelian
         Me.gcSatuan.OptionsColumn.AllowEdit = False
         Me.gcSatuan.OptionsColumn.ReadOnly = True
         Me.gcSatuan.Visible = True
-        Me.gcSatuan.VisibleIndex = 3
+        Me.gcSatuan.VisibleIndex = 4
         Me.gcSatuan.Width = 60
         '
         'gcQtyAsk
@@ -291,7 +291,7 @@ Partial Class frmPermintaanPembelian
         Me.gcQtyAsk.OptionsColumn.AllowEdit = False
         Me.gcQtyAsk.OptionsColumn.ReadOnly = True
         Me.gcQtyAsk.Visible = True
-        Me.gcQtyAsk.VisibleIndex = 4
+        Me.gcQtyAsk.VisibleIndex = 3
         Me.gcQtyAsk.Width = 50
         '
         'seQty
@@ -519,7 +519,7 @@ Partial Class frmPermintaanPembelian
         '
         'btnSave
         '
-        Me.btnSave.BackColor = System.Drawing.Color.FromArgb(CType(CType(156, Byte), Integer), CType(CType(207, Byte), Integer), CType(CType(49, Byte), Integer))
+        Me.btnSave.BackColor = System.Drawing.Color.Green
         Me.btnSave.Dock = System.Windows.Forms.DockStyle.Right
         Me.btnSave.FlatAppearance.BorderSize = 0
         Me.btnSave.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DimGray
@@ -574,7 +574,7 @@ Partial Class frmPermintaanPembelian
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
         Me.Name = "frmPermintaanPembelian"
         Me.ShowInTaskbar = False
-        Me.Text = "Permintaan Pembelian"
+        Me.Text = "Permintaan Pembelian Barang"
         Me.tlpForm.ResumeLayout(False)
         Me.pTitle.ResumeLayout(False)
         CType(Me.pMinimize, System.ComponentModel.ISupportInitialize).EndInit()

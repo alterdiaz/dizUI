@@ -1716,4 +1716,26 @@ Module modCore
         My.Computer.Registry.SetValue(dirReg, "sYearMonth", "MMMM yyyy")
     End Sub
 
+    Public Function Strdatetime2Datetime(param As String) As Date
+        Dim retVal As Date
+        If param Is Nothing Then
+            retVal = nowTime
+        Else
+            Dim strdate As String = param
+            retVal = New Date(strdate.Split(" ")(0).Split("-")(2), strdate.Split(" ")(0).Split("-")(1), strdate.Split(" ")(0).Split("-")(0), strdate.Split(" ")(1).Split(":")(0), strdate.Split(" ")(1).Split(":")(1), strdate.Split(" ")(1).Split(":")(2))
+        End If
+        Return retVal
+    End Function
+
+    Public Function Strdate2Date(param As String) As Date
+        Dim retVal As Date
+        If param Is Nothing Then
+            retVal = nowTime
+        Else
+            Dim strdate As String = param
+            retVal = New Date(strdate.Split("-")(2), strdate.Split("-")(1), strdate.Split("-")(0))
+        End If
+        Return retVal
+    End Function
+
 End Module

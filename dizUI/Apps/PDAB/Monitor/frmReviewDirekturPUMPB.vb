@@ -94,15 +94,15 @@
             Dim idpost As New List(Of String)
             idpost.AddRange(New String() {57})
 
-            Dim selkary As New frmSelectKaryawan()
-            selkary.deptdeptexceptpost(iddept, iddept, 3)
+            Dim selkary As New frmSelectKaryawan2()
+            'selkary.deptdeptexceptpost(iddept, iddept, 3)
             tambahChild(selkary)
             If selkary.ShowDialog() = Windows.Forms.DialogResult.Cancel Then
                 Exit Sub
             End If
             staffid = selkary.getID(0)
 
-            mys.DMLQuery("select k.idstaff,k.nama,p.idposition,p.position,d.iddepartment,d.kode,d.department from staff k left join position p on k.idposition=p.idposition and p.idcompany=(select top 1 value from sys_appsetting where variable='CompanyID') left join department d on k.iddepartment=d.iddepartment and d.idcompany=(select top 1 value from sys_appsetting where variable='CompanyID') where k.idcompany=(select top 1 value from sys_appsetting where variable='CompanyID') and k.idstaff='" & staffid & "'", "datakary")
+            mys.DMLQuery("select k.idstaff,k.nama,p.idposition,p.position,d.iddepartment,d.kode,d.department from staff k left join position p on k.idposition=p.idposition left join department d on k.iddepartment=d.iddepartment where k.idstaff='" & staffid & "'", "datakary")
 
             staffname = mys.getDataSet("datakary", 0, "nama")
             levelid = mys.getDataSet("datakary", 0, "idposition")
@@ -113,7 +113,7 @@
 
             teNamaDirektur.Text = staffname
         Else
-            mys.DMLQuery("select k.idstaff,k.nama,p.idposition,p.position,d.iddepartment,d.kode,d.department from staff k left join position p on k.idposition=p.idposition and p.idcompany=(select top 1 value from sys_appsetting where variable='CompanyID') left join department d on k.iddepartment=d.iddepartment and d.idcompany=(select top 1 value from sys_appsetting where variable='CompanyID') where k.idcompany=(select top 1 value from sys_appsetting where variable='CompanyID') and k.iduser='" & userid & "'", "datakary")
+            mys.DMLQuery("select k.idstaff,k.nama,p.idposition,p.position,d.iddepartment,d.kode,d.department from staff k left join position p on k.idposition=p.idposition left join department d on k.iddepartment=d.iddepartment where k.iduser='" & userid & "'", "datakary")
 
             If mys.getDataSet("datakary") > 0 Then
                 staffid = mys.getDataSet("datakary", 0, "idstaff")
@@ -132,7 +132,7 @@
             End If
         End If
 
-        mys.DMLQuery("select p.idpengajuan, p.nopengajuan, convert(varchar,p.tanggalpengajuan,105) + ' ' + convert(varchar,p.tanggalpengajuan,108) as tanggalpengajuan, p.idpemohon, p.namapemohon, p.jabatanpemohon, p.deptpemohon, p.jumlahuang, p.keperluan, p.idreview, p.namareview, p.jabatanreview, p.deptreview from pengajuan p where p.idcompany=(select top 1 value from sys_appsetting where variable='CompanyID') and convert(varchar,p.tanggalpengajuan,105) like '%" & nowTime.Year & "' and p.isreviewed=1 and p.isdeleted=0 and isnull(p.idkabid,'-1')<>'-1' and isnull(p.iddirektur,-1)='-1' order by p.tanggalpengajuan desc", "data")
+        mys.DMLQuery("select p.idpengajuan, p.nopengajuan, convert(varchar,p.tanggalpengajuan,105) + ' ' + convert(varchar,p.tanggalpengajuan,108) as tanggalpengajuan, p.idpemohon, p.namapemohon, p.jabatanpemohon, p.deptpemohon, p.jumlahuang, p.keperluan, p.idreview, p.namareview, p.jabatanreview, p.deptreview from pengajuan p where convert(varchar,p.tanggalpengajuan,105) like '%" & nowTime.Year & "' and p.isreviewed=1 and p.isdeleted=0 and (isnull(p.idkabid,'0')<>'0' or isnull(p.idkabid,'-1')<>'-1') and (isnull(p.iddirektur,'0')='0' or isnull(p.iddirektur,'-1')='-1') order by p.tanggalpengajuan desc", "data")
         Dim cari As New frmSearch(mys.dataSet, "data", "idpengajuan")
         tambahChild(cari)
         If cari.ShowDialog = Windows.Forms.DialogResult.OK Then
@@ -145,7 +145,7 @@
 
             idselect = cari.GetIDSelectData
 
-            mys.DMLQuery("select p.nopengajuan,p.tanggalpengajuan,p.jumlahuang,p.hurufuang,p.idpemohon,p.namapemohon,p.jabatanpemohon,p.keperluan,p.idreview, p.namareview, p.jabatanreview, p.deptreview, p.idkabid, p.namakabid, p.jabatankabid, p.deptkabid from pengajuan p where p.idcompany=(select top 1 value from sys_appsetting where variable='CompanyID') and p.idpengajuan='" & idselect & "'", "getdata")
+            mys.DMLQuery("select p.nopengajuan,p.tanggalpengajuan,p.jumlahuang,p.hurufuang,p.idpemohon,p.namapemohon,p.jabatanpemohon,p.keperluan,p.idreview, p.namareview, p.jabatanreview, p.deptreview, p.idkabid, p.namakabid, p.jabatankabid, p.deptkabid from pengajuan p where p.idpengajuan='" & idselect & "'", "getdata")
 
             tePengajuanNo.Text = mys.getDataSet("getdata", 0, "nopengajuan")
             deTanggal.EditValue = CDate(mys.getDataSet("getdata", 0, "tanggalpengajuan"))

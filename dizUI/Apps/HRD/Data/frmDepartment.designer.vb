@@ -29,8 +29,6 @@ Partial Class frmDepartment
         Me.pMaximize = New System.Windows.Forms.PictureBox()
         Me.pExit = New System.Windows.Forms.PictureBox()
         Me.pBody = New System.Windows.Forms.Panel()
-        Me.xtcViewer = New DevExpress.XtraTab.XtraTabControl()
-        Me.xtpGrid = New DevExpress.XtraTab.XtraTabPage()
         Me.gcData = New DevExpress.XtraGrid.GridControl()
         Me.gvData = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.gcID = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -41,7 +39,6 @@ Partial Class frmDepartment
         Me.gcKDdepartment = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.gcKDangka = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.gcStatData = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.xtpTree = New DevExpress.XtraTab.XtraTabPage()
         Me.tlData = New DevExpress.XtraTreeList.TreeList()
         Me.tlcID = New DevExpress.XtraTreeList.Columns.TreeListColumn()
         Me.tlcIDParent = New DevExpress.XtraTreeList.Columns.TreeListColumn()
@@ -53,37 +50,40 @@ Partial Class frmDepartment
         Me.tlcStatData = New DevExpress.XtraTreeList.Columns.TreeListColumn()
         Me.tlpField = New System.Windows.Forms.TableLayoutPanel()
         Me.teKodeAngka = New DevExpress.XtraEditors.TextEdit()
-        Me.Label1 = New System.Windows.Forms.Label()
-        Me.lueParent = New DevExpress.XtraEditors.LookUpEdit()
         Me.lblParent = New System.Windows.Forms.Label()
-        Me.lblDepartment = New System.Windows.Forms.Label()
+        Me.Label1 = New System.Windows.Forms.Label()
         Me.teDepartment = New DevExpress.XtraEditors.TextEdit()
-        Me.teKode = New DevExpress.XtraEditors.TextEdit()
+        Me.lblDepartment = New System.Windows.Forms.Label()
         Me.lblKode = New System.Windows.Forms.Label()
+        Me.lueParent = New DevExpress.XtraEditors.LookUpEdit()
+        Me.teKode = New DevExpress.XtraEditors.TextEdit()
         Me.pHeader = New System.Windows.Forms.Panel()
         Me.btnNew = New System.Windows.Forms.Button()
         Me.btnSave = New System.Windows.Forms.Button()
         Me.btnDelete = New System.Windows.Forms.Button()
         Me.lblSep5 = New System.Windows.Forms.Label()
+        Me.xtcViewer = New DevExpress.XtraTab.XtraTabControl()
+        Me.XtraTabPage1 = New DevExpress.XtraTab.XtraTabPage()
+        Me.XtraTabPage16 = New DevExpress.XtraTab.XtraTabPage()
         Me.tlpForm.SuspendLayout()
         Me.pTitle.SuspendLayout()
         CType(Me.pMinimize, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.pMaximize, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.pExit, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.pBody.SuspendLayout()
-        CType(Me.xtcViewer, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.xtcViewer.SuspendLayout()
-        Me.xtpGrid.SuspendLayout()
         CType(Me.gcData, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gvData, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.xtpTree.SuspendLayout()
         CType(Me.tlData, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.tlpField.SuspendLayout()
         CType(Me.teKodeAngka.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.lueParent.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.teDepartment.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.lueParent.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.teKode.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.pHeader.SuspendLayout()
+        CType(Me.xtcViewer, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.xtcViewer.SuspendLayout()
+        Me.XtraTabPage1.SuspendLayout()
+        Me.XtraTabPage16.SuspendLayout()
         Me.SuspendLayout()
         '
         'tlpForm
@@ -185,56 +185,13 @@ Partial Class frmDepartment
         Me.pBody.Size = New System.Drawing.Size(786, 378)
         Me.pBody.TabIndex = 7
         '
-        'xtcViewer
-        '
-        Me.xtcViewer.Appearance.BackColor = System.Drawing.Color.FromArgb(CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer))
-        Me.xtcViewer.Appearance.Font = New System.Drawing.Font("Tahoma", 9.0!)
-        Me.xtcViewer.Appearance.Options.UseBackColor = True
-        Me.xtcViewer.Appearance.Options.UseFont = True
-        Me.xtcViewer.AppearancePage.Header.BackColor = System.Drawing.Color.FromArgb(CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer))
-        Me.xtcViewer.AppearancePage.Header.Font = New System.Drawing.Font("Tahoma", 9.0!)
-        Me.xtcViewer.AppearancePage.Header.Options.UseBackColor = True
-        Me.xtcViewer.AppearancePage.Header.Options.UseFont = True
-        Me.xtcViewer.AppearancePage.HeaderActive.BackColor = System.Drawing.Color.FromArgb(CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer))
-        Me.xtcViewer.AppearancePage.HeaderActive.Font = New System.Drawing.Font("Tahoma", 9.0!)
-        Me.xtcViewer.AppearancePage.HeaderActive.Options.UseBackColor = True
-        Me.xtcViewer.AppearancePage.HeaderActive.Options.UseFont = True
-        Me.xtcViewer.AppearancePage.HeaderDisabled.BackColor = System.Drawing.Color.FromArgb(CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer))
-        Me.xtcViewer.AppearancePage.HeaderDisabled.Font = New System.Drawing.Font("Tahoma", 9.0!)
-        Me.xtcViewer.AppearancePage.HeaderDisabled.Options.UseBackColor = True
-        Me.xtcViewer.AppearancePage.HeaderDisabled.Options.UseFont = True
-        Me.xtcViewer.AppearancePage.HeaderHotTracked.BackColor = System.Drawing.Color.FromArgb(CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer))
-        Me.xtcViewer.AppearancePage.HeaderHotTracked.Options.UseBackColor = True
-        Me.xtcViewer.AppearancePage.PageClient.BackColor = System.Drawing.Color.FromArgb(CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer))
-        Me.xtcViewer.AppearancePage.PageClient.Font = New System.Drawing.Font("Tahoma", 9.0!)
-        Me.xtcViewer.AppearancePage.PageClient.Options.UseBackColor = True
-        Me.xtcViewer.AppearancePage.PageClient.Options.UseFont = True
-        Me.xtcViewer.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
-        Me.xtcViewer.BorderStylePage = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
-        Me.xtcViewer.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.xtcViewer.Location = New System.Drawing.Point(0, 84)
-        Me.xtcViewer.LookAndFeel.UseDefaultLookAndFeel = False
-        Me.xtcViewer.Margin = New System.Windows.Forms.Padding(0)
-        Me.xtcViewer.Name = "xtcViewer"
-        Me.xtcViewer.SelectedTabPage = Me.xtpGrid
-        Me.xtcViewer.Size = New System.Drawing.Size(786, 294)
-        Me.xtcViewer.TabIndex = 8
-        Me.xtcViewer.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.xtpGrid, Me.xtpTree})
-        '
-        'xtpGrid
-        '
-        Me.xtpGrid.Controls.Add(Me.gcData)
-        Me.xtpGrid.Name = "xtpGrid"
-        Me.xtpGrid.Size = New System.Drawing.Size(780, 265)
-        Me.xtpGrid.Text = "Gridview"
-        '
         'gcData
         '
         Me.gcData.Dock = System.Windows.Forms.DockStyle.Fill
         Me.gcData.Location = New System.Drawing.Point(0, 0)
         Me.gcData.MainView = Me.gvData
         Me.gcData.Name = "gcData"
-        Me.gcData.Size = New System.Drawing.Size(780, 265)
+        Me.gcData.Size = New System.Drawing.Size(737, 288)
         Me.gcData.TabIndex = 8
         Me.gcData.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gvData})
         '
@@ -345,13 +302,6 @@ Partial Class frmDepartment
         Me.gcStatData.Visible = True
         Me.gcStatData.VisibleIndex = 4
         '
-        'xtpTree
-        '
-        Me.xtpTree.Controls.Add(Me.tlData)
-        Me.xtpTree.Name = "xtpTree"
-        Me.xtpTree.Size = New System.Drawing.Size(780, 265)
-        Me.xtpTree.Text = "Treelist"
-        '
         'tlData
         '
         Me.tlData.Appearance.Empty.BackColor = System.Drawing.Color.FromArgb(CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer))
@@ -361,13 +311,14 @@ Partial Class frmDepartment
         Me.tlData.Appearance.OddRow.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(192, Byte), Integer))
         Me.tlData.Appearance.OddRow.Options.UseBackColor = True
         Me.tlData.Columns.AddRange(New DevExpress.XtraTreeList.Columns.TreeListColumn() {Me.tlcID, Me.tlcIDParent, Me.tlcIDStatData, Me.tlcParent, Me.tlcDepartment, Me.tlcKode, Me.tlcKodeAngka, Me.tlcStatData})
+        Me.tlData.Cursor = System.Windows.Forms.Cursors.Default
         Me.tlData.DataSource = Nothing
         Me.tlData.Dock = System.Windows.Forms.DockStyle.Fill
         Me.tlData.Location = New System.Drawing.Point(0, 0)
         Me.tlData.Name = "tlData"
         Me.tlData.OptionsView.EnableAppearanceEvenRow = True
         Me.tlData.OptionsView.EnableAppearanceOddRow = True
-        Me.tlData.Size = New System.Drawing.Size(780, 265)
+        Me.tlData.Size = New System.Drawing.Size(617, 413)
         Me.tlData.TabIndex = 0
         '
         'tlcID
@@ -492,36 +443,6 @@ Partial Class frmDepartment
         Me.teKodeAngka.TabIndex = 28
         Me.teKodeAngka.Tag = "kodeangka"
         '
-        'Label1
-        '
-        Me.Label1.Anchor = System.Windows.Forms.AnchorStyles.Right
-        Me.Label1.AutoSize = True
-        Me.Label1.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label1.Location = New System.Drawing.Point(167, 8)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(73, 14)
-        Me.Label1.TabIndex = 19
-        Me.Label1.Text = "Kode Angka"
-        Me.Label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        '
-        'lueParent
-        '
-        Me.lueParent.Anchor = System.Windows.Forms.AnchorStyles.Left
-        Me.lueParent.Location = New System.Drawing.Point(533, 5)
-        Me.lueParent.Margin = New System.Windows.Forms.Padding(0)
-        Me.lueParent.Name = "lueParent"
-        Me.lueParent.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.lueParent.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 9.0!)
-        Me.lueParent.Properties.Appearance.Options.UseBackColor = True
-        Me.lueParent.Properties.Appearance.Options.UseFont = True
-        Me.lueParent.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple
-        Me.lueParent.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.lueParent.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("iddepartment", "ID Parent", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default], DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("department", "Department Induk")})
-        Me.lueParent.Properties.NullText = "[Isian belum dipilih]"
-        Me.lueParent.Properties.NullValuePrompt = "[Isian belum dipilih]"
-        Me.lueParent.Size = New System.Drawing.Size(150, 20)
-        Me.lueParent.TabIndex = 21
-        '
         'lblParent
         '
         Me.lblParent.Anchor = System.Windows.Forms.AnchorStyles.Right
@@ -534,17 +455,17 @@ Partial Class frmDepartment
         Me.lblParent.Text = "Department Induk"
         Me.lblParent.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
-        'lblDepartment
+        'Label1
         '
-        Me.lblDepartment.Anchor = System.Windows.Forms.AnchorStyles.Right
-        Me.lblDepartment.AutoSize = True
-        Me.lblDepartment.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblDepartment.Location = New System.Drawing.Point(457, 32)
-        Me.lblDepartment.Name = "lblDepartment"
-        Me.lblDepartment.Size = New System.Drawing.Size(73, 14)
-        Me.lblDepartment.TabIndex = 9
-        Me.lblDepartment.Text = "Department"
-        Me.lblDepartment.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.Label1.Anchor = System.Windows.Forms.AnchorStyles.Right
+        Me.Label1.AutoSize = True
+        Me.Label1.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label1.Location = New System.Drawing.Point(167, 8)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(73, 14)
+        Me.Label1.TabIndex = 19
+        Me.Label1.Text = "Kode Angka"
+        Me.Label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
         'teDepartment
         '
@@ -565,6 +486,48 @@ Partial Class frmDepartment
         Me.teDepartment.TabIndex = 17
         Me.teDepartment.Tag = "department"
         '
+        'lblDepartment
+        '
+        Me.lblDepartment.Anchor = System.Windows.Forms.AnchorStyles.Right
+        Me.lblDepartment.AutoSize = True
+        Me.lblDepartment.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblDepartment.Location = New System.Drawing.Point(457, 32)
+        Me.lblDepartment.Name = "lblDepartment"
+        Me.lblDepartment.Size = New System.Drawing.Size(73, 14)
+        Me.lblDepartment.TabIndex = 9
+        Me.lblDepartment.Text = "Department"
+        Me.lblDepartment.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        '
+        'lblKode
+        '
+        Me.lblKode.Anchor = System.Windows.Forms.AnchorStyles.Right
+        Me.lblKode.AutoSize = True
+        Me.lblKode.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblKode.Location = New System.Drawing.Point(171, 32)
+        Me.lblKode.Name = "lblKode"
+        Me.lblKode.Size = New System.Drawing.Size(69, 14)
+        Me.lblKode.TabIndex = 18
+        Me.lblKode.Text = "Kode Huruf"
+        Me.lblKode.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        '
+        'lueParent
+        '
+        Me.lueParent.Anchor = System.Windows.Forms.AnchorStyles.Left
+        Me.lueParent.Location = New System.Drawing.Point(533, 5)
+        Me.lueParent.Margin = New System.Windows.Forms.Padding(0)
+        Me.lueParent.Name = "lueParent"
+        Me.lueParent.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.lueParent.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 9.0!)
+        Me.lueParent.Properties.Appearance.Options.UseBackColor = True
+        Me.lueParent.Properties.Appearance.Options.UseFont = True
+        Me.lueParent.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple
+        Me.lueParent.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.lueParent.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("iddepartment", "ID Parent", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default], DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("department", "Department Induk")})
+        Me.lueParent.Properties.NullText = "[Isian belum dipilih]"
+        Me.lueParent.Properties.NullValuePrompt = "[Isian belum dipilih]"
+        Me.lueParent.Size = New System.Drawing.Size(150, 20)
+        Me.lueParent.TabIndex = 21
+        '
         'teKode
         '
         Me.teKode.Anchor = System.Windows.Forms.AnchorStyles.Left
@@ -584,18 +547,6 @@ Partial Class frmDepartment
         Me.teKode.Size = New System.Drawing.Size(150, 20)
         Me.teKode.TabIndex = 27
         Me.teKode.Tag = "kode"
-        '
-        'lblKode
-        '
-        Me.lblKode.Anchor = System.Windows.Forms.AnchorStyles.Right
-        Me.lblKode.AutoSize = True
-        Me.lblKode.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblKode.Location = New System.Drawing.Point(171, 32)
-        Me.lblKode.Name = "lblKode"
-        Me.lblKode.Size = New System.Drawing.Size(69, 14)
-        Me.lblKode.TabIndex = 18
-        Me.lblKode.Text = "Kode Huruf"
-        Me.lblKode.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
         'pHeader
         '
@@ -629,7 +580,7 @@ Partial Class frmDepartment
         '
         'btnSave
         '
-        Me.btnSave.BackColor = System.Drawing.Color.FromArgb(CType(CType(156, Byte), Integer), CType(CType(207, Byte), Integer), CType(CType(49, Byte), Integer))
+        Me.btnSave.BackColor = System.Drawing.Color.Green
         Me.btnSave.Dock = System.Windows.Forms.DockStyle.Right
         Me.btnSave.FlatAppearance.BorderSize = 0
         Me.btnSave.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DimGray
@@ -673,6 +624,53 @@ Partial Class frmDepartment
         Me.lblSep5.Text = "|"
         Me.lblSep5.TextAlign = System.Drawing.ContentAlignment.TopCenter
         '
+        'xtcViewer
+        '
+        Me.xtcViewer.Appearance.BackColor = System.Drawing.Color.FromArgb(CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer))
+        Me.xtcViewer.Appearance.Options.UseBackColor = True
+        Me.xtcViewer.AppearancePage.Header.Font = New System.Drawing.Font("Tahoma", 9.0!)
+        Me.xtcViewer.AppearancePage.Header.Options.UseFont = True
+        Me.xtcViewer.AppearancePage.HeaderActive.Font = New System.Drawing.Font("Tahoma", 9.0!)
+        Me.xtcViewer.AppearancePage.HeaderActive.Options.UseFont = True
+        Me.xtcViewer.AppearancePage.HeaderDisabled.Font = New System.Drawing.Font("Tahoma", 9.0!)
+        Me.xtcViewer.AppearancePage.HeaderDisabled.Options.UseFont = True
+        Me.xtcViewer.AppearancePage.HeaderHotTracked.Font = New System.Drawing.Font("Tahoma", 9.0!)
+        Me.xtcViewer.AppearancePage.HeaderHotTracked.Options.UseFont = True
+        Me.xtcViewer.AppearancePage.PageClient.Font = New System.Drawing.Font("Tahoma", 9.0!)
+        Me.xtcViewer.AppearancePage.PageClient.Options.UseFont = True
+        Me.xtcViewer.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.xtcViewer.BorderStylePage = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.xtcViewer.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.xtcViewer.HeaderAutoFill = DevExpress.Utils.DefaultBoolean.[False]
+        Me.xtcViewer.HeaderLocation = DevExpress.XtraTab.TabHeaderLocation.Right
+        Me.xtcViewer.HeaderOrientation = DevExpress.XtraTab.TabOrientation.Horizontal
+        Me.xtcViewer.Location = New System.Drawing.Point(0, 84)
+        Me.xtcViewer.Margin = New System.Windows.Forms.Padding(0)
+        Me.xtcViewer.Name = "xtcViewer"
+        Me.xtcViewer.RightToLeft = System.Windows.Forms.RightToLeft.No
+        Me.xtcViewer.SelectedTabPage = Me.XtraTabPage1
+        Me.xtcViewer.Size = New System.Drawing.Size(786, 294)
+        Me.xtcViewer.TabIndex = 74
+        Me.xtcViewer.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XtraTabPage1, Me.XtraTabPage16})
+        '
+        'XtraTabPage1
+        '
+        Me.XtraTabPage1.Appearance.PageClient.BackColor = System.Drawing.Color.FromArgb(CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer))
+        Me.XtraTabPage1.Appearance.PageClient.Options.UseBackColor = True
+        Me.XtraTabPage1.Controls.Add(Me.gcData)
+        Me.XtraTabPage1.Margin = New System.Windows.Forms.Padding(0)
+        Me.XtraTabPage1.Name = "XtraTabPage1"
+        Me.XtraTabPage1.Size = New System.Drawing.Size(737, 288)
+        Me.XtraTabPage1.Text = "GRID"
+        '
+        'XtraTabPage16
+        '
+        Me.XtraTabPage16.Controls.Add(Me.tlData)
+        Me.XtraTabPage16.Margin = New System.Windows.Forms.Padding(0)
+        Me.XtraTabPage16.Name = "XtraTabPage16"
+        Me.XtraTabPage16.Size = New System.Drawing.Size(617, 413)
+        Me.XtraTabPage16.Text = "TREE"
+        '
         'frmDepartment
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -690,20 +688,20 @@ Partial Class frmDepartment
         CType(Me.pMaximize, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.pExit, System.ComponentModel.ISupportInitialize).EndInit()
         Me.pBody.ResumeLayout(False)
-        CType(Me.xtcViewer, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.xtcViewer.ResumeLayout(False)
-        Me.xtpGrid.ResumeLayout(False)
         CType(Me.gcData, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.gvData, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.xtpTree.ResumeLayout(False)
         CType(Me.tlData, System.ComponentModel.ISupportInitialize).EndInit()
         Me.tlpField.ResumeLayout(False)
         Me.tlpField.PerformLayout()
         CType(Me.teKodeAngka.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.lueParent.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.teDepartment.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.lueParent.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.teKode.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.pHeader.ResumeLayout(False)
+        CType(Me.xtcViewer, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.xtcViewer.ResumeLayout(False)
+        Me.XtraTabPage1.ResumeLayout(False)
+        Me.XtraTabPage16.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
@@ -729,9 +727,6 @@ Partial Class frmDepartment
     Friend WithEvents gcStatData As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents gcIDParent As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents gcIDStatData As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents xtcViewer As DevExpress.XtraTab.XtraTabControl
-    Friend WithEvents xtpGrid As DevExpress.XtraTab.XtraTabPage
-    Friend WithEvents xtpTree As DevExpress.XtraTab.XtraTabPage
     Friend WithEvents tlData As DevExpress.XtraTreeList.TreeList
     Friend WithEvents tlcID As DevExpress.XtraTreeList.Columns.TreeListColumn
     Friend WithEvents tlcIDParent As DevExpress.XtraTreeList.Columns.TreeListColumn
@@ -750,4 +745,7 @@ Partial Class frmDepartment
     Friend WithEvents tlcKodeAngka As DevExpress.XtraTreeList.Columns.TreeListColumn
     Friend WithEvents teKodeAngka As DevExpress.XtraEditors.TextEdit
     Friend WithEvents Label1 As System.Windows.Forms.Label
+    Friend WithEvents xtcViewer As DevExpress.XtraTab.XtraTabControl
+    Friend WithEvents XtraTabPage1 As DevExpress.XtraTab.XtraTabPage
+    Friend WithEvents XtraTabPage16 As DevExpress.XtraTab.XtraTabPage
 End Class

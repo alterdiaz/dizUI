@@ -163,6 +163,9 @@ Public Class SQLi
         'End If
         Try
             sqlConn.ConnectionString = strConn
+            If sqlConn.State <> ConnectionState.Closed Then
+                sqlConn.Close()
+            End If
             sqlConn.Open()
         Catch ex As Exception
             'MsgBox(ex.Message, dizMsgboxStyle.Kesalahan, me)
@@ -209,6 +212,9 @@ Public Class SQLi
         'End If
         Try
             sqlConn.ConnectionString = strConn
+            If sqlConn.State <> ConnectionState.Closed Then
+                sqlConn.Close()
+            End If
             sqlConn.Open()
         Catch ex As Exception
             'MsgBox(ex.Message, dizMsgboxStyle.Kesalahan, me)

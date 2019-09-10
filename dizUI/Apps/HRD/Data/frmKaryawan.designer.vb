@@ -461,6 +461,8 @@ Partial Class frmKaryawan
         Me.GridColumn83 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn84 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.pHeader = New System.Windows.Forms.Panel()
+        Me.btnImportFormat = New System.Windows.Forms.Button()
+        Me.btnExportFormat = New System.Windows.Forms.Button()
         Me.btnExport = New System.Windows.Forms.Button()
         Me.btnNew = New System.Windows.Forms.Button()
         Me.btnSave = New System.Windows.Forms.Button()
@@ -795,7 +797,7 @@ Partial Class frmKaryawan
         Me.xtcAdditional.Location = New System.Drawing.Point(0, 252)
         Me.xtcAdditional.Margin = New System.Windows.Forms.Padding(0)
         Me.xtcAdditional.Name = "xtcAdditional"
-        Me.xtcAdditional.SelectedTabPage = Me.xtpKeluarga
+        Me.xtcAdditional.SelectedTabPage = Me.xtpMutasi
         Me.xtcAdditional.ShowHeaderFocus = DevExpress.Utils.DefaultBoolean.[True]
         Me.xtcAdditional.ShowTabHeader = DevExpress.Utils.DefaultBoolean.[False]
         Me.xtcAdditional.ShowToolTips = DevExpress.Utils.DefaultBoolean.[True]
@@ -1035,7 +1037,7 @@ Partial Class frmKaryawan
         Me.lueKotaLahirKeluarga.Properties.NullValuePrompt = "[Isian belum dipilih]"
         Me.lueKotaLahirKeluarga.Size = New System.Drawing.Size(150, 20)
         Me.lueKotaLahirKeluarga.TabIndex = 84
-        Me.lueKotaLahirKeluarga.Tag = "idkotalahir"
+        Me.lueKotaLahirKeluarga.Tag = "kotalahir"
         '
         'Label10
         '
@@ -1262,7 +1264,7 @@ Partial Class frmKaryawan
         '
         'btnSaveKeluarga
         '
-        Me.btnSaveKeluarga.BackColor = System.Drawing.Color.FromArgb(CType(CType(156, Byte), Integer), CType(CType(207, Byte), Integer), CType(CType(49, Byte), Integer))
+        Me.btnSaveKeluarga.BackColor = System.Drawing.Color.Green
         Me.btnSaveKeluarga.Dock = System.Windows.Forms.DockStyle.Right
         Me.btnSaveKeluarga.FlatAppearance.BorderSize = 0
         Me.btnSaveKeluarga.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DimGray
@@ -1899,7 +1901,7 @@ Partial Class frmKaryawan
         '
         'btnSaveAlamat
         '
-        Me.btnSaveAlamat.BackColor = System.Drawing.Color.FromArgb(CType(CType(156, Byte), Integer), CType(CType(207, Byte), Integer), CType(CType(49, Byte), Integer))
+        Me.btnSaveAlamat.BackColor = System.Drawing.Color.Green
         Me.btnSaveAlamat.Dock = System.Windows.Forms.DockStyle.Right
         Me.btnSaveAlamat.FlatAppearance.BorderSize = 0
         Me.btnSaveAlamat.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DimGray
@@ -2536,7 +2538,7 @@ Partial Class frmKaryawan
         '
         'btnSavePendidikan
         '
-        Me.btnSavePendidikan.BackColor = System.Drawing.Color.FromArgb(CType(CType(156, Byte), Integer), CType(CType(207, Byte), Integer), CType(CType(49, Byte), Integer))
+        Me.btnSavePendidikan.BackColor = System.Drawing.Color.Green
         Me.btnSavePendidikan.Dock = System.Windows.Forms.DockStyle.Right
         Me.btnSavePendidikan.FlatAppearance.BorderSize = 0
         Me.btnSavePendidikan.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DimGray
@@ -2987,7 +2989,7 @@ Partial Class frmKaryawan
         '
         'btnSaveKartu
         '
-        Me.btnSaveKartu.BackColor = System.Drawing.Color.FromArgb(CType(CType(156, Byte), Integer), CType(CType(207, Byte), Integer), CType(CType(49, Byte), Integer))
+        Me.btnSaveKartu.BackColor = System.Drawing.Color.Green
         Me.btnSaveKartu.Dock = System.Windows.Forms.DockStyle.Right
         Me.btnSaveKartu.FlatAppearance.BorderSize = 0
         Me.btnSaveKartu.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DimGray
@@ -3286,7 +3288,7 @@ Partial Class frmKaryawan
         '
         'btnSaveEmail
         '
-        Me.btnSaveEmail.BackColor = System.Drawing.Color.FromArgb(CType(CType(156, Byte), Integer), CType(CType(207, Byte), Integer), CType(CType(49, Byte), Integer))
+        Me.btnSaveEmail.BackColor = System.Drawing.Color.Green
         Me.btnSaveEmail.Dock = System.Windows.Forms.DockStyle.Right
         Me.btnSaveEmail.FlatAppearance.BorderSize = 0
         Me.btnSaveEmail.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DimGray
@@ -3646,7 +3648,7 @@ Partial Class frmKaryawan
         '
         'btnSaveTelepon
         '
-        Me.btnSaveTelepon.BackColor = System.Drawing.Color.FromArgb(CType(CType(156, Byte), Integer), CType(CType(207, Byte), Integer), CType(CType(49, Byte), Integer))
+        Me.btnSaveTelepon.BackColor = System.Drawing.Color.Green
         Me.btnSaveTelepon.Dock = System.Windows.Forms.DockStyle.Right
         Me.btnSaveTelepon.FlatAppearance.BorderSize = 0
         Me.btnSaveTelepon.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DimGray
@@ -3935,7 +3937,7 @@ Partial Class frmKaryawan
         '
         'btnSaveSosmed
         '
-        Me.btnSaveSosmed.BackColor = System.Drawing.Color.FromArgb(CType(CType(156, Byte), Integer), CType(CType(207, Byte), Integer), CType(CType(49, Byte), Integer))
+        Me.btnSaveSosmed.BackColor = System.Drawing.Color.Green
         Me.btnSaveSosmed.Dock = System.Windows.Forms.DockStyle.Right
         Me.btnSaveSosmed.FlatAppearance.BorderSize = 0
         Me.btnSaveSosmed.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DimGray
@@ -4054,7 +4056,7 @@ Partial Class frmKaryawan
         Me.GridColumn41.AppearanceCell.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer))
         Me.GridColumn41.AppearanceCell.Options.UseBackColor = True
         Me.GridColumn41.Caption = "ID"
-        Me.GridColumn41.FieldName = "idmutasi"
+        Me.GridColumn41.FieldName = "idmutasistaff"
         Me.GridColumn41.Name = "GridColumn41"
         Me.GridColumn41.OptionsColumn.AllowEdit = False
         Me.GridColumn41.OptionsColumn.ReadOnly = True
@@ -4062,7 +4064,7 @@ Partial Class frmKaryawan
         'GridColumn42
         '
         Me.GridColumn42.Caption = "idjabatan"
-        Me.GridColumn42.FieldName = "idjabatan"
+        Me.GridColumn42.FieldName = "idposition"
         Me.GridColumn42.Name = "GridColumn42"
         Me.GridColumn42.OptionsColumn.AllowEdit = False
         Me.GridColumn42.OptionsColumn.ReadOnly = True
@@ -4499,7 +4501,7 @@ Partial Class frmKaryawan
         '
         'btnSaveMutasi
         '
-        Me.btnSaveMutasi.BackColor = System.Drawing.Color.FromArgb(CType(CType(156, Byte), Integer), CType(CType(207, Byte), Integer), CType(CType(49, Byte), Integer))
+        Me.btnSaveMutasi.BackColor = System.Drawing.Color.Green
         Me.btnSaveMutasi.Dock = System.Windows.Forms.DockStyle.Right
         Me.btnSaveMutasi.FlatAppearance.BorderSize = 0
         Me.btnSaveMutasi.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DimGray
@@ -4997,7 +4999,7 @@ Partial Class frmKaryawan
         '
         'btnSaveTeguran
         '
-        Me.btnSaveTeguran.BackColor = System.Drawing.Color.FromArgb(CType(CType(156, Byte), Integer), CType(CType(207, Byte), Integer), CType(CType(49, Byte), Integer))
+        Me.btnSaveTeguran.BackColor = System.Drawing.Color.Green
         Me.btnSaveTeguran.Dock = System.Windows.Forms.DockStyle.Right
         Me.btnSaveTeguran.FlatAppearance.BorderSize = 0
         Me.btnSaveTeguran.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DimGray
@@ -5411,7 +5413,7 @@ Partial Class frmKaryawan
         '
         'btnSavePelatihan
         '
-        Me.btnSavePelatihan.BackColor = System.Drawing.Color.FromArgb(CType(CType(156, Byte), Integer), CType(CType(207, Byte), Integer), CType(CType(49, Byte), Integer))
+        Me.btnSavePelatihan.BackColor = System.Drawing.Color.Green
         Me.btnSavePelatihan.Dock = System.Windows.Forms.DockStyle.Right
         Me.btnSavePelatihan.FlatAppearance.BorderSize = 0
         Me.btnSavePelatihan.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DimGray
@@ -6644,7 +6646,7 @@ Partial Class frmKaryawan
         Me.GridColumn80.AppearanceHeader.Options.UseTextOptions = True
         Me.GridColumn80.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.GridColumn80.Caption = "Kota Lahir"
-        Me.GridColumn80.FieldName = "idkotalahir"
+        Me.GridColumn80.FieldName = "kotalahir"
         Me.GridColumn80.Name = "GridColumn80"
         Me.GridColumn80.OptionsColumn.AllowEdit = False
         Me.GridColumn80.OptionsColumn.ReadOnly = True
@@ -6696,6 +6698,8 @@ Partial Class frmKaryawan
         'pHeader
         '
         Me.pHeader.BackColor = System.Drawing.Color.FromArgb(CType(CType(66, Byte), Integer), CType(CType(66, Byte), Integer), CType(CType(66, Byte), Integer))
+        Me.pHeader.Controls.Add(Me.btnImportFormat)
+        Me.pHeader.Controls.Add(Me.btnExportFormat)
         Me.pHeader.Controls.Add(Me.btnExport)
         Me.pHeader.Controls.Add(Me.btnNew)
         Me.pHeader.Controls.Add(Me.btnSave)
@@ -6707,6 +6711,42 @@ Partial Class frmKaryawan
         Me.pHeader.Name = "pHeader"
         Me.pHeader.Size = New System.Drawing.Size(908, 30)
         Me.pHeader.TabIndex = 4
+        '
+        'btnImportFormat
+        '
+        Me.btnImportFormat.BackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer))
+        Me.btnImportFormat.Dock = System.Windows.Forms.DockStyle.Left
+        Me.btnImportFormat.FlatAppearance.BorderSize = 0
+        Me.btnImportFormat.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DimGray
+        Me.btnImportFormat.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DarkGray
+        Me.btnImportFormat.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnImportFormat.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnImportFormat.Location = New System.Drawing.Point(120, 0)
+        Me.btnImportFormat.Name = "btnImportFormat"
+        Me.btnImportFormat.Size = New System.Drawing.Size(120, 30)
+        Me.btnImportFormat.TabIndex = 24
+        Me.btnImportFormat.Text = "IMPORT DATA"
+        Me.btnImportFormat.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
+        Me.btnImportFormat.UseMnemonic = False
+        Me.btnImportFormat.UseVisualStyleBackColor = False
+        '
+        'btnExportFormat
+        '
+        Me.btnExportFormat.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(0, Byte), Integer))
+        Me.btnExportFormat.Dock = System.Windows.Forms.DockStyle.Left
+        Me.btnExportFormat.FlatAppearance.BorderSize = 0
+        Me.btnExportFormat.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DimGray
+        Me.btnExportFormat.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DarkGray
+        Me.btnExportFormat.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnExportFormat.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnExportFormat.Location = New System.Drawing.Point(0, 0)
+        Me.btnExportFormat.Name = "btnExportFormat"
+        Me.btnExportFormat.Size = New System.Drawing.Size(120, 30)
+        Me.btnExportFormat.TabIndex = 23
+        Me.btnExportFormat.Text = "EXPORT FORMAT"
+        Me.btnExportFormat.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
+        Me.btnExportFormat.UseMnemonic = False
+        Me.btnExportFormat.UseVisualStyleBackColor = False
         '
         'btnExport
         '
@@ -6742,7 +6782,7 @@ Partial Class frmKaryawan
         '
         'btnSave
         '
-        Me.btnSave.BackColor = System.Drawing.Color.FromArgb(CType(CType(156, Byte), Integer), CType(CType(207, Byte), Integer), CType(CType(49, Byte), Integer))
+        Me.btnSave.BackColor = System.Drawing.Color.Green
         Me.btnSave.Dock = System.Windows.Forms.DockStyle.Right
         Me.btnSave.FlatAppearance.BorderSize = 0
         Me.btnSave.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DimGray
@@ -7416,4 +7456,6 @@ Partial Class frmKaryawan
     Friend WithEvents teAlamatKeluarga As DevExpress.XtraEditors.TextEdit
     Friend WithEvents Label64 As Label
     Friend WithEvents deTanggalLahirKeluarga As DevExpress.XtraEditors.DateEdit
+    Public WithEvents btnImportFormat As Button
+    Public WithEvents btnExportFormat As Button
 End Class

@@ -184,6 +184,9 @@ Public Class dtsetSQLS
             sqlAdapt.InsertCommand = builder.GetInsertCommand()
             sqlAdapt.DeleteCommand = builder.GetDeleteCommand()
 
+            If sqlConn.State <> ConnectionState.Closed Then
+                sqlConn.Close()
+            End If
             sqlConn.Open()
             sqlTrans = sqlConn.BeginTransaction("1")
             sqlAdapt.UpdateCommand.Transaction = sqlTrans
@@ -201,6 +204,19 @@ Public Class dtsetSQLS
                 dizMsgbox("Data telah tersimpan", dizMsgboxStyle.Info)
             End If
         Catch ex As Exception
+            Dim strfield As String = String.Join(",", Field)
+            Dim tmplist As New List(Of String)
+            For i As Integer = 0 To Value.Count - 1
+                tmplist.Add(Value(i).ToString)
+            Next
+            Dim strvalue As String = ""
+            For a As Integer = 0 To Field.Count - 1
+                If a > 0 Then
+                    strvalue &= vbCrLf
+                End If
+                strvalue &= Field(a) & "=" & tmplist(a)
+            Next
+            Clipboard.SetText(strvalue)
             sqlTrans.Rollback()
             dtset.Tables(TableName).RejectChanges()
             retval = False
@@ -222,6 +238,9 @@ Public Class dtsetSQLS
         'End If
         Try
             sqlConn.ConnectionString = strConn
+            If sqlConn.State <> ConnectionState.Closed Then
+                sqlConn.Close()
+            End If
             sqlConn.Open()
         Catch ex As Exception
             'MsgBox(ex.Message, dizMsgboxStyle.Kesalahan, me)

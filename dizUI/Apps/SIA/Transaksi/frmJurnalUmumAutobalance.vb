@@ -135,7 +135,7 @@
 
     Private Sub loadGrid(ByVal nobukti As String)
         Dim sqls As New SQLs(dbstring)
-        sqls.DMLQuery("select j.idjurnal,j.nodokumen,j.idreff,j.tbreff ,j.idcoalama,l.coa as coalama,j.idcoa,c.coa as COA,c.remarks as rekening,j.remarks,j.jumlahuang,j.isdeleted,del.generalcode as statusdata,j.idunique,j.posisidk,dk.generalcode as debetkredit from jurnal j left join coa l on j.idcoalama=l.idcoa left join coa c on j.idcoa=c.idcoa left join sys_generalcode del on j.isdeleted=del.idgeneral and del.gctype='DELETE' left join sys_generalcode dk on j.posisidk=del.idgeneral and del.gctype='POSISIDK' where j.nobukti='" & nobukti & "' order by j.idjurnal asc", "data")
+        sqls.DMLQuery("select j.idjurnal,j.nodokumen,j.idreff,j.tablereff ,j.idcoalama,l.coa as coalama,j.idcoa,c.coa as COA,c.remarks as rekening,j.remarks,j.jumlahuang,j.isdeleted,del.generalcode as statusdata,j.posisidk,dk.generalcode as debetkredit from jurnal j left join coa l on j.idcoalama=l.idcoa left join coa c on j.idcoa=c.idcoa left join sys_generalcode del on j.isdeleted=del.idgeneral and del.gctype='DELETE' left join sys_generalcode dk on j.posisidk=del.idgeneral and del.gctype='POSISIDK' where j.nobukti='" & nobukti & "' order by j.idjurnal asc", "data")
         gcData.DataSource = sqls.dataTable("data")
         gvData.BestFitColumns()
         gvData.ViewCaption = "Jurnal Tanggal " & Format(CDate(deTanggal.EditValue), "dd-MM-yyyy")
@@ -270,11 +270,10 @@
             If nojurnal = "-1" Then
                 teNoBukti.Text = generateNO(Format(CDate(deTanggal.EditValue), "yyyyMMdd"))
             End If
-            Dim hashunique As String = GenerateUniqueID(iphostname & nowTime, 1000)
             Dim field As New List(Of String)
             Dim value As New List(Of Object)
 
-            field.AddRange(New String() {"idjurnal", "idcoalama", "idcoa", "idreff", "tbreff", "idreff2", "tbreff2", "idunique", "idunit", "tanggaljurnal", "jumlahuang", "remarks", "nodokumen", "posisidk", "isdeleted", "createdby", "createddate", "nobukti", "issystem", "jurnaltype"})
+            field.AddRange(New String() {"idjurnal", "idcoalama", "idcoa", "idreff", "tablereff", "idreff2", "tablereff2", "idunit", "tanggaljurnal", "jumlahuang", "remarks", "nodokumen", "posisidk", "isdeleted", "createdby", "createddate", "nobukti", "issystem", "jurnaltype"})
             Dim retval As Boolean = True
             For i As Integer = 0 To gvData.RowCount - 1
                 If retval = True Then
@@ -289,7 +288,7 @@
                             idjurnal = GenerateGUID()
                         End If
                         Dim tgl As New Date(CDate(deTanggal.EditValue).Year, CDate(deTanggal.EditValue).Month, CDate(deTanggal.EditValue).Day, 1, 1, 1)
-                        value.AddRange(New Object() {idjurnal, dr("idcoalama"), dr("idcoa"), -1, "jurnalumum", -1, "jurnalumum", hashunique, lueUnit.EditValue, tgl, dr("jumlahuang"), dr("remarks"), dr("nodokumen"), dr("posisidk"), 0, userid, tgl, teNoBukti.Text, 0, 2})
+                        value.AddRange(New Object() {idjurnal, dr("idcoalama"), dr("idcoa"), -1, "jurnalumum", -1, "jurnalumum", lueUnit.EditValue, tgl, dr("jumlahuang"), dr("remarks"), dr("nodokumen"), dr("posisidk"), 0, userid, tgl, teNoBukti.Text, 0, 2})
                         retval = sqlset.datasetSave("jurnal", idjurnal, field, value, False)
                         isiLog(userid, dbstring, field, value, "jurnal")
                     Else
@@ -350,7 +349,7 @@
             Exit Sub
         End If
 
-        mysqls.DMLQuery("select j.idjurnal,j.nodokumen,j.idreff,j.tbreff,j.idcoalama,cl.coa as coalama,j.idcoa,c.coa,c.remarks as rekening,j.remarks,j.jumlahuang,j.isdeleted,gd.generalcode as statusdata,j.idunique,j.posisidk,dk.generalcode as debetkredit from jurnal j left join coa cl on cl.idcoa=j.idcoalama left join coa c on c.idcoa=j.idcoa left join sys_generalcode gd on  j.isdeleted=gd.idgeneral and gd.gctype='deleted' left join sys_generalcode dk on j.posisidk=dk.idgeneral and dk.gctype='posisidk' where j.idjurnal=-1", "data")
+        mysqls.DMLQuery("select j.idjurnal,j.nodokumen,j.idreff,j.tablereff,j.idcoalama,cl.coa as coalama,j.idcoa,c.coa,c.remarks as rekening,j.remarks,j.jumlahuang,j.isdeleted,gd.generalcode as statusdata,j.posisidk,dk.generalcode as debetkredit from jurnal j left join coa cl on cl.idcoa=j.idcoalama left join coa c on c.idcoa=j.idcoa left join sys_generalcode gd on  j.isdeleted=gd.idgeneral and gd.gctype='deleted' left join sys_generalcode dk on j.posisidk=dk.idgeneral and dk.gctype='posisidk' where j.idjurnal=-1", "data")
         dtset = mysqls.dataSet
         gcData.DataSource = dtset.Tables("data")
 
@@ -369,7 +368,7 @@
         deTanggal.Properties.ReadOnly = True
 
         Dim mys As New SQLs(dbstring)
-        mys.DMLQuery("select dj.nobukti,un.unit,dj.tanggaljurnal,isnull(d.debet,0) as debet,isnull(k.kredit,0) as kredit,us.username as createdby from (select distinct j.nobukti,convert(varchar,j.tanggaljurnal,105) as tanggaljurnal,j.createdby,j.idunit,j.jurnaltype from jurnal j where jurnaltype=2 and tbreff='jurnalumum' and year(tanggaljurnal)='" & nowTime.Year & "') dj left join (select nobukti,isnull(sum(jumlahuang),0) as debet from jurnal where jurnaltype=2 and tbreff='jurnalumum' and posisidk=1 and year(tanggaljurnal)='" & nowTime.Year & "' group by nobukti) d on dj.nobukti=d.nobukti left join (select nobukti,isnull(sum(jumlahuang),0) as kredit from jurnal where jurnaltype=2 and tbreff='jurnalumum' and posisidk=2 and year(tanggaljurnal)='" & nowTime.Year & "' group by nobukti) k on dj.nobukti=k.nobukti left join sys_user us on dj.createdby=us.iduser left join unit un on dj.idunit=un.idunit order by dj.nobukti desc", "searchdata")
+        mys.DMLQuery("select dj.nobukti,un.unit,dj.tanggaljurnal,isnull(d.debet,0) as debet,isnull(k.kredit,0) as kredit,us.username as createdby from (select distinct j.nobukti,convert(varchar,j.tanggaljurnal,105) as tanggaljurnal,j.createdby,j.idunit,j.jurnaltype from jurnal j where jurnaltype=2 and tablereff='jurnalumum' and year(tanggaljurnal)='" & nowTime.Year & "') dj left join (select nobukti,isnull(sum(jumlahuang),0) as debet from jurnal where jurnaltype=2 and tablereff='jurnalumum' and posisidk=1 and year(tanggaljurnal)='" & nowTime.Year & "' group by nobukti) d on dj.nobukti=d.nobukti left join (select nobukti,isnull(sum(jumlahuang),0) as kredit from jurnal where jurnaltype=2 and tablereff='jurnalumum' and posisidk=2 and year(tanggaljurnal)='" & nowTime.Year & "' group by nobukti) k on dj.nobukti=k.nobukti left join sys_user us on dj.createdby=us.iduser left join unit un on dj.idunit=un.idunit order by dj.nobukti desc", "searchdata")
         Dim cari As New frmSearch(mys.dataSet, "searchdata", "nobukti")
         tambahChild(cari)
         If cari.ShowDialog = Windows.Forms.DialogResult.OK Then
@@ -380,7 +379,7 @@
             lueUnit.EditValue = mys.getDataSet("selectdata", 0, "idunit")
             nojurnal = teNoBukti.Text
 
-            mys.DMLQuery("select j.idjurnal,j.nodokumen,j.idcoalama,cl.coa as coalama,j.idcoa,c.coa,c.remarks as rekening,j.remarks,j.jumlahuang,j.isdeleted,gcd.generalcode as statusdata,j.idunique,j.posisidk,gcdk.generalcode as debetkredit from jurnal j left join coa cl on j.idcoalama=cl.idcoa left join coa c on j.idcoa=c.idcoa left join sys_generalcode gcd on gcd.idgeneral=j.isdeleted and gcd.gctype='DELETE' left join sys_generalcode gcdk on gcdk.idgeneral=j.posisidk and gcdk.gctype='POSISIDK' where j.nobukti='" & nojurnal & "'", "data")
+            mys.DMLQuery("select j.idjurnal,j.nodokumen,j.idcoalama,cl.coa as coalama,j.idcoa,c.coa,c.remarks as rekening,j.remarks,j.jumlahuang,j.isdeleted,gcd.generalcode as statusdata,j.posisidk,gcdk.generalcode as debetkredit from jurnal j left join coa cl on j.idcoalama=cl.idcoa left join coa c on j.idcoa=c.idcoa left join sys_generalcode gcd on gcd.idgeneral=j.isdeleted and gcd.gctype='DELETE' left join sys_generalcode gcdk on gcdk.idgeneral=j.posisidk and gcdk.gctype='POSISIDK' where j.nobukti='" & nojurnal & "'", "data")
             dtset = mys.dataSet
             gcData.DataSource = dtset.Tables("data")
 
@@ -522,7 +521,6 @@
             dr("jumlahuang") = seSaldo.Value
             dr("isdeleted") = lueStatusData.EditValue
             dr("statusdata") = lueStatusData.Text
-            dr("idunique") = ""
             dr("posisidk") = luePosisiDK.EditValue
             dr("debetkredit") = luePosisiDK.Text
             dtset.Tables("data").Rows.Add(dr)
@@ -581,7 +579,6 @@
             dr("jumlahuang") = seSaldo.Value
             dr("isdeleted") = lueStatusData.EditValue
             dr("statusdata") = lueStatusData.Text
-            dr("idunique") = ""
             dr("posisidk") = luePosisiDK.EditValue
             dr("debetkredit") = luePosisiDK.Text
             gcData.DataSource = dtset.Tables("data")

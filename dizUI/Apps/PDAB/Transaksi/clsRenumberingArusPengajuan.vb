@@ -47,7 +47,7 @@
         Dim lastNo As String = ""
         For i As Integer = 0 To counter - 1
             mydt = New dtsetSQLS(dbstring)
-            Threading.Thread.Sleep(200)
+            Threading.Thread.Sleep(100)
 
             value.Clear()
             currid = mys.getDataSet("allcount", i, "idaruspengajuan")

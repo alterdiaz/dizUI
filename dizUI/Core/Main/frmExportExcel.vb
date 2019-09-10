@@ -37,11 +37,11 @@
     Private Sub btnBrowse_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnBrowse.Click
         If expType = "" Then
             dizMsgbox("Pilih tipe export dulu", dizMsgboxStyle.Info, Me)
-            Threading.Thread.Sleep(1000)
+            Threading.Thread.Sleep(100)
             btnBrowse.Image = My.Resources.browse
             btnBrowse.BackColor = Color.Transparent
             btnBrowse.Refresh()
-            Threading.Thread.Sleep(1000)
+            Threading.Thread.Sleep(100)
             Exit Sub
         End If
         Dim dirbrowse As New FolderBrowserDialog
@@ -216,36 +216,52 @@
     End Sub
 
     Private Sub frmExport_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
+        btnCSV.Enabled = _isCSV
+        btnXLS.Enabled = _isXLS
+        btnXLSX.Enabled = _isXLSX
+
         expPath = ""
         expType = ""
         btnExit.BackColor = Color.Transparent
         btnOK.BackColor = Color.Transparent
         btnBrowse.BackColor = Color.Transparent
 
-        If dataType = "View" Then
-            If gvdata.DataRowCount = 0 Then
-                dizMsgbox("Data tidak ditemukan, silahkan set datagridview terlebih dahulu", dizMsgboxStyle.Peringatan, Me)
-                btnExit_Click(Me, Nothing)
-            End If
-        End If
+        'If dataType = "View" Then
+        '    If gvdata.DataRowCount = 0 Then
+        '        dizMsgbox("Data tidak ditemukan, silahkan set datagridview terlebih dahulu", dizMsgboxStyle.Peringatan, Me)
+        '        btnExit_Click(Me, Nothing)
+        '    End If
+        'End If
     End Sub
 
-    Public Sub New(ByVal datagridview As DevExpress.XtraGrid.Views.Grid.GridView)
+    Public Sub New(ByVal datagridview As DevExpress.XtraGrid.Views.Grid.GridView, isXLS As Boolean, isXLSX As Boolean, isCSV As Boolean)
         ' This call is required by the Windows Form Designer.
         InitializeComponent()
 
         ' Add any initialization after the InitializeComponent() call.
         gvdata = datagridview
         dataType = "View"
+
+        _isCSV = isCSV
+        _isXLS = isXLS
+        _isXLSX = isXLSX
     End Sub
 
-    Public Sub New(ByVal datagridcontrol As DevExpress.XtraGrid.GridControl)
+    Public Sub New(ByVal datagridcontrol As DevExpress.XtraGrid.GridControl, isXLS As Boolean, isXLSX As Boolean, isCSV As Boolean)
         ' This call is required by the Windows Form Designer.
         InitializeComponent()
 
         ' Add any initialization after the InitializeComponent() call.
         gcdata = datagridcontrol
         dataType = "Grid"
+
+        _isCSV = isCSV
+        _isXLS = isXLS
+        _isXLSX = isXLSX
     End Sub
+
+    Private _isXLS As Boolean = True
+    Private _isXLSX As Boolean = True
+    Private _isCSV As Boolean = True
 
 End Class

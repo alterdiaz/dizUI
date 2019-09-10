@@ -883,7 +883,7 @@ Partial Class frmBusinessPartner
         '
         'Button2
         '
-        Me.Button2.BackColor = System.Drawing.Color.FromArgb(CType(CType(156, Byte), Integer), CType(CType(207, Byte), Integer), CType(CType(49, Byte), Integer))
+        Me.Button2.BackColor = System.Drawing.Color.green
         Me.Button2.Dock = System.Windows.Forms.DockStyle.Right
         Me.Button2.FlatAppearance.BorderSize = 0
         Me.Button2.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DimGray
@@ -1518,7 +1518,7 @@ Partial Class frmBusinessPartner
         '
         'btnSaveAlamat
         '
-        Me.btnSaveAlamat.BackColor = System.Drawing.Color.FromArgb(CType(CType(156, Byte), Integer), CType(CType(207, Byte), Integer), CType(CType(49, Byte), Integer))
+        Me.btnSaveAlamat.BackColor = System.Drawing.Color.green
         Me.btnSaveAlamat.Dock = System.Windows.Forms.DockStyle.Right
         Me.btnSaveAlamat.FlatAppearance.BorderSize = 0
         Me.btnSaveAlamat.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DimGray
@@ -1833,7 +1833,7 @@ Partial Class frmBusinessPartner
         '
         'btnSaveEmail
         '
-        Me.btnSaveEmail.BackColor = System.Drawing.Color.FromArgb(CType(CType(156, Byte), Integer), CType(CType(207, Byte), Integer), CType(CType(49, Byte), Integer))
+        Me.btnSaveEmail.BackColor = System.Drawing.Color.green
         Me.btnSaveEmail.Dock = System.Windows.Forms.DockStyle.Right
         Me.btnSaveEmail.FlatAppearance.BorderSize = 0
         Me.btnSaveEmail.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DimGray
@@ -2192,7 +2192,7 @@ Partial Class frmBusinessPartner
         '
         'btnSaveTelepon
         '
-        Me.btnSaveTelepon.BackColor = System.Drawing.Color.FromArgb(CType(CType(156, Byte), Integer), CType(CType(207, Byte), Integer), CType(CType(49, Byte), Integer))
+        Me.btnSaveTelepon.BackColor = System.Drawing.Color.green
         Me.btnSaveTelepon.Dock = System.Windows.Forms.DockStyle.Right
         Me.btnSaveTelepon.FlatAppearance.BorderSize = 0
         Me.btnSaveTelepon.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DimGray
@@ -2690,7 +2690,7 @@ Partial Class frmBusinessPartner
         '
         'btnSave
         '
-        Me.btnSave.BackColor = System.Drawing.Color.FromArgb(CType(CType(156, Byte), Integer), CType(CType(207, Byte), Integer), CType(CType(49, Byte), Integer))
+        Me.btnSave.BackColor = System.Drawing.Color.green
         Me.btnSave.Dock = System.Windows.Forms.DockStyle.Right
         Me.btnSave.FlatAppearance.BorderSize = 0
         Me.btnSave.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DimGray

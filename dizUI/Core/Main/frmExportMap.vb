@@ -29,11 +29,11 @@
     Private Sub btnBrowse_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnBrowse.Click
         If expType = "" Then
             dizMsgbox("Pilih tipe export dulu", dizMsgboxStyle.Info, Me)
-            Threading.Thread.Sleep(1000)
+            Threading.Thread.Sleep(100)
             btnBrowse.Image = My.Resources.browse
             btnBrowse.BackColor = Color.Transparent
             btnBrowse.Refresh()
-            Threading.Thread.Sleep(1000)
+            Threading.Thread.Sleep(100)
             Exit Sub
         End If
         Dim dirbrowse As New FolderBrowserDialog

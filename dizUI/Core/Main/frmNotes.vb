@@ -196,6 +196,15 @@
             End If
         End If
         dtsqls.datasetSave("sys_usernotes", idData, field, value, False)
+
+        field = New List(Of String)
+        value = New List(Of Object)
+        dtsqls = New dtsetSQLS(dbstring)
+        Dim idnotif As String = GenerateGUID()
+        field.AddRange(New String() {"idnotifications", "kode", "judul", "konten", "frmname", "tableid", "tablename", "tablecolumnid", "tablecolumndate", "tablecolumnflag", "tablecolumniduser", "duedate", "iduser", "iduserlevel"})
+        value.AddRange(New Object() {idnotif, "NOTE", "PENGINGAT NOTE", teTitle.Text, "-", idData, "sys_usernotes", "idusernotes", "completedate", "iscomplete", "-", CDate(deWarning.EditValue), userid, userlevelid})
+        dtsqls.datasetSave("sys_notifications", idnotif, field, value, False)
+
         dizMsgbox("Catatan telah disimpan", dizMsgboxStyle.Info, Me)
         btnNew_Click(btnNew, Nothing)
         loadLIST()

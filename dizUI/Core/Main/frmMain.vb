@@ -182,7 +182,7 @@ Public Class frmMain
                 End If
             End If
         Catch ex As Exception
-            dizMsgbox(ex.Message, dizMsgboxStyle.Kesalahan)
+            dizMsgbox(ex.Message, dizMsgboxStyle.Kesalahan, Me)
         End Try
     End Sub
 
@@ -237,44 +237,41 @@ Public Class frmMain
     Private Sub showNotification(ByVal Icon As iconNotif, ByVal content As String)
         If Icon = iconNotif.critical Then
             pbNotification.Image = My.Resources.ico_critical
-            pbNotification.BackColor = Color.Tomato
+            pbNotification.BackColor = Color.FromArgb(240, 240, 240)
         ElseIf Icon = iconNotif.info Then
             pbNotification.Image = My.Resources.ico_info
-            pbNotification.BackColor = Color.Gainsboro
+            pbNotification.BackColor = Color.FromArgb(240, 240, 240)
         ElseIf Icon = iconNotif.warning Then
             pbNotification.Image = My.Resources.ico_warning
             pbNotification.BackColor = Color.FromArgb(240, 240, 240)
         End If
         lblNotification.Text = Format(nowTime, "HH:mm:ss") & " " & content
+        pbNotification.Visible = True
         intNotif = 5
     End Sub
 
     Private Sub ParseCommandLineArgs()
-        Dim inputArgument As String = "/input="
-        Dim inputName As String = ""
+        'Dim inputName As String = ""
 
-        For Each s As String In My.Application.CommandLineArgs
-            If s.ToLower = "update" Then
-                inputName = s.ToLower
-            End If
-            'If s.ToLower.StartsWith(inputArgument) Then
-            '    inputName = s.Remove(0, inputArgument.Length)
-            'End If
-        Next
+        'Dim CommandLineArgs As System.Collections.ObjectModel.ReadOnlyCollection(Of String) = My.Application.CommandLineArgs
+        'For Each s As String In CommandLineArgs
+        '    If s.ToLower = "update" Then
+        '        inputName = s.ToLower
+        '    End If
+        'Next
 
-        If inputName = "" Then
-            'MsgBox("No input name")
-            If IO.File.Exists(Application.StartupPath & "\dizSetting20.exe") Then
-                Threading.Thread.Sleep(1000)
-                System.Diagnostics.Process.Start(Application.StartupPath & "\dizSetting20.exe")
-                Threading.Thread.Sleep(1000)
+        Dim exefilename As String = IO.Path.GetFileName(Application.ExecutablePath)
+        'If inputName = "update" Then
+        If IO.File.Exists(CheckAndRepairValidPath(Application.StartupPath) & "dizSetting.exe") Then
+                Threading.Thread.Sleep(100)
+            System.Diagnostics.Process.Start(CheckAndRepairValidPath(Application.StartupPath) & "dizSetting.exe", exefilename)
+            Threading.Thread.Sleep(100)
                 Environment.Exit(0)
             End If
-        ElseIf inputName <> "update" Then
-            dizMsgbox("Wrong Parameter", dizMsgboxStyle.Kesalahan, Me)
-            Environment.Exit(0)
-            'MsgBox("Input name: " & inputName)
-        End If
+        'ElseIf inputName <> "" And inputName <> "update" Then
+        '    dizMsgbox("Wrong Parameter", dizMsgboxStyle.Kesalahan, Me)
+        '    Environment.Exit(0)
+        'End If
     End Sub
 
     Private Sub hideTaskList(ByVal isHide As Boolean)
@@ -357,7 +354,17 @@ Public Class frmMain
         End Get
     End Property
 
+    Private versiApp As String = ""
     Private Sub frmMain_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
+        pHeader.Visible = False
+        pHeader.SendToBack()
+
+        pSidebar.Visible = False
+        btnSidebar.Visible = False
+
+        niUpdate.Visible = True
+        niUpdate.Text = "Datacube Enterprise"
+
         pTitle.Enabled = True
         pHeader.Enabled = False
         pFooter.Enabled = False
@@ -377,7 +384,7 @@ Public Class frmMain
 
         clearTaskList(Nothing, Nothing)
         tcTile.Groups.Clear()
-        msMenu.Items.Clear()
+        'msMenu.Items.Clear()
 
         lblQuota.Visible = False
         setRegionalSetting()
@@ -395,6 +402,8 @@ Public Class frmMain
 
         Me.Visible = True
         Me.WindowState = FormWindowState.Maximized
+        Application.DoEvents()
+        Threading.Thread.Sleep(1000)
 
         btnServer.Visible = True
         btnNote.Visible = False
@@ -403,7 +412,7 @@ Public Class frmMain
         btnProfile.Visible = False
 
         btnCompList.Visible = False
-        Label3.BringToFront()
+        'Label3.BringToFront()
 
         tcTile.Groups.Clear()
         tcTile.Visible = False
@@ -412,32 +421,86 @@ Public Class frmMain
         pForm.Visible = True
         pForm.BringToFront()
         pForm.Dock = DockStyle.Fill
+        'btnSidebar.BringToFront()
+        'pSidebar.BringToFront()
 
         Me.Refresh()
         Application.DoEvents()
 
         appPath = Application.StartupPath
         appPath = CheckAndRepairValidPath(appPath)
-        My.Computer.Registry.SetValue("HKEY_CURRENT_USER\Software\SIEPAM", "Path", appPath, RegistryValueKind.String)
+        My.Computer.Registry.SetValue("HKEY_CURRENT_USER\Software\Datacube", "Path", appPath, RegistryValueKind.String)
         checkPath()
         If IO.Path.GetFileNameWithoutExtension(Application.ExecutablePath) = "dizUI" Then
             If IO.File.Exists(appPath & "default_live.jpg") Then
                 Me.Icon = My.Resources.dizLive1
-                imgBack = Image.FromFile(appPath & "default_live.jpg")
+
+                Dim filelist As New List(Of String)
+                For Each File As String In IO.Directory.GetFiles(appPath)
+                    If (File IsNot Nothing) Then
+                        If (IO.Path.GetExtension(File.ToString.ToLower) = ".jpg") Then
+                            If (File.ToString.ToLower.Contains("wallpaper")) Then filelist.Add(File)
+                        End If
+                    End If
+                Next
+                If filelist.Count > 0 Then
+                    Dim rnd As New Random()
+                    Dim idxrnd As Integer = rnd.Next(0, filelist.Count - 1)
+                    imgBack = Image.FromFile(filelist(idxrnd))
+
+                    Dim scale_factorwh As Single = Single.Parse(imgBack.Size.Width / imgBack.Size.Height)
+                    Dim scale_factorhw As Single = Single.Parse(imgBack.Size.Height / imgBack.Size.Width)
+                    Dim bm_source As New Bitmap(imgBack)
+                    'Dim bm_dest As New Bitmap(CInt(pBody.Size.Width), CInt(pBody.Size.Width * scale_factorhw))
+                    Dim bm_destwh As New Bitmap(CInt(Screen.PrimaryScreen.WorkingArea.Height * scale_factorwh), CInt(Screen.PrimaryScreen.WorkingArea.Height))
+                    Dim bm_desthw As New Bitmap(CInt(Screen.PrimaryScreen.WorkingArea.Width), CInt(Screen.PrimaryScreen.WorkingArea.Width * scale_factorhw))
+
+                    Dim gr_destwh As Graphics = Graphics.FromImage(bm_destwh)
+                    Dim gr_desthw As Graphics = Graphics.FromImage(bm_desthw)
+
+                    gr_destwh.DrawImage(bm_source, 0, 0, bm_destwh.Width, bm_destwh.Height)
+                    gr_desthw.DrawImage(bm_source, 0, 0, bm_desthw.Width, bm_desthw.Height)
+
+                    If CInt(bm_destwh.Size.Height) = CInt(Screen.PrimaryScreen.WorkingArea.Height) Then
+                        imgBack = bm_destwh
+                    ElseIf CInt(bm_desthw.Size.Height) = CInt(Screen.PrimaryScreen.WorkingArea.Height) Then
+                        imgBack = bm_desthw
+                    End If
+
+                    tlpFooter.BackgroundImage = Nothing
+                    tlpHeader.BackgroundImage = Nothing
+                        'Dim rgbidx As New RGBindex()
+
+                        Dim colr As New List(Of Color)
+                        colr.Add(Color.FromArgb(153, 51, 153))
+                        colr.Add(Color.FromArgb(0, 102, 204))
+                        colr.Add(Color.FromArgb(0, 102, 0))
+                        colr.Add(Color.FromArgb(0, 204, 102))
+                        colr.Add(Color.FromArgb(153, 0, 0))
+                        colr.Add(Color.FromArgb(153, 0, 153))
+
+                        idxrnd = rnd.Next(0, colr.Count - 1)
+                        tlpFooter.BackColor = colr(idxrnd) 'rgbidx.GetDominantColor(bm_dest)
+                    Else
+                        imgBack = Image.FromFile(appPath & "default_live.jpg")
+                End If
+
                 tcTile.BackgroundImage = imgBack
                 tcTile.BackgroundImageLayout = ImageLayout.Stretch
                 pForm.BackgroundImage = imgBack
                 pForm.BackgroundImageLayout = ImageLayout.Stretch
             End If
+            isDemo = 0
         ElseIf IO.Path.GetFileNameWithoutExtension(Application.ExecutablePath) = "dizUIdemo" Then
             If IO.File.Exists(appPath & "default_demo.jpg") Then
                 Me.Icon = My.Resources.dizDemo1
                 imgBack = Image.FromFile(appPath & "default_demo.jpg")
                 tcTile.BackgroundImage = imgBack
-                tcTile.BackgroundImageLayout = ImageLayout.Stretch
+                tcTile.BackgroundImageLayout = ImageLayout.None
                 pForm.BackgroundImage = imgBack
-                pForm.BackgroundImageLayout = ImageLayout.Stretch
+                pForm.BackgroundImageLayout = ImageLayout.None
             End If
+            isDemo = 1
         End If
 
         Try
@@ -476,14 +539,21 @@ Public Class frmMain
             tcTile.AppearanceItem.Selected.BackColor = Color.FromArgb(0, 57, 175)
             clearUser()
 
-            siteonline = readSiteOnline()
-            dbonline = readSettingFileOnline()
+            'siteonline = readSiteOnline()
+            dbonline = readSettingOnline()
             dbstring = readSettingFile()
 
+            Dim mysite As String = ""
             Dim sql As New SQLs(dbstring)
+            Dim sqli As New SQLi(dblite)
+            sqli.DMLQuery("select siteurl from siteconn order by idsiteconn desc", "getdbstring")
+            If SQLi.getDataSet("getdbstring") > 0 Then
+                mysite = SQLi.getDataSet("getdbstring", 0, "siteurl")
+                mysite = CheckAndRepairValidURL(mysite)
+            End If
+
             Try
                 If sql.checkConnection = True Then
-                    Dim sqli As New SQLi(dblite)
                     sql.DMLQuery("select getdate() as tanggal", "cekwaktu")
                     sql.DMLQuery("select top 1 idtoken,tokenkey1,tokenkey2 from sys_token order by createddate desc", "tokenid")
 
@@ -528,7 +598,7 @@ Public Class frmMain
                 End If
             Catch ex As Exception
                 splashClosed = True
-                Threading.Thread.Sleep(1000)
+                Threading.Thread.Sleep(200)
                 dizMsgbox("Server tidak ditemukan", dizMsgboxStyle.Kesalahan, Me)
                 Me.Cursor = Cursors.Default
                 pTitle.Enabled = True
@@ -568,13 +638,42 @@ Public Class frmMain
 
                 tmphardwareid = getBoardID()
                 tmphardwarecode = getHardwareCode(tmphardwareid, tmptokenkey1, tmptokenkey2)
+                sqli.DMLQuery("select value from appsetting where variable='HardwareCode'", "GetHID")
 
-                Dim sqli As New SQLi(dblite)
-                sqli.DMLQuery("select value from appsetting where variable='HardwareID'", "GetHID")
                 If sqli.getDataSet("GetHID", 0, "value") = "NULL" Then
-                    sql.DMLQuery("select idhardware from hardware where hardwareid='" & tmphardwareid & "'", "existhw")
-                    If sql.getDataSet("existhw") = 0 Then
-                        dizMsgbox("Hardware tidak terdaftar", dizMsgboxStyle.Peringatan, "Peringatan", Me)
+                    splashClosed = True
+
+                    Dim json_result As String = ""
+                    Dim table As DataTable = Nothing
+                    Dim mparam As New List(Of String)
+                    Dim mvalue As New List(Of String)
+
+                    If table IsNot Nothing Then table.Clear()
+                    mparam.Clear()
+                    mvalue.Clear()
+
+                    mparam.AddRange(New String() {"param", "value", "hardwareid", "tkey1", "tkey2"})
+                    mvalue.AddRange(New String() {"cekhwid", "", tmphardwareid, tmptokenkey1, tmptokenkey2})
+                    json_result = modCore.HttpPOSTRequestSelect(mysite & "Hardware", mparam, mvalue)
+                    If json_result.Length > 2 Then
+                        table = Newtonsoft.Json.JsonConvert.DeserializeObject(Of DataTable)(json_result)
+                        If table.Rows.Count = 0 Then
+                            dizMsgbox("Hardware belum terdaftar", dizMsgboxStyle.Peringatan, "Peringatan", Me)
+                            Dim welcome As New frmNewData
+                            welcome.ShowDialog(Me)
+                            Environment.Exit(0)
+                        End If
+                    Else
+                        dizMsgbox("Hardware belum terdaftar", dizMsgboxStyle.Peringatan, "Peringatan", Me)
+                        Dim welcome As New frmNewData
+                        welcome.ShowDialog(Me)
+                        Environment.Exit(0)
+                    End If
+                Else
+                    splashClosed = True
+
+                    If sqli.getDataSet("GetHID", 0, "value") <> tmphardwarecode Then
+                        dizMsgbox("Hardware belum terdaftar", dizMsgboxStyle.Peringatan, "Peringatan", Me)
                         Dim welcome As New frmNewData
                         welcome.ShowDialog(Me)
                         Environment.Exit(0)
@@ -641,26 +740,18 @@ Public Class frmMain
 
             Me.Cursor = Cursors.WaitCursor
             sql = New SQLs(dbstring)
-            sql.DMLQuery("select value from sys_appsetting where variable='ProductVersion'", "cekver")
+            sql.DMLQuery("select replace(value,'.','') as value from sys_appsetting where variable='ProductVersion'", "cekver")
             Dim versi As String = sql.getDataSet("cekver", 0, "value")
-            versi = versi.Replace(".", "")
+            versiApp = versi
 
-            modCore.productversion = Application.ProductVersion
-            Dim thisversi As String = modCore.productversion
-            thisversi = thisversi.Replace(".", "")
-            If CInt(versi) <> CInt(thisversi) Then
-                ParseCommandLineArgs()
+            If IO.Path.GetFileNameWithoutExtension(Application.ExecutablePath) = "dizUI" Then
+                modCore.productversion = Application.ProductVersion
+                Dim thisversi As String = modCore.productversion
+                thisversi = thisversi.Replace(".", "")
+                If CInt(versi) <> CInt(thisversi) Then
+                    ParseCommandLineArgs()
+                End If
             End If
-
-            Me.Cursor = Cursors.Default
-            tmrWaktu.Start()
-            bwServer.WorkerReportsProgress = True
-            If isServer = True Then
-                'bwServer.RunWorkerAsync()
-            Else
-                bwServer.CancelAsync()
-            End If
-            lblUserActive.Text = username & " (" & userlevel & ")"
 
             If isServer = True Then
                 Dim lite As New SQLi(dblite)
@@ -677,10 +768,8 @@ Public Class frmMain
                 modCore.companyname = lite.getDataSet("CN", 0, "value")
                 sqls.DMLQuery("update sys_appsetting set value='" & modCore.companyname & "' where variable='CompanyName'", False)
 
-                lite.DMLQuery("select value from appsetting where variable='CompanyProductID'", "CPID")
-                If IsNumeric(lite.getDataSet("CPID", 0, "value")) = True Then
-                    modCore.idcompanyproduct = lite.getDataSet("CPID", 0, "value")
-                End If
+                'lite.DMLQuery("select value from appsetting where variable='CompanyProductID'", "CPID")
+                'modCore.idcompanyproduct = lite.getDataSet("CPID", 0, "value")
 
                 lite.DMLQuery("select value from appsetting where variable='HardwareCode'", "HCD")
                 modCore.hardwarecode = lite.getDataSet("HCD", 0, "value")
@@ -707,13 +796,17 @@ Public Class frmMain
                 Dim lite As New SQLi(dblite)
                 Dim sqls As New SQLs(dbstring)
 
+                'sqls.DMLQuery("select value from sys_appsetting where variable='CompanyProductID'", "CPID")
+                'modCore.idcompanyproduct = sqls.getDataSet("CPID", 0, "value")
+                'lite.DMLQuery("update appsetting set value='" & modCore.idcompanyproduct & "' where variable='CompanyProductID'", False)
+
                 sqls.DMLQuery("select value from sys_appsetting where variable='CompanyName'", "CN")
                 modCore.companyname = sqls.getDataSet("CN", 0, "value")
-                lite.DMLQuery("update appsetting set value='" & CompanyName & "' where variable='CompanyName'", False)
+                lite.DMLQuery("update appsetting set value='" & modCore.companyname & "' where variable='CompanyName'", False)
 
                 sqls.DMLQuery("select value from sys_appsetting where variable='ProductName'", "PN")
                 modCore.productname = sqls.getDataSet("PN", 0, "value")
-                lite.DMLQuery("update appsetting set value='" & ProductName & "' where variable='ProductName'", False)
+                lite.DMLQuery("update appsetting set value='" & modCore.productname & "' where variable='ProductName'", False)
 
                 'sqls.DMLQuery("select value from sys_appsetting where variable='ProductID'", "PID")
                 'modCore.idproduct = sqls.getDataSet("PID", 0, "value")
@@ -724,8 +817,26 @@ Public Class frmMain
                 'lite.DMLQuery("update appsetting set value='" & idproducttype & "' where variable='ProductTypeID'", False)
             End If
 
+            sqli.DMLQuery("select idproducttype from companyproducttype where idcompany='" & modCore.idcompany & "'", "protype")
+            For i As Integer = 0 To sqli.getDataSet("protype") - 1
+                idproducttype.Add(sqli.getDataSet("protype", i, "idproducttype"))
+            Next
+
+            Me.Cursor = Cursors.Default
+            tmrWaktu.Start()
+            'bwServer.WorkerReportsProgress = False
+            If isServer = True Then
+                Dim task As System.Threading.Tasks.Task = New System.Threading.Tasks.Task(AddressOf cekTimer2)
+                task.Start()
+                'bwServer.RunWorkerAsync()
+            Else
+                'bwServer.CancelAsync()
+            End If
+            lblUserActive.Text = username & " (" & userlevel & ")"
+
             Me.Text = modCore.productname
             lblTitle.Text = modCore.productversion & " " & modCore.productname
+            niUpdate.Text = modCore.productname
             writeLog(lblTitle.Text & " start running")
             showNotification(iconNotif.info, Me.Text & " start running")
 
@@ -737,13 +848,18 @@ Public Class frmMain
             tcTile.BringToFront()
             tcTile.Dock = DockStyle.Fill
             tcTile.Focus()
+
+            'btnSidebar.BringToFront()
+            'pSidebar.BringToFront()
         Catch ex As Exception
             Me.Cursor = Cursors.Default
             splashClosed = True
-            dizMsgbox(ex.Message, dizMsgboxStyle.Kesalahan)
+            dizMsgbox(ex.Message, dizMsgboxStyle.Kesalahan, Me)
         End Try
 
         ttCtrl.SetToolTip(tcTile, Me.Text)
+        ttCtrl.SetToolTip(teSearch, "Pencarian Menu disini")
+
         Me.Cursor = Cursors.Default
         splashClosed = True
 
@@ -754,248 +870,370 @@ Public Class frmMain
 
         If isServer = True Then
             btnCompList.Visible = True
-            Label3.BringToFront()
+            'Label3.BringToFront()
+        End If
+
+        If IO.Path.GetFileNameWithoutExtension(Application.ExecutablePath) = "dizUI" Then
+            Dim sqlsu As New SQLs(dbstring)
+            sqlsu.DMLQuery("select idappfiles,filename,appversion,createddate,filebinary from sys_appfiles where filename='dizSetting.exe' and appversion=(select value from sys_appsetting where variable='ProductVersion')", "appfiles")
+            If sqlsu.getDataSet("appfiles") > 0 Then
+                Dim tmpbyte As Byte() = Nothing
+                Dim filename As String = ""
+                GC.Collect()
+                tmpbyte = Nothing
+                filename = sqlsu.getDataSet("appfiles", 0, "filename")
+                tmpbyte = sqlsu.getData("sys_appfiles", "filebinary", "filename", filename, False)
+                If IO.File.Exists(CheckAndRepairValidPath(Application.StartupPath) & filename) = True Then
+                    Dim errBool As Boolean = False
+                    Try
+                        IO.File.Delete(CheckAndRepairValidPath(Application.StartupPath) & filename)
+                    Catch ex As Exception
+                        'MsgBox("error delete" & vbCrLf & filename & vbCrLf & sqls.getDataSet("appfiles", i, "createddate"))
+                        errBool = True
+                    End Try
+                    Application.DoEvents()
+                    Threading.Thread.Sleep(100)
+                End If
+                Try
+                    IO.File.WriteAllBytes(CheckAndRepairValidPath(Application.StartupPath) & filename, tmpbyte)
+                Catch ex As Exception
+                    'MsgBox("error write" & vbCrLf & filename & vbCrLf & sqls.getDataSet("appfiles", i, "createddate"))
+                End Try
+                Application.DoEvents()
+                Threading.Thread.Sleep(100)
+            End If
         End If
     End Sub
 
     Private isSync As Boolean = False
-    Private Sub bwServer_DoWork(ByVal sender As System.Object, ByVal e As System.ComponentModel.DoWorkEventArgs) Handles bwServer.DoWork
-        If nowTime.Second Mod 6 = 0 Then
-            If isServer = True Then
-                If isSync = False Then
-                    isSync = True
-                    Dim sqli As New SQLi(dblite)
+    'Private Async Sub bwServer_DoWork(ByVal sender As System.Object, ByVal e As System.ComponentModel.DoWorkEventArgs) Handles bwServer.DoWork
+    Private Async Sub cekTimer2()
+        Try
+            If nowTime.Second = 0 And nowTime.Minute Mod 3 = 0 Then
+                If isServer = True Then
+                    If isSync = False Then
+                        isSync = True
+                        Dim sqli As New SQLi(dblite)
+                        Dim sqls As New SQLs(dbstring)
+
+                        sqli.DMLQuery("select value from appsetting where variable='CompanyName'", "company")
+                        sqls.DMLQuery("select value from sys_appsetting where variable='CompanyName'", "company")
+                        If sqli.getDataSet("company", 0, "value") <> sqls.getDataSet("company", 0, "value") Then
+                            sqls.DMLQuery("update sys_appsetting set value='" & sqli.getDataSet("company", 0, "value") & "' where variable='CompanyName'", False)
+                        End If
+
+                        sqli.DMLQuery("select value from appsetting where variable='ProductName'", "product")
+                        sqls.DMLQuery("select value from sys_appsetting where variable='ProductName'", "product")
+                        If sqli.getDataSet("product", 0, "value") <> sqls.getDataSet("product", 0, "value") Then
+                            sqls.DMLQuery("update sys_appsetting set value='" & sqli.getDataSet("product", 0, "value") & "' where variable='ProductName'", False)
+                        End If
+
+                        sqli.DMLQuery("select value from appsetting where variable='QtyClient'", "qtyclient")
+                        sqls.DMLQuery("select value from sys_appsetting where variable='QtyClient'", "qtyclient")
+                        If sqli.getDataSet("qtyclient", 0, "value") <> sqls.getDataSet("qtyclient", 0, "value") Then
+                            sqls.DMLQuery("update sys_appsetting set value='" & sqli.getDataSet("qtyclient", 0, "value") & "' where variable='QtyClient'", False)
+                        End If
+
+                        'server offline
+                        'syncToken()
+                        Dim task As System.Threading.Tasks.Task = New System.Threading.Tasks.Task(AddressOf syncToken)
+                        task.Start()
+                        isSync = False
+
+                        'If bwServer.IsBusy = False Then
+                        '    bwServer.CancelAsync()
+                        '    bwServer.RunWorkerAsync()
+                        'End If
+                        'If bwServer.CancellationPending = True Then
+                        '    bwServer.CancelAsync()
+                        '    bwServer.RunWorkerAsync()
+                        'End If
+                    End If
+                End If
+            End If
+            If nowTime.Second = 0 And nowTime.Minute Mod 5 = 0 Then
+                If isServer = True Then
                     Dim sqls As New SQLs(dbstring)
-
-                    sqli.DMLQuery("select value from appsetting where variable='CompanyName'", "company")
-                    sqls.DMLQuery("select value from sys_appsetting where variable='CompanyName'", "company")
-                    If sqli.getDataSet("company", 0, "value") <> sqls.getDataSet("company", 0, "value") Then
-                        sqls.DMLQuery("update sys_appsetting set value='" & sqli.getDataSet("company", 0, "value") & "' where variable='CompanyName'", False)
+                    sqls.DMLQuery("SELECT sum(i.rowcnt) as rowtotal FROM sysindexes AS i INNER JOIN sysobjects AS o ON i.id = o.id WHERE i.indid < 2  AND OBJECTPROPERTY(o.id, 'IsMSShipped') = 0 and o.name in (select tb.table_name from information_schema.tables tb where tb.table_type='BASE TABLE' and tb.table_name not like 'sys_%')", "rowcount")
+                    Dim rowtotal As Decimal = 0
+                    Dim rowcode As String = ""
+                    If sqls.getDataSet("rowcount") > 0 Then
+                        rowtotal = sqls.getDataSet("rowcount", 0, "rowtotal")
                     End If
+                    Dim lite As New SQLi(dblite)
+                    sqls.DMLQuery("update sys_appsetting set value='" & rowtotal & "' where variable='QuotaUsed'", False)
+                    lite.DMLQuery("update appsetting set value='" & rowtotal & "' where variable='QuotaUsed'", False)
+                    Dim dizEngine As New dizEngine.engine
+                    rowcode = dizEngine.processE(rowtotal)
+                    sqls.DMLQuery("update sys_appsetting set value='" & rowcode & "' where variable='QuotaUsedCode'", False)
+                    lite.DMLQuery("update appsetting set value='" & rowcode & "' where variable='QuotaUsedCode'", False)
 
-                    sqli.DMLQuery("select value from appsetting where variable='ProductName'", "product")
-                    sqls.DMLQuery("select value from sys_appsetting where variable='ProductName'", "product")
-                    If sqli.getDataSet("product", 0, "value") <> sqls.getDataSet("product", 0, "value") Then
-                        sqls.DMLQuery("update sys_appsetting set value='" & sqli.getDataSet("product", 0, "value") & "' where variable='ProductName'", False)
-                    End If
+                    sqls.DMLQuery("SELECT o.name, i.rowcnt as rowtotal FROM sysindexes AS i INNER JOIN sysobjects AS o ON i.id = o.id WHERE i.rowcnt > 0 AND i.indid < 2 AND OBJECTPROPERTY(o.id, 'IsMSShipped') = 0 and o.name in (select tb.table_name from information_schema.tables tb where tb.table_type='BASE TABLE' and tb.table_name not like 'sys_%') order by o.name asc ", "rowdetailcount")
 
-                    sqli.DMLQuery("select value from appsetting where variable='QtyClient'", "qtyclient")
-                    sqls.DMLQuery("select value from sys_appsetting where variable='QtyClient'", "qtyclient")
-                    If sqli.getDataSet("qtyclient", 0, "value") <> sqls.getDataSet("qtyclient", 0, "value") Then
-                        sqls.DMLQuery("update sys_appsetting set value='" & sqli.getDataSet("qtyclient", 0, "value") & "' where variable='QtyClient'", False)
-                    End If
+                    sqls.DMLQuery("SELECT sum(i.rowcnt) as rowtotal FROM sysindexes AS i INNER JOIN sysobjects AS o ON i.id = o.id WHERE i.rowcnt > 0 AND i.indid < 2 AND OBJECTPROPERTY(o.id, 'IsMSShipped') = 0 and o.name in (select tb.table_name from information_schema.tables tb where tb.table_type='BASE TABLE' and tb.table_name not like 'sys_%')", "rowcount")
+                    Dim freezeTime As Date = nowTime
+                    Dim fs As New List(Of String)
+                    Dim vs As New List(Of String)
+                    Try
+                        Dim iddu As String = "-1"
+                        Dim rowcnt As Decimal = 0
+                        Dim rowcntcode As String = ""
 
-                    'server offline
-                    'syncToken()
-                    isSync = False
+                        Dim json_result As String = ""
+                        Dim mparam As New List(Of String)
+                        Dim mvalue As New List(Of String)
 
-                    If bwServer.IsBusy = False Then
-                        bwServer.CancelAsync()
-                        bwServer.RunWorkerAsync()
-                    End If
-                    If bwServer.CancellationPending = True Then
-                        bwServer.CancelAsync()
-                        bwServer.RunWorkerAsync()
-                    End If
+                        For i As Integer = 0 To sqls.getDataSet("rowdetailcount") - 1
+                            fs.Clear()
+                            vs.Clear()
+
+                            iddu = GenerateGUID()
+                            'Dim dtmys As New dtsetSQLS(dbonline)
+                            'Dim mys As New SQLs(dbonline)
+
+                            Dim tbl As String = sqls.getDataSet("rowdetailcount", i, "name")
+                            rowcnt = CDec(sqls.getDataSet("rowdetailcount", i, "rowtotal"))
+                            rowcntcode = getGenerateCode(rowcnt, tokenkey1, tokenkey2, 4000, getFrom.belakang)
+
+                            'mys.DMLQuery("delete from alterdiaz_app.datausage where idcompanyproduct='" & idcompanyproduct & "' and tablename='" & tbl & "' and convert(varchar,postdate,105)='" & Format(freezeTime, "dd-MM-yyyy") & "'", False)
+                            'mys.DMLQuery("select iddatausage from datausage where idcompanyproduct='" & idcompanyproduct & "' and tablename='" & tbl & "' and convert(varchar,postdate,105)='" & Format(freezeTime, "dd-MM-yyyy") & "'", "getid")
+
+                            fs.AddRange(New String() {"iddatausage", "idcompany", "tablename", "nominaldata", "idtoken", "tokenkey1", "tokenkey2", "nominaldatacode", "remarks", "postdate", "createddate"})
+
+                            vs.AddRange(New String() {iddu, modCore.idcompany, tbl, rowcnt, idtoken, tokenkey1, tokenkey2, rowcntcode, "", Format(freezeTime, "yyyy-MM-dd"), Format(freezeTime, "yyyy-MM-dd HH:mm:ss")})
+                            'dtmys.datasetSave("datausage", iddu, fs, vs, False)
+
+                            json_result = ""
+                            mparam.Clear()
+                            mvalue.Clear()
+                            mparam.AddRange(fs)
+                            mvalue.AddRange(vs)
+                            mparam.AddRange(New String() {"param", "value", "tkey1", "tkey2"})
+                            mvalue.AddRange(New String() {"baru", iddu, tmptokenkey1, tmptokenkey2})
+                            'Dim task1 As System.Threading.Tasks.Task(Of String) = syncInsert(dbonline & "DataUsage", mparam, mvalue)
+                            json_result = Await syncInsert(dbonline & "DataUsage", mparam, mvalue)
+                        Next
+                        fs.Clear()
+                        vs.Clear()
+
+                        iddu = GenerateGUID()
+                        Dim dtmys As New dtsetSQLS(dbonline)
+                        Dim mys As New SQLs(dbonline)
+
+                        rowcnt = CDec(sqls.getDataSet("rowcount", 0, "rowtotal"))
+                        rowcntcode = getGenerateCode(rowcnt, tokenkey1, tokenkey2, 4000, getFrom.belakang)
+
+                        'mys.DMLQuery("delete from alterdiaz_app.dailyusage where idcompanyproduct='" & idcompanyproduct & "' and convert(varchar,postdate,105)='" & Format(freezeTime, "dd-MM-yyyy") & "'", False)
+                        'mys.DMLQuery("select iddailyusage from alterdiaz_app.dailyusage where idcompanyproduct='" & idcompanyproduct & "' and convert(varchar,postdate,105)='" & Format(freezeTime, "dd-MM-yyyy") & "'", "getid")
+
+                        'If mys.getDataSet("getid") > 0 Then
+                        '    fs.AddRange(New String() {"iddailyusage", "idcompanyproduct", "nominaldata", "idtoken", "tokenkey1", "tokenkey2", "nominaldatacode", "isdeleted", "deletereason", "remarks", "postdate", "updateddate"})
+
+                        '    iddu = CStr(sqls.getDataSet("getid", 0, "iddailyusage"))
+                        'Else
+                        fs.AddRange(New String() {"idusage", "idcompany", "nominaldata", "idtoken", "tokenkey1", "tokenkey2", "nominaldatacode", "remarks", "periode", "createddate"})
+                        'End If
+
+                        vs.AddRange(New String() {iddu, modCore.idcompany, rowcnt, idtoken, tokenkey1, tokenkey2, rowcntcode, "", Format(freezeTime, "yyyyMM"), Format(freezeTime, "yyyy-MM-dd HH:mm:ss")})
+                        'dtmys.datasetSave("dailyusage", iddu, fs, vs, False)
+
+                        json_result = ""
+                        mparam.Clear()
+                        mvalue.Clear()
+                        mparam.AddRange(fs)
+                        mvalue.AddRange(vs)
+                        mparam.AddRange(New String() {"param", "value", "tkey1", "tkey2"})
+                        mvalue.AddRange(New String() {"baru", iddu, tmptokenkey1, tmptokenkey2})
+                        'Dim task2 As System.Threading.Tasks.Task(Of String) = syncInsert(dbonline & "Usage", mparam, mvalue)
+                        json_result = Await syncInsert(dbonline & "Usage", mparam, mvalue)
+
+                        'Dim MYs2 = New SQLs(dbonline)
+                        'sqls.DMLQuery("select convert(decimal(20,0),VALUE) as used from sys_appsetting where variable='QuotaUsed'", "qu")
+                        'MYs2.DMLQuery("update companyproduct set quotaused='" & sqls.getDataSet("qu", 0, "used") & "' where idcompanyproduct='" & idcompanyproduct & "'", False)
+
+                        'If bwServer.IsBusy = False Then
+                        '    bwServer.CancelAsync()
+                        '    bwServer.RunWorkerAsync()
+                        'End If
+                        'If bwServer.CancellationPending = True Then
+                        '    bwServer.CancelAsync()
+                        '    bwServer.RunWorkerAsync()
+                        'End If
+                    Catch ex As Exception
+                    End Try
                 End If
             End If
-        End If
-        If nowTime.Second = 0 And nowTime.Minute Mod 3 = 0 Then
-            If isServer = True Then
-                Dim sqls As New SQLs(dbstring)
-                sqls.DMLQuery("SELECT sum(i.rowcnt) as rowtotal FROM sysindexes AS i INNER JOIN sysobjects AS o ON i.id = o.id WHERE i.indid < 2  AND OBJECTPROPERTY(o.id, 'IsMSShipped') = 0 and o.name in (select tb.table_name from information_schema.tables tb where tb.table_type='BASE TABLE' and tb.table_name not like 'sys_%')", "rowcount")
-                Dim rowtotal As Decimal = 0
-                Dim rowcode As String = ""
-                If sqls.getDataSet("rowcount") > 0 Then
-                    rowtotal = sqls.getDataSet("rowcount", 0, "rowtotal")
-                End If
-                Dim lite As New SQLi(dblite)
-                sqls.DMLQuery("update sys_appsetting set value='" & rowtotal & "' where variable='QuotaUsed'", False)
-                lite.DMLQuery("update appsetting set value='" & rowtotal & "' where variable='QuotaUsed'", False)
-                Dim dizEngine As New dizEngine.engine
-                rowcode = dizEngine.processE(rowtotal)
-                sqls.DMLQuery("update sys_appsetting set value='" & rowcode & "' where variable='QuotaUsedCode'", False)
-                lite.DMLQuery("update appsetting set value='" & rowcode & "' where variable='QuotaUsedCode'", False)
-
-                sqls.DMLQuery("SELECT o.name, i.rowcnt as rowtotal FROM sysindexes AS i INNER JOIN sysobjects AS o ON i.id = o.id WHERE i.rowcnt > 0 AND i.indid < 2 AND OBJECTPROPERTY(o.id, 'IsMSShipped') = 0 and o.name in (select tb.table_name from information_schema.tables tb where tb.table_type='BASE TABLE' and tb.table_name not like 'sys_%') order by o.name asc ", "rowdetailcount")
-
-                sqls.DMLQuery("SELECT sum(i.rowcnt) as rowtotal FROM sysindexes AS i INNER JOIN sysobjects AS o ON i.id = o.id WHERE i.rowcnt > 0 AND i.indid < 2 AND OBJECTPROPERTY(o.id, 'IsMSShipped') = 0 and o.name in (select tb.table_name from information_schema.tables tb where tb.table_type='BASE TABLE' and tb.table_name not like 'sys_%')", "rowcount")
-                Dim freezeTime As Date = nowTime
-                Dim fs As New List(Of String)
-                Dim vs As New List(Of Object)
-                Try
-                    'For i As Integer = 0 To sqls.getDataSet("rowdetailcount") - 1
-                    '    fs.Clear()
-                    '    vs.Clear()
-
-                    '    Dim iddu As Long = -1
-                    '    Dim dtmys As New dtsetSQLS(dbonline)
-                    '    Dim mys As New SQLs(dbonline)
-
-                    '    Dim tbl As String = sqls.getDataSet("rowdetailcount", i, "name")
-                    '    Dim rowcnt As Decimal = CDec(sqls.getDataSet("rowdetailcount", i, "rowtotal"))
-                    '    Dim rowcntcode As String = getGenerateCode(rowcnt, tokenkey1, tokenkey2, 4000, getFrom.belakang)
-
-                    '    mys.DMLQuery("delete from alterdiaz_app.datausage where idcompanyproduct='" & idcompanyproduct & "' and tablename='" & tbl & "' and convert(varchar,postdate,105)='" & Format(freezeTime, "dd-MM-yyyy") & "'", False)
-                    '    mys.DMLQuery("select iddatausage from datausage where idcompanyproduct='" & idcompanyproduct & "' and tablename='" & tbl & "' and convert(varchar,postdate,105)='" & Format(freezeTime, "dd-MM-yyyy") & "'", "getid")
-
-                    '    If mys.getDataSet("getid") > 0 Then
-                    '        fs.AddRange(New String() {"iddatausage", "idcompanyproduct", "tablename", "nominaldata", "idtoken", "tokenkey1", "tokenkey2", "nominaldatacode", "isdeleted", "deletereason", "remarks", "postdate", "updateddate"})
-
-                    '        iddu = CLng(sqls.getDataSet("getid", 0, "iddatausage"))
-                    '    Else
-                    '        fs.AddRange(New String() {"iddatausage", "idcompanyproduct", "tablename", "nominaldata", "idtoken", "tokenkey1", "tokenkey2", "nominaldatacode", "isdeleted", "deletereason", "remarks", "postdate", "createddate"})
-                    '    End If
-
-                    '    vs.AddRange(New Object() {iddu, idcompanyproduct, tbl, rowcnt, idtoken, tokenkey1, tokenkey2, rowcntcode, 0, "", "", freezeTime, freezeTime})
-                    '    dtmys.datasetSave("datausage", iddu, fs, vs, False)
-                    'Next
-                    fs.Clear()
-                    vs.Clear()
-
-                    Dim iddu As String = "-1"
-                    Dim dtmys As New dtsetSQLS(dbonline)
-                    Dim mys As New SQLs(dbonline)
-
-                    Dim rowcnt As Decimal = CDec(sqls.getDataSet("rowcount", 0, "rowtotal"))
-                    Dim rowcntcode As String = getGenerateCode(rowcnt, tokenkey1, tokenkey2, 4000, getFrom.belakang)
-
-                    'mys.DMLQuery("delete from alterdiaz_app.dailyusage where idcompanyproduct='" & idcompanyproduct & "' and convert(varchar,postdate,105)='" & Format(freezeTime, "dd-MM-yyyy") & "'", False)
-                    'mys.DMLQuery("select iddailyusage from alterdiaz_app.dailyusage where idcompanyproduct='" & idcompanyproduct & "' and convert(varchar,postdate,105)='" & Format(freezeTime, "dd-MM-yyyy") & "'", "getid")
-
-                    'If mys.getDataSet("getid") > 0 Then
-                    '    fs.AddRange(New String() {"iddailyusage", "idcompanyproduct", "nominaldata", "idtoken", "tokenkey1", "tokenkey2", "nominaldatacode", "isdeleted", "deletereason", "remarks", "postdate", "updateddate"})
-
-                    '    iddu = CStr(sqls.getDataSet("getid", 0, "iddailyusage"))
-                    'Else
-                    '    fs.AddRange(New String() {"iddailyusage", "idcompanyproduct", "nominaldata", "idtoken", "tokenkey1", "tokenkey2", "nominaldatacode", "isdeleted", "deletereason", "remarks", "postdate", "createddate"})
-                    'End If
-
-                    'vs.AddRange(New Object() {iddu, idcompanyproduct, rowcnt, idtoken, tokenkey1, tokenkey2, rowcntcode, 0, "", "", freezeTime, freezeTime})
-                    'dtmys.datasetSave("dailyusage", iddu, fs, vs, False)
-
-                    Dim MYs2 = New SQLs(dbonline)
-                    'sqls.DMLQuery("select convert(decimal(20,0),VALUE) as used from sys_appsetting where variable='QuotaUsed'", "qu")
-                    'MYs2.DMLQuery("update companyproduct set quotaused='" & sqls.getDataSet("qu", 0, "used") & "' where idcompanyproduct='" & idcompanyproduct & "'", False)
-
-                    If bwServer.IsBusy = False Then
-                        bwServer.CancelAsync()
-                        bwServer.RunWorkerAsync()
-                    End If
-                    If bwServer.CancellationPending = True Then
-                        bwServer.CancelAsync()
-                        bwServer.RunWorkerAsync()
-                    End If
-                Catch ex As Exception
-                End Try
-            End If
-        End If
+        Catch ex As exception
+        End Try
     End Sub
+
+    Private Async Function syncInsert(url As String, listfield As List(Of String), listvalue As List(Of String)) As Threading.Tasks.Task(Of String)
+        Return modCore.HttpPOSTRequestInsert(url, listfield, listvalue)
+    End Function
+
+    Private Async Function syncSelect(url As String, listfield As List(Of String), listvalue As List(Of String)) As Threading.Tasks.Task(Of String)
+        Return modCore.HttpPOSTRequestSelect(url, listfield, listvalue)
+    End Function
 
     Private statData As statusData = statusData.Baru
     Private idData As String = "-1"
 
-    Private Sub syncToken()
-        isSync = True
-        'Dim mystring As String = ""
-        'Dim mydb As String = ""
-        'Dim mysvr As String = ""
-        'Dim myport As String = "0"
-        'Dim myusr As String = ""
-        'Dim mypass As String = ""
-        Dim mysite As String = ""
+    Private Async Sub syncToken()
+        Try
+            isSync = True
+            'Dim mystring As String = ""
+            'Dim mydb As String = ""
+            'Dim mysvr As String = ""
+            'Dim myport As String = "0"
+            'Dim myusr As String = ""
+            'Dim mypass As String = ""
+            Dim mysite As String = ""
 
-        Dim lite As New SQLi(dblite)
-        'lite.DMLQuery("select databasename || '|' || ipserver || '|' || port || '|' || username || '|' || password as dbstring from dbconn where dbtype='SQLS' and dblocation='DOMAIN'", "getdbstring")
-        lite.DMLQuery("select siteurl from siteconn where active=1 order by idsiteconn desc", "getdbstring")
-        If lite.getDataSet("getdbstring") > 0 Then
-            mysite = lite.getDataSet("getdbstring", 0, "siteurl")
-            mysite = CheckAndRepairValidURL(mysite)
-            'mystring = lite.getDataSet("getdbstring", 0, "dbstring")
+            Dim lite As New SQLi(dblite)
+            'lite.DMLQuery("select databasename || '|' || ipserver || '|' || port || '|' || username || '|' || password as dbstring from dbconn where dbtype='SQLS' and dblocation='DOMAIN'", "getdbstring")
+            lite.DMLQuery("select siteurl from siteconn order by idsiteconn desc", "getdbstring")
+            If lite.getDataSet("getdbstring") > 0 Then
+                mysite = lite.getDataSet("getdbstring", 0, "siteurl")
+                mysite = CheckAndRepairValidURL(mysite)
+                'mystring = lite.getDataSet("getdbstring", 0, "dbstring")
 
-            'lite.DMLQuery("select databasename,ipserver,port,username,password from dbconn where dbtype='SQLS' and dblocation='DOMAIN'", "getdbseparate")
+                'lite.DMLQuery("select databasename,ipserver,port,username,password from dbconn where dbtype='SQLS' and dblocation='DOMAIN'", "getdbseparate")
 
-            'mydb = lite.getDataSet("getdbseparate", 0, "databasename")
-            'mysvr = lite.getDataSet("getdbseparate", 0, "ipserver")
-            'myport = lite.getDataSet("getdbseparate", 0, "port")
-            'myusr = lite.getDataSet("getdbseparate", 0, "username")
-            'mypass = lite.getDataSet("getdbseparate", 0, "password")
-        End If
+                'mydb = lite.getDataSet("getdbseparate", 0, "databasename")
+                'mysvr = lite.getDataSet("getdbseparate", 0, "ipserver")
+                'myport = lite.getDataSet("getdbseparate", 0, "port")
+                'myusr = lite.getDataSet("getdbseparate", 0, "username")
+                'mypass = lite.getDataSet("getdbseparate", 0, "password")
+            End If
 
-        'Dim mys As New SQLs(mystring)
-        Dim sqlset As New dtsetSQLS(dbstring)
+            'Dim mys As New SQLs(mystring)
+            Dim sqlset As New dtsetSQLS(dbstring)
 
-        Dim sqls As New SQLs(dbstring)
-        Dim localcnt As Integer = 0
-        Dim servercnt As Integer = 0
-        sqls.DMLQuery("select idtoken,idtokenonline,tokenkey1,tokenkey2,isdeleted,deletereason from sys_token order by createddate asc", "cnt")
+            Dim sqls As New SQLs(dbstring)
+            Dim localcnt As Integer = 0
+            Dim servercnt As Integer = 0
+            sqls.DMLQuery("select idtoken,tokenkey1,tokenkey2,isdeleted,deletereason from sys_token order by createddate asc", "cnt")
 
-        Dim json_result As String = ""
-        Dim table As DataTable = Nothing
-        Dim mparam As New List(Of String)
-        Dim mvalue As New List(Of String)
+            Dim json_result As String = ""
+            Dim table As DataTable = Nothing
+            Dim mparam As New List(Of String)
+            Dim mvalue As New List(Of String)
 
-        'mys.DMLQuery("select idtoken,tokenkey1,tokenkey2,isdeleted,deletereason from " & mydb & "." & myusr & ".token order by createddate asc", "cnt")
+            'mys.DMLQuery("select idtoken,tokenkey1,tokenkey2,isdeleted,deletereason from " & mydb & "." & myusr & ".token order by createddate asc", "cnt")
 
-        json_result = ""
-        mparam.Clear()
-        mvalue.Clear()
-        mparam.AddRange(New String() {"param", "value", "tkey1", "tkey2"})
-        mvalue.AddRange(New String() {"cekproducttype", "", tmptokenkey1, tmptokenkey2})
-        json_result = modCore.HttpPOSTRequestSelect(mysite & "producttype", mparam, mvalue)
-        table = Newtonsoft.Json.JsonConvert.DeserializeObject(Of DataTable)(json_result)
+            json_result = ""
+            mparam.Clear()
+            mvalue.Clear()
+            mparam.AddRange(New String() {"param", "value"})
+            mvalue.AddRange(New String() {"", ""})
+            'Dim task2 As System.Threading.Tasks.Task(Of String) = syncSelect(mysite & "Token", mparam, mvalue)
+            json_result = Await syncSelect(mysite & "Token", mparam, mvalue)
 
-        If sqls.getDataSet("cnt") > 0 Then
-            localcnt = sqls.getDataSet("cnt")
-        End If
-        If table.Rows.Count > 0 Then 'mys.getDataSet("cnt") > 0 Then
-            servercnt = table.Rows.Count 'CInt(MYs.getDataSet("cnt"))
-        End If
-        If localcnt <> servercnt Then
-            For i As Integer = 0 To table.Rows.Count - 1 'mys.getDataSet("cnt") - 1
-                Dim stridtoken As String = table.Rows(i).Item("idtoken") 'MYs.getDataSet("cnt", i, "idtoken")
-                Dim strtokenkey1 As String = table.Rows(i).Item("tokenkey1") 'MYs.getDataSet("cnt", i, "tokenkey1")
-                Dim strtokenkey2 As String = table.Rows(i).Item("tokenkey2") 'MYs.getDataSet("cnt", i, "tokenkey2")
-                Dim strisdeleted As String = table.Rows(i).Item("isdeleted") 'MYs.getDataSet("cnt", i, "isdeleted")
-                Dim strdeletereason As String = table.Rows(i).Item("deletereason") 'MYs.getDataSet("cnt", i, "deletereason")
-                Dim strcreatedby As String = table.Rows(i).Item("createdby") 'MYs.getDataSet("cnt", i, "createdby")
-                Dim strcreateddate As String = table.Rows(i).Item("createddate") 'MYs.getDataSet("cnt", i, "created")
-                Dim dtcreateddate As Date = Strdatetime2Datetime(strcreateddate)
+            If sqls.getDataSet("cnt") > 0 Then
+                localcnt = sqls.getDataSet("cnt")
+            End If
+            If json_result.Length > 2 Then 'table.Rows.Count > 0 Then 'mys.getDataSet("cnt") > 0 Then
+                table = Newtonsoft.Json.JsonConvert.DeserializeObject(Of DataTable)(json_result)
+                If table.Rows.Count > 0 Then
+                    servercnt = table.Rows.Count 'CInt(MYs.getDataSet("cnt"))
+                    If localcnt <> servercnt Then
+                        For i As Integer = 0 To table.Rows.Count - 1 'mys.getDataSet("cnt") - 1
+                            Dim stridtoken As String = table.Rows(i).Item("idtoken") 'MYs.getDataSet("cnt", i, "idtoken")
+                            Dim strtokenkey1 As String = table.Rows(i).Item("tokenkey1") 'MYs.getDataSet("cnt", i, "tokenkey1")
+                            Dim strtokenkey2 As String = table.Rows(i).Item("tokenkey2") 'MYs.getDataSet("cnt", i, "tokenkey2")
+                            Dim strisdeleted As String = table.Rows(i).Item("isdeleted") 'MYs.getDataSet("cnt", i, "isdeleted")
+                            Dim strdeletereason As String = table.Rows(i).Item("deletereason") 'MYs.getDataSet("cnt", i, "deletereason")
+                            Dim strcreatedby As String = table.Rows(i).Item("createdby") 'MYs.getDataSet("cnt", i, "createdby")
+                            Dim strcreateddate As String = table.Rows(i).Item("createddate") 'MYs.getDataSet("cnt", i, "created")
+                            Dim dtcreateddate As Date = Strdatetime2Datetime(strcreateddate)
 
-                Dim field As New List(Of String)
-                Dim value As New List(Of Object)
+                            Dim field As New List(Of String)
+                            Dim value As New List(Of Object)
 
-                field.AddRange(New String() {"idtoken", "tokenkey1", "tokenkey2", "isdeleted", "deletereason", "createdby", "createddate"})
-                value.Add(stridtoken) 'MYs.getDataSet("cnt", i, "idtoken"))
-                value.Add(strtokenkey1) 'MYs.getDataSet("cnt", i, "tokenkey1"))
-                value.Add(strtokenkey2) 'MYs.getDataSet("cnt", i, "tokenkey2"))
-                value.Add(strisdeleted) 'MYs.getDataSet("cnt", i, "isdeleted"))
-                value.Add(strdeletereason) 'MYs.getDataSet("cnt", i, "deletereason"))
-                value.Add(1)
-                value.Add(nowTime)
-                sqlset.datasetSave("sys_token", idData, field, value, False)
-                Application.DoEvents()
-                'Threading.Thread.Sleep(100)
-                'lblLoad.Text = "TOKEN (" & i & "/" & servercnt & ")"
-                If i = servercnt - 1 Then
-                    Dim sqli As New SQLi(dblite)
-                    sqli.DMLQuery("update appsetting set value='" & stridtoken & "' where variable='TokenID'", False) 'MYs.getDataSet("cnt", i, "idtoken") 
-                    sqli.DMLQuery("update appsetting set value='" & strtokenkey1 & "' where variable='TokenKey1'", False) 'MYs.getDataSet("cnt", i, "tokenkey1")
-                    sqli.DMLQuery("update appsetting set value='" & strtokenkey2 & "' where variable='TokenKey2'", False) 'MYs.getDataSet("cnt", i, "tokenkey2")
+                            field.AddRange(New String() {"idtoken", "tokenkey1", "tokenkey2", "isdeleted", "deletereason", "createdby", "createddate"})
+                            value.Add(stridtoken) 'MYs.getDataSet("cnt", i, "idtoken"))
+                            value.Add(strtokenkey1) 'MYs.getDataSet("cnt", i, "tokenkey1"))
+                            value.Add(strtokenkey2) 'MYs.getDataSet("cnt", i, "tokenkey2"))
+                            value.Add(strisdeleted) 'MYs.getDataSet("cnt", i, "isdeleted"))
+                            value.Add(strdeletereason) 'MYs.getDataSet("cnt", i, "deletereason"))
+                            value.Add(1)
+                            value.Add(nowTime)
+                            sqlset.datasetSave("sys_token", idData, field, value, False)
+                            'Application.DoEvents()
+                            'Threading.Thread.Sleep(100)
+                            'lblLoad.Text = "TOKEN (" & i & "/" & servercnt & ")"
+                            If i = servercnt - 1 Then
+                                Dim sqli As New SQLi(dblite)
+                                sqli.DMLQuery("update appsetting set value='" & stridtoken & "' where variable='TokenID'", False) 'MYs.getDataSet("cnt", i, "idtoken") 
+                                sqli.DMLQuery("update appsetting set value='" & strtokenkey1 & "' where variable='TokenKey1'", False) 'MYs.getDataSet("cnt", i, "tokenkey1")
+                                sqli.DMLQuery("update appsetting set value='" & strtokenkey2 & "' where variable='TokenKey2'", False) 'MYs.getDataSet("cnt", i, "tokenkey2")
 
-                    idtoken = stridtoken 'MYs.getDataSet("cnt", i, "idtoken")
-                    tokenkey1 = strtokenkey1 'MYs.getDataSet("cnt", i, "tokenkey1")
-                    tokenkey2 = strtokenkey2 'MYs.getDataSet("cnt", i, "tokenkey2")
+                                idtoken = stridtoken 'MYs.getDataSet("cnt", i, "idtoken")
+                                tokenkey1 = strtokenkey1 'MYs.getDataSet("cnt", i, "tokenkey1")
+                                tokenkey2 = strtokenkey2 'MYs.getDataSet("cnt", i, "tokenkey2")
+                            End If
+                        Next
+                    End If
                 End If
-            Next
-        End If
-        isSync = False
+            End If
+            isSync = False
+        Catch ex As Exception
+        End Try
     End Sub
 
     Dim imgBack As Image
     Dim objLogin As Object
     Dim it As DevExpress.XtraEditors.TileItem
-    Private Sub createMenu(Optional ByVal idParent As String = "", Optional ByVal menuObj As Object = Nothing, Optional ByVal menuGroup As Object = Nothing)
+    Private Sub createMenu(Optional ByVal idParent As String = "", Optional ByVal menuObj As Object = Nothing)
+        Dim strSistem As String = "Sistem"
+        Dim sqls As New SQLs(dbstring)
+        Dim idP As String = ""
+        If idParent = "" Then
+            sqls.DMLQuery("select m.idmenu,m.idparent,m.idiconmenu,m.menuname,m.frmname,m.description,right(replace(replace(g.filename,'\',''),':',''),22) as fakename,m.asdialog from sys_menu m left join sys_iconmenu g on g.idiconmenu=m.idiconmenu where (m.idproducttype='0' or m.idproducttype in ('" & String.Join("','", idproducttype) & "')) and m.menuname='" & strSistem & "' order by m.menuname asc", "sistem")
+            idP = sqls.getDataSet("sistem", 0, "idmenu")
+        Else
+            idP = idParent
+        End If
+        If idParent = "" Then
+            If userlevel = "SuperAdmin" Or userlevel = "Guest" Or userlevel = "Administrator" Then
+                sqls.DMLQuery("select m.idmenu,m.idparent,m.idiconmenu,m.menuname,m.frmname,m.description,right(replace(replace(g.filename,'\',''),':',''),22) as fakename,m.asdialog from sys_menu m left join sys_iconmenu g on g.idiconmenu=m.idiconmenu where (m.idproducttype='0' or m.idproducttype in ('" & String.Join("','", idproducttype) & "')) and m.idparent='0' order by m.menuname asc", "menu")
+            Else
+                sqls.DMLQuery("select m.idmenu,m.idparent,m.idiconmenu,m.menuname,m.frmname,m.description,right(replace(replace(g.filename,'\',''),':',''),22) as fakename,m.asdialog from sys_menu m left join sys_iconmenu g on g.idiconmenu=m.idiconmenu left join sys_userpermission sup on m.idmenu=sup.idmenu where (m.idproducttype='0' or m.idproducttype in ('" & String.Join("','", idproducttype) & "')) and m.idparent='0' and sup.iduserlevel='" & userlevelid & "' and sup.isactive=1 order by m.menuname asc", "menu")
+            End If
+        Else
+            If userlevel = "SuperAdmin" Or userlevel = "Guest" Or userlevel = "Administrator" Then
+                sqls.DMLQuery("select m.idmenu,m.idparent,m.idiconmenu,m.menuname,m.frmname,m.description,right(replace(replace(g.filename,'\',''),':',''),22) as fakename,m.asdialog from sys_menu m left join sys_iconmenu g on g.idiconmenu=m.idiconmenu where (m.idproducttype='0' or m.idproducttype in ('" & String.Join("','", idproducttype) & "')) and m.idparent='" & idP & "' order by m.menuname asc", "menu")
+            Else
+                sqls.DMLQuery("select m.idmenu,m.idparent,m.idiconmenu,m.menuname,m.frmname,m.description,right(replace(replace(g.filename,'\',''),':',''),22) as fakename,m.asdialog from sys_menu m left join sys_iconmenu g on g.idiconmenu=m.idiconmenu left join sys_userpermission sup on m.idmenu=sup.idmenu where (m.idproducttype='0' or m.idproducttype in ('" & String.Join("','", idproducttype) & "')) and m.idparent='" & idP & "' and sup.iduserlevel='" & userlevelid & "' and sup.isactive=1 order by m.menuname asc", "menu")
+            End If
+        End If
+        Dim menux As ToolStripMenuItem
+        Dim cnt As Long = 1
+
+        For Each dr As DataRow In sqls.dataTable("menu").Rows
+            Dim img As Image = Image.FromFile(pathIcon & dr("fakename"))
+            menux = New ToolStripMenuItem("", img, AddressOf MenuClick)
+            menux.ImageScaling = ToolStripItemImageScaling.SizeToFit
+            menux.ImageAlign = ContentAlignment.MiddleCenter
+            menux.Font = New System.Drawing.Font("Tahoma", 10.0!)
+            menux.Text = dr("menuname").ToString  'dsete.Tables(0).Rows(i).Item("caption").ToString
+            menux.Name = dr("idmenu").ToString 'dsete.Tables(0).Rows(i).Item("nm_menu").ToString
+            menux.AccessibleDescription = dr("asdialog").ToString
+
+            If TypeOf menuObj Is MenuStrip Then
+                'menuObj.renderer = New MyRenderer()
+                menux.Owner = menuObj
+                menux.Tag = "-"
+            Else
+                menuObj.DropDownItems.Add(menux)
+                menux.Tag = dr("frmname").ToString 'dsete.Tables(0).Rows(i).Item("call_form").ToString
+            End If
+            createMenu(menux.Name, menux)
+            cnt += 1
+        Next
+    End Sub
+
+    Private Sub createMenuG(Optional ByVal idParent As String = "", Optional ByVal menuObj As Object = Nothing)
         Dim strSistem As String = "Sistem"
         Dim sqls As New SQLs(dbstring)
         Dim idP As String = ""
@@ -1018,27 +1256,20 @@ Public Class frmMain
                 sqls.DMLQuery("select m.idmenu,m.idparent,m.idiconmenu,m.menuname,m.frmname,m.description,right(replace(replace(g.filename,'\',''),':',''),22) as fakename,m.asdialog from sys_menu m left join sys_iconmenu g on g.idiconmenu=m.idiconmenu left join sys_userpermission sup on m.idmenu=sup.idmenu where (m.idproducttype='0' or m.idproducttype in ('" & String.Join("','", idproducttype) & "')) and m.idparent='" & idP & "' and sup.iduserlevel='" & userlevelid & "' and sup.isactive=1 order by len(m.menuname) asc,m.menuname asc", "menu")
             End If
         End If
-        Dim menux As ToolStripMenuItem
         Dim ig As DevExpress.XtraEditors.TileGroup = Nothing
         Dim cnt As Long = 1
-        For Each dr As DataRow In sqls.dataTable("menu").Rows
-            Dim img As Image = Image.FromFile(pathIcon & dr("fakename"))
-            menux = New ToolStripMenuItem("", img, AddressOf MenuClick)
-            menux.ImageScaling = ToolStripItemImageScaling.SizeToFit
-            menux.ImageAlign = ContentAlignment.MiddleCenter
-            menux.Font = New System.Drawing.Font("Tahoma", 12.0!)
-            menux.Text = dr("menuname").ToString  'dsete.Tables(0).Rows(i).Item("caption").ToString
-            menux.Name = dr("idmenu").ToString 'dsete.Tables(0).Rows(i).Item("nm_menu").ToString
-            menux.AccessibleDescription = dr("asdialog").ToString
 
-            If TypeOf menuGroup Is DevExpress.XtraEditors.TileControl Then
+        For Each dr As DataRow In sqls.dataTable("menu").Rows
+            Dim fakename As String = dr("fakename")
+            Dim img As Image = Image.FromFile(pathIcon & fakename)
+            If TypeOf menuObj Is DevExpress.XtraEditors.TileControl Then
                 ig = New DevExpress.XtraEditors.TileGroup
                 ig.Text = dr("menuname").ToString  'dsete.Tables(0).Rows(i).Item("caption").ToString
                 ig.Name = dr("idmenu").ToString 'dsete.Tables(0).Rows(i).Item("nm_menu").ToString
                 ig.Tag = dr("asdialog").ToString
 
-                CType(menuGroup, DevExpress.XtraEditors.TileControl).Groups.Add(ig)
-            ElseIf TypeOf menuGroup Is DevExpress.XtraEditors.TileGroup Then
+                CType(menuObj, DevExpress.XtraEditors.TileControl).Groups.Add(ig)
+            ElseIf TypeOf menuObj Is DevExpress.XtraEditors.TileGroup Then
                 it = New DevExpress.XtraEditors.TileItem
                 it.TextShowMode = DevExpress.XtraEditors.TileItemContentShowMode.Always
 
@@ -1089,23 +1320,19 @@ Public Class frmMain
                 it.Elements.Add(elementDescription)
                 it.TextShowMode = DevExpress.XtraEditors.TileItemContentShowMode.Always
 
-                CType(menuGroup, DevExpress.XtraEditors.TileGroup).Items.Add(it)
+                CType(menuObj, DevExpress.XtraEditors.TileGroup).Items.Add(it)
             End If
-
-            If TypeOf menuObj Is MenuStrip Then
-                'menuObj.renderer = New MyRenderer()
-                menux.Owner = menuObj
-                menux.Tag = "-"
-            Else
-                menuObj.DropDownItems.Add(menux)
-                menux.Tag = dr("frmname").ToString 'dsete.Tables(0).Rows(i).Item("call_form").ToString
+            If ig IsNot Nothing Then
+                createMenuG(ig.Name, ig)
             End If
-            createMenu(menux.Name, menux, ig)
             cnt += 1
         Next
     End Sub
 
     Private Sub MenuClick(ByVal sender As System.Object, ByVal e As System.EventArgs)
+        pHeader.Visible = False
+        pHeader.SendToBack()
+
         Try
             If sender.tag <> "-" Then
                 hideTaskList(True)
@@ -1188,7 +1415,7 @@ Public Class frmMain
                 nsud.ShowDialog()
             End If
         Catch ex As Exception
-            dizMsgbox("Menu tidak tersedia atau Aplikasi masih menggunakan versi lama", dizMsgboxStyle.Peringatan)
+            dizMsgbox("Menu tidak tersedia atau Aplikasi masih menggunakan versi lama", dizMsgboxStyle.Peringatan, Me)
             ClearForm(pForm)
         End Try
     End Sub
@@ -1203,8 +1430,7 @@ Public Class frmMain
                 tcTile.Visible = True
                 tcTile.BringToFront()
                 tcTile.Focus()
-                gcSearch.Visible = True
-                gcSearch.BringToFront()
+                teSearch.Visible = True
                 pForm.Dock = DockStyle.None
                 pForm.Visible = False
                 pForm.SendToBack()
@@ -1218,8 +1444,7 @@ Public Class frmMain
         tcTile.Visible = True
         tcTile.BringToFront()
         tcTile.Focus()
-        gcSearch.Visible = True
-        gcSearch.BringToFront()
+        tesearch.Visible = True
         pform.Dock = DockStyle.None
         pform.Visible = False
         pform.SendToBack()
@@ -1259,6 +1484,9 @@ Public Class frmMain
                     End If
                 End If
                 If nowTime.Second Mod 10 = 0 Then
+                    'Dim task As System.Threading.Tasks.Task = New System.Threading.Tasks.Task(AddressOf cekTimer2)
+                    'task.Start()
+
                     'Dim sqls As New SQLs(dbstring)
                     'sqls.DMLQuery("select value from sys_appsetting where variable='LastActive'", "cekval")
                     'If sqls.getDataSet("cekval") = 0 Then
@@ -1353,9 +1581,21 @@ Public Class frmMain
                     End If
                 End If
             End If
+            If nowTime.Second = 55 Then
+                Dim sqls As New SQLs(dbstring)
+                sqls.DMLQuery("select top 1 replace(value,'.','') from sys_AppSetting where variable='ProductVersion'", "getver")
+                Dim tmpver As String = sqls.getDataSet("getver", 0, 0)
+                If versiApp <> tmpver Then
+                    If niUpdate.Visible = False Then
+                        niUpdate.Visible = True
+                        niUpdate.ShowBalloonTip(10000, "Sistem Update", "Versi terbaru telah tersedia" & vbCrLf & "Silahkan restart aplikasi ini", ToolTipIcon.Info)
+                    End If
+                End If
+            End If
 
             intNotif -= 1
             If intNotif <= 0 Then
+                pbNotification.Visible = False
                 pbNotification.Image = Nothing
                 pbNotification.BackColor = Color.Transparent 'FromArgb(0, 57, 64)
                 'lblNotification.Text = ""
@@ -1367,7 +1607,7 @@ Public Class frmMain
             'gantinya backgroundworker
             cntIdle += intIdle
         Catch ex As Exception
-            dizMsgbox(ex.Message, dizMsgboxStyle.Kesalahan)
+            dizMsgbox(ex.Message, dizMsgboxStyle.Kesalahan, Me)
         End Try
     End Sub
 
@@ -1395,17 +1635,17 @@ Public Class frmMain
             If IO.File.Exists(appPath & "default_live.jpg") Then
                 imgBack = Image.FromFile(appPath & "default_live.jpg")
                 tcTile.BackgroundImage = imgBack
-                tcTile.BackgroundImageLayout = ImageLayout.Stretch
+                tcTile.BackgroundImageLayout = ImageLayout.None
                 pForm.BackgroundImage = imgBack
-                pForm.BackgroundImageLayout = ImageLayout.Stretch
+                pForm.BackgroundImageLayout = ImageLayout.None
             End If
         ElseIf IO.Path.GetFileNameWithoutExtension(Application.ExecutablePath) = "dizUIdemo" Then
             If IO.File.Exists(appPath & "default_demo.jpg") Then
                 imgBack = Image.FromFile(appPath & "default_demo.jpg")
                 tcTile.BackgroundImage = imgBack
-                tcTile.BackgroundImageLayout = ImageLayout.Stretch
+                tcTile.BackgroundImageLayout = ImageLayout.None
                 pForm.BackgroundImage = imgBack
-                pForm.BackgroundImageLayout = ImageLayout.Stretch
+                pForm.BackgroundImageLayout = ImageLayout.None
             End If
         End If
     End Sub
@@ -1452,9 +1692,10 @@ Public Class frmMain
                 coll_img.Clear()
                 clearTaskList(Nothing, Nothing)
 
-                msMenu.Items.Clear()
+                'msMenu.Items.Clear()
                 tcTile.Groups.Clear()
-                createMenu("", msMenu, tcTile)
+                'createMenu("", msMenu)
+                createMenuG("", tcTile)
 
                 sender.text = "Logout"
                 lblUserActive.Text = username & " (" & userlevel & ")"
@@ -1472,26 +1713,25 @@ Public Class frmMain
 
                 If tcTile.Visible = True Then
                     If tcTile.Groups.Count = 0 Then
-                        gcSearch.Visible = False
-                        gcSearch.SendToBack()
-                        teSearch.Text = ""
+                        teSearch.Visible = False
+                        teSearch.EditValue = Nothing
                     Else
-                        gcSearch.Visible = True
-                        gcSearch.BringToFront()
-                        teSearch.Text = ""
+                        teSearch.Visible = True
+                        teSearch.EditValue = Nothing
                     End If
                 Else
-                    gcSearch.Visible = False
-                    gcSearch.SendToBack()
-                    teSearch.Text = ""
+                    teSearch.Visible = False
+                    teSearch.EditValue = Nothing
                 End If
+
+                tcTile.Focus()
             Else
                 clearchild()
                 coll_form.Clear()
                 coll_img.Clear()
                 clearTaskList(Nothing, Nothing)
 
-                msMenu.Items.Clear()
+                'msMenu.Items.Clear()
                 tcTile.Groups.Clear()
                 ClearForm(pForm)
                 clearUser()
@@ -1504,17 +1744,19 @@ Public Class frmMain
                 btnMessage.Visible = False
                 btnProfile.Visible = False
 
-                gcSearch.Visible = False
-                gcSearch.SendToBack()
-                teSearch.Text = ""
+                teSearch.Visible = False
+                teSearch.EditValue = Nothing
             End If
         Else
-            clearchild()
+            pHeader.Visible = False
+            pHeader.SendToBack()
+
+            clearChild()
             coll_form.Clear()
             coll_img.Clear()
             clearTaskList(Nothing, Nothing)
             statLogin = False
-            msMenu.Items.Clear()
+            'msMenu.Items.Clear()
             tcTile.Groups.Clear()
             ClearForm(pForm)
             clearUser()
@@ -1531,9 +1773,8 @@ Public Class frmMain
             btnMessage.Visible = False
             btnProfile.Visible = False
 
-            gcSearch.Visible = False
-            gcSearch.SendToBack()
-            teSearch.Text = ""
+            teSearch.Visible = False
+            teSearch.EditValue = Nothing
         End If
     End Sub
 
@@ -1553,7 +1794,7 @@ Public Class frmMain
                 Next
             End If
         Catch ex As Exception
-            dizMsgbox(ex.Message, dizMsgboxStyle.Kesalahan)
+            dizMsgbox(ex.Message, dizMsgboxStyle.Kesalahan, Me)
         End Try
     End Sub
 
@@ -1589,22 +1830,22 @@ Public Class frmMain
     End Sub
 
     Private Sub bwServer_RunWorkerCompleted(sender As Object, e As System.ComponentModel.RunWorkerCompletedEventArgs) Handles bwServer.RunWorkerCompleted
-        If bwServer.IsBusy = False Then
-            bwServer.RunWorkerAsync()
-        End If
-        If bwServer.CancellationPending = True Then
-            bwServer.RunWorkerAsync()
-        End If
+        'If bwServer.IsBusy = False Then
+        '    bwServer.RunWorkerAsync()
+        'End If
+        'If bwServer.CancellationPending = True Then
+        '    bwServer.RunWorkerAsync()
+        'End If
     End Sub
 
     Private Sub btnAppBorder_Click(sender As Object, e As EventArgs) Handles btnAppBorder.Click
         If Me.FormBorderStyle = Windows.Forms.FormBorderStyle.None Then
             Me.FormBorderStyle = Windows.Forms.FormBorderStyle.FixedSingle
-            btnAppBorder.Image = My.Resources.bordernon_n
+            btnAppBorder.BackgroundImage = My.Resources.bordernon_n
             btnAppBorder.Invalidate()
         Else
             Me.FormBorderStyle = Windows.Forms.FormBorderStyle.None
-            btnAppBorder.Image = My.Resources.bordersingle_n
+            btnAppBorder.BackgroundImage = My.Resources.bordersingle_n
             btnAppBorder.Invalidate()
         End If
         If pForm.Controls.Count > 0 Then
@@ -1639,11 +1880,11 @@ Public Class frmMain
             'End If
 
             bClose = False
-            bwServer.CancelAsync()
+            'bwServer.CancelAsync()
             tmrWaktu.Stop()
-            Application.Exit()
+            Environment.Exit(0)
         Catch ex As Exception
-            Application.Exit()
+            Environment.Exit(0)
         End Try
     End Sub
 
@@ -1736,29 +1977,25 @@ Public Class frmMain
         If statLogin = True Then
             If tcTile.Visible = True Then
                 If tcTile.Groups.Count = 0 Then
-                    gcSearch.Visible = False
-                    gcSearch.SendToBack()
-                    teSearch.Text = ""
+                    teSearch.Visible = False
+                    teSearch.EditValue = Nothing
                 Else
-                    gcSearch.Visible = True
-                    gcSearch.BringToFront()
-                    teSearch.Text = ""
+                    teSearch.Visible = True
+                    teSearch.EditValue = Nothing
                 End If
             Else
-                gcSearch.Visible = False
-                gcSearch.SendToBack()
-                'teSearch.Text = ""
+                teSearch.Visible = False
             End If
         Else
-            gcSearch.Visible = False
-            gcSearch.SendToBack()
-            teSearch.Text = ""
+            teSearch.Visible = False
+            teSearch.EditValue = Nothing
         End If
     End Sub
 
     Private Sub teSearch_TextChanged(sender As Object, e As EventArgs) Handles teSearch.TextChanged
-        If gcSearch.Visible = False Then Exit Sub
-        If teSearch.Text = "" Then
+        If teSearch.Visible = False Then Exit Sub
+        If teSearch.Text = "" Then teSearch.EditValue = Nothing
+        If teSearch.Text = "" Or teSearch.EditValue Is Nothing Then
             For Each cg As DevExpress.XtraEditors.TileGroup In tcTile.Groups
                 For Each ci As DevExpress.XtraEditors.TileItem In tcTile.Groups(cg.Name).Items
                     ci.Visible = True
@@ -1776,5 +2013,67 @@ Public Class frmMain
             Next
         End If
     End Sub
+
+    Private Sub tcTile_KeyDown(sender As Object, e As KeyEventArgs) Handles tcTile.KeyDown
+        If teSearch.Visible = True Then
+            If e.KeyData = Keys.F3 Then
+                teSearch.Focus()
+            End If
+        End If
+    End Sub
+
+    Private frmhelp = System.Windows.Forms.Application.OpenForms
+    Private Sub btnHelp_Click(sender As Object, e As EventArgs) Handles btnHelp.Click
+        'System.Diagnostics.Process.Start("https://t.me/datacube_enterprise")
+        Dim frm As New frmChatHelp("https://t.me/datacube_enterprise")
+        For i As Int16 = 0I To frmhelp.Count - 1I
+            If frmhelp.Item(i).Name = frm.Name Then
+                frmhelp.Item(i).Activate()
+                Exit Sub
+            End If
+        Next i
+        frm.Show()
+    End Sub
+
+    Private Sub btnSetting_Click(sender As Object, e As EventArgs) Handles btnSetting.Click
+        If pHeader.Visible = True Then
+            pHeader.Visible = False
+            pHeader.SendToBack()
+        Else
+            pHeader.Visible = True
+            pHeader.BringToFront()
+        End If
+    End Sub
+
+    Private Sub cmsTutupPaksa_Click(sender As Object, e As EventArgs) Handles cmsTutupPaksa.Click
+        Environment.Exit(0)
+    End Sub
+
+    'Private Sub btnSidebar_Click(sender As Object, e As EventArgs) Handles btnSidebar.Click
+    '    pSidebar.Visible = Not pSidebar.Visible
+    '    btnSidebar.BringToFront()
+    '    pSidebar.BringToFront()
+    'End Sub
+
+    'Private Sub pSidebar_VisibleChanged(sender As Object, e As EventArgs) Handles pSidebar.VisibleChanged
+    '    If pSidebar.Visible = False Then
+    '        pBody.Controls.Add(tcTile)
+    '        If pSidebar.Controls.IndexOf(tcTile) > -1 Then
+    '            pSidebar.Controls.Item(pSidebar.Controls.IndexOf(tcTile)).Dispose()
+    '        End If
+    '        btnSidebar.Location = New Point(0, 0)
+    '        tcTile.Location = New Point(0, 0)
+    '        tcTile.Dock = DockStyle.None
+    '    Else
+    '        If pBody.Controls.IndexOf(tcTile) > -1 Then
+    '            pBody.Controls.Item(pBody.Controls.IndexOf(tcTile)).Dispose()
+    '        End If
+    '        pSidebar.Controls.Add(tcTile)
+    '        btnSidebar.Location = New Point(240, 0)
+    '        tcTile.Location = New Point(0, 0)
+    '        tcTile.BringToFront()
+    '        tcTile.Dock = DockStyle.Fill
+    '    End If
+    'End Sub
 
 End Class

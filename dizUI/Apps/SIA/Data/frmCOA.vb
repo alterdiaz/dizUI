@@ -133,13 +133,13 @@
         End If
         If statData = statusData.Baru Then
             Dim sqls As New SQLs(dbstring)
-            sqls.DMLQuery("select coa from coa where idcompany=(select top 1 value from sys_appsetting where variable='CompanyID') and replace(coa,' ','')='" & seCOA.Value.ToString.Replace(" ", "") & "'", "exist")
+            sqls.DMLQuery("select coa from coa where replace(coa,' ','')='" & seCOA.Value.ToString.Replace(" ", "") & "'", "exist")
             If sqls.getDataSet("exist") > 0 Then
                 dizMsgbox("Data tersebut sudah ada", dizMsgboxStyle.info, Me)
                 seCOA.Focus()
                 Exit Sub
             End If
-            sqls.DMLQuery("select coa from coa where idcompany=(select top 1 value from sys_appsetting where variable='CompanyID') and replace(remarks,' ','')='" & teRemarks.Text.Replace(" ", "") & "'", "exist")
+            sqls.DMLQuery("select coa from coa where replace(remarks,' ','')='" & teRemarks.Text.Replace(" ", "") & "'", "exist")
             If sqls.getDataSet("exist") > 0 Then
                 dizMsgbox("Data tersebut sudah ada", dizMsgboxStyle.info, Me)
                 seCOA.Focus()
@@ -147,13 +147,13 @@
             End If
         ElseIf statData = statusData.Edit Then
             Dim sqls As New SQLs(dbstring)
-            sqls.DMLQuery("select coa from coa where idcompany=(select top 1 value from sys_appsetting where variable='CompanyID') and replace(coa,' ','')='" & seCOA.Value.ToString.Replace(" ", "") & "' and idcoa<>'" & idData & "'", "exist")
+            sqls.DMLQuery("select coa from coa where replace(coa,' ','')='" & seCOA.Value.ToString.Replace(" ", "") & "' and idcoa<>'" & idData & "'", "exist")
             If sqls.getDataSet("exist") > 0 Then
                 dizMsgbox("Data tersebut sudah ada", dizMsgboxStyle.info, Me)
                 seCOA.Focus()
                 Exit Sub
             End If
-            sqls.DMLQuery("select coa from coa where idcompany=(select top 1 value from sys_appsetting where variable='CompanyID') and replace(remarks,' ','')='" & teRemarks.Text.Replace(" ", "") & "' and idcoa<>'" & idData & "'", "exist")
+            sqls.DMLQuery("select coa from coa where replace(remarks,' ','')='" & teRemarks.Text.Replace(" ", "") & "' and idcoa<>'" & idData & "'", "exist")
             If sqls.getDataSet("exist") > 0 Then
                 dizMsgbox("Data tersebut sudah ada", dizMsgboxStyle.info, Me)
                 seCOA.Focus()
@@ -163,7 +163,7 @@
         'check remarks
         If statData = statusData.Baru Then
             Dim sqls As New SQLs(dbstring)
-            sqls.DMLQuery("select coa from coa where idcompany=(select top 1 value from sys_appsetting where variable='CompanyID') and replace(remarks,' ','')='" & teRemarks.Text.Replace(" ", "") & "'", "exist")
+            sqls.DMLQuery("select coa from coa where replace(remarks,' ','')='" & teRemarks.Text.Replace(" ", "") & "'", "exist")
             If sqls.getDataSet("exist") = 0 Then
                 idData = GenerateGUID()
             Else
@@ -173,7 +173,7 @@
             End If
         ElseIf statData = statusData.Edit Then
             Dim sqls As New SQLs(dbstring)
-            sqls.DMLQuery("select coa from coa where idcompany=(select top 1 value from sys_appsetting where variable='CompanyID') and replace(remarks,' ','')='" & teRemarks.Text.Replace(" ", "") & "' and idcoa<>" & idData, "exist")
+            sqls.DMLQuery("select coa from coa where replace(remarks,' ','')='" & teRemarks.Text.Replace(" ", "") & "' and idcoa<>" & idData, "exist")
             If sqls.getDataSet("exist") > 0 Then
                 dizMsgbox("Data tersebut sudah ada", dizMsgboxStyle.info, Me)
                 seCOA.Focus()
@@ -190,7 +190,7 @@
             Else
                 strcoainduk = strcoainduk.Chars(0)
             End If
-            sqls.DMLQuery("select tipecoa from coa where idcompany=(select top 1 value from sys_appsetting where variable='CompanyID') and coa='" & strcoainduk & "'", "existkatcoa")
+            sqls.DMLQuery("select tipecoa from coa where coa='" & strcoainduk & "'", "existkatcoa")
             If sqls.getDataSet("existkatcoa") > 0 Then
                 tipecoa = sqls.getDataSet("existkatcoa", 0, "tipecoa")
             End If
@@ -252,6 +252,7 @@
 
     Private isdeleted As String = ""
     Private Sub gvData_FocusedRowChanged(ByVal sender As Object, ByVal e As DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs) Handles gvData.FocusedRowChanged
+        If isExport = True Then Exit Sub
         Try
             Dim dcol As DataRow = gvData.GetDataRow(e.FocusedRowHandle)
             seCOA.Value = dcol("coa")
@@ -288,5 +289,156 @@
         loadLOV()
         btnNew_Click(Me, Nothing)
     End Sub
+
+    Private isExport As Boolean = False
+    Private Sub btnExportFormat_Click(sender As Object, e As EventArgs) Handles btnExportFormat.Click
+        isExport = True
+        Dim sqls As New SQLs(dbstring)
+        sqls.DMLQuery("select k.idcoa, k.coa, k.remarks, k.isdeleted, k.posisidk, del.generalcode as statdata, t.generalcode as statdk from coa k left join sys_generalcode t on t.idgeneral=k.posisidk and t.gctype='POSISIDK' left join sys_generalcode del on del.idgeneral=k.isdeleted and del.gctype='DELETE' where 1=0", "data")
+        gcData.DataSource = sqls.dataTable("data")
+        gvData.BestFitColumns()
+
+        Dim gctmp As New DevExpress.XtraGrid.GridControl
+        Dim gvtmp As New DevExpress.XtraGrid.Views.Grid.GridView
+        gctmp = gcData
+        gvtmp = gvData
+        For Each gc As DevExpress.XtraGrid.Columns.GridColumn In gvtmp.Columns
+            gc.AppearanceCell.BackColor = Nothing
+            gc.ColumnEdit = Nothing
+
+            For Each gc1 As DevExpress.XtraGrid.Columns.GridColumn In gvData.Columns
+                If gc.Name = gc1.Name Then
+                    gc.Width = gc1.Width
+                    gc.MinWidth = gc1.Width
+                End If
+            Next
+        Next
+        gvtmp.BestFitColumns()
+
+        Dim exp As New frmExportExcel(gvtmp, True, False, False)
+        tambahChild(exp)
+        exp.ShowDialog()
+
+        btnNew_Click(btnNew, Nothing)
+        isExport = False
+    End Sub
+
+    Private Sub btnImportFormat_Click(sender As Object, e As EventArgs) Handles btnImportFormat.Click
+        Dim open As New OpenFileDialog
+        open.AddExtension = False
+        open.AutoUpgradeEnabled = True
+        open.CheckFileExists = True
+        open.CheckPathExists = True
+        open.DefaultExt = "xls"
+        open.Filter = "Old Excel Files|*.xls"
+        open.FilterIndex = 1
+        open.InitialDirectory = pathTemp
+        open.Multiselect = False
+        open.ShowHelp = False
+
+        If open.ShowDialog() = Windows.Forms.DialogResult.OK Then
+            Dim cnt As Long = 0
+            Dim dt As DataTable = ImportExcelXLS(open.FileName)
+            For i As Integer = 0 To dt.Rows.Count - 1
+                Try
+                    Dim dr As DataRow = dt.Rows(i)
+                    Dim coa As String = If(dr(0), "")
+                    Dim remarks As String = If(dr(1), "")
+                    Dim brgstat As String = If(dr(2), "")
+
+                    If coa = "" Or remarks = "" Or (coa = "" And remarks = "") Then Exit Try
+                    coa = coa.Replace(",", "")
+                    coa = coa.Replace(".", "")
+                    coa = coa.Replace("-", "")
+                    coa = coa.Replace("_", "")
+                    coa = coa.Replace("/", "")
+                    coa = coa.Replace("\", "")
+                    coa = coa.Replace("|", "")
+                    If IsNumeric(coa) = False Then Exit Try
+
+                    Dim idcoa As String = "0"
+
+                    Dim sqls As New SQLs(dbstring)
+                    If coa <> "" Then
+                        sqls.DMLQuery("select * from coa where replace(coa,' ','')='" & coa.Replace(" ", "") & "'", "cekcoa")
+                        If sqls.getDataSet("cekcoa") > 0 Then
+                            idcoa = sqls.getDataSet("cekitem", 0, "idcoa")
+                        End If
+                    End If
+                    If remarks <> "" Then
+                        sqls.DMLQuery("select * from coa where replace(remarks,' ','')='" & remarks.Replace(" ", "") & "'", "cekremarks")
+                        If sqls.getDataSet("cekremarks") > 0 Then
+                            idcoa = sqls.getDataSet("cekremarks", 0, "idcoa")
+                        End If
+                    End If
+
+                    If idcoa = "0" Then
+                        sqls.CallSP("spGetCompany", "CompID")
+                        Dim idcomp As String = sqls.getDataSet("CompID", 0, "value")
+
+                        Dim tipecoa As String = ""
+                        Dim strcoainduk As String = seCOA.Value
+                        If IsNumeric(strcoainduk.Chars(0)) = False Then
+                            strcoainduk = strcoainduk.Substring(0, 2)
+                        Else
+                            strcoainduk = strcoainduk.Chars(0)
+                        End If
+                        sqls.DMLQuery("select tipecoa from coa where coa='" & strcoainduk & "'", "existkatcoa")
+                        If sqls.getDataSet("existkatcoa") > 0 Then
+                            tipecoa = sqls.getDataSet("existkatcoa", 0, "tipecoa")
+                        End If
+
+                        idcoa = GenerateGUID()
+                        Dim field1 As New List(Of String)
+                        Dim value1 As New List(Of Object)
+                        Dim dtsqls1 As New dtsetSQLS(dbstring)
+                        field1.AddRange(New String() {"idcoa", "idcompany", "tipecoa", "coa", "remarks", "posisidk", "isdeleted", "createdby", "createddate"})
+                        value1.AddRange(New Object() {idcoa, idcomp, tipecoa, coa, remarks, CObj(DBNull.Value), 0, userid, nowTime})
+
+                        If dtsqls1.datasetSave("coa", idcoa, field1, value1, False) = True Then
+                            cnt += 1
+                        End If
+                    End If
+                Catch ex As Exception
+                End Try
+            Next
+            If cnt > 0 Then
+                dizMsgbox("COA Baru terimport sebanyak " & cnt, dizMsgboxStyle.Info)
+            Else
+                dizMsgbox("Tidak ada COA Baru yang diimport", dizMsgboxStyle.Info)
+            End If
+            btnNew_Click(btnNew, Nothing)
+        End If
+    End Sub
+
+    Public Shared Function ImportExcelXLS(ByVal FileName As String) As DataTable
+        Dim res As DataTable = Nothing
+        Dim odbcConn = New Data.Odbc.OdbcConnection()
+        Try
+            Dim path As String = System.IO.Path.GetFullPath(FileName)
+            odbcConn = New Data.Odbc.OdbcConnection("Driver={Microsoft Excel Driver (*.xls)};Dbq=" & path & ";ReadOnly=0;")
+            odbcConn.Open()
+            Dim cmd As Data.Odbc.OdbcCommand = New Data.Odbc.OdbcCommand()
+            Dim oleda As Data.Odbc.OdbcDataAdapter = New Data.Odbc.OdbcDataAdapter()
+            Dim ds As DataSet = New DataSet()
+            Dim dt As DataTable = odbcConn.GetSchema("Tables")
+            Dim sheetName As String = String.Empty
+
+            If dt IsNot Nothing Then
+                sheetName = dt.Rows(0)("TABLE_NAME").ToString()
+            End If
+
+            cmd.Connection = odbcConn
+            cmd.CommandType = CommandType.Text
+            cmd.CommandText = "SELECT * FROM [" & sheetName & "]"
+            oleda = New Data.Odbc.OdbcDataAdapter(cmd)
+            oleda.Fill(ds, "excelData")
+            res = ds.Tables("excelData")
+        Catch ex As Exception
+        Finally
+            odbcConn.Close()
+        End Try
+        Return res
+    End Function
 
 End Class

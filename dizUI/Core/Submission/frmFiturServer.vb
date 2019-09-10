@@ -94,4 +94,9 @@
         chghw.ShowDialog(Me)
     End Sub
 
+    Private Sub btnProduk_Click(sender As Object, e As EventArgs) Handles btnProduk.Click
+        Dim newprod As New frmNewProduct
+        newprod.ShowDialog()
+    End Sub
+
 End Class

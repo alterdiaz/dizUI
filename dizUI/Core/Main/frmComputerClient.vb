@@ -66,7 +66,7 @@
 
     Private Sub nudJumlahPC_ValueChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles nudJumlahPC.ValueChanged
         Dim sqls As New dtsetSQLS(dbstring)
-        sqls.DMLQuery("select top " & nudJumlahPC.Value & " ipclient from sys_clientunit order by idclientunit asc", "clientpc")
+        sqls.DMLQuery("select top " & nudJumlahPC.Value & " ipclient from sys_clientunit order by ipclient asc", "clientpc")
         lbClient.DataSource = sqls.dataTable("clientpc")
         lbClient.ValueMember = "ipclient"
         lbClient.DisplayMember = "ipclient"
@@ -74,7 +74,7 @@
         If nudJumlahPC.Value > 0 Then
             If fromload = False Then
                 sqls = New dtsetSQLS(dbstring)
-                sqls.DMLQuery("delete from sys_ClientUnit where idclientunit not in(select top " & nudJumlahPC.Value & " idclientunit from sys_clientunit order by idclientunit asc)", False)
+                sqls.DMLQuery("delete from sys_ClientUnit where idclientunit not in(select top " & nudJumlahPC.Value & " idclientunit from sys_clientunit order by ipclient asc)", False)
             End If
         End If
         If fromLoad = False Then

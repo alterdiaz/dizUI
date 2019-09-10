@@ -78,7 +78,7 @@ Public Class frmMenu
                 ilicon.Images.Add(i, img)
 
                 Dim someItem As ImageComboBoxItem = New ImageComboBoxItem
-                someItem.Description = Format(CInt(dr("idiconmenu")), lenStr) 'IO.Path.GetFileNameWithoutExtension(dr("filename"))
+                someItem.Description = CStr(dr("idiconmenu")) 'Format(CStr(dr("idiconmenu")), lenStr) 'IO.Path.GetFileNameWithoutExtension(dr("filename"))
                 someItem.ImageIndex = i 'dr("idiconmenu")
                 someItem.Value = dr("idiconmenu")
                 'MsgBox(i & " " & dr("idiconmenu") & " " & someItem.Description)

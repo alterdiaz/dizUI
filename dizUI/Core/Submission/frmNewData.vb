@@ -75,9 +75,9 @@
             mvalue.Clear()
             mparam.AddRange(New String() {"param", "tkey1", "tkey2"})
             mvalue.AddRange(New String() {"currentdatetime", tmptokenkey1, tmptokenkey2})
-            json_result = modCore.HttpPOSTRequestselect(mysite & "core", mparam, mvalue)
-            table = Newtonsoft.Json.JsonConvert.DeserializeObject(Of DataTable)(json_result)
-            If table.Rows.Count > 0 Then 'strvalue.Contains("ERROR") = False Then
+            json_result = modCore.HttpPOSTRequestselect(mysite & "Core", mparam, mvalue)
+            If json_result.Length > 2 Then 'table.Rows.Count > 0 Then 'strvalue.Contains("ERROR") = False Then
+                table = Newtonsoft.Json.JsonConvert.DeserializeObject(Of DataTable)(json_result)
                 Dim tmptgl As String = table.Rows(0).Item("tanggal") 'strvalue.Split(" ")(0)
                 Dim tmpwaktu As String = table.Rows(0).Item("waktu") 'strvalue.Split(" ")(1)
                 tmpnowTime = Strdatetime2Datetime(tmptgl & " " & tmpwaktu)
@@ -103,13 +103,15 @@
             If lite.getDataSet("getcompanyid", 0, "value") = " " Then
                 datavalid = False
             Else
-                table.Clear()
+                If table IsNot Nothing Then table.Clear()
                 mparam.Clear()
                 mvalue.Clear()
                 mparam.AddRange(New String() {"param", "value", "tkey1", "tkey2"})
                 mvalue.AddRange(New String() {"cekid", lite.getDataSet("getcompanyid", 0, "value"), tmptokenkey1, tmptokenkey2})
-                json_result = modCore.HttpPOSTRequestselect(mysite & "company", mparam, mvalue)
-                table = Newtonsoft.Json.JsonConvert.DeserializeObject(Of DataTable)(json_result)
+                json_result = modCore.HttpPOSTRequestSelect(mysite & "Company", mparam, mvalue)
+                If json_result.Length > 2 Then
+                    table = Newtonsoft.Json.JsonConvert.DeserializeObject(Of DataTable)(json_result)
+                End If
 
                 'MYs.DMLQuery("select companycode as value from company where idcompany='" & lite.getDataSet("getcompanyid", 0, "value") & "'", "getcompanycode")
                 lite.DMLQuery("select value from appsetting where variable='CompanyCode'", "getcompanycode")
@@ -128,22 +130,24 @@
             If lite.getDataSet("gethardwareid", 0, "value") = " " Then
                 datavalid = False
             Else
-                table.Clear()
+                lite.DMLQuery("select value from appsetting where variable='HardwareCode'", "gethardwarecode")
+
+                If table IsNot Nothing Then table.Clear()
                 mparam.Clear()
                 mvalue.Clear()
-                mparam.AddRange(New String() {"param", "value", "tkey1", "tkey2"})
-                mvalue.AddRange(New String() {"cekid", lite.getDataSet("gethardwareid", 0, "value"), tmptokenkey1, tmptokenkey2})
-                json_result = modCore.HttpPOSTRequestselect(mysite & "hardware", mparam, mvalue)
-                table = Newtonsoft.Json.JsonConvert.DeserializeObject(Of DataTable)(json_result)
+                mparam.AddRange(New String() {"param", "value", "hardwareid", "tkey1", "tkey2"})
+                mvalue.AddRange(New String() {"cekhwid", "", lite.getDataSet("gethardwareid", 0, "value"), tmptokenkey1, tmptokenkey2})
+                json_result = modCore.HttpPOSTRequestselect(mysite & "Hardware", mparam, mvalue)
+                If json_result.Length > 2 Then
+                    table = Newtonsoft.Json.JsonConvert.DeserializeObject(Of DataTable)(json_result)
 
-                'MYs.DMLQuery("select hardwarecode as value from hardware where idhardware='" & sqli.getDataSet("gethardwareid", 0, "value") & "'", "gethardwarecode")
-                lite.DMLQuery("select value from appsetting where variable='HardwareCode'", "gethardwarecode")
-                If table.Rows.Count > 0 Then 'MYs.getDataSet("gethardwarecode") > 0 Then
                     If table.Rows(0).Item("hardwarecode") = lite.getDataSet("gethardwarecode", 0, "value") Then 'MYs.getDataSet("gethardwarecode", 0, "value") = lite.getDataSet("gethardwarecode", 0, "value") Then
                         datavalid = True
                     Else
                         datavalid = False
                     End If
+
+                    'MYs.DMLQuery("select hardwarecode as value from hardware where idhardware='" & sqli.getDataSet("gethardwareid", 0, "value") & "'", "gethardwarecode")
                 Else
                     datavalid = False
                 End If
@@ -154,7 +158,7 @@
                 lite.DMLQuery("update appsetting set value='" & StartActivated & "' where variable='StartActivated'", False)
                 lite.DMLQuery("update appsetting set value='" & StartActivatedCode & "' where variable='StartActivatedCode'", False)
             End If
-            aktif(False, False, False, False)
+            aktif(False, False, False, True)
         End If
     End Sub
 
@@ -190,10 +194,10 @@
         End If
     End Sub
 
-    Private Sub aktif(ByVal usr As Boolean, ByVal comp As Boolean, produk As Boolean, ByVal payment As Boolean)
+    Private Sub aktif(ByVal usr As Boolean, ByVal comp As Boolean, ByVal payment As Boolean, produk As Boolean)
         btnPengguna.Enabled = usr
         btnCompany.Enabled = comp
-        btnproduk.enabled = produk
+        btnProduk.Enabled = produk
         btnPayment.Enabled = payment
     End Sub
 

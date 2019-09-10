@@ -72,7 +72,7 @@
         End If
         If lueLevel.EditValue IsNot Nothing Then
             Dim mysqls As New SQLs(dbstring)
-            mysqls.DMLQuery("select distinct m.idmenu,m.idparent,m.menuname,isnull(up.isactive,0)as aktif from (select up.idmenu,up.isactive from sys_userpermission up where up.iduserlevel='" & lueLevel.EditValue & "') up right join sys_menu m on up.idmenu=m.idmenu order by m.menuname asc", "cekUP")
+            mysqls.DMLQuery("select distinct m.idmenu,m.idparent,m.menuname,convert(bigint,isnull(up.isactive,0)) as aktif from (select up.idmenu,up.isactive from sys_userpermission up where up.iduserlevel='" & lueLevel.EditValue & "') up right join sys_menu m on up.idmenu=m.idmenu order by m.menuname asc", "cekUP")
             If mysqls.getDataSet("cekUP") = 0 Then
                 mysqls.DMLQuery("select sm.idmenu,sm.idparent,sm.menuname,0 as aktif from sys_menu sm order by sm.menuname asc", "kosong")
                 tlData.DataSource = mysqls.dataTable("kosong")
@@ -123,6 +123,10 @@
     End Sub
 
     Private Sub btnSave_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnSave.Click
+        If lueLevel.EditValue Is Nothing Then
+            dizMsgbox("Tingkat Pengguna belum dipilih", dizMsgboxStyle.Peringatan, Me)
+            Exit Sub
+        End If
         If dizMsgbox("Melanjutkan untuk menyimpan Manajemen Akses?", dizMsgboxStyle.Konfirmasi, Me) = dizMsgboxValue.Batal Then
             Exit Sub
         End If
@@ -163,44 +167,54 @@
 
     Private fromChild As Boolean = False
     Private Sub tlData_CellValueChanged(ByVal sender As Object, ByVal e As DevExpress.XtraTreeList.CellValueChangedEventArgs) Handles tlData.CellValueChanged
-        If e.Column Is tlcAktif Then
-            Dim idmenu As String = "0"
-            Dim idparent As String = "0"
-            Dim idaktif As Long = 0
-            Dim drm As Object = tlData.GetDataRecordByNode(e.Node)
-            idmenu = drm("idmenu")
-            idparent = drm("idparent")
-            idaktif = drm("aktif")
+        'If e.Column Is tlcAktif Then
+        '    Dim idmenu As String = "0"
+        '    Dim idparent As String = "0"
+        '    Dim idaktif As Long = 0
+        '    Dim drm As Object = tlData.GetDataRecordByNode(e.Node)
+        '    idmenu = drm("idmenu")
+        '    idparent = drm("idparent")
+        '    idaktif = drm("aktif")
 
-            If e.Node.HasChildren = True Then
-                For i As Integer = 0 To tlData.AllNodesCount - 1
-                    Dim nod As DevExpress.XtraTreeList.Nodes.TreeListNode = tlData.GetNodeByVisibleIndex(i)
-                    Dim dr As Object = tlData.GetDataRecordByNode(nod)
-                    If dr("idparent") = idmenu Then
-                        dr("aktif") = idaktif
-                    End If
-                Next
-            Else
-                Dim idaktifparent As Integer = 0
-                For i As Integer = 0 To tlData.AllNodesCount - 1
-                    Dim nod As DevExpress.XtraTreeList.Nodes.TreeListNode = tlData.GetNodeByVisibleIndex(i)
-                    Dim dr As Object = tlData.GetDataRecordByNode(nod)
-                    If dr("idmenu") = idparent Then
-                        idaktifparent = dr("aktif")
-                        Exit For
-                    End If
-                Next
-                If idaktifparent = 0 Then
-                    For i As Integer = 0 To tlData.AllNodesCount - 1
-                        Dim nod As DevExpress.XtraTreeList.Nodes.TreeListNode = tlData.GetNodeByVisibleIndex(i)
-                        Dim dr As Object = tlData.GetDataRecordByNode(nod)
-                        If dr("idparent") = idparent Then
-                            dr("aktif") = idaktifparent
-                        End If
-                    Next
-                End If
-            End If
+        '    If e.Node.HasChildren = True Then
+        '        For i As Integer = 0 To tlData.AllNodesCount - 1
+        '            Dim nod As DevExpress.XtraTreeList.Nodes.TreeListNode = tlData.GetNodeByVisibleIndex(i)
+        '            Dim dr As Object = tlData.GetDataRecordByNode(nod)
+        '            If dr("idparent") = idmenu Then
+        '                dr("aktif") = idaktif
+        '            End If
+        '        Next
+        '    Else
+        '        Dim idaktifparent As Integer = 0
+        '        For i As Integer = 0 To tlData.AllNodesCount - 1
+        '            Dim nod As DevExpress.XtraTreeList.Nodes.TreeListNode = tlData.GetNodeByVisibleIndex(i)
+        '            Dim dr As Object = tlData.GetDataRecordByNode(nod)
+        '            If dr("idmenu") = idparent Then
+        '                idaktifparent = dr("aktif")
+        '                Exit For
+        '            End If
+        '        Next
+        '        If idaktifparent = 0 Then
+        '            For i As Integer = 0 To tlData.AllNodesCount - 1
+        '                Dim nod As DevExpress.XtraTreeList.Nodes.TreeListNode = tlData.GetNodeByVisibleIndex(i)
+        '                Dim dr As Object = tlData.GetDataRecordByNode(nod)
+        '                If dr("idparent") = idparent Then
+        '                    dr("aktif") = idaktifparent
+        '                End If
+        '            Next
+        '        End If
+        '    End If
+        'End If
+    End Sub
+
+    Private Sub btnSalinPermission_Click(sender As Object, e As EventArgs) Handles btnSalinPermission.Click
+        Dim frmMon As New frmPermissionCopy
+        frmMon.StartPosition = FormStartPosition.CenterScreen
+        If frmMon.tlpForm.RowStyles.Item(frmMon.tlpForm.RowCount - 1).Height <> 2.0! Then
+            frmMon.tlpForm.RowCount = 3
+            frmMon.tlpForm.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 2.0!))
         End If
+        frmMon.ShowDialog(Me)
     End Sub
 
 End Class

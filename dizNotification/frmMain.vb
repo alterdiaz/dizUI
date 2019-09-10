@@ -1,4 +1,13 @@
-﻿Public Class frmMain
+﻿Imports System.Runtime.InteropServices
+Public Class frmMain
+
+    <DllImport("User32")>
+    Public Shared Function GetGuiResources(ByVal hProcess As IntPtr, ByVal uiFlags As Integer) As Integer
+    End Function
+
+    Public Shared Function GetGuiResourcesUserCount() As Integer
+        Return GetGuiResources(Process.GetCurrentProcess().Handle, 1)
+    End Function
 
     Const HTCAPTION = &H2
     Const WM_NCLBUTTONDOWN = &HA1
@@ -15,11 +24,12 @@
     End Sub
     Private Sub btnExit_Click(sender As Object, e As EventArgs) Handles btnExit.Click
         tmrCek.Stop()
-        tmrIGD.Stop()
-        tmrIRJ.Stop()
-        tmrIRNA.Stop()
-        tmrNotes.Stop()
-        tmrRM.Stop()
+        tmrProses.Stop()
+        'tmrIGD.Stop()
+        'tmrIRJ.Stop()
+        'tmrIRNA.Stop()
+        'tmrNotes.Stop()
+        'tmrRM.Stop()
 
         Application.Exit()
     End Sub
@@ -39,7 +49,8 @@
         niNotify.ShowBalloonTip(3000, "Notifikasi", "Notifikasi masih berjalan di background", ToolTipIcon.Info)
     End Sub
 
-    Private notifset As String = ""
+    'Private notifset As String = ""
+
     Private Sub frmMain_Load(sender As Object, e As EventArgs) Handles Me.Load
         Try
             If My.Computer.FileSystem.GetDriveInfo(Application.StartupPath).DriveType <> IO.DriveType.Fixed Then
@@ -73,15 +84,15 @@
             appPath &= "\"
         End If
         checkPath()
-        If IO.File.Exists(appPath & "notifset") = False Then
-            dizMsgbox("File notification setting tidak ditemukan", dizMsgboxStyle.Peringatan, Me)
-            Application.Exit()
-        End If
-        If IO.File.ReadAllLines(appPath & "notifset").Count = 0 Then
-            notifset = ""
-        Else
-            notifset = IO.File.ReadAllLines(appPath & "notifset")(0)
-        End If
+        'If IO.File.Exists(appPath & "notifset") = False Then
+        '    dizMsgbox("File notification setting tidak ditemukan", dizMsgboxStyle.Peringatan, Me)
+        '    Application.Exit()
+        'End If
+        'If IO.File.ReadAllLines(appPath & "notifset").Count = 0 Then
+        '    notifset = ""
+        'Else
+        '    notifset = IO.File.ReadAllLines(appPath & "notifset")(0)
+        'End If
 
         Dim pnt As New Point(Screen.PrimaryScreen.WorkingArea.Width - Me.Size.Width - 8, Screen.PrimaryScreen.WorkingArea.Height - Me.Size.Height - 8)
         Me.Location = pnt
@@ -112,155 +123,25 @@
         End If
         Me.Cursor = Cursors.Default
         tmrNotes.Start()
-        If notifset = "RM" Then
-            tmrRM.Start()
-        ElseIf notifset = "IRM" Then
-            tmrIRM.Start()
-        ElseIf notifset = "IRNA" Then
-            tmrIRNA.Start()
-        ElseIf notifset = "IRJ" Then
-            tmrIRJ.Start()
-        ElseIf notifset = "IGD" Then
-            tmrIGD.Start()
-        End If
+        tmrProses.Start()
+
+        'If notifset = "RM" Then
+        '    tmrRM.Start()
+        'ElseIf notifset = "IRM" Then
+        '    tmrIRM.Start()
+        'ElseIf notifset = "IRNA" Then
+        '    tmrIRNA.Start()
+        'ElseIf notifset = "IRJ" Then
+        '    tmrIRJ.Start()
+        'ElseIf notifset = "IGD" Then
+        '    tmrIGD.Start()
+        'End If
     End Sub
 
     Private totalsec As Long = 0
-    Private Sub tmrNotes_Tick(sender As Object, e As EventArgs) Handles tmrNotes.Tick
-        If statLogin = True Then
-            If nowTime.Second Mod 3 = 0 Then
-                Dim sqls As New SQLs(dbstring)
-                Dim sqls2 As New SQLs(dbstring)
-                Dim strttl As String = ""
-                Dim strmsg As String = ""
-
-                sqls.DMLQuery("select idusernotes from sys_usernotes where (warningdate<=getdate() and warningdate is not null) and iscomplete=0 and iduser='" & userid & "'", "notesnull")
-                For i As Integer = 0 To sqls.getDataSet("notesnull") - 1
-                    strttl = ""
-                    strmsg = ""
-
-                    If idnotes.Count = 0 Then
-                        sqls2 = New SQLs(dbstring)
-
-                        Dim id As String = sqls.getDataSet("notesnull", i, "idusernotes").ToString
-                        idnotes.Add(sqls.getDataSet("notesnull", i, "idusernotes").ToString)
-                        sqls2.DMLQuery("select title from sys_usernotes where idusernotes='" & idnotes(idnotes.Count - 1) & "'", "ceknotes")
-                        If sqls2.getDataSet("ceknotes") > 0 Then
-                            strttl = sqls2.getDataSet("ceknotes", 0, "title")
-                            strmsg = "Ada catatan yang perlu anda baca segera"
-
-                            Dim infobox As New frmInfoboxNotes(strttl, strmsg, frmInfoboxNotes.MsgType.InfoIcon, sqls.getDataSet("notesnull", i, "idusernotes").ToString)
-                            infobox.BringToFront()
-                            infobox.TopMost = True
-                            tambahChild(infobox)
-                            infobox.Show()
-                        End If
-                    Else
-                        Dim id As String = idnotes.Find(Function(val As String)
-                                                            Return val = sqls.getDataSet("notesnull", i, "idusernotes").ToString
-                                                        End Function)
-                        If id = String.Empty Then
-                            sqls2 = New SQLs(dbstring)
-
-                            idnotes.Add(sqls.getDataSet("notesnull", i, "idusernotes").ToString)
-                            sqls2.DMLQuery("select title from sys_usernotes where idusernotes='" & idnotes(idnotes.Count - 1) & "'", "ceknotes")
-                            If sqls2.getDataSet("ceknotes") > 0 Then
-                                strttl = sqls2.getDataSet("ceknotes", 0, "title")
-                                strmsg = "Ada catatan yang perlu anda baca segera"
-
-                                Dim infobox As New frmInfoboxNotes(strttl, strmsg, frmInfoboxNotes.MsgType.InfoIcon, sqls.getDataSet("notesnull", i, "idusernotes").ToString)
-                                infobox.BringToFront()
-                                infobox.TopMost = True
-                                tambahChild(infobox)
-                                infobox.Show()
-                            End If
-                        End If
-                    End If
-                Next
-            End If
-        Else
-            totalsec = 0
-        End If
-    End Sub
-
-    Private Sub tmrRM_Tick(sender As Object, e As EventArgs) Handles tmrRM.Tick
-        If statLogin = True Then
-            totalsec += 1
-            If nowTime.Second Mod 3 = 0 Then
-                Dim sqls As New SQLs(dbstring)
-                Dim sqls2 As New SQLs(dbstring)
-                Dim field As New List(Of String)
-                Dim value As New List(Of Object)
-                Dim strttl As String = ""
-                Dim strmsg As String = ""
-
-                field.Add("@idreg")
-                sqls.DMLQuery("select idregistrasi from registrasi where preparedby is null", "regnull")
-                For i As Integer = 0 To sqls.getDataSet("regnull") - 1
-                    value = New List(Of Object)
-                    strttl = ""
-                    strmsg = ""
-
-                    If idreg.Count = 0 Then
-                        sqls2 = New SQLs(dbstring)
-
-                        Dim id As String = sqls.getDataSet("regnull", i, "idregistrasi").ToString
-                        idreg.Add(sqls.getDataSet("regnull", i, "idregistrasi").ToString)
-                        value.Add(sqls.getDataSet("regnull", i, "idregistrasi").ToString)
-                        sqls2.CallSP("spRegistrasiSlip", "regslip", field, value)
-                        If sqls2.getDataSet("regslip") > 0 Then
-                            strttl = sqls2.getDataSet("regslip", 0, "regno")
-                            strmsg = sqls2.getDataSet("regslip", 0, "norm") & " (" & sqls2.getDataSet("regslip", 0, "sex") & ")" & vbCrLf & sqls2.getDataSet("regslip", 0, "namapasien") & vbCrLf & sqls2.getDataSet("regslip", 0, "paramedis") & vbCrLf & sqls2.getDataSet("regslip", 0, "spesialis")
-
-                            Dim infobox As New frmInfoboxRegPrepare(strttl, strmsg, frmInfoboxRegPrepare.MsgType.InfoIcon, sqls.getDataSet("regnull", i, "idregistrasi").ToString)
-                            infobox.BringToFront()
-                            infobox.TopMost = True
-                            tambahChild(infobox)
-                            infobox.Show()
-                        End If
-                    Else
-                        Dim id As String = idreg.Find(Function(val As String)
-                                                          Return val = sqls.getDataSet("regnull", i, "idregistrasi").ToString
-                                                      End Function)
-                        If id = String.Empty Then
-                            sqls2 = New SQLs(dbstring)
-
-                            idreg.Add(sqls.getDataSet("regnull", i, "idregistrasi").ToString)
-                            value.Add(sqls.getDataSet("regnull", i, "idregistrasi").ToString)
-                            sqls2.CallSP("spRegistrasiSlip", "regslip", field, value)
-                            If sqls2.getDataSet("regslip") > 0 Then
-                                strttl = sqls2.getDataSet("regslip", 0, "regno")
-                                strmsg = sqls2.getDataSet("regslip", 0, "norm") & " (" & sqls2.getDataSet("regslip", 0, "sex") & ")" & vbCrLf & sqls2.getDataSet("regslip", 0, "namapasien") & vbCrLf & sqls2.getDataSet("regslip", 0, "paramedis") & vbCrLf & sqls2.getDataSet("regslip", 0, "spesialis")
-
-                                Dim infobox As New frmInfoboxRegPrepare(strttl, strmsg, frmInfoboxRegPrepare.MsgType.InfoIcon, sqls.getDataSet("regnull", i, "idregistrasi").ToString)
-                                infobox.BringToFront()
-                                infobox.TopMost = True
-                                tambahChild(infobox)
-                                infobox.Show()
-                            End If
-                        End If
-                    End If
-                Next
-            End If
-            If isauto = False Then
-                If totalsec >= 28800 Then
-                    clearchild()
-                    tboUsername.Text = ""
-                    tboPassword.Text = ""
-                    Me.WindowState = FormWindowState.Normal
-                    Me.ShowInTaskbar = True
-                    statLogin = False
-                    tboUsername.Focus()
-                End If
-            End If
-        Else
-            totalsec = 0
-        End If
-    End Sub
-
     Private Sub btnOK_Click(sender As Object, e As EventArgs) Handles btnOK.Click
         Dim sqls As New SQLs(dbstring)
-        sqls.DMLQuery("select u.password,u.iduser,u.username,l.userlevel,u.iduserstatus,u.bannedreason,u.iduserlevel,l.userdata,l.issuperadmin,u.tokenkey1,u.tokenkey2 from sys_user u left join sys_userlevel l on l.iduserlevel=u.iduserlevel where u.username='" & tboUsername.Text & "'", "login")
+        sqls.DMLQuery("select u.password,u.iduser,u.username,l.userlevel,u.userstatus,u.bannedreason,u.iduserlevel,l.userdata,l.issuperadmin,u.tokenkey1,u.tokenkey2 from sys_user u left join sys_userlevel l on l.iduserlevel=u.iduserlevel where u.username='" & tboUsername.Text & "'", "login")
 
         Dim canLogin As Boolean = False        '
         If sqls.getDataSet("login") > 0 Then
@@ -274,11 +155,11 @@
         End If
 
         If canLogin = True Then
-            If sqls.getDataSet("login", 0, "iduserstatus") = 1 Then
+            If sqls.getDataSet("login", 0, "userstatus") = 1 Then
                 statLogin = False
                 lblWarning.Text = "Username ini tidak aktif"
                 lblWarning.Visible = True
-            ElseIf sqls.getDataSet("login", 0, "iduserstatus") = 3 Then
+            ElseIf sqls.getDataSet("login", 0, "userstatus") = 3 Then
                 statLogin = False
                 lblWarning.Text = "Diblokir: " & sqls.getDataSet("login", 0, "bannedreason")
                 lblWarning.Visible = True
@@ -301,6 +182,22 @@
                 field.AddRange(New String() {"iduserlogin", "createddate", "createdby", "ipclient", "hostname"})
                 value.AddRange(New Object() {idtmp, nowTime, userid, getIPAddress(ipaddparam.IP), getIPAddress(ipaddparam.Host)})
                 mys.datasetSave("sys_UserLogin", idtmp, field, value, False)
+
+                'field = New List(Of String)
+                'value = New List(Of Object)
+                'field.AddRange(New String() {"@iduserlevel"})
+                'value.AddRange(New Object() {userlevelid})
+                'sqls.CallSP("spUserLevelNotification", "ulnotif", field, value)
+
+                'notifkode.Clear()
+                'notifcolor.Clear()
+                'notiftype.Clear()
+
+                'For i As Integer = 0 To sqls.getDataSet("ulnotif") - 1
+                '    notifkode.Add(sqls.getDataSet("ulnotif", i, "kode"))
+                '    notifcolor.Add(CInt(sqls.getDataSet("ulnotif", i, "color")))
+                '    notiftype.Add(CInt(sqls.getDataSet("ulnotif", i, "notiftype")))
+                'Next
 
                 lblWarning.Visible = False
                 statLogin = True
@@ -376,12 +273,13 @@
             End If
         Next
         If bcek = False Then
+            tmrProses.Stop()
             tmrCek.Stop()
-            tmrIGD.Stop()
-            tmrIRJ.Stop()
-            tmrIRNA.Stop()
-            tmrNotes.Stop()
-            tmrRM.Stop()
+            'tmrIGD.Stop()
+            'tmrIRJ.Stop()
+            'tmrIRNA.Stop()
+            'tmrNotes.Stop()
+            'tmrRM.Stop()
 
             Application.Exit()
         End If
@@ -390,7 +288,7 @@
     Dim isauto As Boolean = False
     Private Sub autoLogin(iduser As String)
         Dim sqls As New SQLs(dbstring)
-        sqls.DMLQuery("select u.password,u.iduser,u.username,l.userlevel,u.iduserstatus,u.bannedreason,u.iduserlevel,l.userdata,l.issuperadmin,u.tokenkey1,u.tokenkey2 from sys_user u left join sys_userlevel l on l.iduserlevel=u.iduserlevel where u.iduser='" & iduser & "'", "login")
+        sqls.DMLQuery("select u.password,u.iduser,u.username,l.userlevel,u.userstatus,u.bannedreason,u.iduserlevel,l.userdata,l.issuperadmin,u.tokenkey1,u.tokenkey2 from sys_user u left join sys_userlevel l on l.iduserlevel=u.iduserlevel where u.iduser='" & iduser & "'", "login")
 
         Dim canLogin As Boolean = False        '
         If sqls.getDataSet("login") > 0 Then
@@ -422,6 +320,22 @@
         value.AddRange(New Object() {idtmp, nowTime, userid, getIPAddress(ipaddparam.IP), getIPAddress(ipaddparam.Host)})
         mys.datasetSave("sys_UserLogin", idtmp, field, value, False)
 
+        'field = New List(Of String)
+        'value = New List(Of Object)
+        'field.AddRange(New String() {"@iduserlevel"})
+        'value.AddRange(New Object() {userlevelid})
+        'sqls.CallSP("spUserLevelNotification", "ulnotif", field, value)
+
+        'notifkode.Clear()
+        'notifcolor.Clear()
+        'notiftype.Clear()
+
+        'For i As Integer = 0 To sqls.getDataSet("ulnotif") - 1
+        '    notifkode.Add(sqls.getDataSet("ulnotif", i, "kode"))
+        '    notifcolor.Add(CInt(sqls.getDataSet("ulnotif", i, "color")))
+        '    notiftype.Add(CInt(sqls.getDataSet("ulnotif", i, "notiftype")))
+        'Next
+
         lblWarning.Visible = False
         statLogin = True
         isauto = True
@@ -433,402 +347,6 @@
         lblProses.Visible = True
         lblProses.Text = "Sedang Proses"
         'niNotify.ShowBalloonTip(2000, "Masih Berjalan", "Aplikasi masih berjalan di background", ToolTipIcon.Info)
-    End Sub
-
-    Private Sub tmrIRNA_Tick(sender As Object, e As EventArgs) Handles tmrIRNA.Tick
-        If statLogin = True Then
-            totalsec += 1
-            If nowTime.Second Mod 3 = 0 Then
-                Dim sqls As New SQLs(dbstring)
-                Dim sqls2 As New SQLs(dbstring)
-                Dim field As New List(Of String)
-                Dim value As New List(Of Object)
-                Dim strttl As String = ""
-                Dim strmsg As String = ""
-
-                field.Add("@idreg")
-                sqls.DMLQuery("select idregistrasi from registrasi where iddepartment=(select top 1 [value] from sys_appsetting where variable='IDInpatientDept') and respondby is null", "respondnull")
-                For i As Integer = 0 To sqls.getDataSet("regnull") - 1
-                    value = New List(Of Object)
-                    strttl = ""
-                    strmsg = ""
-
-                    If idreg.Count = 0 Then
-                        sqls2 = New SQLs(dbstring)
-
-                        Dim id As String = sqls.getDataSet("regnull", i, "idregistrasi").ToString
-                        idreg.Add(sqls.getDataSet("regnull", i, "idregistrasi").ToString)
-                        value.Add(sqls.getDataSet("regnull", i, "idregistrasi").ToString)
-                        sqls2.CallSP("spRegistrasiSlip", "regslip", field, value)
-                        If sqls2.getDataSet("regslip") > 0 Then
-                            strttl = sqls2.getDataSet("regslip", 0, "regno")
-                            strmsg = sqls2.getDataSet("regslip", 0, "norm") & " (" & sqls2.getDataSet("regslip", 0, "sex") & ")" & vbCrLf & sqls2.getDataSet("regslip", 0, "namapasien") & vbCrLf & sqls2.getDataSet("regslip", 0, "paramedis") & vbCrLf & sqls2.getDataSet("regslip", 0, "spesialis") & vbCrLf & "Menunggu Respon Department Penerima"
-
-                            Dim infobox As New frmInfoboxRegRespond(strttl, strmsg, frmInfoboxRegPrepare.MsgType.InfoIcon, sqls.getDataSet("regnull", i, "idregistrasi").ToString)
-                            infobox.BringToFront()
-                            infobox.TopMost = True
-                            tambahChild(infobox)
-                            infobox.Show()
-                        End If
-                    Else
-                        Dim id As String = idreg.Find(Function(val As String)
-                                                          Return val = sqls.getDataSet("regnull", i, "idregistrasi").ToString
-                                                      End Function)
-                        If id = String.Empty Then
-                            sqls2 = New SQLs(dbstring)
-
-                            idreg.Add(sqls.getDataSet("regnull", i, "idregistrasi").ToString)
-                            value.Add(sqls.getDataSet("regnull", i, "idregistrasi").ToString)
-                            sqls2.CallSP("spRegistrasiSlip", "regslip", field, value)
-                            If sqls2.getDataSet("regslip") > 0 Then
-                                strttl = sqls2.getDataSet("regslip", 0, "regno")
-                                strmsg = sqls2.getDataSet("regslip", 0, "norm") & " (" & sqls2.getDataSet("regslip", 0, "sex") & ")" & vbCrLf & sqls2.getDataSet("regslip", 0, "namapasien") & vbCrLf & sqls2.getDataSet("regslip", 0, "paramedis") & vbCrLf & sqls2.getDataSet("regslip", 0, "spesialis") & vbCrLf & "Menunggu Respon Department Penerima"
-
-                                Dim infobox As New frmInfoboxRegRespond(strttl, strmsg, frmInfoboxRegPrepare.MsgType.InfoIcon, sqls.getDataSet("regnull", i, "idregistrasi").ToString)
-                                infobox.BringToFront()
-                                infobox.TopMost = True
-                                tambahChild(infobox)
-                                infobox.Show()
-                            End If
-                        End If
-                    End If
-                Next
-            End If
-
-            If nowTime.Second Mod 3 = 0 Then
-                Dim sqls As New SQLs(dbstring)
-                Dim sqls2 As New SQLs(dbstring)
-                Dim field As New List(Of String)
-                Dim value As New List(Of Object)
-                Dim strttl As String = ""
-                Dim strmsg As String = ""
-
-                field.Add("@idreg")
-                sqls.DMLQuery("select idregistrasi from registrasi where iddepartment=(select top 1 [value] from sys_appsetting where variable='IDInpatientDept') and preparedby is not null and receivedby is null", "regnull")
-                For i As Integer = 0 To sqls.getDataSet("regnull") - 1
-                    value = New List(Of Object)
-                    strttl = ""
-                    strmsg = ""
-
-                    If idregi.Count = 0 Then
-                        sqls2 = New SQLs(dbstring)
-
-                        Dim id As String = sqls.getDataSet("regnull", i, "idregistrasi").ToString
-                        idregi.Add(sqls.getDataSet("regnull", i, "idregistrasi").ToString)
-                        value.Add(sqls.getDataSet("regnull", i, "idregistrasi").ToString)
-                        sqls2.CallSP("spRegistrasiSlip", "regslip", field, value)
-                        If sqls2.getDataSet("regslip") > 0 Then
-                            strttl = sqls2.getDataSet("regslip", 0, "regno")
-                            strmsg = sqls2.getDataSet("regslip", 0, "norm") & " (" & sqls2.getDataSet("regslip", 0, "sex") & ")" & vbCrLf & sqls2.getDataSet("regslip", 0, "namapasien") & vbCrLf & sqls2.getDataSet("regslip", 0, "paramedis") & vbCrLf & sqls2.getDataSet("regslip", 0, "spesialis") & vbCrLf & "RM sedang disiapkan, konfirm jika sudah diterima"
-
-                            Dim infobox As New frmInfoboxRegReceiver(strttl, strmsg, frmInfoboxRegReceiver.MsgType.InfoIcon, sqls.getDataSet("regnull", i, "idregistrasi").ToString)
-                            infobox.BringToFront()
-                            infobox.TopMost = True
-                            tambahChild(infobox)
-                            infobox.Show()
-                        End If
-                    Else
-                        Dim id As String = idregi.Find(Function(val As String)
-                                                           Return val = sqls.getDataSet("regnull", i, "idregistrasi").ToString
-                                                       End Function)
-                        If id = String.Empty Then
-                            sqls2 = New SQLs(dbstring)
-
-                            idregi.Add(sqls.getDataSet("regnull", i, "idregistrasi").ToString)
-                            value.Add(sqls.getDataSet("regnull", i, "idregistrasi").ToString)
-                            sqls2.CallSP("spRegistrasiSlip", "regslip", field, value)
-                            If sqls2.getDataSet("regslip") > 0 Then
-                                strttl = sqls2.getDataSet("regslip", 0, "regno")
-                                strmsg = sqls2.getDataSet("regslip", 0, "norm") & " (" & sqls2.getDataSet("regslip", 0, "sex") & ")" & vbCrLf & sqls2.getDataSet("regslip", 0, "namapasien") & vbCrLf & sqls2.getDataSet("regslip", 0, "paramedis") & vbCrLf & sqls2.getDataSet("regslip", 0, "spesialis") & vbCrLf & "RM sedang disiapkan, konfirm jika sudah diterima"
-
-                                Dim infobox As New frmInfoboxRegReceiver(strttl, strmsg, frmInfoboxRegReceiver.MsgType.InfoIcon, sqls.getDataSet("regnull", i, "idregistrasi").ToString)
-                                infobox.BringToFront()
-                                infobox.TopMost = True
-                                tambahChild(infobox)
-                                infobox.Show()
-                            End If
-                        End If
-                    End If
-                Next
-            End If
-            If isauto = False Then
-                If totalsec >= 28800 Then
-                    clearchild()
-                    tboUsername.Text = ""
-                    tboPassword.Text = ""
-                    Me.WindowState = FormWindowState.Normal
-                    Me.ShowInTaskbar = True
-                    statLogin = False
-                    tboUsername.Focus()
-                End If
-            End If
-        Else
-            totalsec = 0
-        End If
-    End Sub
-
-    Private Sub tmrIRJ_Tick(sender As Object, e As EventArgs) Handles tmrIRJ.Tick
-        If statLogin = True Then
-            totalsec += 1
-            If nowTime.Second Mod 3 = 0 Then
-                Dim sqls As New SQLs(dbstring)
-                Dim sqls2 As New SQLs(dbstring)
-                Dim field As New List(Of String)
-                Dim value As New List(Of Object)
-                Dim strttl As String = ""
-                Dim strmsg As String = ""
-
-                field.Add("@idreg")
-                sqls.DMLQuery("select idregistrasi from registrasi where iddepartment=(select top 1 [value] from sys_appsetting where variable='IDOutpatientDept') and respondby is null", "respondnull")
-                For i As Integer = 0 To sqls.getDataSet("regnull") - 1
-                    value = New List(Of Object)
-                    strttl = ""
-                    strmsg = ""
-
-                    If idreg.Count = 0 Then
-                        sqls2 = New SQLs(dbstring)
-
-                        Dim id As String = sqls.getDataSet("regnull", i, "idregistrasi").ToString
-                        idreg.Add(sqls.getDataSet("regnull", i, "idregistrasi").ToString)
-                        value.Add(sqls.getDataSet("regnull", i, "idregistrasi").ToString)
-                        sqls2.CallSP("spRegistrasiSlip", "regslip", field, value)
-                        If sqls2.getDataSet("regslip") > 0 Then
-                            strttl = sqls2.getDataSet("regslip", 0, "regno")
-                            strmsg = sqls2.getDataSet("regslip", 0, "norm") & " (" & sqls2.getDataSet("regslip", 0, "sex") & ")" & vbCrLf & sqls2.getDataSet("regslip", 0, "namapasien") & vbCrLf & sqls2.getDataSet("regslip", 0, "paramedis") & vbCrLf & sqls2.getDataSet("regslip", 0, "spesialis") & vbCrLf & "Menunggu Respon Department Penerima"
-
-                            Dim infobox As New frmInfoboxRegRespond(strttl, strmsg, frmInfoboxRegPrepare.MsgType.InfoIcon, sqls.getDataSet("regnull", i, "idregistrasi").ToString)
-                            infobox.BringToFront()
-                            infobox.TopMost = True
-                            tambahChild(infobox)
-                            infobox.Show()
-                        End If
-                    Else
-                        Dim id As String = idreg.Find(Function(val As String)
-                                                          Return val = sqls.getDataSet("regnull", i, "idregistrasi").ToString
-                                                      End Function)
-                        If id = String.Empty Then
-                            sqls2 = New SQLs(dbstring)
-
-                            idreg.Add(sqls.getDataSet("regnull", i, "idregistrasi").ToString)
-                            value.Add(sqls.getDataSet("regnull", i, "idregistrasi").ToString)
-                            sqls2.CallSP("spRegistrasiSlip", "regslip", field, value)
-                            If sqls2.getDataSet("regslip") > 0 Then
-                                strttl = sqls2.getDataSet("regslip", 0, "regno")
-                                strmsg = sqls2.getDataSet("regslip", 0, "norm") & " (" & sqls2.getDataSet("regslip", 0, "sex") & ")" & vbCrLf & sqls2.getDataSet("regslip", 0, "namapasien") & vbCrLf & sqls2.getDataSet("regslip", 0, "paramedis") & vbCrLf & sqls2.getDataSet("regslip", 0, "spesialis") & vbCrLf & "Menunggu Respon Department Penerima"
-
-                                Dim infobox As New frmInfoboxRegRespond(strttl, strmsg, frmInfoboxRegPrepare.MsgType.InfoIcon, sqls.getDataSet("regnull", i, "idregistrasi").ToString)
-                                infobox.BringToFront()
-                                infobox.TopMost = True
-                                tambahChild(infobox)
-                                infobox.Show()
-                            End If
-                        End If
-                    End If
-                Next
-            End If
-
-            If nowTime.Second Mod 3 = 0 Then
-                Dim sqls As New SQLs(dbstring)
-                Dim sqls2 As New SQLs(dbstring)
-                Dim field As New List(Of String)
-                Dim value As New List(Of Object)
-                Dim strttl As String = ""
-                Dim strmsg As String = ""
-
-                field.Add("@idreg")
-                sqls.DMLQuery("select idregistrasi from registrasi where iddepartment=(select top 1 [value] from sys_appsetting where variable='IDOutpatientDept') and preparedby is not null and receivedby is null", "regnull")
-                For i As Integer = 0 To sqls.getDataSet("regnull") - 1
-                    value = New List(Of Object)
-                    strttl = ""
-                    strmsg = ""
-
-                    If idregi.Count = 0 Then
-                        sqls2 = New SQLs(dbstring)
-
-                        Dim id As String = sqls.getDataSet("regnull", i, "idregistrasi").ToString
-                        idregi.Add(sqls.getDataSet("regnull", i, "idregistrasi").ToString)
-                        value.Add(sqls.getDataSet("regnull", i, "idregistrasi").ToString)
-                        sqls2.CallSP("spRegistrasiSlip", "regslip", field, value)
-                        If sqls2.getDataSet("regslip") > 0 Then
-                            strttl = sqls2.getDataSet("regslip", 0, "regno")
-                            strmsg = sqls2.getDataSet("regslip", 0, "norm") & " (" & sqls2.getDataSet("regslip", 0, "sex") & ")" & vbCrLf & sqls2.getDataSet("regslip", 0, "namapasien") & vbCrLf & sqls2.getDataSet("regslip", 0, "paramedis") & vbCrLf & sqls2.getDataSet("regslip", 0, "spesialis") & vbCrLf & "RM sedang disiapkan, konfirm jika sudah diterima"
-
-                            Dim infobox As New frmInfoboxRegReceiver(strttl, strmsg, frmInfoboxRegReceiver.MsgType.InfoIcon, sqls.getDataSet("regnull", i, "idregistrasi").ToString)
-                            infobox.BringToFront()
-                            infobox.TopMost = True
-                            tambahChild(infobox)
-                            infobox.Show()
-                        End If
-                    Else
-                        Dim id As String = idregi.Find(Function(val As String)
-                                                           Return val = sqls.getDataSet("regnull", i, "idregistrasi").ToString
-                                                       End Function)
-                        If id = String.Empty Then
-                            sqls2 = New SQLs(dbstring)
-
-                            idregi.Add(sqls.getDataSet("regnull", i, "idregistrasi").ToString)
-                            value.Add(sqls.getDataSet("regnull", i, "idregistrasi").ToString)
-                            sqls2.CallSP("spRegistrasiSlip", "regslip", field, value)
-                            If sqls2.getDataSet("regslip") > 0 Then
-                                strttl = sqls2.getDataSet("regslip", 0, "regno")
-                                strmsg = sqls2.getDataSet("regslip", 0, "norm") & " (" & sqls2.getDataSet("regslip", 0, "sex") & ")" & vbCrLf & sqls2.getDataSet("regslip", 0, "namapasien") & vbCrLf & sqls2.getDataSet("regslip", 0, "paramedis") & vbCrLf & sqls2.getDataSet("regslip", 0, "spesialis") & vbCrLf & "RM sedang disiapkan, konfirm jika sudah diterima"
-
-                                Dim infobox As New frmInfoboxRegReceiver(strttl, strmsg, frmInfoboxRegReceiver.MsgType.InfoIcon, sqls.getDataSet("regnull", i, "idregistrasi").ToString)
-                                infobox.BringToFront()
-                                infobox.TopMost = True
-                                tambahChild(infobox)
-                                infobox.Show()
-                            End If
-                        End If
-                    End If
-                Next
-            End If
-            If isauto = False Then
-                If totalsec >= 28800 Then
-                    clearchild()
-                    tboUsername.Text = ""
-                    tboPassword.Text = ""
-                    Me.WindowState = FormWindowState.Normal
-                    Me.ShowInTaskbar = True
-                    statLogin = False
-                    tboUsername.Focus()
-                End If
-            End If
-        Else
-            totalsec = 0
-        End If
-    End Sub
-
-    Private Sub tmrIGD_Tick(sender As Object, e As EventArgs) Handles tmrIGD.Tick
-        If statLogin = True Then
-            totalsec += 1
-            If nowTime.Second Mod 3 = 0 Then
-                Dim sqls As New SQLs(dbstring)
-                Dim sqls2 As New SQLs(dbstring)
-                Dim field As New List(Of String)
-                Dim value As New List(Of Object)
-                Dim strttl As String = ""
-                Dim strmsg As String = ""
-
-                field.Add("@idreg")
-                sqls.DMLQuery("select idregistrasi from registrasi where iddepartment=(select top 1 [value] from sys_appsetting where variable='IDEmergencyDept') and respondby is null", "respondnull")
-                For i As Integer = 0 To sqls.getDataSet("regnull") - 1
-                    value = New List(Of Object)
-                    strttl = ""
-                    strmsg = ""
-
-                    If idreg.Count = 0 Then
-                        sqls2 = New SQLs(dbstring)
-
-                        Dim id As String = sqls.getDataSet("regnull", i, "idregistrasi").ToString
-                        idreg.Add(sqls.getDataSet("regnull", i, "idregistrasi").ToString)
-                        value.Add(sqls.getDataSet("regnull", i, "idregistrasi").ToString)
-                        sqls2.CallSP("spRegistrasiSlip", "regslip", field, value)
-                        If sqls2.getDataSet("regslip") > 0 Then
-                            strttl = sqls2.getDataSet("regslip", 0, "regno")
-                            strmsg = sqls2.getDataSet("regslip", 0, "norm") & " (" & sqls2.getDataSet("regslip", 0, "sex") & ")" & vbCrLf & sqls2.getDataSet("regslip", 0, "namapasien") & vbCrLf & sqls2.getDataSet("regslip", 0, "paramedis") & vbCrLf & sqls2.getDataSet("regslip", 0, "spesialis") & vbCrLf & "Menunggu Respon Department Penerima"
-
-                            Dim infobox As New frmInfoboxRegRespond(strttl, strmsg, frmInfoboxRegPrepare.MsgType.InfoIcon, sqls.getDataSet("regnull", i, "idregistrasi").ToString)
-                            infobox.BringToFront()
-                            infobox.TopMost = True
-                            tambahChild(infobox)
-                            infobox.Show()
-                        End If
-                    Else
-                        Dim id As String = idreg.Find(Function(val As String)
-                                                          Return val = sqls.getDataSet("regnull", i, "idregistrasi").ToString
-                                                      End Function)
-                        If id = String.Empty Then
-                            sqls2 = New SQLs(dbstring)
-
-                            idreg.Add(sqls.getDataSet("regnull", i, "idregistrasi").ToString)
-                            value.Add(sqls.getDataSet("regnull", i, "idregistrasi").ToString)
-                            sqls2.CallSP("spRegistrasiSlip", "regslip", field, value)
-                            If sqls2.getDataSet("regslip") > 0 Then
-                                strttl = sqls2.getDataSet("regslip", 0, "regno")
-                                strmsg = sqls2.getDataSet("regslip", 0, "norm") & " (" & sqls2.getDataSet("regslip", 0, "sex") & ")" & vbCrLf & sqls2.getDataSet("regslip", 0, "namapasien") & vbCrLf & sqls2.getDataSet("regslip", 0, "paramedis") & vbCrLf & sqls2.getDataSet("regslip", 0, "spesialis") & vbCrLf & "Menunggu Respon Department Penerima"
-
-                                Dim infobox As New frmInfoboxRegRespond(strttl, strmsg, frmInfoboxRegPrepare.MsgType.InfoIcon, sqls.getDataSet("regnull", i, "idregistrasi").ToString)
-                                infobox.BringToFront()
-                                infobox.TopMost = True
-                                tambahChild(infobox)
-                                infobox.Show()
-                            End If
-                        End If
-                    End If
-                Next
-            End If
-
-            If nowTime.Second Mod 3 = 0 Then
-                Dim sqls As New SQLs(dbstring)
-                Dim sqls2 As New SQLs(dbstring)
-                Dim field As New List(Of String)
-                Dim value As New List(Of Object)
-                Dim strttl As String = ""
-                Dim strmsg As String = ""
-
-                field.Add("@idreg")
-                sqls.DMLQuery("select idregistrasi from registrasi where iddepartment=(select top 1 [value] from sys_appsetting where variable='IDEmergencyDept') and preparedby is not null and receivedby is null", "regnull")
-                For i As Integer = 0 To sqls.getDataSet("regnull") - 1
-                    value = New List(Of Object)
-                    strttl = ""
-                    strmsg = ""
-
-                    If idregi.Count = 0 Then
-                        sqls2 = New SQLs(dbstring)
-
-                        Dim id As String = sqls.getDataSet("regnull", i, "idregistrasi").ToString
-                        idregi.Add(sqls.getDataSet("regnull", i, "idregistrasi").ToString)
-                        value.Add(sqls.getDataSet("regnull", i, "idregistrasi").ToString)
-                        sqls2.CallSP("spRegistrasiSlip", "regslip", field, value)
-                        If sqls2.getDataSet("regslip") > 0 Then
-                            strttl = sqls2.getDataSet("regslip", 0, "regno")
-                            strmsg = sqls2.getDataSet("regslip", 0, "norm") & " (" & sqls2.getDataSet("regslip", 0, "sex") & ")" & vbCrLf & sqls2.getDataSet("regslip", 0, "namapasien") & vbCrLf & sqls2.getDataSet("regslip", 0, "paramedis") & vbCrLf & sqls2.getDataSet("regslip", 0, "spesialis") & vbCrLf & "RM sedang disiapkan, konfirm jika sudah diterima"
-
-                            Dim infobox As New frmInfoboxRegReceiver(strttl, strmsg, frmInfoboxRegReceiver.MsgType.InfoIcon, sqls.getDataSet("regnull", i, "idregistrasi").ToString)
-                            infobox.BringToFront()
-                            infobox.TopMost = True
-                            tambahChild(infobox)
-                            infobox.Show()
-                        End If
-                    Else
-                        Dim id As String = idregi.Find(Function(val As String)
-                                                           Return val = sqls.getDataSet("regnull", i, "idregistrasi").ToString
-                                                       End Function)
-                        If id = String.Empty Then
-                            sqls2 = New SQLs(dbstring)
-
-                            idregi.Add(sqls.getDataSet("regnull", i, "idregistrasi").ToString)
-                            value.Add(sqls.getDataSet("regnull", i, "idregistrasi").ToString)
-                            sqls2.CallSP("spRegistrasiSlip", "regslip", field, value)
-                            If sqls2.getDataSet("regslip") > 0 Then
-                                strttl = sqls2.getDataSet("regslip", 0, "regno")
-                                strmsg = sqls2.getDataSet("regslip", 0, "norm") & " (" & sqls2.getDataSet("regslip", 0, "sex") & ")" & vbCrLf & sqls2.getDataSet("regslip", 0, "namapasien") & vbCrLf & sqls2.getDataSet("regslip", 0, "paramedis") & vbCrLf & sqls2.getDataSet("regslip", 0, "spesialis") & vbCrLf & "RM sedang disiapkan, konfirm jika sudah diterima"
-
-                                Dim infobox As New frmInfoboxRegReceiver(strttl, strmsg, frmInfoboxRegReceiver.MsgType.InfoIcon, sqls.getDataSet("regnull", i, "idregistrasi").ToString)
-                                infobox.BringToFront()
-                                infobox.TopMost = True
-                                tambahChild(infobox)
-                                infobox.Show()
-                            End If
-                        End If
-                    End If
-                Next
-            End If
-            If isauto = False Then
-                If totalsec >= 28800 Then
-                    clearchild()
-                    tboUsername.Text = ""
-                    tboPassword.Text = ""
-                    Me.WindowState = FormWindowState.Normal
-                    Me.ShowInTaskbar = True
-                    statLogin = False
-                    tboUsername.Focus()
-                End If
-            End If
-        Else
-            totalsec = 0
-        End If
     End Sub
 
     Private Sub tsmiKeluar_Click(sender As Object, e As EventArgs) Handles tsmiKeluar.Click
@@ -864,136 +382,87 @@
         tsmiTampilkan_Click(tsmiTampilkan, Nothing)
     End Sub
 
-    Private Sub tmrIRM_Tick(sender As Object, e As EventArgs) Handles tmrIRM.Tick
-        If statLogin = True Then
-            totalsec += 1
-            If nowTime.Second Mod 3 = 0 Then
-                Dim sqls As New SQLs(dbstring)
-                Dim sqls2 As New SQLs(dbstring)
-                Dim field As New List(Of String)
-                Dim value As New List(Of Object)
-                Dim strttl As String = ""
-                Dim strmsg As String = ""
+    Private isProses As Boolean = False
+    Private Sub tmrProses_Tick(sender As Object, e As EventArgs) Handles tmrProses.Tick
+        Try
+            If statLogin = True Then
+                totalsec += 1
+                If nowTime.Second Mod 3 = 0 Then
+                    If isProses = False Then
+                        isProses = True
 
-                field.Add("@idreg")
-                sqls.DMLQuery("select idregistrasi from registrasi where iddepartment=(select top 1 [value] from sys_appsetting where variable='IDPhysioDept') and respondby is null", "respondnull")
-                For i As Integer = 0 To sqls.getDataSet("regnull") - 1
-                    value = New List(Of Object)
-                    strttl = ""
-                    strmsg = ""
-
-                    If idreg.Count = 0 Then
-                        sqls2 = New SQLs(dbstring)
-
-                        Dim id As String = sqls.getDataSet("regnull", i, "idregistrasi").ToString
-                        idreg.Add(sqls.getDataSet("regnull", i, "idregistrasi").ToString)
-                        value.Add(sqls.getDataSet("regnull", i, "idregistrasi").ToString)
-                        sqls2.CallSP("spRegistrasiSlip", "regslip", field, value)
-                        If sqls2.getDataSet("regslip") > 0 Then
-                            strttl = sqls2.getDataSet("regslip", 0, "regno")
-                            strmsg = sqls2.getDataSet("regslip", 0, "norm") & " (" & sqls2.getDataSet("regslip", 0, "sex") & ")" & vbCrLf & sqls2.getDataSet("regslip", 0, "namapasien") & vbCrLf & sqls2.getDataSet("regslip", 0, "paramedis") & vbCrLf & sqls2.getDataSet("regslip", 0, "spesialis") & vbCrLf & "Menunggu Respon Department Penerima"
-
-                            Dim infobox As New frmInfoboxRegRespond(strttl, strmsg, frmInfoboxRegPrepare.MsgType.InfoIcon, sqls.getDataSet("regnull", i, "idregistrasi").ToString)
-                            infobox.BringToFront()
-                            infobox.TopMost = True
-                            tambahChild(infobox)
-                            infobox.Show()
+                        Dim sqls As New SQLs(dbstring)
+                        If usersuper = "1" Then
+                            sqls.DMLQuery("select TOP 50 ROW_NUMBER() OVER (partition by n.kode Order by n.createddate asc) as nomor,n.idnotifications,n.kode,n.judul,n.konten,n.frmname,n.tableid,n.tablename,n.tablecolumnid,n.tablecolumndate,n.tablecolumnflag,n.tablecolumniduser,a.color,a.notiftype from sys_notifications n left join sys_appnotification a on n.kode=a.kode where n.iskonfirm=0 and n.duedate<=getdate() and (n.kode<>'0' AND n.kode<>'-') order by n.createddate asc", "allnotif")
+                        Else
+                            sqls.DMLQuery("select TOP 50 ROW_NUMBER() OVER (partition by n.kode Order by n.createddate asc) as nomor,n.idnotifications,n.kode,n.judul,n.konten,n.frmname,n.tableid,n.tablename,n.tablecolumnid,n.tablecolumndate,n.tablecolumnflag,n.tablecolumniduser,a.color,a.notiftype from sys_notifications n left join sys_appnotification a on n.kode=a.kode where (n.kode<>'0' and n.kode<>'-') and ((n.kode in (select kode from sys_userlevelnotification where iduserlevel='" & userlevelid & "') and n.iskonfirm=0 and n.duedate<=getdate()) or (n.iduser='" & userid & "' and n.iskonfirm=0 and n.duedate<=getdate())) order by n.createddate asc", "allnotif")
                         End If
-                    Else
-                        Dim id As String = idreg.Find(Function(val As String)
-                                                          Return val = sqls.getDataSet("regnull", i, "idregistrasi").ToString
-                                                      End Function)
-                        If id = String.Empty Then
-                            sqls2 = New SQLs(dbstring)
+                        For i As Integer = 0 To sqls.getDataSet("allnotif") - 1
+                            Try
+                                Dim notifid As String = sqls.getDataSet("allnotif", i, "idnotifications")
+                                Dim notifkode As String = sqls.getDataSet("allnotif", i, "kode")
+                                Dim notifjudul As String = sqls.getDataSet("allnotif", i, "judul")
+                                Dim notifkonten As String = sqls.getDataSet("allnotif", i, "konten")
+                                Dim notiffrmname As String = sqls.getDataSet("allnotif", i, "frmname")
+                                Dim notiftbid As String = sqls.getDataSet("allnotif", i, "tableid")
+                                Dim notiftbname As String = sqls.getDataSet("allnotif", i, "tablename")
+                                Dim notiftbcolid As String = sqls.getDataSet("allnotif", i, "tablecolumnid")
+                                Dim notiftbcoldate As String = sqls.getDataSet("allnotif", i, "tablecolumndate")
+                                Dim notiftbcolflag As String = sqls.getDataSet("allnotif", i, "tablecolumnflag")
+                                Dim notiftbcoliduser As String = sqls.getDataSet("allnotif", i, "tablecolumniduser")
+                                Dim notifcolor As Integer = CInt(sqls.getDataSet("allnotif", i, "color"))
+                                Dim notiftype As Integer = CInt(sqls.getDataSet("allnotif", i, "notiftype"))
 
-                            idreg.Add(sqls.getDataSet("regnull", i, "idregistrasi").ToString)
-                            value.Add(sqls.getDataSet("regnull", i, "idregistrasi").ToString)
-                            sqls2.CallSP("spRegistrasiSlip", "regslip", field, value)
-                            If sqls2.getDataSet("regslip") > 0 Then
-                                strttl = sqls2.getDataSet("regslip", 0, "regno")
-                                strmsg = sqls2.getDataSet("regslip", 0, "norm") & " (" & sqls2.getDataSet("regslip", 0, "sex") & ")" & vbCrLf & sqls2.getDataSet("regslip", 0, "namapasien") & vbCrLf & sqls2.getDataSet("regslip", 0, "paramedis") & vbCrLf & sqls2.getDataSet("regslip", 0, "spesialis") & vbCrLf & "Menunggu Respon Department Penerima"
-
-                                Dim infobox As New frmInfoboxRegRespond(strttl, strmsg, frmInfoboxRegPrepare.MsgType.InfoIcon, sqls.getDataSet("regnull", i, "idregistrasi").ToString)
-                                infobox.BringToFront()
-                                infobox.TopMost = True
-                                tambahChild(infobox)
-                                infobox.Show()
-                            End If
-                        End If
+                                If idnotif.Count = 0 Then
+                                    idnotif.Add(notifid)
+                                    Dim infobox As New frmNotifbox(notifid, notifjudul, notifkonten, notiftype, notiftbid, notiftbname, notiftbcolid, notiftbcoldate, notiftbcolflag, notiftbcoliduser, notifcolor)
+                                    infobox.BringToFront()
+                                    infobox.TopMost = True
+                                    tambahChild(infobox)
+                                    infobox.Show()
+                                Else
+                                    Dim id As String = idnotif.Find(Function(val As String)
+                                                                        Return val = sqls.getDataSet("allnotif", i, "idnotifications").ToString
+                                                                    End Function)
+                                    If id = String.Empty Then
+                                        idnotif.Add(notifid)
+                                        Dim infobox As New frmNotifbox(notifid, notifjudul, notifkonten, notiftype, notiftbid, notiftbname, notiftbcolid, notiftbcoldate, notiftbcolflag, notiftbcoliduser, notifcolor)
+                                        infobox.WindowState = FormWindowState.Normal
+                                        infobox.BringToFront()
+                                        infobox.TopMost = True
+                                        tambahChild(infobox)
+                                        infobox.Show()
+                                    End If
+                                End If
+                            Catch ex As Exception
+                                MsgBox(sqls.getDataSet("allnotif", i, "idnotifications") & vbCrLf & ex.Message)
+                            End Try
+                        Next
                     End If
-                Next
-            End If
-
-            If nowTime.Second Mod 3 = 0 Then
-                Dim sqls As New SQLs(dbstring)
-                Dim sqls2 As New SQLs(dbstring)
-                Dim field As New List(Of String)
-                Dim value As New List(Of Object)
-                Dim strttl As String = ""
-                Dim strmsg As String = ""
-
-                field.Add("@idreg")
-                sqls.DMLQuery("select idregistrasi from registrasi where iddepartment=(select top 1 [value] from sys_appsetting where variable='IDPhysioDept') and preparedby is not null and receivedby is null", "regnull")
-                For i As Integer = 0 To sqls.getDataSet("regnull") - 1
-                    value = New List(Of Object)
-                    strttl = ""
-                    strmsg = ""
-
-                    If idregi.Count = 0 Then
-                        sqls2 = New SQLs(dbstring)
-
-                        Dim id As String = sqls.getDataSet("regnull", i, "idregistrasi").ToString
-                        idregi.Add(sqls.getDataSet("regnull", i, "idregistrasi").ToString)
-                        value.Add(sqls.getDataSet("regnull", i, "idregistrasi").ToString)
-                        sqls2.CallSP("spRegistrasiSlip", "regslip", field, value)
-                        If sqls2.getDataSet("regslip") > 0 Then
-                            strttl = sqls2.getDataSet("regslip", 0, "regno")
-                            strmsg = sqls2.getDataSet("regslip", 0, "norm") & " (" & sqls2.getDataSet("regslip", 0, "sex") & ")" & vbCrLf & sqls2.getDataSet("regslip", 0, "namapasien") & vbCrLf & sqls2.getDataSet("regslip", 0, "paramedis") & vbCrLf & sqls2.getDataSet("regslip", 0, "spesialis") & vbCrLf & "RM sedang disiapkan, konfirm jika sudah diterima"
-
-                            Dim infobox As New frmInfoboxRegReceiver(strttl, strmsg, frmInfoboxRegReceiver.MsgType.InfoIcon, sqls.getDataSet("regnull", i, "idregistrasi").ToString)
-                            infobox.BringToFront()
-                            infobox.TopMost = True
-                            tambahChild(infobox)
-                            infobox.Show()
-                        End If
-                    Else
-                        Dim id As String = idregi.Find(Function(val As String)
-                                                           Return val = sqls.getDataSet("regnull", i, "idregistrasi").ToString
-                                                       End Function)
-                        If id = String.Empty Then
-                            sqls2 = New SQLs(dbstring)
-
-                            idregi.Add(sqls.getDataSet("regnull", i, "idregistrasi").ToString)
-                            value.Add(sqls.getDataSet("regnull", i, "idregistrasi").ToString)
-                            sqls2.CallSP("spRegistrasiSlip", "regslip", field, value)
-                            If sqls2.getDataSet("regslip") > 0 Then
-                                strttl = sqls2.getDataSet("regslip", 0, "regno")
-                                strmsg = sqls2.getDataSet("regslip", 0, "norm") & " (" & sqls2.getDataSet("regslip", 0, "sex") & ")" & vbCrLf & sqls2.getDataSet("regslip", 0, "namapasien") & vbCrLf & sqls2.getDataSet("regslip", 0, "paramedis") & vbCrLf & sqls2.getDataSet("regslip", 0, "spesialis") & vbCrLf & "RM sedang disiapkan, konfirm jika sudah diterima"
-
-                                Dim infobox As New frmInfoboxRegReceiver(strttl, strmsg, frmInfoboxRegReceiver.MsgType.InfoIcon, sqls.getDataSet("regnull", i, "idregistrasi").ToString)
-                                infobox.BringToFront()
-                                infobox.TopMost = True
-                                tambahChild(infobox)
-                                infobox.Show()
-                            End If
-                        End If
-                    End If
-                Next
-            End If
-            If isauto = False Then
-                If totalsec >= 28800 Then
-                    clearchild()
-                    tboUsername.Text = ""
-                    tboPassword.Text = ""
-                    Me.WindowState = FormWindowState.Normal
-                    Me.ShowInTaskbar = True
-                    statLogin = False
-                    tboUsername.Focus()
+                    isProses = False
                 End If
+                If isauto = False Then
+                    If totalsec >= 28800 Then
+                        clearchild()
+                        tboUsername.Text = ""
+                        tboPassword.Text = ""
+                        Me.WindowState = FormWindowState.Normal
+                        Me.ShowInTaskbar = True
+                        statLogin = False
+                        tboUsername.Focus()
+                    End If
+                End If
+            Else
+                totalsec = 0
             End If
-        Else
-            totalsec = 0
-        End If
+        Catch ex As Exception
+            MsgBox(ex.Message)
+        End Try
+    End Sub
+
+    Private Sub tsmiForceClose_Click(sender As Object, e As EventArgs) Handles tsmiForceClose.Click
+        Shell("taskkill -im dizUI.exe -f", AppWinStyle.Hide)
+        Shell("taskkill -im dizUIdemo.exe -f", AppWinStyle.Hide)
     End Sub
 
 End Class

@@ -57,8 +57,8 @@ Namespace My
         <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.Configuration.SpecialSettingAttribute(Global.System.Configuration.SpecialSetting.ConnectionString),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("Data Source=(local);Initial Catalog=POS216TEST;Persist Security Info=True;User ID"& _ 
-            "=sa;Password=sa")>  _
+         Global.System.Configuration.DefaultSettingValueAttribute("Data Source=(local);Initial Catalog=POS;Persist Security Info=True;User ID=sa;Pas"& _ 
+            "sword=sa")>  _
         Public ReadOnly Property ConnString() As String
             Get
                 Return CType(Me("ConnString"),String)

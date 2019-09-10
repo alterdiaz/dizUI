@@ -181,11 +181,11 @@ Public Class frmMemo
             End If
         ElseIf btnBrowse.Text = "LIHAT FILE" Then
             If gvData.RowCount = 0 Then
-                dizMsgbox("File tidak ditemukan", dizMsgboxStyle.Info)
+                dizMsgbox("File tidak ditemukan", dizMsgboxStyle.Info, me)
                 Exit Sub
             End If
             If gvData.FocusedRowHandle < 0 Then
-                dizMsgbox("File belum dipilih", dizMsgboxStyle.Info)
+                dizMsgbox("File belum dipilih", dizMsgboxStyle.Info, me)
                 Exit Sub
             End If
             Dim dr As DataRow = gvData.GetDataRow(gvData.FocusedRowHandle)
@@ -319,7 +319,7 @@ Public Class frmMemo
         Me.Cursor = Cursors.WaitCursor
 
         Dim sqls As New SQLs(dbstring)
-        sqls.DMLQuery("select m.idmemo,m.memono,m.judul,m.memotype,isnull(count(mc.idmemocomment),0) as counter,m.isdeleted from sys_memo m left join sys_memocomment mc on m.idmemo=mc.idmemo where m.idmemo in (select a.id from (select m.idmemo as id,m.createdby as uid from sys_memo m where m.createdby='" & userid & "') a left join (select mp.idmemo as id,mp.iduser as uid from sys_memopermission mp where mp.iduser='" & userid & "') b on a.id=b.id left join (select mc.idmemo as id,mc.forwardto as uid from sys_memocomment mc where mc.forwardto='" & userid & "') c on a.id=c.id) group by m.idmemo,m.memono,m.judul,m.memotype,m.isdeleted order by isnull(count(mc.idmemocomment),0) desc", "memo")
+        sqls.DMLQuery("select m.idmemo,m.memono,m.judul,m.memotype,isnull(count(mc.idmemocomment),0) as counter,m.isdeleted from sys_memo m left join sys_memocomment mc on m.idmemo=mc.idmemo where m.idmemo in (select distinct a.id from (select m.idmemo as id,m.createdby as uid from sys_memo m where m.createdby='" & userid & "' union all select mp.idmemo as id,mp.iduser as uid from sys_memopermission mp where mp.iduser='" & userid & "' union all select mc.idmemo as id,mc.forwardto as uid from sys_memocomment mc where mc.forwardto='" & userid & "') a) group by m.idmemo,m.memono,m.judul,m.memotype,m.isdeleted order by isnull(count(mc.idmemocomment),0) desc", "memo")
         Dim counter As Integer = 0
         Me.tlpList.RowCount = 0
         Me.tlpList.RowStyles.Clear()
@@ -437,6 +437,8 @@ Public Class frmMemo
             Next
         Next
 
+        sqls.DMLQuery("update sys_memopermission set isview=1,viewdate=getdate() where isview=0 and idmemo='" & sender.tag & "' and iduser='" & userid & "'", False)
+        sqls.DMLQuery("update sys_memocomment set forwarddate=getdate() where idmemo='" & sender.tag & "' and forwardto='" & userid & "'", False)
         CType(sender, System.Windows.Forms.Button).FlatAppearance.BorderColor = Color.FromArgb(192, 0, 0)
         CType(sender, System.Windows.Forms.Button).BackColor = Color.White
     End Sub
@@ -498,18 +500,21 @@ Public Class frmMemo
         Dim value As New List(Of Object)
 
         Dim idtmp As String = GenerateGUID()
-        field.AddRange(New String() {"idmemocomment", "idmemo", "memocomment", "isdeleted", "forwardto", "forwardby", "createdby", "createddate"})
         If ceQuick.CheckState = CheckState.Checked Then
             If clbcForward.Visible = False Then
-                value.AddRange(New Object() {idtmp, idd, lueMessage.Text, 0, 0, userid, userid, nowTime})
+                field.AddRange(New String() {"idmemocomment", "idmemo", "memocomment", "isdeleted", "forwardto", "forwarddate", "createdby", "createddate"})
+                value.AddRange(New Object() {idtmp, idd, lueMessage.Text, 0, 0, nowTime, userid, nowTime})
             Else
-                value.AddRange(New Object() {idtmp, idd, lueMessage.Text, 0, clbcForward.CheckedItems(0), userid, userid, nowTime})
+                field.AddRange(New String() {"idmemocomment", "idmemo", "memocomment", "isdeleted", "forwardto", "createdby", "createddate"})
+                value.AddRange(New Object() {idtmp, idd, lueMessage.Text, 0, clbcForward.CheckedItems(0), userid, nowTime})
             End If
         ElseIf ceQuick.CheckState = CheckState.Unchecked Then
             If clbcForward.Visible = False Then
-                value.AddRange(New Object() {idtmp, idd, meMessage.Text, 0, 0, userid, userid, nowTime})
+                field.AddRange(New String() {"idmemocomment", "idmemo", "memocomment", "isdeleted", "forwardto", "forwarddate", "createdby", "createddate"})
+                value.AddRange(New Object() {idtmp, idd, meMessage.Text, 0, 0, nowTime, userid, nowTime})
             Else
-                value.AddRange(New Object() {idtmp, idd, meMessage.Text, 0, clbcForward.CheckedItems(0), userid, userid, nowTime})
+                field.AddRange(New String() {"idmemocomment", "idmemo", "memocomment", "isdeleted", "forwardto", "createdby", "createddate"})
+                value.AddRange(New Object() {idtmp, idd, meMessage.Text, 0, clbcForward.CheckedItems(0), userid, nowTime})
             End If
         End If
         Dim retval As Boolean = dtsql.datasetSave("sys_memocomment", idtmp, field, value, False)

@@ -24,6 +24,7 @@ Partial Class frmNewCompany
     Private Sub InitializeComponent()
         Me.tlpForm = New System.Windows.Forms.TableLayoutPanel()
         Me.pBody = New System.Windows.Forms.Panel()
+        Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.tlpEntry = New System.Windows.Forms.TableLayoutPanel()
         Me.lblInfo = New System.Windows.Forms.Label()
         Me.pExist = New System.Windows.Forms.Panel()
@@ -87,6 +88,7 @@ Partial Class frmNewCompany
         Me.pExit = New System.Windows.Forms.PictureBox()
         Me.tlpForm.SuspendLayout()
         Me.pBody.SuspendLayout()
+        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.tlpEntry.SuspendLayout()
         Me.pExist.SuspendLayout()
         CType(Me.teExistCompEmailPIN.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -142,19 +144,32 @@ Partial Class frmNewCompany
         Me.tlpForm.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30.0!))
         Me.tlpForm.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
         Me.tlpForm.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 2.0!))
-        Me.tlpForm.Size = New System.Drawing.Size(460, 540)
+        Me.tlpForm.Size = New System.Drawing.Size(720, 540)
         Me.tlpForm.TabIndex = 1
         '
         'pBody
         '
+        Me.pBody.BackColor = System.Drawing.Color.FromArgb(CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer))
+        Me.pBody.Controls.Add(Me.PictureBox1)
         Me.pBody.Controls.Add(Me.tlpEntry)
         Me.pBody.Controls.Add(Me.pHeader)
         Me.pBody.Dock = System.Windows.Forms.DockStyle.Fill
         Me.pBody.Location = New System.Drawing.Point(2, 30)
         Me.pBody.Margin = New System.Windows.Forms.Padding(0)
         Me.pBody.Name = "pBody"
-        Me.pBody.Size = New System.Drawing.Size(456, 508)
+        Me.pBody.Size = New System.Drawing.Size(716, 508)
         Me.pBody.TabIndex = 7
+        '
+        'PictureBox1
+        '
+        Me.PictureBox1.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.PictureBox1.Image = Global.dizUI.My.Resources.Resources.Sidebar05
+        Me.PictureBox1.Location = New System.Drawing.Point(0, 30)
+        Me.PictureBox1.Margin = New System.Windows.Forms.Padding(0)
+        Me.PictureBox1.Name = "PictureBox1"
+        Me.PictureBox1.Size = New System.Drawing.Size(298, 478)
+        Me.PictureBox1.TabIndex = 117
+        Me.PictureBox1.TabStop = False
         '
         'tlpEntry
         '
@@ -166,8 +181,8 @@ Partial Class frmNewCompany
         Me.tlpEntry.Controls.Add(Me.lblInfo, 1, 3)
         Me.tlpEntry.Controls.Add(Me.pExist, 1, 1)
         Me.tlpEntry.Controls.Add(Me.Panel1, 1, 2)
-        Me.tlpEntry.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.tlpEntry.Location = New System.Drawing.Point(0, 30)
+        Me.tlpEntry.Dock = System.Windows.Forms.DockStyle.Right
+        Me.tlpEntry.Location = New System.Drawing.Point(298, 30)
         Me.tlpEntry.Margin = New System.Windows.Forms.Padding(0)
         Me.tlpEntry.Name = "tlpEntry"
         Me.tlpEntry.RowCount = 5
@@ -176,7 +191,7 @@ Partial Class frmNewCompany
         Me.tlpEntry.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 310.0!))
         Me.tlpEntry.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 60.0!))
         Me.tlpEntry.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
-        Me.tlpEntry.Size = New System.Drawing.Size(456, 478)
+        Me.tlpEntry.Size = New System.Drawing.Size(418, 478)
         Me.tlpEntry.TabIndex = 17
         '
         'lblInfo
@@ -185,7 +200,7 @@ Partial Class frmNewCompany
         Me.lblInfo.AutoSize = True
         Me.lblInfo.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblInfo.ForeColor = System.Drawing.Color.Black
-        Me.lblInfo.Location = New System.Drawing.Point(184, 437)
+        Me.lblInfo.Location = New System.Drawing.Point(165, 437)
         Me.lblInfo.Name = "lblInfo"
         Me.lblInfo.Size = New System.Drawing.Size(87, 14)
         Me.lblInfo.TabIndex = 18
@@ -202,7 +217,7 @@ Partial Class frmNewCompany
         Me.pExist.Controls.Add(Me.Label15)
         Me.pExist.Controls.Add(Me.Label9)
         Me.pExist.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.pExist.Location = New System.Drawing.Point(28, 4)
+        Me.pExist.Location = New System.Drawing.Point(9, 4)
         Me.pExist.Margin = New System.Windows.Forms.Padding(0)
         Me.pExist.Name = "pExist"
         Me.pExist.Size = New System.Drawing.Size(400, 100)
@@ -210,13 +225,13 @@ Partial Class frmNewCompany
         '
         'btnExistCheck
         '
-        Me.btnExistCheck.BackColor = System.Drawing.Color.FromArgb(CType(CType(156, Byte), Integer), CType(CType(207, Byte), Integer), CType(CType(49, Byte), Integer))
+        Me.btnExistCheck.BackColor = System.Drawing.Color.Green
         Me.btnExistCheck.FlatAppearance.BorderColor = System.Drawing.Color.Black
         Me.btnExistCheck.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DimGray
         Me.btnExistCheck.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DarkGray
         Me.btnExistCheck.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnExistCheck.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnExistCheck.ForeColor = System.Drawing.Color.Black
+        Me.btnExistCheck.ForeColor = System.Drawing.Color.White
         Me.btnExistCheck.Location = New System.Drawing.Point(172, 71)
         Me.btnExistCheck.Name = "btnExistCheck"
         Me.btnExistCheck.Size = New System.Drawing.Size(100, 26)
@@ -308,7 +323,7 @@ Partial Class frmNewCompany
         Me.Panel1.Controls.Add(Me.Label17)
         Me.Panel1.Controls.Add(Me.xtcEntry)
         Me.Panel1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.Panel1.Location = New System.Drawing.Point(28, 104)
+        Me.Panel1.Location = New System.Drawing.Point(9, 104)
         Me.Panel1.Margin = New System.Windows.Forms.Padding(0)
         Me.Panel1.Name = "Panel1"
         Me.Panel1.Size = New System.Drawing.Size(400, 310)
@@ -1085,7 +1100,7 @@ Partial Class frmNewCompany
         Me.pHeader.Location = New System.Drawing.Point(0, 0)
         Me.pHeader.Margin = New System.Windows.Forms.Padding(0)
         Me.pHeader.Name = "pHeader"
-        Me.pHeader.Size = New System.Drawing.Size(456, 30)
+        Me.pHeader.Size = New System.Drawing.Size(716, 30)
         Me.pHeader.TabIndex = 111
         '
         'pbSync
@@ -1100,15 +1115,15 @@ Partial Class frmNewCompany
         '
         'btnSave
         '
-        Me.btnSave.BackColor = System.Drawing.Color.FromArgb(CType(CType(156, Byte), Integer), CType(CType(207, Byte), Integer), CType(CType(49, Byte), Integer))
+        Me.btnSave.BackColor = System.Drawing.Color.Green
         Me.btnSave.Dock = System.Windows.Forms.DockStyle.Right
         Me.btnSave.FlatAppearance.BorderSize = 0
         Me.btnSave.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DimGray
         Me.btnSave.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DarkGray
         Me.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnSave.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnSave.ForeColor = System.Drawing.Color.Black
-        Me.btnSave.Location = New System.Drawing.Point(356, 0)
+        Me.btnSave.ForeColor = System.Drawing.Color.White
+        Me.btnSave.Location = New System.Drawing.Point(616, 0)
         Me.btnSave.Name = "btnSave"
         Me.btnSave.Size = New System.Drawing.Size(100, 30)
         Me.btnSave.TabIndex = 1
@@ -1124,7 +1139,7 @@ Partial Class frmNewCompany
         Me.pTitle.Location = New System.Drawing.Point(2, 0)
         Me.pTitle.Margin = New System.Windows.Forms.Padding(0)
         Me.pTitle.Name = "pTitle"
-        Me.pTitle.Size = New System.Drawing.Size(456, 30)
+        Me.pTitle.Size = New System.Drawing.Size(716, 30)
         Me.pTitle.TabIndex = 8
         '
         'lblTitle
@@ -1136,7 +1151,7 @@ Partial Class frmNewCompany
         Me.lblTitle.Location = New System.Drawing.Point(0, 0)
         Me.lblTitle.Margin = New System.Windows.Forms.Padding(0)
         Me.lblTitle.Name = "lblTitle"
-        Me.lblTitle.Size = New System.Drawing.Size(426, 30)
+        Me.lblTitle.Size = New System.Drawing.Size(686, 30)
         Me.lblTitle.TabIndex = 6
         Me.lblTitle.Text = "Data Perusahaan"
         Me.lblTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
@@ -1146,7 +1161,7 @@ Partial Class frmNewCompany
         Me.pExit.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.pExit.Dock = System.Windows.Forms.DockStyle.Right
         Me.pExit.Image = Global.dizUI.My.Resources.Resources.exit_w
-        Me.pExit.Location = New System.Drawing.Point(426, 0)
+        Me.pExit.Location = New System.Drawing.Point(686, 0)
         Me.pExit.Margin = New System.Windows.Forms.Padding(0)
         Me.pExit.Name = "pExit"
         Me.pExit.Size = New System.Drawing.Size(30, 30)
@@ -1159,7 +1174,7 @@ Partial Class frmNewCompany
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer))
-        Me.ClientSize = New System.Drawing.Size(460, 540)
+        Me.ClientSize = New System.Drawing.Size(720, 540)
         Me.ControlBox = False
         Me.Controls.Add(Me.tlpForm)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
@@ -1170,6 +1185,7 @@ Partial Class frmNewCompany
         Me.Text = "Data Perusahaan"
         Me.tlpForm.ResumeLayout(False)
         Me.pBody.ResumeLayout(False)
+        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.tlpEntry.ResumeLayout(False)
         Me.tlpEntry.PerformLayout()
         Me.pExist.ResumeLayout(False)
@@ -1278,4 +1294,5 @@ Partial Class frmNewCompany
     Friend WithEvents teRefferalCode As DevExpress.XtraEditors.TextEdit
     Friend WithEvents Label17 As System.Windows.Forms.Label
     Friend WithEvents pbSync As System.Windows.Forms.PictureBox
+    Friend WithEvents PictureBox1 As PictureBox
 End Class

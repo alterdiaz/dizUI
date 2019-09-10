@@ -163,7 +163,7 @@
         Dim retval As String = ""
         Dim mysqls As New SQLs(dbstring)
         mysqls.DMLQuery("select idgeneratenumber,tablename,formatstring,lastnumber,positionnumber,digitnumber from sys_generatenumber where tablename='" & tbStr & "'", "GetLast")
-        Dim idgen As Integer = -1
+        Dim idgen As String = GenerateGUID()
         Dim currid As Integer = 0
         Dim currStrId As String = ""
         Dim lenStr As String = ""

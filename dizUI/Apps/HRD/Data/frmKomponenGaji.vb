@@ -87,10 +87,15 @@
 
     Private Sub loadLOV()
         Dim mysqls As New SQLs(dbstring)
-        mysqls.DMLQuery("select idgeneral as idtype, generalcode as type from sys_generalcode where gctype='JENISKOMPONENGAJI'", "type")
-        lueType.Properties.DataSource = mysqls.dataTable("type")
-        lueType.Properties.DisplayMember = "type"
-        lueType.Properties.ValueMember = "idtype"
+        mysqls.DMLQuery("select idgeneral as id, generalcode as content from sys_generalcode where gctype='FAKTORKOMPONENGAJI' order by generalcode asc", "type")
+        lueFaktor.Properties.DataSource = mysqls.dataTable("type")
+        lueFaktor.Properties.DisplayMember = "content"
+        lueFaktor.Properties.ValueMember = "id"
+
+        mysqls.DMLQuery("select idgeneral as id, generalcode as content from sys_generalcode where gctype='JENISKOMPONENGAJI' order by generalcode asc", "jenis")
+        lueJenis.Properties.DataSource = mysqls.dataTable("jenis")
+        lueJenis.Properties.DisplayMember = "content"
+        lueJenis.Properties.ValueMember = "id"
     End Sub
 
     Private Sub loadGrid()
@@ -102,7 +107,7 @@
         Me.Cursor = Cursors.WaitCursor
 
         Dim mysqls As New SQLs(dbstring)
-        mysqls.DMLQuery("select k.idkomponengaji, k.jeniskomponengaji, k.komponengaji, k.isdeleted, del.generalcode as statdata, t.generalcode as jeniskomponen from komponengaji k left join sys_generalcode t on t.idgeneral=k.jeniskomponengaji and t.gctype='JENISKOMPONENGAJI' left join sys_generalcode del on del.idgeneral=k.isdeleted and del.gctype='DELETE' where k.idcompany=(select top 1 value from sys_appsetting where variable='CompanyID') order by k.jeniskomponengaji asc, k.komponengaji asc", "data")
+        mysqls.DMLQuery("select k.idkomponengaji, k.faktorkomponengaji, k.komponengaji, k.jeniskomponengaji, j.generalcode as jeniskomponen, k.isdeleted, del.generalcode as statdata, t.generalcode as faktorkomponen from komponengaji k left join sys_generalcode j on j.idgeneral=k.jeniskomponengaji and j.gctype='JENISKOMPONENGAJI' left join sys_generalcode t on t.idgeneral=k.faktorkomponengaji and t.gctype='FAKTORKOMPONENGAJI' left join sys_generalcode del on del.idgeneral=k.isdeleted and del.gctype='DELETE' where k.idkomponengaji<>'0' order by k.faktorkomponengaji asc, k.komponengaji asc", "data")
         gcData.DataSource = mysqls.dataTable("data")
         gvData.BestFitColumns()
 
@@ -132,7 +137,7 @@
         End If
         If statData = statusData.Baru Then
             Dim sqls1 As New SQLs(dbstring)
-            sqls1.DMLQuery("select komponengaji from komponengaji where idcompany=(select top 1 value from sys_appsetting where variable='CompanyID') and replace(komponengaji,' ','')='" & teKomponen.Text.Replace(" ", "") & "'", "exist")
+            sqls1.DMLQuery("select komponengaji from komponengaji where replace(komponengaji,' ','')='" & teKomponen.Text.Replace(" ", "") & "'", "exist")
             If sqls1.getDataSet("exist") = 0 Then
                 idData = "-1"
             Else
@@ -142,7 +147,7 @@
             End If
         ElseIf statData = statusData.Edit Then
             Dim sqls1 As New SQLs(dbstring)
-            sqls1.DMLQuery("select komponengaji from komponengaji where idcompany=(select top 1 value from sys_appsetting where variable='CompanyID') and replace(komponengaji,' ','')='" & teKomponen.Text.Replace(" ", "") & "' and idkomponengaji<>'" & idData & "'", "exist")
+            sqls1.DMLQuery("select komponengaji from komponengaji where replace(komponengaji,' ','')='" & teKomponen.Text.Replace(" ", "") & "' and idkomponengaji<>'" & idData & "'", "exist")
             If sqls1.getDataSet("exist") > 0 Then
                 dizMsgbox("Data tersebut sudah ada", dizMsgboxStyle.Info, Me)
                 teKomponen.Focus()
@@ -159,11 +164,11 @@
 
         If statData = statusData.Baru Then
             idData = GenerateGUID()
-            field.AddRange(New String() {"idkomponengaji", "idcompany", "komponengaji", "jeniskomponengaji", "isdeleted", "createdby", "createddate"})
-            value.AddRange(New Object() {idData, idcomp, teKomponen.Text, If(lueType.EditValue, CObj(DBNull.Value)), 0, userid, nowTime})
+            field.AddRange(New String() {"idkomponengaji", "idcompany", "komponengaji", "faktorkomponengaji", "jeniskomponengaji", "isdeleted", "createdby", "createddate"})
+            value.AddRange(New Object() {idData, idcomp, teKomponen.Text, If(lueFaktor.EditValue, 0), If(lueJenis.EditValue, 0), 0, userid, nowTime})
         Else
-            field.AddRange(New String() {"idkomponengaji", "komponengaji", "jeniskomponengaji", "updatedby", "updateddate"})
-            value.AddRange(New Object() {idData, teKomponen.Text, If(lueType.EditValue, CObj(DBNull.Value)), userid, nowTime})
+            field.AddRange(New String() {"idkomponengaji", "komponengaji", "faktorkomponengaji", "jeniskomponengaji", "updatedby", "updateddate"})
+            value.AddRange(New Object() {idData, teKomponen.Text, If(lueFaktor.EditValue, 0), If(lueJenis.EditValue, 0), userid, nowTime})
         End If
         If dtSQL.datasetSave("komponengaji", idData, field, value, False) = True Then
             dizMsgbox("Data tersimpan", dizMsgboxStyle.Info, Me)
@@ -213,7 +218,8 @@
         Try
             Dim dcol As DataRow = gvData.GetDataRow(e.FocusedRowHandle)
             teKomponen.Text = dcol("komponengaji")
-            lueType.EditValue = dcol("jeniskomponengaji")
+            lueFaktor.EditValue = dcol("faktorkomponengaji")
+            lueJenis.EditValue = dcol("jeniskomponengaji")
             idData = dcol("idkomponengaji")
             statData = statusData.Edit
             isdeleted = dcol("isdeleted")

@@ -22,8 +22,16 @@ Partial Class frmReviewDirekturPPP
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Dim EditorButtonImageOptions1 As DevExpress.XtraEditors.Controls.EditorButtonImageOptions = New DevExpress.XtraEditors.Controls.EditorButtonImageOptions()
         Dim SerializableAppearanceObject1 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
         Dim SerializableAppearanceObject2 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
+        Dim SerializableAppearanceObject3 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
+        Dim SerializableAppearanceObject4 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
+        Dim EditorButtonImageOptions2 As DevExpress.XtraEditors.Controls.EditorButtonImageOptions = New DevExpress.XtraEditors.Controls.EditorButtonImageOptions()
+        Dim SerializableAppearanceObject5 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
+        Dim SerializableAppearanceObject6 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
+        Dim SerializableAppearanceObject7 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
+        Dim SerializableAppearanceObject8 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
         Me.tlpForm = New System.Windows.Forms.TableLayoutPanel()
         Me.pTitle = New System.Windows.Forms.Panel()
         Me.lblTitle = New System.Windows.Forms.Label()
@@ -131,7 +139,7 @@ Partial Class frmReviewDirekturPPP
         '
         'tlpForm
         '
-        Me.tlpForm.BackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(0, Byte), Integer))
+        Me.tlpForm.BackColor = System.Drawing.Color.Green
         Me.tlpForm.ColumnCount = 3
         Me.tlpForm.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 2.0!))
         Me.tlpForm.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
@@ -232,7 +240,7 @@ Partial Class frmReviewDirekturPPP
         '
         'xtcPenerimaanPengeluaran
         '
-        Me.xtcPenerimaanPengeluaran.Appearance.BackColor = System.Drawing.color.fromargb(240, 240, 240)
+        Me.xtcPenerimaanPengeluaran.Appearance.BackColor = System.Drawing.Color.FromArgb(CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer))
         Me.xtcPenerimaanPengeluaran.Appearance.Font = New System.Drawing.Font("Tahoma", 9.0!)
         Me.xtcPenerimaanPengeluaran.Appearance.Options.UseBackColor = True
         Me.xtcPenerimaanPengeluaran.Appearance.Options.UseFont = True
@@ -244,19 +252,18 @@ Partial Class frmReviewDirekturPPP
         Me.xtcPenerimaanPengeluaran.AppearancePage.HeaderDisabled.Options.UseFont = True
         Me.xtcPenerimaanPengeluaran.AppearancePage.HeaderHotTracked.Font = New System.Drawing.Font("Tahoma", 9.0!)
         Me.xtcPenerimaanPengeluaran.AppearancePage.HeaderHotTracked.Options.UseFont = True
-        Me.xtcPenerimaanPengeluaran.AppearancePage.PageClient.BackColor = System.Drawing.color.fromargb(240, 240, 240)
+        Me.xtcPenerimaanPengeluaran.AppearancePage.PageClient.BackColor = System.Drawing.Color.FromArgb(CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer))
         Me.xtcPenerimaanPengeluaran.AppearancePage.PageClient.Font = New System.Drawing.Font("Tahoma", 9.0!)
         Me.xtcPenerimaanPengeluaran.AppearancePage.PageClient.Options.UseBackColor = True
         Me.xtcPenerimaanPengeluaran.AppearancePage.PageClient.Options.UseFont = True
         Me.xtcPenerimaanPengeluaran.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
         Me.xtcPenerimaanPengeluaran.BorderStylePage = DevExpress.XtraEditors.Controls.BorderStyles.HotFlat
         Me.xtcPenerimaanPengeluaran.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.xtcPenerimaanPengeluaran.Font = New System.Drawing.Font("Tahoma", 9.0!)
         Me.xtcPenerimaanPengeluaran.HeaderAutoFill = DevExpress.Utils.DefaultBoolean.[False]
         Me.xtcPenerimaanPengeluaran.HeaderButtons = DevExpress.XtraTab.TabButtons.None
         Me.xtcPenerimaanPengeluaran.HeaderButtonsShowMode = DevExpress.XtraTab.TabButtonShowMode.Never
         Me.xtcPenerimaanPengeluaran.HeaderOrientation = DevExpress.XtraTab.TabOrientation.Horizontal
-        Me.xtcPenerimaanPengeluaran.Location = New System.Drawing.Point(0, 222)
+        Me.xtcPenerimaanPengeluaran.Location = New System.Drawing.Point(0, 220)
         Me.xtcPenerimaanPengeluaran.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
         Me.xtcPenerimaanPengeluaran.LookAndFeel.UseDefaultLookAndFeel = False
         Me.xtcPenerimaanPengeluaran.MultiLine = DevExpress.Utils.DefaultBoolean.[False]
@@ -265,17 +272,17 @@ Partial Class frmReviewDirekturPPP
         Me.xtcPenerimaanPengeluaran.ShowHeaderFocus = DevExpress.Utils.DefaultBoolean.[False]
         Me.xtcPenerimaanPengeluaran.ShowTabHeader = DevExpress.Utils.DefaultBoolean.[False]
         Me.xtcPenerimaanPengeluaran.ShowToolTips = DevExpress.Utils.DefaultBoolean.[False]
-        Me.xtcPenerimaanPengeluaran.Size = New System.Drawing.Size(786, 247)
+        Me.xtcPenerimaanPengeluaran.Size = New System.Drawing.Size(786, 249)
         Me.xtcPenerimaanPengeluaran.TabIndex = 8
         Me.xtcPenerimaanPengeluaran.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.xtpPenerimaan, Me.xtpPengeluaran})
         '
         'xtpPenerimaan
         '
-        Me.xtpPenerimaan.Appearance.PageClient.BackColor = System.Drawing.color.fromargb(240, 240, 240)
+        Me.xtpPenerimaan.Appearance.PageClient.BackColor = System.Drawing.Color.FromArgb(CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer))
         Me.xtpPenerimaan.Appearance.PageClient.Options.UseBackColor = True
         Me.xtpPenerimaan.Controls.Add(Me.gcPenerimaanData)
         Me.xtpPenerimaan.Name = "xtpPenerimaan"
-        Me.xtpPenerimaan.Size = New System.Drawing.Size(782, 243)
+        Me.xtpPenerimaan.Size = New System.Drawing.Size(782, 245)
         Me.xtpPenerimaan.Text = "Penerimaan"
         '
         'gcPenerimaanData
@@ -285,13 +292,13 @@ Partial Class frmReviewDirekturPPP
         Me.gcPenerimaanData.MainView = Me.gvPenerimaanData
         Me.gcPenerimaanData.Name = "gcPenerimaanData"
         Me.gcPenerimaanData.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.rceStatus, Me.rteReason, Me.rimeNote1})
-        Me.gcPenerimaanData.Size = New System.Drawing.Size(782, 243)
+        Me.gcPenerimaanData.Size = New System.Drawing.Size(782, 245)
         Me.gcPenerimaanData.TabIndex = 15
         Me.gcPenerimaanData.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gvPenerimaanData})
         '
         'gvPenerimaanData
         '
-        Me.gvPenerimaanData.Appearance.Empty.BackColor = System.Drawing.color.fromargb(240, 240, 240)
+        Me.gvPenerimaanData.Appearance.Empty.BackColor = System.Drawing.Color.FromArgb(CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer))
         Me.gvPenerimaanData.Appearance.Empty.Options.UseBackColor = True
         Me.gvPenerimaanData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.gctID, Me.gctIDParent, Me.gctIDPengajuan, Me.gctIDCOA, Me.gctIDUnit, Me.gctNomorUrut, Me.gctUntuk, Me.gctNoDokumen, Me.gctJumlahUang, Me.gctDebetKredit, Me.gctDelete, Me.gctReason, Me.gctKDCOA})
         Me.gvPenerimaanData.GridControl = Me.gcPenerimaanData
@@ -418,7 +425,7 @@ Partial Class frmReviewDirekturPPP
         '
         Me.rceStatus.AutoHeight = False
         Me.rceStatus.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.rceStatus.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("idgeneral", "ID", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("generalcode", "Status")})
+        Me.rceStatus.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("idgeneral", "ID", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default], DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("generalcode", "Status")})
         Me.rceStatus.Name = "rceStatus"
         Me.rceStatus.NullText = "[Belum dipilih]"
         '
@@ -471,7 +478,7 @@ Partial Class frmReviewDirekturPPP
         '
         'gvPengeluaranData
         '
-        Me.gvPengeluaranData.Appearance.Empty.BackColor = System.Drawing.color.fromargb(240, 240, 240)
+        Me.gvPengeluaranData.Appearance.Empty.BackColor = System.Drawing.Color.FromArgb(CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer))
         Me.gvPengeluaranData.Appearance.Empty.Options.UseBackColor = True
         Me.gvPengeluaranData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.gckID, Me.gckIDParent, Me.gckIDPengajuan, Me.gckIDCOA, Me.gckIDunit, Me.gckNomorUrut, Me.gckUntuk, Me.gckNoDokumen, Me.gckJumlahUang, Me.gckDebetKredit, Me.gckDelete, Me.gckReason, Me.gckKDCOA})
         Me.gvPengeluaranData.GridControl = Me.gcPengeluaranData
@@ -598,7 +605,7 @@ Partial Class frmReviewDirekturPPP
         '
         Me.rce2Status.AutoHeight = False
         Me.rce2Status.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.rce2Status.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("idgeneral", "ID", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("generalcode", "Status")})
+        Me.rce2Status.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("idgeneral", "ID", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default], DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("generalcode", "Status")})
         Me.rce2Status.Name = "rce2Status"
         Me.rce2Status.NullText = "[Belum dipilih]"
         '
@@ -633,7 +640,7 @@ Partial Class frmReviewDirekturPPP
         '
         'TableLayoutPanel5
         '
-        Me.TableLayoutPanel5.BackColor = System.Drawing.color.fromargb(240, 240, 240)
+        Me.TableLayoutPanel5.BackColor = System.Drawing.Color.FromArgb(CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer))
         Me.TableLayoutPanel5.ColumnCount = 4
         Me.TableLayoutPanel5.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
         Me.TableLayoutPanel5.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 130.0!))
@@ -648,17 +655,17 @@ Partial Class frmReviewDirekturPPP
         Me.TableLayoutPanel5.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
         Me.TableLayoutPanel5.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 48.0!))
         Me.TableLayoutPanel5.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
-        Me.TableLayoutPanel5.Size = New System.Drawing.Size(786, 32)
+        Me.TableLayoutPanel5.Size = New System.Drawing.Size(786, 30)
         Me.TableLayoutPanel5.TabIndex = 15
         '
         'Panel3
         '
         Me.Panel3.Anchor = System.Windows.Forms.AnchorStyles.Right
-        Me.Panel3.BackColor = System.Drawing.color.fromargb(240, 240, 240)
+        Me.Panel3.BackColor = System.Drawing.Color.FromArgb(CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer))
         Me.Panel3.Controls.Add(Me.tabPenerimaan)
         Me.Panel3.Controls.Add(Me.tabPengeluaran)
         Me.Panel3.ForeColor = System.Drawing.Color.White
-        Me.Panel3.Location = New System.Drawing.Point(306, 0)
+        Me.Panel3.Location = New System.Drawing.Point(306, -1)
         Me.Panel3.Margin = New System.Windows.Forms.Padding(0)
         Me.Panel3.Name = "Panel3"
         Me.Panel3.Size = New System.Drawing.Size(392, 32)
@@ -702,7 +709,7 @@ Partial Class frmReviewDirekturPPP
         '
         'tlpUntuk
         '
-        Me.tlpUntuk.BackColor = System.Drawing.color.fromargb(240, 240, 240)
+        Me.tlpUntuk.BackColor = System.Drawing.Color.FromArgb(CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer))
         Me.tlpUntuk.ColumnCount = 4
         Me.tlpUntuk.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
         Me.tlpUntuk.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 130.0!))
@@ -788,7 +795,7 @@ Partial Class frmReviewDirekturPPP
         '
         'tlpField
         '
-        Me.tlpField.BackColor = System.Drawing.color.fromargb(240, 240, 240)
+        Me.tlpField.BackColor = System.Drawing.Color.FromArgb(CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer))
         Me.tlpField.ColumnCount = 6
         Me.tlpField.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
         Me.tlpField.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 130.0!))
@@ -955,7 +962,7 @@ Partial Class frmReviewDirekturPPP
         Me.seTotalPenerimaan.Properties.Appearance.Options.UseBackColor = True
         Me.seTotalPenerimaan.Properties.Appearance.Options.UseFont = True
         Me.seTotalPenerimaan.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple
-        Me.seTotalPenerimaan.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis, "", -1, True, False, False, DevExpress.XtraEditors.ImageLocation.MiddleCenter, Nothing, New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject1, "", Nothing, Nothing, True)})
+        Me.seTotalPenerimaan.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis, "", -1, True, False, False, EditorButtonImageOptions1, New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject1, SerializableAppearanceObject2, SerializableAppearanceObject3, SerializableAppearanceObject4, "", Nothing, Nothing, DevExpress.Utils.ToolTipAnchor.[Default])})
         Me.seTotalPenerimaan.Properties.DisplayFormat.FormatString = "n2"
         Me.seTotalPenerimaan.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.seTotalPenerimaan.Properties.EditFormat.FormatString = "n2"
@@ -982,7 +989,7 @@ Partial Class frmReviewDirekturPPP
         Me.seTotalPengeluaran.Properties.Appearance.Options.UseBackColor = True
         Me.seTotalPengeluaran.Properties.Appearance.Options.UseFont = True
         Me.seTotalPengeluaran.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple
-        Me.seTotalPengeluaran.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis, "", -1, True, False, False, DevExpress.XtraEditors.ImageLocation.MiddleCenter, Nothing, New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject2, "", Nothing, Nothing, True)})
+        Me.seTotalPengeluaran.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis, "", -1, True, False, False, EditorButtonImageOptions2, New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject5, SerializableAppearanceObject6, SerializableAppearanceObject7, SerializableAppearanceObject8, "", Nothing, Nothing, DevExpress.Utils.ToolTipAnchor.[Default])})
         Me.seTotalPengeluaran.Properties.DisplayFormat.FormatString = "n2"
         Me.seTotalPengeluaran.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.seTotalPengeluaran.Properties.EditFormat.FormatString = "n2"
@@ -1027,7 +1034,7 @@ Partial Class frmReviewDirekturPPP
         '
         'btnSave
         '
-        Me.btnSave.BackColor = System.Drawing.Color.FromArgb(CType(CType(156, Byte), Integer), CType(CType(207, Byte), Integer), CType(CType(49, Byte), Integer))
+        Me.btnSave.BackColor = System.Drawing.Color.Green
         Me.btnSave.Dock = System.Windows.Forms.DockStyle.Right
         Me.btnSave.FlatAppearance.BorderSize = 0
         Me.btnSave.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DimGray
@@ -1059,7 +1066,7 @@ Partial Class frmReviewDirekturPPP
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.BackColor = System.Drawing.color.fromargb(240, 240, 240)
+        Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer))
         Me.ClientSize = New System.Drawing.Size(790, 499)
         Me.Controls.Add(Me.tlpForm)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None

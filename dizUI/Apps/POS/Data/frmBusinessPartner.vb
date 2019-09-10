@@ -97,7 +97,7 @@
         Me.Cursor = Cursors.WaitCursor
 
         Dim mysqls As New SQLs(dbstring)
-        mysqls.DMLQuery("select bp.idbusinesspartner,bp.isdeleted,d.generalcode as statdata,bp.businesspartnertype,gc.generalcode as type,bp.paymenttype,pt.generalcode as jenisbayar,bp.kode,bp.nama from businesspartner bp left join sys_generalcode pt on bp.paymenttype=pt.idgeneral and pt.gctype='PAYTYPE' left join sys_generalcode gc on gc.idgeneral=bp.businesspartnertype and gc.gctype='BPTYPE' left join sys_generalcode d on d.idgeneral=bp.isdeleted and d.gctype='DELETE' where bp.idcompany=(select top 1 value from sys_appsetting where variable='CompanyID') ORDER BY type asc,nama asc", "data")
+        mysqls.DMLQuery("select bp.idbusinesspartner,bp.isdeleted,d.generalcode as statdata,bp.businesspartnertype,gc.generalcode as type,bp.paymenttype,pt.generalcode as jenisbayar,bp.kode,bp.nama from businesspartner bp left join sys_generalcode pt on bp.paymenttype=pt.idgeneral and pt.gctype='PAYTYPE' left join sys_generalcode gc on gc.idgeneral=bp.businesspartnertype and gc.gctype='BPTYPE' left join sys_generalcode d on d.idgeneral=bp.isdeleted and d.gctype='DELETE' where ORDER BY type asc,nama asc", "data")
         gcData.DataSource = mysqls.dataTable("data")
         gvData.BestFitColumns()
 
@@ -115,7 +115,7 @@
 
         fromGridChild = False
         Dim sqls As New SQLs(dbstring)
-        sqls.DMLQuery("select e.idemail,e.email,e.emailtype,e.isdeleted,e.isprimary,del.generalcode as statdata,pri.generalcode as [primary],et.generalcode as jenisemail from email e left join sys_generalcode et on e.emailtype=et.idgeneral and et.gctype='EMAILTYPE' left join sys_generalcode del on e.isdeleted=del.idgeneral and del.gctype='DELETE' left join sys_generalcode pri on e.isprimary=pri.idgeneral and pri.gctype='ISPRIMARY' where e.idcompany=(select top 1 value from sys_appsetting where variable='CompanyID') and e.tablereff='BP' and e.idreff='" & idreff & "'", "email")
+        sqls.DMLQuery("select e.idemail,e.email,e.emailtype,e.isdeleted,e.isprimary,del.generalcode as statdata,pri.generalcode as [primary],et.generalcode as jenisemail from email e left join sys_generalcode et on e.emailtype=et.idgeneral and et.gctype='EMAILTYPE' left join sys_generalcode del on e.isdeleted=del.idgeneral and del.gctype='DELETE' left join sys_generalcode pri on e.isprimary=pri.idgeneral and pri.gctype='ISPRIMARY' where e.tablereff='BP' and e.idreff='" & idreff & "'", "email")
         gcEmail.DataSource = sqls.dataTable("email")
         gvEmail.BestFitColumns()
         fromGridChild = True
@@ -134,7 +134,7 @@
 
         fromGridChild = False
         Dim sqls As New SQLs(dbstring)
-        sqls.DMLQuery("select p.idphone,p.phone,p.extension,p.phonetype,p.isdeleted,p.isprimary,del.generalcode as statdata,pri.generalcode as [primary],et.generalcode as jenistelepon from phone p left join sys_generalcode et on p.phonetype=et.idgeneral and et.gctype='PHONETYPE' left join sys_generalcode del on p.isdeleted=del.idgeneral and del.gctype='DELETE' left join sys_generalcode pri on p.isprimary=pri.idgeneral and pri.gctype='ISPRIMARY' where p.idcompany=(select top 1 value from sys_appsetting where variable='CompanyID') and p.tablereff='BP' and p.idreff='" & idreff & "'", "phone")
+        sqls.DMLQuery("select p.idphone,p.phone,p.extension,p.phonetype,p.isdeleted,p.isprimary,del.generalcode as statdata,pri.generalcode as [primary],et.generalcode as jenistelepon from phone p left join sys_generalcode et on p.phonetype=et.idgeneral and et.gctype='PHONETYPE' left join sys_generalcode del on p.isdeleted=del.idgeneral and del.gctype='DELETE' left join sys_generalcode pri on p.isprimary=pri.idgeneral and pri.gctype='ISPRIMARY' where p.tablereff='BP' and p.idreff='" & idreff & "'", "phone")
         gcTelepon.DataSource = sqls.dataTable("phone")
         gvTelepon.BestFitColumns()
         fromGridChild = True
@@ -153,7 +153,7 @@
 
         fromGridChild = False
         Dim sqls As New SQLs(dbstring)
-        sqls.DMLQuery("select a.idalamat,a.idnegara,a.idpropinsi,a.idkabupaten,a.idkecamatan,a.idkelurahan,a.alamat,a.addresstype,a.isdeleted,a.isprimary,n.wilayah as negara,p.wilayah as propinsi,b.wilayah as kabupaten,c.wilayah as kecamatan,l.wilayah as kelurahan,del.generalcode as statdata,pri.generalcode as [primary],adt.generalcode as jenisalamat,a.kodepos  from alamat a left join wilayah n on a.idnegara=n.idwilayah and n.idcompany=(select top 1 value from sys_appsetting where variable='CompanyID') left join wilayah p on a.idpropinsi=p.idwilayah and p.idcompany=(select top 1 value from sys_appsetting where variable='CompanyID') left join wilayah b on a.idkabupaten=b.idwilayah and b.idcompany=(select top 1 value from sys_appsetting where variable='CompanyID') left join wilayah c on a.idkecamatan=c.idwilayah and c.idcompany=(select top 1 value from sys_appsetting where variable='CompanyID') left join wilayah l on a.idkelurahan=l.idwilayah and l.idcompany=(select top 1 value from sys_appsetting where variable='CompanyID') left join sys_generalcode del on a.isdeleted=del.idgeneral and del.gctype='DELETE' left join sys_generalcode pri on a.isprimary=pri.idgeneral and pri.gctype='ISPRIMARY' left join sys_generalcode adt on a.addresstype=adt.idgeneral and adt.gctype='ADDRESSTYPE' where a.idcompany=(select top 1 value from sys_appsetting where variable='CompanyID') and a.tablereff='BP' and a.idreff='" & idreff & "'", "alamat")
+        sqls.DMLQuery("select a.idalamat,a.idnegara,a.idpropinsi,a.idkabupaten,a.idkecamatan,a.idkelurahan,a.alamat,a.addresstype,a.isdeleted,a.isprimary,n.wilayah as negara,p.wilayah as propinsi,b.wilayah as kabupaten,c.wilayah as kecamatan,l.wilayah as kelurahan,del.generalcode as statdata,pri.generalcode as [primary],adt.generalcode as jenisalamat,a.kodepos  from alamat a left join wilayah n on a.idnegara=n.idwilayah left join wilayah p on a.idpropinsi=p.idwilayah left join wilayah b on a.idkabupaten=b.idwilayah left join wilayah c on a.idkecamatan=c.idwilayah left join wilayah l on a.idkelurahan=l.idwilayah left join sys_generalcode del on a.isdeleted=del.idgeneral and del.gctype='DELETE' left join sys_generalcode pri on a.isprimary=pri.idgeneral and pri.gctype='ISPRIMARY' left join sys_generalcode adt on a.addresstype=adt.idgeneral and adt.gctype='ADDRESSTYPE' where a.tablereff='BP' and a.idreff='" & idreff & "'", "alamat")
         gcAlamat.DataSource = sqls.dataTable("alamat")
         gvAlamat.BestFitColumns()
         fromGridChild = True
@@ -174,7 +174,7 @@
         luePaymentType.Properties.ValueMember = "id"
         luePaymentType.Properties.DisplayMember = "content"
 
-        mysqls.DMLQuery("select idwilayah as id, wilayah as content from wilayah where idcompany=(select top 1 value from sys_appsetting where variable='CompanyID') and isnull(isdeleted,0)=0 and levelwilayah=1", "negara")
+        mysqls.DMLQuery("select idwilayah as id, wilayah as content from wilayah where isnull(isdeleted,0)=0 and levelwilayah=1", "negara")
         lueNegara.Properties.DataSource = mysqls.dataTable("negara")
         lueNegara.Properties.DisplayMember = "content"
         lueNegara.Properties.ValueMember = "id"
@@ -248,7 +248,7 @@
         Try
             If fromGridChild = True Then Exit Sub
             Dim mysqls As New SQLs(dbstring)
-            mysqls.DMLQuery("select idwilayah as id, wilayah as content from wilayah where idcompany=(select top 1 value from sys_appsetting where variable='CompanyID') and isnull(isdeleted,0)=0 and idparent='" & sender.EditValue & "'", "propinsi")
+            mysqls.DMLQuery("select idwilayah as id, wilayah as content from wilayah where isnull(isdeleted,0)=0 and idparent='" & sender.EditValue & "'", "propinsi")
             luePropinsi.Properties.DataSource = mysqls.dataTable("propinsi")
             luePropinsi.Properties.DisplayMember = "content"
             luePropinsi.Properties.ValueMember = "id"
@@ -265,7 +265,7 @@
         Try
             If fromGridChild = True Then Exit Sub
             Dim mysqls As New SQLs(dbstring)
-            mysqls.DMLQuery("select idwilayah as id, wilayah as content from wilayah where idcompany=(select top 1 value from sys_appsetting where variable='CompanyID') and isnull(isdeleted,0)=0 and idparent='" & sender.EditValue & "'", "kabupaten")
+            mysqls.DMLQuery("select idwilayah as id, wilayah as content from wilayah where isnull(isdeleted,0)=0 and idparent='" & sender.EditValue & "'", "kabupaten")
             lueKabupaten.Properties.DataSource = mysqls.dataTable("kabupaten")
             lueKabupaten.Properties.DisplayMember = "content"
             lueKabupaten.Properties.ValueMember = "id"
@@ -282,7 +282,7 @@
         Try
             If fromGridChild = True Then Exit Sub
             Dim mysqls As New SQLs(dbstring)
-            mysqls.DMLQuery("select idwilayah as id, wilayah as content from wilayah where idcompany=(select top 1 value from sys_appsetting where variable='CompanyID') and isnull(isdeleted,0)=0 and idparent='" & sender.EditValue & "'", "kecamatan")
+            mysqls.DMLQuery("select idwilayah as id, wilayah as content from wilayah where isnull(isdeleted,0)=0 and idparent='" & sender.EditValue & "'", "kecamatan")
             lueKecamatan.Properties.DataSource = mysqls.dataTable("kecamatan")
             lueKecamatan.Properties.DisplayMember = "content"
             lueKecamatan.Properties.ValueMember = "id"
@@ -299,7 +299,7 @@
         Try
             If fromGridChild = True Then Exit Sub
             Dim mysqls As New SQLs(dbstring)
-            mysqls.DMLQuery("select idwilayah as id, wilayah as content from wilayah where idcompany=(select top 1 value from sys_appsetting where variable='CompanyID') and isnull(isdeleted,0)=0 and idparent='" & sender.EditValue & "'", "kelurahan")
+            mysqls.DMLQuery("select idwilayah as id, wilayah as content from wilayah where isnull(isdeleted,0)=0 and idparent='" & sender.EditValue & "'", "kelurahan")
             lueKelurahan.Properties.DataSource = mysqls.dataTable("kelurahan")
             lueKelurahan.Properties.DisplayMember = "content"
             lueKelurahan.Properties.ValueMember = "id"
@@ -380,7 +380,7 @@
         End If
         If statData = statusData.Baru Then
             Dim sqls As New SQLs(dbstring)
-            sqls.DMLQuery("select nama from businesspartner where idcompany=(select top 1 value from sys_appsetting where variable='CompanyID') and replace(nama,' ','')='" & teNama.Text.Replace(" ", "") & "' and businesspartnertype='" & lueType.EditValue & "'", "exist")
+            sqls.DMLQuery("select nama from businesspartner where replace(nama,' ','')='" & teNama.Text.Replace(" ", "") & "' and businesspartnertype='" & lueType.EditValue & "'", "exist")
             If sqls.getDataSet("exist") = 0 Then
                 idData = "-1"
             Else
@@ -390,7 +390,7 @@
             End If
         ElseIf statData = statusData.Edit Then
             Dim sqls As New SQLs(dbstring)
-            sqls.DMLQuery("select nama from businesspartner where idcompany=(select top 1 value from sys_appsetting where variable='CompanyID') and replace(nama,' ','')='" & teNama.Text.Replace(" ", "") & "' and businesspartnertype='" & lueType.EditValue & "' and idbusinesspartner<>'" & idData & "'", "exist")
+            sqls.DMLQuery("select nama from businesspartner where replace(nama,' ','')='" & teNama.Text.Replace(" ", "") & "' and businesspartnertype='" & lueType.EditValue & "' and idbusinesspartner<>'" & idData & "'", "exist")
             If sqls.getDataSet("exist") > 0 Then
                 dizMsgbox("Data tersebut sudah ada", dizMsgboxStyle.Info, Me)
                 teNama.Focus()
@@ -407,6 +407,7 @@
         Dim idcomp As String = sqlscomp.getDataSet("CompID", 0, "value")
 
         If statData = statusData.Baru Then
+            idData = GenerateGUID()
             teKode.Text = generateno3("", lueType.Text.ToUpper.Chars(0), "yyyy", False)
             field.AddRange(New String() {"idbusinesspartner", "idcompany", "businesspartnertype", "kode", "nama", "paymenttype", "isdeleted", "createdby", "createddate"})
             value.AddRange(New Object() {idData, idcomp, lueType.EditValue, teKode.Text, teNama.Text, luePaymentType.EditValue, 0, userid, nowTime})

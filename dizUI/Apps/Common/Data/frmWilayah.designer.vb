@@ -22,7 +22,11 @@ Partial Class frmWilayah
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Dim EditorButtonImageOptions1 As DevExpress.XtraEditors.Controls.EditorButtonImageOptions = New DevExpress.XtraEditors.Controls.EditorButtonImageOptions()
         Dim SerializableAppearanceObject1 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
+        Dim SerializableAppearanceObject2 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
+        Dim SerializableAppearanceObject3 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
+        Dim SerializableAppearanceObject4 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
         Me.tlpForm = New System.Windows.Forms.TableLayoutPanel()
         Me.pTitle = New System.Windows.Forms.Panel()
         Me.lblTitle = New System.Windows.Forms.Label()
@@ -192,7 +196,7 @@ Partial Class frmWilayah
         '
         'xtcViewer
         '
-        Me.xtcViewer.Appearance.BackColor = System.Drawing.color.fromargb(240, 240, 240)
+        Me.xtcViewer.Appearance.BackColor = System.Drawing.Color.FromArgb(CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer))
         Me.xtcViewer.Appearance.Font = New System.Drawing.Font("Tahoma", 9.0!)
         Me.xtcViewer.Appearance.Options.UseBackColor = True
         Me.xtcViewer.Appearance.Options.UseFont = True
@@ -207,11 +211,11 @@ Partial Class frmWilayah
         Me.xtcViewer.AppearancePage.PageClient.Font = New System.Drawing.Font("Tahoma", 9.0!)
         Me.xtcViewer.AppearancePage.PageClient.Options.UseFont = True
         Me.xtcViewer.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.xtcViewer.Location = New System.Drawing.Point(0, 125)
+        Me.xtcViewer.Location = New System.Drawing.Point(0, 114)
         Me.xtcViewer.Margin = New System.Windows.Forms.Padding(0)
         Me.xtcViewer.Name = "xtcViewer"
         Me.xtcViewer.SelectedTabPage = Me.xtpGrid
-        Me.xtcViewer.Size = New System.Drawing.Size(786, 253)
+        Me.xtcViewer.Size = New System.Drawing.Size(786, 264)
         Me.xtcViewer.TabIndex = 8
         Me.xtcViewer.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.xtpGrid, Me.xtpTree})
         '
@@ -219,7 +223,7 @@ Partial Class frmWilayah
         '
         Me.xtpGrid.Controls.Add(Me.gcData)
         Me.xtpGrid.Name = "xtpGrid"
-        Me.xtpGrid.Size = New System.Drawing.Size(780, 224)
+        Me.xtpGrid.Size = New System.Drawing.Size(780, 235)
         Me.xtpGrid.Text = "Gridview"
         '
         'gcData
@@ -228,13 +232,13 @@ Partial Class frmWilayah
         Me.gcData.Location = New System.Drawing.Point(0, 0)
         Me.gcData.MainView = Me.gvData
         Me.gcData.Name = "gcData"
-        Me.gcData.Size = New System.Drawing.Size(780, 224)
+        Me.gcData.Size = New System.Drawing.Size(780, 235)
         Me.gcData.TabIndex = 8
         Me.gcData.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gvData})
         '
         'gvData
         '
-        Me.gvData.Appearance.Empty.BackColor = System.Drawing.color.fromargb(240, 240, 240)
+        Me.gvData.Appearance.Empty.BackColor = System.Drawing.Color.FromArgb(CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer))
         Me.gvData.Appearance.Empty.Options.UseBackColor = True
         Me.gvData.Appearance.EvenRow.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer))
         Me.gvData.Appearance.EvenRow.Options.UseBackColor = True
@@ -356,13 +360,14 @@ Partial Class frmWilayah
         '
         'tlData
         '
-        Me.tlData.Appearance.Empty.BackColor = System.Drawing.color.fromargb(240, 240, 240)
+        Me.tlData.Appearance.Empty.BackColor = System.Drawing.Color.FromArgb(CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer))
         Me.tlData.Appearance.Empty.Options.UseBackColor = True
         Me.tlData.Appearance.EvenRow.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer))
         Me.tlData.Appearance.EvenRow.Options.UseBackColor = True
         Me.tlData.Appearance.OddRow.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(192, Byte), Integer))
         Me.tlData.Appearance.OddRow.Options.UseBackColor = True
         Me.tlData.Columns.AddRange(New DevExpress.XtraTreeList.Columns.TreeListColumn() {Me.tlcID, Me.tlcIDParent, Me.tlcIDStatData, Me.tlclevelwilayah, Me.tlcParent, Me.tlcWilayah, Me.tlcKodepos, Me.tlcStatData})
+        Me.tlData.DataSource = Nothing
         Me.tlData.Dock = System.Windows.Forms.DockStyle.Fill
         Me.tlData.Location = New System.Drawing.Point(0, 0)
         Me.tlData.Name = "tlData"
@@ -457,7 +462,9 @@ Partial Class frmWilayah
         '
         'tlpField
         '
-        Me.tlpField.BackColor = System.Drawing.color.fromargb(240, 240, 240)
+        Me.tlpField.AutoSize = True
+        Me.tlpField.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
+        Me.tlpField.BackColor = System.Drawing.Color.FromArgb(CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer))
         Me.tlpField.ColumnCount = 6
         Me.tlpField.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
         Me.tlpField.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 140.0!))
@@ -479,18 +486,18 @@ Partial Class frmWilayah
         Me.tlpField.Location = New System.Drawing.Point(0, 30)
         Me.tlpField.Name = "tlpField"
         Me.tlpField.RowCount = 5
-        Me.tlpField.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
+        Me.tlpField.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 6.0!))
         Me.tlpField.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 24.0!))
         Me.tlpField.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 24.0!))
         Me.tlpField.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 24.0!))
-        Me.tlpField.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
-        Me.tlpField.Size = New System.Drawing.Size(786, 95)
+        Me.tlpField.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 6.0!))
+        Me.tlpField.Size = New System.Drawing.Size(786, 84)
         Me.tlpField.TabIndex = 7
         '
         'teWilayah
         '
         Me.teWilayah.Anchor = System.Windows.Forms.AnchorStyles.Left
-        Me.teWilayah.Location = New System.Drawing.Point(243, 61)
+        Me.teWilayah.Location = New System.Drawing.Point(243, 56)
         Me.teWilayah.Margin = New System.Windows.Forms.Padding(0)
         Me.teWilayah.Name = "teWilayah"
         Me.teWilayah.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[True]
@@ -511,7 +518,7 @@ Partial Class frmWilayah
         Me.lblWilayah.Anchor = System.Windows.Forms.AnchorStyles.Right
         Me.lblWilayah.AutoSize = True
         Me.lblWilayah.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblWilayah.Location = New System.Drawing.Point(192, 64)
+        Me.lblWilayah.Location = New System.Drawing.Point(192, 59)
         Me.lblWilayah.Name = "lblWilayah"
         Me.lblWilayah.Size = New System.Drawing.Size(48, 14)
         Me.lblWilayah.TabIndex = 9
@@ -521,7 +528,7 @@ Partial Class frmWilayah
         'lueParent
         '
         Me.lueParent.Anchor = System.Windows.Forms.AnchorStyles.Left
-        Me.lueParent.Location = New System.Drawing.Point(243, 37)
+        Me.lueParent.Location = New System.Drawing.Point(243, 32)
         Me.lueParent.Margin = New System.Windows.Forms.Padding(0)
         Me.lueParent.Name = "lueParent"
         Me.lueParent.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
@@ -530,7 +537,7 @@ Partial Class frmWilayah
         Me.lueParent.Properties.Appearance.Options.UseFont = True
         Me.lueParent.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple
         Me.lueParent.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.lueParent.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("idwilayah", "ID Parent", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("induk", "Wilayah Induk")})
+        Me.lueParent.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("idwilayah", "ID Parent", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default], DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("induk", "Wilayah Induk")})
         Me.lueParent.Properties.NullText = "[Isian belum dipilih]"
         Me.lueParent.Properties.NullValuePrompt = "[Isian belum dipilih]"
         Me.lueParent.Size = New System.Drawing.Size(150, 20)
@@ -541,7 +548,7 @@ Partial Class frmWilayah
         Me.lblParent.Anchor = System.Windows.Forms.AnchorStyles.Right
         Me.lblParent.AutoSize = True
         Me.lblParent.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblParent.Location = New System.Drawing.Point(157, 40)
+        Me.lblParent.Location = New System.Drawing.Point(157, 35)
         Me.lblParent.Name = "lblParent"
         Me.lblParent.Size = New System.Drawing.Size(83, 14)
         Me.lblParent.TabIndex = 20
@@ -553,7 +560,7 @@ Partial Class frmWilayah
         Me.lblLevel.Anchor = System.Windows.Forms.AnchorStyles.Right
         Me.lblLevel.AutoSize = True
         Me.lblLevel.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblLevel.Location = New System.Drawing.Point(160, 16)
+        Me.lblLevel.Location = New System.Drawing.Point(160, 11)
         Me.lblLevel.Name = "lblLevel"
         Me.lblLevel.Size = New System.Drawing.Size(80, 14)
         Me.lblLevel.TabIndex = 25
@@ -563,7 +570,7 @@ Partial Class frmWilayah
         'lueLevel
         '
         Me.lueLevel.Anchor = System.Windows.Forms.AnchorStyles.Left
-        Me.lueLevel.Location = New System.Drawing.Point(243, 13)
+        Me.lueLevel.Location = New System.Drawing.Point(243, 8)
         Me.lueLevel.Margin = New System.Windows.Forms.Padding(0)
         Me.lueLevel.Name = "lueLevel"
         Me.lueLevel.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
@@ -572,7 +579,7 @@ Partial Class frmWilayah
         Me.lueLevel.Properties.Appearance.Options.UseFont = True
         Me.lueLevel.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple
         Me.lueLevel.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.lueLevel.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("levelwilayah", "ID", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("levelwilayah", "Level Wilayah")})
+        Me.lueLevel.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("levelwilayah", "ID", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default], DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("levelwilayah", "Level Wilayah")})
         Me.lueLevel.Properties.NullText = "[Isian belum dipilih]"
         Me.lueLevel.Properties.NullValuePrompt = "[Isian belum dipilih]"
         Me.lueLevel.Size = New System.Drawing.Size(150, 20)
@@ -583,7 +590,7 @@ Partial Class frmWilayah
         Me.lblKodepos.Anchor = System.Windows.Forms.AnchorStyles.Right
         Me.lblKodepos.AutoSize = True
         Me.lblKodepos.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblKodepos.Location = New System.Drawing.Point(476, 40)
+        Me.lblKodepos.Location = New System.Drawing.Point(476, 35)
         Me.lblKodepos.Name = "lblKodepos"
         Me.lblKodepos.Size = New System.Drawing.Size(54, 14)
         Me.lblKodepos.TabIndex = 18
@@ -594,7 +601,7 @@ Partial Class frmWilayah
         '
         Me.nudKodepos.Anchor = System.Windows.Forms.AnchorStyles.Left
         Me.nudKodepos.EditValue = New Decimal(New Integer() {0, 0, 0, 0})
-        Me.nudKodepos.Location = New System.Drawing.Point(533, 37)
+        Me.nudKodepos.Location = New System.Drawing.Point(533, 32)
         Me.nudKodepos.Margin = New System.Windows.Forms.Padding(0)
         Me.nudKodepos.Name = "nudKodepos"
         Me.nudKodepos.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[False]
@@ -603,7 +610,7 @@ Partial Class frmWilayah
         Me.nudKodepos.Properties.Appearance.Options.UseBackColor = True
         Me.nudKodepos.Properties.Appearance.Options.UseFont = True
         Me.nudKodepos.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple
-        Me.nudKodepos.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis, "", -1, True, False, False, DevExpress.XtraEditors.ImageLocation.MiddleCenter, Nothing, New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject1, "", Nothing, Nothing, True)})
+        Me.nudKodepos.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis, "", -1, True, False, False, EditorButtonImageOptions1, New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject1, SerializableAppearanceObject2, SerializableAppearanceObject3, SerializableAppearanceObject4, "", Nothing, Nothing, DevExpress.Utils.ToolTipAnchor.[Default])})
         Me.nudKodepos.Properties.MaxLength = 10
         Me.nudKodepos.Properties.MaxValue = New Decimal(New Integer() {1410065407, 2, 0, 0})
         Me.nudKodepos.Size = New System.Drawing.Size(100, 20)
@@ -615,7 +622,7 @@ Partial Class frmWilayah
         Me.Label1.Anchor = System.Windows.Forms.AnchorStyles.Right
         Me.Label1.AutoSize = True
         Me.Label1.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label1.Location = New System.Drawing.Point(450, 64)
+        Me.Label1.Location = New System.Drawing.Point(450, 59)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(80, 14)
         Me.Label1.TabIndex = 27
@@ -625,7 +632,7 @@ Partial Class frmWilayah
         'teKodeWilayah
         '
         Me.teKodeWilayah.Anchor = System.Windows.Forms.AnchorStyles.Left
-        Me.teKodeWilayah.Location = New System.Drawing.Point(533, 61)
+        Me.teKodeWilayah.Location = New System.Drawing.Point(533, 56)
         Me.teKodeWilayah.Margin = New System.Windows.Forms.Padding(0)
         Me.teKodeWilayah.Name = "teKodeWilayah"
         Me.teKodeWilayah.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[True]
@@ -673,7 +680,7 @@ Partial Class frmWilayah
         '
         'btnSave
         '
-        Me.btnSave.BackColor = System.Drawing.Color.FromArgb(CType(CType(156, Byte), Integer), CType(CType(207, Byte), Integer), CType(CType(49, Byte), Integer))
+        Me.btnSave.BackColor = System.Drawing.Color.Green
         Me.btnSave.Dock = System.Windows.Forms.DockStyle.Right
         Me.btnSave.FlatAppearance.BorderSize = 0
         Me.btnSave.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DimGray
@@ -721,7 +728,7 @@ Partial Class frmWilayah
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.BackColor = System.Drawing.color.fromargb(240, 240, 240)
+        Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer))
         Me.ClientSize = New System.Drawing.Size(790, 408)
         Me.Controls.Add(Me.tlpForm)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
@@ -734,6 +741,7 @@ Partial Class frmWilayah
         CType(Me.pMaximize, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.pExit, System.ComponentModel.ISupportInitialize).EndInit()
         Me.pBody.ResumeLayout(False)
+        Me.pBody.PerformLayout()
         CType(Me.xtcViewer, System.ComponentModel.ISupportInitialize).EndInit()
         Me.xtcViewer.ResumeLayout(False)
         Me.xtpGrid.ResumeLayout(False)

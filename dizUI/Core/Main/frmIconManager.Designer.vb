@@ -141,7 +141,7 @@ Partial Class frmIconManager
         '
         'tpInfo
         '
-        Me.tpInfo.BackColor = System.Drawing.color.fromargb(240, 240, 240)
+        Me.tpInfo.BackColor = System.Drawing.Color.FromArgb(CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer))
         Me.tpInfo.Controls.Add(Me.lbliSize)
         Me.tpInfo.Controls.Add(Me.lblDescription)
         Me.tpInfo.Controls.Add(Me.tboDescription)
@@ -165,7 +165,7 @@ Partial Class frmIconManager
         '
         'tpNew
         '
-        Me.tpNew.BackColor = System.Drawing.color.fromargb(240, 240, 240)
+        Me.tpNew.BackColor = System.Drawing.Color.FromArgb(CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer))
         Me.tpNew.Controls.Add(Me.lblSize)
         Me.tpNew.Controls.Add(Me.tboFilename)
         Me.tpNew.Controls.Add(Me.btnnBrowse)
@@ -223,7 +223,7 @@ Partial Class frmIconManager
         '
         'tpFolder
         '
-        Me.tpFolder.BackColor = System.Drawing.color.fromargb(240, 240, 240)
+        Me.tpFolder.BackColor = System.Drawing.Color.FromArgb(CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer))
         Me.tpFolder.Controls.Add(Me.btnfBrowse)
         Me.tpFolder.Controls.Add(Me.btnfSave)
         Me.tpFolder.Controls.Add(Me.lblFiles)
@@ -313,7 +313,7 @@ Partial Class frmIconManager
         '
         'tlpForm
         '
-        Me.tlpForm.BackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(0, Byte), Integer))
+        Me.tlpForm.BackColor = System.Drawing.Color.green
         Me.tlpForm.ColumnCount = 3
         Me.tlpForm.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 2.0!))
         Me.tlpForm.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
@@ -335,6 +335,7 @@ Partial Class frmIconManager
         '
         Me.pTitle.Controls.Add(Me.lblTitle)
         Me.pTitle.Controls.Add(Me.pExit)
+        Me.pTitle.Dock = System.Windows.Forms.DockStyle.Fill
         Me.pTitle.Location = New System.Drawing.Point(2, 0)
         Me.pTitle.Margin = New System.Windows.Forms.Padding(0)
         Me.pTitle.Name = "pTitle"
@@ -343,7 +344,7 @@ Partial Class frmIconManager
         '
         'lblTitle
         '
-        Me.lblTitle.BackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(0, Byte), Integer))
+        Me.lblTitle.BackColor = System.Drawing.Color.green
         Me.lblTitle.Dock = System.Windows.Forms.DockStyle.Fill
         Me.lblTitle.Font = New System.Drawing.Font("Tahoma", 12.0!)
         Me.lblTitle.ForeColor = System.Drawing.Color.White
@@ -393,7 +394,7 @@ Partial Class frmIconManager
         '
         'lvImages
         '
-        Me.lvImages.Appearance.ViewBackground.BackColor = System.Drawing.color.fromargb(240, 240, 240)
+        Me.lvImages.Appearance.ViewBackground.BackColor = System.Drawing.Color.FromArgb(CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer))
         Me.lvImages.Appearance.ViewBackground.Options.UseBackColor = True
         Me.lvImages.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
         Me.lvImages.CardMinSize = New System.Drawing.Size(200, 40)
@@ -523,7 +524,7 @@ Partial Class frmIconManager
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.BackColor = System.Drawing.color.fromargb(240, 240, 240)
+        Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer))
         Me.ClientSize = New System.Drawing.Size(674, 522)
         Me.Controls.Add(Me.tlpForm)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None

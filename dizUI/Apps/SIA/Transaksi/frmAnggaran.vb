@@ -156,7 +156,7 @@
         End If
         If statData = statusData.Baru Then
             Dim sqls As New SQLs(dbstring)
-            sqls.DMLQuery("select a.anggarantype from anggaran a where a.idcompany=(select top 1 value from sys_appsetting where variable='CompanyID') and (idcoa='" & slueCOA.EditValue & "' and len(periode)=4 and periode='" & CDate(dePeriode.EditValue).Year & "') or (idcoa='" & slueCOA.EditValue & "' and len(periode)=7 and periode='" & Format(CDate(dePeriode.EditValue), "yyyy-MM") & "') order by a.periode desc", "exist")
+            sqls.DMLQuery("select a.anggarantype from anggaran a where (idcoa='" & slueCOA.EditValue & "' and len(periode)=4 and periode='" & CDate(dePeriode.EditValue).Year & "') or (idcoa='" & slueCOA.EditValue & "' and len(periode)=7 and periode='" & Format(CDate(dePeriode.EditValue), "yyyy-MM") & "') order by a.periode desc", "exist")
             If sqls.getDataSet("exist") = 0 Then
                 idData = GenerateGUID()
             Else

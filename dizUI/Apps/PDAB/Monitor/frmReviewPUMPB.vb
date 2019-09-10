@@ -92,17 +92,17 @@
             Dim iddept As New List(Of String)
             iddept.AddRange(New String() {"*"})
             Dim idpost As New List(Of String)
-            idpost.AddRange(New String() {2})
+            idpost.AddRange(New String() {"'785A28E2-C4C2-4B54-893D-D9DDE21536E9'"})
 
-            Dim selkary As New frmSelectKaryawan()
-            selkary.deptpost(iddept, idpost)
+            Dim selkary As New frmSelectKaryawan2()
+            'selkary.deptpost(iddept, idpost)
             tambahChild(selkary)
             If selkary.ShowDialog() = Windows.Forms.DialogResult.Cancel Then
                 Exit Sub
             End If
             staffid = String.Join(",", selkary.getID)
 
-            mys.DMLQuery("select k.idstaff,k.nama,p.idposition,p.position,d.iddepartment,d.kode,d.department,k.idunit,un.unit from staff k left join unit un on k.idunit=un.idunit and un.idcompany=(select top 1 value from sys_appsetting where variable='CompanyID') left join position p on k.idposition=p.idposition and p.idcompany=(select top 1 value from sys_appsetting where variable='CompanyID') left join department d on k.iddepartment=d.iddepartment and d.idcompany=(select top 1 value from sys_appsetting where variable='CompanyID') where k.idcompany=(select top 1 value from sys_appsetting where variable='CompanyID') and k.idstaff='" & staffid & "'", "datakary")
+            mys.DMLQuery("select k.idstaff,k.nama,p.idposition,p.position,d.iddepartment,d.kode,d.department,k.idunit,un.unit from staff k left join unit un on k.idunit=un.idunit left join position p on k.idposition=p.idposition left join department d on k.iddepartment=d.iddepartment where k.idstaff='" & staffid & "'", "datakary")
 
             staffname = mys.getDataSet("datakary", 0, "nama")
             levelid = mys.getDataSet("datakary", 0, "idposition")
@@ -116,7 +116,7 @@
             teNamaAtasan.Text = staffname
             teJabatanAtasan.Text = levelname
         Else
-            mys.DMLQuery("select k.idstaff,k.nama,p.idposition,p.position,d.iddepartment,d.kode,d.department,k.idunit,un.unit from staff k left join unit un on k.idunit=un.idunit and un.idcompany=(select top 1 value from sys_appsetting where variable='CompanyID') left join position p on k.idposition=p.idposition and p.idcompany=(select top 1 value from sys_appsetting where variable='CompanyID') left join department d on k.iddepartment=d.iddepartment and d.idcompany=(select top 1 value from sys_appsetting where variable='CompanyID') where k.idcompany=(select top 1 value from sys_appsetting where variable='CompanyID') and k.iduser='" & userid & "'", "datakary")
+            mys.DMLQuery("select k.idstaff,k.nama,p.idposition,p.position,d.iddepartment,d.kode,d.department,k.idunit,un.unit from staff k left join unit un on k.idunit=un.idunit left join position p on k.idposition=p.idposition left join department d on k.iddepartment=d.iddepartment where k.iduser='" & userid & "'", "datakary")
 
             If mys.getDataSet("datakary") > 0 Then
                 staffid = mys.getDataSet("datakary", 0, "idstaff")
@@ -140,9 +140,9 @@
 
         Dim idanak As String = ""
         If usersuper = 1 Then
-            mys.DMLQuery("select idstaff from staff where idcompany=(select top 1 value from sys_appsetting where variable='CompanyID') and iddepartment in(select iddepartment from department)", "anak")
+            mys.DMLQuery("select ''''+idstaff+'''' as idstaff from staff where iddepartment in(select iddepartment from department)", "anak")
         Else
-            mys.DMLQuery("select idstaff from staff where iddepartment in(select iddepartment from department where idcompany=(select top 1 value from sys_appsetting where variable='CompanyID') and idparent=(select iddepartment from staff where iduser='" & userid & "'))", "anak")
+            mys.DMLQuery("select ''''+idstaff+'''' as idstaff from staff where iddepartment in(select iddepartment from department where idparent=(select iddepartment from staff where iduser='" & userid & "'))", "anak")
         End If
         For i As Integer = 0 To mys.getDataSet("anak") - 1
             idanak &= mys.getDataSet("anak", i, "idstaff")
@@ -152,15 +152,15 @@
         Next
 
         If idanak.Length = 0 Then
-            mys.DMLQuery("select p.idpengajuan, p.nopengajuan, convert(varchar,p.tanggalpengajuan,105) + ' ' + convert(varchar,p.tanggalpengajuan,108) as tanggalpengajuan, p.idpemohon, p.namapemohon, p.jabatanpemohon, p.deptpemohon, un.unit, p.jumlahuang, p.keperluan from pengajuan p left join unit un on p.idunitpemohon=un.idunit and un.idcompany=(select top 1 value from sys_appsetting where variable='CompanyID') where p.idcompany=(select top 1 value from sys_appsetting where variable='CompanyID') and convert(varchar,p.tanggalpengajuan,105) like '%" & nowTime.Year & "' and p.isreviewed=0 order by p.tanggalpengajuan desc", "data")
+            mys.DMLQuery("select p.idpengajuan, p.nopengajuan, convert(varchar,p.tanggalpengajuan,105) + ' ' + convert(varchar,p.tanggalpengajuan,108) as tanggalpengajuan, p.idpemohon, p.namapemohon, p.jabatanpemohon, p.deptpemohon, un.unit, p.jumlahuang, p.keperluan from pengajuan p left join unit un on p.idunitpemohon=un.idunit where convert(varchar,p.tanggalpengajuan,105) like '%" & nowTime.Year & "' and p.isreviewed=0 order by p.tanggalpengajuan desc", "data")
         Else
-            mys.DMLQuery("select p.idpengajuan, p.nopengajuan, convert(varchar,p.tanggalpengajuan,105) + ' ' + convert(varchar,p.tanggalpengajuan,108) as tanggalpengajuan, p.idpemohon, p.namapemohon, p.jabatanpemohon, p.deptpemohon, un.unit, p.jumlahuang, p.keperluan from pengajuan p left join unit un on p.idunitpemohon=un.idunit and un.idcompany=(select top 1 value from sys_appsetting where variable='CompanyID') where p.idcompany=(select top 1 value from sys_appsetting where variable='CompanyID') and p.idpemohon in (" & idanak & ") and convert(varchar,p.tanggalpengajuan,105) like '%" & nowTime.Year & "' and p.isreviewed=0 order by p.tanggalpengajuan desc", "data")
+            mys.DMLQuery("select p.idpengajuan, p.nopengajuan, convert(varchar,p.tanggalpengajuan,105) + ' ' + convert(varchar,p.tanggalpengajuan,108) as tanggalpengajuan, p.idpemohon, p.namapemohon, p.jabatanpemohon, p.deptpemohon, un.unit, p.jumlahuang, p.keperluan from pengajuan p left join unit un on p.idunitpemohon=un.idunit where p.idpemohon in (" & idanak & ") and convert(varchar,p.tanggalpengajuan,105) like '%" & nowTime.Year & "' and p.isreviewed=0 order by p.tanggalpengajuan desc", "data")
         End If
         Dim cari As New frmSearch(mys.dataSet, "data", "idpengajuan")
         tambahChild(cari)
         If cari.ShowDialog = Windows.Forms.DialogResult.OK Then
             idselect = cari.GetIDSelectData
-            mys.DMLQuery("select p.nopengajuan,isnull(p.idcoa,0) as idcoa,p.tanggalpengajuan,p.jumlahuang,p.hurufuang,p.idpemohon,s.karyawan as pemohon,p.jabatanpemohon,p.keperluan,un.unit from pengajuan p left join unit un on p.idunitpemohon=un.idunit and un.idcompany=(select top 1 value from sys_appsetting where variable='CompanyID') left join staff s on p.idpemohon=s.idstaff and s.idcompany=(select top 1 value from sys_appsetting where variable='CompanyID') where p.idcompany=(select top 1 value from sys_appsetting where variable='CompanyID') and p.idpengajuan='" & idselect & "'", "getdata")
+            mys.DMLQuery("select p.nopengajuan,isnull(p.idcoa,0) as idcoa,p.tanggalpengajuan,p.jumlahuang,p.hurufuang,p.idpemohon,s.nama as pemohon,p.jabatanpemohon,p.keperluan,un.unit from pengajuan p left join unit un on p.idunitpemohon=un.idunit left join staff s on p.idpemohon=s.idstaff where p.idpengajuan='" & idselect & "'", "getdata")
 
             tePengajuanNo.Text = mys.getDataSet("getdata", 0, "nopengajuan")
             deTanggal.EditValue = CDate(mys.getDataSet("getdata", 0, "tanggalpengajuan"))
@@ -173,7 +173,7 @@
             ceCheck.EditValue = False
             coaid = mys.getDataSet("getdata", 0, "idcoa")
 
-            Dim strquery As String = "select c.idcoa,c.coa,c.remarks,isnull(angjur.sisaang,0) as sisaang from coa c left join (select a.idcoa,a.jumlahuang-isnull(jur.saldo,0) as sisaang from anggaran a left join ( select j.idcoa, dbt.totaldbt-krd.totalkrd as saldo from jurnal j left join (select idcoa,convert(varchar,tanggaljurnal,121) as periode, sum(jumlahuang) as totaldbt from jurnal where idcompany=(select top 1 value from sys_appsetting where variable='CompanyID') and convert(varchar,tanggaljurnal,121) like 'PERIODEFORMAT%' isdeleted=0 and posisidk=1 and idcoa=IDCOASELECT group by convert(varchar,tanggaljurnal,121), idcoa ) dbt on j.idcoa=dbt.idcoa left join ( select idcoa,convert(varchar,tanggaljurnal,121) as periode, sum(jumlahuang) as totalkrd from jurnal where idcompany=(select top 1 value from sys_appsetting where variable='CompanyID') and convert(varchar,tanggaljurnal,121) like 'PERIODEFORMAT%' and isdeleted=0 and posisidk=2 and idcoa=IDCOASELECT group by convert(varchar,tanggaljurnal,121), idcoa ) krd on j.idcoa=krd.idcoa group by j.idcoa,dbt.totaldbt,krd.totalkrd ) jur on a.idcoa=jur.idcoa where a.idcompany=(select top 1 value from sys_appsetting where variable='CompanyID') and ((len(a.periode)=4 and a.periode='YEARFORMAT') or (len(a.periode)=7 and a.periode = 'PERIODEFORMAT')) ) angjur on c.idcoa=angjur.idcoa where c.idcoa=IDCOASELECT"
+            Dim strquery As String = "select c.idcoa,c.coa,c.remarks,isnull(angjur.sisaang,0) as sisaang from coa c left join (select a.idcoa,a.jumlahuang-isnull(jur.saldo,0) as sisaang from anggaran a left join ( select j.idcoa, dbt.totaldbt-krd.totalkrd as saldo from jurnal j left join (select idcoa,convert(varchar,tanggaljurnal,121) as periode, sum(jumlahuang) as totaldbt from jurnal where convert(varchar,tanggaljurnal,121) like 'PERIODEFORMAT%' isdeleted=0 and posisidk=1 and idcoa=IDCOASELECT group by convert(varchar,tanggaljurnal,121), idcoa ) dbt on j.idcoa=dbt.idcoa left join ( select idcoa,convert(varchar,tanggaljurnal,121) as periode, sum(jumlahuang) as totalkrd from jurnal where convert(varchar,tanggaljurnal,121) like 'PERIODEFORMAT%' and isdeleted=0 and posisidk=2 and idcoa=IDCOASELECT group by convert(varchar,tanggaljurnal,121), idcoa ) krd on j.idcoa=krd.idcoa group by j.idcoa,dbt.totaldbt,krd.totalkrd ) jur on a.idcoa=jur.idcoa where ((len(a.periode)=4 and a.periode='YEARFORMAT') or (len(a.periode)=7 and a.periode = 'PERIODEFORMAT')) ) angjur on c.idcoa=angjur.idcoa where c.idcoa=IDCOASELECT"
             strquery = strquery.Replace("IDCOASELECT", coaid)
             strquery = strquery.Replace("PERIODEFORMAT", Format(CDate(deTanggal.EditValue), "yyyy-MM"))
             strquery = strquery.Replace("YEARFORMAT", Format(CDate(deTanggal.EditValue), "yyyy"))

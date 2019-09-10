@@ -143,10 +143,10 @@ Public Class MYs
         Catch ex As Exception
             Try
                 sqltrans.Rollback()
-                MsgBox(ex.Message, dizMsgboxStyle.Kesalahan, Me)
+                MsgBox(ex.Message, dizMsgboxStyle.Kesalahan)
                 Return False
             Catch ex2 As Exception
-                MsgBox(ex2.Message, dizMsgboxStyle.Kesalahan, Me)
+                MsgBox(ex2.Message, dizMsgboxStyle.Kesalahan)
                 Return False
             End Try
         End Try

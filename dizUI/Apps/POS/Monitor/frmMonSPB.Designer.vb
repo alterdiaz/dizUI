@@ -23,6 +23,31 @@ Partial Class frmMonSPB
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Dim GridLevelNode1 As DevExpress.XtraGrid.GridLevelNode = New DevExpress.XtraGrid.GridLevelNode()
+        Me.gvDetil = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn13 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn11 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn14 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn15 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn16 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn17 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn18 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.gcData = New DevExpress.XtraGrid.GridControl()
+        Me.gvData = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn20 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn19 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn22 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.rimeNote = New DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit()
         Me.tlpForm = New System.Windows.Forms.TableLayoutPanel()
         Me.pTitle = New System.Windows.Forms.Panel()
         Me.lblTitle = New System.Windows.Forms.Label()
@@ -30,17 +55,6 @@ Partial Class frmMonSPB
         Me.pMaximize = New System.Windows.Forms.PictureBox()
         Me.pExit = New System.Windows.Forms.PictureBox()
         Me.pBody = New System.Windows.Forms.Panel()
-        Me.gcData = New DevExpress.XtraGrid.GridControl()
-        Me.gvData = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn22 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.rimeNote = New DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit()
         Me.tlpField = New System.Windows.Forms.TableLayoutPanel()
         Me.lueUnit = New DevExpress.XtraEditors.LookUpEdit()
         Me.Label2 = New System.Windows.Forms.Label()
@@ -50,30 +64,20 @@ Partial Class frmMonSPB
         Me.lblPeriode = New System.Windows.Forms.Label()
         Me.pHeader = New System.Windows.Forms.Panel()
         Me.btnRefresh = New System.Windows.Forms.Button()
+        Me.btnCetak = New System.Windows.Forms.Button()
         Me.btnExport = New System.Windows.Forms.Button()
         Me.rimeAddress = New DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit()
         Me.lblSep5 = New System.Windows.Forms.Label()
-        Me.gvDetil = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn11 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn13 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn14 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn15 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn16 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn17 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn18 = New DevExpress.XtraGrid.Columns.GridColumn()
+        CType(Me.gvDetil, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.gcData, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.gvData, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.rimeNote, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.tlpForm.SuspendLayout()
         Me.pTitle.SuspendLayout()
         CType(Me.pMinimize, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.pMaximize, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.pExit, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.pBody.SuspendLayout()
-        CType(Me.gcData, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.gvData, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.rimeNote, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.tlpField.SuspendLayout()
         CType(Me.lueUnit.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.lueDepartment.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -81,8 +85,338 @@ Partial Class frmMonSPB
         CType(Me.deTanggal.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.pHeader.SuspendLayout()
         CType(Me.rimeAddress, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.gvDetil, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
+        '
+        'gvDetil
+        '
+        Me.gvDetil.Appearance.EvenRow.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.gvDetil.Appearance.EvenRow.Options.UseBackColor = True
+        Me.gvDetil.Appearance.OddRow.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.gvDetil.Appearance.OddRow.Options.UseBackColor = True
+        Me.gvDetil.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn4, Me.GridColumn9, Me.GridColumn10, Me.GridColumn12, Me.GridColumn13, Me.GridColumn11, Me.GridColumn14, Me.GridColumn15, Me.GridColumn16, Me.GridColumn17, Me.GridColumn18})
+        Me.gvDetil.GridControl = Me.gcData
+        Me.gvDetil.Name = "gvDetil"
+        Me.gvDetil.OptionsDetail.AllowZoomDetail = False
+        Me.gvDetil.OptionsView.AnimationType = DevExpress.XtraGrid.Views.Base.GridAnimationType.AnimateAllContent
+        Me.gvDetil.OptionsView.ColumnAutoWidth = False
+        Me.gvDetil.OptionsView.EnableAppearanceEvenRow = True
+        Me.gvDetil.OptionsView.EnableAppearanceOddRow = True
+        Me.gvDetil.OptionsView.ShowGroupPanel = False
+        Me.gvDetil.OptionsView.ShowViewCaption = True
+        '
+        'GridColumn4
+        '
+        Me.GridColumn4.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn4.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn4.Caption = "idtransaksidt"
+        Me.GridColumn4.FieldName = "idtransaksidt"
+        Me.GridColumn4.Name = "GridColumn4"
+        Me.GridColumn4.OptionsColumn.AllowEdit = False
+        Me.GridColumn4.OptionsColumn.ReadOnly = True
+        '
+        'GridColumn9
+        '
+        Me.GridColumn9.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn9.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn9.Caption = "idtransaksi"
+        Me.GridColumn9.FieldName = "idtransaksi"
+        Me.GridColumn9.Name = "GridColumn9"
+        Me.GridColumn9.OptionsColumn.AllowEdit = False
+        Me.GridColumn9.OptionsColumn.ReadOnly = True
+        '
+        'GridColumn10
+        '
+        Me.GridColumn10.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn10.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn10.Caption = "iditem"
+        Me.GridColumn10.FieldName = "iditem"
+        Me.GridColumn10.Name = "GridColumn10"
+        Me.GridColumn10.OptionsColumn.AllowEdit = False
+        Me.GridColumn10.OptionsColumn.ReadOnly = True
+        '
+        'GridColumn12
+        '
+        Me.GridColumn12.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn12.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn12.Caption = "itemtype"
+        Me.GridColumn12.FieldName = "itemtype"
+        Me.GridColumn12.Name = "GridColumn12"
+        Me.GridColumn12.OptionsColumn.AllowEdit = False
+        Me.GridColumn12.OptionsColumn.ReadOnly = True
+        '
+        'GridColumn13
+        '
+        Me.GridColumn13.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn13.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn13.Caption = "Tipe"
+        Me.GridColumn13.FieldName = "type"
+        Me.GridColumn13.Name = "GridColumn13"
+        Me.GridColumn13.OptionsColumn.AllowEdit = False
+        Me.GridColumn13.OptionsColumn.ReadOnly = True
+        Me.GridColumn13.Visible = True
+        Me.GridColumn13.VisibleIndex = 1
+        '
+        'GridColumn11
+        '
+        Me.GridColumn11.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn11.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn11.Caption = "Kode"
+        Me.GridColumn11.FieldName = "kodeitem"
+        Me.GridColumn11.Name = "GridColumn11"
+        Me.GridColumn11.OptionsColumn.AllowEdit = False
+        Me.GridColumn11.OptionsColumn.ReadOnly = True
+        Me.GridColumn11.Visible = True
+        Me.GridColumn11.VisibleIndex = 0
+        '
+        'GridColumn14
+        '
+        Me.GridColumn14.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn14.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn14.Caption = "Barang"
+        Me.GridColumn14.FieldName = "item"
+        Me.GridColumn14.Name = "GridColumn14"
+        Me.GridColumn14.OptionsColumn.AllowEdit = False
+        Me.GridColumn14.OptionsColumn.ReadOnly = True
+        Me.GridColumn14.Visible = True
+        Me.GridColumn14.VisibleIndex = 2
+        '
+        'GridColumn15
+        '
+        Me.GridColumn15.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn15.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn15.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn15.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn15.Caption = "Qty"
+        Me.GridColumn15.FieldName = "qtycharges"
+        Me.GridColumn15.Name = "GridColumn15"
+        Me.GridColumn15.OptionsColumn.AllowEdit = False
+        Me.GridColumn15.OptionsColumn.ReadOnly = True
+        Me.GridColumn15.Visible = True
+        Me.GridColumn15.VisibleIndex = 3
+        '
+        'GridColumn16
+        '
+        Me.GridColumn16.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn16.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn16.Caption = "idsatuan"
+        Me.GridColumn16.FieldName = "idsatuan"
+        Me.GridColumn16.Name = "GridColumn16"
+        Me.GridColumn16.OptionsColumn.AllowEdit = False
+        Me.GridColumn16.OptionsColumn.ReadOnly = True
+        '
+        'GridColumn17
+        '
+        Me.GridColumn17.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn17.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn17.Caption = "Satuan"
+        Me.GridColumn17.FieldName = "satuan"
+        Me.GridColumn17.Name = "GridColumn17"
+        Me.GridColumn17.OptionsColumn.AllowEdit = False
+        Me.GridColumn17.OptionsColumn.ReadOnly = True
+        Me.GridColumn17.Visible = True
+        Me.GridColumn17.VisibleIndex = 4
+        '
+        'GridColumn18
+        '
+        Me.GridColumn18.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn18.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn18.Caption = "Keterangan"
+        Me.GridColumn18.FieldName = "remarks"
+        Me.GridColumn18.Name = "GridColumn18"
+        Me.GridColumn18.OptionsColumn.AllowEdit = False
+        Me.GridColumn18.OptionsColumn.ReadOnly = True
+        Me.GridColumn18.Visible = True
+        Me.GridColumn18.VisibleIndex = 5
+        '
+        'gcData
+        '
+        Me.gcData.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.gcData.EmbeddedNavigator.Buttons.Append.Visible = False
+        Me.gcData.EmbeddedNavigator.Buttons.CancelEdit.Visible = False
+        Me.gcData.EmbeddedNavigator.Buttons.Edit.Visible = False
+        Me.gcData.EmbeddedNavigator.Buttons.EndEdit.Visible = False
+        Me.gcData.EmbeddedNavigator.Buttons.First.Visible = False
+        Me.gcData.EmbeddedNavigator.Buttons.Last.Visible = False
+        Me.gcData.EmbeddedNavigator.Buttons.Next.Visible = False
+        Me.gcData.EmbeddedNavigator.Buttons.NextPage.Visible = False
+        Me.gcData.EmbeddedNavigator.Buttons.Prev.Visible = False
+        Me.gcData.EmbeddedNavigator.Buttons.PrevPage.Visible = False
+        Me.gcData.EmbeddedNavigator.Margin = New System.Windows.Forms.Padding(0)
+        Me.gcData.EmbeddedNavigator.TextLocation = DevExpress.XtraEditors.NavigatorButtonsTextLocation.None
+        Me.gcData.Font = New System.Drawing.Font("Tahoma", 9.0!)
+        GridLevelNode1.LevelTemplate = Me.gvDetil
+        GridLevelNode1.RelationName = "Level1"
+        Me.gcData.LevelTree.Nodes.AddRange(New DevExpress.XtraGrid.GridLevelNode() {GridLevelNode1})
+        Me.gcData.Location = New System.Drawing.Point(0, 90)
+        Me.gcData.MainView = Me.gvData
+        Me.gcData.Name = "gcData"
+        Me.gcData.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.rimeNote})
+        Me.gcData.Size = New System.Drawing.Size(786, 310)
+        Me.gcData.TabIndex = 13
+        Me.gcData.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gvData, Me.gvDetil})
+        '
+        'gvData
+        '
+        Me.gvData.Appearance.Empty.BackColor = System.Drawing.Color.FromArgb(CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer))
+        Me.gvData.Appearance.Empty.Options.UseBackColor = True
+        Me.gvData.Appearance.EvenRow.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.gvData.Appearance.EvenRow.Options.UseBackColor = True
+        Me.gvData.Appearance.HeaderPanel.Font = New System.Drawing.Font("Tahoma", 9.0!)
+        Me.gvData.Appearance.HeaderPanel.Options.UseFont = True
+        Me.gvData.Appearance.OddRow.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.gvData.Appearance.OddRow.Options.UseBackColor = True
+        Me.gvData.Appearance.Row.Font = New System.Drawing.Font("Tahoma", 9.0!)
+        Me.gvData.Appearance.Row.Options.UseFont = True
+        Me.gvData.Appearance.TopNewRow.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.gvData.Appearance.TopNewRow.Options.UseBackColor = True
+        Me.gvData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn20, Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn19, Me.GridColumn5, Me.GridColumn6, Me.GridColumn7, Me.GridColumn8, Me.GridColumn22})
+        Me.gvData.GridControl = Me.gcData
+        Me.gvData.Name = "gvData"
+        Me.gvData.NewItemRowText = "Tambah Data Disini"
+        Me.gvData.OptionsDetail.ShowDetailTabs = False
+        Me.gvData.OptionsView.AnimationType = DevExpress.XtraGrid.Views.Base.GridAnimationType.AnimateAllContent
+        Me.gvData.OptionsView.ColumnAutoWidth = False
+        Me.gvData.OptionsView.EnableAppearanceEvenRow = True
+        Me.gvData.OptionsView.EnableAppearanceOddRow = True
+        Me.gvData.OptionsView.RowAutoHeight = True
+        Me.gvData.OptionsView.ShowGroupPanel = False
+        Me.gvData.OptionsView.ShowViewCaption = True
+        Me.gvData.ViewCaption = " "
+        '
+        'GridColumn20
+        '
+        Me.GridColumn20.Caption = "idtransaksi"
+        Me.GridColumn20.FieldName = "idtransaksi"
+        Me.GridColumn20.Name = "GridColumn20"
+        '
+        'GridColumn1
+        '
+        Me.GridColumn1.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn1.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn1.Caption = "No."
+        Me.GridColumn1.FieldName = "nomor"
+        Me.GridColumn1.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left
+        Me.GridColumn1.Name = "GridColumn1"
+        Me.GridColumn1.OptionsColumn.AllowEdit = False
+        Me.GridColumn1.OptionsColumn.ReadOnly = True
+        Me.GridColumn1.Visible = True
+        Me.GridColumn1.VisibleIndex = 0
+        '
+        'GridColumn2
+        '
+        Me.GridColumn2.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn2.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn2.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn2.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn2.Caption = "Tgl. Transaksi"
+        Me.GridColumn2.FieldName = "createddate"
+        Me.GridColumn2.Name = "GridColumn2"
+        Me.GridColumn2.OptionsColumn.AllowEdit = False
+        Me.GridColumn2.OptionsColumn.ReadOnly = True
+        Me.GridColumn2.Visible = True
+        Me.GridColumn2.VisibleIndex = 1
+        Me.GridColumn2.Width = 88
+        '
+        'GridColumn3
+        '
+        Me.GridColumn3.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn3.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn3.Caption = "No Transaksi"
+        Me.GridColumn3.FieldName = "transaksino"
+        Me.GridColumn3.Name = "GridColumn3"
+        Me.GridColumn3.OptionsColumn.AllowEdit = False
+        Me.GridColumn3.OptionsColumn.ReadOnly = True
+        Me.GridColumn3.Visible = True
+        Me.GridColumn3.VisibleIndex = 2
+        Me.GridColumn3.Width = 95
+        '
+        'GridColumn19
+        '
+        Me.GridColumn19.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn19.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn19.Caption = "Department"
+        Me.GridColumn19.FieldName = "department"
+        Me.GridColumn19.Name = "GridColumn19"
+        Me.GridColumn19.OptionsColumn.AllowEdit = False
+        Me.GridColumn19.OptionsColumn.ReadOnly = True
+        Me.GridColumn19.Visible = True
+        Me.GridColumn19.VisibleIndex = 3
+        '
+        'GridColumn5
+        '
+        Me.GridColumn5.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn5.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn5.Caption = "Status Transaksi"
+        Me.GridColumn5.FieldName = "transaksistatus"
+        Me.GridColumn5.Name = "GridColumn5"
+        Me.GridColumn5.OptionsColumn.AllowEdit = False
+        Me.GridColumn5.OptionsColumn.ReadOnly = True
+        Me.GridColumn5.Visible = True
+        Me.GridColumn5.VisibleIndex = 4
+        Me.GridColumn5.Width = 105
+        '
+        'GridColumn6
+        '
+        Me.GridColumn6.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn6.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn6.Caption = "Dibuat Oleh"
+        Me.GridColumn6.FieldName = "createdby"
+        Me.GridColumn6.Name = "GridColumn6"
+        Me.GridColumn6.OptionsColumn.AllowEdit = False
+        Me.GridColumn6.OptionsColumn.ReadOnly = True
+        Me.GridColumn6.Visible = True
+        Me.GridColumn6.VisibleIndex = 5
+        '
+        'GridColumn7
+        '
+        Me.GridColumn7.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn7.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn7.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn7.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn7.Caption = "Total Item"
+        Me.GridColumn7.FieldName = "totalitem"
+        Me.GridColumn7.Name = "GridColumn7"
+        Me.GridColumn7.OptionsColumn.AllowEdit = False
+        Me.GridColumn7.OptionsColumn.ReadOnly = True
+        Me.GridColumn7.Visible = True
+        Me.GridColumn7.VisibleIndex = 6
+        Me.GridColumn7.Width = 100
+        '
+        'GridColumn8
+        '
+        Me.GridColumn8.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn8.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn8.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn8.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn8.Caption = "Total Barang"
+        Me.GridColumn8.FieldName = "totalbarang"
+        Me.GridColumn8.Name = "GridColumn8"
+        Me.GridColumn8.OptionsColumn.AllowEdit = False
+        Me.GridColumn8.OptionsColumn.ReadOnly = True
+        Me.GridColumn8.Visible = True
+        Me.GridColumn8.VisibleIndex = 7
+        Me.GridColumn8.Width = 100
+        '
+        'GridColumn22
+        '
+        Me.GridColumn22.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn22.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn22.Caption = "Keterangan"
+        Me.GridColumn22.ColumnEdit = Me.rimeNote
+        Me.GridColumn22.FieldName = "remarks"
+        Me.GridColumn22.Name = "GridColumn22"
+        Me.GridColumn22.OptionsColumn.AllowEdit = False
+        Me.GridColumn22.OptionsColumn.ReadOnly = True
+        Me.GridColumn22.Visible = True
+        Me.GridColumn22.VisibleIndex = 8
+        Me.GridColumn22.Width = 104
+        '
+        'rimeNote
+        '
+        Me.rimeNote.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.rimeNote.Name = "rimeNote"
+        Me.rimeNote.ReadOnly = True
+        Me.rimeNote.ScrollBars = System.Windows.Forms.ScrollBars.None
         '
         'tlpForm
         '
@@ -184,190 +518,19 @@ Partial Class frmMonSPB
         Me.pBody.Size = New System.Drawing.Size(786, 400)
         Me.pBody.TabIndex = 7
         '
-        'gcData
-        '
-        Me.gcData.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.gcData.EmbeddedNavigator.Buttons.Append.Visible = False
-        Me.gcData.EmbeddedNavigator.Buttons.CancelEdit.Visible = False
-        Me.gcData.EmbeddedNavigator.Buttons.Edit.Visible = False
-        Me.gcData.EmbeddedNavigator.Buttons.EndEdit.Visible = False
-        Me.gcData.EmbeddedNavigator.Buttons.First.Visible = False
-        Me.gcData.EmbeddedNavigator.Buttons.Last.Visible = False
-        Me.gcData.EmbeddedNavigator.Buttons.Next.Visible = False
-        Me.gcData.EmbeddedNavigator.Buttons.NextPage.Visible = False
-        Me.gcData.EmbeddedNavigator.Buttons.Prev.Visible = False
-        Me.gcData.EmbeddedNavigator.Buttons.PrevPage.Visible = False
-        Me.gcData.EmbeddedNavigator.Margin = New System.Windows.Forms.Padding(0)
-        Me.gcData.EmbeddedNavigator.TextLocation = DevExpress.XtraEditors.NavigatorButtonsTextLocation.None
-        Me.gcData.Font = New System.Drawing.Font("Tahoma", 9.0!)
-        GridLevelNode1.LevelTemplate = Me.gvDetil
-        GridLevelNode1.RelationName = "Level1"
-        Me.gcData.LevelTree.Nodes.AddRange(New DevExpress.XtraGrid.GridLevelNode() {GridLevelNode1})
-        Me.gcData.Location = New System.Drawing.Point(0, 90)
-        Me.gcData.MainView = Me.gvData
-        Me.gcData.Name = "gcData"
-        Me.gcData.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.rimeNote})
-        Me.gcData.Size = New System.Drawing.Size(786, 310)
-        Me.gcData.TabIndex = 13
-        Me.gcData.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gvData, Me.gvDetil})
-        '
-        'gvData
-        '
-        Me.gvData.Appearance.Empty.BackColor = System.Drawing.Color.FromArgb(CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer))
-        Me.gvData.Appearance.Empty.Options.UseBackColor = True
-        Me.gvData.Appearance.EvenRow.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.gvData.Appearance.EvenRow.Options.UseBackColor = True
-        Me.gvData.Appearance.HeaderPanel.Font = New System.Drawing.Font("Tahoma", 9.0!)
-        Me.gvData.Appearance.HeaderPanel.Options.UseFont = True
-        Me.gvData.Appearance.OddRow.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.gvData.Appearance.OddRow.Options.UseBackColor = True
-        Me.gvData.Appearance.Row.Font = New System.Drawing.Font("Tahoma", 9.0!)
-        Me.gvData.Appearance.Row.Options.UseFont = True
-        Me.gvData.Appearance.TopNewRow.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.gvData.Appearance.TopNewRow.Options.UseBackColor = True
-        Me.gvData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn5, Me.GridColumn6, Me.GridColumn7, Me.GridColumn8, Me.GridColumn22})
-        Me.gvData.GridControl = Me.gcData
-        Me.gvData.Name = "gvData"
-        Me.gvData.NewItemRowText = "Tambah Data Disini"
-        Me.gvData.OptionsView.AnimationType = DevExpress.XtraGrid.Views.Base.GridAnimationType.AnimateAllContent
-        Me.gvData.OptionsView.ColumnAutoWidth = False
-        Me.gvData.OptionsView.EnableAppearanceEvenRow = True
-        Me.gvData.OptionsView.EnableAppearanceOddRow = True
-        Me.gvData.OptionsView.RowAutoHeight = True
-        Me.gvData.OptionsView.ShowGroupPanel = False
-        Me.gvData.OptionsView.ShowViewCaption = True
-        Me.gvData.ViewCaption = " "
-        '
-        'GridColumn1
-        '
-        Me.GridColumn1.AppearanceHeader.Options.UseTextOptions = True
-        Me.GridColumn1.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GridColumn1.Caption = "No."
-        Me.GridColumn1.FieldName = "nomor"
-        Me.GridColumn1.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left
-        Me.GridColumn1.Name = "GridColumn1"
-        Me.GridColumn1.OptionsColumn.AllowEdit = False
-        Me.GridColumn1.OptionsColumn.ReadOnly = True
-        Me.GridColumn1.Visible = True
-        Me.GridColumn1.VisibleIndex = 0
-        '
-        'GridColumn2
-        '
-        Me.GridColumn2.AppearanceCell.Options.UseTextOptions = True
-        Me.GridColumn2.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GridColumn2.AppearanceHeader.Options.UseTextOptions = True
-        Me.GridColumn2.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GridColumn2.Caption = "Tgl. Transaksi"
-        Me.GridColumn2.FieldName = "createddate"
-        Me.GridColumn2.Name = "GridColumn2"
-        Me.GridColumn2.OptionsColumn.AllowEdit = False
-        Me.GridColumn2.OptionsColumn.ReadOnly = True
-        Me.GridColumn2.Visible = True
-        Me.GridColumn2.VisibleIndex = 1
-        Me.GridColumn2.Width = 88
-        '
-        'GridColumn3
-        '
-        Me.GridColumn3.AppearanceHeader.Options.UseTextOptions = True
-        Me.GridColumn3.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GridColumn3.Caption = "No Transaksi"
-        Me.GridColumn3.FieldName = "transaksino"
-        Me.GridColumn3.Name = "GridColumn3"
-        Me.GridColumn3.OptionsColumn.AllowEdit = False
-        Me.GridColumn3.OptionsColumn.ReadOnly = True
-        Me.GridColumn3.Visible = True
-        Me.GridColumn3.VisibleIndex = 2
-        Me.GridColumn3.Width = 95
-        '
-        'GridColumn5
-        '
-        Me.GridColumn5.AppearanceHeader.Options.UseTextOptions = True
-        Me.GridColumn5.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GridColumn5.Caption = "Status Transaksi"
-        Me.GridColumn5.FieldName = "transaksistatus"
-        Me.GridColumn5.Name = "GridColumn5"
-        Me.GridColumn5.OptionsColumn.AllowEdit = False
-        Me.GridColumn5.OptionsColumn.ReadOnly = True
-        Me.GridColumn5.Visible = True
-        Me.GridColumn5.VisibleIndex = 3
-        Me.GridColumn5.Width = 105
-        '
-        'GridColumn6
-        '
-        Me.GridColumn6.AppearanceHeader.Options.UseTextOptions = True
-        Me.GridColumn6.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GridColumn6.Caption = "Dibuat Oleh"
-        Me.GridColumn6.FieldName = "createdby"
-        Me.GridColumn6.Name = "GridColumn6"
-        Me.GridColumn6.OptionsColumn.AllowEdit = False
-        Me.GridColumn6.OptionsColumn.ReadOnly = True
-        Me.GridColumn6.Visible = True
-        Me.GridColumn6.VisibleIndex = 4
-        '
-        'GridColumn7
-        '
-        Me.GridColumn7.AppearanceCell.Options.UseTextOptions = True
-        Me.GridColumn7.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumn7.AppearanceHeader.Options.UseTextOptions = True
-        Me.GridColumn7.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GridColumn7.Caption = "Total Item"
-        Me.GridColumn7.FieldName = "totalitem"
-        Me.GridColumn7.Name = "GridColumn7"
-        Me.GridColumn7.OptionsColumn.AllowEdit = False
-        Me.GridColumn7.OptionsColumn.ReadOnly = True
-        Me.GridColumn7.Visible = True
-        Me.GridColumn7.VisibleIndex = 5
-        Me.GridColumn7.Width = 100
-        '
-        'GridColumn8
-        '
-        Me.GridColumn8.AppearanceCell.Options.UseTextOptions = True
-        Me.GridColumn8.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumn8.AppearanceHeader.Options.UseTextOptions = True
-        Me.GridColumn8.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GridColumn8.Caption = "Total Barang"
-        Me.GridColumn8.FieldName = "totalbarang"
-        Me.GridColumn8.Name = "GridColumn8"
-        Me.GridColumn8.OptionsColumn.AllowEdit = False
-        Me.GridColumn8.OptionsColumn.ReadOnly = True
-        Me.GridColumn8.Visible = True
-        Me.GridColumn8.VisibleIndex = 6
-        Me.GridColumn8.Width = 100
-        '
-        'GridColumn22
-        '
-        Me.GridColumn22.AppearanceHeader.Options.UseTextOptions = True
-        Me.GridColumn22.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GridColumn22.Caption = "Keterangan"
-        Me.GridColumn22.ColumnEdit = Me.rimeNote
-        Me.GridColumn22.FieldName = "remarks"
-        Me.GridColumn22.Name = "GridColumn22"
-        Me.GridColumn22.OptionsColumn.AllowEdit = False
-        Me.GridColumn22.OptionsColumn.ReadOnly = True
-        Me.GridColumn22.Visible = True
-        Me.GridColumn22.VisibleIndex = 7
-        Me.GridColumn22.Width = 104
-        '
-        'rimeNote
-        '
-        Me.rimeNote.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
-        Me.rimeNote.Name = "rimeNote"
-        Me.rimeNote.ReadOnly = True
-        Me.rimeNote.ScrollBars = System.Windows.Forms.ScrollBars.None
-        '
         'tlpField
         '
         Me.tlpField.AutoSize = True
         Me.tlpField.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
         Me.tlpField.BackColor = System.Drawing.Color.FromArgb(CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer))
-        Me.tlpField.ColumnCount = 7
+        Me.tlpField.ColumnCount = 6
         Me.tlpField.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
         Me.tlpField.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 120.0!))
         Me.tlpField.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 150.0!))
         Me.tlpField.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 120.0!))
         Me.tlpField.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 150.0!))
-        Me.tlpField.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 80.0!))
         Me.tlpField.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
+        Me.tlpField.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
         Me.tlpField.Controls.Add(Me.lueUnit, 2, 2)
         Me.tlpField.Controls.Add(Me.Label2, 1, 2)
         Me.tlpField.Controls.Add(Me.Label1, 3, 2)
@@ -389,7 +552,7 @@ Partial Class frmMonSPB
         'lueUnit
         '
         Me.lueUnit.Anchor = System.Windows.Forms.AnchorStyles.Left
-        Me.lueUnit.Location = New System.Drawing.Point(203, 32)
+        Me.lueUnit.Location = New System.Drawing.Point(243, 32)
         Me.lueUnit.Margin = New System.Windows.Forms.Padding(0)
         Me.lueUnit.Name = "lueUnit"
         Me.lueUnit.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[False]
@@ -418,7 +581,7 @@ Partial Class frmMonSPB
         Me.Label2.Anchor = System.Windows.Forms.AnchorStyles.Right
         Me.Label2.AutoSize = True
         Me.Label2.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label2.Location = New System.Drawing.Point(171, 35)
+        Me.Label2.Location = New System.Drawing.Point(211, 35)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(29, 14)
         Me.Label2.TabIndex = 24
@@ -430,7 +593,7 @@ Partial Class frmMonSPB
         Me.Label1.Anchor = System.Windows.Forms.AnchorStyles.Right
         Me.Label1.AutoSize = True
         Me.Label1.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label1.Location = New System.Drawing.Point(397, 35)
+        Me.Label1.Location = New System.Drawing.Point(437, 35)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(73, 14)
         Me.Label1.TabIndex = 23
@@ -440,7 +603,7 @@ Partial Class frmMonSPB
         'lueDepartment
         '
         Me.lueDepartment.Anchor = System.Windows.Forms.AnchorStyles.Left
-        Me.lueDepartment.Location = New System.Drawing.Point(473, 32)
+        Me.lueDepartment.Location = New System.Drawing.Point(513, 32)
         Me.lueDepartment.Margin = New System.Windows.Forms.Padding(0)
         Me.lueDepartment.Name = "lueDepartment"
         Me.lueDepartment.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[False]
@@ -468,7 +631,7 @@ Partial Class frmMonSPB
         '
         Me.deTanggal.Anchor = System.Windows.Forms.AnchorStyles.Left
         Me.deTanggal.EditValue = Nothing
-        Me.deTanggal.Location = New System.Drawing.Point(203, 8)
+        Me.deTanggal.Location = New System.Drawing.Point(243, 8)
         Me.deTanggal.Margin = New System.Windows.Forms.Padding(0)
         Me.deTanggal.Name = "deTanggal"
         Me.deTanggal.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
@@ -512,7 +675,7 @@ Partial Class frmMonSPB
         Me.lblPeriode.Anchor = System.Windows.Forms.AnchorStyles.Right
         Me.lblPeriode.AutoSize = True
         Me.lblPeriode.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblPeriode.Location = New System.Drawing.Point(119, 11)
+        Me.lblPeriode.Location = New System.Drawing.Point(159, 11)
         Me.lblPeriode.Name = "lblPeriode"
         Me.lblPeriode.Size = New System.Drawing.Size(81, 14)
         Me.lblPeriode.TabIndex = 22
@@ -523,6 +686,7 @@ Partial Class frmMonSPB
         '
         Me.pHeader.BackColor = System.Drawing.Color.FromArgb(CType(CType(66, Byte), Integer), CType(CType(66, Byte), Integer), CType(CType(66, Byte), Integer))
         Me.pHeader.Controls.Add(Me.btnRefresh)
+        Me.pHeader.Controls.Add(Me.btnCetak)
         Me.pHeader.Controls.Add(Me.btnExport)
         Me.pHeader.Dock = System.Windows.Forms.DockStyle.Top
         Me.pHeader.ForeColor = System.Drawing.Color.White
@@ -541,13 +705,31 @@ Partial Class frmMonSPB
         Me.btnRefresh.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DarkGray
         Me.btnRefresh.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnRefresh.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnRefresh.Location = New System.Drawing.Point(606, 0)
+        Me.btnRefresh.Location = New System.Drawing.Point(506, 0)
         Me.btnRefresh.Name = "btnRefresh"
         Me.btnRefresh.Size = New System.Drawing.Size(80, 30)
         Me.btnRefresh.TabIndex = 19
         Me.btnRefresh.Text = "REFRESH"
         Me.btnRefresh.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
         Me.btnRefresh.UseVisualStyleBackColor = False
+        '
+        'btnCetak
+        '
+        Me.btnCetak.BackColor = System.Drawing.Color.Green
+        Me.btnCetak.Dock = System.Windows.Forms.DockStyle.Right
+        Me.btnCetak.FlatAppearance.BorderSize = 0
+        Me.btnCetak.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DimGray
+        Me.btnCetak.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DarkGray
+        Me.btnCetak.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnCetak.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnCetak.Location = New System.Drawing.Point(586, 0)
+        Me.btnCetak.Name = "btnCetak"
+        Me.btnCetak.Size = New System.Drawing.Size(100, 30)
+        Me.btnCetak.TabIndex = 22
+        Me.btnCetak.Text = "CETAK"
+        Me.btnCetak.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
+        Me.btnCetak.UseMnemonic = False
+        Me.btnCetak.UseVisualStyleBackColor = False
         '
         'btnExport
         '
@@ -585,147 +767,6 @@ Partial Class frmMonSPB
         Me.lblSep5.Text = "|"
         Me.lblSep5.TextAlign = System.Drawing.ContentAlignment.TopCenter
         '
-        'gvDetil
-        '
-        Me.gvDetil.Appearance.EvenRow.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.gvDetil.Appearance.EvenRow.Options.UseBackColor = True
-        Me.gvDetil.Appearance.OddRow.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.gvDetil.Appearance.OddRow.Options.UseBackColor = True
-        Me.gvDetil.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn4, Me.GridColumn9, Me.GridColumn10, Me.GridColumn12, Me.GridColumn13, Me.GridColumn11, Me.GridColumn14, Me.GridColumn15, Me.GridColumn16, Me.GridColumn17, Me.GridColumn18})
-        Me.gvDetil.GridControl = Me.gcData
-        Me.gvDetil.Name = "gvDetil"
-        Me.gvDetil.OptionsDetail.AllowZoomDetail = False
-        Me.gvDetil.OptionsView.AnimationType = DevExpress.XtraGrid.Views.Base.GridAnimationType.AnimateAllContent
-        Me.gvDetil.OptionsView.ColumnAutoWidth = False
-        Me.gvDetil.OptionsView.EnableAppearanceEvenRow = True
-        Me.gvDetil.OptionsView.EnableAppearanceOddRow = True
-        Me.gvDetil.OptionsView.ShowGroupPanel = False
-        Me.gvDetil.OptionsView.ShowViewCaption = True
-        '
-        'GridColumn4
-        '
-        Me.GridColumn4.AppearanceHeader.Options.UseTextOptions = True
-        Me.GridColumn4.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GridColumn4.Caption = "idtransaksidt"
-        Me.GridColumn4.FieldName = "idtransaksidt"
-        Me.GridColumn4.Name = "GridColumn4"
-        Me.GridColumn4.OptionsColumn.AllowEdit = False
-        Me.GridColumn4.OptionsColumn.ReadOnly = True
-        '
-        'GridColumn9
-        '
-        Me.GridColumn9.AppearanceHeader.Options.UseTextOptions = True
-        Me.GridColumn9.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GridColumn9.Caption = "idtransaksi"
-        Me.GridColumn9.FieldName = "idtransaksi"
-        Me.GridColumn9.Name = "GridColumn9"
-        Me.GridColumn9.OptionsColumn.AllowEdit = False
-        Me.GridColumn9.OptionsColumn.ReadOnly = True
-        '
-        'GridColumn10
-        '
-        Me.GridColumn10.AppearanceHeader.Options.UseTextOptions = True
-        Me.GridColumn10.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GridColumn10.Caption = "iditem"
-        Me.GridColumn10.FieldName = "iditem"
-        Me.GridColumn10.Name = "GridColumn10"
-        Me.GridColumn10.OptionsColumn.AllowEdit = False
-        Me.GridColumn10.OptionsColumn.ReadOnly = True
-        '
-        'GridColumn11
-        '
-        Me.GridColumn11.AppearanceHeader.Options.UseTextOptions = True
-        Me.GridColumn11.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GridColumn11.Caption = "Kode"
-        Me.GridColumn11.FieldName = "kodeitem"
-        Me.GridColumn11.Name = "GridColumn11"
-        Me.GridColumn11.OptionsColumn.AllowEdit = False
-        Me.GridColumn11.OptionsColumn.ReadOnly = True
-        Me.GridColumn11.Visible = True
-        Me.GridColumn11.VisibleIndex = 0
-        '
-        'GridColumn12
-        '
-        Me.GridColumn12.AppearanceHeader.Options.UseTextOptions = True
-        Me.GridColumn12.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GridColumn12.Caption = "itemtype"
-        Me.GridColumn12.FieldName = "itemtype"
-        Me.GridColumn12.Name = "GridColumn12"
-        Me.GridColumn12.OptionsColumn.AllowEdit = False
-        Me.GridColumn12.OptionsColumn.ReadOnly = True
-        '
-        'GridColumn13
-        '
-        Me.GridColumn13.AppearanceHeader.Options.UseTextOptions = True
-        Me.GridColumn13.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GridColumn13.Caption = "Tipe"
-        Me.GridColumn13.FieldName = "type"
-        Me.GridColumn13.Name = "GridColumn13"
-        Me.GridColumn13.OptionsColumn.AllowEdit = False
-        Me.GridColumn13.OptionsColumn.ReadOnly = True
-        Me.GridColumn13.Visible = True
-        Me.GridColumn13.VisibleIndex = 1
-        '
-        'GridColumn14
-        '
-        Me.GridColumn14.AppearanceHeader.Options.UseTextOptions = True
-        Me.GridColumn14.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GridColumn14.Caption = "Barang"
-        Me.GridColumn14.FieldName = "item"
-        Me.GridColumn14.Name = "GridColumn14"
-        Me.GridColumn14.OptionsColumn.AllowEdit = False
-        Me.GridColumn14.OptionsColumn.ReadOnly = True
-        Me.GridColumn14.Visible = True
-        Me.GridColumn14.VisibleIndex = 2
-        '
-        'GridColumn15
-        '
-        Me.GridColumn15.AppearanceCell.Options.UseTextOptions = True
-        Me.GridColumn15.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumn15.AppearanceHeader.Options.UseTextOptions = True
-        Me.GridColumn15.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GridColumn15.Caption = "Qty"
-        Me.GridColumn15.FieldName = "qtycharges"
-        Me.GridColumn15.Name = "GridColumn15"
-        Me.GridColumn15.OptionsColumn.AllowEdit = False
-        Me.GridColumn15.OptionsColumn.ReadOnly = True
-        Me.GridColumn15.Visible = True
-        Me.GridColumn15.VisibleIndex = 3
-        '
-        'GridColumn16
-        '
-        Me.GridColumn16.AppearanceHeader.Options.UseTextOptions = True
-        Me.GridColumn16.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GridColumn16.Caption = "idsatuan"
-        Me.GridColumn16.FieldName = "idsatuan"
-        Me.GridColumn16.Name = "GridColumn16"
-        Me.GridColumn16.OptionsColumn.AllowEdit = False
-        Me.GridColumn16.OptionsColumn.ReadOnly = True
-        '
-        'GridColumn17
-        '
-        Me.GridColumn17.AppearanceHeader.Options.UseTextOptions = True
-        Me.GridColumn17.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GridColumn17.Caption = "Satuan"
-        Me.GridColumn17.FieldName = "satuan"
-        Me.GridColumn17.Name = "GridColumn17"
-        Me.GridColumn17.OptionsColumn.AllowEdit = False
-        Me.GridColumn17.OptionsColumn.ReadOnly = True
-        Me.GridColumn17.Visible = True
-        Me.GridColumn17.VisibleIndex = 4
-        '
-        'GridColumn18
-        '
-        Me.GridColumn18.AppearanceHeader.Options.UseTextOptions = True
-        Me.GridColumn18.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GridColumn18.Caption = "Keterangan"
-        Me.GridColumn18.FieldName = "remarks"
-        Me.GridColumn18.Name = "GridColumn18"
-        Me.GridColumn18.OptionsColumn.AllowEdit = False
-        Me.GridColumn18.OptionsColumn.ReadOnly = True
-        Me.GridColumn18.Visible = True
-        Me.GridColumn18.VisibleIndex = 5
-        '
         'frmMonSPB
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -737,6 +778,10 @@ Partial Class frmMonSPB
         Me.Name = "frmMonSPB"
         Me.ShowInTaskbar = False
         Me.Text = "Monitoring Permintaan Barang"
+        CType(Me.gvDetil, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.gcData, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.gvData, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.rimeNote, System.ComponentModel.ISupportInitialize).EndInit()
         Me.tlpForm.ResumeLayout(False)
         Me.pTitle.ResumeLayout(False)
         CType(Me.pMinimize, System.ComponentModel.ISupportInitialize).EndInit()
@@ -744,9 +789,6 @@ Partial Class frmMonSPB
         CType(Me.pExit, System.ComponentModel.ISupportInitialize).EndInit()
         Me.pBody.ResumeLayout(False)
         Me.pBody.PerformLayout()
-        CType(Me.gcData, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.gvData, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.rimeNote, System.ComponentModel.ISupportInitialize).EndInit()
         Me.tlpField.ResumeLayout(False)
         Me.tlpField.PerformLayout()
         CType(Me.lueUnit.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -755,7 +797,6 @@ Partial Class frmMonSPB
         CType(Me.deTanggal.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.pHeader.ResumeLayout(False)
         CType(Me.rimeAddress, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.gvDetil, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -801,4 +842,7 @@ Partial Class frmMonSPB
     Friend WithEvents GridColumn16 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn17 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn18 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn19 As DevExpress.XtraGrid.Columns.GridColumn
+    Public WithEvents btnCetak As Button
+    Friend WithEvents GridColumn20 As DevExpress.XtraGrid.Columns.GridColumn
 End Class

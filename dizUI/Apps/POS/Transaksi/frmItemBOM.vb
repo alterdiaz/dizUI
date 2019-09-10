@@ -17,7 +17,7 @@
     End Sub
 
     Private Sub pExit_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles pExit.Click
-        Threading.Thread.Sleep(1000)
+        Threading.Thread.Sleep(100)
         Me.Dispose()
     End Sub
 
@@ -122,7 +122,7 @@
         lueUnit.Properties.ReadOnly = False
         lueUnit.EditValue = Nothing
         btnLockUnit.Enabled = True
-        btnLockUnit.BackColor = Color.FromArgb(156, 207, 49)
+        btnLockUnit.BackColor = Color.Green
 
         idData = "-1"
         isVoid = False
@@ -361,7 +361,7 @@
             End If
 
             btnLockUnit.ForeColor = Color.White
-            btnLockUnit.BackColor = Color.FromArgb(156, 207, 49)
+            btnLockUnit.BackColor = Color.Green
             lueUnit.Properties.ReadOnly = False
             lueUnit.BackColor = canWrite
             lueUnit.ForeColor = Color.Black
@@ -396,7 +396,7 @@
             End If
 
             btnLockItem.ForeColor = Color.White
-            btnLockItem.BackColor = Color.FromArgb(156, 207, 49)
+            btnLockItem.BackColor = Color.Green
             lueItem.Properties.ReadOnly = False
             lueItem.BackColor = canWrite
             lueItem.ForeColor = Color.Black

@@ -24,10 +24,26 @@ Partial Class frmPPP
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmPPP))
+        Dim EditorButtonImageOptions2 As DevExpress.XtraEditors.Controls.EditorButtonImageOptions = New DevExpress.XtraEditors.Controls.EditorButtonImageOptions()
+        Dim SerializableAppearanceObject5 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
+        Dim SerializableAppearanceObject6 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
+        Dim SerializableAppearanceObject7 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
+        Dim SerializableAppearanceObject8 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
+        Dim EditorButtonImageOptions1 As DevExpress.XtraEditors.Controls.EditorButtonImageOptions = New DevExpress.XtraEditors.Controls.EditorButtonImageOptions()
         Dim SerializableAppearanceObject1 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
         Dim SerializableAppearanceObject2 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
         Dim SerializableAppearanceObject3 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
         Dim SerializableAppearanceObject4 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
+        Dim EditorButtonImageOptions3 As DevExpress.XtraEditors.Controls.EditorButtonImageOptions = New DevExpress.XtraEditors.Controls.EditorButtonImageOptions()
+        Dim SerializableAppearanceObject9 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
+        Dim SerializableAppearanceObject10 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
+        Dim SerializableAppearanceObject11 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
+        Dim SerializableAppearanceObject12 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
+        Dim EditorButtonImageOptions4 As DevExpress.XtraEditors.Controls.EditorButtonImageOptions = New DevExpress.XtraEditors.Controls.EditorButtonImageOptions()
+        Dim SerializableAppearanceObject13 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
+        Dim SerializableAppearanceObject14 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
+        Dim SerializableAppearanceObject15 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
+        Dim SerializableAppearanceObject16 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
         Me.tlpForm = New System.Windows.Forms.TableLayoutPanel()
         Me.pTitle = New System.Windows.Forms.Panel()
         Me.lblTitle = New System.Windows.Forms.Label()
@@ -269,7 +285,7 @@ Partial Class frmPPP
         '
         'xtcPenerimaanPengeluaran
         '
-        Me.xtcPenerimaanPengeluaran.Appearance.BackColor = System.Drawing.color.fromargb(240, 240, 240)
+        Me.xtcPenerimaanPengeluaran.Appearance.BackColor = System.Drawing.Color.FromArgb(CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer))
         Me.xtcPenerimaanPengeluaran.Appearance.Font = New System.Drawing.Font("Tahoma", 9.0!)
         Me.xtcPenerimaanPengeluaran.Appearance.Options.UseBackColor = True
         Me.xtcPenerimaanPengeluaran.Appearance.Options.UseFont = True
@@ -281,14 +297,13 @@ Partial Class frmPPP
         Me.xtcPenerimaanPengeluaran.AppearancePage.HeaderDisabled.Options.UseFont = True
         Me.xtcPenerimaanPengeluaran.AppearancePage.HeaderHotTracked.Font = New System.Drawing.Font("Tahoma", 9.0!)
         Me.xtcPenerimaanPengeluaran.AppearancePage.HeaderHotTracked.Options.UseFont = True
-        Me.xtcPenerimaanPengeluaran.AppearancePage.PageClient.BackColor = System.Drawing.color.fromargb(240, 240, 240)
+        Me.xtcPenerimaanPengeluaran.AppearancePage.PageClient.BackColor = System.Drawing.Color.FromArgb(CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer))
         Me.xtcPenerimaanPengeluaran.AppearancePage.PageClient.Font = New System.Drawing.Font("Tahoma", 9.0!)
         Me.xtcPenerimaanPengeluaran.AppearancePage.PageClient.Options.UseBackColor = True
         Me.xtcPenerimaanPengeluaran.AppearancePage.PageClient.Options.UseFont = True
         Me.xtcPenerimaanPengeluaran.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
         Me.xtcPenerimaanPengeluaran.BorderStylePage = DevExpress.XtraEditors.Controls.BorderStyles.HotFlat
         Me.xtcPenerimaanPengeluaran.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.xtcPenerimaanPengeluaran.Font = New System.Drawing.Font("Tahoma", 9.0!)
         Me.xtcPenerimaanPengeluaran.HeaderAutoFill = DevExpress.Utils.DefaultBoolean.[False]
         Me.xtcPenerimaanPengeluaran.HeaderButtons = DevExpress.XtraTab.TabButtons.None
         Me.xtcPenerimaanPengeluaran.HeaderButtonsShowMode = DevExpress.XtraTab.TabButtonShowMode.Never
@@ -298,7 +313,7 @@ Partial Class frmPPP
         Me.xtcPenerimaanPengeluaran.LookAndFeel.UseDefaultLookAndFeel = False
         Me.xtcPenerimaanPengeluaran.MultiLine = DevExpress.Utils.DefaultBoolean.[False]
         Me.xtcPenerimaanPengeluaran.Name = "xtcPenerimaanPengeluaran"
-        Me.xtcPenerimaanPengeluaran.SelectedTabPage = Me.xtpPenerimaan
+        Me.xtcPenerimaanPengeluaran.SelectedTabPage = Me.xtpPengeluaran
         Me.xtcPenerimaanPengeluaran.ShowHeaderFocus = DevExpress.Utils.DefaultBoolean.[False]
         Me.xtcPenerimaanPengeluaran.ShowTabHeader = DevExpress.Utils.DefaultBoolean.[False]
         Me.xtcPenerimaanPengeluaran.ShowToolTips = DevExpress.Utils.DefaultBoolean.[False]
@@ -308,7 +323,7 @@ Partial Class frmPPP
         '
         'xtpPenerimaan
         '
-        Me.xtpPenerimaan.Appearance.PageClient.BackColor = System.Drawing.color.fromargb(240, 240, 240)
+        Me.xtpPenerimaan.Appearance.PageClient.BackColor = System.Drawing.Color.FromArgb(CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer))
         Me.xtpPenerimaan.Appearance.PageClient.Options.UseBackColor = True
         Me.xtpPenerimaan.Controls.Add(Me.gcPenerimaanData)
         Me.xtpPenerimaan.Controls.Add(Me.tlpPenerimaan2)
@@ -351,7 +366,7 @@ Partial Class frmPPP
         '
         'gvPenerimaanData
         '
-        Me.gvPenerimaanData.Appearance.Empty.BackColor = System.Drawing.color.fromargb(240, 240, 240)
+        Me.gvPenerimaanData.Appearance.Empty.BackColor = System.Drawing.Color.FromArgb(CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer))
         Me.gvPenerimaanData.Appearance.Empty.Options.UseBackColor = True
         Me.gvPenerimaanData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.gctID, Me.gctIDParent, Me.gctIDPengajuan, Me.gctIDCOA, Me.gctKDCOA, Me.gctNomorUrut, Me.gctUntuk, Me.gctNoDokumen, Me.gctJumlahUang, Me.gctDebetKredit, Me.gctIDUnit})
         Me.gvPenerimaanData.GridControl = Me.gcPenerimaanData
@@ -477,7 +492,7 @@ Partial Class frmPPP
         '
         'tlpPenerimaan2
         '
-        Me.tlpPenerimaan2.BackColor = System.Drawing.color.fromargb(240, 240, 240)
+        Me.tlpPenerimaan2.BackColor = System.Drawing.Color.FromArgb(CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer))
         Me.tlpPenerimaan2.ColumnCount = 4
         Me.tlpPenerimaan2.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
         Me.tlpPenerimaan2.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 130.0!))
@@ -527,7 +542,7 @@ Partial Class frmPPP
         '
         'tlpPenerimaan1
         '
-        Me.tlpPenerimaan1.BackColor = System.Drawing.color.fromargb(240, 240, 240)
+        Me.tlpPenerimaan1.BackColor = System.Drawing.Color.FromArgb(CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer))
         Me.tlpPenerimaan1.ColumnCount = 6
         Me.tlpPenerimaan1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
         Me.tlpPenerimaan1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 130.0!))
@@ -608,7 +623,7 @@ Partial Class frmPPP
         Me.sePenerimaanUang.Properties.Appearance.Options.UseBackColor = True
         Me.sePenerimaanUang.Properties.Appearance.Options.UseFont = True
         Me.sePenerimaanUang.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple
-        Me.sePenerimaanUang.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis, "", -1, True, False, False, DevExpress.XtraEditors.ImageLocation.MiddleCenter, Nothing, New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject1, "", Nothing, Nothing, True)})
+        Me.sePenerimaanUang.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis, "", -1, True, False, False, EditorButtonImageOptions2, New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject5, SerializableAppearanceObject6, SerializableAppearanceObject7, SerializableAppearanceObject8, "", Nothing, Nothing, DevExpress.Utils.ToolTipAnchor.[Default])})
         Me.sePenerimaanUang.Properties.DisplayFormat.FormatString = "n2"
         Me.sePenerimaanUang.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.sePenerimaanUang.Properties.EditFormat.FormatString = "n2"
@@ -676,7 +691,7 @@ Partial Class frmPPP
         '
         'btnPenerimaanSave
         '
-        Me.btnPenerimaanSave.BackColor = System.Drawing.Color.FromArgb(CType(CType(156, Byte), Integer), CType(CType(207, Byte), Integer), CType(CType(49, Byte), Integer))
+        Me.btnPenerimaanSave.BackColor = System.Drawing.Color.Green
         Me.btnPenerimaanSave.Dock = System.Windows.Forms.DockStyle.Right
         Me.btnPenerimaanSave.FlatAppearance.BorderSize = 0
         Me.btnPenerimaanSave.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DimGray
@@ -751,7 +766,7 @@ Partial Class frmPPP
         Me.lueCOA.Properties.Appearance.Options.UseFont = True
         Me.lueCOA.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple
         Me.lueCOA.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.lueCOA.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("idcoa", "ID", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("coa", "Kode Rekening"), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("remarks", "Remarks")})
+        Me.lueCOA.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("idcoa", "ID", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default], DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("coa", "Kode Rekening"), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("remarks", "Remarks")})
         Me.lueCOA.Properties.NullText = "[Isian belum dipilih]"
         Me.lueCOA.Properties.NullValuePrompt = "[Isian belum dipilih]"
         Me.lueCOA.Size = New System.Drawing.Size(130, 20)
@@ -784,18 +799,18 @@ Partial Class frmPPP
         Me.gcPengeluaranData.EmbeddedNavigator.Buttons.PrevPage.Visible = False
         Me.gcPengeluaranData.EmbeddedNavigator.Buttons.Remove.ImageIndex = 0
         Me.gcPengeluaranData.EmbeddedNavigator.TextLocation = DevExpress.XtraEditors.NavigatorButtonsTextLocation.None
-        Me.gcPengeluaranData.Location = New System.Drawing.Point(0, 136)
+        Me.gcPengeluaranData.Location = New System.Drawing.Point(0, 134)
         Me.gcPengeluaranData.MainView = Me.gvPengeluaranData
         Me.gcPengeluaranData.Name = "gcPengeluaranData"
         Me.gcPengeluaranData.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.rimeNote1})
-        Me.gcPengeluaranData.Size = New System.Drawing.Size(782, 189)
+        Me.gcPengeluaranData.Size = New System.Drawing.Size(782, 191)
         Me.gcPengeluaranData.TabIndex = 18
         Me.gcPengeluaranData.UseEmbeddedNavigator = True
         Me.gcPengeluaranData.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gvPengeluaranData})
         '
         'gvPengeluaranData
         '
-        Me.gvPengeluaranData.Appearance.Empty.BackColor = System.Drawing.color.fromargb(240, 240, 240)
+        Me.gvPengeluaranData.Appearance.Empty.BackColor = System.Drawing.Color.FromArgb(CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer))
         Me.gvPengeluaranData.Appearance.Empty.Options.UseBackColor = True
         Me.gvPengeluaranData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.gckID, Me.gckIDParent, Me.gckIDPengajuan, Me.gckIDCOA, Me.gckNomorUrut, Me.gckUntuk, Me.gckNoDokumen, Me.gckJumlahUang, Me.gckDebetKredit, Me.gckCOA, Me.gckIDUnit})
         Me.gvPengeluaranData.GridControl = Me.gcPengeluaranData
@@ -921,7 +936,7 @@ Partial Class frmPPP
         '
         'tlpPengeluaran2
         '
-        Me.tlpPengeluaran2.BackColor = System.Drawing.color.fromargb(240, 240, 240)
+        Me.tlpPengeluaran2.BackColor = System.Drawing.Color.FromArgb(CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer))
         Me.tlpPengeluaran2.ColumnCount = 4
         Me.tlpPengeluaran2.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
         Me.tlpPengeluaran2.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 130.0!))
@@ -930,7 +945,7 @@ Partial Class frmPPP
         Me.tlpPengeluaran2.Controls.Add(Me.tePengeluaranKeperluan, 2, 1)
         Me.tlpPengeluaran2.Controls.Add(Me.Label3, 1, 1)
         Me.tlpPengeluaran2.Dock = System.Windows.Forms.DockStyle.Top
-        Me.tlpPengeluaran2.Location = New System.Drawing.Point(0, 86)
+        Me.tlpPengeluaran2.Location = New System.Drawing.Point(0, 84)
         Me.tlpPengeluaran2.Margin = New System.Windows.Forms.Padding(0)
         Me.tlpPengeluaran2.Name = "tlpPengeluaran2"
         Me.tlpPengeluaran2.RowCount = 3
@@ -971,7 +986,7 @@ Partial Class frmPPP
         '
         'tlpPengeluaran1
         '
-        Me.tlpPengeluaran1.BackColor = System.Drawing.color.fromargb(240, 240, 240)
+        Me.tlpPengeluaran1.BackColor = System.Drawing.Color.FromArgb(CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer))
         Me.tlpPengeluaran1.ColumnCount = 6
         Me.tlpPengeluaran1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
         Me.tlpPengeluaran1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 130.0!))
@@ -988,7 +1003,7 @@ Partial Class frmPPP
         Me.tlpPengeluaran1.Controls.Add(Me.sePengeluaranUang, 4, 2)
         Me.tlpPengeluaran1.Controls.Add(Me.Label6, 1, 1)
         Me.tlpPengeluaran1.Dock = System.Windows.Forms.DockStyle.Top
-        Me.tlpPengeluaran1.Location = New System.Drawing.Point(0, 32)
+        Me.tlpPengeluaran1.Location = New System.Drawing.Point(0, 30)
         Me.tlpPengeluaran1.Margin = New System.Windows.Forms.Padding(0)
         Me.tlpPengeluaran1.Name = "tlpPengeluaran1"
         Me.tlpPengeluaran1.RowCount = 4
@@ -1110,7 +1125,7 @@ Partial Class frmPPP
         Me.sePengeluaranUang.Properties.Appearance.Options.UseBackColor = True
         Me.sePengeluaranUang.Properties.Appearance.Options.UseFont = True
         Me.sePengeluaranUang.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple
-        Me.sePengeluaranUang.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis, "", -1, True, False, False, DevExpress.XtraEditors.ImageLocation.MiddleCenter, Nothing, New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject2, "", Nothing, Nothing, True)})
+        Me.sePengeluaranUang.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis, "", -1, True, False, False, EditorButtonImageOptions1, New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject1, SerializableAppearanceObject2, SerializableAppearanceObject3, SerializableAppearanceObject4, "", Nothing, Nothing, DevExpress.Utils.ToolTipAnchor.[Default])})
         Me.sePengeluaranUang.Properties.DisplayFormat.FormatString = "n2"
         Me.sePengeluaranUang.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.sePengeluaranUang.Properties.EditFormat.FormatString = "n2"
@@ -1153,7 +1168,7 @@ Partial Class frmPPP
         Me.TableLayoutPanel4.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
         Me.TableLayoutPanel4.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 48.0!))
         Me.TableLayoutPanel4.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
-        Me.TableLayoutPanel4.Size = New System.Drawing.Size(782, 32)
+        Me.TableLayoutPanel4.Size = New System.Drawing.Size(782, 30)
         Me.TableLayoutPanel4.TabIndex = 17
         '
         'Panel2
@@ -1166,7 +1181,7 @@ Partial Class frmPPP
         Me.Panel2.Location = New System.Drawing.Point(304, 0)
         Me.Panel2.Margin = New System.Windows.Forms.Padding(0)
         Me.Panel2.Name = "Panel2"
-        Me.Panel2.Size = New System.Drawing.Size(392, 32)
+        Me.Panel2.Size = New System.Drawing.Size(392, 30)
         Me.Panel2.TabIndex = 13
         '
         'btnPengeluaranSearch
@@ -1180,7 +1195,7 @@ Partial Class frmPPP
         Me.btnPengeluaranSearch.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnPengeluaranSearch.Location = New System.Drawing.Point(212, 0)
         Me.btnPengeluaranSearch.Name = "btnPengeluaranSearch"
-        Me.btnPengeluaranSearch.Size = New System.Drawing.Size(60, 32)
+        Me.btnPengeluaranSearch.Size = New System.Drawing.Size(60, 30)
         Me.btnPengeluaranSearch.TabIndex = 17
         Me.btnPengeluaranSearch.Text = "CARI"
         Me.btnPengeluaranSearch.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
@@ -1196,7 +1211,7 @@ Partial Class frmPPP
         Me.btnPengeluaranSave.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnPengeluaranSave.Location = New System.Drawing.Point(272, 0)
         Me.btnPengeluaranSave.Name = "btnPengeluaranSave"
-        Me.btnPengeluaranSave.Size = New System.Drawing.Size(120, 32)
+        Me.btnPengeluaranSave.Size = New System.Drawing.Size(120, 30)
         Me.btnPengeluaranSave.TabIndex = 15
         Me.btnPengeluaranSave.Text = "SIMPAN DI TABEL"
         Me.btnPengeluaranSave.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
@@ -1204,7 +1219,7 @@ Partial Class frmPPP
         '
         'TableLayoutPanel5
         '
-        Me.TableLayoutPanel5.BackColor = System.Drawing.color.fromargb(240, 240, 240)
+        Me.TableLayoutPanel5.BackColor = System.Drawing.Color.FromArgb(CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer))
         Me.TableLayoutPanel5.ColumnCount = 4
         Me.TableLayoutPanel5.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
         Me.TableLayoutPanel5.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 130.0!))
@@ -1224,7 +1239,7 @@ Partial Class frmPPP
         '
         'Panel3
         '
-        Me.Panel3.BackColor = System.Drawing.color.fromargb(240, 240, 240)
+        Me.Panel3.BackColor = System.Drawing.Color.FromArgb(CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer))
         Me.Panel3.Controls.Add(Me.tabPenerimaan)
         Me.Panel3.Controls.Add(Me.tabPengeluaran)
         Me.Panel3.Dock = System.Windows.Forms.DockStyle.Fill
@@ -1273,7 +1288,7 @@ Partial Class frmPPP
         '
         'tlpField
         '
-        Me.tlpField.BackColor = System.Drawing.color.fromargb(240, 240, 240)
+        Me.tlpField.BackColor = System.Drawing.Color.FromArgb(CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer))
         Me.tlpField.ColumnCount = 6
         Me.tlpField.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
         Me.tlpField.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 130.0!))
@@ -1362,22 +1377,22 @@ Partial Class frmPPP
         Me.deTanggal.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 9.0!)
         Me.deTanggal.Properties.Appearance.Options.UseBackColor = True
         Me.deTanggal.Properties.Appearance.Options.UseFont = True
+        Me.deTanggal.Properties.AppearanceCalendar.DayCellHighlighted.Font = New System.Drawing.Font("Tahoma", 9.0!)
+        Me.deTanggal.Properties.AppearanceCalendar.DayCellHighlighted.Options.UseFont = True
+        Me.deTanggal.Properties.AppearanceCalendar.Header.Font = New System.Drawing.Font("Tahoma", 9.0!)
+        Me.deTanggal.Properties.AppearanceCalendar.Header.Options.UseFont = True
+        Me.deTanggal.Properties.AppearanceCalendar.HeaderHighlighted.Font = New System.Drawing.Font("Tahoma", 9.0!)
+        Me.deTanggal.Properties.AppearanceCalendar.HeaderHighlighted.Options.UseFont = True
+        Me.deTanggal.Properties.AppearanceCalendar.WeekNumber.Font = New System.Drawing.Font("Tahoma", 9.0!)
+        Me.deTanggal.Properties.AppearanceCalendar.WeekNumber.Options.UseFont = True
         Me.deTanggal.Properties.AppearanceDisabled.Font = New System.Drawing.Font("Tahoma", 9.0!)
         Me.deTanggal.Properties.AppearanceDisabled.Options.UseFont = True
         Me.deTanggal.Properties.AppearanceDropDown.Font = New System.Drawing.Font("Tahoma", 9.0!)
         Me.deTanggal.Properties.AppearanceDropDown.Options.UseFont = True
-        Me.deTanggal.Properties.AppearanceDropDownHeader.Font = New System.Drawing.Font("Tahoma", 9.0!)
-        Me.deTanggal.Properties.AppearanceDropDownHeader.Options.UseFont = True
-        Me.deTanggal.Properties.AppearanceDropDownHeaderHighlight.Font = New System.Drawing.Font("Tahoma", 9.0!)
-        Me.deTanggal.Properties.AppearanceDropDownHeaderHighlight.Options.UseFont = True
-        Me.deTanggal.Properties.AppearanceDropDownHighlight.Font = New System.Drawing.Font("Tahoma", 9.0!)
-        Me.deTanggal.Properties.AppearanceDropDownHighlight.Options.UseFont = True
         Me.deTanggal.Properties.AppearanceFocused.Font = New System.Drawing.Font("Tahoma", 9.0!)
         Me.deTanggal.Properties.AppearanceFocused.Options.UseFont = True
         Me.deTanggal.Properties.AppearanceReadOnly.Font = New System.Drawing.Font("Tahoma", 9.0!)
         Me.deTanggal.Properties.AppearanceReadOnly.Options.UseFont = True
-        Me.deTanggal.Properties.AppearanceWeekNumber.Font = New System.Drawing.Font("Tahoma", 9.0!)
-        Me.deTanggal.Properties.AppearanceWeekNumber.Options.UseFont = True
         Me.deTanggal.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple
         Me.deTanggal.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.deTanggal.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
@@ -1415,7 +1430,7 @@ Partial Class frmPPP
         Me.lueBank.Properties.Appearance.Options.UseFont = True
         Me.lueBank.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple
         Me.lueBank.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.lueBank.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("idbank", "ID", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("bank", "Bank"), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("remarks", "Remarks")})
+        Me.lueBank.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("idbank", "ID", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default], DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("bank", "Bank"), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("remarks", "Remarks")})
         Me.lueBank.Properties.NullText = "[Isian belum dipilih]"
         Me.lueBank.Properties.NullValuePrompt = "[Isian belum dipilih]"
         Me.lueBank.Size = New System.Drawing.Size(198, 20)
@@ -1447,7 +1462,7 @@ Partial Class frmPPP
         Me.seTotalPengeluaran.Properties.Appearance.Options.UseBackColor = True
         Me.seTotalPengeluaran.Properties.Appearance.Options.UseFont = True
         Me.seTotalPengeluaran.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple
-        Me.seTotalPengeluaran.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis, "", -1, True, False, False, DevExpress.XtraEditors.ImageLocation.MiddleCenter, Nothing, New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject3, "", Nothing, Nothing, True)})
+        Me.seTotalPengeluaran.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis, "", -1, True, False, False, EditorButtonImageOptions3, New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject9, SerializableAppearanceObject10, SerializableAppearanceObject11, SerializableAppearanceObject12, "", Nothing, Nothing, DevExpress.Utils.ToolTipAnchor.[Default])})
         Me.seTotalPengeluaran.Properties.DisplayFormat.FormatString = "n2"
         Me.seTotalPengeluaran.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.seTotalPengeluaran.Properties.EditFormat.FormatString = "n2"
@@ -1474,7 +1489,7 @@ Partial Class frmPPP
         Me.seTotalPenerimaan.Properties.Appearance.Options.UseBackColor = True
         Me.seTotalPenerimaan.Properties.Appearance.Options.UseFont = True
         Me.seTotalPenerimaan.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple
-        Me.seTotalPenerimaan.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis, "", -1, True, False, False, DevExpress.XtraEditors.ImageLocation.MiddleCenter, Nothing, New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject4, "", Nothing, Nothing, True)})
+        Me.seTotalPenerimaan.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis, "", -1, True, False, False, EditorButtonImageOptions4, New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject13, SerializableAppearanceObject14, SerializableAppearanceObject15, SerializableAppearanceObject16, "", Nothing, Nothing, DevExpress.Utils.ToolTipAnchor.[Default])})
         Me.seTotalPenerimaan.Properties.DisplayFormat.FormatString = "n2"
         Me.seTotalPenerimaan.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.seTotalPenerimaan.Properties.EditFormat.FormatString = "n2"
@@ -1525,7 +1540,7 @@ Partial Class frmPPP
         Me.lueJenis.Properties.Appearance.Options.UseFont = True
         Me.lueJenis.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple
         Me.lueJenis.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.lueJenis.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id", "ID", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("content", "Jenis Transaksi")})
+        Me.lueJenis.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id", "ID", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default], DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("content", "Jenis Transaksi")})
         Me.lueJenis.Properties.NullText = "[Isian belum dipilih]"
         Me.lueJenis.Properties.NullValuePrompt = "[Isian belum dipilih]"
         Me.lueJenis.Size = New System.Drawing.Size(198, 20)
@@ -1563,7 +1578,7 @@ Partial Class frmPPP
         '
         'btnSave
         '
-        Me.btnSave.BackColor = System.Drawing.Color.FromArgb(CType(CType(156, Byte), Integer), CType(CType(207, Byte), Integer), CType(CType(49, Byte), Integer))
+        Me.btnSave.BackColor = System.Drawing.Color.Green
         Me.btnSave.Dock = System.Windows.Forms.DockStyle.Right
         Me.btnSave.FlatAppearance.BorderSize = 0
         Me.btnSave.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DimGray
@@ -1595,7 +1610,7 @@ Partial Class frmPPP
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.BackColor = System.Drawing.color.fromargb(240, 240, 240)
+        Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer))
         Me.ClientSize = New System.Drawing.Size(790, 499)
         Me.Controls.Add(Me.tlpForm)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None

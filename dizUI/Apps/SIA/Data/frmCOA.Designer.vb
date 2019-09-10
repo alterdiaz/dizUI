@@ -49,13 +49,14 @@ Partial Class frmCOA
         Me.Label2 = New System.Windows.Forms.Label()
         Me.seCOA = New DevExpress.XtraEditors.SpinEdit()
         Me.pHeader = New System.Windows.Forms.Panel()
+        Me.btnImportFormat = New System.Windows.Forms.Button()
+        Me.btnExportFormat = New System.Windows.Forms.Button()
         Me.btnNew = New System.Windows.Forms.Button()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.luePosisi = New DevExpress.XtraEditors.LookUpEdit()
         Me.btnSave = New System.Windows.Forms.Button()
         Me.btnDelete = New System.Windows.Forms.Button()
         Me.lblSep5 = New System.Windows.Forms.Label()
-        Me.btnPrint = New System.Windows.Forms.Button()
         Me.tlpForm.SuspendLayout()
         Me.pTitle.SuspendLayout()
         CType(Me.pMinimize, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -370,6 +371,8 @@ Partial Class frmCOA
         'pHeader
         '
         Me.pHeader.BackColor = System.Drawing.Color.FromArgb(CType(CType(66, Byte), Integer), CType(CType(66, Byte), Integer), CType(CType(66, Byte), Integer))
+        Me.pHeader.Controls.Add(Me.btnImportFormat)
+        Me.pHeader.Controls.Add(Me.btnExportFormat)
         Me.pHeader.Controls.Add(Me.btnNew)
         Me.pHeader.Controls.Add(Me.Label1)
         Me.pHeader.Controls.Add(Me.luePosisi)
@@ -382,6 +385,42 @@ Partial Class frmCOA
         Me.pHeader.Name = "pHeader"
         Me.pHeader.Size = New System.Drawing.Size(786, 30)
         Me.pHeader.TabIndex = 4
+        '
+        'btnImportFormat
+        '
+        Me.btnImportFormat.BackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer))
+        Me.btnImportFormat.Dock = System.Windows.Forms.DockStyle.Left
+        Me.btnImportFormat.FlatAppearance.BorderSize = 0
+        Me.btnImportFormat.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DimGray
+        Me.btnImportFormat.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DarkGray
+        Me.btnImportFormat.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnImportFormat.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnImportFormat.Location = New System.Drawing.Point(120, 0)
+        Me.btnImportFormat.Name = "btnImportFormat"
+        Me.btnImportFormat.Size = New System.Drawing.Size(120, 30)
+        Me.btnImportFormat.TabIndex = 30
+        Me.btnImportFormat.Text = "IMPORT DATA"
+        Me.btnImportFormat.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
+        Me.btnImportFormat.UseMnemonic = False
+        Me.btnImportFormat.UseVisualStyleBackColor = False
+        '
+        'btnExportFormat
+        '
+        Me.btnExportFormat.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(0, Byte), Integer))
+        Me.btnExportFormat.Dock = System.Windows.Forms.DockStyle.Left
+        Me.btnExportFormat.FlatAppearance.BorderSize = 0
+        Me.btnExportFormat.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DimGray
+        Me.btnExportFormat.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DarkGray
+        Me.btnExportFormat.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnExportFormat.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnExportFormat.Location = New System.Drawing.Point(0, 0)
+        Me.btnExportFormat.Name = "btnExportFormat"
+        Me.btnExportFormat.Size = New System.Drawing.Size(120, 30)
+        Me.btnExportFormat.TabIndex = 29
+        Me.btnExportFormat.Text = "EXPORT FORMAT"
+        Me.btnExportFormat.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
+        Me.btnExportFormat.UseMnemonic = False
+        Me.btnExportFormat.UseVisualStyleBackColor = False
         '
         'btnNew
         '
@@ -434,7 +473,7 @@ Partial Class frmCOA
         '
         'btnSave
         '
-        Me.btnSave.BackColor = System.Drawing.Color.FromArgb(CType(CType(156, Byte), Integer), CType(CType(207, Byte), Integer), CType(CType(49, Byte), Integer))
+        Me.btnSave.BackColor = System.Drawing.Color.green
         Me.btnSave.Dock = System.Windows.Forms.DockStyle.Right
         Me.btnSave.FlatAppearance.BorderSize = 0
         Me.btnSave.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DimGray
@@ -478,23 +517,6 @@ Partial Class frmCOA
         Me.lblSep5.Text = "|"
         Me.lblSep5.TextAlign = System.Drawing.ContentAlignment.TopCenter
         '
-        'btnPrint
-        '
-        Me.btnPrint.Dock = System.Windows.Forms.DockStyle.Right
-        Me.btnPrint.FlatAppearance.BorderSize = 0
-        Me.btnPrint.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DimGray
-        Me.btnPrint.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DarkGray
-        Me.btnPrint.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btnPrint.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnPrint.Image = Global.dizUI.My.Resources.Resources.print
-        Me.btnPrint.Location = New System.Drawing.Point(-26, 0)
-        Me.btnPrint.Name = "btnPrint"
-        Me.btnPrint.Size = New System.Drawing.Size(100, 1)
-        Me.btnPrint.TabIndex = 0
-        Me.btnPrint.Text = "PRINT"
-        Me.btnPrint.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
-        Me.btnPrint.UseVisualStyleBackColor = True
-        '
         'frmCOA
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -524,7 +546,6 @@ Partial Class frmCOA
         Me.ResumeLayout(False)
 
     End Sub
-    Friend WithEvents btnPrint As System.Windows.Forms.Button
     Friend WithEvents lblSep5 As System.Windows.Forms.Label
     Public WithEvents pHeader As System.Windows.Forms.Panel
     Public WithEvents btnNew As System.Windows.Forms.Button
@@ -553,4 +574,6 @@ Partial Class frmCOA
     Friend WithEvents pMinimize As System.Windows.Forms.PictureBox
     Friend WithEvents pMaximize As System.Windows.Forms.PictureBox
     Friend WithEvents pExit As System.Windows.Forms.PictureBox
+    Public WithEvents btnImportFormat As Button
+    Public WithEvents btnExportFormat As Button
 End Class
