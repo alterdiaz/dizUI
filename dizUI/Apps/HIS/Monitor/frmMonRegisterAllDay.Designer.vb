@@ -616,6 +616,7 @@ Partial Class frmMonRegisterAllDay
         Me.btnRefresh.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnRefresh.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnRefresh.Location = New System.Drawing.Point(606, 0)
+        Me.btnRefresh.Margin = New System.Windows.Forms.Padding(0)
         Me.btnRefresh.Name = "btnRefresh"
         Me.btnRefresh.Size = New System.Drawing.Size(80, 30)
         Me.btnRefresh.TabIndex = 19
@@ -632,6 +633,7 @@ Partial Class frmMonRegisterAllDay
         Me.btnExport.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnExport.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnExport.Location = New System.Drawing.Point(686, 0)
+        Me.btnExport.Margin = New System.Windows.Forms.Padding(0)
         Me.btnExport.Name = "btnExport"
         Me.btnExport.Size = New System.Drawing.Size(100, 30)
         Me.btnExport.TabIndex = 15

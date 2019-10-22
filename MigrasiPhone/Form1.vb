@@ -131,7 +131,7 @@ Public Class Form1
         Dim mvalue As New List(Of String)
         mparam.AddRange(New String() {"param", "value", "tkey1", "tkey2"})
         mvalue.AddRange(New String() {"user", "", "ABF", "123"})
-        json_result = HttpPOSTRequestSelect("http://datacube.diznet.co.id/40/index.php/Core", mparam, mvalue)
+        json_result = HttpPOSTRequestSelect("https://diznet.co.id/dizdata/40/index.php/Core", mparam, mvalue)
         If json_result.Length > 2 Then
             Label1.Text = "Done"
         Else

@@ -3515,7 +3515,7 @@ Partial Class Form1
         '
         Me.XtraTabPage16.Margin = New System.Windows.Forms.Padding(0)
         Me.XtraTabPage16.Name = "XtraTabPage16"
-        Me.XtraTabPage16.Size = New System.Drawing.Size(902, 407)
+        Me.XtraTabPage16.Size = New System.Drawing.Size(617, 413)
         Me.XtraTabPage16.Text = "DATA"
         '
         'Form1
@@ -3523,7 +3523,7 @@ Partial Class Form1
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(954, 486)
-        Me.Controls.Add(Me.XtraTabControl1)
+        Me.Controls.Add(Me.sccForm)
         Me.Controls.Add(Me.CheckedListBoxControl1)
         Me.Controls.Add(Me.CheckEdit1)
         Me.Controls.Add(Me.TableLayoutPanel3)
@@ -3533,8 +3533,8 @@ Partial Class Form1
         Me.Controls.Add(Me.xtcProfile)
         Me.Controls.Add(Me.GridControl1)
         Me.Controls.Add(Me.gcData)
-        Me.Controls.Add(Me.sccForm)
         Me.Controls.Add(Me.xtcAdditional)
+        Me.Controls.Add(Me.XtraTabControl1)
         Me.Controls.Add(Me.barDockControlLeft)
         Me.Controls.Add(Me.barDockControlRight)
         Me.Controls.Add(Me.barDockControlBottom)

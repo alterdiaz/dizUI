@@ -2,6 +2,7 @@
 Imports System.Drawing.Drawing2D
 Imports System.Reflection
 Imports Microsoft.Win32
+Imports System.ComponentModel
 
 Public Class frmMain
 
@@ -262,12 +263,12 @@ Public Class frmMain
 
         Dim exefilename As String = IO.Path.GetFileName(Application.ExecutablePath)
         'If inputName = "update" Then
-        If IO.File.Exists(CheckAndRepairValidPath(Application.StartupPath) & "dizSetting.exe") Then
-                Threading.Thread.Sleep(100)
-            System.Diagnostics.Process.Start(CheckAndRepairValidPath(Application.StartupPath) & "dizSetting.exe", exefilename)
+        If IO.File.Exists(CheckAndRepairValidPath(Application.StartupPath) & "Setting\dizSetting.exe") Then
             Threading.Thread.Sleep(100)
-                Environment.Exit(0)
-            End If
+            System.Diagnostics.Process.Start(CheckAndRepairValidPath(Application.StartupPath) & "Setting\dizSetting.exe", exefilename)
+            Threading.Thread.Sleep(100)
+            Environment.Exit(0)
+        End If
         'ElseIf inputName <> "" And inputName <> "update" Then
         '    dizMsgbox("Wrong Parameter", dizMsgboxStyle.Kesalahan, Me)
         '    Environment.Exit(0)
@@ -397,7 +398,7 @@ Public Class frmMain
             splashClosed = True
             dizMsgbox("Dilarang melakukan modifikasi terhadap aplikasi ini" & vbCrLf &
                         "Aplikasi anda rusak, silahkan install ulang aplikasi ini" & vbCrLf & "Filename error", dizMsgboxStyle.Kesalahan, Me)
-            Application.Exit()
+            Environment.Exit(0)
         End If
 
         Me.Visible = True
@@ -469,20 +470,20 @@ Public Class frmMain
 
                     tlpFooter.BackgroundImage = Nothing
                     tlpHeader.BackgroundImage = Nothing
-                        'Dim rgbidx As New RGBindex()
+                    'Dim rgbidx As New RGBindex()
 
-                        Dim colr As New List(Of Color)
-                        colr.Add(Color.FromArgb(153, 51, 153))
-                        colr.Add(Color.FromArgb(0, 102, 204))
-                        colr.Add(Color.FromArgb(0, 102, 0))
-                        colr.Add(Color.FromArgb(0, 204, 102))
-                        colr.Add(Color.FromArgb(153, 0, 0))
-                        colr.Add(Color.FromArgb(153, 0, 153))
+                    Dim colr As New List(Of Color)
+                    colr.Add(Color.FromArgb(153, 51, 153))
+                    colr.Add(Color.FromArgb(0, 102, 204))
+                    colr.Add(Color.FromArgb(0, 102, 0))
+                    colr.Add(Color.FromArgb(0, 204, 102))
+                    colr.Add(Color.FromArgb(153, 0, 0))
+                    colr.Add(Color.FromArgb(153, 0, 153))
 
-                        idxrnd = rnd.Next(0, colr.Count - 1)
-                        tlpFooter.BackColor = colr(idxrnd) 'rgbidx.GetDominantColor(bm_dest)
-                    Else
-                        imgBack = Image.FromFile(appPath & "default_live.jpg")
+                    idxrnd = rnd.Next(0, colr.Count - 1)
+                    tlpFooter.BackColor = colr(idxrnd) 'rgbidx.GetDominantColor(bm_dest)
+                Else
+                    imgBack = Image.FromFile(appPath & "default_live.jpg")
                 End If
 
                 tcTile.BackgroundImage = imgBack
@@ -547,8 +548,8 @@ Public Class frmMain
             Dim sql As New SQLs(dbstring)
             Dim sqli As New SQLi(dblite)
             sqli.DMLQuery("select siteurl from siteconn order by idsiteconn desc", "getdbstring")
-            If SQLi.getDataSet("getdbstring") > 0 Then
-                mysite = SQLi.getDataSet("getdbstring", 0, "siteurl")
+            If sqli.getDataSet("getdbstring") > 0 Then
+                mysite = sqli.getDataSet("getdbstring", 0, "siteurl")
                 mysite = CheckAndRepairValidURL(mysite)
             End If
 
@@ -701,7 +702,7 @@ Public Class frmMain
                     splashClosed = True
                     dizMsgbox("Dilarang melakukan modifikasi aplikasi ini" & vbCrLf &
                         "Aplikasi anda rusak, silahkan install ulang aplikasi ini" & vbCrLf & "Activated Error", dizMsgboxStyle.Kesalahan, Me)
-                    Application.Exit()
+                    Environment.Exit(0)
                 End If
                 If de20.processE(sa) = sacode Then
                     If sa = "NULL" Then
@@ -725,7 +726,7 @@ Public Class frmMain
                         If de20.processE(sa) = sacode Then
                             If sa = "NULL" Then
                                 dizMsgbox("Registrasi Pengguna dan Perusahaan belum dilakukan", dizMsgboxStyle.Kesalahan, Me)
-                                Application.Exit()
+                                Environment.Exit(0)
                             End If
                         End If
                     End If
@@ -734,7 +735,7 @@ Public Class frmMain
                     splashClosed = True
                     dizMsgbox("Dilarang melakukan modifikasi terhadap aplikasi ini" & vbCrLf &
                         "Aplikasi anda rusak, silahkan install ulang aplikasi ini" & vbCrLf & "User Company Error", dizMsgboxStyle.Kesalahan, Me)
-                    Application.Exit()
+                    Environment.Exit(0)
                 End If
             End If
 
@@ -792,6 +793,10 @@ Public Class frmMain
                 'lite.DMLQuery("select value from appsetting where variable='ProductTypeID'", "PTypeID")
                 'modCore.idproducttype = lite.getDataSet("PTypeID", 0, "value")
                 'sqls.DMLQuery("update sys_appsetting set value='" & modCore.idproducttype & "' where variable='ProductTypeID'", False)
+                sqli.DMLQuery("select idproducttype from companyproducttype where idcompany='" & modCore.idcompany & "'", "protype")
+                For i As Integer = 0 To sqli.getDataSet("protype") - 1
+                    idproducttype.Add(sqli.getDataSet("protype", i, "idproducttype"))
+                Next
             Else
                 Dim lite As New SQLi(dblite)
                 Dim sqls As New SQLs(dbstring)
@@ -799,6 +804,10 @@ Public Class frmMain
                 'sqls.DMLQuery("select value from sys_appsetting where variable='CompanyProductID'", "CPID")
                 'modCore.idcompanyproduct = sqls.getDataSet("CPID", 0, "value")
                 'lite.DMLQuery("update appsetting set value='" & modCore.idcompanyproduct & "' where variable='CompanyProductID'", False)
+
+                sqls.DMLQuery("select value from sys_appsetting where variable='CompanyID'", "CID")
+                modCore.idcompany = sqls.getDataSet("CID", 0, "value")
+                lite.DMLQuery("update appsetting set value='" & modCore.idcompany & "' where variable='CompanyID'", False)
 
                 sqls.DMLQuery("select value from sys_appsetting where variable='CompanyName'", "CN")
                 modCore.companyname = sqls.getDataSet("CN", 0, "value")
@@ -815,12 +824,11 @@ Public Class frmMain
                 'sqls.DMLQuery("select value from sys_appsetting where variable='ProductTypeID'", "PTypeID")
                 'modCore.idproducttype = sqls.getDataSet("PTypeID", 0, "value")
                 'lite.DMLQuery("update appsetting set value='" & idproducttype & "' where variable='ProductTypeID'", False)
+                sqls.DMLQuery("select idproducttype from sys_appproducttype where idcompany='" & modCore.idcompany & "'", "protype")
+                For i As Integer = 0 To sqls.getDataSet("protype") - 1
+                    idproducttype.Add(sqls.getDataSet("protype", i, "idproducttype"))
+                Next
             End If
-
-            sqli.DMLQuery("select idproducttype from companyproducttype where idcompany='" & modCore.idcompany & "'", "protype")
-            For i As Integer = 0 To sqli.getDataSet("protype") - 1
-                idproducttype.Add(sqli.getDataSet("protype", i, "idproducttype"))
-            Next
 
             Me.Cursor = Cursors.Default
             tmrWaktu.Start()
@@ -873,41 +881,41 @@ Public Class frmMain
             'Label3.BringToFront()
         End If
 
-        If IO.Path.GetFileNameWithoutExtension(Application.ExecutablePath) = "dizUI" Then
-            Dim sqlsu As New SQLs(dbstring)
-            sqlsu.DMLQuery("select idappfiles,filename,appversion,createddate,filebinary from sys_appfiles where filename='dizSetting.exe' and appversion=(select value from sys_appsetting where variable='ProductVersion')", "appfiles")
-            If sqlsu.getDataSet("appfiles") > 0 Then
-                Dim tmpbyte As Byte() = Nothing
-                Dim filename As String = ""
-                GC.Collect()
-                tmpbyte = Nothing
-                filename = sqlsu.getDataSet("appfiles", 0, "filename")
-                tmpbyte = sqlsu.getData("sys_appfiles", "filebinary", "filename", filename, False)
-                If IO.File.Exists(CheckAndRepairValidPath(Application.StartupPath) & filename) = True Then
-                    Dim errBool As Boolean = False
-                    Try
-                        IO.File.Delete(CheckAndRepairValidPath(Application.StartupPath) & filename)
-                    Catch ex As Exception
-                        'MsgBox("error delete" & vbCrLf & filename & vbCrLf & sqls.getDataSet("appfiles", i, "createddate"))
-                        errBool = True
-                    End Try
-                    Application.DoEvents()
-                    Threading.Thread.Sleep(100)
-                End If
-                Try
-                    IO.File.WriteAllBytes(CheckAndRepairValidPath(Application.StartupPath) & filename, tmpbyte)
-                Catch ex As Exception
-                    'MsgBox("error write" & vbCrLf & filename & vbCrLf & sqls.getDataSet("appfiles", i, "createddate"))
-                End Try
-                Application.DoEvents()
-                Threading.Thread.Sleep(100)
-            End If
-        End If
+        'If IO.Path.GetFileNameWithoutExtension(Application.ExecutablePath) = "dizUI" Then
+        '    Dim sqlsu As New SQLs(dbstring)
+        '    sqlsu.DMLQuery("select idappfiles,filename,appversion,createddate,filebinary from sys_appfiles where filename='dizSetting.exe' and appversion=(select value from sys_appsetting where variable='ProductVersion')", "appfiles")
+        '    If sqlsu.getDataSet("appfiles") > 0 Then
+        '        Dim tmpbyte As Byte() = Nothing
+        '        Dim filename As String = ""
+        '        GC.Collect()
+        '        tmpbyte = Nothing
+        '        filename = sqlsu.getDataSet("appfiles", 0, "filename")
+        '        tmpbyte = sqlsu.getData("sys_appfiles", "filebinary", "filename", filename, False)
+        '        If IO.File.Exists(CheckAndRepairValidPath(Application.StartupPath) & filename) = True Then
+        '            Dim errBool As Boolean = False
+        '            Try
+        '                IO.File.Delete(CheckAndRepairValidPath(Application.StartupPath) & filename)
+        '            Catch ex As Exception
+        '                'MsgBox("error delete" & vbCrLf & filename & vbCrLf & sqls.getDataSet("appfiles", i, "createddate"))
+        '                errBool = True
+        '            End Try
+        '            Application.DoEvents()
+        '            Threading.Thread.Sleep(100)
+        '        End If
+        '        Try
+        '            IO.File.WriteAllBytes(CheckAndRepairValidPath(Application.StartupPath) & filename, tmpbyte)
+        '        Catch ex As Exception
+        '            'MsgBox("error write" & vbCrLf & filename & vbCrLf & sqls.getDataSet("appfiles", i, "createddate"))
+        '        End Try
+        '        Application.DoEvents()
+        '        Threading.Thread.Sleep(100)
+        '    End If
+        'End If
     End Sub
 
     Private isSync As Boolean = False
     'Private Async Sub bwServer_DoWork(ByVal sender As System.Object, ByVal e As System.ComponentModel.DoWorkEventArgs) Handles bwServer.DoWork
-    Private Async Sub cekTimer2()
+    Private Sub cekTimer2()
         Try
             If nowTime.Second = 0 And nowTime.Minute Mod 3 = 0 Then
                 If isServer = True Then
@@ -1011,7 +1019,7 @@ Public Class frmMain
                             mparam.AddRange(New String() {"param", "value", "tkey1", "tkey2"})
                             mvalue.AddRange(New String() {"baru", iddu, tmptokenkey1, tmptokenkey2})
                             'Dim task1 As System.Threading.Tasks.Task(Of String) = syncInsert(dbonline & "DataUsage", mparam, mvalue)
-                            json_result = Await syncInsert(dbonline & "DataUsage", mparam, mvalue)
+                            json_result = syncInsert(dbonline & "DataUsage", mparam, mvalue)
                         Next
                         fs.Clear()
                         vs.Clear()
@@ -1045,7 +1053,7 @@ Public Class frmMain
                         mparam.AddRange(New String() {"param", "value", "tkey1", "tkey2"})
                         mvalue.AddRange(New String() {"baru", iddu, tmptokenkey1, tmptokenkey2})
                         'Dim task2 As System.Threading.Tasks.Task(Of String) = syncInsert(dbonline & "Usage", mparam, mvalue)
-                        json_result = Await syncInsert(dbonline & "Usage", mparam, mvalue)
+                        json_result = syncInsert(dbonline & "Usage", mparam, mvalue)
 
                         'Dim MYs2 = New SQLs(dbonline)
                         'sqls.DMLQuery("select convert(decimal(20,0),VALUE) as used from sys_appsetting where variable='QuotaUsed'", "qu")
@@ -1063,22 +1071,22 @@ Public Class frmMain
                     End Try
                 End If
             End If
-        Catch ex As exception
+        Catch ex As Exception
         End Try
     End Sub
 
-    Private Async Function syncInsert(url As String, listfield As List(Of String), listvalue As List(Of String)) As Threading.Tasks.Task(Of String)
+    Private Function syncInsert(url As String, listfield As List(Of String), listvalue As List(Of String)) As String
         Return modCore.HttpPOSTRequestInsert(url, listfield, listvalue)
     End Function
 
-    Private Async Function syncSelect(url As String, listfield As List(Of String), listvalue As List(Of String)) As Threading.Tasks.Task(Of String)
+    Private Function syncSelect(url As String, listfield As List(Of String), listvalue As List(Of String)) As String
         Return modCore.HttpPOSTRequestSelect(url, listfield, listvalue)
     End Function
 
     Private statData As statusData = statusData.Baru
     Private idData As String = "-1"
 
-    Private Async Sub syncToken()
+    Private Sub syncToken()
         Try
             isSync = True
             'Dim mystring As String = ""
@@ -1127,7 +1135,7 @@ Public Class frmMain
             mparam.AddRange(New String() {"param", "value"})
             mvalue.AddRange(New String() {"", ""})
             'Dim task2 As System.Threading.Tasks.Task(Of String) = syncSelect(mysite & "Token", mparam, mvalue)
-            json_result = Await syncSelect(mysite & "Token", mparam, mvalue)
+            json_result = syncSelect(mysite & "Token", mparam, mvalue)
 
             If sqls.getDataSet("cnt") > 0 Then
                 localcnt = sqls.getDataSet("cnt")
@@ -1444,7 +1452,7 @@ Public Class frmMain
         tcTile.Visible = True
         tcTile.BringToFront()
         tcTile.Focus()
-        tesearch.Visible = True
+        teSearch.Visible = True
         pform.Dock = DockStyle.None
         pform.Visible = False
         pform.SendToBack()
@@ -1687,7 +1695,7 @@ Public Class frmMain
             login.ShowDialog()
 
             If statLogin = True Then
-                clearchild()
+                clearChild()
                 coll_form.Clear()
                 coll_img.Clear()
                 clearTaskList(Nothing, Nothing)
@@ -1726,7 +1734,7 @@ Public Class frmMain
 
                 tcTile.Focus()
             Else
-                clearchild()
+                clearChild()
                 coll_form.Clear()
                 coll_img.Clear()
                 clearTaskList(Nothing, Nothing)
@@ -1746,6 +1754,13 @@ Public Class frmMain
 
                 teSearch.Visible = False
                 teSearch.EditValue = Nothing
+
+                Dim psi As ProcessStartInfo = New ProcessStartInfo
+                Dim p As Process = New Process()
+                psi.Arguments = " /f /im dizNotifikasi.exe"
+                psi.FileName = "taskkill"
+                p.StartInfo = psi
+                p.Start()
             End If
         Else
             pHeader.Visible = False
@@ -1775,6 +1790,13 @@ Public Class frmMain
 
             teSearch.Visible = False
             teSearch.EditValue = Nothing
+
+            Dim psi As ProcessStartInfo = New ProcessStartInfo
+            Dim p As Process = New Process()
+            psi.Arguments = " /f /im dizNotifikasi.exe"
+            psi.FileName = "taskkill"
+            p.StartInfo = psi
+            p.Start()
         End If
     End Sub
 
@@ -1911,7 +1933,7 @@ Public Class frmMain
             Dim memo As New frmMemo
             tambahChild(memo)
             memo.ShowDialog(Me)
-            disposechild(memo, Nothing)
+            disposeChild(memo, Nothing)
         End If
     End Sub
 
@@ -1922,7 +1944,7 @@ Public Class frmMain
             Dim notes As New frmNotes
             tambahChild(notes)
             notes.ShowDialog(Me)
-            disposechild(notes, Nothing)
+            disposeChild(notes, Nothing)
         End If
     End Sub
 
@@ -1932,7 +1954,7 @@ Public Class frmMain
             Dim msg As New frmMessages
             tambahChild(msg)
             msg.ShowDialog(Me)
-            disposechild(msg, Nothing)
+            disposeChild(msg, Nothing)
         End If
     End Sub
 
@@ -1941,7 +1963,7 @@ Public Class frmMain
             Dim clist As New frmFiturServer
             tambahChild(clist)
             clist.ShowDialog()
-            disposechild(clist, Nothing)
+            disposeChild(clist, Nothing)
         End If
     End Sub
 
@@ -2014,7 +2036,7 @@ Public Class frmMain
         End If
     End Sub
 
-    Private Sub tcTile_KeyDown(sender As Object, e As KeyEventArgs) Handles tcTile.KeyDown
+    Private Sub Form_KeyDown(sender As Object, e As KeyEventArgs) Handles tcTile.KeyDown, pnlTaskList.KeyDown, pnTaskList.KeyDown, pBody.KeyDown, pHeader.KeyDown, tlpHeader.KeyDown, pTitle.KeyDown, pSearch.KeyDown, tlpFooter.KeyDown, pFooter.KeyDown, tlpMain.KeyDown, pMain.KeyDown, cmsMenu.KeyDown, btnAppBorder.KeyDown, btnAppExit.KeyDown, btnAppMax.KeyDown, btnAppMin.KeyDown, btnCompList.KeyDown, btnDBSetting.KeyDown, btnHelp.KeyDown, btnLogin.KeyDown, btnMemo.KeyDown, btnMessage.KeyDown, btnNote.KeyDown, btnProfile.KeyDown, btnServer.KeyDown, btnSetting.KeyDown, btnSidebar.KeyDown, btnTaskManager.KeyDown, lblNotification.KeyDown, lblQuota.KeyDown, lblTitle.KeyDown, lblUserActive.KeyDown, Label1.KeyDown, Label2.KeyDown, pbNotification.KeyDown, pBody.KeyDown, tlpTaskList.KeyDown
         If teSearch.Visible = True Then
             If e.KeyData = Keys.F3 Then
                 teSearch.Focus()
@@ -2047,6 +2069,14 @@ Public Class frmMain
 
     Private Sub cmsTutupPaksa_Click(sender As Object, e As EventArgs) Handles cmsTutupPaksa.Click
         Environment.Exit(0)
+    End Sub
+
+    Private Sub frmMain_Shown(sender As Object, e As EventArgs) Handles Me.Shown
+        Me.FormBorderStyle = FormBorderStyle.None
+    End Sub
+
+    Private Sub frmMain_Closing(sender As Object, e As CancelEventArgs) Handles Me.Closing
+        niUpdate.Visible = False
     End Sub
 
     'Private Sub btnSidebar_Click(sender As Object, e As EventArgs) Handles btnSidebar.Click

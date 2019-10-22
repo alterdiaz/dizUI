@@ -1431,19 +1431,30 @@
         AddHandler pt.PreviewForm.Load, AddressOf PreviewForm_Load
         If cetaktype = cu.cetak Then
             If printername = "" Then
-                pt.PrintDialog()
+                Try
+                    pt.PrintDialog()
+                Catch ex1 As Exception
+                    dizMsgbox(ex1.Message, dizMsgboxStyle.Kesalahan, Me)
+                End Try
             Else
                 Dim sharename As String = getPrinter("REGANTRIAN")
                 If sharename <> "" Then
                     Try
                         pt.Print(sharename)
                     Catch ex As Exception
-                        dizMsgbox("Printer tidak ditemukan/tidak ada akses", dizMsgboxStyle.Peringatan, Me)
+                        Try
+                            pt.PrintDialog()
+                        Catch ex1 As Exception
+                            dizMsgbox(ex1.Message, dizMsgboxStyle.Kesalahan, Me)
+                        End Try
                     End Try
                 Else
-                    dizMsgbox("Printer belum disetting untuk cetak dokumen ini", dizMsgboxStyle.Peringatan, Me)
+                    Try
+                        pt.PrintDialog()
+                    Catch ex1 As Exception
+                        dizMsgbox(ex1.Message, dizMsgboxStyle.Kesalahan, Me)
+                    End Try
                 End If
-                'pt.PrintDialog()
             End If
         ElseIf cetaktype = cu.preview Then
             pt.AutoShowParametersPanel = False
@@ -1653,14 +1664,20 @@
                     If sharename <> "" Then
                         cetakWristband(lstdata, sharename)
                     Else
-                        dizMsgbox("Printer belum disetting untuk cetak dokumen ini", dizMsgboxStyle.Peringatan, Me)
+                        Dim pd As New PrintDialog
+                        If pd.ShowDialog() = DialogResult.OK Then
+                            cetakWristband(lstdata, pd.PrinterSettings.PrinterName)
+                        End If
                     End If
                 Else
                     Dim sharename As String = getPrinter("WRBAM")
                     If sharename <> "" Then
                         cetakWristband(lstdata, sharename)
                     Else
-                        dizMsgbox("Printer belum disetting untuk cetak dokumen ini", dizMsgboxStyle.Peringatan, Me)
+                        Dim pd As New PrintDialog
+                        If pd.ShowDialog() = DialogResult.OK Then
+                            cetakWristband(lstdata, pd.PrinterSettings.PrinterName)
+                        End If
                     End If
                 End If
             ElseIf selectWB.getStringPilih = "Anak" Then
@@ -1668,7 +1685,10 @@
                 If sharename <> "" Then
                     cetakWristband(lstdata, sharename)
                 Else
-                    dizMsgbox("Printer belum disetting untuk cetak dokumen ini", dizMsgboxStyle.Peringatan, Me)
+                    Dim pd As New PrintDialog
+                    If pd.ShowDialog() = DialogResult.OK Then
+                        cetakWristband(lstdata, pd.PrinterSettings.PrinterName)
+                    End If
                 End If
             End If
             'End If
@@ -1677,7 +1697,7 @@
     End Sub
 
     Private Sub btnLabel_Click(sender As Object, e As EventArgs) Handles btnLabel.Click
-        Dim radsel10 As New frmSelectLabel10("")
+        Dim radsel10 As New frmSelectLabel10("MCU")
         radsel10.ShowDialog(Me)
         'Dim sqls As New SQLs(dbstring)
         'sqls.DMLQuery("select r.idregistrasi,convert(varchar,r.registrasidate,105)+' '+convert(varchar,r.registrasidate,108) as 'Tgl Registrasi',r.registrasino as 'No Registrasi',pm.nama as 'Tenaga Medis',dbo.fformatnorm(rm.rekammedisno) as 'No RM',rm.nama as 'Nama Pasien',jk.generalcode as 'Jenis Kelamin',convert(varchar,rm.tanggallahir,105) as 'Tgl Lahir',dbo.fUmurRegister(rm.tanggallahir,r.registrasidate) as 'Umur',kw.wilayah as 'Kewarganegaraan' from registrasi r left join rekammedis rm on r.idrekammedis=rm.idrekammedis left join sys_generalcode jk on rm.jeniskelamin=jk.idgeneral and jk.gctype='SEXTYPE' left join wilayah kw on rm.kewarganegaraan=kw.idwilayah  left join paramedis pm on r.iddokterruangan=pm.idparamedis where r.registrasistatus=0 and rm.rekammedisno<>0 and convert(varchar,r.registrasidate,105)=convert(varchar,getdate(),105) order by r.registrasidate desc", "search")
@@ -1710,10 +1730,10 @@
         '        Try
         '            pt.Print(sharename)
         '        Catch ex As Exception
-        '            dizMsgbox("Printer tidak ditemukan/tidak ada akses", dizMsgboxStyle.Peringatan, Me)
+        '           pt.PrintDialog()
         '        End Try
         '    Else
-        '        dizMsgbox("Printer belum disetting untuk cetak dokumen ini", dizMsgboxStyle.Peringatan, Me)
+        '       pt.PrintDialog()
         '    End If
         'End If
     End Sub
@@ -1807,8 +1827,8 @@
     End Sub
 
     Private Sub btnMonRegHarian_Click(sender As Object, e As EventArgs) Handles btnMonRegHarian.Click
-        formTitle = "Monitoring Register Harian"
-        Dim frmMon As New frmMonRegisterMCUday
+        formTitle = "Monitoring Register"
+        Dim frmMon As New frmMonRegister
         tambahChild(frmMon)
         frmMon.Size = New Size(Screen.PrimaryScreen.WorkingArea.Width - 100, Screen.PrimaryScreen.WorkingArea.Height - 100)
         frmMon.MaximumSize = New Size(Screen.PrimaryScreen.WorkingArea.Width - 100, Screen.PrimaryScreen.WorkingArea.Height - 100)

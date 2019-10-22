@@ -1514,10 +1514,9 @@
     End Sub
 
     Private Sub lueJenisKelamin_EditValueChanged(sender As Object, e As EventArgs) Handles lueJenisKelamin.EditValueChanged
-        If lueJenisKelamin.EditValue Is Nothing Then
-            lueSapaan.EditValue = Nothing
-            Exit Sub
-        End If
+        lueSapaan.Properties.DataSource = Nothing
+        lueSapaan.EditValue = Nothing
+
         Dim mysqls As New SQLs(dbstring)
         mysqls.DMLQuery("select idgeneral as id, generalcode as content from sys_generalcode where gctype='SAPAAN' and (idreff=2 or idreff='" & lueJenisKelamin.EditValue & "') order by generalcode asc", "sapaan")
         lueSapaan.Properties.DataSource = mysqls.dataTable("sapaan")

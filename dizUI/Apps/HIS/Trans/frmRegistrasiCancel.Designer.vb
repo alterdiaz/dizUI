@@ -59,6 +59,8 @@ Partial Class frmRegistrasiCancel
         Me.btnNew = New System.Windows.Forms.Button()
         Me.btnSave = New System.Windows.Forms.Button()
         Me.lblSep5 = New System.Windows.Forms.Label()
+        Me.Label1 = New System.Windows.Forms.Label()
+        Me.cboDepartment = New DevExpress.XtraEditors.CheckedComboBoxEdit()
         Me.tlpForm.SuspendLayout()
         Me.pTitle.SuspendLayout()
         CType(Me.pMinimize, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -72,6 +74,7 @@ Partial Class frmRegistrasiCancel
         Me.TableLayoutPanel3.SuspendLayout()
         CType(Me.teRemarks.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.pHeader.SuspendLayout()
+        CType(Me.cboDepartment.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'tlpForm
@@ -458,8 +461,10 @@ Partial Class frmRegistrasiCancel
         Me.TableLayoutPanel3.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 120.0!))
         Me.TableLayoutPanel3.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 150.0!))
         Me.TableLayoutPanel3.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
-        Me.TableLayoutPanel3.Controls.Add(Me.teRemarks, 2, 1)
-        Me.TableLayoutPanel3.Controls.Add(Me.Label10, 1, 1)
+        Me.TableLayoutPanel3.Controls.Add(Me.Label1, 1, 1)
+        Me.TableLayoutPanel3.Controls.Add(Me.cboDepartment, 2, 1)
+        Me.TableLayoutPanel3.Controls.Add(Me.teRemarks, 4, 1)
+        Me.TableLayoutPanel3.Controls.Add(Me.Label10, 3, 1)
         Me.TableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Top
         Me.TableLayoutPanel3.Location = New System.Drawing.Point(0, 30)
         Me.TableLayoutPanel3.Margin = New System.Windows.Forms.Padding(0)
@@ -476,7 +481,7 @@ Partial Class frmRegistrasiCancel
         'teRemarks
         '
         Me.teRemarks.Anchor = System.Windows.Forms.AnchorStyles.Left
-        Me.teRemarks.Location = New System.Drawing.Point(218, 8)
+        Me.teRemarks.Location = New System.Drawing.Point(538, 8)
         Me.teRemarks.Margin = New System.Windows.Forms.Padding(0)
         Me.teRemarks.Name = "teRemarks"
         Me.teRemarks.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[True]
@@ -497,7 +502,7 @@ Partial Class frmRegistrasiCancel
         Me.Label10.Anchor = System.Windows.Forms.AnchorStyles.Right
         Me.Label10.AutoSize = True
         Me.Label10.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label10.Location = New System.Drawing.Point(145, 11)
+        Me.Label10.Location = New System.Drawing.Point(465, 11)
         Me.Label10.Name = "Label10"
         Me.Label10.Size = New System.Drawing.Size(70, 14)
         Me.Label10.TabIndex = 20
@@ -563,6 +568,47 @@ Partial Class frmRegistrasiCancel
         Me.lblSep5.Text = "|"
         Me.lblSep5.TextAlign = System.Drawing.ContentAlignment.TopCenter
         '
+        'Label1
+        '
+        Me.Label1.Anchor = System.Windows.Forms.AnchorStyles.Right
+        Me.Label1.AutoSize = True
+        Me.Label1.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label1.Location = New System.Drawing.Point(142, 11)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(73, 14)
+        Me.Label1.TabIndex = 119
+        Me.Label1.Text = "Department"
+        Me.Label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        '
+        'cboDepartment
+        '
+        Me.cboDepartment.Anchor = System.Windows.Forms.AnchorStyles.Left
+        Me.cboDepartment.Location = New System.Drawing.Point(218, 8)
+        Me.cboDepartment.Margin = New System.Windows.Forms.Padding(0)
+        Me.cboDepartment.Name = "cboDepartment"
+        Me.cboDepartment.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.cboDepartment.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 9.0!)
+        Me.cboDepartment.Properties.Appearance.Options.UseBackColor = True
+        Me.cboDepartment.Properties.Appearance.Options.UseFont = True
+        Me.cboDepartment.Properties.AppearanceDisabled.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.cboDepartment.Properties.AppearanceDisabled.Font = New System.Drawing.Font("Tahoma", 10.0!)
+        Me.cboDepartment.Properties.AppearanceDisabled.Options.UseBackColor = True
+        Me.cboDepartment.Properties.AppearanceDisabled.Options.UseFont = True
+        Me.cboDepartment.Properties.AppearanceDropDown.Font = New System.Drawing.Font("Tahoma", 10.0!)
+        Me.cboDepartment.Properties.AppearanceDropDown.Options.UseFont = True
+        Me.cboDepartment.Properties.AppearanceFocused.Font = New System.Drawing.Font("Tahoma", 10.0!)
+        Me.cboDepartment.Properties.AppearanceFocused.Options.UseFont = True
+        Me.cboDepartment.Properties.AppearanceReadOnly.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.cboDepartment.Properties.AppearanceReadOnly.Font = New System.Drawing.Font("Tahoma", 10.0!)
+        Me.cboDepartment.Properties.AppearanceReadOnly.Options.UseBackColor = True
+        Me.cboDepartment.Properties.AppearanceReadOnly.Options.UseFont = True
+        Me.cboDepartment.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple
+        Me.cboDepartment.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.cboDepartment.Properties.PopupWidthMode = DevExpress.XtraEditors.PopupWidthMode.ContentWidth
+        Me.cboDepartment.Size = New System.Drawing.Size(196, 20)
+        Me.cboDepartment.TabIndex = 120
+        Me.cboDepartment.Tag = "hari"
+        '
         'frmRegistrasiCancel
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -589,6 +635,7 @@ Partial Class frmRegistrasiCancel
         Me.TableLayoutPanel3.PerformLayout()
         CType(Me.teRemarks.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.pHeader.ResumeLayout(False)
+        CType(Me.cboDepartment.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -629,4 +676,6 @@ Partial Class frmRegistrasiCancel
     Friend WithEvents GridColumn16 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn17 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents teRemarks As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents Label1 As Label
+    Friend WithEvents cboDepartment As DevExpress.XtraEditors.CheckedComboBoxEdit
 End Class

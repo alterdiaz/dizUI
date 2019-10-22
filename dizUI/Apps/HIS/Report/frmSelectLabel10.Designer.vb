@@ -26,6 +26,7 @@ Partial Class frmSelectLabel10
         Me.tlpForm = New System.Windows.Forms.TableLayoutPanel()
         Me.pContent = New System.Windows.Forms.Panel()
         Me.Panel1 = New System.Windows.Forms.Panel()
+        Me.ceKTP = New DevExpress.XtraEditors.CheckEdit()
         Me.ce16button = New DevExpress.XtraEditors.CheckEdit()
         Me.ceAllButton = New DevExpress.XtraEditors.CheckEdit()
         Me.btnSelect10 = New System.Windows.Forms.Button()
@@ -63,6 +64,7 @@ Partial Class frmSelectLabel10
         Me.tlpForm.SuspendLayout()
         Me.pContent.SuspendLayout()
         Me.Panel1.SuspendLayout()
+        CType(Me.ceKTP.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.ce16button.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.ceAllButton.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.cmsMenu10.SuspendLayout()
@@ -114,9 +116,10 @@ Partial Class frmSelectLabel10
         '
         Me.Panel1.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom), System.Windows.Forms.AnchorStyles)
         Me.Panel1.BackColor = System.Drawing.Color.Transparent
+        Me.Panel1.Controls.Add(Me.btnSelect10)
+        Me.Panel1.Controls.Add(Me.ceKTP)
         Me.Panel1.Controls.Add(Me.ce16button)
         Me.Panel1.Controls.Add(Me.ceAllButton)
-        Me.Panel1.Controls.Add(Me.btnSelect10)
         Me.Panel1.Controls.Add(Me.btnSelect9)
         Me.Panel1.Controls.Add(Me.btnSelect8)
         Me.Panel1.Controls.Add(Me.btnSelect7)
@@ -132,9 +135,23 @@ Partial Class frmSelectLabel10
         Me.Panel1.Size = New System.Drawing.Size(540, 411)
         Me.Panel1.TabIndex = 1
         '
+        'ceKTP
+        '
+        Me.ceKTP.Location = New System.Drawing.Point(305, 389)
+        Me.ceKTP.Margin = New System.Windows.Forms.Padding(0)
+        Me.ceKTP.Name = "ceKTP"
+        Me.ceKTP.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 10.0!)
+        Me.ceKTP.Properties.Appearance.Options.UseFont = True
+        Me.ceKTP.Properties.AutoWidth = True
+        Me.ceKTP.Properties.Caption = "Cetak Nomor Identitas"
+        Me.ceKTP.Properties.CheckStyle = DevExpress.XtraEditors.Controls.CheckStyles.Style1
+        Me.ceKTP.Size = New System.Drawing.Size(152, 22)
+        Me.ceKTP.TabIndex = 23
+        '
         'ce16button
         '
-        Me.ce16button.Location = New System.Drawing.Point(305, 381)
+        Me.ce16button.Location = New System.Drawing.Point(305, 367)
+        Me.ce16button.Margin = New System.Windows.Forms.Padding(0)
         Me.ce16button.Name = "ce16button"
         Me.ce16button.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 10.0!)
         Me.ce16button.Properties.Appearance.Options.UseFont = True
@@ -146,7 +163,8 @@ Partial Class frmSelectLabel10
         '
         'ceAllButton
         '
-        Me.ceAllButton.Location = New System.Drawing.Point(305, 353)
+        Me.ceAllButton.Location = New System.Drawing.Point(305, 345)
+        Me.ceAllButton.Margin = New System.Windows.Forms.Padding(0)
         Me.ceAllButton.Name = "ceAllButton"
         Me.ceAllButton.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 10.0!)
         Me.ceAllButton.Properties.Appearance.Options.UseFont = True
@@ -526,11 +544,12 @@ Partial Class frmSelectLabel10
         Me.Name = "frmSelectLabel10"
         Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "Export"
+        Me.Text = "Cetak Label 10"
         Me.tlpForm.ResumeLayout(False)
         Me.pContent.ResumeLayout(False)
         Me.Panel1.ResumeLayout(False)
         Me.Panel1.PerformLayout()
+        CType(Me.ceKTP.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.ce16button.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.ceAllButton.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.cmsMenu10.ResumeLayout(False)
@@ -583,4 +602,5 @@ Partial Class frmSelectLabel10
     Friend WithEvents cmsMenu10 As ContextMenuStrip
     Friend WithEvents tsmParamedis10 As ToolStripMenuItem
     Friend WithEvents ce16button As DevExpress.XtraEditors.CheckEdit
+    Friend WithEvents ceKTP As DevExpress.XtraEditors.CheckEdit
 End Class

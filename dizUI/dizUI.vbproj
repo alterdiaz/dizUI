@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\EntityFramework.6.3.0\build\EntityFramework.props" Condition="Exists('..\packages\EntityFramework.6.3.0\build\EntityFramework.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
@@ -9,15 +10,15 @@
     <OutputType>WinExe</OutputType>
     <StartupObject>dizUI.My.MyApplication</StartupObject>
     <RootNamespace>dizUI</RootNamespace>
-    <AssemblyName>dizUI</AssemblyName>
+    <AssemblyName>dizUIdemo</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <MyType>WindowsForms</MyType>
-    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
     <OptionExplicit>On</OptionExplicit>
     <OptionCompare>Binary</OptionCompare>
     <OptionStrict>Off</OptionStrict>
     <OptionInfer>Off</OptionInfer>
-    <ApplicationIcon>Resources\dizLive.ico</ApplicationIcon>
+    <ApplicationIcon>Resources\dizDemo.ico</ApplicationIcon>
     <ApplicationManifest>My Project\app.manifest</ApplicationManifest>
     <IsWebBootstrapper>false</IsWebBootstrapper>
     <FileUpgradeFlags>
@@ -49,7 +50,7 @@
     <DefineDebug>true</DefineDebug>
     <DefineTrace>true</DefineTrace>
     <OutputPath>bin\Debug\</OutputPath>
-    <DocumentationFile>dizUI.xml</DocumentationFile>
+    <DocumentationFile>dizUIdemo.xml</DocumentationFile>
     <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022,42353,42354,42355</NoWarn>
     <Prefer32Bit>false</Prefer32Bit>
     <PlatformTarget>x86</PlatformTarget>
@@ -60,7 +61,7 @@
     <DefineTrace>true</DefineTrace>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
-    <DocumentationFile>dizUI.xml</DocumentationFile>
+    <DocumentationFile>dizUIdemo.xml</DocumentationFile>
     <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022,42353,42354,42355</NoWarn>
     <Prefer32Bit>false</Prefer32Bit>
     <PlatformTarget>x86</PlatformTarget>
@@ -68,7 +69,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Live|AnyCPU'">
     <DefineTrace>true</DefineTrace>
     <OutputPath>bin\Live\</OutputPath>
-    <DocumentationFile>dizUI.xml</DocumentationFile>
+    <DocumentationFile>dizUIdemo.xml</DocumentationFile>
     <Optimize>true</Optimize>
     <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022,42353,42354,42355</NoWarn>
     <DebugType>pdbonly</DebugType>
@@ -79,7 +80,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Demo|AnyCPU'">
     <DefineTrace>true</DefineTrace>
     <OutputPath>bin\Demo\</OutputPath>
-    <DocumentationFile>dizUI.xml</DocumentationFile>
+    <DocumentationFile>dizUIdemo.xml</DocumentationFile>
     <Optimize>true</Optimize>
     <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022,42353,42354,42355</NoWarn>
     <DebugType>Full</DebugType>
@@ -220,20 +221,14 @@
     </Reference>
     <Reference Include="DevExpress.XtraTreeMap.v17.2, Version=17.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
-      <Private>True</Private>
+      <HintPath>..\packages\EntityFramework.6.3.0\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
-      <Private>True</Private>
+      <HintPath>..\packages\EntityFramework.6.3.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="HL7SDK, Version=1.0.4.0, Culture=neutral, PublicKeyToken=96dc2418941d0102, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\DLL\HL7SDK.dll</HintPath>
-    </Reference>
-    <Reference Include="MySql.Data, Version=6.8.3.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\DLL\MySql.Data.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -243,9 +238,7 @@
     <Reference Include="PrintingRaw">
       <HintPath>..\..\DLL\PrintingRaw.dll</HintPath>
     </Reference>
-    <Reference Include="System">
-      <HintPath>..\..\..\..\..\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6\System.dll</HintPath>
-    </Reference>
+    <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
     <Reference Include="System.Data.Linq" />
@@ -337,6 +330,24 @@
     <Compile Include="Apps\AKUN\frmStrukturLaporanNeraca.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Apps\AKUN\frmTransaksiCOA.Designer.vb">
+      <DependentUpon>frmTransaksiCOA.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\AKUN\frmTransaksiCOA.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Apps\AKUN\frmTransaksiJurnal.Designer.vb">
+      <DependentUpon>frmTransaksiJurnal.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\AKUN\frmTransaksiJurnal.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Apps\Common\Data\frmInternalNote.Designer.vb">
+      <DependentUpon>frmInternalNote.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\Common\Data\frmInternalNote.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Apps\Common\Data\frmUnitAsuransi.Designer.vb">
       <DependentUpon>frmUnitAsuransi.vb</DependentUpon>
     </Compile>
@@ -353,6 +364,36 @@
       <DependentUpon>frmCPPT.vb</DependentUpon>
     </Compile>
     <Compile Include="Apps\HISS\Monitor\frmCPPT.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Apps\HISS\Monitor\frmRMHistory.Designer.vb">
+      <DependentUpon>frmRMHistory.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\HISS\Monitor\frmRMHistory.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Apps\HISS\Monitor\frmRMManajemen.Designer.vb">
+      <DependentUpon>frmRMManajemen.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\HISS\Monitor\frmRMManajemen.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Apps\HISS\Monitor\frmRMRequest.Designer.vb">
+      <DependentUpon>frmRMRequest.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\HISS\Monitor\frmRMRequest.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Apps\HISS\Monitor\frmRMRequestMulti.Designer.vb">
+      <DependentUpon>frmRMRequestMulti.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\HISS\Monitor\frmRMRequestMulti.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Apps\HISS\Monitor\frmRMTracing.Designer.vb">
+      <DependentUpon>frmRMTracing.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\HISS\Monitor\frmRMTracing.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Apps\HIS\Asesmen\frmAMIRNA201901.Designer.vb">
@@ -427,16 +468,34 @@
     <Compile Include="Apps\HIS\MonitorPelayanan\frmMonRegisterODSday.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Apps\HIS\Monitor\frmMonRegister.Designer.vb">
+      <DependentUpon>frmMonRegister.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\HIS\Monitor\frmMonRegister.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Apps\HIS\Report\frmSelectLabel10RM.Designer.vb">
       <DependentUpon>frmSelectLabel10RM.vb</DependentUpon>
     </Compile>
     <Compile Include="Apps\HIS\Report\frmSelectLabel10RM.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Apps\HIS\Trans\frmAlihDPJP.Designer.vb">
+      <DependentUpon>frmAlihDPJP.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\HIS\Trans\frmAlihDPJP.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Apps\HRD\Data\frmAbsensiKaryawan.Designer.vb">
       <DependentUpon>frmAbsensiKaryawan.vb</DependentUpon>
     </Compile>
     <Compile Include="Apps\HRD\Data\frmAbsensiKaryawan.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Apps\HRD\Data\frmKehadiranKaryawan.Designer.vb">
+      <DependentUpon>frmKehadiranKaryawan.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\HRD\Data\frmKehadiranKaryawan.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Apps\HRD\Data\frmJadwalKerjaKaryawan.Designer.vb">
@@ -475,52 +534,148 @@
     <Compile Include="Apps\HRD\Monitor\frmMonJadwalKerjaKaryawan.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Apps\KEU\frmPenyusutanEntry.Designer.vb">
+      <DependentUpon>frmPenyusutanEntry.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\KEU\frmPenyusutanEntry.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Apps\KEU\frmPenyusutanMon.Designer.vb">
+      <DependentUpon>frmPenyusutanMon.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\KEU\frmPenyusutanMon.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Apps\LOG\FormReport\xrItem18815_201901.Designer.vb">
+      <DependentUpon>xrItem18815_201901.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\LOG\FormReport\xrItem18815_201901.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Apps\LOG\FormReport\xrRETB.Designer.vb">
+      <DependentUpon>xrRETB.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\LOG\FormReport\xrRETB.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Apps\LOG\FormReport\xrSJM.Designer.vb">
+      <DependentUpon>xrSJM.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\LOG\FormReport\xrSJM.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Apps\LOG\FormReport\xrSJM212801.Designer.vb">
+      <DependentUpon>xrSJM212801.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\LOG\FormReport\xrSJM212801.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Apps\LOG\FormReport\xrSOB.Designer.vb">
+      <DependentUpon>xrSOB.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\LOG\FormReport\xrSOB.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Apps\LOG\Monitor\frmMonReturPembelianBarang.Designer.vb">
+      <DependentUpon>frmMonReturPembelianBarang.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\LOG\Monitor\frmMonReturPembelianBarang.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Apps\LOG\Monitor\frmMonSuratJalanPermintaan.Designer.vb">
+      <DependentUpon>frmMonSuratJalanPermintaan.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\LOG\Monitor\frmMonSuratJalanPermintaan.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Apps\LOG\Monitor\frmMutasiBarang.Designer.vb">
       <DependentUpon>frmMutasiBarang.vb</DependentUpon>
     </Compile>
     <Compile Include="Apps\LOG\Monitor\frmMutasiBarang.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Apps\LOG\Transaksi\frmReturPembelian.Designer.vb">
-      <DependentUpon>frmReturPembelian.vb</DependentUpon>
+    <Compile Include="Apps\LOG\Report\frmSelectLabel10Item.Designer.vb">
+      <DependentUpon>frmSelectLabel10Item.vb</DependentUpon>
     </Compile>
-    <Compile Include="Apps\LOG\Transaksi\frmReturPembelian.vb">
+    <Compile Include="Apps\LOG\Report\frmSelectLabel10Item.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Apps\LOG\Transaksi\frmReturPembelianReview.Designer.vb">
-      <DependentUpon>frmReturPembelianReview.vb</DependentUpon>
+    <Compile Include="Apps\LOG\TransInternal\frmDistribusiBarang.Designer.vb">
+      <DependentUpon>frmDistribusiBarang.vb</DependentUpon>
     </Compile>
-    <Compile Include="Apps\LOG\Transaksi\frmReturPembelianReview.vb">
+    <Compile Include="Apps\LOG\TransInternal\frmDistribusiBarang.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Apps\LOG\Transaksi\frmStokOpname.Designer.vb">
-      <DependentUpon>frmStokOpname.vb</DependentUpon>
+    <Compile Include="Apps\LOG\TransInternal\frmPermintaanItemUnit.Designer.vb">
+      <DependentUpon>frmPermintaanItemUnit.vb</DependentUpon>
     </Compile>
-    <Compile Include="Apps\LOG\Transaksi\frmStokOpname.vb">
+    <Compile Include="Apps\LOG\TransInternal\frmPermintaanItemUnit.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Apps\LOG\Transaksi\frmStokOpnameHarga.Designer.vb">
-      <DependentUpon>frmStokOpnameHarga.vb</DependentUpon>
+    <Compile Include="Apps\LOG\TransKeluar\frmPenyerahanBarang.Designer.vb">
+      <DependentUpon>frmPenyerahanBarang.vb</DependentUpon>
     </Compile>
-    <Compile Include="Apps\LOG\Transaksi\frmStokOpnameHarga.vb">
+    <Compile Include="Apps\LOG\TransKeluar\frmPenyerahanBarang.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Apps\POS\FormReport\xrBPB.Designer.vb">
+    <Compile Include="Apps\LOG\TransKeluar\frmPenyerahanBarangReview.Designer.vb">
+      <DependentUpon>frmPenyerahanBarangReview.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\LOG\TransKeluar\frmPenyerahanBarangReview.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Apps\LOG\TransKeluar\frmReturPembelianBarang.Designer.vb">
+      <DependentUpon>frmReturPembelianBarang.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\LOG\TransKeluar\frmReturPembelianBarang.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Apps\LOG\TransKeluar\frmReturPembelianBarangReview.Designer.vb">
+      <DependentUpon>frmReturPembelianBarangReview.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\LOG\TransKeluar\frmReturPembelianBarangReview.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Apps\LOG\TransInternal\frmStokOpnameBarang.Designer.vb">
+      <DependentUpon>frmStokOpnameBarang.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\LOG\TransInternal\frmStokOpnameBarang.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Apps\LOG\TransInternal\frmStokOpnameBarangHarga.Designer.vb">
+      <DependentUpon>frmStokOpnameBarangHarga.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\LOG\TransInternal\frmStokOpnameBarangHarga.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Apps\LOG\TransInternal\frmStokOpnameBarangItem.Designer.vb">
+      <DependentUpon>frmStokOpnameBarangItem.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\LOG\TransInternal\frmStokOpnameBarangItem.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Apps\LOG\Monitor\frmMonStokOpname.Designer.vb">
+      <DependentUpon>frmMonStokOpname.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\LOG\Monitor\frmMonStokOpname.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Apps\LOG\FormReport\xrBPB.Designer.vb">
       <DependentUpon>xrBPB.vb</DependentUpon>
     </Compile>
-    <Compile Include="Apps\POS\FormReport\xrBPB.vb">
+    <Compile Include="Apps\LOG\FormReport\xrBPB.vb">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Apps\POS\FormReport\xrPB.Designer.vb">
+    <Compile Include="Apps\LOG\FormReport\xrPB.Designer.vb">
       <DependentUpon>xrPB.vb</DependentUpon>
     </Compile>
-    <Compile Include="Apps\POS\FormReport\xrPB.vb">
+    <Compile Include="Apps\LOG\FormReport\xrPB.vb">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Apps\POS\Monitor\frmMonBPB.Designer.vb">
-      <DependentUpon>frmMonBPB.vb</DependentUpon>
+    <Compile Include="Apps\LOG\Monitor\frmMonPenerimaanBarang.Designer.vb">
+      <DependentUpon>frmMonPenerimaanBarang.vb</DependentUpon>
     </Compile>
-    <Compile Include="Apps\POS\Monitor\frmMonBPB.vb">
+    <Compile Include="Apps\LOG\Monitor\frmMonPenerimaanBarang.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Apps\LOG\Monitor\frmMutasiBarangUnit.Designer.vb">
@@ -529,22 +684,40 @@
     <Compile Include="Apps\LOG\Monitor\frmMutasiBarangUnit.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Apps\POS\Transaksi\frmPembelianBarangHarga.Designer.vb">
+    <Compile Include="Apps\LOG\TransKeluar\frmSuratJalanPermintaan.Designer.vb">
+      <DependentUpon>frmSuratJalanPermintaan.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\LOG\TransKeluar\frmSuratJalanPermintaan.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Apps\LOG\TransKeluar\frmSuratJalanPermintaanReview.Designer.vb">
+      <DependentUpon>frmSuratJalanPermintaanReview.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\LOG\TransKeluar\frmSuratJalanPermintaanReview.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Apps\LOG\TransMasuk\frmPembelianBarangHarga.Designer.vb">
       <DependentUpon>frmPembelianBarangHarga.vb</DependentUpon>
     </Compile>
-    <Compile Include="Apps\POS\Transaksi\frmPembelianBarangHarga.vb">
+    <Compile Include="Apps\LOG\TransMasuk\frmPembelianBarangHarga.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Apps\POS\Transaksi\frmPenerimaanBarangReview.Designer.vb">
+    <Compile Include="Apps\LOG\TransMasuk\frmPenerimaanBarang.Designer.vb">
+      <DependentUpon>frmPenerimaanBarang.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\LOG\TransMasuk\frmPenerimaanBarang.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Apps\LOG\TransMasuk\frmPenerimaanBarangReview.Designer.vb">
       <DependentUpon>frmPenerimaanBarangReview.vb</DependentUpon>
     </Compile>
-    <Compile Include="Apps\POS\Transaksi\frmPenerimaanBarangReview.vb">
+    <Compile Include="Apps\LOG\TransMasuk\frmPenerimaanBarangReview.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Apps\POS\Transaksi\frmPermintaanPembelianAllUnit.Designer.vb">
+    <Compile Include="Apps\LOG\TransInternal\frmPermintaanPembelianAllUnit.Designer.vb">
       <DependentUpon>frmPermintaanPembelianAllUnit.vb</DependentUpon>
     </Compile>
-    <Compile Include="Apps\POS\Transaksi\frmPermintaanPembelianAllUnit.vb">
+    <Compile Include="Apps\LOG\TransInternal\frmPermintaanPembelianAllUnit.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Apps\REG\frmRegistrasiMCU.Designer.vb">
@@ -716,16 +889,16 @@
     <Compile Include="Apps\POS\Data\frmItemPriceKelas.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Apps\POS\FormReport\xrSPBM.Designer.vb">
+    <Compile Include="Apps\LOG\FormReport\xrSPBM.Designer.vb">
       <DependentUpon>xrSPBM.vb</DependentUpon>
     </Compile>
-    <Compile Include="Apps\POS\FormReport\xrSPBM.vb">
+    <Compile Include="Apps\LOG\FormReport\xrSPBM.vb">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Apps\POS\FormReport\xrSPFLMA.Designer.vb">
+    <Compile Include="Apps\LOG\FormReport\xrSPFLMA.Designer.vb">
       <DependentUpon>xrSPFLMA.vb</DependentUpon>
     </Compile>
-    <Compile Include="Apps\POS\FormReport\xrSPFLMA.vb">
+    <Compile Include="Apps\LOG\FormReport\xrSPFLMA.vb">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Apps\POS\FormReport\xrSPFM.Designer.vb">
@@ -740,10 +913,10 @@
     <Compile Include="Apps\POS\FormReport\xrSPP.vb">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Apps\POS\FormReport\xrSPBLMA.Designer.vb">
+    <Compile Include="Apps\LOG\FormReport\xrSPBLMA.Designer.vb">
       <DependentUpon>xrSPBLMA.vb</DependentUpon>
     </Compile>
-    <Compile Include="Apps\POS\FormReport\xrSPBLMA.vb">
+    <Compile Include="Apps\LOG\FormReport\xrSPBLMA.vb">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Apps\POS\FormReport\xrSPPF.Designer.vb">
@@ -752,58 +925,58 @@
     <Compile Include="Apps\POS\FormReport\xrSPPF.vb">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Apps\POS\Monitor\frmMonPB.Designer.vb">
-      <DependentUpon>frmMonPB.vb</DependentUpon>
+    <Compile Include="Apps\LOG\Monitor\frmMonPembelianBarang.Designer.vb">
+      <DependentUpon>frmMonPembelianBarang.vb</DependentUpon>
     </Compile>
-    <Compile Include="Apps\POS\Monitor\frmMonPB.vb">
+    <Compile Include="Apps\LOG\Monitor\frmMonPembelianBarang.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Apps\POS\Monitor\frmMonSPB.Designer.vb">
-      <DependentUpon>frmMonSPB.vb</DependentUpon>
+    <Compile Include="Apps\LOG\Monitor\frmMonPermintaanBarang.Designer.vb">
+      <DependentUpon>frmMonPermintaanBarang.vb</DependentUpon>
     </Compile>
-    <Compile Include="Apps\POS\Monitor\frmMonSPB.vb">
+    <Compile Include="Apps\LOG\Monitor\frmMonPermintaanBarang.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Apps\POS\Monitor\frmMonSPP.Designer.vb">
-      <DependentUpon>frmMonSPP.vb</DependentUpon>
+    <Compile Include="Apps\LOG\Monitor\frmMonPermintaanPembelian.Designer.vb">
+      <DependentUpon>frmMonPermintaanPembelian.vb</DependentUpon>
     </Compile>
-    <Compile Include="Apps\POS\Monitor\frmMonSPP.vb">
+    <Compile Include="Apps\LOG\Monitor\frmMonPermintaanPembelian.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Apps\POS\Monitor\frmSPBCetakSelect.Designer.vb">
+    <Compile Include="Apps\LOG\Monitor\frmSPBCetakSelect.Designer.vb">
       <DependentUpon>frmSPBCetakSelect.vb</DependentUpon>
     </Compile>
-    <Compile Include="Apps\POS\Monitor\frmSPBCetakSelect.vb">
+    <Compile Include="Apps\LOG\Monitor\frmSPBCetakSelect.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Apps\POS\Transaksi\frmPembelianBarangJumlah.Designer.vb">
+    <Compile Include="Apps\LOG\TransMasuk\frmPembelianBarangJumlah.Designer.vb">
       <DependentUpon>frmPembelianBarangJumlah.vb</DependentUpon>
     </Compile>
-    <Compile Include="Apps\POS\Transaksi\frmPembelianBarangJumlah.vb">
+    <Compile Include="Apps\LOG\TransMasuk\frmPembelianBarangJumlah.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Apps\POS\Transaksi\frmPembelianBarangReview.Designer.vb">
+    <Compile Include="Apps\LOG\TransMasuk\frmPembelianBarangReview.Designer.vb">
       <DependentUpon>frmPembelianBarangReview.vb</DependentUpon>
     </Compile>
-    <Compile Include="Apps\POS\Transaksi\frmPembelianBarangReview.vb">
+    <Compile Include="Apps\LOG\TransMasuk\frmPembelianBarangReview.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Apps\POS\Transaksi\frmPenerimaanBarang.Designer.vb">
-      <DependentUpon>frmPenerimaanBarang.vb</DependentUpon>
+    <Compile Include="Apps\LOG\TransMasuk\frmPenerimaanBarangJumlah.Designer.vb">
+      <DependentUpon>frmPenerimaanBarangJumlah.vb</DependentUpon>
     </Compile>
-    <Compile Include="Apps\POS\Transaksi\frmPenerimaanBarang.vb">
+    <Compile Include="Apps\LOG\TransMasuk\frmPenerimaanBarangJumlah.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Apps\POS\Transaksi\frmPenerimaanBarangFaktur.Designer.vb">
+    <Compile Include="Apps\LOG\TransMasuk\frmPenerimaanBarangFaktur.Designer.vb">
       <DependentUpon>frmPenerimaanBarangFaktur.vb</DependentUpon>
     </Compile>
-    <Compile Include="Apps\POS\Transaksi\frmPenerimaanBarangFaktur.vb">
+    <Compile Include="Apps\LOG\TransMasuk\frmPenerimaanBarangFaktur.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Apps\POS\Transaksi\frmTransaksiItemTambahan.Designer.vb">
+    <Compile Include="Apps\LOG\TransInternal\frmTransaksiItemTambahan.Designer.vb">
       <DependentUpon>frmTransaksiItemTambahan.vb</DependentUpon>
     </Compile>
-    <Compile Include="Apps\POS\Transaksi\frmTransaksiItemTambahan.vb">
+    <Compile Include="Apps\LOG\TransInternal\frmTransaksiItemTambahan.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Apps\HIS\Asesmen\frmFormIBS201901.Designer.vb">
@@ -854,46 +1027,46 @@
     <Compile Include="Apps\FAR\Monitor\frmMonSPF.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Apps\POS\Transaksi\frmPembelianBarang.Designer.vb">
+    <Compile Include="Apps\LOG\TransMasuk\frmPembelianBarang.Designer.vb">
       <DependentUpon>frmPembelianBarang.vb</DependentUpon>
     </Compile>
-    <Compile Include="Apps\POS\Transaksi\frmPembelianBarang.vb">
+    <Compile Include="Apps\LOG\TransMasuk\frmPembelianBarang.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Apps\POS\Transaksi\frmPermintaanBarangNQM.Designer.vb">
+    <Compile Include="Apps\LOG\TransInternal\frmPermintaanBarangNQM.Designer.vb">
       <DependentUpon>frmPermintaanBarangNQM.vb</DependentUpon>
     </Compile>
-    <Compile Include="Apps\POS\Transaksi\frmPermintaanBarangNQM.vb">
+    <Compile Include="Apps\LOG\TransInternal\frmPermintaanBarangNQM.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Apps\POS\Transaksi\frmPermintaanBarangNQLMA.Designer.vb">
+    <Compile Include="Apps\LOG\TransInternal\frmPermintaanBarangNQLMA.Designer.vb">
       <DependentUpon>frmPermintaanBarangNQLMA.vb</DependentUpon>
     </Compile>
-    <Compile Include="Apps\POS\Transaksi\frmPermintaanBarangNQLMA.vb">
+    <Compile Include="Apps\LOG\TransInternal\frmPermintaanBarangNQLMA.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Apps\POS\Transaksi\frmPermintaanBarangQM.Designer.vb">
+    <Compile Include="Apps\LOG\TransInternal\frmPermintaanBarangQM.Designer.vb">
       <DependentUpon>frmPermintaanBarangQM.vb</DependentUpon>
     </Compile>
-    <Compile Include="Apps\POS\Transaksi\frmPermintaanBarangQM.vb">
+    <Compile Include="Apps\LOG\TransInternal\frmPermintaanBarangQM.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Apps\POS\Transaksi\frmPermintaanBarangReview.Designer.vb">
+    <Compile Include="Apps\LOG\TransInternal\frmPermintaanBarangReview.Designer.vb">
       <DependentUpon>frmPermintaanBarangReview.vb</DependentUpon>
     </Compile>
-    <Compile Include="Apps\POS\Transaksi\frmPermintaanBarangReview.vb">
+    <Compile Include="Apps\LOG\TransInternal\frmPermintaanBarangReview.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Apps\POS\Transaksi\frmPermintaanPembelian.Designer.vb">
+    <Compile Include="Apps\LOG\TransInternal\frmPermintaanPembelian.Designer.vb">
       <DependentUpon>frmPermintaanPembelian.vb</DependentUpon>
     </Compile>
-    <Compile Include="Apps\POS\Transaksi\frmPermintaanPembelian.vb">
+    <Compile Include="Apps\LOG\TransInternal\frmPermintaanPembelian.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Apps\POS\Transaksi\frmPermintaanPembelianReview.Designer.vb">
+    <Compile Include="Apps\LOG\TransInternal\frmPermintaanPembelianReview.Designer.vb">
       <DependentUpon>frmPermintaanPembelianReview.vb</DependentUpon>
     </Compile>
-    <Compile Include="Apps\POS\Transaksi\frmPermintaanPembelianReview.vb">
+    <Compile Include="Apps\LOG\TransInternal\frmPermintaanPembelianReview.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Apps\POS\Transaksi\frmValidasiItemHarga.Designer.vb">
@@ -1695,10 +1868,10 @@
     <Compile Include="Apps\HIS\Trans\frmAPSnonAPSSelect.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Apps\HIS\Trans\frmKamarCleaning.Designer.vb">
+    <Compile Include="Apps\HK\frmKamarCleaning.Designer.vb">
       <DependentUpon>frmKamarCleaning.vb</DependentUpon>
     </Compile>
-    <Compile Include="Apps\HIS\Trans\frmKamarCleaning.vb">
+    <Compile Include="Apps\HK\frmKamarCleaning.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Apps\HIS\Trans\frmIGDSelect.Designer.vb">
@@ -1737,10 +1910,10 @@
     <Compile Include="Apps\HIS\Trans\frmKamarPindahVK.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Apps\HIS\Trans\frmKamarService.Designer.vb">
+    <Compile Include="Apps\HK\frmKamarService.Designer.vb">
       <DependentUpon>frmKamarService.vb</DependentUpon>
     </Compile>
-    <Compile Include="Apps\HIS\Trans\frmKamarService.vb">
+    <Compile Include="Apps\HK\frmKamarService.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Apps\HIS\Trans\frmOpsiDeleteReason.Designer.vb">
@@ -2103,24 +2276,6 @@
     <Compile Include="Apps\POS\Data\frmItemPrice.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Apps\POS\Data\frmItemSupplier.Designer.vb">
-      <DependentUpon>frmItemSupplier.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Apps\POS\Data\frmItemSupplier.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Apps\POS\Data\frmItemUnit.Designer.vb">
-      <DependentUpon>frmItemUnit.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Apps\POS\Data\frmItemUnit.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Apps\POS\Data\frmItemUnitPrice.Designer.vb">
-      <DependentUpon>frmItemUnitPrice.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Apps\POS\Data\frmItemUnitPrice.vb">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="Apps\POS\Data\frmPlanningBOM.Designer.vb">
       <DependentUpon>frmPlanningBOM.vb</DependentUpon>
     </Compile>
@@ -2145,16 +2300,16 @@
     <Compile Include="Apps\POS\Transaksi\frmItemBOM.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Apps\LOG\Transaksi\frmSupplierPembayaran.Designer.vb">
-      <DependentUpon>frmSupplierPembayaran.vb</DependentUpon>
+    <Compile Include="Apps\LOG\TransInternal\frmSupplierPembayaranBarang.Designer.vb">
+      <DependentUpon>frmSupplierPembayaranBarang.vb</DependentUpon>
     </Compile>
-    <Compile Include="Apps\LOG\Transaksi\frmSupplierPembayaran.vb">
+    <Compile Include="Apps\LOG\TransInternal\frmSupplierPembayaranBarang.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Apps\POS\Transaksi\frmPermintaanBarangQLMA.Designer.vb">
+    <Compile Include="Apps\LOG\TransInternal\frmPermintaanBarangQLMA.Designer.vb">
       <DependentUpon>frmPermintaanBarangQLMA.vb</DependentUpon>
     </Compile>
-    <Compile Include="Apps\POS\Transaksi\frmPermintaanBarangQLMA.vb">
+    <Compile Include="Apps\LOG\TransInternal\frmPermintaanBarangQLMA.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Apps\SIA\Report\frmReportJurnal.Designer.vb">
@@ -2574,13 +2729,11 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Core\Support\modNewData.vb" />
-    <Compile Include="Core\Support\dtsetMYS.vb" />
     <Compile Include="Core\Support\dtsetSQLI.vb" />
     <Compile Include="Core\Support\dtsetSQLS.vb" />
     <Compile Include="Core\Support\extensions.vb" />
     <Compile Include="Core\Support\modCore.vb" />
     <Compile Include="Core\Support\MyRenderer.vb" />
-    <Compile Include="Core\Support\MYs.vb" />
     <Compile Include="Core\Support\SQLi.vb" />
     <Compile Include="Core\Support\SQLs.vb" />
     <Compile Include="Apps\Temp\Form1.Designer.vb">
@@ -2624,6 +2777,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>spPO.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Dataset\spRETB.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>spRETB.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Dataset\spRiwayatF201801.Designer.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -2639,10 +2797,20 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>spRiwayatT201801.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Dataset\spSJM.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>spSJM.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Dataset\spSPP.Designer.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>spSPP.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Dataset\spStokOpname.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>spStokOpname.xsd</DependentUpon>
     </Compile>
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
@@ -2808,11 +2976,35 @@
     <EmbeddedResource Include="Apps\AKUN\frmStrukturLaporanNeraca.resx">
       <DependentUpon>frmStrukturLaporanNeraca.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Apps\AKUN\frmTransaksiCOA.resx">
+      <DependentUpon>frmTransaksiCOA.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps\AKUN\frmTransaksiJurnal.resx">
+      <DependentUpon>frmTransaksiJurnal.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps\Common\Data\frmInternalNote.resx">
+      <DependentUpon>frmInternalNote.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Apps\Common\Data\frmUnitAsuransi.resx">
       <DependentUpon>frmUnitAsuransi.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Apps\HISS\Monitor\frmCPPT.resx">
       <DependentUpon>frmCPPT.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps\HISS\Monitor\frmRMHistory.resx">
+      <DependentUpon>frmRMHistory.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps\HISS\Monitor\frmRMManajemen.resx">
+      <DependentUpon>frmRMManajemen.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps\HISS\Monitor\frmRMRequest.resx">
+      <DependentUpon>frmRMRequest.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps\HISS\Monitor\frmRMRequestMulti.resx">
+      <DependentUpon>frmRMRequestMulti.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps\HISS\Monitor\frmRMTracing.resx">
+      <DependentUpon>frmRMTracing.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Apps\HIS\Asesmen\frmAMIRNA201901.resx">
       <DependentUpon>frmAMIRNA201901.vb</DependentUpon>
@@ -2841,11 +3033,20 @@
     <EmbeddedResource Include="Apps\HIS\MonitorPelayanan\frmMonRegisterODSday.resx">
       <DependentUpon>frmMonRegisterODSday.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Apps\HIS\Monitor\frmMonRegister.resx">
+      <DependentUpon>frmMonRegister.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Apps\HIS\Report\frmSelectLabel10RM.resx">
       <DependentUpon>frmSelectLabel10RM.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Apps\HIS\Trans\frmAlihDPJP.resx">
+      <DependentUpon>frmAlihDPJP.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Apps\HRD\Data\frmAbsensiKaryawan.resx">
       <DependentUpon>frmAbsensiKaryawan.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps\HRD\Data\frmKehadiranKaryawan.resx">
+      <DependentUpon>frmKehadiranKaryawan.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Apps\HRD\Data\frmJadwalKerjaKaryawan.resx">
       <DependentUpon>frmJadwalKerjaKaryawan.vb</DependentUpon>
@@ -2871,40 +3072,94 @@
     <EmbeddedResource Include="Apps\HRD\Monitor\frmMonJadwalKerjaKaryawan.resx">
       <DependentUpon>frmMonJadwalKerjaKaryawan.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Apps\KEU\frmPenyusutanEntry.resx">
+      <DependentUpon>frmPenyusutanEntry.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps\KEU\frmPenyusutanMon.resx">
+      <DependentUpon>frmPenyusutanMon.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps\LOG\FormReport\xrItem18815_201901.resx">
+      <DependentUpon>xrItem18815_201901.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps\LOG\FormReport\xrRETB.resx">
+      <DependentUpon>xrRETB.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps\LOG\FormReport\xrSJM.resx">
+      <DependentUpon>xrSJM.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps\LOG\FormReport\xrSJM212801.resx">
+      <DependentUpon>xrSJM212801.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps\LOG\FormReport\xrSOB.resx">
+      <DependentUpon>xrSOB.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps\LOG\Monitor\frmMonReturPembelianBarang.resx">
+      <DependentUpon>frmMonReturPembelianBarang.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps\LOG\Monitor\frmMonSuratJalanPermintaan.resx">
+      <DependentUpon>frmMonSuratJalanPermintaan.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Apps\LOG\Monitor\frmMutasiBarang.resx">
       <DependentUpon>frmMutasiBarang.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Apps\LOG\Monitor\frmMutasiBarangUnit.resx">
       <DependentUpon>frmMutasiBarangUnit.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Apps\LOG\Transaksi\frmReturPembelian.resx">
-      <DependentUpon>frmReturPembelian.vb</DependentUpon>
+    <EmbeddedResource Include="Apps\LOG\Report\frmSelectLabel10Item.resx">
+      <DependentUpon>frmSelectLabel10Item.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Apps\LOG\Transaksi\frmReturPembelianReview.resx">
-      <DependentUpon>frmReturPembelianReview.vb</DependentUpon>
+    <EmbeddedResource Include="Apps\LOG\TransInternal\frmDistribusiBarang.resx">
+      <DependentUpon>frmDistribusiBarang.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Apps\LOG\Transaksi\frmStokOpname.resx">
-      <DependentUpon>frmStokOpname.vb</DependentUpon>
+    <EmbeddedResource Include="Apps\LOG\TransInternal\frmPermintaanItemUnit.resx">
+      <DependentUpon>frmPermintaanItemUnit.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Apps\POS\FormReport\xrBPB.resx">
+    <EmbeddedResource Include="Apps\LOG\TransKeluar\frmReturPembelianBarang.resx">
+      <DependentUpon>frmReturPembelianBarang.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps\LOG\TransKeluar\frmReturPembelianBarangReview.resx">
+      <DependentUpon>frmReturPembelianBarangReview.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps\LOG\TransInternal\frmStokOpnameBarang.resx">
+      <DependentUpon>frmStokOpnameBarang.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps\LOG\TransInternal\frmStokOpnameBarangHarga.resx">
+      <DependentUpon>frmStokOpnameBarangHarga.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps\LOG\TransInternal\frmStokOpnameBarangItem.resx">
+      <DependentUpon>frmStokOpnameBarangItem.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps\LOG\Monitor\frmMonStokOpname.resx">
+      <DependentUpon>frmMonStokOpname.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps\LOG\FormReport\xrBPB.resx">
       <DependentUpon>xrBPB.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Apps\POS\FormReport\xrPB.resx">
+    <EmbeddedResource Include="Apps\LOG\FormReport\xrPB.resx">
       <DependentUpon>xrPB.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Apps\POS\Monitor\frmMonBPB.resx">
-      <DependentUpon>frmMonBPB.vb</DependentUpon>
+    <EmbeddedResource Include="Apps\LOG\Monitor\frmMonPenerimaanBarang.resx">
+      <DependentUpon>frmMonPenerimaanBarang.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Apps\POS\Transaksi\frmPembelianBarangHarga.resx">
+    <EmbeddedResource Include="Apps\LOG\TransKeluar\frmSuratJalanPermintaan.resx">
+      <DependentUpon>frmSuratJalanPermintaan.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps\LOG\TransKeluar\frmSuratJalanPermintaanReview.resx">
+      <DependentUpon>frmSuratJalanPermintaanReview.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps\LOG\TransMasuk\frmPembelianBarangHarga.resx">
       <DependentUpon>frmPembelianBarangHarga.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Apps\POS\Transaksi\frmPenerimaanBarangFaktur.resx">
+    <EmbeddedResource Include="Apps\LOG\TransMasuk\frmPenerimaanBarang.resx">
+      <DependentUpon>frmPenerimaanBarang.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps\LOG\TransMasuk\frmPenerimaanBarangFaktur.resx">
       <DependentUpon>frmPenerimaanBarangFaktur.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Apps\POS\Transaksi\frmPenerimaanBarangReview.resx">
+    <EmbeddedResource Include="Apps\LOG\TransMasuk\frmPenerimaanBarangReview.resx">
       <DependentUpon>frmPenerimaanBarangReview.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Apps\POS\Transaksi\frmPermintaanPembelianAllUnit.resx">
+    <EmbeddedResource Include="Apps\LOG\TransInternal\frmPermintaanPembelianAllUnit.resx">
       <DependentUpon>frmPermintaanPembelianAllUnit.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Apps\REG\frmRegistrasiMCU.resx">
@@ -2982,10 +3237,10 @@
     <EmbeddedResource Include="Apps\POS\Data\frmItemPriceKelas.resx">
       <DependentUpon>frmItemPriceKelas.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Apps\POS\FormReport\xrSPBM.resx">
+    <EmbeddedResource Include="Apps\LOG\FormReport\xrSPBM.resx">
       <DependentUpon>xrSPBM.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Apps\POS\FormReport\xrSPFLMA.resx">
+    <EmbeddedResource Include="Apps\LOG\FormReport\xrSPFLMA.resx">
       <DependentUpon>xrSPFLMA.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Apps\POS\FormReport\xrSPFM.resx">
@@ -2994,34 +3249,34 @@
     <EmbeddedResource Include="Apps\POS\FormReport\xrSPP.resx">
       <DependentUpon>xrSPP.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Apps\POS\FormReport\xrSPBLMA.resx">
+    <EmbeddedResource Include="Apps\LOG\FormReport\xrSPBLMA.resx">
       <DependentUpon>xrSPBLMA.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Apps\POS\FormReport\xrSPPF.resx">
       <DependentUpon>xrSPPF.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Apps\POS\Monitor\frmMonPB.resx">
-      <DependentUpon>frmMonPB.vb</DependentUpon>
+    <EmbeddedResource Include="Apps\LOG\Monitor\frmMonPembelianBarang.resx">
+      <DependentUpon>frmMonPembelianBarang.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Apps\POS\Monitor\frmMonSPB.resx">
-      <DependentUpon>frmMonSPB.vb</DependentUpon>
+    <EmbeddedResource Include="Apps\LOG\Monitor\frmMonPermintaanBarang.resx">
+      <DependentUpon>frmMonPermintaanBarang.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Apps\POS\Monitor\frmMonSPP.resx">
-      <DependentUpon>frmMonSPP.vb</DependentUpon>
+    <EmbeddedResource Include="Apps\LOG\Monitor\frmMonPermintaanPembelian.resx">
+      <DependentUpon>frmMonPermintaanPembelian.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Apps\POS\Monitor\frmSPBCetakSelect.resx">
+    <EmbeddedResource Include="Apps\LOG\Monitor\frmSPBCetakSelect.resx">
       <DependentUpon>frmSPBCetakSelect.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Apps\POS\Transaksi\frmPembelianBarangJumlah.resx">
+    <EmbeddedResource Include="Apps\LOG\TransMasuk\frmPembelianBarangJumlah.resx">
       <DependentUpon>frmPembelianBarangJumlah.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Apps\POS\Transaksi\frmPembelianBarangReview.resx">
+    <EmbeddedResource Include="Apps\LOG\TransMasuk\frmPembelianBarangReview.resx">
       <DependentUpon>frmPembelianBarangReview.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Apps\POS\Transaksi\frmPenerimaanBarang.resx">
-      <DependentUpon>frmPenerimaanBarang.vb</DependentUpon>
+    <EmbeddedResource Include="Apps\LOG\TransMasuk\frmPenerimaanBarangJumlah.resx">
+      <DependentUpon>frmPenerimaanBarangJumlah.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Apps\POS\Transaksi\frmTransaksiItemTambahan.resx">
+    <EmbeddedResource Include="Apps\LOG\TransInternal\frmTransaksiItemTambahan.resx">
       <DependentUpon>frmTransaksiItemTambahan.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Apps\HIS\Asesmen\frmFormIBS201901.resx">
@@ -3039,25 +3294,25 @@
     <EmbeddedResource Include="Apps\FAR\Monitor\frmMonSPF.resx">
       <DependentUpon>frmMonSPF.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Apps\POS\Transaksi\frmPembelianBarang.resx">
+    <EmbeddedResource Include="Apps\LOG\TransMasuk\frmPembelianBarang.resx">
       <DependentUpon>frmPembelianBarang.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Apps\POS\Transaksi\frmPermintaanBarangNQLMA.resx">
+    <EmbeddedResource Include="Apps\LOG\TransInternal\frmPermintaanBarangNQLMA.resx">
       <DependentUpon>frmPermintaanBarangNQLMA.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Apps\POS\Transaksi\frmPermintaanBarangNQM.resx">
+    <EmbeddedResource Include="Apps\LOG\TransInternal\frmPermintaanBarangNQM.resx">
       <DependentUpon>frmPermintaanBarangNQM.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Apps\POS\Transaksi\frmPermintaanBarangQM.resx">
+    <EmbeddedResource Include="Apps\LOG\TransInternal\frmPermintaanBarangQM.resx">
       <DependentUpon>frmPermintaanBarangQM.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Apps\POS\Transaksi\frmPermintaanBarangReview.resx">
+    <EmbeddedResource Include="Apps\LOG\TransInternal\frmPermintaanBarangReview.resx">
       <DependentUpon>frmPermintaanBarangReview.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Apps\POS\Transaksi\frmPermintaanPembelian.resx">
+    <EmbeddedResource Include="Apps\LOG\TransInternal\frmPermintaanPembelian.resx">
       <DependentUpon>frmPermintaanPembelian.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Apps\POS\Transaksi\frmPermintaanPembelianReview.resx">
+    <EmbeddedResource Include="Apps\LOG\TransInternal\frmPermintaanPembelianReview.resx">
       <DependentUpon>frmPermintaanPembelianReview.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Apps\POS\Transaksi\frmValidasiItemHarga.resx">
@@ -3425,7 +3680,7 @@
     <EmbeddedResource Include="Apps\HIS\Trans\frmIGDSelect.resx">
       <DependentUpon>frmIGDSelect.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Apps\HIS\Trans\frmKamarCleaning.resx">
+    <EmbeddedResource Include="Apps\HK\frmKamarCleaning.resx">
       <DependentUpon>frmKamarCleaning.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Apps\HIS\Trans\frmKamarPindahDept.resx">
@@ -3443,7 +3698,7 @@
     <EmbeddedResource Include="Apps\HIS\Trans\frmKamarPindahVK.resx">
       <DependentUpon>frmKamarPindahVK.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Apps\HIS\Trans\frmKamarService.resx">
+    <EmbeddedResource Include="Apps\HK\frmKamarService.resx">
       <DependentUpon>frmKamarService.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Apps\HIS\Trans\frmOpsiDeleteReason.resx">
@@ -3602,15 +3857,6 @@
     <EmbeddedResource Include="Apps\POS\Data\frmItemPrice.resx">
       <DependentUpon>frmItemPrice.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Apps\POS\Data\frmItemSupplier.resx">
-      <DependentUpon>frmItemSupplier.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Apps\POS\Data\frmItemUnit.resx">
-      <DependentUpon>frmItemUnit.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Apps\POS\Data\frmItemUnitPrice.resx">
-      <DependentUpon>frmItemUnitPrice.vb</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Apps\POS\Data\frmPlanningBOM.resx">
       <DependentUpon>frmPlanningBOM.vb</DependentUpon>
     </EmbeddedResource>
@@ -3623,10 +3869,10 @@
     <EmbeddedResource Include="Apps\POS\Transaksi\frmItemBOM.resx">
       <DependentUpon>frmItemBOM.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Apps\LOG\Transaksi\frmSupplierPembayaran.resx">
-      <DependentUpon>frmSupplierPembayaran.vb</DependentUpon>
+    <EmbeddedResource Include="Apps\LOG\TransInternal\frmSupplierPembayaranBarang.resx">
+      <DependentUpon>frmSupplierPembayaranBarang.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Apps\POS\Transaksi\frmPermintaanBarangQLMA.resx">
+    <EmbeddedResource Include="Apps\LOG\TransInternal\frmPermintaanBarangQLMA.resx">
       <DependentUpon>frmPermintaanBarangQLMA.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Apps\SIA\Report\frmReportJurnal.resx">
@@ -3904,6 +4150,17 @@
     <None Include="Dataset\spPO.xss">
       <DependentUpon>spPO.xsd</DependentUpon>
     </None>
+    <None Include="Dataset\spRETB.xsc">
+      <DependentUpon>spRETB.xsd</DependentUpon>
+    </None>
+    <None Include="Dataset\spRETB.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>spRETB.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="Dataset\spRETB.xss">
+      <DependentUpon>spRETB.xsd</DependentUpon>
+    </None>
     <None Include="Dataset\spRiwayatF201801.xsc">
       <DependentUpon>spRiwayatF201801.xsd</DependentUpon>
     </None>
@@ -3937,6 +4194,17 @@
     <None Include="Dataset\spRiwayatT201801.xss">
       <DependentUpon>spRiwayatT201801.xsd</DependentUpon>
     </None>
+    <None Include="Dataset\spSJM.xsc">
+      <DependentUpon>spSJM.xsd</DependentUpon>
+    </None>
+    <None Include="Dataset\spSJM.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>spSJM.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="Dataset\spSJM.xss">
+      <DependentUpon>spSJM.xsd</DependentUpon>
+    </None>
     <None Include="Dataset\spSPP.xsc">
       <DependentUpon>spSPP.xsd</DependentUpon>
     </None>
@@ -3947,6 +4215,17 @@
     </None>
     <None Include="Dataset\spSPP.xss">
       <DependentUpon>spSPP.xsd</DependentUpon>
+    </None>
+    <None Include="Dataset\spStokOpname.xsc">
+      <DependentUpon>spStokOpname.xsd</DependentUpon>
+    </None>
+    <None Include="Dataset\spStokOpname.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>spStokOpname.Designer.vb</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Dataset\spStokOpname.xss">
+      <DependentUpon>spStokOpname.xsd</DependentUpon>
     </None>
     <None Include="dizUI.pfx" />
     <None Include="dizUI_TemporaryKey.pfx" />
@@ -4524,10 +4803,12 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Apps\ASS\" />
-    <Folder Include="Apps\KEU\" />
+    <Folder Include="Apps\LOGFAR\" />
     <Folder Include="Apps\PACS\Data\" />
     <Folder Include="Apps\PACS\Monitor\" />
+    <Folder Include="Apps\POS\Monitor\" />
     <Folder Include="Apps\PPIC\" />
+    <Folder Include="Apps\RIS\" />
     <Folder Include="Core\Enum\" />
   </ItemGroup>
   <ItemGroup>
@@ -4546,7 +4827,10 @@
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
     <Error Condition="!Exists('..\packages\System.Data.SQLite.Core.1.0.111.0\build\net46\System.Data.SQLite.Core.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\System.Data.SQLite.Core.1.0.111.0\build\net46\System.Data.SQLite.Core.targets'))" />
+    <Error Condition="!Exists('..\packages\EntityFramework.6.3.0\build\EntityFramework.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.3.0\build\EntityFramework.props'))" />
+    <Error Condition="!Exists('..\packages\EntityFramework.6.3.0\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.3.0\build\EntityFramework.targets'))" />
   </Target>
+  <Import Project="..\packages\EntityFramework.6.3.0\build\EntityFramework.targets" Condition="Exists('..\packages\EntityFramework.6.3.0\build\EntityFramework.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

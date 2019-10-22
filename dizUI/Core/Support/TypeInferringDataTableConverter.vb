@@ -113,7 +113,9 @@ Public Class TypeInferringDataTableConverter
         If oldValue Is Nothing Then Return Nothing
         If oldValue = DBNull.Value Then Return oldValue
         Dim jtoken As Newtonsoft.Json.Linq.JToken
-        Return JToken.FromObject(oldValue, serializer).ToObject(newType, serializer)
+#Disable Warning BC42025 ' Access of shared member, constant member, enum member or nested type through an instance
+        Return jtoken.FromObject(oldValue, serializer).ToObject(newType, serializer)
+#Enable Warning BC42025 ' Access of shared member, constant member, enum member or nested type through an instance
     End Function
 
     Private Shared Function ReplaceColumn(ByVal dt As DataTable, ByVal column As DataColumn, ByVal newColumnType As Type, ByVal serializer As JsonSerializer) As DataColumn

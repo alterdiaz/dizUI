@@ -18,11 +18,16 @@
         Dim field As New List(Of String)
         Dim value As New List(Of Object)
         field.AddRange(New String() {"idnotifications", "duedate"})
-        value.AddRange(New Object() {tbid, nowTime.AddMinutes(30)})
-        dtsqls.datasetSave("sys_notifications", tbid, field, value, False)
-        idnotif.RemoveAll(Function(val As String)
-                              Return val = tbid
-                          End Function)
+        value.AddRange(New Object() {notifid, nowTime.AddMinutes(30)})
+        dtsqls.datasetSave("sys_notifications", notifid, field, value, False)
+        Try
+            For i As Integer = 0 To idnotif.Count - 1
+                If idnotif(i) = notifid Then
+                    idnotif.RemoveAt(i)
+                End If
+            Next
+        Catch ex As Exception
+        End Try
         Me.Dispose()
     End Sub
 
@@ -40,7 +45,7 @@
 
     Public ReadOnly Property getid() As String
         Get
-            Return Me.tbid
+            Return Me.notifid
         End Get
     End Property
     Private Sub enableMMX(bmin As Boolean, bmax As Boolean, bexit As Boolean)
@@ -112,14 +117,17 @@
             queryOK = "update " & tbname & " set " & tbcolflag & "=1," & tbcoliduser & "='" & userid & "' where " & tbcolid & "='" & tbid & "'"
         ElseIf tbcolflag <> "-" And tbcoldate <> "-" And tbcoliduser = "-" Then
             queryOK = "update " & tbname & " set " & tbcoldate & "=getdate()," & tbcolflag & "=1 where " & tbcolid & "='" & tbid & "'"
+        Else
+            queryOK = ""
         End If
     End Sub
 
-    Private Sub frmMessageBox_Load(sender As Object, e As EventArgs) Handles Me.Load
+    Private Sub frmNotifBox_Load(sender As Object, e As EventArgs) Handles Me.Load
+        queryOK = ""
         generateQuery()
         'Me.BackColor = Me.formColor
         tlpForm.BackColor = Me.formColor
-        My.Computer.Audio.PlaySystemSound(System.Media.SystemSounds.Asterisk)
+        'My.Computer.Audio.PlaySystemSound(System.Media.SystemSounds.Asterisk)
         enableMMX(False, False, True)
 
         If conType = MsgType.CriticalIcon Then
@@ -135,6 +143,7 @@
         lblTitle.Text = titStr
         Me.Text = titStr
 
+        'MsgBox(notifid & vbCrLf & tbid)
         Dim pnt As New Point(Screen.PrimaryScreen.WorkingArea.Width - Me.Size.Width - 8, Screen.PrimaryScreen.WorkingArea.Height - Me.Size.Height - 8)
         Me.Location = pnt
         tmrWaktu.Start()
@@ -143,18 +152,32 @@
     Private Sub btnOK_Click(sender As Object, e As EventArgs) Handles btnOK.Click
         'MsgBox(queryOK)
         Dim sqls As New SQLs(dbstring)
-        sqls.DMLQuery(queryOK, False)
+        If queryOK <> "" Then
+            sqls.DMLQuery(queryOK, False)
+        End If
         sqls.DMLQuery("update sys_notifications set konfirmdate=getdate(),konfirmby='" & userid & "',iskonfirm=1 where idnotifications='" & notifid & "'", "cekdata")
+
+        Try
+            For i As Integer = 0 To idnotif.Count - 1
+                If idnotif(i) = notifid Then
+                    idnotif.RemoveAt(i)
+                End If
+            Next
+        Catch ex As Exception
+        End Try
+        'idnotif.RemoveAll(Function(val As String)
+        '                      Return val = notifid
+        '                  End Function)
+
         tmrWaktu.Stop()
         Me.Dispose()
     End Sub
 
     Private Sub tmrWaktu_Tick(sender As Object, e As EventArgs) Handles tmrWaktu.Tick
-        My.Computer.Audio.PlaySystemSound(System.Media.SystemSounds.Asterisk)
-
         Dim sqls As New SQLs(dbstring)
-        sqls.DMLQuery("select idnotifications from sys_notifications where idnotifications='" & tbid & "' and iskonfirm=1", "cekdata")
+        sqls.DMLQuery("select idnotifications from sys_notifications where idnotifications='" & notifid & "' and iskonfirm=1", "cekdata")
         If sqls.getDataSet("cekdata") > 0 Then
+            tmrWaktu.Stop()
             Me.Dispose()
         End If
     End Sub

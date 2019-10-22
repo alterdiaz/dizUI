@@ -109,7 +109,7 @@
         Me.Cursor = Cursors.WaitCursor
         Dim sqls As New SQLs(dbstring)
         sqls.DMLQuery("delete from sys_appfiles", False)
-        sqls.DMLQuery("delete from sys_appversion where appversion='" & versionstr & "'", False)
+        sqls.DMLQuery("delete from sys_appversion", False)
 
         'Dim img As Image = Nothing
         Dim retval As Boolean = False

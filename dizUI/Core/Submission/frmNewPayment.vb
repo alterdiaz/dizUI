@@ -877,7 +877,7 @@
         End If
         'Val.Add(tkuota)
 
-                        If table IsNot Nothing Then table.Clear()
+        If table IsNot Nothing Then table.Clear()
         mparam.Clear()
         mvalue.Clear()
         mparam.AddRange(New String() {"param", "value", "tkey1", "tkey2", "quotaamount"})
@@ -920,9 +920,11 @@
         mparam.Clear()
         mvalue.Clear()
         mparam.AddRange(New String() {"param", "value", "tkey1", "tkey2", "quotaused"})
-        mvalue.AddRange(New String() {"setusedc", "idcompany", tmptokenkey1, tmptokenkey2, tusage})
+        mvalue.AddRange(New String() {"setusedc", tmpidcompany, tmptokenkey1, tmptokenkey2, tusage})
         json_result = modCore.HttpPOSTRequestInsert(mysite & "Company", mparam, mvalue)
-        'table = Newtonsoft.Json.JsonConvert.DeserializeObject(Of DataTable)(json_result)
+        'If json_result.Length > 2 Then
+        '    table = Newtonsoft.Json.JsonConvert.DeserializeObject(Of DataTable)(json_result)
+        'End If
 
         'Val.Add(tusage)
 
@@ -934,10 +936,17 @@
         sqlss.DMLQuery("update sys_appsetting set value='" & tpayment & "' where variable='QuotaAmount'", False)
         lite.DMLQuery("update appsetting set value='" & tpayment & "' where variable='QuotaAmount'", False)
 
+        sqlss.DMLQuery("update sys_appsetting set value='" & tusage & "' where variable='QuotaUsed'", False)
+        lite.DMLQuery("update appsetting set value='" & tusage & "' where variable='QuotaUsed'", False)
+
         Dim dizEngine As New dizEngine.engine
         Dim qtyquotacode As String = dizEngine.processE(tpayment)
         sqlss.DMLQuery("update sys_appsetting set value='" & qtyquotacode & "' where variable='QuotaAmountCode'", False)
         lite.DMLQuery("update appsetting set value='" & qtyquotacode & "' where variable='QuotaAmountCode'", False)
+
+        Dim qtyusagecode As String = dizEngine.processE(tusage)
+        sqlss.DMLQuery("update sys_appsetting set value='" & qtyusagecode & "' where variable='QuotaUsedCode'", False)
+        lite.DMLQuery("update appsetting set value='" & qtyusagecode & "' where variable='QuotaUsedCode'", False)
 
         dizMsgbox("Kuota anda: " & tkuota & vbCrLf & "Total pembelian: " & tpayment & vbCrLf & "Total pemakaian: " & tusage, dizMsgboxStyle.Info, Me)
         Me.DialogResult = Windows.Forms.DialogResult.OK

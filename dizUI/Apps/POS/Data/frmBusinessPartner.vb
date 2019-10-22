@@ -97,7 +97,7 @@
         Me.Cursor = Cursors.WaitCursor
 
         Dim mysqls As New SQLs(dbstring)
-        mysqls.DMLQuery("select bp.idbusinesspartner,bp.isdeleted,d.generalcode as statdata,bp.businesspartnertype,gc.generalcode as type,bp.paymenttype,pt.generalcode as jenisbayar,bp.kode,bp.nama from businesspartner bp left join sys_generalcode pt on bp.paymenttype=pt.idgeneral and pt.gctype='PAYTYPE' left join sys_generalcode gc on gc.idgeneral=bp.businesspartnertype and gc.gctype='BPTYPE' left join sys_generalcode d on d.idgeneral=bp.isdeleted and d.gctype='DELETE' where ORDER BY type asc,nama asc", "data")
+        mysqls.DMLQuery("select bp.idbusinesspartner,bp.isdeleted,d.generalcode as statdata,bp.businesspartnertype,gc.generalcode as type,bp.paymenttype,pt.generalcode as jenisbayar,bp.kode,bp.nama from businesspartner bp left join sys_generalcode pt on bp.paymenttype=pt.idgeneral and pt.gctype='PAYTYPE' left join sys_generalcode gc on gc.idgeneral=bp.businesspartnertype and gc.gctype='BPTYPE' left join sys_generalcode d on d.idgeneral=bp.isdeleted and d.gctype='DELETE' ORDER BY type asc,nama asc", "data")
         gcData.DataSource = mysqls.dataTable("data")
         gvData.BestFitColumns()
 

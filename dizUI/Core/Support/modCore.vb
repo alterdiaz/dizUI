@@ -157,15 +157,15 @@ Module modCore
     Public Function JSONtoDatatable(url As String) As DataTable
         Dim webclient_server7 As New System.Net.WebClient
         Dim json_result As String = webclient_server7.DownloadString(url)
-        Dim table As DataTable
+        Dim table As DataTable = Nothing
 
         Try
             Dim setting = New Newtonsoft.Json.JsonSerializerSettings With {.Converters = {New TypeInferringDataTableConverter()}}
             table = Newtonsoft.Json.JsonConvert.DeserializeObject(Of DataTable)(json_result, setting)
-            Return table
         Catch ex As Exception
             MsgBox("An exception occured: " & ex.Message)
         End Try
+        Return table
     End Function
 
     Public Function getPrinter(param As String)

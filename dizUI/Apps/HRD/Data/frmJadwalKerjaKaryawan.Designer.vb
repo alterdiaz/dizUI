@@ -163,12 +163,17 @@ Partial Class frmJadwalKerjaKaryawan
         '
         'GridColumn20
         '
-        Me.GridColumn20.Caption = "idstaff"
+        Me.GridColumn20.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn20.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn20.Caption = "ID"
         Me.GridColumn20.FieldName = "idstaff"
+        Me.GridColumn20.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left
         Me.GridColumn20.Name = "GridColumn20"
         Me.GridColumn20.OptionsColumn.AllowEdit = False
         Me.GridColumn20.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.[False]
         Me.GridColumn20.OptionsColumn.ReadOnly = True
+        Me.GridColumn20.Visible = True
+        Me.GridColumn20.VisibleIndex = 4
         '
         'GridColumn1
         '
@@ -242,7 +247,7 @@ Partial Class frmJadwalKerjaKaryawan
         Me.gc01.Name = "gc01"
         Me.gc01.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.[False]
         Me.gc01.Visible = True
-        Me.gc01.VisibleIndex = 4
+        Me.gc01.VisibleIndex = 5
         Me.gc01.Width = 50
         '
         'riLUE
@@ -317,7 +322,7 @@ Partial Class frmJadwalKerjaKaryawan
         Me.gc02.Name = "gc02"
         Me.gc02.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.[False]
         Me.gc02.Visible = True
-        Me.gc02.VisibleIndex = 5
+        Me.gc02.VisibleIndex = 6
         Me.gc02.Width = 50
         '
         'gc03
@@ -332,7 +337,7 @@ Partial Class frmJadwalKerjaKaryawan
         Me.gc03.Name = "gc03"
         Me.gc03.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.[False]
         Me.gc03.Visible = True
-        Me.gc03.VisibleIndex = 6
+        Me.gc03.VisibleIndex = 7
         Me.gc03.Width = 50
         '
         'gc04
@@ -347,7 +352,7 @@ Partial Class frmJadwalKerjaKaryawan
         Me.gc04.Name = "gc04"
         Me.gc04.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.[False]
         Me.gc04.Visible = True
-        Me.gc04.VisibleIndex = 7
+        Me.gc04.VisibleIndex = 8
         Me.gc04.Width = 50
         '
         'gc05
@@ -362,7 +367,7 @@ Partial Class frmJadwalKerjaKaryawan
         Me.gc05.Name = "gc05"
         Me.gc05.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.[False]
         Me.gc05.Visible = True
-        Me.gc05.VisibleIndex = 8
+        Me.gc05.VisibleIndex = 9
         Me.gc05.Width = 50
         '
         'gc06
@@ -377,7 +382,7 @@ Partial Class frmJadwalKerjaKaryawan
         Me.gc06.Name = "gc06"
         Me.gc06.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.[False]
         Me.gc06.Visible = True
-        Me.gc06.VisibleIndex = 9
+        Me.gc06.VisibleIndex = 10
         Me.gc06.Width = 50
         '
         'gc07
@@ -392,7 +397,7 @@ Partial Class frmJadwalKerjaKaryawan
         Me.gc07.Name = "gc07"
         Me.gc07.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.[False]
         Me.gc07.Visible = True
-        Me.gc07.VisibleIndex = 10
+        Me.gc07.VisibleIndex = 11
         Me.gc07.Width = 50
         '
         'gc08
@@ -407,7 +412,7 @@ Partial Class frmJadwalKerjaKaryawan
         Me.gc08.Name = "gc08"
         Me.gc08.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.[False]
         Me.gc08.Visible = True
-        Me.gc08.VisibleIndex = 11
+        Me.gc08.VisibleIndex = 12
         Me.gc08.Width = 50
         '
         'gc09
@@ -422,7 +427,7 @@ Partial Class frmJadwalKerjaKaryawan
         Me.gc09.Name = "gc09"
         Me.gc09.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.[False]
         Me.gc09.Visible = True
-        Me.gc09.VisibleIndex = 12
+        Me.gc09.VisibleIndex = 13
         Me.gc09.Width = 50
         '
         'gc10
@@ -437,7 +442,7 @@ Partial Class frmJadwalKerjaKaryawan
         Me.gc10.Name = "gc10"
         Me.gc10.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.[False]
         Me.gc10.Visible = True
-        Me.gc10.VisibleIndex = 13
+        Me.gc10.VisibleIndex = 14
         Me.gc10.Width = 50
         '
         'gc11
@@ -452,7 +457,7 @@ Partial Class frmJadwalKerjaKaryawan
         Me.gc11.Name = "gc11"
         Me.gc11.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.[False]
         Me.gc11.Visible = True
-        Me.gc11.VisibleIndex = 14
+        Me.gc11.VisibleIndex = 15
         Me.gc11.Width = 50
         '
         'gc12
@@ -467,7 +472,7 @@ Partial Class frmJadwalKerjaKaryawan
         Me.gc12.Name = "gc12"
         Me.gc12.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.[False]
         Me.gc12.Visible = True
-        Me.gc12.VisibleIndex = 15
+        Me.gc12.VisibleIndex = 16
         Me.gc12.Width = 50
         '
         'gc13
@@ -482,7 +487,7 @@ Partial Class frmJadwalKerjaKaryawan
         Me.gc13.Name = "gc13"
         Me.gc13.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.[False]
         Me.gc13.Visible = True
-        Me.gc13.VisibleIndex = 16
+        Me.gc13.VisibleIndex = 17
         Me.gc13.Width = 50
         '
         'gc14
@@ -497,7 +502,7 @@ Partial Class frmJadwalKerjaKaryawan
         Me.gc14.Name = "gc14"
         Me.gc14.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.[False]
         Me.gc14.Visible = True
-        Me.gc14.VisibleIndex = 17
+        Me.gc14.VisibleIndex = 18
         Me.gc14.Width = 50
         '
         'gc15
@@ -512,7 +517,7 @@ Partial Class frmJadwalKerjaKaryawan
         Me.gc15.Name = "gc15"
         Me.gc15.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.[False]
         Me.gc15.Visible = True
-        Me.gc15.VisibleIndex = 18
+        Me.gc15.VisibleIndex = 19
         Me.gc15.Width = 50
         '
         'gc16
@@ -527,7 +532,7 @@ Partial Class frmJadwalKerjaKaryawan
         Me.gc16.Name = "gc16"
         Me.gc16.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.[False]
         Me.gc16.Visible = True
-        Me.gc16.VisibleIndex = 19
+        Me.gc16.VisibleIndex = 20
         Me.gc16.Width = 50
         '
         'gc17
@@ -542,7 +547,7 @@ Partial Class frmJadwalKerjaKaryawan
         Me.gc17.Name = "gc17"
         Me.gc17.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.[False]
         Me.gc17.Visible = True
-        Me.gc17.VisibleIndex = 20
+        Me.gc17.VisibleIndex = 21
         Me.gc17.Width = 50
         '
         'gc18
@@ -557,7 +562,7 @@ Partial Class frmJadwalKerjaKaryawan
         Me.gc18.Name = "gc18"
         Me.gc18.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.[False]
         Me.gc18.Visible = True
-        Me.gc18.VisibleIndex = 21
+        Me.gc18.VisibleIndex = 22
         Me.gc18.Width = 50
         '
         'gc19
@@ -572,7 +577,7 @@ Partial Class frmJadwalKerjaKaryawan
         Me.gc19.Name = "gc19"
         Me.gc19.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.[False]
         Me.gc19.Visible = True
-        Me.gc19.VisibleIndex = 22
+        Me.gc19.VisibleIndex = 23
         Me.gc19.Width = 50
         '
         'gc20
@@ -587,7 +592,7 @@ Partial Class frmJadwalKerjaKaryawan
         Me.gc20.Name = "gc20"
         Me.gc20.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.[False]
         Me.gc20.Visible = True
-        Me.gc20.VisibleIndex = 23
+        Me.gc20.VisibleIndex = 24
         Me.gc20.Width = 50
         '
         'gc21
@@ -602,7 +607,7 @@ Partial Class frmJadwalKerjaKaryawan
         Me.gc21.Name = "gc21"
         Me.gc21.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.[False]
         Me.gc21.Visible = True
-        Me.gc21.VisibleIndex = 24
+        Me.gc21.VisibleIndex = 25
         Me.gc21.Width = 50
         '
         'gc22
@@ -617,7 +622,7 @@ Partial Class frmJadwalKerjaKaryawan
         Me.gc22.Name = "gc22"
         Me.gc22.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.[False]
         Me.gc22.Visible = True
-        Me.gc22.VisibleIndex = 25
+        Me.gc22.VisibleIndex = 26
         Me.gc22.Width = 50
         '
         'gc23
@@ -632,7 +637,7 @@ Partial Class frmJadwalKerjaKaryawan
         Me.gc23.Name = "gc23"
         Me.gc23.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.[False]
         Me.gc23.Visible = True
-        Me.gc23.VisibleIndex = 26
+        Me.gc23.VisibleIndex = 27
         Me.gc23.Width = 50
         '
         'gc24
@@ -647,7 +652,7 @@ Partial Class frmJadwalKerjaKaryawan
         Me.gc24.Name = "gc24"
         Me.gc24.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.[False]
         Me.gc24.Visible = True
-        Me.gc24.VisibleIndex = 27
+        Me.gc24.VisibleIndex = 28
         Me.gc24.Width = 50
         '
         'gc25
@@ -662,7 +667,7 @@ Partial Class frmJadwalKerjaKaryawan
         Me.gc25.Name = "gc25"
         Me.gc25.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.[False]
         Me.gc25.Visible = True
-        Me.gc25.VisibleIndex = 28
+        Me.gc25.VisibleIndex = 29
         Me.gc25.Width = 50
         '
         'gc26
@@ -677,7 +682,7 @@ Partial Class frmJadwalKerjaKaryawan
         Me.gc26.Name = "gc26"
         Me.gc26.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.[False]
         Me.gc26.Visible = True
-        Me.gc26.VisibleIndex = 29
+        Me.gc26.VisibleIndex = 30
         Me.gc26.Width = 50
         '
         'gc27
@@ -692,7 +697,7 @@ Partial Class frmJadwalKerjaKaryawan
         Me.gc27.Name = "gc27"
         Me.gc27.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.[False]
         Me.gc27.Visible = True
-        Me.gc27.VisibleIndex = 30
+        Me.gc27.VisibleIndex = 31
         Me.gc27.Width = 50
         '
         'gc28
@@ -707,7 +712,7 @@ Partial Class frmJadwalKerjaKaryawan
         Me.gc28.Name = "gc28"
         Me.gc28.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.[False]
         Me.gc28.Visible = True
-        Me.gc28.VisibleIndex = 31
+        Me.gc28.VisibleIndex = 32
         Me.gc28.Width = 50
         '
         'gc29
@@ -722,7 +727,7 @@ Partial Class frmJadwalKerjaKaryawan
         Me.gc29.Name = "gc29"
         Me.gc29.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.[False]
         Me.gc29.Visible = True
-        Me.gc29.VisibleIndex = 32
+        Me.gc29.VisibleIndex = 33
         Me.gc29.Width = 50
         '
         'gc30
@@ -737,7 +742,7 @@ Partial Class frmJadwalKerjaKaryawan
         Me.gc30.Name = "gc30"
         Me.gc30.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.[False]
         Me.gc30.Visible = True
-        Me.gc30.VisibleIndex = 33
+        Me.gc30.VisibleIndex = 34
         Me.gc30.Width = 50
         '
         'gc31
@@ -752,7 +757,7 @@ Partial Class frmJadwalKerjaKaryawan
         Me.gc31.Name = "gc31"
         Me.gc31.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.[False]
         Me.gc31.Visible = True
-        Me.gc31.VisibleIndex = 34
+        Me.gc31.VisibleIndex = 35
         Me.gc31.Width = 50
         '
         'rimeNote

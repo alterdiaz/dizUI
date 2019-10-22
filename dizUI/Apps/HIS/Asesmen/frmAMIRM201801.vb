@@ -241,7 +241,7 @@ Public Class frmAMIRM201801
             btnCetakSOAP.Enabled = False
         Else
             Dim sqls As New SQLs(dbstring)
-            sqls.DMLQuery("select r.idregistrasi,convert(varchar,r.registrasidate,105)+' '+convert(varchar,r.registrasidate,108) as 'Tgl Registrasi',r.registrasino as 'No Registrasi',pm.nama as 'Tenaga Medis',dbo.fformatnorm(rm.rekammedisno) as 'No RM',rm.nama as 'Nama Pasien',jk.generalcode as 'Jenis Kelamin',convert(varchar,rm.tanggallahir,105) as 'Tgl Lahir',dbo.fUmurRegister(rm.tanggallahir,r.registrasidate) as 'Umur',kw.wilayah as 'Kewarganegaraan' from registrasi r left join rekammedis rm on r.idrekammedis=rm.idrekammedis left join sys_generalcode jk on rm.jeniskelamin=jk.idgeneral and jk.gctype='SEXTYPE' left join wilayah kw on rm.kewarganegaraan=kw.idwilayah left join paramedis pm on r.iddokterruangan=pm.idparamedis where r.registrasistatus=0 and rm.rekammedisno<>0 and r.iddepartment=(select top 1 [value] from sys_appsetting where variable='idirmdept') order by r.registrasidate desc", "search")
+            sqls.DMLQuery("select r.idregistrasi,convert(varchar,r.registrasidate,105)+' '+convert(varchar,r.registrasidate,108) as 'Tgl Registrasi',r.registrasino as 'No Registrasi',pm.nama as 'Tenaga Medis',dbo.fformatnorm(rm.rekammedisno) as 'No RM',rm.nama as 'Nama Pasien',jk.generalcode as 'Jenis Kelamin',convert(varchar,rm.tanggallahir,105) as 'Tgl Lahir',dbo.fUmurRegister(rm.tanggallahir,r.registrasidate) as 'Umur',kw.wilayah as 'Kewarganegaraan' from registrasi r left join rekammedis rm on r.idrekammedis=rm.idrekammedis left join sys_generalcode jk on rm.jeniskelamin=jk.idgeneral and jk.gctype='SEXTYPE' left join wilayah kw on rm.kewarganegaraan=kw.idwilayah left join paramedis pm on r.iddokterruangan=pm.idparamedis where r.registrasistatus<>2 and rm.rekammedisno<>0 and r.iddepartment=(select top 1 [value] from sys_appsetting where variable='idirmdept') order by r.registrasidate desc", "search")
             Dim cari As New frmSearchTanggal(sqls.dataSet, "search", "idregistrasi", "Tgl Registrasi")
             tambahChild(cari)
             formTitle = "Fungsi Rehabilitasi Medik"
@@ -884,10 +884,18 @@ Public Class frmAMIRM201801
             Try
                 pt.Print(sharename)
             Catch ex As Exception
-                dizMsgbox("Printer tidak ditemukan/tidak ada akses", dizMsgboxStyle.Peringatan, Me)
+                Try
+                    pt.PrintDialog()
+                Catch ex1 As Exception
+                    dizMsgbox(ex1.Message, dizMsgboxStyle.Kesalahan, Me)
+                End Try
             End Try
         Else
-            dizMsgbox("Printer belum disetting untuk cetak dokumen ini", dizMsgboxStyle.Peringatan, Me)
+            Try
+                pt.PrintDialog()
+            Catch ex1 As Exception
+                dizMsgbox(ex1.Message, dizMsgboxStyle.Kesalahan, Me)
+            End Try
         End If
         'pt.Print()
         'Dim sd As New frmSelectDevice
@@ -1247,10 +1255,18 @@ Public Class frmAMIRM201801
                 Try
                     pt.Print(sharename)
                 Catch ex As Exception
-                    dizMsgbox("Printer tidak ditemukan/tidak ada akses", dizMsgboxStyle.Peringatan, Me)
+                    Try
+                        pt.PrintDialog()
+                    Catch ex1 As Exception
+                        dizMsgbox(ex1.Message, dizMsgboxStyle.Kesalahan, Me)
+                    End Try
                 End Try
             Else
-                dizMsgbox("Printer belum disetting untuk cetak dokumen ini", dizMsgboxStyle.Peringatan, Me)
+                Try
+                    pt.PrintDialog()
+                Catch ex1 As Exception
+                    dizMsgbox(ex1.Message, dizMsgboxStyle.Kesalahan, Me)
+                End Try
             End If
             'pt.Print()
         Else

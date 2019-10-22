@@ -404,20 +404,13 @@ Public Class frmJadwalKerjaKaryawan
                 Try
                     Dim dr As DataRow = dt.Rows(i)
                     Dim karynama As String = If(dr(2), "")
-                    Dim karyid As String = ""
+                    Dim karyid As String = If(dr(4), "")
                     If karynama = "" Then Exit Try
+                    If karyid = "" Then Exit Try
 
                     sqls = New SQLs(dbstring)
-                    If karynama <> "" Then
-                        sqls.DMLQuery("select * from staff where replace(nama,' ','')='" & karynama.Replace(" ", "") & "'", "cekkary")
-                        If sqls.getDataSet("cekkary") > 0 Then
-                            karyid = sqls.getDataSet("cekkary", 0, "idstaff")
-                        Else
-                            Exit Try
-                        End If
-                    End If
                     Dim cntday As Integer = 1
-                    For a As Integer = 4 To dt.Columns.Count - 1
+                    For a As Integer = 5 To dt.Columns.Count - 1
                         sqls = New SQLs(dbstring)
                         Dim tmpstr As String = dr(a)
                         Dim tmpidjs As String = "0"

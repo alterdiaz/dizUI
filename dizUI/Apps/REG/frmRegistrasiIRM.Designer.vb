@@ -315,7 +315,7 @@ Partial Class frmRegistrasiIRM
         '
         'btnSwap
         '
-        Me.btnSwap.BackColor = System.Drawing.Color.green
+        Me.btnSwap.BackColor = System.Drawing.Color.Green
         Me.btnSwap.Dock = System.Windows.Forms.DockStyle.Left
         Me.btnSwap.FlatAppearance.BorderSize = 0
         Me.btnSwap.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DimGray
@@ -404,7 +404,7 @@ Partial Class frmRegistrasiIRM
         '
         'btnSave
         '
-        Me.btnSave.BackColor = System.Drawing.Color.green
+        Me.btnSave.BackColor = System.Drawing.Color.Green
         Me.btnSave.Dock = System.Windows.Forms.DockStyle.Right
         Me.btnSave.FlatAppearance.BorderSize = 0
         Me.btnSave.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DimGray
@@ -2279,7 +2279,7 @@ Partial Class frmRegistrasiIRM
         Me.btnMonRegHarian.Name = "btnMonRegHarian"
         Me.btnMonRegHarian.Size = New System.Drawing.Size(130, 30)
         Me.btnMonRegHarian.TabIndex = 20
-        Me.btnMonRegHarian.Text = "MON REG HARIAN"
+        Me.btnMonRegHarian.Text = "MON REGISTRASI"
         Me.btnMonRegHarian.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.btnMonRegHarian.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
         Me.btnMonRegHarian.UseVisualStyleBackColor = False
@@ -2298,7 +2298,7 @@ Partial Class frmRegistrasiIRM
         Me.btnMonRegister.Name = "btnMonRegister"
         Me.btnMonRegister.Size = New System.Drawing.Size(130, 30)
         Me.btnMonRegister.TabIndex = 17
-        Me.btnMonRegister.Text = "MON REGISTRASI"
+        Me.btnMonRegister.Text = "MON REG IRM"
         Me.btnMonRegister.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.btnMonRegister.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
         Me.btnMonRegister.UseVisualStyleBackColor = False

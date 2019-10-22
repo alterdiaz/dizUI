@@ -1032,7 +1032,7 @@
     Private iddokterparent As String = "0"
     Private Sub lnkNoRegistrasiInduk_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles lnkNoRegistrasiInduk.LinkClicked
         Dim sqls As New SQLs(dbstring)
-        sqls.DMLQuery("select r.idregistrasi,convert(varchar,r.registrasidate,105)+' '+convert(varchar,r.registrasidate,108) as 'Tgl Registrasi',r.registrasino as 'No Registrasi',pm.nama as 'Tenaga Medis',dbo.fformatnorm(rm.rekammedisno) as 'No RM',rm.nama as 'Nama Pasien',jk.generalcode as 'Jenis Kelamin',convert(varchar,rm.tanggallahir,105) as 'Tgl Lahir',dbo.fUmurRegister(rm.tanggallahir,r.registrasidate) as 'Umur',kw.wilayah as 'Kewarganegaraan' from registrasi r left join rekammedis rm on r.idrekammedis=rm.idrekammedis left join sys_generalcode jk on rm.jeniskelamin=jk.idgeneral and jk.gctype='SEXTYPE' left join wilayah kw on rm.kewarganegaraan=kw.idwilayah  left join paramedis pm on r.iddokterruangan=pm.idparamedis where convert(varchar,r.registrasidate,105) in ('" & Format(nowTime, "dd-MM-yyyy") & "','" & Format(nowTime.AddDays(-1), "dd-MM-yyyy") & "') and r.idregistrasiparent='0' and r.isdeleted=0 and r.registrasistatus in (1,7) and r.transactiontype in (select idtransactiontype from transactiontype where kodetransaksi='REG' and iddepartment in (select [value] from sys_appsetting where variable in ('IDVKDept','IDIRMDept','IDIGDDept','IDIRJDept'))) and rm.rekammedisno<>0 and r.idregistrasi not in (select r.idregistrasiparent from registrasi r left join rekammedis rm on r.idrekammedis=rm.idrekammedis where convert(varchar,r.registrasidate,105) in ('" & Format(nowTime, "dd-MM-yyyy") & "','" & Format(nowTime.AddDays(-1), "dd-MM-yyyy") & "') and r.isdeleted=0 and r.transactiontype in (select idtransactiontype from transactiontype where kodetransaksi='REG' and iddepartment in (select [value] from sys_appsetting where variable in ('idirnadept'))) and rm.rekammedisno<>0) order by r.registrasidate desc", "search")
+        sqls.DMLQuery("select r.idregistrasi,convert(varchar,r.registrasidate,105)+' '+convert(varchar,r.registrasidate,108) as 'Tgl Registrasi',r.registrasino as 'No Registrasi',pm.nama as 'Tenaga Medis',dbo.fformatnorm(rm.rekammedisno) as 'No RM',rm.nama as 'Nama Pasien',jk.generalcode as 'Jenis Kelamin',convert(varchar,rm.tanggallahir,105) as 'Tgl Lahir',dbo.fUmurRegister(rm.tanggallahir,r.registrasidate) as 'Umur',kw.wilayah as 'Kewarganegaraan' from registrasi r left join rekammedis rm on r.idrekammedis=rm.idrekammedis left join sys_generalcode jk on rm.jeniskelamin=jk.idgeneral and jk.gctype='SEXTYPE' left join wilayah kw on rm.kewarganegaraan=kw.idwilayah  left join paramedis pm on r.iddokterruangan=pm.idparamedis where convert(varchar,r.registrasidate,105) in ('" & Format(nowTime, "dd-MM-yyyy") & "','" & Format(nowTime.AddDays(-1), "dd-MM-yyyy") & "') and r.idregistrasiparent='0' and r.isdeleted=0 and r.registrasistatus in (0,1,4,7) and r.transactiontype in (select idtransactiontype from transactiontype where kodetransaksi='REG' and iddepartment in (select [value] from sys_appsetting where variable in ('IDVKDept','IDIRMDept','IDIGDDept','IDIRJDept'))) and rm.rekammedisno<>0 and r.idregistrasi not in (select r.idregistrasiparent from registrasi r left join rekammedis rm on r.idrekammedis=rm.idrekammedis where convert(varchar,r.registrasidate,105) in ('" & Format(nowTime, "dd-MM-yyyy") & "','" & Format(nowTime.AddDays(-1), "dd-MM-yyyy") & "') and r.isdeleted=0 and r.transactiontype in (select idtransactiontype from transactiontype where kodetransaksi='REG' and iddepartment in (select [value] from sys_appsetting where variable in ('idirnadept'))) and rm.rekammedisno<>0) order by r.registrasidate desc", "search")
         Dim cari As New frmSearch(sqls.dataSet, "search", "idregistrasi")
         If cari.ShowDialog = Windows.Forms.DialogResult.OK Then
             idselectparent = CStr(cari.GetIDSelectData)
@@ -1138,14 +1138,20 @@
                     If sharename <> "" Then
                         cetakWristband(lstdata, sharename)
                     Else
-                        dizMsgbox("Printer belum disetting untuk cetak dokumen ini", dizMsgboxStyle.Peringatan, Me)
+                        Dim pd As New PrintDialog
+                        If pd.ShowDialog() = DialogResult.OK Then
+                            cetakWristband(lstdata, pd.PrinterSettings.PrinterName)
+                        End If
                     End If
                 Else
                     Dim sharename As String = getPrinter("WRBAM")
                     If sharename <> "" Then
                         cetakWristband(lstdata, sharename)
                     Else
-                        dizMsgbox("Printer belum disetting untuk cetak dokumen ini", dizMsgboxStyle.Peringatan, Me)
+                        Dim pd As New PrintDialog
+                        If pd.ShowDialog() = DialogResult.OK Then
+                            cetakWristband(lstdata, pd.PrinterSettings.PrinterName)
+                        End If
                     End If
                 End If
             ElseIf selectWB.getStringPilih = "Anak" Then
@@ -1153,7 +1159,10 @@
                 If sharename <> "" Then
                     cetakWristband(lstdata, sharename)
                 Else
-                    dizMsgbox("Printer belum disetting untuk cetak dokumen ini", dizMsgboxStyle.Peringatan, Me)
+                    Dim pd As New PrintDialog
+                    If pd.ShowDialog() = DialogResult.OK Then
+                        cetakWristband(lstdata, pd.PrinterSettings.PrinterName)
+                    End If
                 End If
             End If
             'cetakWristband(lstdata, "")
@@ -1161,43 +1170,45 @@
     End Sub
 
     Private Sub btnLabel_Click(sender As Object, e As EventArgs) Handles btnLabel.Click
-        Dim sqls As New SQLs(dbstring)
-        sqls.DMLQuery("select r.idregistrasi,convert(varchar,r.registrasidate,105)+' '+convert(varchar,r.registrasidate,108) as 'Tgl Registrasi',r.registrasino as 'No Registrasi',pm.nama as 'Tenaga Medis',dbo.fformatnorm(rm.rekammedisno) as 'No RM',rm.nama as 'Nama Pasien',jk.generalcode as 'Jenis Kelamin',convert(varchar,rm.tanggallahir,105) as 'Tgl Lahir',dbo.fUmurRegister(rm.tanggallahir,r.registrasidate) as 'Umur',kw.wilayah as 'Kewarganegaraan' from registrasi r left join rekammedis rm on r.idrekammedis=rm.idrekammedis left join sys_generalcode jk on rm.jeniskelamin=jk.idgeneral and jk.gctype='SEXTYPE' left join wilayah kw on rm.kewarganegaraan=kw.idwilayah  left join paramedis pm on r.iddokterruangan=pm.idparamedis where r.registrasistatus=0 and rm.rekammedisno<>0 and r.iddepartment=(select top 1 [value] from sys_appsetting where variable='idirnadept') order by r.registrasino desc,r.registrasidate desc", "search")
-        Dim cari As New frmSearch(sqls.dataSet, "search", "idregistrasi")
-        tambahChild(cari)
+        Dim radsel10 As New frmSelectLabel10("IRNA")
+        radsel10.ShowDialog(Me)
+        'Dim sqls As New SQLs(dbstring)
+        'sqls.DMLQuery("select r.idregistrasi,convert(varchar,r.registrasidate,105)+' '+convert(varchar,r.registrasidate,108) as 'Tgl Registrasi',r.registrasino as 'No Registrasi',pm.nama as 'Tenaga Medis',dbo.fformatnorm(rm.rekammedisno) as 'No RM',rm.nama as 'Nama Pasien',jk.generalcode as 'Jenis Kelamin',convert(varchar,rm.tanggallahir,105) as 'Tgl Lahir',dbo.fUmurRegister(rm.tanggallahir,r.registrasidate) as 'Umur',kw.wilayah as 'Kewarganegaraan' from registrasi r left join rekammedis rm on r.idrekammedis=rm.idrekammedis left join sys_generalcode jk on rm.jeniskelamin=jk.idgeneral and jk.gctype='SEXTYPE' left join wilayah kw on rm.kewarganegaraan=kw.idwilayah  left join paramedis pm on r.iddokterruangan=pm.idparamedis where r.registrasistatus=0 and rm.rekammedisno<>0 and r.iddepartment=(select top 1 [value] from sys_appsetting where variable='idirnadept') order by r.registrasino desc,r.registrasidate desc", "search")
+        'Dim cari As New frmSearch(sqls.dataSet, "search", "idregistrasi")
+        'tambahChild(cari)
 
-        If cari.ShowDialog = Windows.Forms.DialogResult.OK Then
-            Dim idselectu As String = CStr(cari.GetIDSelectData)
+        'If cari.ShowDialog = Windows.Forms.DialogResult.OK Then
+        '    Dim idselectu As String = CStr(cari.GetIDSelectData)
 
-            Dim mys As New SQLs(dbstring)
-            Dim field As New List(Of String)
-            Dim value As New List(Of Object)
-            field.AddRange(New String() {"@idreg"})
-            value.AddRange(New Object() {idselectu})
-            mys.CallSP("spRegistrasiSlip", "regslip", field, value, 2)
+        '    Dim mys As New SQLs(dbstring)
+        '    Dim field As New List(Of String)
+        '    Dim value As New List(Of Object)
+        '    field.AddRange(New String() {"@idreg"})
+        '    value.AddRange(New Object() {idselectu})
+        '    mys.CallSP("spRegistrasiSlip", "regslip", field, value, 2)
 
-            Dim prntname As String = ""
-            'Dim sd As New frmSelectDevice
-            'tambahChild(sd)
-            'If sd.ShowDialog() = DialogResult.OK Then
-            '    prntname = sd.getdevicename
-            Dim rpt As New xrLabelPasien18815_201801
-            rpt.RequestParameters = False
-            'rpt.Parameters("pTglLahir").Value = mys.getDataSet("regslip", 0, "tanggallahir")
-            rpt.DataSource = mys.dataTable("regslip")
-            rpt.DataMember = "spRegistrasiSlip"
-            rpt.DisplayName = mys.getDataSet("regslip", 0, "namapasien")
-            rpt.ShowPrintMarginsWarning = False
-            'rpt.PrinterName = prntname
-            Dim pt As New DevExpress.XtraReports.UI.ReportPrintTool(rpt)
-            pt.Report.CreateDocument(False)
-            AddHandler pt.PreviewForm.Load, AddressOf PreviewForm_Load
-            pt.PrintDialog()
-            'pt.Print(prntname)
-            'prntname = sd.getdevicename
-            'pt.Print(prntname)
-            'End If
-        End If
+        '    Dim prntname As String = ""
+        '    'Dim sd As New frmSelectDevice
+        '    'tambahChild(sd)
+        '    'If sd.ShowDialog() = DialogResult.OK Then
+        '    '    prntname = sd.getdevicename
+        '    Dim rpt As New xrLabelPasien18815_201801
+        '    rpt.RequestParameters = False
+        '    'rpt.Parameters("pTglLahir").Value = mys.getDataSet("regslip", 0, "tanggallahir")
+        '    rpt.DataSource = mys.dataTable("regslip")
+        '    rpt.DataMember = "spRegistrasiSlip"
+        '    rpt.DisplayName = mys.getDataSet("regslip", 0, "namapasien")
+        '    rpt.ShowPrintMarginsWarning = False
+        '    'rpt.PrinterName = prntname
+        '    Dim pt As New DevExpress.XtraReports.UI.ReportPrintTool(rpt)
+        '    pt.Report.CreateDocument(False)
+        '    AddHandler pt.PreviewForm.Load, AddressOf PreviewForm_Load
+        '    pt.PrintDialog()
+        '    'pt.Print(prntname)
+        '    'prntname = sd.getdevicename
+        '    'pt.Print(prntname)
+        '    'End If
+        'End If
     End Sub
 
     Private Sub lueParamedisCase_EditValueChanged(sender As Object, e As EventArgs) Handles lueParamedisCase.EditValueChanged
@@ -1301,6 +1312,34 @@
         rs.tlpForm.RowCount = 4
         rs.tlpForm.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 2.0!))
         rs.ShowDialog(Me)
+    End Sub
+
+    Private Sub btnMonRegisterAll_Click(sender As Object, e As EventArgs) Handles btnMonRegisterAll.Click
+        formTitle = "Monitoring Register"
+        Dim frmMon As New frmMonRegister
+        tambahChild(frmMon)
+        frmMon.Size = New Size(Screen.PrimaryScreen.WorkingArea.Width - 100, Screen.PrimaryScreen.WorkingArea.Height - 100)
+        frmMon.MaximumSize = New Size(Screen.PrimaryScreen.WorkingArea.Width - 100, Screen.PrimaryScreen.WorkingArea.Height - 100)
+        frmMon.StartPosition = FormStartPosition.CenterScreen
+        frmMon.pMinimize.Enabled = False
+        frmMon.pMaximize.Enabled = False
+        frmMon.tlpForm.RowCount = 4
+        frmMon.tlpForm.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 2.0!))
+        frmMon.ShowDialog(Me)
+        formTitle = Me.lblTitle.Text
+    End Sub
+
+    Private Sub btnAlihDPJP_Click(sender As Object, e As EventArgs) Handles btnAlihDPJP.Click
+        formTitle = "Alih DPJP"
+        Dim frmMon As New frmAlihDPJP("IDIRNADept")
+        tambahChild(frmMon)
+        frmMon.StartPosition = FormStartPosition.CenterScreen
+        frmMon.pMinimize.Enabled = False
+        frmMon.pMaximize.Enabled = False
+        frmMon.tlpForm.RowCount = 4
+        frmMon.tlpForm.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 2.0!))
+        frmMon.ShowDialog(Me)
+        formTitle = Me.lblTitle.Text
     End Sub
 
 End Class

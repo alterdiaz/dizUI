@@ -72,7 +72,7 @@
         End If
         If lueLevel.EditValue IsNot Nothing Then
             Dim mysqls As New SQLs(dbstring)
-            mysqls.DMLQuery("select isnull(l.iduserlevelnotification,'-1') as iduserlevelnotification,n.kode,n.remarks,case when isnull(l.iduserlevelnotification,'-1')='-1' then 0 else 1 end as isaktif from sys_AppNotification n left join (select l.* from sys_userlevelnotification l where l.iduserlevel='" & lueLevel.EditValue & "') l on n.kode=l.kode order by n.kode asc", "cekUP")
+            mysqls.DMLQuery("select isnull(l.iduserlevelnotification,'-1') as iduserlevelnotification,n.kode,n.remarks,convert(bit,case when isnull(l.iduserlevelnotification,'-1')='-1' then 0 else 1 end) as isaktif from sys_AppNotification n left join (select l.* from sys_userlevelnotification l where l.iduserlevel='" & lueLevel.EditValue & "') l on n.kode=l.kode order by n.kode asc", "cekUP")
             dttbl = mysqls.dataTable("cekUP")
             gcData.DataSource = dttbl
         Else
@@ -121,16 +121,18 @@
                 value.Add(lueLevel.EditValue)
                 value.Add(dr("kode"))
                 dtsave = New dtsetSQLS(dbstring)
-                cekBool = dtsave.datasetSave("sys_userlevelnotification", idtmp, field, value, False)
-            End If
-            If cekBool = False Then
-                Exit For
+                Try
+                    cekBool = dtsave.datasetSave("sys_userlevelnotification", idtmp, field, value, False)
+                Catch ex As Exception
+                    dizMsgbox("Data Manajemen Notifikasi gagal tersimpan", dizMsgboxStyle.Info, Me)
+                    Exit Sub
+                End Try
             End If
         Next
         If cekBool Then
             dizMsgbox("Data Manajemen Notifikasi telah tersimpan", dizMsgboxStyle.Info, Me)
         Else
-            dizMsgbox("Data Manajemen Notifikasi gagal tersimpan", dizMsgboxStyle.Peringatan, Me)
+            dizMsgbox("Data Manajemen Notifikasi tidak ada yang tersimpan", dizMsgboxStyle.Peringatan, Me)
         End If
     End Sub
 

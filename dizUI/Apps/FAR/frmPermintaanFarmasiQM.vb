@@ -434,10 +434,18 @@ Public Class frmPermintaanFarmasiQM
                 Try
                     pt.Print(sharename)
                 Catch ex As Exception
-                    dizMsgbox("Printer tidak ditemukan/tidak ada akses", dizMsgboxStyle.Peringatan, Me)
+                    Try
+                        pt.PrintDialog()
+                    Catch ex1 As Exception
+                        dizMsgbox(ex1.Message, dizMsgboxStyle.Kesalahan, Me)
+                    End Try
                 End Try
             Else
-                dizMsgbox("Printer belum disetting untuk cetak dokumen ini", dizMsgboxStyle.Peringatan, Me)
+                Try
+                    pt.PrintDialog()
+                Catch ex1 As Exception
+                    dizMsgbox(ex1.Message, dizMsgboxStyle.Kesalahan, Me)
+                End Try
             End If
         End If
 

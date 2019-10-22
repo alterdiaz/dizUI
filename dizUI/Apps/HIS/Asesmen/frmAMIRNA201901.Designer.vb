@@ -77,6 +77,8 @@ Partial Class frmAMIRNA201901
         Me.pAsesmen = New System.Windows.Forms.Panel()
         Me.tlpAsesmen = New System.Windows.Forms.TableLayoutPanel()
         Me.tlpRiwayat = New System.Windows.Forms.TableLayoutPanel()
+        Me.mePemeriksaanFisik = New DevExpress.XtraEditors.MemoEdit()
+        Me.Label15 = New System.Windows.Forms.Label()
         Me.meOperasi = New DevExpress.XtraEditors.MemoEdit()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.teAsalRegister = New DevExpress.XtraEditors.TextEdit()
@@ -217,8 +219,7 @@ Partial Class frmAMIRNA201901
         Me.btnoLaborat = New System.Windows.Forms.Button()
         Me.btnoLogistik = New System.Windows.Forms.Button()
         Me.btnRegStatus = New System.Windows.Forms.Button()
-        Me.Label15 = New System.Windows.Forms.Label()
-        Me.mePemeriksaanFisik = New DevExpress.XtraEditors.MemoEdit()
+        Me.btnCPPT = New System.Windows.Forms.Button()
         Me.tlpForm.SuspendLayout()
         Me.pTitle.SuspendLayout()
         CType(Me.pMinimize, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -250,6 +251,7 @@ Partial Class frmAMIRNA201901
         Me.pAsesmen.SuspendLayout()
         Me.tlpAsesmen.SuspendLayout()
         Me.tlpRiwayat.SuspendLayout()
+        CType(Me.mePemeriksaanFisik.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.meOperasi.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.teAsalRegister.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.meAlergi.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -307,7 +309,6 @@ Partial Class frmAMIRNA201901
         CType(Me.gcSidebar, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.gcSidebar.SuspendLayout()
         Me.tlpSidebar.SuspendLayout()
-        CType(Me.mePemeriksaanFisik.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'tlpForm
@@ -1301,6 +1302,37 @@ Partial Class frmAMIRNA201901
         Me.tlpRiwayat.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 60.0!))
         Me.tlpRiwayat.Size = New System.Drawing.Size(640, 444)
         Me.tlpRiwayat.TabIndex = 102
+        '
+        'mePemeriksaanFisik
+        '
+        Me.mePemeriksaanFisik.Location = New System.Drawing.Point(120, 388)
+        Me.mePemeriksaanFisik.Margin = New System.Windows.Forms.Padding(0, 4, 0, 4)
+        Me.mePemeriksaanFisik.Name = "mePemeriksaanFisik"
+        Me.mePemeriksaanFisik.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.mePemeriksaanFisik.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 9.0!)
+        Me.mePemeriksaanFisik.Properties.Appearance.Options.UseBackColor = True
+        Me.mePemeriksaanFisik.Properties.Appearance.Options.UseFont = True
+        Me.mePemeriksaanFisik.Properties.AppearanceDisabled.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.mePemeriksaanFisik.Properties.AppearanceDisabled.Options.UseBackColor = True
+        Me.mePemeriksaanFisik.Properties.AppearanceReadOnly.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.mePemeriksaanFisik.Properties.AppearanceReadOnly.Options.UseBackColor = True
+        Me.mePemeriksaanFisik.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple
+        Me.mePemeriksaanFisik.Properties.MaxLength = 3000
+        Me.mePemeriksaanFisik.Size = New System.Drawing.Size(520, 52)
+        Me.mePemeriksaanFisik.TabIndex = 40
+        Me.mePemeriksaanFisik.Tag = "9"
+        '
+        'Label15
+        '
+        Me.Label15.Anchor = System.Windows.Forms.AnchorStyles.Right
+        Me.Label15.AutoSize = True
+        Me.Label15.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label15.Location = New System.Drawing.Point(43, 400)
+        Me.Label15.Name = "Label15"
+        Me.Label15.Size = New System.Drawing.Size(74, 28)
+        Me.Label15.TabIndex = 22
+        Me.Label15.Text = "Pemeriksaan" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Fisik"
+        Me.Label15.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         '
         'meOperasi
         '
@@ -3475,7 +3507,7 @@ Partial Class frmAMIRNA201901
         Me.gcSidebar.Margin = New System.Windows.Forms.Padding(0)
         Me.gcSidebar.Name = "gcSidebar"
         Me.gcSidebar.Padding = New System.Windows.Forms.Padding(4)
-        Me.gcSidebar.Size = New System.Drawing.Size(142, 347)
+        Me.gcSidebar.Size = New System.Drawing.Size(142, 377)
         Me.gcSidebar.TabIndex = 105
         '
         'tlpSidebar
@@ -3484,21 +3516,22 @@ Partial Class frmAMIRNA201901
         Me.tlpSidebar.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
         Me.tlpSidebar.ColumnCount = 1
         Me.tlpSidebar.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 130.0!))
+        Me.tlpSidebar.Controls.Add(Me.btnCPPT, 0, 8)
         Me.tlpSidebar.Controls.Add(Me.btnMonReg, 0, 7)
         Me.tlpSidebar.Controls.Add(Me.btnTindakan, 0, 5)
         Me.tlpSidebar.Controls.Add(Me.btnoRadiologi, 0, 3)
-        Me.tlpSidebar.Controls.Add(Me.btnoReturFarmasi, 0, 12)
-        Me.tlpSidebar.Controls.Add(Me.btnoFarmasi, 0, 11)
-        Me.tlpSidebar.Controls.Add(Me.btnoReturLogistik, 0, 10)
+        Me.tlpSidebar.Controls.Add(Me.btnoReturFarmasi, 0, 13)
+        Me.tlpSidebar.Controls.Add(Me.btnoFarmasi, 0, 12)
+        Me.tlpSidebar.Controls.Add(Me.btnoReturLogistik, 0, 11)
         Me.tlpSidebar.Controls.Add(Me.btnoLaborat, 0, 2)
         Me.tlpSidebar.Controls.Add(Me.btnAnatomi, 0, 0)
-        Me.tlpSidebar.Controls.Add(Me.btnoLogistik, 0, 9)
+        Me.tlpSidebar.Controls.Add(Me.btnoLogistik, 0, 10)
         Me.tlpSidebar.Controls.Add(Me.btnRegStatus, 0, 6)
         Me.tlpSidebar.Dock = System.Windows.Forms.DockStyle.Fill
         Me.tlpSidebar.Location = New System.Drawing.Point(6, 25)
         Me.tlpSidebar.Margin = New System.Windows.Forms.Padding(0)
         Me.tlpSidebar.Name = "tlpSidebar"
-        Me.tlpSidebar.RowCount = 13
+        Me.tlpSidebar.RowCount = 14
         Me.tlpSidebar.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30.0!))
         Me.tlpSidebar.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 6.0!))
         Me.tlpSidebar.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30.0!))
@@ -3507,17 +3540,13 @@ Partial Class frmAMIRNA201901
         Me.tlpSidebar.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30.0!))
         Me.tlpSidebar.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30.0!))
         Me.tlpSidebar.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30.0!))
+        Me.tlpSidebar.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30.0!))
         Me.tlpSidebar.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 6.0!))
         Me.tlpSidebar.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30.0!))
         Me.tlpSidebar.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30.0!))
         Me.tlpSidebar.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30.0!))
         Me.tlpSidebar.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30.0!))
-        Me.tlpSidebar.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
-        Me.tlpSidebar.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
-        Me.tlpSidebar.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
-        Me.tlpSidebar.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
-        Me.tlpSidebar.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
-        Me.tlpSidebar.Size = New System.Drawing.Size(130, 316)
+        Me.tlpSidebar.Size = New System.Drawing.Size(130, 346)
         Me.tlpSidebar.TabIndex = 8
         '
         'btnMonReg
@@ -3585,7 +3614,7 @@ Partial Class frmAMIRNA201901
         Me.btnoReturFarmasi.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DarkGray
         Me.btnoReturFarmasi.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnoReturFarmasi.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnoReturFarmasi.Location = New System.Drawing.Point(0, 288)
+        Me.btnoReturFarmasi.Location = New System.Drawing.Point(0, 318)
         Me.btnoReturFarmasi.Margin = New System.Windows.Forms.Padding(0)
         Me.btnoReturFarmasi.Name = "btnoReturFarmasi"
         Me.btnoReturFarmasi.Size = New System.Drawing.Size(130, 30)
@@ -3604,7 +3633,7 @@ Partial Class frmAMIRNA201901
         Me.btnoFarmasi.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DarkGray
         Me.btnoFarmasi.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnoFarmasi.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnoFarmasi.Location = New System.Drawing.Point(0, 258)
+        Me.btnoFarmasi.Location = New System.Drawing.Point(0, 288)
         Me.btnoFarmasi.Margin = New System.Windows.Forms.Padding(0)
         Me.btnoFarmasi.Name = "btnoFarmasi"
         Me.btnoFarmasi.Size = New System.Drawing.Size(130, 30)
@@ -3623,7 +3652,7 @@ Partial Class frmAMIRNA201901
         Me.btnoReturLogistik.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DarkGray
         Me.btnoReturLogistik.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnoReturLogistik.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnoReturLogistik.Location = New System.Drawing.Point(0, 228)
+        Me.btnoReturLogistik.Location = New System.Drawing.Point(0, 258)
         Me.btnoReturLogistik.Margin = New System.Windows.Forms.Padding(0)
         Me.btnoReturLogistik.Name = "btnoReturLogistik"
         Me.btnoReturLogistik.Size = New System.Drawing.Size(130, 30)
@@ -3661,7 +3690,7 @@ Partial Class frmAMIRNA201901
         Me.btnoLogistik.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DarkGray
         Me.btnoLogistik.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnoLogistik.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnoLogistik.Location = New System.Drawing.Point(0, 198)
+        Me.btnoLogistik.Location = New System.Drawing.Point(0, 228)
         Me.btnoLogistik.Margin = New System.Windows.Forms.Padding(0)
         Me.btnoLogistik.Name = "btnoLogistik"
         Me.btnoLogistik.Size = New System.Drawing.Size(130, 30)
@@ -3691,36 +3720,24 @@ Partial Class frmAMIRNA201901
         Me.btnRegStatus.UseMnemonic = False
         Me.btnRegStatus.UseVisualStyleBackColor = False
         '
-        'Label15
+        'btnCPPT
         '
-        Me.Label15.Anchor = System.Windows.Forms.AnchorStyles.Right
-        Me.Label15.AutoSize = True
-        Me.Label15.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label15.Location = New System.Drawing.Point(43, 400)
-        Me.Label15.Name = "Label15"
-        Me.Label15.Size = New System.Drawing.Size(74, 28)
-        Me.Label15.TabIndex = 22
-        Me.Label15.Text = "Pemeriksaan" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Fisik"
-        Me.Label15.TextAlign = System.Drawing.ContentAlignment.MiddleRight
-        '
-        'mePemeriksaanFisik
-        '
-        Me.mePemeriksaanFisik.Location = New System.Drawing.Point(120, 388)
-        Me.mePemeriksaanFisik.Margin = New System.Windows.Forms.Padding(0, 4, 0, 4)
-        Me.mePemeriksaanFisik.Name = "mePemeriksaanFisik"
-        Me.mePemeriksaanFisik.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.mePemeriksaanFisik.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 9.0!)
-        Me.mePemeriksaanFisik.Properties.Appearance.Options.UseBackColor = True
-        Me.mePemeriksaanFisik.Properties.Appearance.Options.UseFont = True
-        Me.mePemeriksaanFisik.Properties.AppearanceDisabled.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.mePemeriksaanFisik.Properties.AppearanceDisabled.Options.UseBackColor = True
-        Me.mePemeriksaanFisik.Properties.AppearanceReadOnly.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.mePemeriksaanFisik.Properties.AppearanceReadOnly.Options.UseBackColor = True
-        Me.mePemeriksaanFisik.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple
-        Me.mePemeriksaanFisik.Properties.MaxLength = 3000
-        Me.mePemeriksaanFisik.Size = New System.Drawing.Size(520, 52)
-        Me.mePemeriksaanFisik.TabIndex = 40
-        Me.mePemeriksaanFisik.Tag = "9"
+        Me.btnCPPT.BackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer))
+        Me.btnCPPT.FlatAppearance.BorderSize = 0
+        Me.btnCPPT.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DimGray
+        Me.btnCPPT.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DarkGray
+        Me.btnCPPT.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnCPPT.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnCPPT.Location = New System.Drawing.Point(0, 192)
+        Me.btnCPPT.Margin = New System.Windows.Forms.Padding(0)
+        Me.btnCPPT.Name = "btnCPPT"
+        Me.btnCPPT.Size = New System.Drawing.Size(130, 30)
+        Me.btnCPPT.TabIndex = 21
+        Me.btnCPPT.Text = "CPPT"
+        Me.btnCPPT.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.btnCPPT.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
+        Me.btnCPPT.UseMnemonic = False
+        Me.btnCPPT.UseVisualStyleBackColor = False
         '
         'frmAMIRNA201901
         '
@@ -3773,6 +3790,7 @@ Partial Class frmAMIRNA201901
         Me.tlpAsesmen.PerformLayout()
         Me.tlpRiwayat.ResumeLayout(False)
         Me.tlpRiwayat.PerformLayout()
+        CType(Me.mePemeriksaanFisik.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.meOperasi.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.teAsalRegister.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.meAlergi.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -3846,7 +3864,6 @@ Partial Class frmAMIRNA201901
         Me.gcSidebar.ResumeLayout(False)
         Me.gcSidebar.PerformLayout()
         Me.tlpSidebar.ResumeLayout(False)
-        CType(Me.mePemeriksaanFisik.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -4047,4 +4064,5 @@ Partial Class frmAMIRNA201901
     Friend WithEvents Label20 As Label
     Friend WithEvents mePemeriksaanFisik As DevExpress.XtraEditors.MemoEdit
     Friend WithEvents Label15 As Label
+    Public WithEvents btnCPPT As Button
 End Class

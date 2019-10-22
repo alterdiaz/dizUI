@@ -25,6 +25,10 @@ Partial Class frmSettingDB
         Me.tlpForm = New System.Windows.Forms.TableLayoutPanel()
         Me.pBody = New System.Windows.Forms.Panel()
         Me.tlpTop = New System.Windows.Forms.TableLayoutPanel()
+        Me.tboInstance = New DevExpress.XtraEditors.TextEdit()
+        Me.tboSkema = New DevExpress.XtraEditors.TextEdit()
+        Me.Label2 = New System.Windows.Forms.Label()
+        Me.Label1 = New System.Windows.Forms.Label()
         Me.tboDBname = New DevExpress.XtraEditors.TextEdit()
         Me.tboDBsvr = New DevExpress.XtraEditors.TextEdit()
         Me.tboDBport = New DevExpress.XtraEditors.TextEdit()
@@ -35,31 +39,24 @@ Partial Class frmSettingDB
         Me.lblDBname = New System.Windows.Forms.Label()
         Me.lblDBuid = New System.Windows.Forms.Label()
         Me.lblDBpwd = New System.Windows.Forms.Label()
-        Me.lblDBtype = New System.Windows.Forms.Label()
-        Me.lueDBtype = New DevExpress.XtraEditors.LookUpEdit()
         Me.pHeader = New System.Windows.Forms.Panel()
         Me.btnSave = New System.Windows.Forms.Button()
         Me.pTitle = New System.Windows.Forms.Panel()
         Me.lblTitle = New System.Windows.Forms.Label()
         Me.pExit = New System.Windows.Forms.PictureBox()
-        Me.Label1 = New System.Windows.Forms.Label()
-        Me.Label2 = New System.Windows.Forms.Label()
-        Me.tboSkema = New DevExpress.XtraEditors.TextEdit()
-        Me.tboInstance = New DevExpress.XtraEditors.TextEdit()
         Me.tlpForm.SuspendLayout()
         Me.pBody.SuspendLayout()
         Me.tlpTop.SuspendLayout()
+        CType(Me.tboInstance.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.tboSkema.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.tboDBname.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.tboDBsvr.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.tboDBport.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.tboDBuid.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.tboDBpwd.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.lueDBtype.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.pHeader.SuspendLayout()
         Me.pTitle.SuspendLayout()
         CType(Me.pExit, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.tboSkema.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.tboInstance.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'tlpForm
@@ -79,7 +76,7 @@ Partial Class frmSettingDB
         Me.tlpForm.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30.0!))
         Me.tlpForm.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
         Me.tlpForm.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 2.0!))
-        Me.tlpForm.Size = New System.Drawing.Size(356, 265)
+        Me.tlpForm.Size = New System.Drawing.Size(356, 240)
         Me.tlpForm.TabIndex = 8
         '
         'pBody
@@ -91,7 +88,7 @@ Partial Class frmSettingDB
         Me.pBody.Location = New System.Drawing.Point(2, 30)
         Me.pBody.Margin = New System.Windows.Forms.Padding(0)
         Me.pBody.Name = "pBody"
-        Me.pBody.Size = New System.Drawing.Size(352, 233)
+        Me.pBody.Size = New System.Drawing.Size(352, 208)
         Me.pBody.TabIndex = 7
         '
         'tlpTop
@@ -115,12 +112,10 @@ Partial Class frmSettingDB
         Me.tlpTop.Controls.Add(Me.lblDBname, 1, 1)
         Me.tlpTop.Controls.Add(Me.lblDBuid, 1, 6)
         Me.tlpTop.Controls.Add(Me.lblDBpwd, 1, 7)
-        Me.tlpTop.Controls.Add(Me.lblDBtype, 1, 8)
-        Me.tlpTop.Controls.Add(Me.lueDBtype, 2, 8)
         Me.tlpTop.Dock = System.Windows.Forms.DockStyle.Fill
         Me.tlpTop.Location = New System.Drawing.Point(0, 30)
         Me.tlpTop.Name = "tlpTop"
-        Me.tlpTop.RowCount = 10
+        Me.tlpTop.RowCount = 9
         Me.tlpTop.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
         Me.tlpTop.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 24.0!))
         Me.tlpTop.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 24.0!))
@@ -129,10 +124,70 @@ Partial Class frmSettingDB
         Me.tlpTop.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 24.0!))
         Me.tlpTop.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 24.0!))
         Me.tlpTop.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 24.0!))
-        Me.tlpTop.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 24.0!))
         Me.tlpTop.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
-        Me.tlpTop.Size = New System.Drawing.Size(352, 203)
+        Me.tlpTop.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
+        Me.tlpTop.Size = New System.Drawing.Size(352, 178)
         Me.tlpTop.TabIndex = 5
+        '
+        'tboInstance
+        '
+        Me.tboInstance.Anchor = System.Windows.Forms.AnchorStyles.Left
+        Me.tboInstance.Location = New System.Drawing.Point(136, 103)
+        Me.tboInstance.Margin = New System.Windows.Forms.Padding(0)
+        Me.tboInstance.Name = "tboInstance"
+        Me.tboInstance.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[True]
+        Me.tboInstance.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.tboInstance.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 9.0!)
+        Me.tboInstance.Properties.Appearance.Options.UseBackColor = True
+        Me.tboInstance.Properties.Appearance.Options.UseFont = True
+        Me.tboInstance.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple
+        Me.tboInstance.Properties.NullText = "[Kosong]"
+        Me.tboInstance.Properties.NullValuePrompt = "[Belum Diisi]"
+        Me.tboInstance.Size = New System.Drawing.Size(187, 20)
+        Me.tboInstance.TabIndex = 37
+        Me.tboInstance.Tag = "namalengkap"
+        '
+        'tboSkema
+        '
+        Me.tboSkema.Anchor = System.Windows.Forms.AnchorStyles.Left
+        Me.tboSkema.Location = New System.Drawing.Point(136, 79)
+        Me.tboSkema.Margin = New System.Windows.Forms.Padding(0)
+        Me.tboSkema.Name = "tboSkema"
+        Me.tboSkema.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[True]
+        Me.tboSkema.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.tboSkema.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 9.0!)
+        Me.tboSkema.Properties.Appearance.Options.UseBackColor = True
+        Me.tboSkema.Properties.Appearance.Options.UseFont = True
+        Me.tboSkema.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple
+        Me.tboSkema.Properties.NullText = "[Kosong]"
+        Me.tboSkema.Properties.NullValuePrompt = "[Belum Diisi]"
+        Me.tboSkema.Size = New System.Drawing.Size(187, 20)
+        Me.tboSkema.TabIndex = 37
+        Me.tboSkema.Tag = "namalengkap"
+        '
+        'Label2
+        '
+        Me.Label2.Anchor = System.Windows.Forms.AnchorStyles.Right
+        Me.Label2.AutoSize = True
+        Me.Label2.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label2.Location = New System.Drawing.Point(79, 106)
+        Me.Label2.Name = "Label2"
+        Me.Label2.Size = New System.Drawing.Size(54, 14)
+        Me.Label2.TabIndex = 34
+        Me.Label2.Text = "Instance"
+        Me.Label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        '
+        'Label1
+        '
+        Me.Label1.Anchor = System.Windows.Forms.AnchorStyles.Right
+        Me.Label1.AutoSize = True
+        Me.Label1.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label1.Location = New System.Drawing.Point(90, 82)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(43, 14)
+        Me.Label1.TabIndex = 33
+        Me.Label1.Text = "Skema"
+        Me.Label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
         'tboDBname
         '
@@ -284,37 +339,6 @@ Partial Class frmSettingDB
         Me.lblDBpwd.Text = "Password"
         Me.lblDBpwd.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
-        'lblDBtype
-        '
-        Me.lblDBtype.Anchor = System.Windows.Forms.AnchorStyles.Right
-        Me.lblDBtype.AutoSize = True
-        Me.lblDBtype.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblDBtype.Location = New System.Drawing.Point(46, 178)
-        Me.lblDBtype.Name = "lblDBtype"
-        Me.lblDBtype.Size = New System.Drawing.Size(87, 14)
-        Me.lblDBtype.TabIndex = 51
-        Me.lblDBtype.Text = "Jenis Database"
-        Me.lblDBtype.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        '
-        'lueDBtype
-        '
-        Me.lueDBtype.Anchor = System.Windows.Forms.AnchorStyles.Left
-        Me.lueDBtype.Location = New System.Drawing.Point(136, 175)
-        Me.lueDBtype.Margin = New System.Windows.Forms.Padding(0)
-        Me.lueDBtype.Name = "lueDBtype"
-        Me.lueDBtype.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[False]
-        Me.lueDBtype.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.lueDBtype.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 9.0!)
-        Me.lueDBtype.Properties.Appearance.Options.UseBackColor = True
-        Me.lueDBtype.Properties.Appearance.Options.UseFont = True
-        Me.lueDBtype.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple
-        Me.lueDBtype.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.lueDBtype.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id", "ID", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default], DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("content", "Content")})
-        Me.lueDBtype.Properties.NullText = "[Isian belum dipilih]"
-        Me.lueDBtype.Properties.NullValuePrompt = "[Isian belum dipilih]"
-        Me.lueDBtype.Size = New System.Drawing.Size(126, 20)
-        Me.lueDBtype.TabIndex = 56
-        '
         'pHeader
         '
         Me.pHeader.BackColor = System.Drawing.Color.FromArgb(CType(CType(66, Byte), Integer), CType(CType(66, Byte), Integer), CType(CType(66, Byte), Integer))
@@ -329,7 +353,7 @@ Partial Class frmSettingDB
         '
         'btnSave
         '
-        Me.btnSave.BackColor = System.Drawing.Color.green
+        Me.btnSave.BackColor = System.Drawing.Color.Green
         Me.btnSave.Dock = System.Windows.Forms.DockStyle.Right
         Me.btnSave.FlatAppearance.BorderSize = 0
         Me.btnSave.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DimGray
@@ -382,72 +406,12 @@ Partial Class frmSettingDB
         Me.pExit.TabIndex = 12
         Me.pExit.TabStop = False
         '
-        'Label1
-        '
-        Me.Label1.Anchor = System.Windows.Forms.AnchorStyles.Right
-        Me.Label1.AutoSize = True
-        Me.Label1.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label1.Location = New System.Drawing.Point(90, 82)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(43, 14)
-        Me.Label1.TabIndex = 33
-        Me.Label1.Text = "Skema"
-        Me.Label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        '
-        'Label2
-        '
-        Me.Label2.Anchor = System.Windows.Forms.AnchorStyles.Right
-        Me.Label2.AutoSize = True
-        Me.Label2.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label2.Location = New System.Drawing.Point(79, 106)
-        Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(54, 14)
-        Me.Label2.TabIndex = 34
-        Me.Label2.Text = "Instance"
-        Me.Label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        '
-        'tboSkema
-        '
-        Me.tboSkema.Anchor = System.Windows.Forms.AnchorStyles.Left
-        Me.tboSkema.Location = New System.Drawing.Point(136, 79)
-        Me.tboSkema.Margin = New System.Windows.Forms.Padding(0)
-        Me.tboSkema.Name = "tboSkema"
-        Me.tboSkema.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[True]
-        Me.tboSkema.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.tboSkema.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 9.0!)
-        Me.tboSkema.Properties.Appearance.Options.UseBackColor = True
-        Me.tboSkema.Properties.Appearance.Options.UseFont = True
-        Me.tboSkema.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple
-        Me.tboSkema.Properties.NullText = "[Kosong]"
-        Me.tboSkema.Properties.NullValuePrompt = "[Belum Diisi]"
-        Me.tboSkema.Size = New System.Drawing.Size(187, 20)
-        Me.tboSkema.TabIndex = 37
-        Me.tboSkema.Tag = "namalengkap"
-        '
-        'tboInstance
-        '
-        Me.tboInstance.Anchor = System.Windows.Forms.AnchorStyles.Left
-        Me.tboInstance.Location = New System.Drawing.Point(136, 103)
-        Me.tboInstance.Margin = New System.Windows.Forms.Padding(0)
-        Me.tboInstance.Name = "tboInstance"
-        Me.tboInstance.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[True]
-        Me.tboInstance.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.tboInstance.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 9.0!)
-        Me.tboInstance.Properties.Appearance.Options.UseBackColor = True
-        Me.tboInstance.Properties.Appearance.Options.UseFont = True
-        Me.tboInstance.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple
-        Me.tboInstance.Properties.NullText = "[Kosong]"
-        Me.tboInstance.Properties.NullValuePrompt = "[Belum Diisi]"
-        Me.tboInstance.Size = New System.Drawing.Size(187, 20)
-        Me.tboInstance.TabIndex = 37
-        Me.tboInstance.Tag = "namalengkap"
-        '
         'frmSettingDB
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer))
-        Me.ClientSize = New System.Drawing.Size(356, 265)
+        Me.ClientSize = New System.Drawing.Size(356, 240)
         Me.Controls.Add(Me.tlpForm)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
         Me.MaximizeBox = False
@@ -461,17 +425,16 @@ Partial Class frmSettingDB
         Me.pBody.ResumeLayout(False)
         Me.tlpTop.ResumeLayout(False)
         Me.tlpTop.PerformLayout()
+        CType(Me.tboInstance.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.tboSkema.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.tboDBname.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.tboDBsvr.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.tboDBport.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.tboDBuid.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.tboDBpwd.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.lueDBtype.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.pHeader.ResumeLayout(False)
         Me.pTitle.ResumeLayout(False)
         CType(Me.pExit, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.tboSkema.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.tboInstance.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -486,8 +449,6 @@ Partial Class frmSettingDB
     Friend WithEvents lblDBname As System.Windows.Forms.Label
     Friend WithEvents lblDBuid As System.Windows.Forms.Label
     Friend WithEvents lblDBpwd As System.Windows.Forms.Label
-    Friend WithEvents lblDBtype As System.Windows.Forms.Label
-    Friend WithEvents lueDBtype As DevExpress.XtraEditors.LookUpEdit
     Friend WithEvents tboDBname As DevExpress.XtraEditors.TextEdit
     Friend WithEvents tboDBsvr As DevExpress.XtraEditors.TextEdit
     Friend WithEvents tboDBport As DevExpress.XtraEditors.TextEdit

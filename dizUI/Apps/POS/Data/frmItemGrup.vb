@@ -93,7 +93,7 @@
         Me.Cursor = Cursors.WaitCursor
 
         Dim mysqls As New SQLs(dbstring)
-        mysqls.DMLQuery("select i.iditemgrup,i.itemgrup,i.isdeleted,d.generalcode as statdata from itemgrup i left join sys_generalcode d on d.idgeneral=i.isdeleted and d.gctype='DELETE'", "data")
+        mysqls.DMLQuery("select i.iditemgrup,i.itemgrup,i.isdeleted,i.priority,d.generalcode as statdata from itemgrup i left join sys_generalcode d on d.idgeneral=i.isdeleted and d.gctype='DELETE' order by i.itemgrup asc", "data")
         gcData.DataSource = mysqls.dataTable("data")
         gvData.BestFitColumns()
 
@@ -144,11 +144,11 @@
 
         If statData = statusData.Baru Then
             idData = GenerateGUID()
-            field.AddRange(New String() {"iditemgrup", "itemgrup", "createdby", "createddate"})
-            value.AddRange(New Object() {idData, teNama.Text, userid, nowTime})
+            field.AddRange(New String() {"iditemgrup", "itemgrup", "priority", "createdby", "createddate"})
+            value.AddRange(New Object() {idData, teNama.Text, sePriority.EditValue, userid, nowTime})
         Else
-            field.AddRange(New String() {"iditemgrup", "itemgrup", "updatedby", "updateddate"})
-            value.AddRange(New Object() {idData, teNama.Text, userid, nowTime})
+            field.AddRange(New String() {"iditemgrup", "itemgrup", "priority", "updatedby", "updateddate"})
+            value.AddRange(New Object() {idData, teNama.Text, sePriority.EditValue, userid, nowTime})
         End If
 
         If dtSQL.datasetSave("itemgrup", idData, field, value, False) = True Then
@@ -199,6 +199,7 @@
         Try
             Dim dcol As DataRow = gvData.GetDataRow(e.FocusedRowHandle)
             teNama.Text = dcol("itemgrup")
+            sePriority.EditValue = dcol("priority")
 
             idData = dcol("iditemgrup")
 

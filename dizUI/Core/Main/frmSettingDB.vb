@@ -44,10 +44,10 @@
         dttbl.Rows.Add(dr)
         ds.Tables.Add(dttbl)
 
-        lueDBtype.Properties.DataSource = ds.Tables("dbtype")
-        lueDBtype.Properties.ValueMember = "id"
-        lueDBtype.Properties.DisplayMember = "content"
-        lueDBtype.EditValue = Nothing
+        'lueDBtype.Properties.DataSource = ds.Tables("dbtype")
+        'lueDBtype.Properties.ValueMember = "id"
+        'lueDBtype.Properties.DisplayMember = "content"
+        'lueDBtype.EditValue = Nothing
 
         tboDBname.Text = ""
         tboDBname.Properties.MaxLength = 500
@@ -73,7 +73,7 @@
             tboDBpwd.Text = lite.getDataSet("getdbstring", 0, "password")
             tboDBsvr.Text = lite.getDataSet("getdbstring", 0, "ipserver")
             tboDBuid.Text = lite.getDataSet("getdbstring", 0, "username")
-            lueDBtype.EditValue = lite.getDataSet("getdbstring", 0, "dbtype")
+            'lueDBtype.EditValue = lite.getDataSet("getdbstring", 0, "dbtype")
             tboSkema.Text = lite.getDataSet("getdbstring", 0, "schema")
             tboInstance.Text = lite.getDataSet("getdbstring", 0, "instance")
         Else
@@ -147,7 +147,7 @@
         Dim value As New List(Of Object)
         Dim iset As New dtsetSQLI(dblite)
         field.AddRange(New String() {"iddbconn", "databasename", "ipserver", "schema", "instance", "port", "username", "password", "dbtype", "dblocation"})
-        value.AddRange(New String() {idData, tboDBname.Text, tboDBsvr.Text, tboSkema.Text, tboInstance.Text, tboDBport.Text, tboDBuid.Text, tboDBpwd.Text, lueDBtype.EditValue, "SERVER"})
+        value.AddRange(New String() {idData, tboDBname.Text, tboDBsvr.Text, tboSkema.Text, tboInstance.Text, tboDBport.Text, tboDBuid.Text, tboDBpwd.Text, "SQLS", "SERVER"})
         If iset.datasetSave("dbconn", idData, field, value, False) = True Then
             dizMsgbox("Silahkan restart aplikasi ini", dizMsgboxStyle.Info, Me)
             Me.DialogResult = Windows.Forms.DialogResult.OK
@@ -162,10 +162,10 @@
         If tboDBport.Text = "" Then retval = False
         If tboDBuid.Text = "" Then retval = False
         If tboDBpwd.Text = "" Then retval = False
-        If lueDBtype.EditValue Is Nothing Then retval = False
-        If lueDBtype.EditValue = "SQLS" Then
-            If tboSkema.Text = "" Then retval = False
-        End If
+        'If lueDBtype.EditValue Is Nothing Then retval = False
+        'If lueDBtype.EditValue = "SQLS" Then
+        If tboSkema.Text = "" Then retval = False
+        'End If
 
         'If tboDBsvr.Text.Contains(".") = True Then
         '    retval = True

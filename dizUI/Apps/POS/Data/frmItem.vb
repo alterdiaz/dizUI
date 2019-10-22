@@ -1,4 +1,7 @@
-﻿Public Class frmItem
+﻿Imports DevExpress.XtraEditors.Controls
+Imports DevExpress.XtraGrid.Views.Base
+
+Public Class frmItem
     Const HTCAPTION = &H2
     Const WM_NCLBUTTONDOWN = &HA1
 
@@ -93,7 +96,7 @@
         Me.Cursor = Cursors.WaitCursor
 
         Dim mysqls As New SQLs(dbstring)
-        mysqls.DMLQuery("select i.iditem,i.iditemgrup,i.itemtype,gc.generalcode as type,g.itemgrup as grup,i.kode,i.iditembrand,ib.nama as itembrand,i.item,i.isdeleted,d.generalcode as statdata,i.idsatuan,s.satuan,i.remarks from item i left join itembrand ib on i.iditembrand=ib.iditembrand left join satuan s on i.idsatuan=s.idsatuan left join itemgrup g on i.iditemgrup=g.iditemgrup left join sys_generalcode gc on gc.idgeneral=i.itemtype and gc.gctype='ITEMTYPE' left join sys_generalcode d on d.idgeneral=i.isdeleted and d.gctype='DELETE' order by i.item asc", "data")
+        mysqls.DMLQuery("select i.iditem,i.iditemgrup,i.itemtype,gc.generalcode as type,g.itemgrup as grup,i.kodeupc,i.kode,i.iditembrand,ib.nama as itembrand,i.item,i.isdeleted,d.generalcode as statdata,i.idsatuan,s.satuan,i.remarks from item i left join itembrand ib on i.iditembrand=ib.iditembrand left join satuan s on i.idsatuan=s.idsatuan left join itemgrup g on i.iditemgrup=g.iditemgrup left join sys_generalcode gc on gc.idgeneral=i.itemtype and gc.gctype='ITEMTYPE' left join sys_generalcode d on d.idgeneral=i.isdeleted and d.gctype='DELETE' order by i.item asc", "data")
         gcData.DataSource = mysqls.dataTable("data")
         gvData.BestFitColumns()
 
@@ -168,8 +171,14 @@
 
     Private Sub btnSave_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnSave.Click
         If checkEntry(tlpField) = False Then
-            dizMsgbox("Isian belum benar, silahkan cek isian anda", dizMsgboxStyle.peringatan, Me)
+            dizMsgbox("Isian belum benar, silahkan cek isian anda", dizMsgboxStyle.Peringatan, Me)
             Exit Sub
+        End If
+        If teKodeUPC.Text <> "0" Then
+            If teKodeUPC.Text.Length <> 13 Then
+                dizMsgbox("Kode UPC harus Angka sebanyak 13 digit", dizMsgboxStyle.Peringatan, Me)
+                Exit Sub
+            End If
         End If
         If statData = statusData.Baru Then
             Dim sqls As New SQLs(dbstring)
@@ -183,7 +192,7 @@
             If sqls.getDataSet("exist") = 0 Then
                 idData = "-1"
             Else
-                dizMsgbox("Data tersebut sudah ada", dizMsgboxStyle.info, Me)
+                dizMsgbox("Data tersebut sudah ada", dizMsgboxStyle.Info, Me)
                 teNama.Focus()
                 Exit Sub
             End If
@@ -197,7 +206,7 @@
             End If
             sqls.DMLQuery("Select item from item where replace(item,' ','')='" & teNama.Text.Replace(" ", "") & "' and itemgrup='" & lueGrup.EditValue & "' and itemtype='" & lueType.EditValue & "' and iditem<>'" & idData & "'", "exist")
             If sqls.getDataSet("exist") > 0 Then
-                dizMsgbox("Data tersebut sudah ada", dizMsgboxStyle.info, Me)
+                dizMsgbox("Data tersebut sudah ada", dizMsgboxStyle.Info, Me)
                 teNama.Focus()
                 Exit Sub
             End If
@@ -206,12 +215,32 @@
         Dim dtSQL As New dtsetSQLS(dbstring)
         Dim field As New List(Of String)
         Dim value As New List(Of Object)
-
+        If teKodeUPC.Text = "0" Then
+            Dim tmp1 As String = Format(nowTime, "yyyy")
+            Dim tmp2 As String = CStr(CInt(Format(nowTime, "MM").Substring(0, 1)) + CInt(Format(nowTime, "MM").Substring(1, 1)))
+            Dim tmp3 As String = CStr(CInt(Format(nowTime, "dd").Substring(0, 1)) + CInt(Format(nowTime, "dd").Substring(0, 1)))
+            Dim tmp4 As String = Format(nowTime, "HHmmssfff")
+            If Len(CStr(tmp3)) = 2 Then
+                tmp3 = CInt(CStr(tmp3).Substring(0, 1)) + CInt(CStr(tmp3).Substring(1, 1))
+            End If
+            Dim tmp11 As Integer = 0
+            tmp11 = CInt(tmp1.Substring(0, 1)) + CInt(tmp1.Substring(1, 1)) + CInt(tmp1.Substring(2, 1)) + CInt(tmp1.Substring(3, 1))
+            tmp1 = CStr(tmp11)
+            teKodeUPC.Text = tmp1 + tmp2 + tmp3 + tmp4
+        End If
         If statData = statusData.Baru Then
             idData = GenerateGUID()
-            teKode.Text = generateno3("", lueType.Text.ToUpper.Chars(0), "yyyy", False)
-            field.AddRange(New String() {"iditem", "iditembrand", "idsatuan", "itemgrup", "itemtype", "kode", "item", "remarks", "isdeleted", "createdby", "createddate"})
-            value.AddRange(New Object() {idData, lueBrand.EditValue, lueSatuan.EditValue, lueGrup.EditValue, lueType.EditValue, teKode.Text, teNama.Text, teRemarks.Text, 0, userid, nowTime})
+            If teKode.Text.Length < 5 Then
+                teKode.Text = Format(nowTime, "yyyyMMddHHmmssfff")
+            End If
+
+            Dim sqlscomp As New SQLs(dbstring)
+            sqlscomp.CallSP("spGetCompany", "CompID")
+            Dim idcomp As String = sqlscomp.getDataSet("CompID", 0, "value")
+
+            'teKode.Text = generateno3("", lueType.Text.ToUpper.Chars(0), "yyyy", False)
+            field.AddRange(New String() {"iditem", "iditembrand", "idsatuan", "iditemgrup", "itemtype", "kode", "kodeupc", "item", "remarks", "isdeleted", "createdby", "createddate", "idcompany"})
+            value.AddRange(New Object() {idData, lueBrand.EditValue, lueSatuan.EditValue, lueGrup.EditValue, lueType.EditValue, teKode.Text, teKodeUPC.Text, teNama.Text, teRemarks.Text, 0, userid, nowTime, idcomp})
         Else
             Dim sql1 As New SQLs(dbstring)
             sql1.DMLQuery("select idtransaksidt from transaksidt where iditem='" & idData & "'", "cektrf")
@@ -238,6 +267,8 @@
     Private idData As String = "-1"
 
     Private Sub btnDelete_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnDelete.Click
+        If gvData.FocusedRowHandle < 0 Then Exit Sub
+
         Dim retval As Boolean = False
         Dim sqls As New dtsetSQLS(dbstring)
         Dim field As New List(Of String)
@@ -325,7 +356,7 @@
     Private Sub btnExportFormat_Click(sender As Object, e As EventArgs) Handles btnExportFormat.Click
         isExport = True
         Dim sqls As New SQLs(dbstring)
-        sqls.DMLQuery("select i.iditem,i.iditemgrup,i.itemtype,gc.generalcode as type,g.itemgrup as grup,i.kode,i.item,i.isdeleted,d.generalcode as statdata,i.idsatuan,s.satuan,i.remarks from item i left join satuan s on i.idsatuan=s.idsatuan left join itemgrup g on i.iditemgrup=g.iditemgrup left join sys_generalcode gc on gc.idgeneral=i.itemtype and gc.gctype='ITEMTYPE' left join sys_generalcode d on d.idgeneral=i.isdeleted and d.gctype='DELETE' where 1=0", "data")
+        sqls.DMLQuery("select i.iditem,i.iditemgrup,i.itemtype,gc.generalcode as type,g.itemgrup as grup,i.kode,i.kodeupc,i.item,i.isdeleted,d.generalcode as statdata,i.idsatuan,s.satuan,i.remarks from item i left join satuan s on i.idsatuan=s.idsatuan left join itemgrup g on i.iditemgrup=g.iditemgrup left join sys_generalcode gc on gc.idgeneral=i.itemtype and gc.gctype='ITEMTYPE' left join sys_generalcode d on d.idgeneral=i.isdeleted and d.gctype='DELETE' where 1=0", "data")
         gcData.DataSource = sqls.dataTable("data")
         gvData.BestFitColumns()
 
@@ -349,6 +380,14 @@
         Dim exp As New frmExportExcel(gvtmp, True, False, False)
         tambahChild(exp)
         exp.ShowDialog()
+
+        gcKode.ColumnEdit = riteKode
+        GridColumn6.ColumnEdit = riteKode
+        GridColumn2.ColumnEdit = rlueGrup
+        gcitemtype.ColumnEdit = rlueTipe
+        GridColumn4.ColumnEdit = rlueBrand
+        gcidsatuan.ColumnEdit = rlueSatuan
+        gcisdeleted.ColumnEdit = rlueStatus
 
         btnNew_Click(btnNew, Nothing)
         isExport = False
@@ -376,11 +415,11 @@
                     Dim brggrup As String = If(dr(0), "")
                     Dim brgtipe As String = If(dr(1), "")
                     Dim brgkode As String = If(dr(2), "")
-                    Dim brgbrand As String = If(dr(3), "")
-                    Dim brgname As String = If(dr(4), "")
-                    Dim brgsat As String = If(dr(5), "")
-                    Dim brgstat As String = If(dr(6), "")
-
+                    Dim brgkodeupc As String = If(dr(3), "")
+                    Dim brgbrand As String = If(dr(4), "")
+                    Dim brgname As String = If(dr(5), "")
+                    Dim brgsat As String = If(dr(6), "")
+                    Dim brgstat As String = If(dr(7), "")
                     If brgname = "" Or brggrup = "" Or brgtipe = "" Or brgsat = "" Or brgbrand = "" Or (brgname = "" And brggrup = "" And brgtipe = "" And brgsat = "" And brgbrand = "") Then Exit Try
 
                     Dim iditem As String = "0"
@@ -389,7 +428,21 @@
                     Dim idtipe As String = "0"
                     Dim idbrand As String = "0"
 
-                    If brgkode = "" Or brgkode = "-" Or brgkode = "0" Then brgkode = Format(nowTime, "yyyyMMddHHmmssfff")
+                    If brgkode.Length < 5 Then brgkode = Format(nowTime, "yyyyMMddHHmmssfff")
+                    If IsNumeric(brgkodeupc) = False Or brgkodeupc.Length <> 13 Then
+                        Dim tmp1 As String = Format(nowTime, "yyyy")
+                        Dim tmp2 As String = CStr(CInt(Format(nowTime, "MM").Substring(0, 1)) + CInt(Format(nowTime, "MM").Substring(1, 1)))
+                        Dim tmp3 As String = CStr(CInt(Format(nowTime, "dd").Substring(0, 1)) + CInt(Format(nowTime, "dd").Substring(0, 1)))
+                        Dim tmp4 As String = Format(nowTime, "HHmmssfff")
+                        If Len(CStr(tmp3)) = 2 Then
+                            tmp3 = CInt(CStr(tmp3).Substring(0, 1)) + CInt(CStr(tmp3).Substring(1, 1))
+                        End If
+                        Dim tmp11 As Integer = 0
+                        tmp11 = CInt(tmp1.Substring(0, 1)) + CInt(tmp1.Substring(1, 1)) + CInt(tmp1.Substring(2, 1)) + CInt(tmp1.Substring(3, 1))
+                        tmp1 = CStr(tmp11)
+                        brgkodeupc = tmp1 + tmp2 + tmp3 + tmp4
+                    End If
+
                     Dim sqls As New SQLs(dbstring)
                     If brgname <> "" Then
                         sqls.DMLQuery("select * from item where replace(item,' ','')='" & brgname.Replace(" ", "") & "'", "cekitem")
@@ -459,8 +512,8 @@
                         Dim field1 As New List(Of String)
                         Dim value1 As New List(Of Object)
                         Dim dtsqls1 As New dtsetSQLS(dbstring)
-                        field1.AddRange(New String() {"iditem", "iditembrand", "idsatuan", "iditemgrup", "itemtype", "kode", "item", "isppn", "ispph", "remarks", "isdeleted", "createdby", "idcompany"})
-                        value1.AddRange(New Object() {iditem, idbrand, idsat, idgrup, idtipe, brgkode, brgname, 0, 0, "-", 0, userid, idcomp})
+                        field1.AddRange(New String() {"iditem", "iditembrand", "idsatuan", "iditemgrup", "itemtype", "kode", "kodeupc", "item", "isppn", "ispph", "remarks", "isdeleted", "createdby", "idcompany"})
+                        value1.AddRange(New Object() {iditem, idbrand, idsat, idgrup, idtipe, brgkode, brgkodeupc, brgname, 0, 0, "-", 0, userid, idcomp})
 
                         If dtsqls1.datasetSave("item", iditem, field1, value1, False) = True Then
                             cnt += 1
@@ -470,9 +523,9 @@
                 End Try
             Next
             If cnt > 0 Then
-                dizMsgbox("Item Baru terimport sebanyak " & cnt, dizMsgboxStyle.Info)
+                dizMsgbox("Item Baru terimport sebanyak " & cnt, dizMsgboxStyle.Info, Me)
             Else
-                dizMsgbox("Tidak ada Item Baru yang diimport", dizMsgboxStyle.Info)
+                dizMsgbox("Tidak ada Item Baru yang diimport", dizMsgboxStyle.Info, Me)
             End If
             btnNew_Click(btnNew, Nothing)
         End If
@@ -515,7 +568,7 @@
         loadScr.BringToFront()
         Application.DoEvents()
         Me.Cursor = Cursors.WaitCursor
-        Threading.Thread.Sleep(1000)
+        Threading.Thread.Sleep(100)
 
         For i As Integer = 0 To gvData.RowCount - 1
             Dim dr As DataRow = gvData.GetDataRow(i)
@@ -523,8 +576,8 @@
                 Dim dtsql As New dtsetSQLS(dbstring)
                 Dim field As New List(Of String)
                 Dim value As New List(Of Object)
-                field.AddRange(New String() {"iditem", "iditembrand", "itemtype", "iditemgrup", "idsatuan", "kode", "item", "isdeleted", "updatedby", "updateddate"})
-                value.AddRange(New Object() {idData, dr("iditembrand"), dr("itemtype"), dr("iditemgrup"), dr("idsatuan"), dr("kode"), dr("item"), dr("isdeleted"), userid, nowTime})
+                field.AddRange(New String() {"iditem", "iditembrand", "itemtype", "iditemgrup", "idsatuan", "kode", "kodeupc", "item", "isdeleted", "updatedby", "updateddate"})
+                value.AddRange(New Object() {idData, dr("iditembrand"), dr("itemtype"), dr("iditemgrup"), dr("idsatuan"), dr("kode"), dr("kodeupc"), dr("item"), dr("isdeleted"), userid, nowTime})
                 dtsql.datasetSave("item", idData, field, value, False)
                 isiLog(userid, dbstring, field, value, "item")
             End If
@@ -535,6 +588,116 @@
 
         dizMsgbox("Data tersimpan", dizMsgboxStyle.Info, Me)
         btnNew_Click(btnNew, Nothing)
+    End Sub
+
+    Private Sub btnLabel_Click(sender As Object, e As EventArgs) Handles btnLabel.Click
+        Dim itemsel10 As New frmSelectLabel10Item("")
+        itemsel10.ShowDialog(Me)
+    End Sub
+
+    Private Sub teKodeUPC_KeyPress(sender As Object, e As KeyPressEventArgs) Handles teKodeUPC.KeyPress
+        If System.Text.RegularExpressions.Regex.IsMatch(e.KeyChar, rNumeric) = False And Asc(e.KeyChar) <> 8 Then
+            e.Handled = True
+        End If
+    End Sub
+
+    Private Sub gvData_CellValueChanged(sender As Object, e As CellValueChangedEventArgs) Handles gvData.CellValueChanged
+        'If e.RowHandle < 0 Then Exit Sub
+        'RemoveHandler gvData.CellValueChanged, AddressOf gvData_CellValueChanged
+
+        'If e.Column Is GridColumn6 Then
+        '    If IsNumeric(e.Value) = False Then
+        '        Dim tmp1 As String = Format(nowTime, "yyyy")
+        '        Dim tmp2 As String = CStr(CInt(Format(nowTime, "MM").Substring(0, 1)) + CInt(Format(nowTime, "MM").Substring(1, 1)))
+        '        Dim tmp3 As String = CStr(CInt(Format(nowTime, "dd").Substring(0, 1)) + CInt(Format(nowTime, "dd").Substring(0, 1)))
+        '        Dim tmp4 As String = Format(nowTime, "HHmmssfff")
+        '        If Len(CStr(tmp3)) = 2 Then
+        '            tmp3 = CInt(CStr(tmp3).Substring(0, 1)) + CInt(CStr(tmp3).Substring(1, 1))
+        '        End If
+        '        Dim tmp11 As Integer = 0
+        '        tmp11 = CInt(tmp1.Substring(0, 1)) + CInt(tmp1.Substring(1, 1)) + CInt(tmp1.Substring(2, 1)) + CInt(tmp1.Substring(3, 1))
+        '        tmp1 = CStr(tmp11)
+        '        gvData.SetFocusedRowCellValue(GridColumn6, tmp1 + tmp2 + tmp3 + tmp4)
+        '    Else
+        '        If CStr(e.Value).Length <> 13 Then
+        '            Dim tmp1 As String = Format(nowTime, "yyyy")
+        '            Dim tmp2 As String = CStr(CInt(Format(nowTime, "MM").Substring(0, 1)) + CInt(Format(nowTime, "MM").Substring(1, 1)))
+        '            Dim tmp3 As String = CStr(CInt(Format(nowTime, "dd").Substring(0, 1)) + CInt(Format(nowTime, "dd").Substring(0, 1)))
+        '            Dim tmp4 As String = Format(nowTime, "HHmmssfff")
+        '            If Len(CStr(tmp3)) = 2 Then
+        '                tmp3 = CInt(CStr(tmp3).Substring(0, 1)) + CInt(CStr(tmp3).Substring(1, 1))
+        '            End If
+        '            Dim tmp11 As Integer = 0
+        '            tmp11 = CInt(tmp1.Substring(0, 1)) + CInt(tmp1.Substring(1, 1)) + CInt(tmp1.Substring(2, 1)) + CInt(tmp1.Substring(3, 1))
+        '            tmp1 = CStr(tmp11)
+        '            gvData.SetFocusedRowCellValue(GridColumn6, tmp1 + tmp2 + tmp3 + tmp4)
+        '        End If
+        '    End If
+        'End If
+
+        'AddHandler gvData.CellValueChanged, AddressOf gvData_CellValueChanged
+    End Sub
+
+    Private Sub gvData_ValidatingEditor(sender As Object, e As BaseContainerValidateEditorEventArgs) Handles gvData.ValidatingEditor
+        Dim view As ColumnView = sender
+        Dim column As DevExpress.XtraGrid.Columns.GridColumn = view.FocusedColumn
+        If column Is GridColumn6 Then
+            If IsNumeric(e.Value) = False Or CStr(e.Value).Length <> 13 Then
+                Dim tmp1 As String = Format(nowTime, "yyyy")
+                Dim tmp2 As String = CStr(CInt(Format(nowTime, "MM").Substring(0, 1)) + CInt(Format(nowTime, "MM").Substring(1, 1)))
+                Dim tmp3 As String = CStr(CInt(Format(nowTime, "dd").Substring(0, 1)) + CInt(Format(nowTime, "dd").Substring(0, 1)))
+                Dim tmp4 As String = Format(nowTime, "HHmmssfff")
+                If Len(CStr(tmp3)) = 2 Then
+                    tmp3 = CInt(CStr(tmp3).Substring(0, 1)) + CInt(CStr(tmp3).Substring(1, 1))
+                End If
+                Dim tmp11 As Integer = 0
+                tmp11 = CInt(tmp1.Substring(0, 1)) + CInt(tmp1.Substring(1, 1)) + CInt(tmp1.Substring(2, 1)) + CInt(tmp1.Substring(3, 1))
+                tmp1 = CStr(tmp11)
+                e.Value = (tmp1 + tmp2 + tmp3 + tmp4)
+            Else
+                Dim cekVal As Boolean = True
+                For i As Integer = 0 To gvData.RowCount - 1
+                    If view.FocusedRowHandle <> i Then
+                        Dim dr As DataRow = gvData.GetDataRow(i)
+                        If CStr(e.Value) = CStr(dr("kodeupc")) Then
+                            cekVal = False
+                            Exit For
+                        End If
+                    End If
+                Next
+                If cekVal = False Then
+                    Dim tmp1 As String = Format(nowTime, "yyyy")
+                    Dim tmp2 As String = CStr(CInt(Format(nowTime, "MM").Substring(0, 1)) + CInt(Format(nowTime, "MM").Substring(1, 1)))
+                    Dim tmp3 As String = CStr(CInt(Format(nowTime, "dd").Substring(0, 1)) + CInt(Format(nowTime, "dd").Substring(0, 1)))
+                    Dim tmp4 As String = Format(nowTime, "HHmmssfff")
+                    If Len(CStr(tmp3)) = 2 Then
+                        tmp3 = CInt(CStr(tmp3).Substring(0, 1)) + CInt(CStr(tmp3).Substring(1, 1))
+                    End If
+                    Dim tmp11 As Integer = 0
+                    tmp11 = CInt(tmp1.Substring(0, 1)) + CInt(tmp1.Substring(1, 1)) + CInt(tmp1.Substring(2, 1)) + CInt(tmp1.Substring(3, 1))
+                    tmp1 = CStr(tmp11)
+                    e.Value = (tmp1 + tmp2 + tmp3 + tmp4)
+                End If
+            End If
+        ElseIf column Is gcKode Then
+            If e.Value.ToString.Length < 5 Then
+                e.Value = Format(nowTime, "yyyyMMddHHmmssfff")
+            Else
+                Dim cekVal As Boolean = True
+                For i As Integer = 0 To gvData.RowCount - 1
+                    If view.FocusedRowHandle <> i Then
+                        Dim dr As DataRow = gvData.GetDataRow(i)
+                        If CStr(e.Value) = CStr(dr("kode")) Then
+                            cekVal = False
+                            Exit For
+                        End If
+                    End If
+                Next
+                If cekVal = False Then
+                    e.Value = Format(nowTime, "yyyyMMddHHmmssfff")
+                End If
+            End If
+        End If 'Format(nowTime, "yyyyMMddHHmmssfff")
     End Sub
 
 End Class

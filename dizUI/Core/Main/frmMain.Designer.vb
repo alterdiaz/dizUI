@@ -20,7 +20,7 @@ Partial Class frmMain
     'NOTE: The following procedure is required by the Windows Form Designer
     'It can be modified using the Windows Form Designer.  
     'Do not modify it using the code editor.
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmMain))
@@ -592,7 +592,7 @@ Partial Class frmMain
         '
         Me.teSearch.Anchor = System.Windows.Forms.AnchorStyles.Right
         Me.teSearch.EditValue = ""
-        Me.teSearch.Location = New System.Drawing.Point(2, 5)
+        Me.teSearch.Location = New System.Drawing.Point(2, 4)
         Me.teSearch.Margin = New System.Windows.Forms.Padding(0)
         Me.teSearch.Name = "teSearch"
         Me.teSearch.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[True]
@@ -724,7 +724,7 @@ Partial Class frmMain
         'btnSetting
         '
         Me.btnSetting.BackColor = System.Drawing.Color.Transparent
-        Me.btnSetting.BackgroundImage = Global.dizUI.My.Resources.Resources.setting_b
+        Me.btnSetting.BackgroundImage = CType(resources.GetObject("btnSetting.BackgroundImage"), System.Drawing.Image)
         Me.btnSetting.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.btnSetting.Dock = System.Windows.Forms.DockStyle.Right
         Me.btnSetting.FlatAppearance.BorderSize = 0

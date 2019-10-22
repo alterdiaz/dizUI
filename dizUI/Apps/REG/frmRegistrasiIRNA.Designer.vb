@@ -39,6 +39,7 @@ Partial Class frmRegistrasiIRNA
         Me.pBody = New System.Windows.Forms.Panel()
         Me.tlpField = New System.Windows.Forms.TableLayoutPanel()
         Me.tlpKunjungan = New System.Windows.Forms.TableLayoutPanel()
+        Me.lueKelas = New DevExpress.XtraEditors.LookUpEdit()
         Me.lueParamedisCase = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -121,6 +122,7 @@ Partial Class frmRegistrasiIRNA
         Me.lblNoAsuransi = New System.Windows.Forms.Label()
         Me.btnTunggakan = New System.Windows.Forms.Button()
         Me.tlpSidebar = New System.Windows.Forms.TableLayoutPanel()
+        Me.btnMonRegisterAll = New System.Windows.Forms.Button()
         Me.btnRegStatus = New System.Windows.Forms.Button()
         Me.btnHistKamar = New System.Windows.Forms.Button()
         Me.btnPindahKamar = New System.Windows.Forms.Button()
@@ -128,7 +130,7 @@ Partial Class frmRegistrasiIRNA
         Me.btnDataRM = New System.Windows.Forms.Button()
         Me.btnAppointment = New System.Windows.Forms.Button()
         Me.GroupControl1 = New DevExpress.XtraEditors.GroupControl()
-        Me.lueKelas = New DevExpress.XtraEditors.LookUpEdit()
+        Me.btnAlihDPJP = New System.Windows.Forms.Button()
         Me.tlpForm.SuspendLayout()
         Me.pTitle.SuspendLayout()
         CType(Me.pMinimize, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -138,6 +140,7 @@ Partial Class frmRegistrasiIRNA
         Me.pBody.SuspendLayout()
         Me.tlpField.SuspendLayout()
         Me.tlpKunjungan.SuspendLayout()
+        CType(Me.lueKelas.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.lueParamedisCase.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.lueParamedis.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -183,7 +186,6 @@ Partial Class frmRegistrasiIRNA
         Me.tlpSidebar.SuspendLayout()
         CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl1.SuspendLayout()
-        CType(Me.lueKelas.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'tlpForm
@@ -294,7 +296,7 @@ Partial Class frmRegistrasiIRNA
         '
         'btnSwap
         '
-        Me.btnSwap.BackColor = System.Drawing.Color.green
+        Me.btnSwap.BackColor = System.Drawing.Color.Green
         Me.btnSwap.Dock = System.Windows.Forms.DockStyle.Left
         Me.btnSwap.FlatAppearance.BorderSize = 0
         Me.btnSwap.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DimGray
@@ -383,7 +385,7 @@ Partial Class frmRegistrasiIRNA
         '
         'btnSave
         '
-        Me.btnSave.BackColor = System.Drawing.Color.green
+        Me.btnSave.BackColor = System.Drawing.Color.Green
         Me.btnSave.Dock = System.Windows.Forms.DockStyle.Right
         Me.btnSave.FlatAppearance.BorderSize = 0
         Me.btnSave.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DimGray
@@ -499,6 +501,27 @@ Partial Class frmRegistrasiIRNA
         Me.tlpKunjungan.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 24.0!))
         Me.tlpKunjungan.Size = New System.Drawing.Size(640, 72)
         Me.tlpKunjungan.TabIndex = 102
+        '
+        'lueKelas
+        '
+        Me.lueKelas.Anchor = System.Windows.Forms.AnchorStyles.Left
+        Me.lueKelas.Location = New System.Drawing.Point(420, 26)
+        Me.lueKelas.Margin = New System.Windows.Forms.Padding(0)
+        Me.lueKelas.Name = "lueKelas"
+        Me.lueKelas.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[False]
+        Me.lueKelas.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.lueKelas.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 9.0!)
+        Me.lueKelas.Properties.Appearance.Options.UseBackColor = True
+        Me.lueKelas.Properties.Appearance.Options.UseFont = True
+        Me.lueKelas.Properties.BestFitMode = DevExpress.XtraEditors.Controls.BestFitMode.BestFitResizePopup
+        Me.lueKelas.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple
+        Me.lueKelas.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.lueKelas.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id", "ID", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default], DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("content", "Content")})
+        Me.lueKelas.Properties.NullText = "[Isian belum dipilih]"
+        Me.lueKelas.Properties.NullValuePrompt = "[Isian belum dipilih]"
+        Me.lueKelas.Size = New System.Drawing.Size(220, 20)
+        Me.lueKelas.TabIndex = 17
+        Me.lueKelas.Tag = "idkelas"
         '
         'lueParamedisCase
         '
@@ -1889,9 +1912,11 @@ Partial Class frmRegistrasiIRNA
         Me.tlpSidebar.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
         Me.tlpSidebar.ColumnCount = 1
         Me.tlpSidebar.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 130.0!))
-        Me.tlpSidebar.Controls.Add(Me.btnRegStatus, 0, 4)
-        Me.tlpSidebar.Controls.Add(Me.btnHistKamar, 0, 6)
-        Me.tlpSidebar.Controls.Add(Me.btnPindahKamar, 0, 5)
+        Me.tlpSidebar.Controls.Add(Me.btnAlihDPJP, 0, 8)
+        Me.tlpSidebar.Controls.Add(Me.btnMonRegisterAll, 0, 4)
+        Me.tlpSidebar.Controls.Add(Me.btnRegStatus, 0, 5)
+        Me.tlpSidebar.Controls.Add(Me.btnHistKamar, 0, 7)
+        Me.tlpSidebar.Controls.Add(Me.btnPindahKamar, 0, 6)
         Me.tlpSidebar.Controls.Add(Me.btnMonRegister, 0, 3)
         Me.tlpSidebar.Controls.Add(Me.btnDataRM, 0, 2)
         Me.tlpSidebar.Controls.Add(Me.btnAppointment, 0, 1)
@@ -1900,7 +1925,7 @@ Partial Class frmRegistrasiIRNA
         Me.tlpSidebar.Location = New System.Drawing.Point(6, 25)
         Me.tlpSidebar.Margin = New System.Windows.Forms.Padding(0)
         Me.tlpSidebar.Name = "tlpSidebar"
-        Me.tlpSidebar.RowCount = 7
+        Me.tlpSidebar.RowCount = 9
         Me.tlpSidebar.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30.0!))
         Me.tlpSidebar.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30.0!))
         Me.tlpSidebar.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30.0!))
@@ -1908,19 +1933,40 @@ Partial Class frmRegistrasiIRNA
         Me.tlpSidebar.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30.0!))
         Me.tlpSidebar.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30.0!))
         Me.tlpSidebar.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30.0!))
-        Me.tlpSidebar.Size = New System.Drawing.Size(130, 210)
+        Me.tlpSidebar.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30.0!))
+        Me.tlpSidebar.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30.0!))
+        Me.tlpSidebar.Size = New System.Drawing.Size(130, 270)
         Me.tlpSidebar.TabIndex = 8
+        '
+        'btnMonRegisterAll
+        '
+        Me.btnMonRegisterAll.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(0, Byte), Integer))
+        Me.btnMonRegisterAll.FlatAppearance.BorderSize = 0
+        Me.btnMonRegisterAll.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DimGray
+        Me.btnMonRegisterAll.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DarkGray
+        Me.btnMonRegisterAll.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnMonRegisterAll.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnMonRegisterAll.ForeColor = System.Drawing.Color.White
+        Me.btnMonRegisterAll.Location = New System.Drawing.Point(0, 120)
+        Me.btnMonRegisterAll.Margin = New System.Windows.Forms.Padding(0)
+        Me.btnMonRegisterAll.Name = "btnMonRegisterAll"
+        Me.btnMonRegisterAll.Size = New System.Drawing.Size(130, 30)
+        Me.btnMonRegisterAll.TabIndex = 19
+        Me.btnMonRegisterAll.Text = "MON REGISTRASI"
+        Me.btnMonRegisterAll.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.btnMonRegisterAll.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
+        Me.btnMonRegisterAll.UseVisualStyleBackColor = False
         '
         'btnRegStatus
         '
-        Me.btnRegStatus.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(0, Byte), Integer))
+        Me.btnRegStatus.BackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer))
         Me.btnRegStatus.Dock = System.Windows.Forms.DockStyle.Fill
         Me.btnRegStatus.FlatAppearance.BorderSize = 0
         Me.btnRegStatus.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DimGray
         Me.btnRegStatus.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DarkGray
         Me.btnRegStatus.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnRegStatus.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnRegStatus.Location = New System.Drawing.Point(0, 120)
+        Me.btnRegStatus.Location = New System.Drawing.Point(0, 150)
         Me.btnRegStatus.Margin = New System.Windows.Forms.Padding(0)
         Me.btnRegStatus.Name = "btnRegStatus"
         Me.btnRegStatus.Size = New System.Drawing.Size(130, 30)
@@ -1933,14 +1979,14 @@ Partial Class frmRegistrasiIRNA
         '
         'btnHistKamar
         '
-        Me.btnHistKamar.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(0, Byte), Integer))
+        Me.btnHistKamar.BackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer))
         Me.btnHistKamar.FlatAppearance.BorderSize = 0
         Me.btnHistKamar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DimGray
         Me.btnHistKamar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DarkGray
         Me.btnHistKamar.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnHistKamar.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnHistKamar.ForeColor = System.Drawing.Color.White
-        Me.btnHistKamar.Location = New System.Drawing.Point(0, 180)
+        Me.btnHistKamar.Location = New System.Drawing.Point(0, 210)
         Me.btnHistKamar.Margin = New System.Windows.Forms.Padding(0)
         Me.btnHistKamar.Name = "btnHistKamar"
         Me.btnHistKamar.Size = New System.Drawing.Size(130, 30)
@@ -1952,7 +1998,7 @@ Partial Class frmRegistrasiIRNA
         '
         'btnPindahKamar
         '
-        Me.btnPindahKamar.BackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer))
+        Me.btnPindahKamar.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(0, Byte), Integer))
         Me.btnPindahKamar.Dock = System.Windows.Forms.DockStyle.Fill
         Me.btnPindahKamar.FlatAppearance.BorderSize = 0
         Me.btnPindahKamar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DimGray
@@ -1960,7 +2006,7 @@ Partial Class frmRegistrasiIRNA
         Me.btnPindahKamar.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnPindahKamar.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnPindahKamar.ForeColor = System.Drawing.Color.White
-        Me.btnPindahKamar.Location = New System.Drawing.Point(0, 150)
+        Me.btnPindahKamar.Location = New System.Drawing.Point(0, 180)
         Me.btnPindahKamar.Margin = New System.Windows.Forms.Padding(0)
         Me.btnPindahKamar.Name = "btnPindahKamar"
         Me.btnPindahKamar.Size = New System.Drawing.Size(130, 30)
@@ -2043,31 +2089,30 @@ Partial Class frmRegistrasiIRNA
         Me.GroupControl1.Margin = New System.Windows.Forms.Padding(0)
         Me.GroupControl1.Name = "GroupControl1"
         Me.GroupControl1.Padding = New System.Windows.Forms.Padding(4)
-        Me.GroupControl1.Size = New System.Drawing.Size(142, 241)
+        Me.GroupControl1.Size = New System.Drawing.Size(142, 301)
         Me.GroupControl1.TabIndex = 9
         '
-        'lueKelas
+        'btnAlihDPJP
         '
-        Me.lueKelas.Anchor = System.Windows.Forms.AnchorStyles.Left
-        Me.lueKelas.Location = New System.Drawing.Point(420, 26)
-        Me.lueKelas.Margin = New System.Windows.Forms.Padding(0)
-        Me.lueKelas.Name = "lueKelas"
-        Me.lueKelas.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[False]
-        Me.lueKelas.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.lueKelas.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 9.0!)
-        Me.lueKelas.Properties.Appearance.Options.UseBackColor = True
-        Me.lueKelas.Properties.Appearance.Options.UseFont = True
-        Me.lueKelas.Properties.BestFitMode = DevExpress.XtraEditors.Controls.BestFitMode.BestFitResizePopup
-        Me.lueKelas.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple
-        Me.lueKelas.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.lueKelas.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id", "ID", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default], DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("content", "Content")})
-        Me.lueKelas.Properties.NullText = "[Isian belum dipilih]"
-        Me.lueKelas.Properties.NullValuePrompt = "[Isian belum dipilih]"
-        Me.lueKelas.Size = New System.Drawing.Size(220, 20)
-        Me.lueKelas.TabIndex = 17
-        Me.lueKelas.Tag = "idkelas"
+        Me.btnAlihDPJP.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(0, Byte), Integer))
+        Me.btnAlihDPJP.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.btnAlihDPJP.FlatAppearance.BorderSize = 0
+        Me.btnAlihDPJP.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DimGray
+        Me.btnAlihDPJP.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DarkGray
+        Me.btnAlihDPJP.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnAlihDPJP.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnAlihDPJP.ForeColor = System.Drawing.Color.White
+        Me.btnAlihDPJP.Location = New System.Drawing.Point(0, 240)
+        Me.btnAlihDPJP.Margin = New System.Windows.Forms.Padding(0)
+        Me.btnAlihDPJP.Name = "btnAlihDPJP"
+        Me.btnAlihDPJP.Size = New System.Drawing.Size(130, 30)
+        Me.btnAlihDPJP.TabIndex = 19
+        Me.btnAlihDPJP.Text = "ALIH DPJP"
+        Me.btnAlihDPJP.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.btnAlihDPJP.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
+        Me.btnAlihDPJP.UseVisualStyleBackColor = False
         '
-        'frmRegistrasiRanap
+        'frmRegistrasiIRNA
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
@@ -2076,7 +2121,7 @@ Partial Class frmRegistrasiIRNA
         Me.Controls.Add(Me.GroupControl1)
         Me.Controls.Add(Me.tlpForm)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
-        Me.Name = "frmRegistrasiRanap"
+        Me.Name = "frmRegistrasiIRNA"
         Me.ShowInTaskbar = False
         Me.Text = "Registrasi IRNA"
         Me.tlpForm.ResumeLayout(False)
@@ -2091,6 +2136,7 @@ Partial Class frmRegistrasiIRNA
         Me.tlpField.PerformLayout()
         Me.tlpKunjungan.ResumeLayout(False)
         Me.tlpKunjungan.PerformLayout()
+        CType(Me.lueKelas.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.lueParamedisCase.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.lueParamedis.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -2142,7 +2188,6 @@ Partial Class frmRegistrasiIRNA
         CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupControl1.ResumeLayout(False)
         Me.GroupControl1.PerformLayout()
-        CType(Me.lueKelas.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -2253,4 +2298,6 @@ Partial Class frmRegistrasiIRNA
     Friend WithEvents GridColumn13 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn14 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents lueKelas As DevExpress.XtraEditors.LookUpEdit
+    Public WithEvents btnMonRegisterAll As Button
+    Public WithEvents btnAlihDPJP As Button
 End Class

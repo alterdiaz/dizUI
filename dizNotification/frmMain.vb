@@ -122,7 +122,7 @@ Public Class frmMain
             nowTime = Now
         End If
         Me.Cursor = Cursors.Default
-        tmrNotes.Start()
+        'tmrNotes.Start()
         tmrProses.Start()
 
         'If notifset = "RM" Then
@@ -262,6 +262,7 @@ Public Class frmMain
             End If
         End If
         cekProses()
+        cekNotif()
     End Sub
 
     Private Sub cekProses()
@@ -281,7 +282,19 @@ Public Class frmMain
             'tmrNotes.Stop()
             'tmrRM.Stop()
 
-            Application.Exit()
+            Environment.Exit(0)
+        End If
+    End Sub
+
+    Private cntNotifSound As Integer = 0
+    Private Sub cekNotif()
+        cntNotifSound += 1
+        If cntNotifSound <= 4 Then Exit Sub
+        If idnotif.Count > 0 Then
+            My.Computer.Audio.PlaySystemSound(System.Media.SystemSounds.Asterisk)
+            cntNotifSound = 0
+        Else
+            cntNotifSound = 0
         End If
     End Sub
 
@@ -393,9 +406,9 @@ Public Class frmMain
 
                         Dim sqls As New SQLs(dbstring)
                         If usersuper = "1" Then
-                            sqls.DMLQuery("select TOP 50 ROW_NUMBER() OVER (partition by n.kode Order by n.createddate asc) as nomor,n.idnotifications,n.kode,n.judul,n.konten,n.frmname,n.tableid,n.tablename,n.tablecolumnid,n.tablecolumndate,n.tablecolumnflag,n.tablecolumniduser,a.color,a.notiftype from sys_notifications n left join sys_appnotification a on n.kode=a.kode where n.iskonfirm=0 and n.duedate<=getdate() and (n.kode<>'0' AND n.kode<>'-') order by n.createddate asc", "allnotif")
+                            sqls.DMLQuery("select TOP 50 ROW_NUMBER() OVER (partition by n.kode Order by n.createddate asc) as nomor,n.idnotifications,n.kode,n.judul,n.konten,n.frmname,n.tableid,n.tablename,n.tablecolumnid,n.tablecolumndate,n.tablecolumnflag,n.tablecolumniduser,isnull(a.color,16777344) as color,isnull(a.notiftype,1) as notiftype from sys_notifications n left join sys_appnotification a on n.kode=a.kode where n.iskonfirm=0 and n.duedate<=getdate() and (n.kode<>'0' AND n.kode<>'-') order by n.createddate asc", "allnotif")
                         Else
-                            sqls.DMLQuery("select TOP 50 ROW_NUMBER() OVER (partition by n.kode Order by n.createddate asc) as nomor,n.idnotifications,n.kode,n.judul,n.konten,n.frmname,n.tableid,n.tablename,n.tablecolumnid,n.tablecolumndate,n.tablecolumnflag,n.tablecolumniduser,a.color,a.notiftype from sys_notifications n left join sys_appnotification a on n.kode=a.kode where (n.kode<>'0' and n.kode<>'-') and ((n.kode in (select kode from sys_userlevelnotification where iduserlevel='" & userlevelid & "') and n.iskonfirm=0 and n.duedate<=getdate()) or (n.iduser='" & userid & "' and n.iskonfirm=0 and n.duedate<=getdate())) order by n.createddate asc", "allnotif")
+                            sqls.DMLQuery("select TOP 50 ROW_NUMBER() OVER (partition by n.kode Order by n.createddate asc) as nomor,n.idnotifications,n.kode,n.judul,n.konten,n.frmname,n.tableid,n.tablename,n.tablecolumnid,n.tablecolumndate,n.tablecolumnflag,n.tablecolumniduser,isnull(a.color,16777344) as color,isnull(a.notiftype,1) as notiftype from sys_notifications n left join sys_appnotification a on n.kode=a.kode where (n.kode<>'0' and n.kode<>'-') and ((n.kode in (select kode from sys_userlevelnotification where iduserlevel='" & userlevelid & "') and n.iskonfirm=0 and n.duedate<=getdate()) or (n.iduser='" & userid & "' and n.iskonfirm=0 and n.duedate<=getdate())) order by n.createddate asc", "allnotif")
                         End If
                         For i As Integer = 0 To sqls.getDataSet("allnotif") - 1
                             Try
@@ -435,7 +448,7 @@ Public Class frmMain
                                     End If
                                 End If
                             Catch ex As Exception
-                                MsgBox(sqls.getDataSet("allnotif", i, "idnotifications") & vbCrLf & ex.Message)
+                                MsgBox(sqls.getDataSet("allnotif", i, "idnotifications") & vbCrLf & sqls.getDataSet("allnotif", i, "judul") & vbCrLf & ex.Message)
                             End Try
                         Next
                     End If

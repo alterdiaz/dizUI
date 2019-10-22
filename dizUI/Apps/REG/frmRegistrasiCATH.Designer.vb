@@ -121,11 +121,13 @@ Partial Class frmRegistrasiCATH
         Me.teNoAsuransi = New DevExpress.XtraEditors.TextEdit()
         Me.lblNoAsuransi = New System.Windows.Forms.Label()
         Me.tlpSidebar = New System.Windows.Forms.TableLayoutPanel()
+        Me.btnMonRegisterAll = New System.Windows.Forms.Button()
         Me.btnAntarDept = New System.Windows.Forms.Button()
         Me.btnRegStatus = New System.Windows.Forms.Button()
         Me.btnMonRegister = New System.Windows.Forms.Button()
         Me.btnDataRM = New System.Windows.Forms.Button()
         Me.GroupControl1 = New DevExpress.XtraEditors.GroupControl()
+        Me.btnAlihDPJP = New System.Windows.Forms.Button()
         Me.tlpForm.SuspendLayout()
         Me.pTitle.SuspendLayout()
         CType(Me.pMinimize, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -1891,32 +1893,55 @@ Partial Class frmRegistrasiCATH
         Me.tlpSidebar.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
         Me.tlpSidebar.ColumnCount = 1
         Me.tlpSidebar.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 130.0!))
-        Me.tlpSidebar.Controls.Add(Me.btnAntarDept, 0, 3)
-        Me.tlpSidebar.Controls.Add(Me.btnRegStatus, 0, 2)
+        Me.tlpSidebar.Controls.Add(Me.btnAlihDPJP, 0, 5)
+        Me.tlpSidebar.Controls.Add(Me.btnMonRegisterAll, 0, 2)
+        Me.tlpSidebar.Controls.Add(Me.btnAntarDept, 0, 4)
+        Me.tlpSidebar.Controls.Add(Me.btnRegStatus, 0, 3)
         Me.tlpSidebar.Controls.Add(Me.btnMonRegister, 0, 1)
         Me.tlpSidebar.Controls.Add(Me.btnDataRM, 0, 0)
         Me.tlpSidebar.Dock = System.Windows.Forms.DockStyle.Fill
         Me.tlpSidebar.Location = New System.Drawing.Point(6, 25)
         Me.tlpSidebar.Margin = New System.Windows.Forms.Padding(0)
         Me.tlpSidebar.Name = "tlpSidebar"
-        Me.tlpSidebar.RowCount = 4
+        Me.tlpSidebar.RowCount = 6
         Me.tlpSidebar.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30.0!))
         Me.tlpSidebar.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30.0!))
         Me.tlpSidebar.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30.0!))
         Me.tlpSidebar.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30.0!))
-        Me.tlpSidebar.Size = New System.Drawing.Size(130, 120)
+        Me.tlpSidebar.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30.0!))
+        Me.tlpSidebar.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30.0!))
+        Me.tlpSidebar.Size = New System.Drawing.Size(130, 180)
         Me.tlpSidebar.TabIndex = 8
+        '
+        'btnMonRegisterAll
+        '
+        Me.btnMonRegisterAll.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(0, Byte), Integer))
+        Me.btnMonRegisterAll.FlatAppearance.BorderSize = 0
+        Me.btnMonRegisterAll.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DimGray
+        Me.btnMonRegisterAll.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DarkGray
+        Me.btnMonRegisterAll.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnMonRegisterAll.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnMonRegisterAll.ForeColor = System.Drawing.Color.White
+        Me.btnMonRegisterAll.Location = New System.Drawing.Point(0, 60)
+        Me.btnMonRegisterAll.Margin = New System.Windows.Forms.Padding(0)
+        Me.btnMonRegisterAll.Name = "btnMonRegisterAll"
+        Me.btnMonRegisterAll.Size = New System.Drawing.Size(130, 30)
+        Me.btnMonRegisterAll.TabIndex = 20
+        Me.btnMonRegisterAll.Text = "MON REGISTRASI"
+        Me.btnMonRegisterAll.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.btnMonRegisterAll.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
+        Me.btnMonRegisterAll.UseVisualStyleBackColor = False
         '
         'btnAntarDept
         '
-        Me.btnAntarDept.BackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer))
+        Me.btnAntarDept.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(0, Byte), Integer))
         Me.btnAntarDept.FlatAppearance.BorderSize = 0
         Me.btnAntarDept.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DimGray
         Me.btnAntarDept.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DarkGray
         Me.btnAntarDept.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnAntarDept.Font = New System.Drawing.Font("Tahoma", 9.0!)
         Me.btnAntarDept.ForeColor = System.Drawing.Color.White
-        Me.btnAntarDept.Location = New System.Drawing.Point(0, 90)
+        Me.btnAntarDept.Location = New System.Drawing.Point(0, 120)
         Me.btnAntarDept.Margin = New System.Windows.Forms.Padding(0)
         Me.btnAntarDept.Name = "btnAntarDept"
         Me.btnAntarDept.Size = New System.Drawing.Size(130, 30)
@@ -1928,14 +1953,14 @@ Partial Class frmRegistrasiCATH
         '
         'btnRegStatus
         '
-        Me.btnRegStatus.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(0, Byte), Integer))
+        Me.btnRegStatus.BackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer))
         Me.btnRegStatus.Dock = System.Windows.Forms.DockStyle.Fill
         Me.btnRegStatus.FlatAppearance.BorderSize = 0
         Me.btnRegStatus.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DimGray
         Me.btnRegStatus.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DarkGray
         Me.btnRegStatus.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnRegStatus.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnRegStatus.Location = New System.Drawing.Point(0, 60)
+        Me.btnRegStatus.Location = New System.Drawing.Point(0, 90)
         Me.btnRegStatus.Margin = New System.Windows.Forms.Padding(0)
         Me.btnRegStatus.Name = "btnRegStatus"
         Me.btnRegStatus.Size = New System.Drawing.Size(130, 30)
@@ -1999,8 +2024,28 @@ Partial Class frmRegistrasiCATH
         Me.GroupControl1.Margin = New System.Windows.Forms.Padding(0)
         Me.GroupControl1.Name = "GroupControl1"
         Me.GroupControl1.Padding = New System.Windows.Forms.Padding(4)
-        Me.GroupControl1.Size = New System.Drawing.Size(142, 151)
+        Me.GroupControl1.Size = New System.Drawing.Size(142, 211)
         Me.GroupControl1.TabIndex = 9
+        '
+        'btnAlihDPJP
+        '
+        Me.btnAlihDPJP.BackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer))
+        Me.btnAlihDPJP.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.btnAlihDPJP.FlatAppearance.BorderSize = 0
+        Me.btnAlihDPJP.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DimGray
+        Me.btnAlihDPJP.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DarkGray
+        Me.btnAlihDPJP.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnAlihDPJP.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnAlihDPJP.ForeColor = System.Drawing.Color.White
+        Me.btnAlihDPJP.Location = New System.Drawing.Point(0, 150)
+        Me.btnAlihDPJP.Margin = New System.Windows.Forms.Padding(0)
+        Me.btnAlihDPJP.Name = "btnAlihDPJP"
+        Me.btnAlihDPJP.Size = New System.Drawing.Size(130, 30)
+        Me.btnAlihDPJP.TabIndex = 21
+        Me.btnAlihDPJP.Text = "ALIH DPJP"
+        Me.btnAlihDPJP.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.btnAlihDPJP.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
+        Me.btnAlihDPJP.UseVisualStyleBackColor = False
         '
         'frmRegistrasiCATH
         '
@@ -2185,4 +2230,6 @@ Partial Class frmRegistrasiCATH
     Friend WithEvents GridColumn14 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents lueKelas As DevExpress.XtraEditors.LookUpEdit
     Public WithEvents btnAntarDept As Button
+    Public WithEvents btnMonRegisterAll As Button
+    Public WithEvents btnAlihDPJP As Button
 End Class

@@ -22,6 +22,7 @@ Partial Class frmMessagebox
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmMessagebox))
         Me.tlpForm = New System.Windows.Forms.TableLayoutPanel()
         Me.pContent = New System.Windows.Forms.Panel()
         Me.pnlField = New System.Windows.Forms.Panel()
@@ -59,7 +60,7 @@ Partial Class frmMessagebox
         'pContent
         '
         Me.pContent.BackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(143, Byte), Integer), CType(CType(215, Byte), Integer))
-        Me.pContent.BackgroundImage = My.Resources.Resources.canvas_msgbox
+        Me.pContent.BackgroundImage = Global.dizNotifikasi.My.Resources.Resources.canvas_msgbox
         Me.pContent.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
         Me.pContent.Controls.Add(Me.pnlField)
         Me.pContent.Dock = System.Windows.Forms.DockStyle.Fill
@@ -100,7 +101,7 @@ Partial Class frmMessagebox
         '
         'pbIcon
         '
-        Me.pbIcon.Image = My.Resources.Resources.ico_warning
+        Me.pbIcon.Image = Global.dizNotifikasi.My.Resources.Resources.ico_warning
         Me.pbIcon.Location = New System.Drawing.Point(4, 3)
         Me.pbIcon.Margin = New System.Windows.Forms.Padding(4)
         Me.pbIcon.Name = "pbIcon"
@@ -113,7 +114,7 @@ Partial Class frmMessagebox
         '
         Me.btnCancel.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.btnCancel.BackColor = System.Drawing.Color.Transparent
-        Me.btnCancel.BackgroundImage = My.Resources.Resources.exit_w
+        Me.btnCancel.BackgroundImage = Global.dizNotifikasi.My.Resources.Resources.exit_w
         Me.btnCancel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.btnCancel.FlatAppearance.BorderSize = 0
         Me.btnCancel.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(CType(CType(206, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer))
@@ -132,7 +133,7 @@ Partial Class frmMessagebox
         '
         Me.btnOK.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.btnOK.BackColor = System.Drawing.Color.Transparent
-        Me.btnOK.BackgroundImage = My.Resources.Resources.ok_w
+        Me.btnOK.BackgroundImage = Global.dizNotifikasi.My.Resources.Resources.ok_w
         Me.btnOK.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.btnOK.FlatAppearance.BorderSize = 0
         Me.btnOK.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
@@ -181,11 +182,12 @@ Partial Class frmMessagebox
         Me.ControlBox = False
         Me.Controls.Add(Me.tlpForm)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
+        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Name = "frmMessagebox"
         Me.ShowIcon = False
         Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.Manual
-        Me.Text = "Login"
+        Me.Text = "Messagebox"
         Me.tlpForm.ResumeLayout(False)
         Me.pContent.ResumeLayout(False)
         Me.pnlField.ResumeLayout(False)

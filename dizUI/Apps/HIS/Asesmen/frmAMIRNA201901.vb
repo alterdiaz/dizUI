@@ -1019,10 +1019,18 @@ Public Class frmAMIRNA201901
             Try
                 pt.Print(sharename)
             Catch ex As Exception
-                dizMsgbox("Printer tidak ditemukan/tidak ada akses", dizMsgboxStyle.Peringatan, Me)
+                Try
+                    pt.PrintDialog()
+                Catch ex1 As Exception
+                    dizMsgbox(ex1.Message, dizMsgboxStyle.Kesalahan, Me)
+                End Try
             End Try
         Else
-            dizMsgbox("Printer belum disetting untuk cetak dokumen ini", dizMsgboxStyle.Peringatan, Me)
+            Try
+                pt.PrintDialog()
+            Catch ex1 As Exception
+                dizMsgbox(ex1.Message, dizMsgboxStyle.Kesalahan, Me)
+            End Try
         End If
         'Dim sd As New frmSelectDevice
         'tambahChild(sd)
@@ -1474,13 +1482,6 @@ Public Class frmAMIRNA201901
         value2.AddRange(New Object() {iddpjp, idselect, idtransselectso, 2, teNoSOAP.Text, nowTime, "", "", "", meAdvis.Text, userid, nowTime, lueParamedis.EditValue, If(lueSpesialis.EditValue, 0), lueSebagai.EditValue})
         Dim cekb As Boolean = dtsqls2.datasetSave("soapnote", iddso, field2, value2, False)
 
-        'Dim dts As New dtsetSQLS(dbstring)
-        'Dim field As New List(Of String)
-        'Dim value As New List(Of Object)
-        'field.AddRange(New String() {"idregistrasidpjp", "idregistrasi", "idparamedis", "idspesialis", "dpjptype", "remarks", "createdby", "idcompany"})
-        'value.AddRange(New Object() {iddpjp, idselect, lueParamedis.EditValue, If(lueSpesialis.EditValue, 0), lueSebagai.EditValue, meAdvis.Text, userid, idcomp})
-        'Dim cekb As Boolean = dts.datasetSave("registrasidpjp", iddpjp, field, value, False)
-
         If cekb = True Then
             dizMsgbox("DPJP telah tersimpan", dizMsgboxStyle.Info, Me)
             dpjpbaru()
@@ -1804,10 +1805,18 @@ Public Class frmAMIRNA201901
                 Try
                     pt.Print(sharename)
                 Catch ex As Exception
-                    dizMsgbox("Printer tidak ditemukan/tidak ada akses", dizMsgboxStyle.Peringatan, Me)
+                    Try
+                        pt.PrintDialog()
+                    Catch ex1 As Exception
+                        dizMsgbox(ex1.Message, dizMsgboxStyle.Kesalahan, Me)
+                    End Try
                 End Try
             Else
-                dizMsgbox("Printer belum disetting untuk cetak dokumen ini", dizMsgboxStyle.Peringatan, Me)
+                Try
+                    pt.PrintDialog()
+                Catch ex1 As Exception
+                    dizMsgbox(ex1.Message, dizMsgboxStyle.Kesalahan, Me)
+                End Try
             End If
         Else
             pt.AutoShowParametersPanel = False
@@ -1867,14 +1876,20 @@ Public Class frmAMIRNA201901
                     If sharename <> "" Then
                         cetakWristband(lstdata, sharename)
                     Else
-                        dizMsgbox("Printer belum disetting untuk cetak dokumen ini", dizMsgboxStyle.Peringatan, Me)
+                        Dim pd As New PrintDialog
+                        If pd.ShowDialog() = DialogResult.OK Then
+                            cetakWristband(lstdata, pd.PrinterSettings.PrinterName)
+                        End If
                     End If
                 Else
                     Dim sharename As String = getPrinter("WRBAM")
                     If sharename <> "" Then
                         cetakWristband(lstdata, sharename)
                     Else
-                        dizMsgbox("Printer belum disetting untuk cetak dokumen ini", dizMsgboxStyle.Peringatan, Me)
+                        Dim pd As New PrintDialog
+                        If pd.ShowDialog() = DialogResult.OK Then
+                            cetakWristband(lstdata, pd.PrinterSettings.PrinterName)
+                        End If
                     End If
                 End If
             ElseIf selectWB.getStringPilih = "Anak" Then
@@ -1882,7 +1897,10 @@ Public Class frmAMIRNA201901
                 If sharename <> "" Then
                     cetakWristband(lstdata, sharename)
                 Else
-                    dizMsgbox("Printer belum disetting untuk cetak dokumen ini", dizMsgboxStyle.Peringatan, Me)
+                    Dim pd As New PrintDialog
+                    If pd.ShowDialog() = DialogResult.OK Then
+                        cetakWristband(lstdata, pd.PrinterSettings.PrinterName)
+                    End If
                 End If
             End If
             'End If
@@ -2207,6 +2225,17 @@ Public Class frmAMIRNA201901
         frminfopx.tlpForm.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 2.0!))
         frminfopx.ShowDialog(Me)
         formTitle = Me.lblTitle.Text
+    End Sub
+
+    Private Sub btnCPPT_Click(sender As Object, e As EventArgs) Handles btnCPPT.Click
+        Dim rs As New frmCPPT()
+        tambahChild(rs)
+        rs.Size = New Size(Screen.PrimaryScreen.WorkingArea.Width - 100, Screen.PrimaryScreen.WorkingArea.Height - 100)
+        rs.MaximumSize = New Size(Screen.PrimaryScreen.WorkingArea.Width - 100, Screen.PrimaryScreen.WorkingArea.Height - 100)
+        rs.StartPosition = FormStartPosition.CenterScreen
+        rs.tlpForm.RowCount = 4
+        rs.tlpForm.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 2.0!))
+        rs.ShowDialog(Me)
     End Sub
 
 End Class

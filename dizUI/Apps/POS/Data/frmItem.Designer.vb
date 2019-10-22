@@ -59,6 +59,8 @@ Partial Class frmItem
         Me.Panel1 = New System.Windows.Forms.Panel()
         Me.btnSaveAll = New System.Windows.Forms.Button()
         Me.tlpField = New System.Windows.Forms.TableLayoutPanel()
+        Me.Label4 = New System.Windows.Forms.Label()
+        Me.teKodeUPC = New DevExpress.XtraEditors.TextEdit()
         Me.lueBrand = New DevExpress.XtraEditors.LookUpEdit()
         Me.Label3 = New System.Windows.Forms.Label()
         Me.teRemarks = New DevExpress.XtraEditors.TextEdit()
@@ -74,12 +76,14 @@ Partial Class frmItem
         Me.lueGrup = New DevExpress.XtraEditors.LookUpEdit()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.pHeader = New System.Windows.Forms.Panel()
+        Me.btnLabel = New System.Windows.Forms.Button()
         Me.btnImportFormat = New System.Windows.Forms.Button()
         Me.btnExportFormat = New System.Windows.Forms.Button()
         Me.btnNew = New System.Windows.Forms.Button()
         Me.btnSave = New System.Windows.Forms.Button()
         Me.btnDelete = New System.Windows.Forms.Button()
         Me.lblSep5 = New System.Windows.Forms.Label()
+        Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.tlpForm.SuspendLayout()
         Me.pTitle.SuspendLayout()
         CType(Me.pMinimize, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -101,6 +105,7 @@ Partial Class frmItem
         CType(Me.riteNama, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel1.SuspendLayout()
         Me.tlpField.SuspendLayout()
+        CType(Me.teKodeUPC.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.lueBrand.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.teRemarks.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.teKode.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -230,7 +235,7 @@ Partial Class frmItem
         Me.gvData.Appearance.EvenRow.Options.UseBackColor = True
         Me.gvData.Appearance.OddRow.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
         Me.gvData.Appearance.OddRow.Options.UseBackColor = True
-        Me.gvData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.gcID, Me.GridColumn2, Me.gcitemtype, Me.gcidsatuan, Me.gcisdeleted, Me.GridColumn1, Me.gcType, Me.GridColumn4, Me.GridColumn5, Me.gcKode, Me.gcNama, Me.gcSatuan, Me.gcStatData, Me.GridColumn3})
+        Me.gvData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.gcID, Me.GridColumn2, Me.gcitemtype, Me.gcidsatuan, Me.gcisdeleted, Me.GridColumn1, Me.gcType, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6, Me.gcKode, Me.gcNama, Me.gcSatuan, Me.gcStatData, Me.GridColumn3})
         Me.gvData.GridControl = Me.gcData
         Me.gvData.Name = "gvData"
         Me.gvData.OptionsView.EnableAppearanceEvenRow = True
@@ -306,7 +311,7 @@ Partial Class frmItem
         Me.gcidsatuan.FieldName = "idsatuan"
         Me.gcidsatuan.Name = "gcidsatuan"
         Me.gcidsatuan.Visible = True
-        Me.gcidsatuan.VisibleIndex = 5
+        Me.gcidsatuan.VisibleIndex = 6
         '
         'rlueSatuan
         '
@@ -331,7 +336,7 @@ Partial Class frmItem
         Me.gcisdeleted.FieldName = "isdeleted"
         Me.gcisdeleted.Name = "gcisdeleted"
         Me.gcisdeleted.Visible = True
-        Me.gcisdeleted.VisibleIndex = 6
+        Me.gcisdeleted.VisibleIndex = 7
         '
         'rlueStatus
         '
@@ -376,7 +381,7 @@ Partial Class frmItem
         Me.GridColumn4.FieldName = "iditembrand"
         Me.GridColumn4.Name = "GridColumn4"
         Me.GridColumn4.Visible = True
-        Me.GridColumn4.VisibleIndex = 3
+        Me.GridColumn4.VisibleIndex = 4
         '
         'rlueBrand
         '
@@ -419,7 +424,7 @@ Partial Class frmItem
         Me.gcNama.FieldName = "item"
         Me.gcNama.Name = "gcNama"
         Me.gcNama.Visible = True
-        Me.gcNama.VisibleIndex = 4
+        Me.gcNama.VisibleIndex = 5
         '
         'riteNama
         '
@@ -496,6 +501,8 @@ Partial Class frmItem
         Me.tlpField.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 140.0!))
         Me.tlpField.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 150.0!))
         Me.tlpField.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
+        Me.tlpField.Controls.Add(Me.Label4, 3, 1)
+        Me.tlpField.Controls.Add(Me.teKodeUPC, 4, 1)
         Me.tlpField.Controls.Add(Me.lueBrand, 2, 3)
         Me.tlpField.Controls.Add(Me.Label3, 1, 3)
         Me.tlpField.Controls.Add(Me.teRemarks, 2, 4)
@@ -522,6 +529,43 @@ Partial Class frmItem
         Me.tlpField.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 6.0!))
         Me.tlpField.Size = New System.Drawing.Size(786, 108)
         Me.tlpField.TabIndex = 7
+        '
+        'Label4
+        '
+        Me.Label4.Anchor = System.Windows.Forms.AnchorStyles.Right
+        Me.Label4.AutoSize = True
+        Me.Label4.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label4.Location = New System.Drawing.Point(494, 11)
+        Me.Label4.Name = "Label4"
+        Me.Label4.Size = New System.Drawing.Size(61, 14)
+        Me.Label4.TabIndex = 24
+        Me.Label4.Text = "Kode UPC"
+        Me.Label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        '
+        'teKodeUPC
+        '
+        Me.teKodeUPC.Anchor = System.Windows.Forms.AnchorStyles.Left
+        Me.teKodeUPC.EditValue = "0"
+        Me.teKodeUPC.Location = New System.Drawing.Point(558, 8)
+        Me.teKodeUPC.Margin = New System.Windows.Forms.Padding(0)
+        Me.teKodeUPC.Name = "teKodeUPC"
+        Me.teKodeUPC.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[True]
+        Me.teKodeUPC.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.teKodeUPC.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 9.0!)
+        Me.teKodeUPC.Properties.Appearance.Options.UseBackColor = True
+        Me.teKodeUPC.Properties.Appearance.Options.UseFont = True
+        Me.teKodeUPC.Properties.AppearanceDisabled.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.teKodeUPC.Properties.AppearanceDisabled.Options.UseBackColor = True
+        Me.teKodeUPC.Properties.AppearanceReadOnly.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.teKodeUPC.Properties.AppearanceReadOnly.Options.UseBackColor = True
+        Me.teKodeUPC.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple
+        Me.teKodeUPC.Properties.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
+        Me.teKodeUPC.Properties.MaxLength = 300
+        Me.teKodeUPC.Properties.NullText = "[Belum Diisi]"
+        Me.teKodeUPC.Properties.NullValuePrompt = "[Belum Diisi]"
+        Me.teKodeUPC.Size = New System.Drawing.Size(150, 20)
+        Me.teKodeUPC.TabIndex = 24
+        Me.teKodeUPC.Tag = "kode"
         '
         'lueBrand
         '
@@ -752,6 +796,7 @@ Partial Class frmItem
         'pHeader
         '
         Me.pHeader.BackColor = System.Drawing.Color.FromArgb(CType(CType(66, Byte), Integer), CType(CType(66, Byte), Integer), CType(CType(66, Byte), Integer))
+        Me.pHeader.Controls.Add(Me.btnLabel)
         Me.pHeader.Controls.Add(Me.btnImportFormat)
         Me.pHeader.Controls.Add(Me.btnExportFormat)
         Me.pHeader.Controls.Add(Me.btnNew)
@@ -764,6 +809,24 @@ Partial Class frmItem
         Me.pHeader.Name = "pHeader"
         Me.pHeader.Size = New System.Drawing.Size(786, 30)
         Me.pHeader.TabIndex = 4
+        '
+        'btnLabel
+        '
+        Me.btnLabel.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(0, Byte), Integer))
+        Me.btnLabel.Dock = System.Windows.Forms.DockStyle.Left
+        Me.btnLabel.FlatAppearance.BorderSize = 0
+        Me.btnLabel.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DimGray
+        Me.btnLabel.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DarkGray
+        Me.btnLabel.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnLabel.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnLabel.Location = New System.Drawing.Point(240, 0)
+        Me.btnLabel.Name = "btnLabel"
+        Me.btnLabel.Size = New System.Drawing.Size(80, 30)
+        Me.btnLabel.TabIndex = 23
+        Me.btnLabel.Text = "LABEL"
+        Me.btnLabel.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
+        Me.btnLabel.UseMnemonic = False
+        Me.btnLabel.UseVisualStyleBackColor = False
         '
         'btnImportFormat
         '
@@ -863,6 +926,17 @@ Partial Class frmItem
         Me.lblSep5.Text = "|"
         Me.lblSep5.TextAlign = System.Drawing.ContentAlignment.TopCenter
         '
+        'GridColumn6
+        '
+        Me.GridColumn6.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn6.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn6.Caption = "Kode UPC"
+        Me.GridColumn6.ColumnEdit = Me.riteKode
+        Me.GridColumn6.FieldName = "kodeupc"
+        Me.GridColumn6.Name = "GridColumn6"
+        Me.GridColumn6.Visible = True
+        Me.GridColumn6.VisibleIndex = 3
+        '
         'frmItem
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -897,6 +971,7 @@ Partial Class frmItem
         Me.Panel1.ResumeLayout(False)
         Me.tlpField.ResumeLayout(False)
         Me.tlpField.PerformLayout()
+        CType(Me.teKodeUPC.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.lueBrand.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.teRemarks.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.teKode.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -966,4 +1041,8 @@ Partial Class frmItem
     Friend WithEvents GridColumn5 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents lueBrand As DevExpress.XtraEditors.LookUpEdit
     Friend WithEvents Label3 As Label
+    Public WithEvents btnLabel As Button
+    Friend WithEvents Label4 As Label
+    Friend WithEvents teKodeUPC As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents GridColumn6 As DevExpress.XtraGrid.Columns.GridColumn
 End Class

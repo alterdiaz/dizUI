@@ -137,7 +137,7 @@
         End If
     End Sub
 
-    Private Async Sub sync()
+    Private Sub Sync()
         Try
             If isServer = True Then
                 Dim lite As New SQLi(dblite)
@@ -164,12 +164,10 @@
                 ''If mys.checkConnection() = True Then
 
                 'host offline sementara
-                Dim task As System.Threading.Tasks.Task = New System.Threading.Tasks.Task(AddressOf syncToken)
-                task.Start()
+                syncToken()
 
                 'syncToken()
-                Dim task1 As System.Threading.Tasks.Task(Of String) = syncUser(System.Net.Dns.GetHostName())
-                task1.Start()
+                syncUser(System.Net.Dns.GetHostName())
 
                 ''End If
                 'lblLoad.Text = "READY"
@@ -179,7 +177,7 @@
     End Sub
 
     Private isproses As Boolean = False
-    Private Async Function syncUser(ByVal hostname As String) As Threading.Tasks.Task(Of String)
+    Private Sub syncUser(ByVal hostname As String)
         isSync = True
         Dim lite As New SQLi(dblite)
         lite.DMLQuery("select siteurl from siteconn where active=1 order by idsiteconn desc", "getdbstring")
@@ -239,7 +237,7 @@
         If isproses = False Then
             isproses = True
             'Dim task2 As System.Threading.Tasks.Task(Of String) = syncSelect(mysite & "User", mparam, mvalue)
-            json_result = Await syncSelect(mysite & "User", mparam, mvalue)
+            json_result = syncSelect(mysite & "User", mparam, mvalue)
 
             'json_result = modCore.HttpPOSTRequestSelect(mysite & "User", mparam, mvalue)
 
@@ -360,7 +358,7 @@
             mvalue.AddRange(New String() {"cekusertoken", "", tmptokenkey1, tmptokenkey2})
 
             'Dim task3 As System.Threading.Tasks.Task(Of String) = syncSelect(mysite & "User", mparam, mvalue)
-            json_result = Await syncSelect(mysite & "User", mparam, mvalue)
+            json_result = syncSelect(mysite & "User", mparam, mvalue)
             'json_result = modCore.HttpPOSTRequestSelect(mysite & "User", mparam, mvalue)
 
             'mysuccess = mys.DMLQuery("select su.iduser,su.username,su.password,su.hint,su.recoveryquestion,su.recoveryanswer,su.namalengkap,su.personalno,su.cardtype,su.email,su.handphone,st.idtoken,su.tokenkey1,su.tokenkey2 from " & mydb & "." & myusr & ".[user] su left join " & mydb & "." & myusr & ".token st on su.idtoken=st.idtoken", "cnt")
@@ -400,7 +398,7 @@
                                 mparam.AddRange(New String() {"param", "value", "tkey1", "tkey2", "username"})
                                 mvalue.AddRange(New String() {"cekusername", sqls.getDataSet("cnt", i, "username"), tmptokenkey1, tmptokenkey2, sqls.getDataSet("cnt", i, "username")})
                                 'Dim task4 As System.Threading.Tasks.Task(Of String) = syncSelect(mysite & "User", mparam, mvalue)
-                                json_result = Await syncSelect(mysite & "User", mparam, mvalue)
+                                json_result = syncSelect(mysite & "User", mparam, mvalue)
                                 'json_result = modCore.HttpPOSTRequestSelect(mysite & "User", mparam, mvalue)
 
                                 Dim statdata As statusData = statusData.Baru
@@ -411,7 +409,7 @@
                                     If table.Rows.Count > 0 Then
                                         statdata = statusData.Edit
                                         idData = table.Rows(0).Item("iduser") 'MYs.getDataSet("cekusername", 0, "iduser")
-                                    field.AddRange(New String() {"iduser", "username", "idtoken", "tokenkey1", "tokenkey2", "password", "hint", "recoveryquestion", "recoveryanswer", "namalengkap", "personalno", "cardtype", "email", "isemailverified", "address", "zipcode", "isaddressverified", "handphone", "ishandphoneverified", "isuserverified", "isdeleted", "deletereason", "publicv4ipaddress", "computername", "updatedby", "updateddate"})
+                                        field.AddRange(New String() {"iduser", "username", "idtoken", "tokenkey1", "tokenkey2", "password", "hint", "recoveryquestion", "recoveryanswer", "namalengkap", "personalno", "cardtype", "email", "isemailverified", "address", "zipcode", "isaddressverified", "handphone", "ishandphoneverified", "isuserverified", "isdeleted", "deletereason", "publicv4ipaddress", "computername", "updatedby", "updateddate"})
                                     End If
                                 Else
                                     statdata = statusData.Baru
@@ -426,7 +424,7 @@
                                     mparam.AddRange(New String() {"value"})
                                     mvalue.AddRange(New String() {sqls.getDataSet("cnt", i, "idtoken")})
                                     'Dim task5 As System.Threading.Tasks.Task(Of String) = syncSelect(mysite & "Token", mparam, mvalue)
-                                    json_result = Await syncSelect(mysite & "Token", mparam, mvalue)
+                                    json_result = syncSelect(mysite & "Token", mparam, mvalue)
                                     'json_result = modCore.HttpPOSTRequestSelect(mysite & "Token", mparam, mvalue)
                                     table = Newtonsoft.Json.JsonConvert.DeserializeObject(Of DataTable)(json_result)
                                     If table.Rows.Count > 0 Then
@@ -481,7 +479,7 @@
                                         End If
 
                                         'Dim task6 As System.Threading.Tasks.Task(Of String) = syncInsert(mysite & "User", mparam, mvalue)
-                                        json_result = Await syncInsert(mysite & "User", mparam, mvalue)
+                                        json_result = syncInsert(mysite & "User", mparam, mvalue)
                                         'json_result = modCore.HttpPOSTRequestInsert(mysite & "User", mparam, mvalue)
                                         'table = Newtonsoft.Json.JsonConvert.DeserializeObject(Of DataTable)(json_result)
 
@@ -530,17 +528,17 @@
         'End If
 
         isSync = False
-    End Function
+    End Sub
 
-    Private Async Function syncInsert(url As String, listfield As List(Of String), listvalue As List(Of String)) As Threading.Tasks.Task(Of String)
+    Private Function syncInsert(url As String, listfield As List(Of String), listvalue As List(Of String)) As String
         Return (modCore.HttpPOSTRequestInsert(url, listfield, listvalue))
     End Function
 
-    Private Async Function syncSelect(url As String, listfield As List(Of String), listvalue As List(Of String)) As Threading.Tasks.Task(Of String)
+    Private Function syncSelect(url As String, listfield As List(Of String), listvalue As List(Of String)) As String
         Return (modCore.HttpPOSTRequestSelect(url, listfield, listvalue))
     End Function
 
-    Private Async Sub syncToken()
+    Private Sub syncToken()
         isSync = True
         Dim lite As New SQLi(dblite)
         lite.DMLQuery("select siteurl from siteconn where active=1 order by idsiteconn desc", "getdbstring")
@@ -577,7 +575,7 @@
         mparam.AddRange(New String() {"param", "tkey1", "tkey2"})
         mvalue.AddRange(New String() {"token", tmptokenkey1, tmptokenkey2})
         'Dim task1 As System.Threading.Tasks.Task(Of String) = syncSelect(mysite & "Core", mparam, mvalue)
-        json_result = Await syncSelect(mysite & "Core", mparam, mvalue)
+        json_result = syncSelect(mysite & "Core", mparam, mvalue)
 
         'MYs.DMLQuery("select idtoken,tokenkey1,tokenkey2,isdeleted,deletereason from " & mydb & "." & myusr & ".token order by createddate asc", "cnt")
         If sqls.getDataSet("cnt") > 0 Then
@@ -751,7 +749,7 @@
             If sqls.getDataSet("cekusername") = 0 Then
                 idData = "-1"
             Else
-                dizmsgbox("Username tersebut sudah ada", dizMsgboxStyle.info, Me)
+                dizMsgbox("Username tersebut sudah ada", dizMsgboxStyle.Info, Me)
                 teUsername.Focus()
                 Exit Sub
             End If
@@ -813,7 +811,7 @@
                 sqls.DMLQuery("select tokenkey1,tokenkey2 from sys_user where iduser='" & idData & "'", "gettoken")
                 Dim tmptoken1 As String = sqls.getDataSet("gettoken", 0, "tokenkey1")
                 Dim tmptoken2 As String = sqls.getDataSet("gettoken", 0, "tokenkey2")
-                Dim passval As String = generatePass(tePassword.Text, tmptoken1, tmptoken2, 8000)
+                Dim passval As String = GeneratePass(tePassword.Text, tmptoken1, tmptoken2, 8000)
                 field.AddRange(New String() {"iduser", "iduserlevel", "userstatus", "username", "password", "namalengkap", "email", "handphone", "hint", "recoveryquestion", "recoveryanswer", "bannedreason", "isdeleted"})
                 value.AddRange(New Object() {idData, If(lueLevel.EditValue, CObj(DBNull.Value)), If(lueStatus.EditValue, CObj(DBNull.Value)), teUsername.Text, passval, teNama.Text, teEmail.Text, teHandphone.Text, teHint.Text, teRecQuestion.Text, teRecAnswer.Text, If(teReason.EditValue, "-"), 0})
                 If dtSQL.datasetSave("sys_user", idData, field, value, False) = True Then
@@ -904,10 +902,10 @@
         'End If
 
         If isLocalhost() = True Then
-            isserver = True
+            isServer = True
             lblLoad.Visible = True
             lblLoad.Text = "SYNC USER TO DATACENTER"
-            ippublic = GetIPPublic()
+            ippublic = getIPPublic()
         Else
             isServer = False
             lblLoad.Visible = False
@@ -917,7 +915,7 @@
         checkFieldMaxLength(dbstring, tlpPengguna, "sys_user")
         loadLOV()
 
-        Dim task As System.Threading.Tasks.Task = New System.Threading.Tasks.Task(AddressOf sync)
+        Dim task As System.Threading.Tasks.Task = New System.Threading.Tasks.Task(AddressOf Sync)
         task.Start()
 
         tmrCounter.Start()
@@ -999,14 +997,14 @@
 
     Private Sub tmrCounter_Tick(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles tmrCounter.Tick
         If nowTime.Second = 0 And nowTime.Minute Mod 3 = 0 Then
-            Dim task As System.Threading.Tasks.Task = New System.Threading.Tasks.Task(AddressOf sync)
+            Dim task As System.Threading.Tasks.Task = New System.Threading.Tasks.Task(AddressOf Sync)
             task.Start()
         End If
         'If isSync = False Then bwServer.RunWorkerAsync()
     End Sub
 
     Private Sub bwServer_DoWork(ByVal sender As System.Object, ByVal e As System.ComponentModel.DoWorkEventArgs) Handles bwServer.DoWork
-        sync()
+        Sync()
         If bwServer.IsBusy = False Then
             bwServer.RunWorkerAsync()
         End If

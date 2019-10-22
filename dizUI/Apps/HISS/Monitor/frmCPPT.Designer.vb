@@ -94,6 +94,7 @@ Partial Class frmCPPT
         Me.lueTanggalCPPT = New DevExpress.XtraEditors.LookUpEdit()
         Me.btnRefreshCPPT = New System.Windows.Forms.Button()
         Me.Label15 = New System.Windows.Forms.Label()
+        Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.RepositoryItemMemoEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.tlpForm.SuspendLayout()
         Me.pTitle.SuspendLayout()
@@ -1101,8 +1102,9 @@ Partial Class frmCPPT
         Me.gvDPJP.Appearance.Row.Options.UseFont = True
         Me.gvDPJP.Appearance.TopNewRow.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
         Me.gvDPJP.Appearance.TopNewRow.Options.UseBackColor = True
-        Me.gvDPJP.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn15, Me.GridColumn6, Me.GridColumn16, Me.GridColumn17, Me.GridColumn18, Me.GridColumn19, Me.GridColumn20, Me.GridColumn21, Me.GridColumn22, Me.GridColumn23, Me.GridColumn24, Me.GridColumn25, Me.GridColumn26})
+        Me.gvDPJP.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn15, Me.GridColumn6, Me.GridColumn16, Me.GridColumn17, Me.GridColumn18, Me.GridColumn19, Me.GridColumn20, Me.GridColumn21, Me.GridColumn22, Me.GridColumn23, Me.GridColumn24, Me.GridColumn25, Me.GridColumn26, Me.GridColumn1})
         Me.gvDPJP.GridControl = Me.gcDPJP
+        Me.gvDPJP.GroupCount = 1
         Me.gvDPJP.Name = "gvDPJP"
         Me.gvDPJP.NewItemRowText = "Tambah Data Disini"
         Me.gvDPJP.OptionsView.AnimationType = DevExpress.XtraGrid.Views.Base.GridAnimationType.AnimateAllContent
@@ -1111,6 +1113,7 @@ Partial Class frmCPPT
         Me.gvDPJP.OptionsView.RowAutoHeight = True
         Me.gvDPJP.OptionsView.ShowGroupPanel = False
         Me.gvDPJP.OptionsView.ShowViewCaption = True
+        Me.gvDPJP.SortInfo.AddRange(New DevExpress.XtraGrid.Columns.GridColumnSortInfo() {New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.GridColumn1, DevExpress.Data.ColumnSortOrder.Ascending)})
         Me.gvDPJP.ViewCaption = " "
         '
         'GridColumn15
@@ -1118,36 +1121,48 @@ Partial Class frmCPPT
         Me.GridColumn15.Caption = "id"
         Me.GridColumn15.FieldName = "idsoapnote"
         Me.GridColumn15.Name = "GridColumn15"
+        Me.GridColumn15.OptionsColumn.AllowEdit = False
+        Me.GridColumn15.OptionsColumn.ReadOnly = True
         '
         'GridColumn6
         '
         Me.GridColumn6.Caption = "cekdept"
         Me.GridColumn6.FieldName = "cekdept"
         Me.GridColumn6.Name = "GridColumn6"
+        Me.GridColumn6.OptionsColumn.AllowEdit = False
+        Me.GridColumn6.OptionsColumn.ReadOnly = True
         '
         'GridColumn16
         '
         Me.GridColumn16.Caption = "idparamediscreator"
         Me.GridColumn16.FieldName = "idparamediscreator"
         Me.GridColumn16.Name = "GridColumn16"
+        Me.GridColumn16.OptionsColumn.AllowEdit = False
+        Me.GridColumn16.OptionsColumn.ReadOnly = True
         '
         'GridColumn17
         '
         Me.GridColumn17.Caption = "idspesialiscreator"
         Me.GridColumn17.FieldName = "idspesialiscreator"
         Me.GridColumn17.Name = "GridColumn17"
+        Me.GridColumn17.OptionsColumn.AllowEdit = False
+        Me.GridColumn17.OptionsColumn.ReadOnly = True
         '
         'GridColumn18
         '
         Me.GridColumn18.Caption = "dpjptype"
         Me.GridColumn18.FieldName = "paramediscreatortype"
         Me.GridColumn18.Name = "GridColumn18"
+        Me.GridColumn18.OptionsColumn.AllowEdit = False
+        Me.GridColumn18.OptionsColumn.ReadOnly = True
         '
         'GridColumn19
         '
         Me.GridColumn19.Caption = "remarks"
         Me.GridColumn19.FieldName = "remarks"
         Me.GridColumn19.Name = "GridColumn19"
+        Me.GridColumn19.OptionsColumn.AllowEdit = False
+        Me.GridColumn19.OptionsColumn.ReadOnly = True
         '
         'GridColumn20
         '
@@ -1187,6 +1202,8 @@ Partial Class frmCPPT
         Me.GridColumn23.Caption = "isdeleted"
         Me.GridColumn23.FieldName = "isdeleted"
         Me.GridColumn23.Name = "GridColumn23"
+        Me.GridColumn23.OptionsColumn.AllowEdit = False
+        Me.GridColumn23.OptionsColumn.ReadOnly = True
         '
         'GridColumn24
         '
@@ -1303,6 +1320,16 @@ Partial Class frmCPPT
         Me.Label15.TabIndex = 110
         Me.Label15.Text = "Tanggal"
         Me.Label15.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        '
+        'GridColumn1
+        '
+        Me.GridColumn1.Caption = "Registrasi No."
+        Me.GridColumn1.FieldName = "registrasino"
+        Me.GridColumn1.Name = "GridColumn1"
+        Me.GridColumn1.OptionsColumn.AllowEdit = False
+        Me.GridColumn1.OptionsColumn.ReadOnly = True
+        Me.GridColumn1.Visible = True
+        Me.GridColumn1.VisibleIndex = 1
         '
         'frmCPPT
         '
@@ -1433,4 +1460,5 @@ Partial Class frmCPPT
     Friend WithEvents Label2 As Label
     Friend WithEvents pInformasi As Panel
     Friend WithEvents xtpCPPT As DevExpress.XtraTab.XtraTabPage
+    Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
 End Class

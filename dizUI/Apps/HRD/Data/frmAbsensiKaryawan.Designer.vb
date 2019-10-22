@@ -77,6 +77,7 @@ Partial Class frmAbsensiKaryawan
         Me.deTanggal = New DevExpress.XtraEditors.DateEdit()
         Me.lblPeriode = New System.Windows.Forms.Label()
         Me.pHeader = New System.Windows.Forms.Panel()
+        Me.btnDownload = New System.Windows.Forms.Button()
         Me.btnImportPulang = New System.Windows.Forms.Button()
         Me.btnImportDatang = New System.Windows.Forms.Button()
         Me.btnExportFormat = New System.Windows.Forms.Button()
@@ -84,7 +85,6 @@ Partial Class frmAbsensiKaryawan
         Me.btnExport = New System.Windows.Forms.Button()
         Me.rimeAddress = New DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit()
         Me.lblSep5 = New System.Windows.Forms.Label()
-        Me.btnDownload = New System.Windows.Forms.Button()
         Me.tlpForm.SuspendLayout()
         Me.pTitle.SuspendLayout()
         CType(Me.pMinimize, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -254,12 +254,17 @@ Partial Class frmAbsensiKaryawan
         '
         'GridColumn20
         '
-        Me.GridColumn20.Caption = "idstaff"
+        Me.GridColumn20.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn20.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn20.Caption = "ID"
         Me.GridColumn20.FieldName = "idstaff"
+        Me.GridColumn20.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left
         Me.GridColumn20.Name = "GridColumn20"
         Me.GridColumn20.OptionsColumn.AllowEdit = False
         Me.GridColumn20.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.[False]
         Me.GridColumn20.OptionsColumn.ReadOnly = True
+        Me.GridColumn20.Visible = True
+        Me.GridColumn20.VisibleIndex = 5
         '
         'GridColumn1
         '
@@ -347,7 +352,7 @@ Partial Class frmAbsensiKaryawan
         Me.gc01.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.[False]
         Me.gc01.OptionsColumn.ReadOnly = True
         Me.gc01.Visible = True
-        Me.gc01.VisibleIndex = 5
+        Me.gc01.VisibleIndex = 6
         Me.gc01.Width = 50
         '
         'gc02
@@ -363,7 +368,7 @@ Partial Class frmAbsensiKaryawan
         Me.gc02.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.[False]
         Me.gc02.OptionsColumn.ReadOnly = True
         Me.gc02.Visible = True
-        Me.gc02.VisibleIndex = 6
+        Me.gc02.VisibleIndex = 7
         Me.gc02.Width = 50
         '
         'gc03
@@ -379,7 +384,7 @@ Partial Class frmAbsensiKaryawan
         Me.gc03.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.[False]
         Me.gc03.OptionsColumn.ReadOnly = True
         Me.gc03.Visible = True
-        Me.gc03.VisibleIndex = 7
+        Me.gc03.VisibleIndex = 8
         Me.gc03.Width = 50
         '
         'gc04
@@ -395,7 +400,7 @@ Partial Class frmAbsensiKaryawan
         Me.gc04.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.[False]
         Me.gc04.OptionsColumn.ReadOnly = True
         Me.gc04.Visible = True
-        Me.gc04.VisibleIndex = 8
+        Me.gc04.VisibleIndex = 9
         Me.gc04.Width = 50
         '
         'gc05
@@ -411,7 +416,7 @@ Partial Class frmAbsensiKaryawan
         Me.gc05.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.[False]
         Me.gc05.OptionsColumn.ReadOnly = True
         Me.gc05.Visible = True
-        Me.gc05.VisibleIndex = 9
+        Me.gc05.VisibleIndex = 10
         Me.gc05.Width = 50
         '
         'gc06
@@ -427,7 +432,7 @@ Partial Class frmAbsensiKaryawan
         Me.gc06.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.[False]
         Me.gc06.OptionsColumn.ReadOnly = True
         Me.gc06.Visible = True
-        Me.gc06.VisibleIndex = 10
+        Me.gc06.VisibleIndex = 11
         Me.gc06.Width = 50
         '
         'gc07
@@ -443,7 +448,7 @@ Partial Class frmAbsensiKaryawan
         Me.gc07.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.[False]
         Me.gc07.OptionsColumn.ReadOnly = True
         Me.gc07.Visible = True
-        Me.gc07.VisibleIndex = 11
+        Me.gc07.VisibleIndex = 12
         Me.gc07.Width = 50
         '
         'gc08
@@ -459,7 +464,7 @@ Partial Class frmAbsensiKaryawan
         Me.gc08.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.[False]
         Me.gc08.OptionsColumn.ReadOnly = True
         Me.gc08.Visible = True
-        Me.gc08.VisibleIndex = 12
+        Me.gc08.VisibleIndex = 13
         Me.gc08.Width = 50
         '
         'gc09
@@ -475,7 +480,7 @@ Partial Class frmAbsensiKaryawan
         Me.gc09.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.[False]
         Me.gc09.OptionsColumn.ReadOnly = True
         Me.gc09.Visible = True
-        Me.gc09.VisibleIndex = 13
+        Me.gc09.VisibleIndex = 14
         Me.gc09.Width = 50
         '
         'gc10
@@ -491,7 +496,7 @@ Partial Class frmAbsensiKaryawan
         Me.gc10.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.[False]
         Me.gc10.OptionsColumn.ReadOnly = True
         Me.gc10.Visible = True
-        Me.gc10.VisibleIndex = 14
+        Me.gc10.VisibleIndex = 15
         Me.gc10.Width = 50
         '
         'gc11
@@ -507,7 +512,7 @@ Partial Class frmAbsensiKaryawan
         Me.gc11.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.[False]
         Me.gc11.OptionsColumn.ReadOnly = True
         Me.gc11.Visible = True
-        Me.gc11.VisibleIndex = 15
+        Me.gc11.VisibleIndex = 16
         Me.gc11.Width = 50
         '
         'gc12
@@ -523,7 +528,7 @@ Partial Class frmAbsensiKaryawan
         Me.gc12.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.[False]
         Me.gc12.OptionsColumn.ReadOnly = True
         Me.gc12.Visible = True
-        Me.gc12.VisibleIndex = 16
+        Me.gc12.VisibleIndex = 17
         Me.gc12.Width = 50
         '
         'gc13
@@ -539,7 +544,7 @@ Partial Class frmAbsensiKaryawan
         Me.gc13.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.[False]
         Me.gc13.OptionsColumn.ReadOnly = True
         Me.gc13.Visible = True
-        Me.gc13.VisibleIndex = 17
+        Me.gc13.VisibleIndex = 18
         Me.gc13.Width = 50
         '
         'gc14
@@ -555,7 +560,7 @@ Partial Class frmAbsensiKaryawan
         Me.gc14.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.[False]
         Me.gc14.OptionsColumn.ReadOnly = True
         Me.gc14.Visible = True
-        Me.gc14.VisibleIndex = 18
+        Me.gc14.VisibleIndex = 19
         Me.gc14.Width = 50
         '
         'gc15
@@ -571,7 +576,7 @@ Partial Class frmAbsensiKaryawan
         Me.gc15.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.[False]
         Me.gc15.OptionsColumn.ReadOnly = True
         Me.gc15.Visible = True
-        Me.gc15.VisibleIndex = 19
+        Me.gc15.VisibleIndex = 20
         Me.gc15.Width = 50
         '
         'gc16
@@ -587,7 +592,7 @@ Partial Class frmAbsensiKaryawan
         Me.gc16.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.[False]
         Me.gc16.OptionsColumn.ReadOnly = True
         Me.gc16.Visible = True
-        Me.gc16.VisibleIndex = 20
+        Me.gc16.VisibleIndex = 21
         Me.gc16.Width = 50
         '
         'gc17
@@ -603,7 +608,7 @@ Partial Class frmAbsensiKaryawan
         Me.gc17.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.[False]
         Me.gc17.OptionsColumn.ReadOnly = True
         Me.gc17.Visible = True
-        Me.gc17.VisibleIndex = 21
+        Me.gc17.VisibleIndex = 22
         Me.gc17.Width = 50
         '
         'gc18
@@ -619,7 +624,7 @@ Partial Class frmAbsensiKaryawan
         Me.gc18.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.[False]
         Me.gc18.OptionsColumn.ReadOnly = True
         Me.gc18.Visible = True
-        Me.gc18.VisibleIndex = 22
+        Me.gc18.VisibleIndex = 23
         Me.gc18.Width = 50
         '
         'gc19
@@ -635,7 +640,7 @@ Partial Class frmAbsensiKaryawan
         Me.gc19.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.[False]
         Me.gc19.OptionsColumn.ReadOnly = True
         Me.gc19.Visible = True
-        Me.gc19.VisibleIndex = 23
+        Me.gc19.VisibleIndex = 24
         Me.gc19.Width = 50
         '
         'gc20
@@ -651,7 +656,7 @@ Partial Class frmAbsensiKaryawan
         Me.gc20.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.[False]
         Me.gc20.OptionsColumn.ReadOnly = True
         Me.gc20.Visible = True
-        Me.gc20.VisibleIndex = 24
+        Me.gc20.VisibleIndex = 25
         Me.gc20.Width = 50
         '
         'gc21
@@ -667,7 +672,7 @@ Partial Class frmAbsensiKaryawan
         Me.gc21.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.[False]
         Me.gc21.OptionsColumn.ReadOnly = True
         Me.gc21.Visible = True
-        Me.gc21.VisibleIndex = 25
+        Me.gc21.VisibleIndex = 26
         Me.gc21.Width = 50
         '
         'gc22
@@ -683,7 +688,7 @@ Partial Class frmAbsensiKaryawan
         Me.gc22.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.[False]
         Me.gc22.OptionsColumn.ReadOnly = True
         Me.gc22.Visible = True
-        Me.gc22.VisibleIndex = 26
+        Me.gc22.VisibleIndex = 27
         Me.gc22.Width = 50
         '
         'gc23
@@ -699,7 +704,7 @@ Partial Class frmAbsensiKaryawan
         Me.gc23.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.[False]
         Me.gc23.OptionsColumn.ReadOnly = True
         Me.gc23.Visible = True
-        Me.gc23.VisibleIndex = 27
+        Me.gc23.VisibleIndex = 28
         Me.gc23.Width = 50
         '
         'gc24
@@ -715,7 +720,7 @@ Partial Class frmAbsensiKaryawan
         Me.gc24.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.[False]
         Me.gc24.OptionsColumn.ReadOnly = True
         Me.gc24.Visible = True
-        Me.gc24.VisibleIndex = 28
+        Me.gc24.VisibleIndex = 29
         Me.gc24.Width = 50
         '
         'gc25
@@ -731,7 +736,7 @@ Partial Class frmAbsensiKaryawan
         Me.gc25.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.[False]
         Me.gc25.OptionsColumn.ReadOnly = True
         Me.gc25.Visible = True
-        Me.gc25.VisibleIndex = 29
+        Me.gc25.VisibleIndex = 30
         Me.gc25.Width = 50
         '
         'gc26
@@ -747,7 +752,7 @@ Partial Class frmAbsensiKaryawan
         Me.gc26.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.[False]
         Me.gc26.OptionsColumn.ReadOnly = True
         Me.gc26.Visible = True
-        Me.gc26.VisibleIndex = 30
+        Me.gc26.VisibleIndex = 31
         Me.gc26.Width = 50
         '
         'gc27
@@ -763,7 +768,7 @@ Partial Class frmAbsensiKaryawan
         Me.gc27.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.[False]
         Me.gc27.OptionsColumn.ReadOnly = True
         Me.gc27.Visible = True
-        Me.gc27.VisibleIndex = 31
+        Me.gc27.VisibleIndex = 32
         Me.gc27.Width = 50
         '
         'gc28
@@ -779,7 +784,7 @@ Partial Class frmAbsensiKaryawan
         Me.gc28.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.[False]
         Me.gc28.OptionsColumn.ReadOnly = True
         Me.gc28.Visible = True
-        Me.gc28.VisibleIndex = 32
+        Me.gc28.VisibleIndex = 33
         Me.gc28.Width = 50
         '
         'gc29
@@ -795,7 +800,7 @@ Partial Class frmAbsensiKaryawan
         Me.gc29.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.[False]
         Me.gc29.OptionsColumn.ReadOnly = True
         Me.gc29.Visible = True
-        Me.gc29.VisibleIndex = 33
+        Me.gc29.VisibleIndex = 34
         Me.gc29.Width = 50
         '
         'gc30
@@ -811,7 +816,7 @@ Partial Class frmAbsensiKaryawan
         Me.gc30.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.[False]
         Me.gc30.OptionsColumn.ReadOnly = True
         Me.gc30.Visible = True
-        Me.gc30.VisibleIndex = 34
+        Me.gc30.VisibleIndex = 35
         Me.gc30.Width = 50
         '
         'gc31
@@ -827,7 +832,7 @@ Partial Class frmAbsensiKaryawan
         Me.gc31.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.[False]
         Me.gc31.OptionsColumn.ReadOnly = True
         Me.gc31.Visible = True
-        Me.gc31.VisibleIndex = 35
+        Me.gc31.VisibleIndex = 36
         Me.gc31.Width = 50
         '
         'tlpField
@@ -1031,6 +1036,24 @@ Partial Class frmAbsensiKaryawan
         Me.pHeader.Size = New System.Drawing.Size(786, 30)
         Me.pHeader.TabIndex = 4
         '
+        'btnDownload
+        '
+        Me.btnDownload.BackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer))
+        Me.btnDownload.Dock = System.Windows.Forms.DockStyle.Left
+        Me.btnDownload.FlatAppearance.BorderSize = 0
+        Me.btnDownload.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DimGray
+        Me.btnDownload.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DarkGray
+        Me.btnDownload.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnDownload.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnDownload.Location = New System.Drawing.Point(360, 0)
+        Me.btnDownload.Name = "btnDownload"
+        Me.btnDownload.Size = New System.Drawing.Size(100, 30)
+        Me.btnDownload.TabIndex = 27
+        Me.btnDownload.Text = "DOWNLOAD"
+        Me.btnDownload.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
+        Me.btnDownload.UseMnemonic = False
+        Me.btnDownload.UseVisualStyleBackColor = False
+        '
         'btnImportPulang
         '
         Me.btnImportPulang.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(0, Byte), Integer))
@@ -1137,24 +1160,6 @@ Partial Class frmAbsensiKaryawan
         Me.lblSep5.TabIndex = 19
         Me.lblSep5.Text = "|"
         Me.lblSep5.TextAlign = System.Drawing.ContentAlignment.TopCenter
-        '
-        'btnDownload
-        '
-        Me.btnDownload.BackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer))
-        Me.btnDownload.Dock = System.Windows.Forms.DockStyle.Left
-        Me.btnDownload.FlatAppearance.BorderSize = 0
-        Me.btnDownload.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DimGray
-        Me.btnDownload.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DarkGray
-        Me.btnDownload.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btnDownload.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnDownload.Location = New System.Drawing.Point(360, 0)
-        Me.btnDownload.Name = "btnDownload"
-        Me.btnDownload.Size = New System.Drawing.Size(100, 30)
-        Me.btnDownload.TabIndex = 27
-        Me.btnDownload.Text = "DOWNLOAD"
-        Me.btnDownload.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
-        Me.btnDownload.UseMnemonic = False
-        Me.btnDownload.UseVisualStyleBackColor = False
         '
         'frmAbsensiKaryawan
         '

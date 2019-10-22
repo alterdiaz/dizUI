@@ -1,13 +1,16 @@
 ﻿Public Class frmRegistrasiUpdate
     Const HTCAPTION = &H2
     Const WM_NCLBUTTONDOWN = &HA1
+
     Private iddept As String = ""
+    Private fromParent As Boolean = False
     Public Sub New(Optional strParam As String = "")
         ' This call is required by the designer.
         InitializeComponent()
 
         ' Add any initialization after the InitializeComponent() call.
         iddept = strParam
+        fromParent = True
         If Me.Parent Is Nothing Then
             Me.Size = New Size(Screen.PrimaryScreen.WorkingArea.Width - 100, Screen.PrimaryScreen.WorkingArea.Height - 100)
             Me.MaximumSize = New Size(Screen.PrimaryScreen.WorkingArea.Width - 100, Screen.PrimaryScreen.WorkingArea.Height - 100)
@@ -110,6 +113,11 @@
 
     Private Sub loadLOV()
         Dim sqls As New SQLs(dbstring)
+        sqls.DMLQuery("select iddepartment as id,kode as content from department where iddepartment in (select value from sys_appsetting where variable in ('IDHDDept','IDICUDept','IDVKDept','IDIRNADept','IDIRMDept','IDNICUDept','IDLabDept','IDCathDept','IDIRJDept','IDIBSDept','IDHCUDept','IDPICUDept','IDODSDept','IDRadDept','IDICCUDept','IDIGDDept','IDMCUDept') and value <>'0') order by department asc", "dept")
+        cboDepartment.Properties.DataSource = sqls.dataTable("dept")
+        cboDepartment.Properties.ValueMember = "id"
+        cboDepartment.Properties.DisplayMember = "content"
+
         sqls.DMLQuery("select idgeneral as id,generalcode as content from sys_generalcode where gctype='REGSTATUS' and idgeneral<>0", "regstat")
         lueRegStatus.Properties.DataSource = sqls.dataTable("regstat")
         lueRegStatus.Properties.ValueMember = "id"
@@ -131,21 +139,14 @@
         btnNew_Click(btnNew, Nothing)
     End Sub
 
+    Private isLoad As Boolean = False
     Private Sub btnNew_Click(sender As Object, e As EventArgs) Handles btnNew.Click
         loadLOV()
 
-        Dim sqls As New SQLs(dbstring)
-        If iddept = "" Then
-            sqls.CallSP("spRegistrasiPasienAll", "monregall")
-        Else
-            Dim field As New List(Of String)
-            Dim value As New List(Of Object)
-            field.AddRange(New String() {"@iddept"})
-            value.AddRange(New Object() {iddept})
-            sqls.CallSP("spRegistrasiPasienDept", "monregall", field, value)
+        If fromParent = True Then
+            cboDepartment.SetEditValue(New Object() {iddept})
+            cboDepartment.ReadOnly = True
         End If
-        gcData.DataSource = sqls.dataTable("monregall")
-        gvData.BestFitColumns()
     End Sub
 
     Private regno As String = ""
@@ -174,8 +175,8 @@
                 If dra("cek") = "True" Then
                     Dim dtsqls As New dtsetSQLS(dbstring)
                     If lueRegStatus.EditValue = 2 Then 'Or lueRegStatus.EditValue = 5 Then
-                        field.AddRange(New String() {"idregistrasi", "registrasistatus", "isdeleted", "updatedby", "updateddate"})
-                        value.AddRange(New Object() {dra("idregistrasi"), lueRegStatus.EditValue, 1, userid, nowTime})
+                        field.AddRange(New String() {"idregistrasi", "registrasistatus", "isdeleted", "updatedby", "updateddate", "registrasiendby", "registrasienddate"})
+                        value.AddRange(New Object() {dra("idregistrasi"), lueRegStatus.EditValue, 1, userid, nowTime, userid, nowTime})
 
                         sqls = New SQLs(dbstring)
                         sqls.DMLQuery("update appointment set isdeleted=1,updateddate=getdate(),updatedby='" & userid & "' where idregistrasi='" & dra("idregistrasi") & "'", False)
@@ -195,8 +196,8 @@
                         '    If CStr(dra("transactiontype")) <> idtranstype Then
                         '        'regno = dra("registrasino")
                         '    Else
-                        field.AddRange(New String() {"idregistrasi", "registrasistatus", "updatedby", "updateddate"})
-                        value.AddRange(New Object() {dra("idregistrasi"), lueRegStatus.EditValue, userid, nowTime})
+                        field.AddRange(New String() {"idregistrasi", "registrasistatus", "updatedby", "updateddate", "registrasiendby", "registrasienddate"})
+                        value.AddRange(New Object() {dra("idregistrasi"), lueRegStatus.EditValue, userid, nowTime, userid, nowTime})
 
                         sqls = New SQLs(dbstring)
                         sqls.DMLQuery("update appointment set bookingstatus=3,updateddate=getdate(),updatedby='" & userid & "' where idregistrasi='" & dra("idregistrasi") & "'", False)
@@ -246,9 +247,34 @@
             End If
 
             btnNew_Click(btnNew, Nothing)
+            cboDepartment_EditValueChanged(cboDepartment, Nothing)
         Else
             dizMsgbox("Tidak ada data yang disimpan", dizMsgboxStyle.Info, Me)
         End If
+    End Sub
+
+    Private Sub cboDepartment_EditValueChanged(sender As Object, e As EventArgs) Handles cboDepartment.EditValueChanged
+        If cboDepartment.EditValue Is Nothing Then
+            If fromParent = False Then
+                iddept = ""
+            End If
+        Else
+            If fromParent = False Then
+                iddept = cboDepartment.EditValue.ToString.Replace(" ", "")
+            End If
+        End If
+        Dim sqls As New SQLs(dbstring)
+        If iddept = "" Then
+            sqls.CallSP("spRegistrasiPasienAll", "monregall")
+        Else
+            Dim field As New List(Of String)
+            Dim value As New List(Of Object)
+            field.AddRange(New String() {"@iddept"})
+            value.AddRange(New Object() {iddept})
+            sqls.CallSP("spRegistrasiPasienDept", "monregall", field, value)
+        End If
+        gcData.DataSource = sqls.dataTable("monregall")
+        gvData.BestFitColumns()
     End Sub
 
 End Class

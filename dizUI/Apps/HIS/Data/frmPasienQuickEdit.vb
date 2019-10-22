@@ -152,7 +152,7 @@
     End Sub
 
     Private Sub kosongkanisian()
-        idrm = -1
+        idrm = "-1"
         teNoRM.Text = 0
         teNama.EditValue = Nothing
         teNamaPanggilan.EditValue = Nothing
@@ -205,11 +205,12 @@
 
         If cari.ShowDialog = Windows.Forms.DialogResult.OK Then
             idrm = cari.GetIDSelectData
-            sqls.DMLQuery("select isdeleted,rekammedisno,nama,namapanggilan,jeniskelamin,convert(varchar,tanggallahir,105) as tanggallahir,kewarganegaraan,kotalahir from rekammedis where idrekammedis='" & idrm & "'", "lama")
+            sqls.DMLQuery("select isdeleted,rekammedisno,nama,namapanggilan,jeniskelamin,convert(varchar,tanggallahir,105) as tanggallahir,kewarganegaraan,kotalahir,sapaan from rekammedis where idrekammedis='" & idrm & "'", "lama")
             teNoRM.Text = Format(CLng(sqls.getDataSet("lama", 0, "rekammedisno")), "0#######")
             teNama.Text = sqls.getDataSet("lama", 0, "nama")
             teNamaPanggilan.Text = sqls.getDataSet("lama", 0, "namapanggilan")
             lueJenisKelamin.EditValue = sqls.getDataSet("lama", 0, "jeniskelamin")
+            lueSapaan.EditValue = sqls.getDataSet("lama", 0, "sapaan")
             Dim tgllahir As String = sqls.getDataSet("lama", 0, "tanggallahir")
             deTanggalLahir.EditValue = Strdate2Date(tgllahir)
             lueKewarganegaraan.EditValue = If(sqls.getDataSet("lama", 0, "kewarganegaraan"), Nothing)
@@ -253,10 +254,30 @@
         End If
     End Sub
 
+    Private Function cekIsian() As Boolean
+        Dim retval As Boolean = True
+
+        If teNama.EditValue Is Nothing Then retval = False
+        If teNamaPanggilan.EditValue Is Nothing Then retval = False
+        If teNama.Text = "" Then retval = False
+        If teNamaPanggilan.Text = "" Then retval = False
+
+        If lueJenisKelamin.EditValue Is Nothing Then retval = False
+        If lueSapaan.EditValue Is Nothing Then retval = False
+        If lueKewarganegaraan.EditValue Is Nothing Then retval = False
+        If lueTempatLahir.EditValue Is Nothing Then retval = False
+        If deTanggalLahir.EditValue Is Nothing Then retval = False
+
+        Return retval
+    End Function
 
     Private Sub btnSave_Click(sender As Object, e As EventArgs) Handles btnSave.Click
         If idrm = "-1" Then
             dizMsgbox("Rekam Medis belum dipilih", dizMsgboxStyle.Info, Me)
+            Exit Sub
+        End If
+        If cekIsian() = False Then
+            dizMsgbox("Isian belum benar", dizMsgboxStyle.Info, Me)
             Exit Sub
         End If
         Dim sqls2 As New SQLs(dbstring)
@@ -283,8 +304,8 @@
         Dim sqls As New dtsetSQLS(dbstring)
         Dim field As New List(Of String)
         Dim value As New List(Of Object)
-        field.AddRange(New String() {"idrekammedis", "rekammedisno", "nama", "namapanggilan", "jeniskelamin", "tanggallahir", "kotalahir", "kewarganegaraan", "updatedby", "updateddate"})
-        value.AddRange(New Object() {idrm, CLng(teNoRM.Text.Replace("-", "")), teNama.Text, teNamaPanggilan.Text, lueJenisKelamin.EditValue, CDate(deTanggalLahir.EditValue), lueTempatLahir.EditValue, lueKewarganegaraan.EditValue, userid, nowTime})
+        field.AddRange(New String() {"idrekammedis", "rekammedisno", "nama", "namapanggilan", "jeniskelamin", "sapaan", "tanggallahir", "kotalahir", "kewarganegaraan", "updatedby", "updateddate"})
+        value.AddRange(New Object() {idrm, CLng(teNoRM.Text.Replace("-", "")), teNama.Text, teNamaPanggilan.Text, lueJenisKelamin.EditValue, lueSapaan.EditValue, CDate(deTanggalLahir.EditValue), lueTempatLahir.EditValue, lueKewarganegaraan.EditValue, userid, nowTime})
         If sqls.datasetSave("rekammedis", idrm, field, value, False) Then
             isiLog(userid, dbstring, field, value, "rekammedis")
 
@@ -608,6 +629,22 @@
         If teSearch.Text.Replace(" ", "") = "" Then Exit Sub
         If Asc(e.KeyChar) = 13 Then
             btnSearch_Click(btnSearch, Nothing)
+        End If
+    End Sub
+
+    Private Sub lueJenisKelamin_EditValueChanged(sender As Object, e As EventArgs) Handles lueJenisKelamin.EditValueChanged
+        lueSapaan.Properties.DataSource = Nothing
+        lueSapaan.EditValue = Nothing
+
+        Dim mysqls As New SQLs(dbstring)
+        mysqls.DMLQuery("select idgeneral as id, generalcode as content from sys_generalcode where gctype='SAPAAN' and (idreff=2 or idreff='" & lueJenisKelamin.EditValue & "') order by generalcode asc", "sapaan")
+        lueSapaan.Properties.DataSource = mysqls.dataTable("sapaan")
+        lueSapaan.Properties.DisplayMember = "content"
+        lueSapaan.Properties.ValueMember = "id"
+        If mysqls.getDataSet("sapaan") = 0 Then
+            dizMsgbox("Sapaan tidak ditemukan" & vbCrLf & "Sapaan harap entry dulu", dizMsgboxStyle.Peringatan, Me)
+            pExit_Click(Me, Nothing)
+            Exit Sub
         End If
     End Sub
 

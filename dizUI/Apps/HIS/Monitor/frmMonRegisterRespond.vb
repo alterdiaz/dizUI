@@ -107,17 +107,17 @@
             gcData.DataSource = sqls.dataTable("monreg")
         End If
 
-        Dim cnt As Long = 1
-        Dim paramname As String = ""
-        For i As Integer = 0 To sqls.dataTable("monreg").Rows.Count - 1
-            Dim dr As DataRow = gvData.GetDataRow(i)
-            If paramname <> dr("dokterruangan") Then
-                cnt = 1
-                paramname = dr("dokterruangan")
-            End If
-            gvData.SetRowCellValue(i, GridColumn1, cnt)
-            cnt += 1
-        Next
+        'Dim cnt As Long = 1
+        'Dim paramname As String = ""
+        'For i As Integer = 0 To sqls.dataTable("monreg").Rows.Count - 1
+        '    Dim dr As DataRow = gvData.GetDataRow(i)
+        '    If paramname <> dr("dokterruangan") Then
+        '        cnt = 1
+        '        paramname = dr("dokterruangan")
+        '    End If
+        '    gvData.SetRowCellValue(i, GridColumn1, cnt)
+        '    cnt += 1
+        'Next
         GridColumn18.GroupIndex = 1
         gvData.ExpandAllGroups()
         gvData.BestFitColumns()

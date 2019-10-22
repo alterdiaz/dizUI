@@ -650,7 +650,7 @@ Public Class frmAMIGD201801
                 End If
             End If
             Dim sqls As New SQLs(dbstring)
-            sqls.DMLQuery("select r.idregistrasi,convert(varchar,r.registrasidate,105)+' '+convert(varchar,r.registrasidate,108) as 'Tgl Registrasi',case when r.isoneday=1 then r.registrasino + ' (ODS)' else r.registrasino end as 'No Registrasi',pm.nama as 'Tenaga Medis',dbo.fformatnorm(rm.rekammedisno) as 'No RM',rm.nama as 'Nama Pasien',jk.generalcode as 'Jenis Kelamin',convert(varchar,rm.tanggallahir,105) as 'Tgl Lahir',dbo.fUmurRegister(rm.tanggallahir,r.registrasidate) as 'Umur',kw.wilayah as 'Kewarganegaraan' from registrasi r left join rekammedis rm on r.idrekammedis=rm.idrekammedis left join sys_generalcode jk on rm.jeniskelamin=jk.idgeneral and jk.gctype='SEXTYPE' left join wilayah kw on rm.kewarganegaraan=kw.idwilayah  left join paramedis pm on r.iddokterruangan=pm.idparamedis where r.isasesmenmedis=0 and rm.rekammedisno<>0 and r.iddepartment=(select top 1 [value] from sys_appsetting where variable='idigddept') order by r.registrasidate desc", "search")
+            sqls.DMLQuery("select r.idregistrasi,convert(varchar,r.registrasidate,105)+' '+convert(varchar,r.registrasidate,108) as 'Tgl Registrasi',case when r.isoneday=1 then r.registrasino + ' (ODS)' else r.registrasino end as 'No Registrasi',pm.nama as 'Tenaga Medis',dbo.fformatnorm(rm.rekammedisno) as 'No RM',rm.nama as 'Nama Pasien',jk.generalcode as 'Jenis Kelamin',convert(varchar,rm.tanggallahir,105) as 'Tgl Lahir',dbo.fUmurRegister(rm.tanggallahir,r.registrasidate) as 'Umur',kw.wilayah as 'Kewarganegaraan' from registrasi r left join rekammedis rm on r.idrekammedis=rm.idrekammedis left join sys_generalcode jk on rm.jeniskelamin=jk.idgeneral and jk.gctype='SEXTYPE' left join wilayah kw on rm.kewarganegaraan=kw.idwilayah  left join paramedis pm on r.iddokterruangan=pm.idparamedis where r.registrasistatus<>2 and rm.rekammedisno<>0 and r.iddepartment=(select top 1 [value] from sys_appsetting where variable='idigddept') order by r.registrasidate desc", "search")
             Dim cari As New frmSearchTanggal(sqls.dataSet, "search", "idregistrasi", "Tgl Registrasi")
             tambahChild(cari)
 
@@ -786,7 +786,7 @@ Public Class frmAMIGD201801
                 End If
 
                 If iddas <> "-1" Then
-                    sqls.DMLQuery("select assessmentno,skalatriage,convert(varchar,tanggaldatang,105) as tanggaldatang,convert(varchar,tanggaldatang,108) as waktudatang,convert(varchar,tanggalkejadian,105) as tanggalkejadian,convert(varchar,tanggalkejadian,108) as waktukejadian,gcse,gcsv,gcsm,tdsis,tddias,denyutnadi,isnadi,suhu,isakral,iskesadaran,pupila,pupilb,isrefcahaya,nafas,oksigendarah,isgangguanperilaku,isperilakubahaya,isinformasi,familytype,namainformasi,iscaramasuk,caramasuk,ispengantar,namapengantar,ispenyebab,penyebab,gayahidup,gayahidupnote,asalpx,asalpx2,asalrujukan,iddokterrujukan from assessment where idregistrasi='" & idreg & "'", "getass")
+                    sqls.DMLQuery("select assessmentno,skalatriage,convert(varchar,tanggaldatang,105) as tanggaldatang,convert(varchar,tanggaldatang,108) as waktudatang,convert(varchar,tanggalkejadian,105) as tanggalkejadian,convert(varchar,tanggalkejadian,108) as waktukejadian,gcse,gcsv,gcsm,tdsis,tddias,denyutnadi,isnadi,suhu,isakral,iskesadaran,pupila,pupilb,isrefcahaya,nafas,oksigendarah,isgangguanperilaku,isperilakubahaya,isinformasi,familytype,namainformasi,iscaramasuk,caramasuk,ispengantar,namapengantar,ispenyebab,penyebab,gayahidup,gayahidupnote,asalpx,asalpx2,asalrujukan,iddokterrujukan from assessment where isdeleted=0 and idregistrasi='" & idreg & "'", "getass")
 
                     teNoAsesmen.Tag = iddas
                     teNoAsesmen.Text = sqls.getDataSet("getass", 0, "assessmentno")
@@ -854,7 +854,7 @@ Public Class frmAMIGD201801
                 End If
 
                 If iddso <> "-1" Then
-                    sqls.DMLQuery("select soapnoteno,convert(varchar,soapnotedate,105)+' '+convert(varchar,soapnotedate,108) as soapnotedate,subyektif,obyektif,asesmen,planning from soapnote where idregistrasi='" & idreg & "' and soapnotetype=1", "getso")
+                    sqls.DMLQuery("select soapnoteno,convert(varchar,soapnotedate,105)+' '+convert(varchar,soapnotedate,108) as soapnotedate,subyektif,obyektif,asesmen,planning from soapnote where idregistrasi='" & idreg & "' and isdeleted=0 and soapnotetype=1", "getso")
                     teNoSOAP.Tag = iddso
 
                     Dim oTrim() As Char = {vbCr, vbLf}
@@ -1702,10 +1702,18 @@ Public Class frmAMIGD201801
             Try
                 pt.Print(sharename)
             Catch ex As Exception
-                dizMsgbox("Printer tidak ditemukan/tidak ada akses", dizMsgboxStyle.Peringatan, Me)
+                Try
+                    pt.PrintDialog()
+                Catch ex1 As Exception
+                    dizMsgbox(ex1.Message, dizMsgboxStyle.Kesalahan, Me)
+                End Try
             End Try
         Else
-            dizMsgbox("Printer belum disetting untuk cetak dokumen ini", dizMsgboxStyle.Peringatan, Me)
+            Try
+                pt.PrintDialog()
+            Catch ex1 As Exception
+                dizMsgbox(ex1.Message, dizMsgboxStyle.Kesalahan, Me)
+            End Try
         End If
         'Dim sd As New frmSelectDevice
         'tambahChild(sd)
@@ -2228,13 +2236,6 @@ Public Class frmAMIGD201801
         value2.AddRange(New Object() {iddpjp, idselect, idtransselectso, 2, teNoSOAP.Text, nowTime, "", "", "", meAdvis.Text, userid, nowTime, lueParamedis.EditValue, If(lueSpesialis.EditValue, 0), lueSebagai.EditValue})
         Dim cekb As Boolean = dtsqls2.datasetSave("soapnote", iddso, field2, value2, False)
 
-        'Dim dts As New dtsetSQLS(dbstring)
-        'Dim field As New List(Of String)
-        'Dim value As New List(Of Object)
-        'field.AddRange(New String() {"idregistrasidpjp", "idregistrasi", "idparamedis", "idspesialis", "dpjptype", "remarks", "createdby", "idcompany"})
-        'value.AddRange(New Object() {iddpjp, idselect, lueParamedis.EditValue, If(lueSpesialis.EditValue, 0), lueSebagai.EditValue, meAdvis.Text, userid, idcomp})
-        'Dim cekb As Boolean = dts.datasetSave("registrasidpjp", iddpjp, field, value, False)
-
         If cekb = True Then
             dizMsgbox("DPJP telah tersimpan", dizMsgboxStyle.Info, Me)
             dpjpbaru()
@@ -2593,10 +2594,18 @@ Public Class frmAMIGD201801
                 Try
                     pt.Print(sharename)
                 Catch ex As Exception
-                    dizMsgbox("Printer tidak ditemukan/tidak ada akses", dizMsgboxStyle.Peringatan, Me)
+                    Try
+                        pt.PrintDialog()
+                    Catch ex1 As Exception
+                        dizMsgbox(ex1.Message, dizMsgboxStyle.Kesalahan, Me)
+                    End Try
                 End Try
             Else
-                dizMsgbox("Printer belum disetting untuk cetak dokumen ini", dizMsgboxStyle.Peringatan, Me)
+                Try
+                    pt.PrintDialog()
+                Catch ex1 As Exception
+                    dizMsgbox(ex1.Message, dizMsgboxStyle.Kesalahan, Me)
+                End Try
             End If
         Else
             pt.AutoShowParametersPanel = False
@@ -2656,14 +2665,20 @@ Public Class frmAMIGD201801
                     If sharename <> "" Then
                         cetakWristband(lstdata, sharename)
                     Else
-                        dizMsgbox("Printer belum disetting untuk cetak dokumen ini", dizMsgboxStyle.Peringatan, Me)
+                        Dim pd As New PrintDialog
+                        If pd.ShowDialog() = DialogResult.OK Then
+                            cetakWristband(lstdata, pd.PrinterSettings.PrinterName)
+                        End If
                     End If
                 Else
                     Dim sharename As String = getPrinter("WRBAM")
                     If sharename <> "" Then
                         cetakWristband(lstdata, sharename)
                     Else
-                        dizMsgbox("Printer belum disetting untuk cetak dokumen ini", dizMsgboxStyle.Peringatan, Me)
+                        Dim pd As New PrintDialog
+                        If pd.ShowDialog() = DialogResult.OK Then
+                            cetakWristband(lstdata, pd.PrinterSettings.PrinterName)
+                        End If
                     End If
                 End If
             ElseIf selectWB.getStringPilih = "Anak" Then
@@ -2671,7 +2686,10 @@ Public Class frmAMIGD201801
                 If sharename <> "" Then
                     cetakWristband(lstdata, sharename)
                 Else
-                    dizMsgbox("Printer belum disetting untuk cetak dokumen ini", dizMsgboxStyle.Peringatan, Me)
+                    Dim pd As New PrintDialog
+                    If pd.ShowDialog() = DialogResult.OK Then
+                        cetakWristband(lstdata, pd.PrinterSettings.PrinterName)
+                    End If
                 End If
             End If
             'End If

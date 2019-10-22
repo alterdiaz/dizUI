@@ -60,6 +60,9 @@ Partial Class frmItemPriceKelas
         Me.gclItem = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.gclCek = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.ceCek = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
+        Me.pSearch = New System.Windows.Forms.Panel()
+        Me.Label1 = New System.Windows.Forms.Label()
+        Me.teSearch = New DevExpress.XtraEditors.TextEdit()
         Me.pItem = New System.Windows.Forms.Panel()
         Me.btnAllItem = New System.Windows.Forms.Button()
         Me.btnItemSelect = New System.Windows.Forms.Button()
@@ -94,6 +97,8 @@ Partial Class frmItemPriceKelas
         CType(Me.gcItem, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gvItem, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.ceCek, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.pSearch.SuspendLayout()
+        CType(Me.teSearch.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.pItem.SuspendLayout()
         Me.pHeader.SuspendLayout()
         Me.SuspendLayout()
@@ -602,6 +607,7 @@ Partial Class frmItemPriceKelas
         'xtpItem
         '
         Me.xtpItem.Controls.Add(Me.gcItem)
+        Me.xtpItem.Controls.Add(Me.pSearch)
         Me.xtpItem.Controls.Add(Me.pItem)
         Me.xtpItem.Name = "xtpItem"
         Me.xtpItem.Size = New System.Drawing.Size(262, 372)
@@ -610,11 +616,11 @@ Partial Class frmItemPriceKelas
         'gcItem
         '
         Me.gcItem.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.gcItem.Location = New System.Drawing.Point(0, 0)
+        Me.gcItem.Location = New System.Drawing.Point(0, 30)
         Me.gcItem.MainView = Me.gvItem
         Me.gcItem.Name = "gcItem"
         Me.gcItem.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.ceCek})
-        Me.gcItem.Size = New System.Drawing.Size(262, 342)
+        Me.gcItem.Size = New System.Drawing.Size(262, 312)
         Me.gcItem.TabIndex = 11
         Me.gcItem.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gvItem})
         '
@@ -685,6 +691,52 @@ Partial Class frmItemPriceKelas
         Me.ceCek.AutoHeight = False
         Me.ceCek.Name = "ceCek"
         '
+        'pSearch
+        '
+        Me.pSearch.BackColor = System.Drawing.Color.FromArgb(CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer))
+        Me.pSearch.Controls.Add(Me.Label1)
+        Me.pSearch.Controls.Add(Me.teSearch)
+        Me.pSearch.Dock = System.Windows.Forms.DockStyle.Top
+        Me.pSearch.Location = New System.Drawing.Point(0, 0)
+        Me.pSearch.Margin = New System.Windows.Forms.Padding(0)
+        Me.pSearch.Name = "pSearch"
+        Me.pSearch.Size = New System.Drawing.Size(262, 30)
+        Me.pSearch.TabIndex = 27
+        '
+        'Label1
+        '
+        Me.Label1.Anchor = System.Windows.Forms.AnchorStyles.Right
+        Me.Label1.AutoSize = True
+        Me.Label1.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label1.Location = New System.Drawing.Point(12, 7)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(33, 14)
+        Me.Label1.TabIndex = 23
+        Me.Label1.Text = "Scan"
+        Me.Label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        '
+        'teSearch
+        '
+        Me.teSearch.Anchor = System.Windows.Forms.AnchorStyles.Right
+        Me.teSearch.EditValue = ""
+        Me.teSearch.Location = New System.Drawing.Point(48, 4)
+        Me.teSearch.Margin = New System.Windows.Forms.Padding(0)
+        Me.teSearch.Name = "teSearch"
+        Me.teSearch.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[True]
+        Me.teSearch.Properties.Appearance.BackColor = System.Drawing.Color.White
+        Me.teSearch.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 10.0!)
+        Me.teSearch.Properties.Appearance.ForeColor = System.Drawing.Color.Black
+        Me.teSearch.Properties.Appearance.Options.UseBackColor = True
+        Me.teSearch.Properties.Appearance.Options.UseFont = True
+        Me.teSearch.Properties.Appearance.Options.UseForeColor = True
+        Me.teSearch.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Office2003
+        Me.teSearch.Properties.MaxLength = 50
+        Me.teSearch.Properties.NullText = "Pencarian Menu"
+        Me.teSearch.Properties.NullValuePrompt = "Pencarian Menu"
+        Me.teSearch.Size = New System.Drawing.Size(212, 22)
+        Me.teSearch.TabIndex = 22
+        Me.teSearch.Tag = ""
+        '
         'pItem
         '
         Me.pItem.BackColor = System.Drawing.Color.FromArgb(CType(CType(66, Byte), Integer), CType(CType(66, Byte), Integer), CType(CType(66, Byte), Integer))
@@ -700,7 +752,7 @@ Partial Class frmItemPriceKelas
         '
         'btnAllItem
         '
-        Me.btnAllItem.BackColor = System.Drawing.Color.green
+        Me.btnAllItem.BackColor = System.Drawing.Color.Green
         Me.btnAllItem.Dock = System.Windows.Forms.DockStyle.Left
         Me.btnAllItem.FlatAppearance.BorderSize = 0
         Me.btnAllItem.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DimGray
@@ -717,7 +769,7 @@ Partial Class frmItemPriceKelas
         '
         'btnItemSelect
         '
-        Me.btnItemSelect.BackColor = System.Drawing.Color.green
+        Me.btnItemSelect.BackColor = System.Drawing.Color.Green
         Me.btnItemSelect.Dock = System.Windows.Forms.DockStyle.Right
         Me.btnItemSelect.FlatAppearance.BorderSize = 0
         Me.btnItemSelect.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DimGray
@@ -801,7 +853,7 @@ Partial Class frmItemPriceKelas
         '
         'btnSave
         '
-        Me.btnSave.BackColor = System.Drawing.Color.green
+        Me.btnSave.BackColor = System.Drawing.Color.Green
         Me.btnSave.Dock = System.Windows.Forms.DockStyle.Right
         Me.btnSave.FlatAppearance.BorderSize = 0
         Me.btnSave.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DimGray
@@ -866,6 +918,9 @@ Partial Class frmItemPriceKelas
         CType(Me.gcItem, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.gvItem, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.ceCek, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.pSearch.ResumeLayout(False)
+        Me.pSearch.PerformLayout()
+        CType(Me.teSearch.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.pItem.ResumeLayout(False)
         Me.pHeader.ResumeLayout(False)
         Me.ResumeLayout(False)
@@ -918,4 +973,7 @@ Partial Class frmItemPriceKelas
     Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
     Public WithEvents btnExportFormat As Button
     Public WithEvents btnImportFormat As Button
+    Friend WithEvents pSearch As Panel
+    Friend WithEvents Label1 As Label
+    Friend WithEvents teSearch As DevExpress.XtraEditors.TextEdit
 End Class

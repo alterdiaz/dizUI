@@ -43,6 +43,9 @@ Partial Class frmItemGrup
         Me.btnSave = New System.Windows.Forms.Button()
         Me.btnDelete = New System.Windows.Forms.Button()
         Me.lblSep5 = New System.Windows.Forms.Label()
+        Me.Label1 = New System.Windows.Forms.Label()
+        Me.sePriority = New DevExpress.XtraEditors.SpinEdit()
+        Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.tlpForm.SuspendLayout()
         Me.pTitle.SuspendLayout()
         CType(Me.pMinimize, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -54,6 +57,7 @@ Partial Class frmItemGrup
         Me.tlpField.SuspendLayout()
         CType(Me.teNama.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.pHeader.SuspendLayout()
+        CType(Me.sePriority.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'tlpForm
@@ -167,15 +171,16 @@ Partial Class frmItemGrup
         '
         'gvData
         '
-        Me.gvData.Appearance.Empty.BackColor = System.Drawing.color.fromargb(240, 240, 240)
+        Me.gvData.Appearance.Empty.BackColor = System.Drawing.Color.FromArgb(CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer))
         Me.gvData.Appearance.Empty.Options.UseBackColor = True
         Me.gvData.Appearance.EvenRow.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(192, Byte), Integer))
         Me.gvData.Appearance.EvenRow.Options.UseBackColor = True
         Me.gvData.Appearance.OddRow.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer))
         Me.gvData.Appearance.OddRow.Options.UseBackColor = True
-        Me.gvData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.gcID, Me.gcisdeleted, Me.gcNama, Me.gcStatData})
+        Me.gvData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.gcID, Me.gcisdeleted, Me.gcNama, Me.GridColumn1, Me.gcStatData})
         Me.gvData.GridControl = Me.gcData
         Me.gvData.Name = "gvData"
+        Me.gvData.OptionsView.ColumnAutoWidth = False
         Me.gvData.OptionsView.EnableAppearanceEvenRow = True
         Me.gvData.OptionsView.EnableAppearanceOddRow = True
         Me.gvData.OptionsView.ShowGroupPanel = False
@@ -220,12 +225,12 @@ Partial Class frmItemGrup
         Me.gcStatData.OptionsColumn.AllowEdit = False
         Me.gcStatData.OptionsColumn.ReadOnly = True
         Me.gcStatData.Visible = True
-        Me.gcStatData.VisibleIndex = 1
+        Me.gcStatData.VisibleIndex = 2
         '
         'tlpField
         '
         Me.tlpField.AutoSize = True
-        Me.tlpField.BackColor = System.Drawing.color.fromargb(240, 240, 240)
+        Me.tlpField.BackColor = System.Drawing.Color.FromArgb(CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer))
         Me.tlpField.ColumnCount = 6
         Me.tlpField.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
         Me.tlpField.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 140.0!))
@@ -233,6 +238,8 @@ Partial Class frmItemGrup
         Me.tlpField.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 140.0!))
         Me.tlpField.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 150.0!))
         Me.tlpField.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
+        Me.tlpField.Controls.Add(Me.sePriority, 4, 1)
+        Me.tlpField.Controls.Add(Me.Label1, 3, 1)
         Me.tlpField.Controls.Add(Me.teNama, 2, 1)
         Me.tlpField.Controls.Add(Me.lblDepartment, 1, 1)
         Me.tlpField.Dock = System.Windows.Forms.DockStyle.Top
@@ -310,7 +317,7 @@ Partial Class frmItemGrup
         '
         'btnSave
         '
-        Me.btnSave.BackColor = System.Drawing.Color.green
+        Me.btnSave.BackColor = System.Drawing.Color.Green
         Me.btnSave.Dock = System.Windows.Forms.DockStyle.Right
         Me.btnSave.FlatAppearance.BorderSize = 0
         Me.btnSave.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DimGray
@@ -354,11 +361,60 @@ Partial Class frmItemGrup
         Me.lblSep5.Text = "|"
         Me.lblSep5.TextAlign = System.Drawing.ContentAlignment.TopCenter
         '
+        'Label1
+        '
+        Me.Label1.Anchor = System.Windows.Forms.AnchorStyles.Right
+        Me.Label1.AutoSize = True
+        Me.Label1.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label1.Location = New System.Drawing.Point(506, 11)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(49, 14)
+        Me.Label1.TabIndex = 18
+        Me.Label1.Text = "Prioritas"
+        Me.Label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        '
+        'sePriority
+        '
+        Me.sePriority.Anchor = System.Windows.Forms.AnchorStyles.Left
+        Me.sePriority.EditValue = New Decimal(New Integer() {0, 0, 0, 0})
+        Me.sePriority.Location = New System.Drawing.Point(558, 8)
+        Me.sePriority.Margin = New System.Windows.Forms.Padding(0)
+        Me.sePriority.Name = "sePriority"
+        Me.sePriority.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.sePriority.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 9.0!)
+        Me.sePriority.Properties.Appearance.Options.UseBackColor = True
+        Me.sePriority.Properties.Appearance.Options.UseFont = True
+        Me.sePriority.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple
+        Me.sePriority.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.sePriority.Properties.DisplayFormat.FormatString = "n0"
+        Me.sePriority.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.sePriority.Properties.EditFormat.FormatString = "n0"
+        Me.sePriority.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.sePriority.Properties.IsFloatValue = False
+        Me.sePriority.Properties.Mask.EditMask = "n0"
+        Me.sePriority.Properties.MaxLength = 5
+        Me.sePriority.Properties.MaxValue = New Decimal(New Integer() {99999, 0, 0, 0})
+        Me.sePriority.Size = New System.Drawing.Size(75, 20)
+        Me.sePriority.TabIndex = 124
+        Me.sePriority.Tag = "priority"
+        '
+        'GridColumn1
+        '
+        Me.GridColumn1.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn1.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn1.Caption = "Prioritas"
+        Me.GridColumn1.FieldName = "priority"
+        Me.GridColumn1.Name = "GridColumn1"
+        Me.GridColumn1.OptionsColumn.AllowEdit = False
+        Me.GridColumn1.OptionsColumn.ReadOnly = True
+        Me.GridColumn1.Visible = True
+        Me.GridColumn1.VisibleIndex = 1
+        '
         'frmItemGrup
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.BackColor = System.Drawing.color.fromargb(240, 240, 240)
+        Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer))
         Me.ClientSize = New System.Drawing.Size(790, 408)
         Me.Controls.Add(Me.tlpForm)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
@@ -378,6 +434,7 @@ Partial Class frmItemGrup
         Me.tlpField.PerformLayout()
         CType(Me.teNama.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.pHeader.ResumeLayout(False)
+        CType(Me.sePriority.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -402,4 +459,7 @@ Partial Class frmItemGrup
     Friend WithEvents pMinimize As System.Windows.Forms.PictureBox
     Friend WithEvents pMaximize As System.Windows.Forms.PictureBox
     Friend WithEvents pExit As System.Windows.Forms.PictureBox
+    Friend WithEvents Label1 As Label
+    Friend WithEvents sePriority As DevExpress.XtraEditors.SpinEdit
+    Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
 End Class

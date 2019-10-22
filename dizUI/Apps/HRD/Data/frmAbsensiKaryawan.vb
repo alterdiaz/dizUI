@@ -357,20 +357,13 @@ Public Class frmAbsensiKaryawan
                 Try
                     Dim dr As DataRow = dt.Rows(i)
                     Dim karynama As String = If(dr(3), "")
-                    Dim karyid As String = ""
+                    Dim karyid As String = If(dr(5), "")
                     If karynama = "" Then Exit Try
+                    If karyid = "" Then Exit Try
 
                     sqls = New SQLs(dbstring)
-                    If karynama <> "" Then
-                        sqls.DMLQuery("select * from staff where replace(nama,' ','')='" & karynama.Replace(" ", "") & "'", "cekkary")
-                        If sqls.getDataSet("cekkary") > 0 Then
-                            karyid = sqls.getDataSet("cekkary", 0, "idstaff")
-                        Else
-                            Exit Try
-                        End If
-                    End If
                     Dim cntday As Integer = 1
-                    For a As Integer = 5 To dt.Columns.Count - 1
+                    For a As Integer = 6 To dt.Columns.Count - 1
                         sqls = New SQLs(dbstring)
                         Dim tmpstr As String = dr(a)
                         Dim tmplist() As String = tmpstr.Split(":")
@@ -506,18 +499,11 @@ Public Class frmAbsensiKaryawan
                 Try
                     Dim dr As DataRow = dt.Rows(i)
                     Dim karynama As String = If(dr(3), "")
-                    Dim karyid As String = ""
+                    Dim karyid As String = If(dr(5), "")
                     If karynama = "" Then Exit Try
+                    If karyid = "" Then Exit Try
 
                     sqls = New SQLs(dbstring)
-                    If karynama <> "" Then
-                        sqls.DMLQuery("select * from staff where replace(nama,' ','')='" & karynama.Replace(" ", "") & "'", "cekkary")
-                        If sqls.getDataSet("cekkary") > 0 Then
-                            karyid = sqls.getDataSet("cekkary", 0, "idstaff")
-                        Else
-                            Exit Try
-                        End If
-                    End If
                     Dim cntday As Integer = 1
                     For a As Integer = 5 To dt.Columns.Count - 1
                         sqls = New SQLs(dbstring)

@@ -297,7 +297,8 @@
         Dim json_result As String = ""
         Dim table As DataTable = Nothing
         json_result = modCore.HttpPOSTRequestSelect(mysite & "CurrentToken")
-        Dim tkey1, tkey2 As String
+        Dim tkey1 As String = ""
+        Dim tkey2 As String = ""
         If json_result.Length > 2 Then
             table = Newtonsoft.Json.JsonConvert.DeserializeObject(Of DataTable)(json_result)
             tkey1 = table.Rows(0).Item("tokenkey1")
@@ -323,7 +324,8 @@
         Dim json_result As String = ""
         Dim table As DataTable = Nothing
         json_result = modCore.HttpPOSTRequestSelect(mysite & "CurrentToken")
-        Dim tkey1, tkey2 As String
+        Dim tkey1 As String = ""
+        Dim tkey2 As String = ""
         If json_result.Length > 2 Then
             table = Newtonsoft.Json.JsonConvert.DeserializeObject(Of DataTable)(json_result)
             tkey1 = table.Rows(0).Item("tokenkey1")
@@ -349,7 +351,8 @@
         Dim json_result As String = ""
         Dim table As DataTable = Nothing
         json_result = modCore.HttpPOSTRequestSelect(mysite & "CurrentToken")
-        Dim tkey1, tkey2 As String
+        Dim tkey1 As String = ""
+        Dim tkey2 As String = ""
         If json_result.Length > 2 Then
             table = Newtonsoft.Json.JsonConvert.DeserializeObject(Of DataTable)(json_result)
             tkey1 = table.Rows(0).Item("tokenkey1")

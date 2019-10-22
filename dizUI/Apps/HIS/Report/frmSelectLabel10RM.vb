@@ -146,10 +146,12 @@ Public Class frmSelectLabel10RM
             Try
                 pt.Print(sharename)
             Catch ex As Exception
-                dizMsgbox("Printer tidak ditemukan/tidak ada akses", dizMsgboxStyle.Peringatan, Me)
+                pt.PrintDialog()
+                'dizMsgbox("Printer tidak ditemukan/tidak ada akses", dizMsgboxStyle.Peringatan, Me)
             End Try
         Else
-            dizMsgbox("Printer belum disetting untuk cetak dokumen ini", dizMsgboxStyle.Peringatan, Me)
+            pt.PrintDialog()
+            'dizMsgbox("Printer belum disetting untuk cetak dokumen ini", dizMsgboxStyle.Peringatan, Me)
         End If
 
         'pt.Print(prntname)

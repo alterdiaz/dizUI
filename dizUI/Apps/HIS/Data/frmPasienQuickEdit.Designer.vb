@@ -83,6 +83,8 @@ Partial Class frmPasienQuickEdit
         Me.btnSearch = New System.Windows.Forms.Button()
         Me.btnSave = New System.Windows.Forms.Button()
         Me.btnDelete = New System.Windows.Forms.Button()
+        Me.Label10 = New System.Windows.Forms.Label()
+        Me.lueSapaan = New DevExpress.XtraEditors.LookUpEdit()
         Me.tlpForm.SuspendLayout()
         Me.pTitle.SuspendLayout()
         CType(Me.pMinimize, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -117,6 +119,7 @@ Partial Class frmPasienQuickEdit
         CType(Me.teNama.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.pHeader.SuspendLayout()
         CType(Me.teSearch.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.lueSapaan.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'tlpForm
@@ -136,7 +139,7 @@ Partial Class frmPasienQuickEdit
         Me.tlpForm.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30.0!))
         Me.tlpForm.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
         Me.tlpForm.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 2.0!))
-        Me.tlpForm.Size = New System.Drawing.Size(690, 518)
+        Me.tlpForm.Size = New System.Drawing.Size(690, 542)
         Me.tlpForm.TabIndex = 0
         '
         'pTitle
@@ -218,7 +221,7 @@ Partial Class frmPasienQuickEdit
         Me.pBody.Location = New System.Drawing.Point(2, 30)
         Me.pBody.Margin = New System.Windows.Forms.Padding(0)
         Me.pBody.Name = "pBody"
-        Me.pBody.Size = New System.Drawing.Size(686, 486)
+        Me.pBody.Size = New System.Drawing.Size(686, 510)
         Me.pBody.TabIndex = 7
         '
         'tlpTelepon
@@ -240,7 +243,7 @@ Partial Class frmPasienQuickEdit
         Me.tlpTelepon.Controls.Add(Me.Label16, 1, 2)
         Me.tlpTelepon.Controls.Add(Me.Label15, 1, 1)
         Me.tlpTelepon.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.tlpTelepon.Location = New System.Drawing.Point(0, 402)
+        Me.tlpTelepon.Location = New System.Drawing.Point(0, 426)
         Me.tlpTelepon.Margin = New System.Windows.Forms.Padding(0)
         Me.tlpTelepon.Name = "tlpTelepon"
         Me.tlpTelepon.RowCount = 5
@@ -383,7 +386,7 @@ Partial Class frmPasienQuickEdit
         Me.pHeaderTelepon.Controls.Add(Me.btnSaveTelepon)
         Me.pHeaderTelepon.Dock = System.Windows.Forms.DockStyle.Top
         Me.pHeaderTelepon.ForeColor = System.Drawing.Color.White
-        Me.pHeaderTelepon.Location = New System.Drawing.Point(0, 372)
+        Me.pHeaderTelepon.Location = New System.Drawing.Point(0, 396)
         Me.pHeaderTelepon.Margin = New System.Windows.Forms.Padding(0)
         Me.pHeaderTelepon.Name = "pHeaderTelepon"
         Me.pHeaderTelepon.Size = New System.Drawing.Size(686, 30)
@@ -403,7 +406,7 @@ Partial Class frmPasienQuickEdit
         '
         'btnSaveTelepon
         '
-        Me.btnSaveTelepon.BackColor = System.Drawing.Color.green
+        Me.btnSaveTelepon.BackColor = System.Drawing.Color.Green
         Me.btnSaveTelepon.Dock = System.Windows.Forms.DockStyle.Right
         Me.btnSaveTelepon.FlatAppearance.BorderSize = 0
         Me.btnSaveTelepon.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DimGray
@@ -427,7 +430,7 @@ Partial Class frmPasienQuickEdit
         Me.TableLayoutPanel3.Controls.Add(Me.tlpAlamat1, 1, 1)
         Me.TableLayoutPanel3.Controls.Add(Me.tlpAlamat2, 1, 2)
         Me.TableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Top
-        Me.TableLayoutPanel3.Location = New System.Drawing.Point(0, 240)
+        Me.TableLayoutPanel3.Location = New System.Drawing.Point(0, 264)
         Me.TableLayoutPanel3.Name = "TableLayoutPanel3"
         Me.TableLayoutPanel3.RowCount = 4
         Me.TableLayoutPanel3.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 6.0!))
@@ -705,7 +708,7 @@ Partial Class frmPasienQuickEdit
         Me.pHeaderAlamat.Controls.Add(Me.btnSaveAlamat)
         Me.pHeaderAlamat.Dock = System.Windows.Forms.DockStyle.Top
         Me.pHeaderAlamat.ForeColor = System.Drawing.Color.White
-        Me.pHeaderAlamat.Location = New System.Drawing.Point(0, 210)
+        Me.pHeaderAlamat.Location = New System.Drawing.Point(0, 234)
         Me.pHeaderAlamat.Margin = New System.Windows.Forms.Padding(0)
         Me.pHeaderAlamat.Name = "pHeaderAlamat"
         Me.pHeaderAlamat.Size = New System.Drawing.Size(686, 30)
@@ -743,7 +746,7 @@ Partial Class frmPasienQuickEdit
         '
         'btnSaveAlamat
         '
-        Me.btnSaveAlamat.BackColor = System.Drawing.Color.green
+        Me.btnSaveAlamat.BackColor = System.Drawing.Color.Green
         Me.btnSaveAlamat.Dock = System.Windows.Forms.DockStyle.Right
         Me.btnSaveAlamat.FlatAppearance.BorderSize = 0
         Me.btnSaveAlamat.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DimGray
@@ -768,24 +771,27 @@ Partial Class frmPasienQuickEdit
         Me.tlpField.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 120.0!))
         Me.tlpField.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 420.0!))
         Me.tlpField.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
-        Me.tlpField.Controls.Add(Me.lueKewarganegaraan, 2, 4)
-        Me.tlpField.Controls.Add(Me.Label9, 1, 4)
-        Me.tlpField.Controls.Add(Me.lueTempatLahir, 2, 5)
-        Me.tlpField.Controls.Add(Me.Label8, 1, 5)
-        Me.tlpField.Controls.Add(Me.lueJenisKelamin, 2, 7)
-        Me.tlpField.Controls.Add(Me.deTanggalLahir, 2, 6)
+        Me.tlpField.Controls.Add(Me.lueSapaan, 2, 5)
+        Me.tlpField.Controls.Add(Me.Label10, 1, 5)
         Me.tlpField.Controls.Add(Me.teNamaPanggilan, 2, 2)
         Me.tlpField.Controls.Add(Me.Label4, 1, 2)
         Me.tlpField.Controls.Add(Me.Label1, 1, 1)
         Me.tlpField.Controls.Add(Me.teNoRM, 2, 1)
-        Me.tlpField.Controls.Add(Me.Label2, 1, 6)
         Me.tlpField.Controls.Add(Me.Label7, 1, 3)
         Me.tlpField.Controls.Add(Me.teNama, 2, 3)
-        Me.tlpField.Controls.Add(Me.Label3, 1, 7)
+        Me.tlpField.Controls.Add(Me.lueJenisKelamin, 2, 4)
+        Me.tlpField.Controls.Add(Me.Label3, 1, 4)
+        Me.tlpField.Controls.Add(Me.deTanggalLahir, 2, 8)
+        Me.tlpField.Controls.Add(Me.Label2, 1, 8)
+        Me.tlpField.Controls.Add(Me.Label8, 1, 7)
+        Me.tlpField.Controls.Add(Me.Label9, 1, 6)
+        Me.tlpField.Controls.Add(Me.lueTempatLahir, 2, 7)
+        Me.tlpField.Controls.Add(Me.lueKewarganegaraan, 2, 6)
         Me.tlpField.Dock = System.Windows.Forms.DockStyle.Top
         Me.tlpField.Location = New System.Drawing.Point(0, 30)
+        Me.tlpField.Margin = New System.Windows.Forms.Padding(0)
         Me.tlpField.Name = "tlpField"
-        Me.tlpField.RowCount = 9
+        Me.tlpField.RowCount = 10
         Me.tlpField.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 6.0!))
         Me.tlpField.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 24.0!))
         Me.tlpField.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 24.0!))
@@ -794,14 +800,19 @@ Partial Class frmPasienQuickEdit
         Me.tlpField.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 24.0!))
         Me.tlpField.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 24.0!))
         Me.tlpField.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 24.0!))
+        Me.tlpField.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 24.0!))
         Me.tlpField.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 6.0!))
-        Me.tlpField.Size = New System.Drawing.Size(686, 180)
+        Me.tlpField.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
+        Me.tlpField.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
+        Me.tlpField.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
+        Me.tlpField.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
+        Me.tlpField.Size = New System.Drawing.Size(686, 204)
         Me.tlpField.TabIndex = 7
         '
         'lueKewarganegaraan
         '
         Me.lueKewarganegaraan.Anchor = System.Windows.Forms.AnchorStyles.Left
-        Me.lueKewarganegaraan.Location = New System.Drawing.Point(193, 80)
+        Me.lueKewarganegaraan.Location = New System.Drawing.Point(193, 128)
         Me.lueKewarganegaraan.Margin = New System.Windows.Forms.Padding(0)
         Me.lueKewarganegaraan.Name = "lueKewarganegaraan"
         Me.lueKewarganegaraan.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[False]
@@ -823,7 +834,7 @@ Partial Class frmPasienQuickEdit
         Me.Label9.Anchor = System.Windows.Forms.AnchorStyles.Right
         Me.Label9.AutoSize = True
         Me.Label9.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label9.Location = New System.Drawing.Point(111, 83)
+        Me.Label9.Location = New System.Drawing.Point(111, 131)
         Me.Label9.Name = "Label9"
         Me.Label9.Size = New System.Drawing.Size(79, 14)
         Me.Label9.TabIndex = 23
@@ -833,7 +844,7 @@ Partial Class frmPasienQuickEdit
         'lueTempatLahir
         '
         Me.lueTempatLahir.Anchor = System.Windows.Forms.AnchorStyles.Left
-        Me.lueTempatLahir.Location = New System.Drawing.Point(193, 104)
+        Me.lueTempatLahir.Location = New System.Drawing.Point(193, 152)
         Me.lueTempatLahir.Margin = New System.Windows.Forms.Padding(0)
         Me.lueTempatLahir.Name = "lueTempatLahir"
         Me.lueTempatLahir.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[False]
@@ -855,7 +866,7 @@ Partial Class frmPasienQuickEdit
         Me.Label8.Anchor = System.Windows.Forms.AnchorStyles.Right
         Me.Label8.AutoSize = True
         Me.Label8.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label8.Location = New System.Drawing.Point(129, 107)
+        Me.Label8.Location = New System.Drawing.Point(129, 155)
         Me.Label8.Name = "Label8"
         Me.Label8.Size = New System.Drawing.Size(61, 14)
         Me.Label8.TabIndex = 22
@@ -865,7 +876,7 @@ Partial Class frmPasienQuickEdit
         'lueJenisKelamin
         '
         Me.lueJenisKelamin.Anchor = System.Windows.Forms.AnchorStyles.Left
-        Me.lueJenisKelamin.Location = New System.Drawing.Point(193, 152)
+        Me.lueJenisKelamin.Location = New System.Drawing.Point(193, 80)
         Me.lueJenisKelamin.Margin = New System.Windows.Forms.Padding(0)
         Me.lueJenisKelamin.Name = "lueJenisKelamin"
         Me.lueJenisKelamin.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[False]
@@ -886,7 +897,7 @@ Partial Class frmPasienQuickEdit
         '
         Me.deTanggalLahir.Anchor = System.Windows.Forms.AnchorStyles.Left
         Me.deTanggalLahir.EditValue = Nothing
-        Me.deTanggalLahir.Location = New System.Drawing.Point(193, 128)
+        Me.deTanggalLahir.Location = New System.Drawing.Point(193, 176)
         Me.deTanggalLahir.Margin = New System.Windows.Forms.Padding(0)
         Me.deTanggalLahir.Name = "deTanggalLahir"
         Me.deTanggalLahir.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
@@ -1008,7 +1019,7 @@ Partial Class frmPasienQuickEdit
         Me.Label2.Anchor = System.Windows.Forms.AnchorStyles.Right
         Me.Label2.AutoSize = True
         Me.Label2.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label2.Location = New System.Drawing.Point(111, 131)
+        Me.Label2.Location = New System.Drawing.Point(111, 179)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(79, 14)
         Me.Label2.TabIndex = 21
@@ -1059,7 +1070,7 @@ Partial Class frmPasienQuickEdit
         Me.Label3.Anchor = System.Windows.Forms.AnchorStyles.Right
         Me.Label3.AutoSize = True
         Me.Label3.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label3.Location = New System.Drawing.Point(112, 155)
+        Me.Label3.Location = New System.Drawing.Point(112, 83)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(78, 14)
         Me.Label3.TabIndex = 21
@@ -1137,7 +1148,7 @@ Partial Class frmPasienQuickEdit
         '
         'btnSave
         '
-        Me.btnSave.BackColor = System.Drawing.Color.green
+        Me.btnSave.BackColor = System.Drawing.Color.Green
         Me.btnSave.Dock = System.Windows.Forms.DockStyle.Right
         Me.btnSave.FlatAppearance.BorderSize = 0
         Me.btnSave.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DimGray
@@ -1171,12 +1182,44 @@ Partial Class frmPasienQuickEdit
         Me.btnDelete.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
         Me.btnDelete.UseVisualStyleBackColor = False
         '
+        'Label10
+        '
+        Me.Label10.Anchor = System.Windows.Forms.AnchorStyles.Right
+        Me.Label10.AutoSize = True
+        Me.Label10.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label10.Location = New System.Drawing.Point(144, 107)
+        Me.Label10.Name = "Label10"
+        Me.Label10.Size = New System.Drawing.Size(46, 14)
+        Me.Label10.TabIndex = 23
+        Me.Label10.Text = "Sapaan"
+        Me.Label10.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        '
+        'lueSapaan
+        '
+        Me.lueSapaan.Anchor = System.Windows.Forms.AnchorStyles.Left
+        Me.lueSapaan.Location = New System.Drawing.Point(193, 104)
+        Me.lueSapaan.Margin = New System.Windows.Forms.Padding(0)
+        Me.lueSapaan.Name = "lueSapaan"
+        Me.lueSapaan.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[False]
+        Me.lueSapaan.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.lueSapaan.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 9.0!)
+        Me.lueSapaan.Properties.Appearance.Options.UseBackColor = True
+        Me.lueSapaan.Properties.Appearance.Options.UseFont = True
+        Me.lueSapaan.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple
+        Me.lueSapaan.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.lueSapaan.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id", "ID", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default], DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("content", "Content")})
+        Me.lueSapaan.Properties.NullText = "[Isian belum dipilih]"
+        Me.lueSapaan.Properties.NullValuePrompt = "[Isian belum dipilih]"
+        Me.lueSapaan.Size = New System.Drawing.Size(150, 20)
+        Me.lueSapaan.TabIndex = 23
+        Me.lueSapaan.Tag = "sapaan"
+        '
         'frmPasienQuickEdit
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer))
-        Me.ClientSize = New System.Drawing.Size(690, 518)
+        Me.ClientSize = New System.Drawing.Size(690, 542)
         Me.ControlBox = False
         Me.Controls.Add(Me.tlpForm)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
@@ -1225,6 +1268,7 @@ Partial Class frmPasienQuickEdit
         Me.pHeader.ResumeLayout(False)
         Me.pHeader.PerformLayout()
         CType(Me.teSearch.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.lueSapaan.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -1289,4 +1333,6 @@ Partial Class frmPasienQuickEdit
     Friend WithEvents Label9 As Label
     Friend WithEvents lueKewarganegaraan As DevExpress.XtraEditors.LookUpEdit
     Public WithEvents btnDelete As Button
+    Friend WithEvents Label10 As Label
+    Friend WithEvents lueSapaan As DevExpress.XtraEditors.LookUpEdit
 End Class

@@ -107,12 +107,12 @@
         Try
             If My.Computer.FileSystem.GetDriveInfo(Application.StartupPath).DriveType.ToString() <> "Fixed" Then
                 MsgBox("Aplikasi tidak bisa berjalan di folder sharing" & vbCrLf & "Silahkan copy aplikasi ke harddisk lokal", MsgBoxStyle.Critical, "Kesalahan")
-                Threading.Thread.Sleep(1000)
+                Threading.Thread.Sleep(500)
                 Environment.Exit(0)
             End If
         Catch ex As Exception
             MsgBox("Aplikasi tidak bisa berjalan di folder sharing" & vbCrLf & "Silahkan copy aplikasi ke harddisk lokal", MsgBoxStyle.Critical, "Kesalahan")
-            Threading.Thread.Sleep(1000)
+            Threading.Thread.Sleep(500)
             Environment.Exit(0)
         End Try
 
@@ -163,10 +163,20 @@
 
         Dim cekFileExe As Boolean = False
         Dim cekFileUploader As Boolean = False
-        If IO.File.Exists(appPath & "dizUI.exe") = True Then
+        Dim uppath As IO.DirectoryInfo = IO.Directory.GetParent(appPath)
+        uppath = IO.Directory.GetParent(uppath.FullName)
+        appUpPath = uppath.FullName
+
+        If appUpPath.Chars(appUpPath.Length - 1) <> "\" Then
+            appUpPath &= "\"
+        End If
+        updpath = appUpPath
+        iconPath = appUpPath & "Icon\"
+
+        If IO.File.Exists(appUpPath & "dizUI.exe") = True Then
             cekFileExe = True
             cekFileUploader = False
-        ElseIf IO.File.Exists(appPath & "dizUIdemo.exe") = True Then
+        ElseIf IO.File.Exists(appupPath & "dizUIdemo.exe") = True Then
             cekFileExe = True
             cekFileUploader = False
         End If
@@ -239,14 +249,14 @@
         End If
 
         lblCounter.Font = New System.Drawing.Font("Segoe UI", 18.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        lblCounter.Text = "Download Update"
+        lblCounter.Text = "Update Aplikasi"
         pCounter.Visible = True
         pCounter.BringToFront()
         pCounter.Location = New Point(0, 29)
         pCounter.Size = New Size(382, 315)
         Me.Refresh()
         Application.DoEvents()
-        Threading.Thread.Sleep(100)
+        Threading.Thread.Sleep(50)
 
         btnKeluar.Enabled = False
         UpdSave.Enabled = False
@@ -274,8 +284,8 @@
             Dim tmpimg As Image = Nothing
             Dim filename As String = ""
             Dim fakename As String = ""
-            Me.Cursor = Cursors.WaitCursor
-            lblCounter.Text = "Download Konten" & vbCrLf & "0 / " & sqls.getDataSet("iconmenu")
+            Me.Cursor = Cursors.AppStarting
+            lblCounter.Text = "Update Konten" & vbCrLf & "0 / " & sqls.getDataSet("iconmenu")
             For i As Integer = 0 To sqls.getDataSet("iconmenu") - 1
                 GC.Collect()
                 filename = sqls.getDataSet("iconmenu", i, "filename")
@@ -285,19 +295,19 @@
                     tmpimg.Save(iconPath & fakename, System.Drawing.Imaging.ImageFormat.Png)
                     Me.Refresh()
                     Application.DoEvents()
-                    Threading.Thread.Sleep(100)
-                    lblCounter.Text = "Download Konten" & vbCrLf & i + 1 & " / " & sqls.getDataSet("iconmenu")
+                    Threading.Thread.Sleep(50)
+                    lblCounter.Text = "Update Konten" & vbCrLf & i + 1 & " / " & sqls.getDataSet("iconmenu")
                 Catch ex As Exception
                 End Try
             Next
         End If
 
         If updateApps() = True Then
-            If Application.StartupPath.Chars(Application.StartupPath.Length - 1) = "\" Then
-                updpath = Application.StartupPath
-            Else
-                updpath = Application.StartupPath & "\"
-            End If
+            'If Application.StartupPath.Chars(Application.StartupPath.Length - 1) = "\" Then
+            '    updpath = Application.StartupPath
+            'Else
+            '    updpath = Application.StartupPath & "\"
+            'End If
 
             Dim inputName As String = ""
             Dim CommandLineArgs As System.Collections.ObjectModel.ReadOnlyCollection(Of String) = My.Application.CommandLineArgs
@@ -305,41 +315,41 @@
                 inputName = s.ToLower
             Next
             If inputName = exeName Then
-                If IO.File.Exists(Application.StartupPath & "\" & exeName) Then
+                If IO.File.Exists(updpath & "\" & exeName) Then
                     pCounter.Visible = False
                     pCounter.SendToBack()
 
                     Me.Cursor = Cursors.Default
                     Me.Refresh()
                     Application.DoEvents()
-                    Threading.Thread.Sleep(100)
-                    Dim strfile As String = IO.Path.Combine(Application.StartupPath, exeName)
+                    Threading.Thread.Sleep(50)
+                    Dim strfile As String = IO.Path.Combine(updpath, exeName)
                     Process.Start(strfile, "update")
                     Environment.Exit(0)
                 End If
             ElseIf inputName = demoName Then
-                If IO.File.Exists(Application.StartupPath & "\" & demoName) Then
+                If IO.File.Exists(updpath & "\" & demoName) Then
                     pCounter.Visible = False
                     pCounter.SendToBack()
 
                     Me.Cursor = Cursors.Default
                     Me.Refresh()
                     Application.DoEvents()
-                    Threading.Thread.Sleep(100)
-                    Dim strfile As String = IO.Path.Combine(Application.StartupPath, demoName)
+                    Threading.Thread.Sleep(50)
+                    Dim strfile As String = IO.Path.Combine(updpath, demoName)
                     Process.Start(strfile, "update")
                     Environment.Exit(0)
                 End If
             Else
-                If IO.File.Exists(Application.StartupPath & "\" & exeName) Then
+                If IO.File.Exists(updpath & "\" & exeName) Then
                     pCounter.Visible = False
                     pCounter.SendToBack()
 
                     Me.Cursor = Cursors.Default
                     Me.Refresh()
                     Application.DoEvents()
-                    Threading.Thread.Sleep(100)
-                    Dim strfile As String = IO.Path.Combine(Application.StartupPath, exeName)
+                    Threading.Thread.Sleep(50)
+                    Dim strfile As String = IO.Path.Combine(updpath, exeName)
                     Process.Start(strfile, "update")
                     Environment.Exit(0)
                 Else
@@ -360,13 +370,13 @@
             'MsgBox("""" & Application.StartupPath & "\" & exeName & """" & " /input=update")
             Me.Refresh()
             Application.DoEvents()
-            Threading.Thread.Sleep(100)
+            Threading.Thread.Sleep(50)
 
             Dim strfile As String = ""
-            If IO.File.Exists(IO.Path.Combine(Application.StartupPath, exeName)) Then
-                strfile = IO.Path.Combine(Application.StartupPath, exeName)
-            ElseIf IO.File.Exists(IO.Path.Combine(Application.StartupPath, demoName)) Then
-                strfile = IO.Path.Combine(Application.StartupPath, demoName)
+            If IO.File.Exists(IO.Path.Combine(updpath, exeName)) Then
+                strfile = IO.Path.Combine(updpath, exeName)
+            ElseIf IO.File.Exists(IO.Path.Combine(updpath, demoName)) Then
+                strfile = IO.Path.Combine(updpath, demoName)
             End If
             Process.Start(strfile, "update")
             Environment.Exit(0)
@@ -396,69 +406,69 @@
         p.StartInfo = psi
         p.Start()
 
-        Threading.Thread.Sleep(2000)
+        Threading.Thread.Sleep(500)
         Dim dbstring As String = dbname & "|" & dbsvr & "|" & dbinstance & "|" & dbport & "|" & dbschema & "|" & dbid & "|" & dbpass
         Dim sqls As New SQLs(dbstring)
-        sqls.DMLQuery("select idappfiles,filename,appversion,createddate,filebinary from sys_appfiles where filename<>'dizEngine20.diz' and postdate=(select top 1 postdate from sys_appfiles order by postdate asc)", "appfilesawal")
+        sqls.DMLQuery("select idappfiles,filename,appversion,createddate,filebinary from sys_appfiles where postdate=(select top 1 postdate from sys_appfiles order by postdate asc)", "appfilesawal")
         Dim tmpbyte As Byte() = Nothing
         Dim filename As String = ""
 
-        If Application.StartupPath.Chars(Application.StartupPath.Length - 1) = "\" Then
-            updpath = Application.StartupPath
-        Else
-            updpath = Application.StartupPath & "\"
-        End If
+        'If Application.StartupPath.Chars(Application.StartupPath.Length - 1) = "\" Then
+        '    updpath = Application.StartupPath
+        'Else
+        '    updpath = Application.StartupPath & "\"
+        'End If
 
-        If IO.Directory.GetFiles(updpath).LongCount < 30 Then
-            lblCounter.Text = "Download Versi Awal" & vbCrLf & "0 / " & sqls.getDataSet("appfilesawal")
-            For i As Integer = 0 To sqls.getDataSet("appfilesawal") - 1
-                Dim msqls As New SQLs(dbstring)
-                GC.Collect()
-                tmpbyte = Nothing
-                filename = sqls.getDataSet("appfilesawal", i, "filename")
-                If filename.ToLower <> IO.Path.GetFileName(Application.ExecutablePath).ToLower Then
-                    If filename <> "" Then
-                        tmpbyte = msqls.getData("sys_appfiles", "filebinary", "filename", filename, False)
-                    End If
-                    Try
-                        Dim errBool As Boolean = False
-                        If IO.File.Exists(updpath & filename) = True Then
-                            Try
-                                IO.File.Delete(updpath & filename)
-                            Catch ex As Exception
-                                'MsgBox("error delete" & vbCrLf & filename & vbCrLf & sqls.getDataSet("appfiles", i, "createddate"))
-                                errBool = True
-                            End Try
-                            Me.Refresh()
-                            Application.DoEvents()
-                            Threading.Thread.Sleep(100)
-                        End If
-                        Try
-                            IO.File.WriteAllBytes(updpath & filename, tmpbyte)
-                        Catch ex As Exception
-                            'MsgBox("error write" & vbCrLf & filename & vbCrLf & sqls.getDataSet("appfiles", i, "createddate"))
-                        End Try
-                        'MsgBox(updpath & filename)
-                        Me.Refresh()
-                        Application.DoEvents()
-                        Threading.Thread.Sleep(100)
-                        lblCounter.Text = "Download Versi Awal" & vbCrLf & i + 1 & " / " & sqls.getDataSet("appfilesawal")
-                    Catch ex As Exception
-                        'MsgBox("unknown error" & vbCrLf & filename & vbCrLf & ex.Message)
-                    End Try
-                End If
-            Next
-        End If
+        'If IO.Directory.GetFiles(updpath).LongCount < 30 Then
+        '    lblCounter.Text = "Download Versi Awal" & vbCrLf & "0 / " & sqls.getDataSet("appfilesawal")
+        '    For i As Integer = 0 To sqls.getDataSet("appfilesawal") - 1
+        '        Dim msqls As New SQLs(dbstring)
+        '        GC.Collect()
+        '        tmpbyte = Nothing
+        '        filename = sqls.getDataSet("appfilesawal", i, "filename")
+        '        If filename.ToLower <> IO.Path.GetFileName(Application.ExecutablePath).ToLower Then
+        '            If filename <> "" Then
+        '                tmpbyte = msqls.getData("sys_appfiles", "filebinary", "filename", filename, False)
+        '            End If
+        '            Try
+        '                Dim errBool As Boolean = False
+        '                If IO.File.Exists(updpath & filename) = True Then
+        '                    Try
+        '                        IO.File.Delete(updpath & filename)
+        '                    Catch ex As Exception
+        '                        'MsgBox("error delete" & vbCrLf & filename & vbCrLf & sqls.getDataSet("appfiles", i, "createddate"))
+        '                        errBool = True
+        '                    End Try
+        '                    Me.Refresh()
+        '                    Application.DoEvents()
+        '                    Threading.Thread.Sleep(50)
+        '                End If
+        '                Try
+        '                    IO.File.WriteAllBytes(updpath & filename, tmpbyte)
+        '                Catch ex As Exception
+        '                    'MsgBox("error write" & vbCrLf & filename & vbCrLf & sqls.getDataSet("appfiles", i, "createddate"))
+        '                End Try
+        '                'MsgBox(updpath & filename)
+        '                Me.Refresh()
+        '                Application.DoEvents()
+        '                Threading.Thread.Sleep(50)
+        '                lblCounter.Text = "Download Versi Awal" & vbCrLf & i + 1 & " / " & sqls.getDataSet("appfilesawal")
+        '            Catch ex As Exception
+        '                'MsgBox("unknown error" & vbCrLf & filename & vbCrLf & ex.Message)
+        '            End Try
+        '        End If
+        '    Next
+        'End If
 
-        sqls.DMLQuery("select idappfiles,filename,appversion,createddate,filebinary from sys_appfiles where filename<>'dizEngine20.diz' and appversion=(select value from sys_appsetting where variable='ProductVersion')", "appfiles")
+        sqls.DMLQuery("select idappfiles,filename,appversion,createddate,filebinary from sys_appfiles where appversion=(select value from sys_appsetting where variable='ProductVersion')", "appfiles")
         'Dim fs As IO.FileStream
-        lblCounter.Text = "Download Update" & vbCrLf & "0 / " & sqls.getDataSet("appfiles")
+        lblCounter.Text = "Update Aplikasi" & vbCrLf & "0 / " & sqls.getDataSet("appfiles")
         For i As Integer = 0 To sqls.getDataSet("appfiles") - 1
             Dim msqls As New SQLs(dbstring)
             GC.Collect()
             tmpbyte = Nothing
             filename = sqls.getDataSet("appfiles", i, "filename")
-            If filename.ToLower <> IO.Path.GetFileName(Application.ExecutablePath).ToLower Then
+            If filename.ToLower <> IO.Path.GetFileName(updpath).ToLower Then
                 If filename <> "" Then
                     tmpbyte = msqls.getData("sys_appfiles", "filebinary", "filename", filename, False)
                 End If
@@ -473,7 +483,7 @@
                         End Try
                         Me.Refresh()
                         Application.DoEvents()
-                        Threading.Thread.Sleep(100)
+                        Threading.Thread.Sleep(50)
                     End If
                     If errBool = False Then
                         Try
@@ -485,8 +495,8 @@
                     'MsgBox(updpath & filename)
                     Me.Refresh()
                     Application.DoEvents()
-                    Threading.Thread.Sleep(100)
-                    lblCounter.Text = "Download Update" & vbCrLf & i + 1 & " / " & sqls.getDataSet("appfiles")
+                    Threading.Thread.Sleep(50)
+                    lblCounter.Text = "Update Aplikasi" & vbCrLf & i + 1 & " / " & sqls.getDataSet("appfiles")
                 Catch ex As Exception
                     'MsgBox("unknown error" & vbCrLf & filename & vbCrLf & ex.Message)
                 End Try

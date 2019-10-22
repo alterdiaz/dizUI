@@ -115,6 +115,10 @@ Partial Class frmFormIBS201901
         Me.GridColumn36 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn37 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.tlppPerbantuan = New System.Windows.Forms.TableLayoutPanel()
+        Me.luepSpesialis = New DevExpress.XtraEditors.SearchLookUpEdit()
+        Me.GridView2 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn29 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn38 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.tepParamedis = New DevExpress.XtraEditors.TextEdit()
         Me.Label54 = New System.Windows.Forms.Label()
         Me.luepSebagai = New DevExpress.XtraEditors.LookUpEdit()
@@ -273,10 +277,6 @@ Partial Class frmFormIBS201901
         Me.btnoReturLogistik = New System.Windows.Forms.Button()
         Me.btnoLaborat = New System.Windows.Forms.Button()
         Me.btnRegStatus = New System.Windows.Forms.Button()
-        Me.luepSpesialis = New DevExpress.XtraEditors.SearchLookUpEdit()
-        Me.GridView2 = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.GridColumn29 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn38 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.RepositoryItemMemoEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.tlpForm.SuspendLayout()
         Me.pTitle.SuspendLayout()
@@ -322,6 +322,8 @@ Partial Class frmFormIBS201901
         CType(Me.gvPerbantuan, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemMemoEdit2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.tlppPerbantuan.SuspendLayout()
+        CType(Me.luepSpesialis.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridView2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.tepParamedis.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.luepSebagai.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel5.SuspendLayout()
@@ -400,8 +402,6 @@ Partial Class frmFormIBS201901
         CType(Me.gcSidebar, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.gcSidebar.SuspendLayout()
         Me.tlpSidebar.SuspendLayout()
-        CType(Me.luepSpesialis.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GridView2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'RepositoryItemMemoEdit1
@@ -1864,6 +1864,64 @@ Partial Class frmFormIBS201901
         Me.tlppPerbantuan.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 24.0!))
         Me.tlppPerbantuan.Size = New System.Drawing.Size(640, 54)
         Me.tlppPerbantuan.TabIndex = 1
+        '
+        'luepSpesialis
+        '
+        Me.luepSpesialis.Anchor = System.Windows.Forms.AnchorStyles.Left
+        Me.luepSpesialis.Location = New System.Drawing.Point(420, 32)
+        Me.luepSpesialis.Margin = New System.Windows.Forms.Padding(0)
+        Me.luepSpesialis.Name = "luepSpesialis"
+        Me.luepSpesialis.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.luepSpesialis.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 9.0!)
+        Me.luepSpesialis.Properties.Appearance.ForeColor = System.Drawing.Color.Black
+        Me.luepSpesialis.Properties.Appearance.Options.UseBackColor = True
+        Me.luepSpesialis.Properties.Appearance.Options.UseFont = True
+        Me.luepSpesialis.Properties.Appearance.Options.UseForeColor = True
+        Me.luepSpesialis.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple
+        Me.luepSpesialis.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.luepSpesialis.Properties.NullText = "[Isian belum dipilih]"
+        Me.luepSpesialis.Properties.NullValuePrompt = "[Isian belum dipilih]"
+        Me.luepSpesialis.Properties.PopupBorderStyle = DevExpress.XtraEditors.Controls.PopupBorderStyles.Simple
+        Me.luepSpesialis.Properties.PopupFindMode = DevExpress.XtraEditors.FindMode.Always
+        Me.luepSpesialis.Properties.PopupView = Me.GridView2
+        Me.luepSpesialis.Properties.ShowFooter = False
+        Me.luepSpesialis.Properties.ShowPopupShadow = False
+        Me.luepSpesialis.Properties.ViewType = DevExpress.XtraEditors.Repository.GridLookUpViewType.GridView
+        Me.luepSpesialis.Size = New System.Drawing.Size(200, 20)
+        Me.luepSpesialis.TabIndex = 110
+        Me.luepSpesialis.Tag = "idspesialis"
+        '
+        'GridView2
+        '
+        Me.GridView2.Appearance.EvenRow.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.GridView2.Appearance.EvenRow.Options.UseBackColor = True
+        Me.GridView2.Appearance.OddRow.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer))
+        Me.GridView2.Appearance.OddRow.Options.UseBackColor = True
+        Me.GridView2.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn29, Me.GridColumn38})
+        Me.GridView2.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.GridView2.Name = "GridView2"
+        Me.GridView2.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.GridView2.OptionsView.EnableAppearanceEvenRow = True
+        Me.GridView2.OptionsView.EnableAppearanceOddRow = True
+        Me.GridView2.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn29
+        '
+        Me.GridColumn29.Caption = "ID"
+        Me.GridColumn29.FieldName = "id"
+        Me.GridColumn29.Name = "GridColumn29"
+        Me.GridColumn29.OptionsColumn.AllowEdit = False
+        Me.GridColumn29.OptionsColumn.ReadOnly = True
+        '
+        'GridColumn38
+        '
+        Me.GridColumn38.Caption = "Content"
+        Me.GridColumn38.FieldName = "content"
+        Me.GridColumn38.Name = "GridColumn38"
+        Me.GridColumn38.OptionsColumn.AllowEdit = False
+        Me.GridColumn38.OptionsColumn.ReadOnly = True
+        Me.GridColumn38.Visible = True
+        Me.GridColumn38.VisibleIndex = 0
         '
         'tepParamedis
         '
@@ -4619,64 +4677,6 @@ Partial Class frmFormIBS201901
         Me.btnRegStatus.UseMnemonic = False
         Me.btnRegStatus.UseVisualStyleBackColor = False
         '
-        'luepSpesialis
-        '
-        Me.luepSpesialis.Anchor = System.Windows.Forms.AnchorStyles.Left
-        Me.luepSpesialis.Location = New System.Drawing.Point(420, 32)
-        Me.luepSpesialis.Margin = New System.Windows.Forms.Padding(0)
-        Me.luepSpesialis.Name = "luepSpesialis"
-        Me.luepSpesialis.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.luepSpesialis.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 9.0!)
-        Me.luepSpesialis.Properties.Appearance.ForeColor = System.Drawing.Color.Black
-        Me.luepSpesialis.Properties.Appearance.Options.UseBackColor = True
-        Me.luepSpesialis.Properties.Appearance.Options.UseFont = True
-        Me.luepSpesialis.Properties.Appearance.Options.UseForeColor = True
-        Me.luepSpesialis.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple
-        Me.luepSpesialis.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.luepSpesialis.Properties.NullText = "[Isian belum dipilih]"
-        Me.luepSpesialis.Properties.NullValuePrompt = "[Isian belum dipilih]"
-        Me.luepSpesialis.Properties.PopupBorderStyle = DevExpress.XtraEditors.Controls.PopupBorderStyles.Simple
-        Me.luepSpesialis.Properties.PopupFindMode = DevExpress.XtraEditors.FindMode.Always
-        Me.luepSpesialis.Properties.PopupView = Me.GridView2
-        Me.luepSpesialis.Properties.ShowFooter = False
-        Me.luepSpesialis.Properties.ShowPopupShadow = False
-        Me.luepSpesialis.Properties.ViewType = DevExpress.XtraEditors.Repository.GridLookUpViewType.GridView
-        Me.luepSpesialis.Size = New System.Drawing.Size(200, 20)
-        Me.luepSpesialis.TabIndex = 110
-        Me.luepSpesialis.Tag = "idspesialis"
-        '
-        'GridView2
-        '
-        Me.GridView2.Appearance.EvenRow.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.GridView2.Appearance.EvenRow.Options.UseBackColor = True
-        Me.GridView2.Appearance.OddRow.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer))
-        Me.GridView2.Appearance.OddRow.Options.UseBackColor = True
-        Me.GridView2.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn29, Me.GridColumn38})
-        Me.GridView2.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
-        Me.GridView2.Name = "GridView2"
-        Me.GridView2.OptionsSelection.EnableAppearanceFocusedCell = False
-        Me.GridView2.OptionsView.EnableAppearanceEvenRow = True
-        Me.GridView2.OptionsView.EnableAppearanceOddRow = True
-        Me.GridView2.OptionsView.ShowGroupPanel = False
-        '
-        'GridColumn29
-        '
-        Me.GridColumn29.Caption = "ID"
-        Me.GridColumn29.FieldName = "id"
-        Me.GridColumn29.Name = "GridColumn29"
-        Me.GridColumn29.OptionsColumn.AllowEdit = False
-        Me.GridColumn29.OptionsColumn.ReadOnly = True
-        '
-        'GridColumn38
-        '
-        Me.GridColumn38.Caption = "Content"
-        Me.GridColumn38.FieldName = "content"
-        Me.GridColumn38.Name = "GridColumn38"
-        Me.GridColumn38.OptionsColumn.AllowEdit = False
-        Me.GridColumn38.OptionsColumn.ReadOnly = True
-        Me.GridColumn38.Visible = True
-        Me.GridColumn38.VisibleIndex = 0
-        '
         'frmFormIBS201901
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -4742,6 +4742,8 @@ Partial Class frmFormIBS201901
         CType(Me.RepositoryItemMemoEdit2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.tlppPerbantuan.ResumeLayout(False)
         Me.tlppPerbantuan.PerformLayout()
+        CType(Me.luepSpesialis.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridView2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.tepParamedis.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.luepSebagai.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Panel5.ResumeLayout(False)
@@ -4835,8 +4837,6 @@ Partial Class frmFormIBS201901
         Me.gcSidebar.ResumeLayout(False)
         Me.gcSidebar.PerformLayout()
         Me.tlpSidebar.ResumeLayout(False)
-        CType(Me.luepSpesialis.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GridView2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub

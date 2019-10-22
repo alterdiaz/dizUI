@@ -181,11 +181,11 @@ Partial Class frmJurnalBulanan
         Me.gcData.EmbeddedNavigator.Buttons.PrevPage.Visible = False
         Me.gcData.EmbeddedNavigator.Margin = New System.Windows.Forms.Padding(0)
         Me.gcData.EmbeddedNavigator.TextLocation = DevExpress.XtraEditors.NavigatorButtonsTextLocation.None
-        Me.gcData.Location = New System.Drawing.Point(0, 70)
+        Me.gcData.Location = New System.Drawing.Point(0, 66)
         Me.gcData.MainView = Me.gvData
         Me.gcData.Name = "gcData"
         Me.gcData.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemMemoEdit1})
-        Me.gcData.Size = New System.Drawing.Size(918, 330)
+        Me.gcData.Size = New System.Drawing.Size(918, 334)
         Me.gcData.TabIndex = 13
         Me.gcData.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gvData})
         '
@@ -393,13 +393,13 @@ Partial Class frmJurnalBulanan
         '
         'tlpField
         '
+        Me.tlpField.AutoSize = True
+        Me.tlpField.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
         Me.tlpField.BackColor = System.Drawing.Color.FromArgb(CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer))
-        Me.tlpField.ColumnCount = 6
+        Me.tlpField.ColumnCount = 4
         Me.tlpField.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
         Me.tlpField.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 130.0!))
         Me.tlpField.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 200.0!))
-        Me.tlpField.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 130.0!))
-        Me.tlpField.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 150.0!))
         Me.tlpField.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
         Me.tlpField.Controls.Add(Me.Label1, 1, 1)
         Me.tlpField.Controls.Add(Me.deTanggal, 2, 1)
@@ -408,11 +408,10 @@ Partial Class frmJurnalBulanan
         Me.tlpField.Margin = New System.Windows.Forms.Padding(0)
         Me.tlpField.Name = "tlpField"
         Me.tlpField.RowCount = 3
-        Me.tlpField.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
+        Me.tlpField.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 6.0!))
         Me.tlpField.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 24.0!))
-        Me.tlpField.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
-        Me.tlpField.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
-        Me.tlpField.Size = New System.Drawing.Size(918, 40)
+        Me.tlpField.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 6.0!))
+        Me.tlpField.Size = New System.Drawing.Size(918, 36)
         Me.tlpField.TabIndex = 7
         '
         'Label1
@@ -420,7 +419,7 @@ Partial Class frmJurnalBulanan
         Me.Label1.Anchor = System.Windows.Forms.AnchorStyles.Right
         Me.Label1.AutoSize = True
         Me.Label1.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label1.Location = New System.Drawing.Point(245, 13)
+        Me.Label1.Location = New System.Drawing.Point(385, 11)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(36, 14)
         Me.Label1.TabIndex = 22
@@ -431,7 +430,7 @@ Partial Class frmJurnalBulanan
         '
         Me.deTanggal.Anchor = System.Windows.Forms.AnchorStyles.Left
         Me.deTanggal.EditValue = Nothing
-        Me.deTanggal.Location = New System.Drawing.Point(284, 10)
+        Me.deTanggal.Location = New System.Drawing.Point(424, 8)
         Me.deTanggal.Margin = New System.Windows.Forms.Padding(0)
         Me.deTanggal.Name = "deTanggal"
         Me.deTanggal.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
@@ -547,6 +546,7 @@ Partial Class frmJurnalBulanan
         CType(Me.pMaximize, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.pExit, System.ComponentModel.ISupportInitialize).EndInit()
         Me.pBody.ResumeLayout(False)
+        Me.pBody.PerformLayout()
         CType(Me.gcData, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.gvData, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemMemoEdit1, System.ComponentModel.ISupportInitialize).EndInit()

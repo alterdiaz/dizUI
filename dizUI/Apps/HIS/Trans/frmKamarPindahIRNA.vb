@@ -144,7 +144,7 @@
         lueRuangAsal.EditValue = Nothing
         teKelasAsal.EditValue = Nothing
 
-        sqls.DMLQuery("select distinct l.idlokasi as id,k.kelas,l.nama as content from lokasi l left join kelaskamar kk on l.idlokasi=kk.idlokasi left join kelas k on kk.idkelas=k.idkelas and k.isdeleted=0 where l.isdeleted=0 and l.idlokasi not in (select idlokasi from kamar where checkout is null) and l.lokasitype=22 and l.iddepartment=(select value from sys_appsetting where variable='idirnadept') order by k.kelas asc,l.nama asc", "ruangtujuan")
+        sqls.DMLQuery("select distinct l.idlokasi as id,k.kelas,l.nama as content from lokasi l left join kelaskamar kk on l.idlokasi=kk.idlokasi left join kelas k on kk.idkelas=k.idkelas and k.isdeleted=0 where l.isdeleted=0 and l.idlokasi in (select idlokasi from kamar where checkin is null and statusbed=1) and l.lokasitype=22 and l.iddepartment=(select value from sys_appsetting where variable='idirnadept') order by k.kelas asc,l.nama asc", "ruangtujuan")
         lueRuangTujuan.Properties.DataSource = sqls.dataTable("ruangtujuan")
         lueRuangTujuan.Properties.DisplayMember = "content"
         lueRuangTujuan.Properties.ValueMember = "id"

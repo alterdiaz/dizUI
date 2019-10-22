@@ -173,10 +173,10 @@ Partial Public Class xrLabelPasienRM18815_201901
         Me.xrp10BC.AutoModule = True
         Me.xrp10BC.Dpi = 254.0!
         Me.xrp10BC.Font = New System.Drawing.Font("Tahoma", 7.0!)
-        Me.xrp10BC.LocationFloat = New DevExpress.Utils.PointFloat(629.9998!, 20.00007!)
+        Me.xrp10BC.LocationFloat = New DevExpress.Utils.PointFloat(30.0!, 20.0!)
         Me.xrp10BC.Module = 5.08!
         Me.xrp10BC.Name = "xrp10BC"
-        Me.xrp10BC.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 2, 2, 254.0!)
+        Me.xrp10BC.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 254.0!)
         Me.xrp10BC.ShowText = False
         Me.xrp10BC.SizeF = New System.Drawing.SizeF(220.0!, 220.0!)
         Me.xrp10BC.StylePriority.UseFont = False
@@ -192,7 +192,7 @@ Partial Public Class xrLabelPasienRM18815_201901
         Me.XrLabel21.Dpi = 254.0!
         Me.XrLabel21.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[Parameters].[p10TglLahir]")})
         Me.XrLabel21.Font = New System.Drawing.Font("Tahoma", 10.0!)
-        Me.XrLabel21.LocationFloat = New DevExpress.Utils.PointFloat(29.99994!, 190.0003!)
+        Me.XrLabel21.LocationFloat = New DevExpress.Utils.PointFloat(259.9987!, 190.0003!)
         Me.XrLabel21.Name = "XrLabel21"
         Me.XrLabel21.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 254.0!)
         Me.XrLabel21.SizeF = New System.Drawing.SizeF(400.0002!, 50.00002!)
@@ -208,7 +208,7 @@ Partial Public Class xrLabelPasienRM18815_201901
         Me.XrLabel23.Dpi = 254.0!
         Me.XrLabel23.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[Parameters].[p10Sex]")})
         Me.XrLabel23.Font = New System.Drawing.Font("Tahoma", 10.0!)
-        Me.XrLabel23.LocationFloat = New DevExpress.Utils.PointFloat(30.00027!, 90.00008!)
+        Me.XrLabel23.LocationFloat = New DevExpress.Utils.PointFloat(259.9991!, 90.00008!)
         Me.XrLabel23.Name = "XrLabel23"
         Me.XrLabel23.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 254.0!)
         Me.XrLabel23.SizeF = New System.Drawing.SizeF(399.9996!, 50.00002!)
@@ -226,7 +226,7 @@ Partial Public Class xrLabelPasienRM18815_201901
         Me.XrLabel26.Dpi = 254.0!
         Me.XrLabel26.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[Parameters].[p10Nama]")})
         Me.XrLabel26.Font = New System.Drawing.Font("Tahoma", 12.0!)
-        Me.XrLabel26.LocationFloat = New DevExpress.Utils.PointFloat(29.99994!, 20.00015!)
+        Me.XrLabel26.LocationFloat = New DevExpress.Utils.PointFloat(259.9987!, 20.00015!)
         Me.XrLabel26.Name = "XrLabel26"
         Me.XrLabel26.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 254.0!)
         Me.XrLabel26.SizeF = New System.Drawing.SizeF(590.0!, 70.00001!)
@@ -243,7 +243,7 @@ Partial Public Class xrLabelPasienRM18815_201901
         Me.XrLabel28.Dpi = 254.0!
         Me.XrLabel28.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[Parameters].[p10NoRM]")})
         Me.XrLabel28.Font = New System.Drawing.Font("Tahoma", 10.0!)
-        Me.XrLabel28.LocationFloat = New DevExpress.Utils.PointFloat(30.00027!, 140.0003!)
+        Me.XrLabel28.LocationFloat = New DevExpress.Utils.PointFloat(259.9991!, 140.0003!)
         Me.XrLabel28.Name = "XrLabel28"
         Me.XrLabel28.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 254.0!)
         Me.XrLabel28.SizeF = New System.Drawing.SizeF(399.9998!, 50.00002!)
@@ -272,10 +272,10 @@ Partial Public Class xrLabelPasienRM18815_201901
         Me.xrp9BC.AutoModule = True
         Me.xrp9BC.Dpi = 254.0!
         Me.xrp9BC.Font = New System.Drawing.Font("Tahoma", 7.0!)
-        Me.xrp9BC.LocationFloat = New DevExpress.Utils.PointFloat(629.9998!, 30.00035!)
+        Me.xrp9BC.LocationFloat = New DevExpress.Utils.PointFloat(30.0!, 30.0!)
         Me.xrp9BC.Module = 5.08!
         Me.xrp9BC.Name = "xrp9BC"
-        Me.xrp9BC.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 2, 2, 254.0!)
+        Me.xrp9BC.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 254.0!)
         Me.xrp9BC.ShowText = False
         Me.xrp9BC.SizeF = New System.Drawing.SizeF(220.0!, 220.0!)
         Me.xrp9BC.StylePriority.UseFont = False
@@ -291,7 +291,7 @@ Partial Public Class xrLabelPasienRM18815_201901
         Me.XrLabel31.Dpi = 254.0!
         Me.XrLabel31.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[Parameters].[p9TglLahir]")})
         Me.XrLabel31.Font = New System.Drawing.Font("Tahoma", 10.0!)
-        Me.XrLabel31.LocationFloat = New DevExpress.Utils.PointFloat(29.99994!, 200.0002!)
+        Me.XrLabel31.LocationFloat = New DevExpress.Utils.PointFloat(259.999!, 200.0002!)
         Me.XrLabel31.Name = "XrLabel31"
         Me.XrLabel31.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 254.0!)
         Me.XrLabel31.SizeF = New System.Drawing.SizeF(400.0!, 50.00002!)
@@ -307,7 +307,7 @@ Partial Public Class xrLabelPasienRM18815_201901
         Me.XrLabel35.Dpi = 254.0!
         Me.XrLabel35.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[Parameters].[p9Sex]")})
         Me.XrLabel35.Font = New System.Drawing.Font("Tahoma", 10.0!)
-        Me.XrLabel35.LocationFloat = New DevExpress.Utils.PointFloat(29.99978!, 100.0!)
+        Me.XrLabel35.LocationFloat = New DevExpress.Utils.PointFloat(259.9988!, 100.0!)
         Me.XrLabel35.Name = "XrLabel35"
         Me.XrLabel35.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 254.0!)
         Me.XrLabel35.SizeF = New System.Drawing.SizeF(400.0001!, 50.00002!)
@@ -325,7 +325,7 @@ Partial Public Class xrLabelPasienRM18815_201901
         Me.XrLabel37.Dpi = 254.0!
         Me.XrLabel37.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[Parameters].[p9Nama]")})
         Me.XrLabel37.Font = New System.Drawing.Font("Tahoma", 12.0!)
-        Me.XrLabel37.LocationFloat = New DevExpress.Utils.PointFloat(29.99994!, 30.00003!)
+        Me.XrLabel37.LocationFloat = New DevExpress.Utils.PointFloat(259.999!, 30.00003!)
         Me.XrLabel37.Name = "XrLabel37"
         Me.XrLabel37.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 254.0!)
         Me.XrLabel37.SizeF = New System.Drawing.SizeF(590.0!, 70.0!)
@@ -342,7 +342,7 @@ Partial Public Class xrLabelPasienRM18815_201901
         Me.XrLabel39.Dpi = 254.0!
         Me.XrLabel39.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[Parameters].[p9NoRM]")})
         Me.XrLabel39.Font = New System.Drawing.Font("Tahoma", 10.0!)
-        Me.XrLabel39.LocationFloat = New DevExpress.Utils.PointFloat(30.00027!, 150.0!)
+        Me.XrLabel39.LocationFloat = New DevExpress.Utils.PointFloat(259.9993!, 150.0!)
         Me.XrLabel39.Name = "XrLabel39"
         Me.XrLabel39.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 254.0!)
         Me.XrLabel39.SizeF = New System.Drawing.SizeF(399.9996!, 49.99994!)
@@ -371,10 +371,10 @@ Partial Public Class xrLabelPasienRM18815_201901
         Me.xrp8BC.AutoModule = True
         Me.xrp8BC.Dpi = 254.0!
         Me.xrp8BC.Font = New System.Drawing.Font("Tahoma", 7.0!)
-        Me.xrp8BC.LocationFloat = New DevExpress.Utils.PointFloat(629.9998!, 19.99999!)
+        Me.xrp8BC.LocationFloat = New DevExpress.Utils.PointFloat(30.0!, 20.0!)
         Me.xrp8BC.Module = 5.08!
         Me.xrp8BC.Name = "xrp8BC"
-        Me.xrp8BC.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 2, 2, 254.0!)
+        Me.xrp8BC.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 254.0!)
         Me.xrp8BC.ShowText = False
         Me.xrp8BC.SizeF = New System.Drawing.SizeF(220.0!, 220.0!)
         Me.xrp8BC.StylePriority.UseFont = False
@@ -390,7 +390,7 @@ Partial Public Class xrLabelPasienRM18815_201901
         Me.XrLabel41.Dpi = 254.0!
         Me.XrLabel41.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[Parameters].[p8TglLahir]")})
         Me.XrLabel41.Font = New System.Drawing.Font("Tahoma", 10.0!)
-        Me.XrLabel41.LocationFloat = New DevExpress.Utils.PointFloat(30.00027!, 189.9997!)
+        Me.XrLabel41.LocationFloat = New DevExpress.Utils.PointFloat(259.9995!, 189.9997!)
         Me.XrLabel41.Name = "XrLabel41"
         Me.XrLabel41.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 254.0!)
         Me.XrLabel41.SizeF = New System.Drawing.SizeF(399.9995!, 49.99994!)
@@ -406,7 +406,7 @@ Partial Public Class xrLabelPasienRM18815_201901
         Me.XrLabel46.Dpi = 254.0!
         Me.XrLabel46.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[Parameters].[p8Sex]")})
         Me.XrLabel46.Font = New System.Drawing.Font("Tahoma", 10.0!)
-        Me.XrLabel46.LocationFloat = New DevExpress.Utils.PointFloat(30.00027!, 90.0!)
+        Me.XrLabel46.LocationFloat = New DevExpress.Utils.PointFloat(259.9995!, 90.0!)
         Me.XrLabel46.Name = "XrLabel46"
         Me.XrLabel46.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 254.0!)
         Me.XrLabel46.SizeF = New System.Drawing.SizeF(399.9995!, 50.00002!)
@@ -424,7 +424,7 @@ Partial Public Class xrLabelPasienRM18815_201901
         Me.XrLabel47.Dpi = 254.0!
         Me.XrLabel47.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[Parameters].[p8Nama]")})
         Me.XrLabel47.Font = New System.Drawing.Font("Tahoma", 12.0!)
-        Me.XrLabel47.LocationFloat = New DevExpress.Utils.PointFloat(30.00027!, 19.99999!)
+        Me.XrLabel47.LocationFloat = New DevExpress.Utils.PointFloat(259.9995!, 19.99999!)
         Me.XrLabel47.Name = "XrLabel47"
         Me.XrLabel47.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 254.0!)
         Me.XrLabel47.SizeF = New System.Drawing.SizeF(589.9997!, 70.00001!)
@@ -441,7 +441,7 @@ Partial Public Class xrLabelPasienRM18815_201901
         Me.XrLabel48.Dpi = 254.0!
         Me.XrLabel48.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[Parameters].[p8NoRM]")})
         Me.XrLabel48.Font = New System.Drawing.Font("Tahoma", 10.0!)
-        Me.XrLabel48.LocationFloat = New DevExpress.Utils.PointFloat(29.99978!, 139.9999!)
+        Me.XrLabel48.LocationFloat = New DevExpress.Utils.PointFloat(259.999!, 139.9999!)
         Me.XrLabel48.Name = "XrLabel48"
         Me.XrLabel48.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 254.0!)
         Me.XrLabel48.SizeF = New System.Drawing.SizeF(400.0001!, 50.00002!)
@@ -470,10 +470,10 @@ Partial Public Class xrLabelPasienRM18815_201901
         Me.xrp7BC.AutoModule = True
         Me.xrp7BC.Dpi = 254.0!
         Me.xrp7BC.Font = New System.Drawing.Font("Tahoma", 7.0!)
-        Me.xrp7BC.LocationFloat = New DevExpress.Utils.PointFloat(630.0!, 19.99975!)
+        Me.xrp7BC.LocationFloat = New DevExpress.Utils.PointFloat(30.0!, 20.0!)
         Me.xrp7BC.Module = 5.08!
         Me.xrp7BC.Name = "xrp7BC"
-        Me.xrp7BC.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 2, 2, 254.0!)
+        Me.xrp7BC.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 254.0!)
         Me.xrp7BC.ShowText = False
         Me.xrp7BC.SizeF = New System.Drawing.SizeF(220.0!, 220.0!)
         Me.xrp7BC.StylePriority.UseFont = False
@@ -489,7 +489,7 @@ Partial Public Class xrLabelPasienRM18815_201901
         Me.XrLabel50.Dpi = 254.0!
         Me.XrLabel50.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[Parameters].[p7TglLahir]")})
         Me.XrLabel50.Font = New System.Drawing.Font("Tahoma", 10.0!)
-        Me.XrLabel50.LocationFloat = New DevExpress.Utils.PointFloat(30.00027!, 189.9999!)
+        Me.XrLabel50.LocationFloat = New DevExpress.Utils.PointFloat(260.0!, 189.9999!)
         Me.XrLabel50.Name = "XrLabel50"
         Me.XrLabel50.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 254.0!)
         Me.XrLabel50.SizeF = New System.Drawing.SizeF(399.9998!, 50.00002!)
@@ -505,7 +505,7 @@ Partial Public Class xrLabelPasienRM18815_201901
         Me.XrLabel52.Dpi = 254.0!
         Me.XrLabel52.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[Parameters].[p7Sex]")})
         Me.XrLabel52.Font = New System.Drawing.Font("Tahoma", 10.0!)
-        Me.XrLabel52.LocationFloat = New DevExpress.Utils.PointFloat(30.00011!, 89.99983!)
+        Me.XrLabel52.LocationFloat = New DevExpress.Utils.PointFloat(259.9998!, 89.99983!)
         Me.XrLabel52.Name = "XrLabel52"
         Me.XrLabel52.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 254.0!)
         Me.XrLabel52.SizeF = New System.Drawing.SizeF(400.0!, 49.99998!)
@@ -523,7 +523,7 @@ Partial Public Class xrLabelPasienRM18815_201901
         Me.XrLabel53.Dpi = 254.0!
         Me.XrLabel53.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[Parameters].[p7Nama]")})
         Me.XrLabel53.Font = New System.Drawing.Font("Tahoma", 12.0!)
-        Me.XrLabel53.LocationFloat = New DevExpress.Utils.PointFloat(29.99994!, 19.99975!)
+        Me.XrLabel53.LocationFloat = New DevExpress.Utils.PointFloat(259.9997!, 19.99975!)
         Me.XrLabel53.Name = "XrLabel53"
         Me.XrLabel53.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 254.0!)
         Me.XrLabel53.SizeF = New System.Drawing.SizeF(590.0002!, 70.00001!)
@@ -540,7 +540,7 @@ Partial Public Class xrLabelPasienRM18815_201901
         Me.XrLabel54.Dpi = 254.0!
         Me.XrLabel54.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[Parameters].[p7NoRM]")})
         Me.XrLabel54.Font = New System.Drawing.Font("Tahoma", 10.0!)
-        Me.XrLabel54.LocationFloat = New DevExpress.Utils.PointFloat(29.99994!, 139.9998!)
+        Me.XrLabel54.LocationFloat = New DevExpress.Utils.PointFloat(259.9997!, 139.9998!)
         Me.XrLabel54.Name = "XrLabel54"
         Me.XrLabel54.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 254.0!)
         Me.XrLabel54.SizeF = New System.Drawing.SizeF(400.0002!, 50.00002!)
@@ -569,10 +569,10 @@ Partial Public Class xrLabelPasienRM18815_201901
         Me.xrp6BC.AutoModule = True
         Me.xrp6BC.Dpi = 254.0!
         Me.xrp6BC.Font = New System.Drawing.Font("Tahoma", 7.0!)
-        Me.xrp6BC.LocationFloat = New DevExpress.Utils.PointFloat(630.0!, 19.99995!)
+        Me.xrp6BC.LocationFloat = New DevExpress.Utils.PointFloat(30.0!, 20.0!)
         Me.xrp6BC.Module = 5.08!
         Me.xrp6BC.Name = "xrp6BC"
-        Me.xrp6BC.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 2, 2, 254.0!)
+        Me.xrp6BC.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 254.0!)
         Me.xrp6BC.ShowText = False
         Me.xrp6BC.SizeF = New System.Drawing.SizeF(220.0!, 220.0!)
         Me.xrp6BC.StylePriority.UseFont = False
@@ -588,7 +588,7 @@ Partial Public Class xrLabelPasienRM18815_201901
         Me.XrLabel55.Dpi = 254.0!
         Me.XrLabel55.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[Parameters].[p6TglLahir]")})
         Me.XrLabel55.Font = New System.Drawing.Font("Tahoma", 10.0!)
-        Me.XrLabel55.LocationFloat = New DevExpress.Utils.PointFloat(30.00011!, 190.0!)
+        Me.XrLabel55.LocationFloat = New DevExpress.Utils.PointFloat(260.0!, 190.0!)
         Me.XrLabel55.Name = "XrLabel55"
         Me.XrLabel55.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 254.0!)
         Me.XrLabel55.SizeF = New System.Drawing.SizeF(400.0!, 49.99997!)
@@ -604,7 +604,7 @@ Partial Public Class xrLabelPasienRM18815_201901
         Me.XrLabel58.Dpi = 254.0!
         Me.XrLabel58.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[Parameters].[p6Sex]")})
         Me.XrLabel58.Font = New System.Drawing.Font("Tahoma", 10.0!)
-        Me.XrLabel58.LocationFloat = New DevExpress.Utils.PointFloat(30.00011!, 90.0!)
+        Me.XrLabel58.LocationFloat = New DevExpress.Utils.PointFloat(260.0!, 90.0!)
         Me.XrLabel58.Name = "XrLabel58"
         Me.XrLabel58.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 254.0!)
         Me.XrLabel58.SizeF = New System.Drawing.SizeF(400.0!, 50.0!)
@@ -622,7 +622,7 @@ Partial Public Class xrLabelPasienRM18815_201901
         Me.XrLabel59.Dpi = 254.0!
         Me.XrLabel59.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[Parameters].[p6Nama]")})
         Me.XrLabel59.Font = New System.Drawing.Font("Tahoma", 12.0!)
-        Me.XrLabel59.LocationFloat = New DevExpress.Utils.PointFloat(30.00011!, 19.99999!)
+        Me.XrLabel59.LocationFloat = New DevExpress.Utils.PointFloat(260.0!, 19.99999!)
         Me.XrLabel59.Name = "XrLabel59"
         Me.XrLabel59.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 254.0!)
         Me.XrLabel59.SizeF = New System.Drawing.SizeF(590.0!, 69.99999!)
@@ -639,7 +639,7 @@ Partial Public Class xrLabelPasienRM18815_201901
         Me.XrLabel60.Dpi = 254.0!
         Me.XrLabel60.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[Parameters].[p6NoRM]")})
         Me.XrLabel60.Font = New System.Drawing.Font("Tahoma", 10.0!)
-        Me.XrLabel60.LocationFloat = New DevExpress.Utils.PointFloat(30.00011!, 140.0!)
+        Me.XrLabel60.LocationFloat = New DevExpress.Utils.PointFloat(260.0!, 140.0!)
         Me.XrLabel60.Name = "XrLabel60"
         Me.XrLabel60.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 254.0!)
         Me.XrLabel60.SizeF = New System.Drawing.SizeF(400.0!, 50.0!)
@@ -668,10 +668,10 @@ Partial Public Class xrLabelPasienRM18815_201901
         Me.xrp5BC.AutoModule = True
         Me.xrp5BC.Dpi = 254.0!
         Me.xrp5BC.Font = New System.Drawing.Font("Tahoma", 7.0!)
-        Me.xrp5BC.LocationFloat = New DevExpress.Utils.PointFloat(629.9999!, 20.00007!)
+        Me.xrp5BC.LocationFloat = New DevExpress.Utils.PointFloat(30.0!, 20.0!)
         Me.xrp5BC.Module = 5.08!
         Me.xrp5BC.Name = "xrp5BC"
-        Me.xrp5BC.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 2, 2, 254.0!)
+        Me.xrp5BC.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 254.0!)
         Me.xrp5BC.ShowText = False
         Me.xrp5BC.SizeF = New System.Drawing.SizeF(220.0!, 220.0!)
         Me.xrp5BC.StylePriority.UseFont = False
@@ -687,7 +687,7 @@ Partial Public Class xrLabelPasienRM18815_201901
         Me.XrLabel6.Dpi = 254.0!
         Me.XrLabel6.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[Parameters].[p5TglLahir]")})
         Me.XrLabel6.Font = New System.Drawing.Font("Tahoma", 10.0!)
-        Me.XrLabel6.LocationFloat = New DevExpress.Utils.PointFloat(29.99962!, 190.0001!)
+        Me.XrLabel6.LocationFloat = New DevExpress.Utils.PointFloat(259.9984!, 190.0001!)
         Me.XrLabel6.Name = "XrLabel6"
         Me.XrLabel6.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 254.0!)
         Me.XrLabel6.SizeF = New System.Drawing.SizeF(400.0007!, 49.99994!)
@@ -703,7 +703,7 @@ Partial Public Class xrLabelPasienRM18815_201901
         Me.XrLabel42.Dpi = 254.0!
         Me.XrLabel42.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[Parameters].[p5Sex]")})
         Me.XrLabel42.Font = New System.Drawing.Font("Tahoma", 10.0!)
-        Me.XrLabel42.LocationFloat = New DevExpress.Utils.PointFloat(30.00019!, 90.00008!)
+        Me.XrLabel42.LocationFloat = New DevExpress.Utils.PointFloat(259.999!, 90.00008!)
         Me.XrLabel42.Name = "XrLabel42"
         Me.XrLabel42.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 254.0!)
         Me.XrLabel42.SizeF = New System.Drawing.SizeF(400.0001!, 50.00002!)
@@ -721,7 +721,7 @@ Partial Public Class xrLabelPasienRM18815_201901
         Me.XrLabel43.Dpi = 254.0!
         Me.XrLabel43.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[Parameters].[p5Nama]")})
         Me.XrLabel43.Font = New System.Drawing.Font("Tahoma", 12.0!)
-        Me.XrLabel43.LocationFloat = New DevExpress.Utils.PointFloat(30.00019!, 20.00015!)
+        Me.XrLabel43.LocationFloat = New DevExpress.Utils.PointFloat(259.999!, 20.00015!)
         Me.XrLabel43.Name = "XrLabel43"
         Me.XrLabel43.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 254.0!)
         Me.XrLabel43.SizeF = New System.Drawing.SizeF(590.0!, 70.00001!)
@@ -738,7 +738,7 @@ Partial Public Class xrLabelPasienRM18815_201901
         Me.XrLabel45.Dpi = 254.0!
         Me.XrLabel45.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[Parameters].[p5NoRM]")})
         Me.XrLabel45.Font = New System.Drawing.Font("Tahoma", 10.0!)
-        Me.XrLabel45.LocationFloat = New DevExpress.Utils.PointFloat(29.99962!, 139.9999!)
+        Me.XrLabel45.LocationFloat = New DevExpress.Utils.PointFloat(259.9984!, 139.9999!)
         Me.XrLabel45.Name = "XrLabel45"
         Me.XrLabel45.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 254.0!)
         Me.XrLabel45.SizeF = New System.Drawing.SizeF(400.0005!, 50.00002!)
@@ -767,10 +767,10 @@ Partial Public Class xrLabelPasienRM18815_201901
         Me.xrp4BC.AutoModule = True
         Me.xrp4BC.Dpi = 254.0!
         Me.xrp4BC.Font = New System.Drawing.Font("Tahoma", 7.0!)
-        Me.xrp4BC.LocationFloat = New DevExpress.Utils.PointFloat(629.9999!, 29.99986!)
+        Me.xrp4BC.LocationFloat = New DevExpress.Utils.PointFloat(30.0!, 20.0!)
         Me.xrp4BC.Module = 5.08!
         Me.xrp4BC.Name = "xrp4BC"
-        Me.xrp4BC.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 2, 2, 254.0!)
+        Me.xrp4BC.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 254.0!)
         Me.xrp4BC.ShowText = False
         Me.xrp4BC.SizeF = New System.Drawing.SizeF(220.0!, 220.0!)
         Me.xrp4BC.StylePriority.UseFont = False
@@ -786,7 +786,7 @@ Partial Public Class xrLabelPasienRM18815_201901
         Me.XrLabel10.Dpi = 254.0!
         Me.XrLabel10.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[Parameters].[p4TglLahir]")})
         Me.XrLabel10.Font = New System.Drawing.Font("Tahoma", 10.0!)
-        Me.XrLabel10.LocationFloat = New DevExpress.Utils.PointFloat(30.00019!, 199.9999!)
+        Me.XrLabel10.LocationFloat = New DevExpress.Utils.PointFloat(259.9991!, 190.0001!)
         Me.XrLabel10.Name = "XrLabel10"
         Me.XrLabel10.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 254.0!)
         Me.XrLabel10.SizeF = New System.Drawing.SizeF(400.0!, 49.99994!)
@@ -802,7 +802,7 @@ Partial Public Class xrLabelPasienRM18815_201901
         Me.XrLabel33.Dpi = 254.0!
         Me.XrLabel33.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[Parameters].[p4Sex]")})
         Me.XrLabel33.Font = New System.Drawing.Font("Tahoma", 10.0!)
-        Me.XrLabel33.LocationFloat = New DevExpress.Utils.PointFloat(29.99962!, 99.99987!)
+        Me.XrLabel33.LocationFloat = New DevExpress.Utils.PointFloat(259.9985!, 90.00004!)
         Me.XrLabel33.Name = "XrLabel33"
         Me.XrLabel33.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 254.0!)
         Me.XrLabel33.SizeF = New System.Drawing.SizeF(400.0007!, 50.00002!)
@@ -820,7 +820,7 @@ Partial Public Class xrLabelPasienRM18815_201901
         Me.XrLabel34.Dpi = 254.0!
         Me.XrLabel34.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[Parameters].[p4Nama]")})
         Me.XrLabel34.Font = New System.Drawing.Font("Tahoma", 12.0!)
-        Me.XrLabel34.LocationFloat = New DevExpress.Utils.PointFloat(30.00019!, 29.99986!)
+        Me.XrLabel34.LocationFloat = New DevExpress.Utils.PointFloat(259.9991!, 20.00003!)
         Me.XrLabel34.Name = "XrLabel34"
         Me.XrLabel34.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 254.0!)
         Me.XrLabel34.SizeF = New System.Drawing.SizeF(590.0!, 70.00001!)
@@ -837,7 +837,7 @@ Partial Public Class xrLabelPasienRM18815_201901
         Me.XrLabel36.Dpi = 254.0!
         Me.XrLabel36.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[Parameters].[p4NoRM]")})
         Me.XrLabel36.Font = New System.Drawing.Font("Tahoma", 10.0!)
-        Me.XrLabel36.LocationFloat = New DevExpress.Utils.PointFloat(30.00019!, 149.9999!)
+        Me.XrLabel36.LocationFloat = New DevExpress.Utils.PointFloat(259.9991!, 140.0001!)
         Me.XrLabel36.Name = "XrLabel36"
         Me.XrLabel36.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 254.0!)
         Me.XrLabel36.SizeF = New System.Drawing.SizeF(400.0!, 50.00002!)
@@ -866,10 +866,10 @@ Partial Public Class xrLabelPasienRM18815_201901
         Me.xrp3BC.AutoModule = True
         Me.xrp3BC.Dpi = 254.0!
         Me.xrp3BC.Font = New System.Drawing.Font("Tahoma", 7.0!)
-        Me.xrp3BC.LocationFloat = New DevExpress.Utils.PointFloat(630.0002!, 19.99983!)
+        Me.xrp3BC.LocationFloat = New DevExpress.Utils.PointFloat(30.0!, 20.0!)
         Me.xrp3BC.Module = 5.08!
         Me.xrp3BC.Name = "xrp3BC"
-        Me.xrp3BC.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 2, 2, 254.0!)
+        Me.xrp3BC.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 254.0!)
         Me.xrp3BC.ShowText = False
         Me.xrp3BC.SizeF = New System.Drawing.SizeF(220.0!, 220.0!)
         Me.xrp3BC.StylePriority.UseFont = False
@@ -885,7 +885,7 @@ Partial Public Class xrLabelPasienRM18815_201901
         Me.XrLabel12.Dpi = 254.0!
         Me.XrLabel12.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[Parameters].[p3TglLahir]")})
         Me.XrLabel12.Font = New System.Drawing.Font("Tahoma", 10.0!)
-        Me.XrLabel12.LocationFloat = New DevExpress.Utils.PointFloat(29.99962!, 190.0!)
+        Me.XrLabel12.LocationFloat = New DevExpress.Utils.PointFloat(259.9991!, 190.0!)
         Me.XrLabel12.Name = "XrLabel12"
         Me.XrLabel12.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 254.0!)
         Me.XrLabel12.SizeF = New System.Drawing.SizeF(400.0007!, 49.99992!)
@@ -901,7 +901,7 @@ Partial Public Class xrLabelPasienRM18815_201901
         Me.XrLabel24.Dpi = 254.0!
         Me.XrLabel24.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[Parameters].[p3Sex]")})
         Me.XrLabel24.Font = New System.Drawing.Font("Tahoma", 10.0!)
-        Me.XrLabel24.LocationFloat = New DevExpress.Utils.PointFloat(30.00019!, 89.99983!)
+        Me.XrLabel24.LocationFloat = New DevExpress.Utils.PointFloat(259.9996!, 89.99983!)
         Me.XrLabel24.Name = "XrLabel24"
         Me.XrLabel24.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 254.0!)
         Me.XrLabel24.SizeF = New System.Drawing.SizeF(400.0001!, 49.99998!)
@@ -919,7 +919,7 @@ Partial Public Class xrLabelPasienRM18815_201901
         Me.XrLabel25.Dpi = 254.0!
         Me.XrLabel25.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[Parameters].[p3Nama]")})
         Me.XrLabel25.Font = New System.Drawing.Font("Tahoma", 12.0!)
-        Me.XrLabel25.LocationFloat = New DevExpress.Utils.PointFloat(29.99994!, 19.99991!)
+        Me.XrLabel25.LocationFloat = New DevExpress.Utils.PointFloat(259.9994!, 19.99991!)
         Me.XrLabel25.Name = "XrLabel25"
         Me.XrLabel25.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 254.0!)
         Me.XrLabel25.SizeF = New System.Drawing.SizeF(590.0002!, 70.00001!)
@@ -936,7 +936,7 @@ Partial Public Class xrLabelPasienRM18815_201901
         Me.XrLabel27.Dpi = 254.0!
         Me.XrLabel27.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[Parameters].[p3NoRM]")})
         Me.XrLabel27.Font = New System.Drawing.Font("Tahoma", 10.0!)
-        Me.XrLabel27.LocationFloat = New DevExpress.Utils.PointFloat(29.99962!, 140.0!)
+        Me.XrLabel27.LocationFloat = New DevExpress.Utils.PointFloat(259.9991!, 140.0!)
         Me.XrLabel27.Name = "XrLabel27"
         Me.XrLabel27.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 254.0!)
         Me.XrLabel27.SizeF = New System.Drawing.SizeF(400.0005!, 49.99994!)
@@ -965,10 +965,10 @@ Partial Public Class xrLabelPasienRM18815_201901
         Me.xrp2BC.AutoModule = True
         Me.xrp2BC.Dpi = 254.0!
         Me.xrp2BC.Font = New System.Drawing.Font("Tahoma", 7.0!)
-        Me.xrp2BC.LocationFloat = New DevExpress.Utils.PointFloat(629.9999!, 19.99999!)
+        Me.xrp2BC.LocationFloat = New DevExpress.Utils.PointFloat(30.0!, 20.0!)
         Me.xrp2BC.Module = 5.08!
         Me.xrp2BC.Name = "xrp2BC"
-        Me.xrp2BC.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 2, 2, 254.0!)
+        Me.xrp2BC.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 254.0!)
         Me.xrp2BC.ShowText = False
         Me.xrp2BC.SizeF = New System.Drawing.SizeF(220.0!, 220.0!)
         Me.xrp2BC.StylePriority.UseFont = False
@@ -984,7 +984,7 @@ Partial Public Class xrLabelPasienRM18815_201901
         Me.XrLabel13.Dpi = 254.0!
         Me.XrLabel13.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[Parameters].[p2TglLahir]")})
         Me.XrLabel13.Font = New System.Drawing.Font("Tahoma", 10.0!)
-        Me.XrLabel13.LocationFloat = New DevExpress.Utils.PointFloat(30.00003!, 190.0!)
+        Me.XrLabel13.LocationFloat = New DevExpress.Utils.PointFloat(259.9997!, 190.0!)
         Me.XrLabel13.Name = "XrLabel13"
         Me.XrLabel13.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 254.0!)
         Me.XrLabel13.SizeF = New System.Drawing.SizeF(400.0001!, 50.00002!)
@@ -1000,7 +1000,7 @@ Partial Public Class xrLabelPasienRM18815_201901
         Me.XrLabel15.Dpi = 254.0!
         Me.XrLabel15.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[Parameters].[p2Sex]")})
         Me.XrLabel15.Font = New System.Drawing.Font("Tahoma", 10.0!)
-        Me.XrLabel15.LocationFloat = New DevExpress.Utils.PointFloat(30.00019!, 89.99983!)
+        Me.XrLabel15.LocationFloat = New DevExpress.Utils.PointFloat(259.9998!, 89.99983!)
         Me.XrLabel15.Name = "XrLabel15"
         Me.XrLabel15.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 254.0!)
         Me.XrLabel15.SizeF = New System.Drawing.SizeF(400.0!, 50.00018!)
@@ -1018,7 +1018,7 @@ Partial Public Class xrLabelPasienRM18815_201901
         Me.XrLabel16.Dpi = 254.0!
         Me.XrLabel16.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[Parameters].[p2Nama]")})
         Me.XrLabel16.Font = New System.Drawing.Font("Tahoma", 12.0!)
-        Me.XrLabel16.LocationFloat = New DevExpress.Utils.PointFloat(30.00019!, 19.99991!)
+        Me.XrLabel16.LocationFloat = New DevExpress.Utils.PointFloat(259.9998!, 19.99991!)
         Me.XrLabel16.Name = "XrLabel16"
         Me.XrLabel16.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 254.0!)
         Me.XrLabel16.SizeF = New System.Drawing.SizeF(590.0!, 69.99998!)
@@ -1035,7 +1035,7 @@ Partial Public Class xrLabelPasienRM18815_201901
         Me.XrLabel18.Dpi = 254.0!
         Me.XrLabel18.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[Parameters].[p2NoRM]")})
         Me.XrLabel18.Font = New System.Drawing.Font("Tahoma", 9.0!)
-        Me.XrLabel18.LocationFloat = New DevExpress.Utils.PointFloat(29.99962!, 140.0!)
+        Me.XrLabel18.LocationFloat = New DevExpress.Utils.PointFloat(259.9993!, 140.0!)
         Me.XrLabel18.Name = "XrLabel18"
         Me.XrLabel18.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 254.0!)
         Me.XrLabel18.SizeF = New System.Drawing.SizeF(400.0005!, 50.00002!)
@@ -1064,10 +1064,10 @@ Partial Public Class xrLabelPasienRM18815_201901
         Me.xrp1BC.AutoModule = True
         Me.xrp1BC.Dpi = 254.0!
         Me.xrp1BC.Font = New System.Drawing.Font("Tahoma", 7.0!)
-        Me.xrp1BC.LocationFloat = New DevExpress.Utils.PointFloat(629.9998!, 19.99995!)
+        Me.xrp1BC.LocationFloat = New DevExpress.Utils.PointFloat(30.0!, 20.0!)
         Me.xrp1BC.Module = 5.08!
         Me.xrp1BC.Name = "xrp1BC"
-        Me.xrp1BC.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 2, 2, 254.0!)
+        Me.xrp1BC.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 254.0!)
         Me.xrp1BC.ShowText = False
         Me.xrp1BC.SizeF = New System.Drawing.SizeF(220.0!, 220.0!)
         Me.xrp1BC.StylePriority.UseFont = False
@@ -1083,7 +1083,7 @@ Partial Public Class xrLabelPasienRM18815_201901
         Me.XrLabel19.Dpi = 254.0!
         Me.XrLabel19.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[Parameters].[p1TglLahir]")})
         Me.XrLabel19.Font = New System.Drawing.Font("Tahoma", 10.0!)
-        Me.XrLabel19.LocationFloat = New DevExpress.Utils.PointFloat(30.00011!, 190.0!)
+        Me.XrLabel19.LocationFloat = New DevExpress.Utils.PointFloat(260.0001!, 190.0!)
         Me.XrLabel19.Name = "XrLabel19"
         Me.XrLabel19.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 254.0!)
         Me.XrLabel19.SizeF = New System.Drawing.SizeF(400.0!, 49.99997!)
@@ -1099,7 +1099,7 @@ Partial Public Class xrLabelPasienRM18815_201901
         Me.XrLabel5.Dpi = 254.0!
         Me.XrLabel5.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[Parameters].[p1Sex]")})
         Me.XrLabel5.Font = New System.Drawing.Font("Tahoma", 10.0!)
-        Me.XrLabel5.LocationFloat = New DevExpress.Utils.PointFloat(30.00011!, 90.0!)
+        Me.XrLabel5.LocationFloat = New DevExpress.Utils.PointFloat(260.0001!, 90.0!)
         Me.XrLabel5.Name = "XrLabel5"
         Me.XrLabel5.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 254.0!)
         Me.XrLabel5.SizeF = New System.Drawing.SizeF(400.0!, 50.0!)
@@ -1117,7 +1117,7 @@ Partial Public Class xrLabelPasienRM18815_201901
         Me.XrLabel4.Dpi = 254.0!
         Me.XrLabel4.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[Parameters].[p1Nama]")})
         Me.XrLabel4.Font = New System.Drawing.Font("Tahoma", 12.0!)
-        Me.XrLabel4.LocationFloat = New DevExpress.Utils.PointFloat(30.00011!, 19.99999!)
+        Me.XrLabel4.LocationFloat = New DevExpress.Utils.PointFloat(260.0001!, 19.99999!)
         Me.XrLabel4.Name = "XrLabel4"
         Me.XrLabel4.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 254.0!)
         Me.XrLabel4.SizeF = New System.Drawing.SizeF(590.0!, 69.99999!)
@@ -1134,7 +1134,7 @@ Partial Public Class xrLabelPasienRM18815_201901
         Me.XrLabel2.Dpi = 254.0!
         Me.XrLabel2.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[Parameters].[p1NoRM]")})
         Me.XrLabel2.Font = New System.Drawing.Font("Tahoma", 10.0!)
-        Me.XrLabel2.LocationFloat = New DevExpress.Utils.PointFloat(29.99962!, 140.0!)
+        Me.XrLabel2.LocationFloat = New DevExpress.Utils.PointFloat(259.9996!, 140.0!)
         Me.XrLabel2.Name = "XrLabel2"
         Me.XrLabel2.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 254.0!)
         Me.XrLabel2.SizeF = New System.Drawing.SizeF(400.0005!, 50.00002!)

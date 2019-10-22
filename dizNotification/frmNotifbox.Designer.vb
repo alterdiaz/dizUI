@@ -22,6 +22,8 @@ Partial Class frmNotifbox
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmNotifbox))
         Me.tlpForm = New System.Windows.Forms.TableLayoutPanel()
         Me.pTitle = New System.Windows.Forms.Panel()
         Me.lblTitle = New System.Windows.Forms.Label()
@@ -33,7 +35,7 @@ Partial Class frmNotifbox
         Me.btnOK = New System.Windows.Forms.Button()
         Me.pbLogo = New System.Windows.Forms.PictureBox()
         Me.lblContent = New System.Windows.Forms.Label()
-        Me.tmrWaktu = New System.Windows.Forms.Timer()
+        Me.tmrWaktu = New System.Windows.Forms.Timer(Me.components)
         Me.tlpForm.SuspendLayout()
         Me.pTitle.SuspendLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -227,6 +229,7 @@ Partial Class frmNotifbox
         Me.Controls.Add(Me.tlpForm)
         Me.DoubleBuffered = True
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
+        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "frmNotifbox"

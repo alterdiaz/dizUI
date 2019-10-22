@@ -317,6 +317,7 @@
         Dim sqls As New SQLs(dbstring)
         sqls.DMLQuery("select i.iditem,i.item,isnull(iu.qty,0) as qty,isnull(iu.price,0) as price,convert(bit,0) as cek,'('+ gc.generalcode +') Price Rp.'+REPLACE(REPLACE(REPLACE(CONVERT(varchar, CONVERT(money, isnull(iu.price,0)), 1), ',', ' '), '.', ','), ' ', '.')+' Qty '+convert(varchar,isnull(iu.qty,0)) as note from item i left join sys_generalcode gc on i.itemtype=gc.idgeneral and gc.gctype='ITEMTYPE' left join itemunit iu on i.iditem=iu.iditem and iu.idunit='" & idunit & "' where i.itemtype=1 order by i.item asc", "getitem")
         gcItem.DataSource = sqls.dataTable("getitem")
+        gvItem.BestFitColumns()
     End Sub
 
     Private Sub loadLOV()

@@ -62,7 +62,7 @@ Partial Class frmSetting
         Me.lblTitle.Name = "lblTitle"
         Me.lblTitle.Size = New System.Drawing.Size(382, 29)
         Me.lblTitle.TabIndex = 6
-        Me.lblTitle.Text = "Application Setting"
+        Me.lblTitle.Text = "Pengaturan Aplikasi"
         Me.lblTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
         'UpdSave
@@ -77,7 +77,7 @@ Partial Class frmSetting
         Me.UpdSave.Name = "UpdSave"
         Me.UpdSave.Size = New System.Drawing.Size(75, 30)
         Me.UpdSave.TabIndex = 13
-        Me.UpdSave.Text = "Save"
+        Me.UpdSave.Text = "Simpan"
         Me.UpdSave.UseVisualStyleBackColor = False
         '
         'btnKeluar
@@ -93,7 +93,7 @@ Partial Class frmSetting
         Me.btnKeluar.Name = "btnKeluar"
         Me.btnKeluar.Size = New System.Drawing.Size(75, 30)
         Me.btnKeluar.TabIndex = 14
-        Me.btnKeluar.Text = "Exit"
+        Me.btnKeluar.Text = "Keluar"
         Me.btnKeluar.UseVisualStyleBackColor = False
         '
         'btnRun
@@ -109,7 +109,7 @@ Partial Class frmSetting
         Me.btnRun.Name = "btnRun"
         Me.btnRun.Size = New System.Drawing.Size(109, 30)
         Me.btnRun.TabIndex = 15
-        Me.btnRun.Text = "Run Apps"
+        Me.btnRun.Text = "Jalankan"
         Me.btnRun.UseVisualStyleBackColor = False
         '
         'tmrAuto

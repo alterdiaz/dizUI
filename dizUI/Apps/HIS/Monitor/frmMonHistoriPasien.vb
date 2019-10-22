@@ -1,4 +1,5 @@
 ﻿Imports DevExpress.XtraEditors.Controls
+Imports DevExpress.XtraGrid.Views.Base
 
 Public Class frmMonHistoriPasien
     Const HTCAPTION = &H2
@@ -325,10 +326,18 @@ Public Class frmMonHistoriPasien
                 Try
                     pt.Print(sharename)
                 Catch ex As Exception
-                    dizMsgbox("Printer tidak ditemukan/tidak ada akses", dizMsgboxStyle.Peringatan, Me)
+                    Try
+                        pt.PrintDialog()
+                    Catch ex1 As Exception
+                        dizMsgbox(ex1.Message, dizMsgboxStyle.Kesalahan, Me)
+                    End Try
                 End Try
             Else
-                dizMsgbox("Printer belum disetting untuk cetak dokumen ini", dizMsgboxStyle.Peringatan, Me)
+                Try
+                    pt.PrintDialog()
+                Catch ex1 As Exception
+                    dizMsgbox(ex1.Message, dizMsgboxStyle.Kesalahan, Me)
+                End Try
             End If
             'pt.Print()
         Else
@@ -399,10 +408,18 @@ Public Class frmMonHistoriPasien
                 Try
                     pt.Print(sharename)
                 Catch ex As Exception
-                    dizMsgbox("Printer tidak ditemukan/tidak ada akses", dizMsgboxStyle.Peringatan, Me)
+                    Try
+                        pt.PrintDialog()
+                    Catch ex1 As Exception
+                        dizMsgbox(ex1.Message, dizMsgboxStyle.Kesalahan, Me)
+                    End Try
                 End Try
             Else
-                dizMsgbox("Printer belum disetting untuk cetak dokumen ini", dizMsgboxStyle.Peringatan, Me)
+                Try
+                    pt.PrintDialog()
+                Catch ex1 As Exception
+                    dizMsgbox(ex1.Message, dizMsgboxStyle.Kesalahan, Me)
+                End Try
             End If
             'pt.Print()
         Else
@@ -567,6 +584,30 @@ Public Class frmMonHistoriPasien
     Private Sub PreviewForm_Load(sender As Object, ByVal e As EventArgs)
         Dim frm As DevExpress.XtraPrinting.Preview.PrintPreviewFormEx = CType(sender, DevExpress.XtraPrinting.Preview.PrintPreviewFormEx)
         frm.PrintingSystem.ExecCommand(DevExpress.XtraPrinting.PrintingSystemCommand.Scale, New Object() {1.0F})
+    End Sub
+
+    Private idxFocus As Integer = -1
+    Private Sub gvData_DoubleClick(sender As Object, e As EventArgs) Handles gvData.DoubleClick
+        If gvData.RowCount = 0 Then Exit Sub
+
+        Dim view As DevExpress.XtraGrid.Views.Grid.GridView = gvData
+        idxFocus = view.FocusedRowHandle
+
+        If idxFocus >= 0 Then
+            Dim dr As DataRow = gvData.GetDataRow(idxFocus)
+            Dim idreg As String = dr("idregistrasi")
+            'Dim hl7 As New HL7SDK.Cda.
+
+            If idreg <> "" Then
+                Dim radsel10 As New frmSelectLabel10("")
+                radsel10.bypass(idreg)
+                radsel10.ShowDialog(Me)
+            End If
+        End If
+    End Sub
+
+    Private Sub gvData_FocusedRowChanged(sender As Object, e As FocusedRowChangedEventArgs) Handles gvData.FocusedRowChanged
+        idxFocus = e.FocusedRowHandle
     End Sub
 
 End Class

@@ -63,6 +63,7 @@ Partial Class frmMonRegisterIRNA
         Me.btnRefresh = New System.Windows.Forms.Button()
         Me.btnExport = New System.Windows.Forms.Button()
         Me.lblSep5 = New System.Windows.Forms.Label()
+        Me.GridColumn24 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.tlpForm.SuspendLayout()
         Me.pTitle.SuspendLayout()
         CType(Me.pMinimize, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -217,7 +218,7 @@ Partial Class frmMonRegisterIRNA
         Me.gvData.Appearance.Row.Options.UseFont = True
         Me.gvData.Appearance.TopNewRow.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
         Me.gvData.Appearance.TopNewRow.Options.UseBackColor = True
-        Me.gvData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6, Me.GridColumn7, Me.GridColumn8, Me.GridColumn9, Me.GridColumn10, Me.GridColumn11, Me.GridColumn12, Me.GridColumn13, Me.GridColumn14, Me.GridColumn15, Me.GridColumn16, Me.GridColumn17, Me.GridColumn18, Me.GridColumn19, Me.GridColumn20, Me.GridColumn21, Me.GridColumn23, Me.GridColumn22})
+        Me.gvData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn24, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6, Me.GridColumn7, Me.GridColumn8, Me.GridColumn9, Me.GridColumn10, Me.GridColumn11, Me.GridColumn12, Me.GridColumn13, Me.GridColumn14, Me.GridColumn15, Me.GridColumn16, Me.GridColumn17, Me.GridColumn18, Me.GridColumn19, Me.GridColumn20, Me.GridColumn21, Me.GridColumn23, Me.GridColumn22})
         Me.gvData.GridControl = Me.gcData
         Me.gvData.Name = "gvData"
         Me.gvData.NewItemRowText = "Tambah Data Disini"
@@ -266,7 +267,7 @@ Partial Class frmMonRegisterIRNA
         Me.GridColumn3.OptionsColumn.AllowEdit = False
         Me.GridColumn3.OptionsColumn.ReadOnly = True
         Me.GridColumn3.Visible = True
-        Me.GridColumn3.VisibleIndex = 3
+        Me.GridColumn3.VisibleIndex = 4
         Me.GridColumn3.Width = 95
         '
         'GridColumn4
@@ -281,7 +282,7 @@ Partial Class frmMonRegisterIRNA
         Me.GridColumn4.OptionsColumn.AllowEdit = False
         Me.GridColumn4.OptionsColumn.ReadOnly = True
         Me.GridColumn4.Visible = True
-        Me.GridColumn4.VisibleIndex = 4
+        Me.GridColumn4.VisibleIndex = 5
         '
         'GridColumn5
         '
@@ -293,7 +294,7 @@ Partial Class frmMonRegisterIRNA
         Me.GridColumn5.OptionsColumn.AllowEdit = False
         Me.GridColumn5.OptionsColumn.ReadOnly = True
         Me.GridColumn5.Visible = True
-        Me.GridColumn5.VisibleIndex = 5
+        Me.GridColumn5.VisibleIndex = 6
         Me.GridColumn5.Width = 105
         '
         'GridColumn6
@@ -306,7 +307,7 @@ Partial Class frmMonRegisterIRNA
         Me.GridColumn6.OptionsColumn.AllowEdit = False
         Me.GridColumn6.OptionsColumn.ReadOnly = True
         Me.GridColumn6.Visible = True
-        Me.GridColumn6.VisibleIndex = 6
+        Me.GridColumn6.VisibleIndex = 7
         '
         'GridColumn7
         '
@@ -318,7 +319,7 @@ Partial Class frmMonRegisterIRNA
         Me.GridColumn7.OptionsColumn.AllowEdit = False
         Me.GridColumn7.OptionsColumn.ReadOnly = True
         Me.GridColumn7.Visible = True
-        Me.GridColumn7.VisibleIndex = 7
+        Me.GridColumn7.VisibleIndex = 8
         '
         'GridColumn8
         '
@@ -330,7 +331,7 @@ Partial Class frmMonRegisterIRNA
         Me.GridColumn8.OptionsColumn.AllowEdit = False
         Me.GridColumn8.OptionsColumn.ReadOnly = True
         Me.GridColumn8.Visible = True
-        Me.GridColumn8.VisibleIndex = 8
+        Me.GridColumn8.VisibleIndex = 9
         '
         'GridColumn9
         '
@@ -343,7 +344,7 @@ Partial Class frmMonRegisterIRNA
         Me.GridColumn9.OptionsColumn.AllowEdit = False
         Me.GridColumn9.OptionsColumn.ReadOnly = True
         Me.GridColumn9.Visible = True
-        Me.GridColumn9.VisibleIndex = 9
+        Me.GridColumn9.VisibleIndex = 10
         '
         'rimeAddress
         '
@@ -362,7 +363,7 @@ Partial Class frmMonRegisterIRNA
         Me.GridColumn10.OptionsColumn.AllowEdit = False
         Me.GridColumn10.OptionsColumn.ReadOnly = True
         Me.GridColumn10.Visible = True
-        Me.GridColumn10.VisibleIndex = 10
+        Me.GridColumn10.VisibleIndex = 11
         '
         'GridColumn11
         '
@@ -374,7 +375,7 @@ Partial Class frmMonRegisterIRNA
         Me.GridColumn11.OptionsColumn.AllowEdit = False
         Me.GridColumn11.OptionsColumn.ReadOnly = True
         Me.GridColumn11.Visible = True
-        Me.GridColumn11.VisibleIndex = 11
+        Me.GridColumn11.VisibleIndex = 12
         '
         'GridColumn12
         '
@@ -386,7 +387,7 @@ Partial Class frmMonRegisterIRNA
         Me.GridColumn12.OptionsColumn.AllowEdit = False
         Me.GridColumn12.OptionsColumn.ReadOnly = True
         Me.GridColumn12.Visible = True
-        Me.GridColumn12.VisibleIndex = 12
+        Me.GridColumn12.VisibleIndex = 13
         '
         'GridColumn13
         '
@@ -398,7 +399,7 @@ Partial Class frmMonRegisterIRNA
         Me.GridColumn13.OptionsColumn.AllowEdit = False
         Me.GridColumn13.OptionsColumn.ReadOnly = True
         Me.GridColumn13.Visible = True
-        Me.GridColumn13.VisibleIndex = 13
+        Me.GridColumn13.VisibleIndex = 14
         '
         'GridColumn14
         '
@@ -410,7 +411,7 @@ Partial Class frmMonRegisterIRNA
         Me.GridColumn14.OptionsColumn.AllowEdit = False
         Me.GridColumn14.OptionsColumn.ReadOnly = True
         Me.GridColumn14.Visible = True
-        Me.GridColumn14.VisibleIndex = 14
+        Me.GridColumn14.VisibleIndex = 15
         '
         'GridColumn15
         '
@@ -422,7 +423,7 @@ Partial Class frmMonRegisterIRNA
         Me.GridColumn15.OptionsColumn.AllowEdit = False
         Me.GridColumn15.OptionsColumn.ReadOnly = True
         Me.GridColumn15.Visible = True
-        Me.GridColumn15.VisibleIndex = 15
+        Me.GridColumn15.VisibleIndex = 16
         '
         'GridColumn16
         '
@@ -434,7 +435,7 @@ Partial Class frmMonRegisterIRNA
         Me.GridColumn16.OptionsColumn.AllowEdit = False
         Me.GridColumn16.OptionsColumn.ReadOnly = True
         Me.GridColumn16.Visible = True
-        Me.GridColumn16.VisibleIndex = 16
+        Me.GridColumn16.VisibleIndex = 17
         '
         'GridColumn17
         '
@@ -446,7 +447,7 @@ Partial Class frmMonRegisterIRNA
         Me.GridColumn17.OptionsColumn.AllowEdit = False
         Me.GridColumn17.OptionsColumn.ReadOnly = True
         Me.GridColumn17.Visible = True
-        Me.GridColumn17.VisibleIndex = 17
+        Me.GridColumn17.VisibleIndex = 18
         '
         'GridColumn18
         '
@@ -458,7 +459,7 @@ Partial Class frmMonRegisterIRNA
         Me.GridColumn18.OptionsColumn.AllowEdit = False
         Me.GridColumn18.OptionsColumn.ReadOnly = True
         Me.GridColumn18.Visible = True
-        Me.GridColumn18.VisibleIndex = 18
+        Me.GridColumn18.VisibleIndex = 19
         Me.GridColumn18.Width = 103
         '
         'GridColumn19
@@ -471,7 +472,7 @@ Partial Class frmMonRegisterIRNA
         Me.GridColumn19.OptionsColumn.AllowEdit = False
         Me.GridColumn19.OptionsColumn.ReadOnly = True
         Me.GridColumn19.Visible = True
-        Me.GridColumn19.VisibleIndex = 19
+        Me.GridColumn19.VisibleIndex = 20
         '
         'GridColumn20
         '
@@ -483,7 +484,7 @@ Partial Class frmMonRegisterIRNA
         Me.GridColumn20.OptionsColumn.AllowEdit = False
         Me.GridColumn20.OptionsColumn.ReadOnly = True
         Me.GridColumn20.Visible = True
-        Me.GridColumn20.VisibleIndex = 20
+        Me.GridColumn20.VisibleIndex = 21
         '
         'GridColumn21
         '
@@ -495,7 +496,7 @@ Partial Class frmMonRegisterIRNA
         Me.GridColumn21.OptionsColumn.AllowEdit = False
         Me.GridColumn21.OptionsColumn.ReadOnly = True
         Me.GridColumn21.Visible = True
-        Me.GridColumn21.VisibleIndex = 21
+        Me.GridColumn21.VisibleIndex = 22
         '
         'GridColumn23
         '
@@ -521,7 +522,7 @@ Partial Class frmMonRegisterIRNA
         Me.GridColumn22.OptionsColumn.AllowEdit = False
         Me.GridColumn22.OptionsColumn.ReadOnly = True
         Me.GridColumn22.Visible = True
-        Me.GridColumn22.VisibleIndex = 22
+        Me.GridColumn22.VisibleIndex = 23
         '
         'rimeNote
         '
@@ -668,6 +669,18 @@ Partial Class frmMonRegisterIRNA
         Me.lblSep5.Text = "|"
         Me.lblSep5.TextAlign = System.Drawing.ContentAlignment.TopCenter
         '
+        'GridColumn24
+        '
+        Me.GridColumn24.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn24.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn24.Caption = "Tgl. Keluar"
+        Me.GridColumn24.FieldName = "regenddate"
+        Me.GridColumn24.Name = "GridColumn24"
+        Me.GridColumn24.OptionsColumn.AllowEdit = False
+        Me.GridColumn24.OptionsColumn.ReadOnly = True
+        Me.GridColumn24.Visible = True
+        Me.GridColumn24.VisibleIndex = 3
+        '
         'frmMonRegisterIRNA
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -738,4 +751,5 @@ Partial Class frmMonRegisterIRNA
     Friend WithEvents GridColumn22 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn23 As DevExpress.XtraGrid.Columns.GridColumn
     Public WithEvents btnRefresh As Button
+    Friend WithEvents GridColumn24 As DevExpress.XtraGrid.Columns.GridColumn
 End Class

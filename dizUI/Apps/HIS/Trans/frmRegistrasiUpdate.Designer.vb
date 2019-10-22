@@ -53,6 +53,8 @@ Partial Class frmRegistrasiUpdate
         Me.GridColumn14 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemMemoEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit()
         Me.TableLayoutPanel3 = New System.Windows.Forms.TableLayoutPanel()
+        Me.cboDepartment = New DevExpress.XtraEditors.CheckedComboBoxEdit()
+        Me.Label1 = New System.Windows.Forms.Label()
         Me.lueRegStatus = New DevExpress.XtraEditors.LookUpEdit()
         Me.Label10 = New System.Windows.Forms.Label()
         Me.pHeader = New System.Windows.Forms.Panel()
@@ -70,6 +72,7 @@ Partial Class frmRegistrasiUpdate
         CType(Me.riceCek, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemMemoEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TableLayoutPanel3.SuspendLayout()
+        CType(Me.cboDepartment.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.lueRegStatus.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.pHeader.SuspendLayout()
         Me.SuspendLayout()
@@ -456,10 +459,12 @@ Partial Class frmRegistrasiUpdate
         Me.TableLayoutPanel3.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 120.0!))
         Me.TableLayoutPanel3.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 200.0!))
         Me.TableLayoutPanel3.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 120.0!))
-        Me.TableLayoutPanel3.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 150.0!))
+        Me.TableLayoutPanel3.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 200.0!))
         Me.TableLayoutPanel3.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
-        Me.TableLayoutPanel3.Controls.Add(Me.lueRegStatus, 2, 1)
-        Me.TableLayoutPanel3.Controls.Add(Me.Label10, 1, 1)
+        Me.TableLayoutPanel3.Controls.Add(Me.cboDepartment, 2, 1)
+        Me.TableLayoutPanel3.Controls.Add(Me.Label1, 1, 1)
+        Me.TableLayoutPanel3.Controls.Add(Me.lueRegStatus, 4, 1)
+        Me.TableLayoutPanel3.Controls.Add(Me.Label10, 3, 1)
         Me.TableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Top
         Me.TableLayoutPanel3.Location = New System.Drawing.Point(0, 30)
         Me.TableLayoutPanel3.Margin = New System.Windows.Forms.Padding(0)
@@ -468,15 +473,54 @@ Partial Class frmRegistrasiUpdate
         Me.TableLayoutPanel3.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 6.0!))
         Me.TableLayoutPanel3.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 24.0!))
         Me.TableLayoutPanel3.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 6.0!))
-        Me.TableLayoutPanel3.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
-        Me.TableLayoutPanel3.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
         Me.TableLayoutPanel3.Size = New System.Drawing.Size(786, 36)
         Me.TableLayoutPanel3.TabIndex = 10
+        '
+        'cboDepartment
+        '
+        Me.cboDepartment.Anchor = System.Windows.Forms.AnchorStyles.Left
+        Me.cboDepartment.Location = New System.Drawing.Point(193, 8)
+        Me.cboDepartment.Margin = New System.Windows.Forms.Padding(0)
+        Me.cboDepartment.Name = "cboDepartment"
+        Me.cboDepartment.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.cboDepartment.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 9.0!)
+        Me.cboDepartment.Properties.Appearance.Options.UseBackColor = True
+        Me.cboDepartment.Properties.Appearance.Options.UseFont = True
+        Me.cboDepartment.Properties.AppearanceDisabled.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.cboDepartment.Properties.AppearanceDisabled.Font = New System.Drawing.Font("Tahoma", 10.0!)
+        Me.cboDepartment.Properties.AppearanceDisabled.Options.UseBackColor = True
+        Me.cboDepartment.Properties.AppearanceDisabled.Options.UseFont = True
+        Me.cboDepartment.Properties.AppearanceDropDown.Font = New System.Drawing.Font("Tahoma", 10.0!)
+        Me.cboDepartment.Properties.AppearanceDropDown.Options.UseFont = True
+        Me.cboDepartment.Properties.AppearanceFocused.Font = New System.Drawing.Font("Tahoma", 10.0!)
+        Me.cboDepartment.Properties.AppearanceFocused.Options.UseFont = True
+        Me.cboDepartment.Properties.AppearanceReadOnly.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.cboDepartment.Properties.AppearanceReadOnly.Font = New System.Drawing.Font("Tahoma", 10.0!)
+        Me.cboDepartment.Properties.AppearanceReadOnly.Options.UseBackColor = True
+        Me.cboDepartment.Properties.AppearanceReadOnly.Options.UseFont = True
+        Me.cboDepartment.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple
+        Me.cboDepartment.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.cboDepartment.Properties.PopupWidthMode = DevExpress.XtraEditors.PopupWidthMode.ContentWidth
+        Me.cboDepartment.Size = New System.Drawing.Size(196, 20)
+        Me.cboDepartment.TabIndex = 119
+        Me.cboDepartment.Tag = "hari"
+        '
+        'Label1
+        '
+        Me.Label1.Anchor = System.Windows.Forms.AnchorStyles.Right
+        Me.Label1.AutoSize = True
+        Me.Label1.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label1.Location = New System.Drawing.Point(117, 11)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(73, 14)
+        Me.Label1.TabIndex = 118
+        Me.Label1.Text = "Department"
+        Me.Label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
         'lueRegStatus
         '
         Me.lueRegStatus.Anchor = System.Windows.Forms.AnchorStyles.Left
-        Me.lueRegStatus.Location = New System.Drawing.Point(218, 8)
+        Me.lueRegStatus.Location = New System.Drawing.Point(513, 8)
         Me.lueRegStatus.Margin = New System.Windows.Forms.Padding(0)
         Me.lueRegStatus.Name = "lueRegStatus"
         Me.lueRegStatus.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[False]
@@ -498,7 +542,7 @@ Partial Class frmRegistrasiUpdate
         Me.Label10.Anchor = System.Windows.Forms.AnchorStyles.Right
         Me.Label10.AutoSize = True
         Me.Label10.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label10.Location = New System.Drawing.Point(119, 11)
+        Me.Label10.Location = New System.Drawing.Point(414, 11)
         Me.Label10.Name = "Label10"
         Me.Label10.Size = New System.Drawing.Size(96, 14)
         Me.Label10.TabIndex = 20
@@ -536,7 +580,7 @@ Partial Class frmRegistrasiUpdate
         '
         'btnSave
         '
-        Me.btnSave.BackColor = System.Drawing.Color.green
+        Me.btnSave.BackColor = System.Drawing.Color.Green
         Me.btnSave.Dock = System.Windows.Forms.DockStyle.Right
         Me.btnSave.FlatAppearance.BorderSize = 0
         Me.btnSave.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DimGray
@@ -588,6 +632,7 @@ Partial Class frmRegistrasiUpdate
         CType(Me.RepositoryItemMemoEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.TableLayoutPanel3.ResumeLayout(False)
         Me.TableLayoutPanel3.PerformLayout()
+        CType(Me.cboDepartment.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.lueRegStatus.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.pHeader.ResumeLayout(False)
         Me.ResumeLayout(False)
@@ -630,4 +675,6 @@ Partial Class frmRegistrasiUpdate
     Friend WithEvents GridColumn15 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn16 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn17 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents cboDepartment As DevExpress.XtraEditors.CheckedComboBoxEdit
+    Friend WithEvents Label1 As Label
 End Class

@@ -391,6 +391,7 @@ Partial Class frmPasienSimple
         Me.btnCetakStiker.Size = New System.Drawing.Size(130, 30)
         Me.btnCetakStiker.TabIndex = 23
         Me.btnCetakStiker.Text = "STIKER PASIEN"
+        Me.btnCetakStiker.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.btnCetakStiker.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
         Me.btnCetakStiker.UseMnemonic = False
         Me.btnCetakStiker.UseVisualStyleBackColor = False
@@ -409,6 +410,7 @@ Partial Class frmPasienSimple
         Me.btnSwap.Size = New System.Drawing.Size(130, 30)
         Me.btnSwap.TabIndex = 17
         Me.btnSwap.Text = "SWAP DATA"
+        Me.btnSwap.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.btnSwap.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
         Me.btnSwap.UseMnemonic = False
         Me.btnSwap.UseVisualStyleBackColor = False
@@ -427,6 +429,7 @@ Partial Class frmPasienSimple
         Me.btnWilayah.Size = New System.Drawing.Size(130, 30)
         Me.btnWilayah.TabIndex = 16
         Me.btnWilayah.Text = "WILAYAH"
+        Me.btnWilayah.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.btnWilayah.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
         Me.btnWilayah.UseMnemonic = False
         Me.btnWilayah.UseVisualStyleBackColor = False
@@ -445,6 +448,7 @@ Partial Class frmPasienSimple
         Me.btnCetakRegistrasi.Size = New System.Drawing.Size(130, 30)
         Me.btnCetakRegistrasi.TabIndex = 15
         Me.btnCetakRegistrasi.Text = "CETAK ULANG"
+        Me.btnCetakRegistrasi.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.btnCetakRegistrasi.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
         Me.btnCetakRegistrasi.UseMnemonic = False
         Me.btnCetakRegistrasi.UseVisualStyleBackColor = False
@@ -463,6 +467,7 @@ Partial Class frmPasienSimple
         Me.btnRMOldData.Size = New System.Drawing.Size(130, 30)
         Me.btnRMOldData.TabIndex = 10
         Me.btnRMOldData.Text = "MON NO RM"
+        Me.btnRMOldData.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.btnRMOldData.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
         Me.btnRMOldData.UseMnemonic = False
         Me.btnRMOldData.UseVisualStyleBackColor = False

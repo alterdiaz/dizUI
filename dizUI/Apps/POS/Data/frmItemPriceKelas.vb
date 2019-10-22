@@ -180,6 +180,7 @@ Public Class frmItemPriceKelas
         value.AddRange(New Object() {idunit})
         sqls.CallSP("spLoadLOVItemAll", "getitem", field, value)
         gcItem.DataSource = sqls.dataTable("getitem")
+        gvItem.BestFitColumns()
     End Sub
 
     Private Sub lueUnit_EditValueChanged(sender As Object, e As EventArgs) Handles lueUnit.EditValueChanged
@@ -521,5 +522,63 @@ Public Class frmItemPriceKelas
         End Try
         Return res
     End Function
+
+    Private Sub teSearch_KeyPress(sender As Object, e As KeyPressEventArgs) Handles teSearch.KeyPress
+        If lueUnit.EditValue Is Nothing Then Exit Sub
+        If teSearch.Text.Length = 0 Then Exit Sub
+        If Asc(e.KeyChar) = 13 Then
+            param = param.Replace("convert(decimal(20,2),0) as '", "")
+            param = param.Replace("')", "")
+            param = param.Replace("'", "")
+
+            Dim kolname As String() = param.Split(",")
+
+            Dim sqls As New SQLs(dbstring)
+            sqls.DMLQuery("select i.iditem from item i left join itemgrup ig on i.iditemgrup=ig.iditemgrup left join sys_generalcode gc on i.itemtype=gc.idgeneral and gc.gctype='ITEMTYPE' where i.iditem='" & teSearch.Text & "' or i.kodeupc='" & teSearch.Text & "'", "getitem")
+
+            If sqls.getDataSet("getitem") > 0 Then
+                Dim iditem As String = sqls.getDataSet("getitem", 0, "iditem")
+
+                Dim cekExist As Boolean = False
+                For a As Integer = 0 To gvData.RowCount - 1
+                    Dim drc As DataRow = gvData.GetDataRow(a)
+                    If drc("iditem") = iditem Then
+                        cekExist = True
+                        Exit For
+                    End If
+                Next
+                If cekExist = False Then
+                    Dim dr As DataRow = dttbl.NewRow
+                    dr("iditem") = iditem
+                    sqls.DMLQuery("select i.iditem,i.itemtype,i.idsatuan,gc.generalcode as type,i.kode,i.item,s.satuan,0 as qty,i.iditemgrup,ig.itemgrup from item i left join itemgrup ig on i.iditemgrup=ig.iditemgrup left join sys_generalcode gc on gc.idgeneral=i.itemtype and gc.gctype='ITEMTYPE' left join satuan s on s.idsatuan=i.idsatuan where i.iditem='" & iditem & "'", "dataitem")
+                    dr("itemtype") = sqls.getDataSet("dataitem", 0, "itemtype")
+                    dr("type") = sqls.getDataSet("dataitem", 0, "type")
+                    dr("iditemgrup") = sqls.getDataSet("dataitem", 0, "iditemgrup")
+                    dr("itemgrup") = sqls.getDataSet("dataitem", 0, "itemgrup")
+                    dr("kode") = sqls.getDataSet("dataitem", 0, "kode")
+                    dr("item") = sqls.getDataSet("dataitem", 0, "item")
+                    For a As Integer = 0 To kolname.Length - 1
+                        If kolname(a) <> "" Then
+                            dr(kolname(a)) = 0
+                            Dim sqlsa As New SQLs(dbstring)
+                            sqlsa.DMLQuery("select harga from itemharga where startdate<=convert(date,'" & Format(CDate(deTanggalStart.EditValue), "MM-dd-yyyy") & "') and enddate>=convert(date,'" & Format(CDate(deTanggalEnd.EditValue), "MM-dd-yyyy") & "') and isdeleted=0 and idkelas='" & kolname(a) & "' and idunit='" & lueUnit.EditValue & "' and iditem='" & iditem & "'", "cekexistharga")
+                            If sqlsa.getDataSet("cekexistharga") > 0 Then
+                                dr(kolname(a)) = CDec(sqlsa.getDataSet("cekexistharga", 0, "harga"))
+                            End If
+                        End If
+                    Next
+                    dttbl.Rows.Add(dr)
+                End If
+            End If
+            teSearch.Text = ""
+        End If
+    End Sub
+
+    Private Sub Search_KeyDown(sender As Object, e As KeyEventArgs) Handles gvData.KeyDown, gcData.KeyDown, lueUnit.KeyDown, deTanggalEnd.KeyDown, deTanggalStart.KeyDown, gvItem.KeyDown, gcItem.KeyDown, btnAllItem.KeyDown, btnDeleteAllItem.KeyDown, btnDeleteItem.KeyDown, btnExportFormat.KeyDown, btnImportFormat.KeyDown, btnItemSelect.KeyDown, btnNew.KeyDown, btnSave.KeyDown
+        If e.KeyData = Keys.F3 Then
+            teSearch.Focus()
+        End If
+    End Sub
+
 
 End Class

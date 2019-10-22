@@ -1360,7 +1360,7 @@ Partial Public Class xrAMIGD201801
         '
         Me.XrLabel89.Dpi = 254.0!
         Me.XrLabel89.Font = New System.Drawing.Font("Tahoma", 10.0!)
-        Me.XrLabel89.LocationFloat = New DevExpress.Utils.PointFloat(1220.0!, 230.0!)
+        Me.XrLabel89.LocationFloat = New DevExpress.Utils.PointFloat(1220.0!, 220.0!)
         Me.XrLabel89.Multiline = True
         Me.XrLabel89.Name = "XrLabel89"
         Me.XrLabel89.Padding = New DevExpress.XtraPrinting.PaddingInfo(4, 0, 0, 0, 254.0!)
@@ -1375,7 +1375,7 @@ Partial Public Class xrAMIGD201801
         '
         Me.XrLabel55.Dpi = 254.0!
         Me.XrLabel55.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[spAMIGD201801].[registrasidate]")})
-        Me.XrLabel55.LocationFloat = New DevExpress.Utils.PointFloat(1380.0!, 230.0!)
+        Me.XrLabel55.LocationFloat = New DevExpress.Utils.PointFloat(1380.0!, 220.0!)
         Me.XrLabel55.Name = "XrLabel55"
         Me.XrLabel55.Padding = New DevExpress.XtraPrinting.PaddingInfo(4, 0, 0, 0, 254.0!)
         Me.XrLabel55.SizeF = New System.Drawing.SizeF(540.0!, 40.0!)
@@ -1427,7 +1427,7 @@ Partial Public Class xrAMIGD201801
         '
         Me.XrLabel67.Dpi = 254.0!
         Me.XrLabel67.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[registrasino]")})
-        Me.XrLabel67.LocationFloat = New DevExpress.Utils.PointFloat(1380.0!, 190.0!)
+        Me.XrLabel67.LocationFloat = New DevExpress.Utils.PointFloat(1380.0!, 180.0!)
         Me.XrLabel67.Name = "XrLabel67"
         Me.XrLabel67.Padding = New DevExpress.XtraPrinting.PaddingInfo(4, 0, 0, 0, 254.0!)
         Me.XrLabel67.SizeF = New System.Drawing.SizeF(540.0!, 40.0!)
@@ -1440,7 +1440,7 @@ Partial Public Class xrAMIGD201801
         '
         Me.XrLabel66.Dpi = 254.0!
         Me.XrLabel66.Font = New System.Drawing.Font("Tahoma", 10.0!)
-        Me.XrLabel66.LocationFloat = New DevExpress.Utils.PointFloat(1220.0!, 190.0!)
+        Me.XrLabel66.LocationFloat = New DevExpress.Utils.PointFloat(1220.0!, 180.0!)
         Me.XrLabel66.Multiline = True
         Me.XrLabel66.Name = "XrLabel66"
         Me.XrLabel66.Padding = New DevExpress.XtraPrinting.PaddingInfo(4, 0, 0, 0, 254.0!)
@@ -1474,7 +1474,7 @@ Partial Public Class xrAMIGD201801
         Me.XrLabel7.Multiline = True
         Me.XrLabel7.Name = "XrLabel7"
         Me.XrLabel7.Padding = New DevExpress.XtraPrinting.PaddingInfo(4, 0, 0, 0, 254.0!)
-        Me.XrLabel7.SizeF = New System.Drawing.SizeF(160.0!, 50.0!)
+        Me.XrLabel7.SizeF = New System.Drawing.SizeF(160.0!, 40.0!)
         Me.XrLabel7.StylePriority.UseFont = False
         Me.XrLabel7.StylePriority.UsePadding = False
         Me.XrLabel7.StylePriority.UseTextAlignment = False
@@ -1516,7 +1516,7 @@ Partial Public Class xrAMIGD201801
         Me.XrLabel4.LocationFloat = New DevExpress.Utils.PointFloat(1380.0!, 140.0!)
         Me.XrLabel4.Name = "XrLabel4"
         Me.XrLabel4.Padding = New DevExpress.XtraPrinting.PaddingInfo(4, 0, 0, 0, 254.0!)
-        Me.XrLabel4.SizeF = New System.Drawing.SizeF(540.0!, 50.0!)
+        Me.XrLabel4.SizeF = New System.Drawing.SizeF(540.0!, 40.0!)
         Me.XrLabel4.StylePriority.UsePadding = False
         Me.XrLabel4.StylePriority.UseTextAlignment = False
         Me.XrLabel4.Text = "XrLabel4"

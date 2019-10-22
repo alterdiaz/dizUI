@@ -11,6 +11,7 @@
     Public dbstring As String
 
     Public appPath As String = Application.StartupPath
+    Public appUpPath As String = Application.StartupPath
     Public dblite As String = ""
 
     Public thisappsName As String
