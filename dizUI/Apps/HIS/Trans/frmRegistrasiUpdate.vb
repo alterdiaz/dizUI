@@ -265,7 +265,9 @@
         End If
         Dim sqls As New SQLs(dbstring)
         If iddept = "" Then
-            sqls.CallSP("spRegistrasiPasienAll", "monregall")
+            'sqls.CallSP("spRegistrasiPasienAll", "monregall")
+            gcData.DataSource = Nothing
+            gvData.BestFitColumns()
         Else
             Dim field As New List(Of String)
             Dim value As New List(Of Object)

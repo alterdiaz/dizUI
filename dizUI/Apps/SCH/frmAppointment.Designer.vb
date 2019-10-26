@@ -51,7 +51,10 @@ Partial Class frmAppointment
         Me.xtccPatientData = New DevExpress.XtraTab.XtraTabControl()
         Me.xtpPasienLama = New DevExpress.XtraTab.XtraTabPage()
         Me.tlpPasienLama = New System.Windows.Forms.TableLayoutPanel()
-        Me.teLamaRemarks = New DevExpress.XtraEditors.TextEdit()
+        Me.lueLamaAppType = New DevExpress.XtraEditors.LookUpEdit()
+        Me.Label17 = New System.Windows.Forms.Label()
+        Me.lueLamaAppVia = New DevExpress.XtraEditors.LookUpEdit()
+        Me.Label15 = New System.Windows.Forms.Label()
         Me.slueLamaNama = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.slueView = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -62,7 +65,6 @@ Partial Class frmAppointment
         Me.lueLamaNoRM = New DevExpress.XtraEditors.LookUpEdit()
         Me.teLamaTelepon2 = New DevExpress.XtraEditors.TextEdit()
         Me.teLamaTelepon1 = New DevExpress.XtraEditors.TextEdit()
-        Me.Label12 = New System.Windows.Forms.Label()
         Me.Label11 = New System.Windows.Forms.Label()
         Me.Label10 = New System.Windows.Forms.Label()
         Me.Label7 = New System.Windows.Forms.Label()
@@ -72,9 +74,12 @@ Partial Class frmAppointment
         Me.Label5 = New System.Windows.Forms.Label()
         Me.teLamaTanggalLahir = New DevExpress.XtraEditors.TextEdit()
         Me.Label9 = New System.Windows.Forms.Label()
+        Me.Label12 = New System.Windows.Forms.Label()
+        Me.teLamaRemarks = New DevExpress.XtraEditors.TextEdit()
         Me.xtpPasienBaru = New DevExpress.XtraTab.XtraTabPage()
         Me.tlpPasienBaru = New System.Windows.Forms.TableLayoutPanel()
-        Me.teBaruRemarks = New DevExpress.XtraEditors.TextEdit()
+        Me.Label16 = New System.Windows.Forms.Label()
+        Me.lueBaruAppVia = New DevExpress.XtraEditors.LookUpEdit()
         Me.deBaruTanggalLahir = New DevExpress.XtraEditors.DateEdit()
         Me.lueBaruJenisKelamin = New DevExpress.XtraEditors.LookUpEdit()
         Me.teBaruAlamat = New DevExpress.XtraEditors.MemoEdit()
@@ -82,7 +87,6 @@ Partial Class frmAppointment
         Me.teBaruNama = New DevExpress.XtraEditors.TextEdit()
         Me.teBaruTelepon2 = New DevExpress.XtraEditors.TextEdit()
         Me.teBaruTelepon1 = New DevExpress.XtraEditors.TextEdit()
-        Me.Label26 = New System.Windows.Forms.Label()
         Me.Label27 = New System.Windows.Forms.Label()
         Me.Label28 = New System.Windows.Forms.Label()
         Me.Label29 = New System.Windows.Forms.Label()
@@ -90,6 +94,8 @@ Partial Class frmAppointment
         Me.Label31 = New System.Windows.Forms.Label()
         Me.Label32 = New System.Windows.Forms.Label()
         Me.Label33 = New System.Windows.Forms.Label()
+        Me.teBaruRemarks = New DevExpress.XtraEditors.TextEdit()
+        Me.Label26 = New System.Windows.Forms.Label()
         Me.pnlInfo = New System.Windows.Forms.Panel()
         Me.lblcContent = New System.Windows.Forms.Label()
         Me.lblcTitle = New System.Windows.Forms.Label()
@@ -144,7 +150,8 @@ Partial Class frmAppointment
         Me.xtccPatientData.SuspendLayout()
         Me.xtpPasienLama.SuspendLayout()
         Me.tlpPasienLama.SuspendLayout()
-        CType(Me.teLamaRemarks.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.lueLamaAppType.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.lueLamaAppVia.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.slueLamaNama.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.slueView, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.teLamaAlamat.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -153,9 +160,10 @@ Partial Class frmAppointment
         CType(Me.teLamaTelepon1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.teLamaJenisKelamin.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.teLamaTanggalLahir.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.teLamaRemarks.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.xtpPasienBaru.SuspendLayout()
         Me.tlpPasienBaru.SuspendLayout()
-        CType(Me.teBaruRemarks.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.lueBaruAppVia.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.deBaruTanggalLahir.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.deBaruTanggalLahir.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.lueBaruJenisKelamin.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -164,6 +172,7 @@ Partial Class frmAppointment
         CType(Me.teBaruNama.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.teBaruTelepon2.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.teBaruTelepon1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.teBaruRemarks.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.pnlInfo.SuspendLayout()
         CType(Me.pbcIcon, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.panelDoctor.SuspendLayout()
@@ -330,14 +339,14 @@ Partial Class frmAppointment
         Me.tlpPasienSesi.Controls.Add(Me.tlpJadwalSesi, 0, 1)
         Me.tlpPasienSesi.Controls.Add(Me.gcSlot, 0, 2)
         Me.tlpPasienSesi.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.tlpPasienSesi.Location = New System.Drawing.Point(8, 218)
+        Me.tlpPasienSesi.Location = New System.Drawing.Point(8, 193)
         Me.tlpPasienSesi.Margin = New System.Windows.Forms.Padding(0)
         Me.tlpPasienSesi.Name = "tlpPasienSesi"
         Me.tlpPasienSesi.RowCount = 3
         Me.tlpPasienSesi.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 24.0!))
         Me.tlpPasienSesi.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 24.0!))
         Me.tlpPasienSesi.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
-        Me.tlpPasienSesi.Size = New System.Drawing.Size(823, 414)
+        Me.tlpPasienSesi.Size = New System.Drawing.Size(823, 439)
         Me.tlpPasienSesi.TabIndex = 35
         '
         'tlpScheduleDate
@@ -481,7 +490,7 @@ Partial Class frmAppointment
         Me.gcSlot.Location = New System.Drawing.Point(0, 56)
         Me.gcSlot.Margin = New System.Windows.Forms.Padding(0, 8, 0, 8)
         Me.gcSlot.Name = "gcSlot"
-        Me.gcSlot.Size = New System.Drawing.Size(823, 350)
+        Me.gcSlot.Size = New System.Drawing.Size(823, 375)
         Me.gcSlot.TabIndex = 37
         Me.gcSlot.Text = "Slot Appointment"
         '
@@ -493,7 +502,7 @@ Partial Class frmAppointment
         Me.pnlSlot.Dock = System.Windows.Forms.DockStyle.Fill
         Me.pnlSlot.Location = New System.Drawing.Point(2, 23)
         Me.pnlSlot.Name = "pnlSlot"
-        Me.pnlSlot.Size = New System.Drawing.Size(819, 325)
+        Me.pnlSlot.Size = New System.Drawing.Size(819, 350)
         Me.pnlSlot.TabIndex = 0
         '
         'tlpSlot
@@ -583,7 +592,7 @@ Partial Class frmAppointment
         Me.gcDataPasien.Location = New System.Drawing.Point(8, 8)
         Me.gcDataPasien.Margin = New System.Windows.Forms.Padding(8)
         Me.gcDataPasien.Name = "gcDataPasien"
-        Me.gcDataPasien.Size = New System.Drawing.Size(823, 210)
+        Me.gcDataPasien.Size = New System.Drawing.Size(823, 185)
         Me.gcDataPasien.TabIndex = 0
         Me.gcDataPasien.Text = "Pasien Data"
         '
@@ -610,7 +619,7 @@ Partial Class frmAppointment
         Me.xtccPatientData.Margin = New System.Windows.Forms.Padding(0)
         Me.xtccPatientData.Name = "xtccPatientData"
         Me.xtccPatientData.SelectedTabPage = Me.xtpPasienLama
-        Me.xtccPatientData.Size = New System.Drawing.Size(819, 185)
+        Me.xtccPatientData.Size = New System.Drawing.Size(819, 160)
         Me.xtccPatientData.TabIndex = 1
         Me.xtccPatientData.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.xtpPasienLama, Me.xtpPasienBaru})
         '
@@ -620,7 +629,7 @@ Partial Class frmAppointment
         Me.xtpPasienLama.Appearance.PageClient.Options.UseBackColor = True
         Me.xtpPasienLama.Controls.Add(Me.tlpPasienLama)
         Me.xtpPasienLama.Name = "xtpPasienLama"
-        Me.xtpPasienLama.Size = New System.Drawing.Size(813, 154)
+        Me.xtpPasienLama.Size = New System.Drawing.Size(813, 129)
         Me.xtpPasienLama.Text = "Pasien Lama"
         '
         'tlpPasienLama
@@ -633,13 +642,15 @@ Partial Class frmAppointment
         Me.tlpPasienLama.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 115.0!))
         Me.tlpPasienLama.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 250.0!))
         Me.tlpPasienLama.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
-        Me.tlpPasienLama.Controls.Add(Me.teLamaRemarks, 4, 4)
+        Me.tlpPasienLama.Controls.Add(Me.lueLamaAppType, 2, 5)
+        Me.tlpPasienLama.Controls.Add(Me.Label17, 1, 5)
+        Me.tlpPasienLama.Controls.Add(Me.lueLamaAppVia, 4, 4)
+        Me.tlpPasienLama.Controls.Add(Me.Label15, 3, 4)
         Me.tlpPasienLama.Controls.Add(Me.slueLamaNama, 2, 1)
         Me.tlpPasienLama.Controls.Add(Me.teLamaAlamat, 2, 4)
         Me.tlpPasienLama.Controls.Add(Me.lueLamaNoRM, 4, 1)
         Me.tlpPasienLama.Controls.Add(Me.teLamaTelepon2, 4, 3)
         Me.tlpPasienLama.Controls.Add(Me.teLamaTelepon1, 4, 2)
-        Me.tlpPasienLama.Controls.Add(Me.Label12, 3, 4)
         Me.tlpPasienLama.Controls.Add(Me.Label11, 3, 3)
         Me.tlpPasienLama.Controls.Add(Me.Label10, 3, 2)
         Me.tlpPasienLama.Controls.Add(Me.Label7, 1, 1)
@@ -649,39 +660,114 @@ Partial Class frmAppointment
         Me.tlpPasienLama.Controls.Add(Me.Label5, 1, 3)
         Me.tlpPasienLama.Controls.Add(Me.teLamaTanggalLahir, 2, 3)
         Me.tlpPasienLama.Controls.Add(Me.Label9, 1, 4)
+        Me.tlpPasienLama.Controls.Add(Me.Label12, 3, 5)
+        Me.tlpPasienLama.Controls.Add(Me.teLamaRemarks, 4, 5)
         Me.tlpPasienLama.Dock = System.Windows.Forms.DockStyle.Fill
         Me.tlpPasienLama.Font = New System.Drawing.Font("Tahoma", 9.0!)
         Me.tlpPasienLama.ForeColor = System.Drawing.Color.Black
         Me.tlpPasienLama.Location = New System.Drawing.Point(0, 0)
         Me.tlpPasienLama.Margin = New System.Windows.Forms.Padding(0)
         Me.tlpPasienLama.Name = "tlpPasienLama"
-        Me.tlpPasienLama.RowCount = 6
-        Me.tlpPasienLama.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 4.0!))
+        Me.tlpPasienLama.RowCount = 7
+        Me.tlpPasienLama.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
         Me.tlpPasienLama.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 24.0!))
         Me.tlpPasienLama.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 24.0!))
         Me.tlpPasienLama.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 24.0!))
-        Me.tlpPasienLama.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 72.0!))
-        Me.tlpPasienLama.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
-        Me.tlpPasienLama.Size = New System.Drawing.Size(813, 154)
+        Me.tlpPasienLama.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 24.0!))
+        Me.tlpPasienLama.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 24.0!))
+        Me.tlpPasienLama.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
+        Me.tlpPasienLama.Size = New System.Drawing.Size(813, 129)
         Me.tlpPasienLama.TabIndex = 0
         '
-        'teLamaRemarks
+        'lueLamaAppType
         '
-        Me.teLamaRemarks.Anchor = System.Windows.Forms.AnchorStyles.Left
-        Me.teLamaRemarks.Location = New System.Drawing.Point(484, 102)
-        Me.teLamaRemarks.Margin = New System.Windows.Forms.Padding(0)
-        Me.teLamaRemarks.Name = "teLamaRemarks"
-        Me.teLamaRemarks.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.teLamaRemarks.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 9.0!)
-        Me.teLamaRemarks.Properties.Appearance.ForeColor = System.Drawing.Color.Black
-        Me.teLamaRemarks.Properties.Appearance.Options.UseBackColor = True
-        Me.teLamaRemarks.Properties.Appearance.Options.UseFont = True
-        Me.teLamaRemarks.Properties.Appearance.Options.UseForeColor = True
-        Me.teLamaRemarks.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple
-        Me.teLamaRemarks.Properties.MaxLength = 300
-        Me.teLamaRemarks.Size = New System.Drawing.Size(234, 20)
-        Me.teLamaRemarks.TabIndex = 39
-        Me.teLamaRemarks.Tag = ""
+        Me.lueLamaAppType.Anchor = System.Windows.Forms.AnchorStyles.Left
+        Me.lueLamaAppType.Location = New System.Drawing.Point(119, 102)
+        Me.lueLamaAppType.Margin = New System.Windows.Forms.Padding(0)
+        Me.lueLamaAppType.Name = "lueLamaAppType"
+        Me.lueLamaAppType.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.lueLamaAppType.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 9.0!)
+        Me.lueLamaAppType.Properties.Appearance.ForeColor = System.Drawing.Color.Black
+        Me.lueLamaAppType.Properties.Appearance.Options.UseBackColor = True
+        Me.lueLamaAppType.Properties.Appearance.Options.UseFont = True
+        Me.lueLamaAppType.Properties.Appearance.Options.UseForeColor = True
+        Me.lueLamaAppType.Properties.AppearanceDisabled.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.lueLamaAppType.Properties.AppearanceDisabled.Font = New System.Drawing.Font("Tahoma", 9.0!)
+        Me.lueLamaAppType.Properties.AppearanceDisabled.Options.UseBackColor = True
+        Me.lueLamaAppType.Properties.AppearanceDisabled.Options.UseFont = True
+        Me.lueLamaAppType.Properties.AppearanceReadOnly.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.lueLamaAppType.Properties.AppearanceReadOnly.Font = New System.Drawing.Font("Tahoma", 9.0!)
+        Me.lueLamaAppType.Properties.AppearanceReadOnly.Options.UseBackColor = True
+        Me.lueLamaAppType.Properties.AppearanceReadOnly.Options.UseFont = True
+        Me.lueLamaAppType.Properties.BestFitMode = DevExpress.XtraEditors.Controls.BestFitMode.BestFitResizePopup
+        Me.lueLamaAppType.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple
+        Me.lueLamaAppType.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.lueLamaAppType.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id", "ID", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default], DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("content", "Content")})
+        Me.lueLamaAppType.Properties.NullText = "[Isian belum dipilih]"
+        Me.lueLamaAppType.Properties.NullValuePrompt = "[Isian belum dipilih]"
+        Me.lueLamaAppType.Properties.ShowPopupShadow = False
+        Me.lueLamaAppType.Size = New System.Drawing.Size(135, 20)
+        Me.lueLamaAppType.TabIndex = 48
+        Me.lueLamaAppType.Tag = "reffid"
+        '
+        'Label17
+        '
+        Me.Label17.Anchor = System.Windows.Forms.AnchorStyles.Right
+        Me.Label17.AutoSize = True
+        Me.Label17.BackColor = System.Drawing.Color.FromArgb(CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer))
+        Me.Label17.Font = New System.Drawing.Font("Tahoma", 9.0!)
+        Me.Label17.Location = New System.Drawing.Point(8, 105)
+        Me.Label17.Margin = New System.Windows.Forms.Padding(0)
+        Me.Label17.Name = "Label17"
+        Me.Label17.Size = New System.Drawing.Size(111, 14)
+        Me.Label17.TabIndex = 40
+        Me.Label17.Text = "Appointment Type"
+        Me.Label17.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        '
+        'lueLamaAppVia
+        '
+        Me.lueLamaAppVia.Anchor = System.Windows.Forms.AnchorStyles.Left
+        Me.lueLamaAppVia.Location = New System.Drawing.Point(484, 78)
+        Me.lueLamaAppVia.Margin = New System.Windows.Forms.Padding(0)
+        Me.lueLamaAppVia.Name = "lueLamaAppVia"
+        Me.lueLamaAppVia.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.lueLamaAppVia.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 9.0!)
+        Me.lueLamaAppVia.Properties.Appearance.ForeColor = System.Drawing.Color.Black
+        Me.lueLamaAppVia.Properties.Appearance.Options.UseBackColor = True
+        Me.lueLamaAppVia.Properties.Appearance.Options.UseFont = True
+        Me.lueLamaAppVia.Properties.Appearance.Options.UseForeColor = True
+        Me.lueLamaAppVia.Properties.AppearanceDisabled.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.lueLamaAppVia.Properties.AppearanceDisabled.Font = New System.Drawing.Font("Tahoma", 9.0!)
+        Me.lueLamaAppVia.Properties.AppearanceDisabled.Options.UseBackColor = True
+        Me.lueLamaAppVia.Properties.AppearanceDisabled.Options.UseFont = True
+        Me.lueLamaAppVia.Properties.AppearanceReadOnly.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.lueLamaAppVia.Properties.AppearanceReadOnly.Font = New System.Drawing.Font("Tahoma", 9.0!)
+        Me.lueLamaAppVia.Properties.AppearanceReadOnly.Options.UseBackColor = True
+        Me.lueLamaAppVia.Properties.AppearanceReadOnly.Options.UseFont = True
+        Me.lueLamaAppVia.Properties.BestFitMode = DevExpress.XtraEditors.Controls.BestFitMode.BestFitResizePopup
+        Me.lueLamaAppVia.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple
+        Me.lueLamaAppVia.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.lueLamaAppVia.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id", "ID", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default], DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("content", "Content")})
+        Me.lueLamaAppVia.Properties.NullText = "[Isian belum dipilih]"
+        Me.lueLamaAppVia.Properties.NullValuePrompt = "[Isian belum dipilih]"
+        Me.lueLamaAppVia.Properties.ShowPopupShadow = False
+        Me.lueLamaAppVia.Size = New System.Drawing.Size(135, 20)
+        Me.lueLamaAppVia.TabIndex = 47
+        Me.lueLamaAppVia.Tag = "reffid"
+        '
+        'Label15
+        '
+        Me.Label15.Anchor = System.Windows.Forms.AnchorStyles.Right
+        Me.Label15.AutoSize = True
+        Me.Label15.BackColor = System.Drawing.Color.FromArgb(CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer))
+        Me.Label15.Font = New System.Drawing.Font("Tahoma", 9.0!)
+        Me.Label15.Location = New System.Drawing.Point(387, 81)
+        Me.Label15.Margin = New System.Windows.Forms.Padding(0)
+        Me.Label15.Name = "Label15"
+        Me.Label15.Size = New System.Drawing.Size(97, 14)
+        Me.Label15.TabIndex = 39
+        Me.Label15.Text = "Appointment via"
+        Me.Label15.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         '
         'slueLamaNama
         '
@@ -760,7 +846,7 @@ Partial Class frmAppointment
         'teLamaAlamat
         '
         Me.teLamaAlamat.Anchor = System.Windows.Forms.AnchorStyles.Left
-        Me.teLamaAlamat.Location = New System.Drawing.Point(119, 79)
+        Me.teLamaAlamat.Location = New System.Drawing.Point(119, 76)
         Me.teLamaAlamat.Margin = New System.Windows.Forms.Padding(0)
         Me.teLamaAlamat.Name = "teLamaAlamat"
         Me.teLamaAlamat.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
@@ -787,7 +873,7 @@ Partial Class frmAppointment
         Me.teLamaAlamat.Properties.MaxLength = 2000
         Me.teLamaAlamat.Properties.NullText = "-"
         Me.teLamaAlamat.Properties.ReadOnly = True
-        Me.teLamaAlamat.Size = New System.Drawing.Size(234, 66)
+        Me.teLamaAlamat.Size = New System.Drawing.Size(234, 24)
         Me.teLamaAlamat.TabIndex = 73
         '
         'lueLamaNoRM
@@ -866,20 +952,6 @@ Partial Class frmAppointment
         Me.teLamaTelepon1.Size = New System.Drawing.Size(157, 20)
         Me.teLamaTelepon1.TabIndex = 30
         Me.teLamaTelepon1.Tag = ""
-        '
-        'Label12
-        '
-        Me.Label12.Anchor = System.Windows.Forms.AnchorStyles.Right
-        Me.Label12.AutoSize = True
-        Me.Label12.BackColor = System.Drawing.Color.FromArgb(CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer))
-        Me.Label12.Font = New System.Drawing.Font("Tahoma", 9.0!)
-        Me.Label12.Location = New System.Drawing.Point(435, 105)
-        Me.Label12.Margin = New System.Windows.Forms.Padding(0)
-        Me.Label12.Name = "Label12"
-        Me.Label12.Size = New System.Drawing.Size(49, 14)
-        Me.Label12.TabIndex = 34
-        Me.Label12.Text = "Catatan"
-        Me.Label12.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         '
         'Label11
         '
@@ -1019,7 +1091,7 @@ Partial Class frmAppointment
         Me.Label9.AutoSize = True
         Me.Label9.BackColor = System.Drawing.Color.FromArgb(CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer))
         Me.Label9.Font = New System.Drawing.Font("Tahoma", 9.0!)
-        Me.Label9.Location = New System.Drawing.Point(75, 105)
+        Me.Label9.Location = New System.Drawing.Point(75, 81)
         Me.Label9.Margin = New System.Windows.Forms.Padding(0)
         Me.Label9.Name = "Label9"
         Me.Label9.Size = New System.Drawing.Size(44, 14)
@@ -1027,11 +1099,43 @@ Partial Class frmAppointment
         Me.Label9.Text = "Alamat"
         Me.Label9.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         '
+        'Label12
+        '
+        Me.Label12.Anchor = System.Windows.Forms.AnchorStyles.Right
+        Me.Label12.AutoSize = True
+        Me.Label12.BackColor = System.Drawing.Color.FromArgb(CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer))
+        Me.Label12.Font = New System.Drawing.Font("Tahoma", 9.0!)
+        Me.Label12.Location = New System.Drawing.Point(435, 105)
+        Me.Label12.Margin = New System.Windows.Forms.Padding(0)
+        Me.Label12.Name = "Label12"
+        Me.Label12.Size = New System.Drawing.Size(49, 14)
+        Me.Label12.TabIndex = 34
+        Me.Label12.Text = "Catatan"
+        Me.Label12.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        '
+        'teLamaRemarks
+        '
+        Me.teLamaRemarks.Anchor = System.Windows.Forms.AnchorStyles.Left
+        Me.teLamaRemarks.Location = New System.Drawing.Point(484, 102)
+        Me.teLamaRemarks.Margin = New System.Windows.Forms.Padding(0)
+        Me.teLamaRemarks.Name = "teLamaRemarks"
+        Me.teLamaRemarks.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.teLamaRemarks.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 9.0!)
+        Me.teLamaRemarks.Properties.Appearance.ForeColor = System.Drawing.Color.Black
+        Me.teLamaRemarks.Properties.Appearance.Options.UseBackColor = True
+        Me.teLamaRemarks.Properties.Appearance.Options.UseFont = True
+        Me.teLamaRemarks.Properties.Appearance.Options.UseForeColor = True
+        Me.teLamaRemarks.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple
+        Me.teLamaRemarks.Properties.MaxLength = 300
+        Me.teLamaRemarks.Size = New System.Drawing.Size(234, 20)
+        Me.teLamaRemarks.TabIndex = 39
+        Me.teLamaRemarks.Tag = ""
+        '
         'xtpPasienBaru
         '
         Me.xtpPasienBaru.Controls.Add(Me.tlpPasienBaru)
         Me.xtpPasienBaru.Name = "xtpPasienBaru"
-        Me.xtpPasienBaru.Size = New System.Drawing.Size(813, 154)
+        Me.xtpPasienBaru.Size = New System.Drawing.Size(813, 129)
         Me.xtpPasienBaru.Text = "Pasien Baru"
         '
         'tlpPasienBaru
@@ -1044,7 +1148,8 @@ Partial Class frmAppointment
         Me.tlpPasienBaru.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 115.0!))
         Me.tlpPasienBaru.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 250.0!))
         Me.tlpPasienBaru.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
-        Me.tlpPasienBaru.Controls.Add(Me.teBaruRemarks, 4, 4)
+        Me.tlpPasienBaru.Controls.Add(Me.Label16, 3, 4)
+        Me.tlpPasienBaru.Controls.Add(Me.lueBaruAppVia, 4, 4)
         Me.tlpPasienBaru.Controls.Add(Me.deBaruTanggalLahir, 2, 3)
         Me.tlpPasienBaru.Controls.Add(Me.lueBaruJenisKelamin, 2, 2)
         Me.tlpPasienBaru.Controls.Add(Me.teBaruAlamat, 2, 4)
@@ -1052,7 +1157,6 @@ Partial Class frmAppointment
         Me.tlpPasienBaru.Controls.Add(Me.teBaruNama, 2, 1)
         Me.tlpPasienBaru.Controls.Add(Me.teBaruTelepon2, 4, 3)
         Me.tlpPasienBaru.Controls.Add(Me.teBaruTelepon1, 4, 2)
-        Me.tlpPasienBaru.Controls.Add(Me.Label26, 3, 4)
         Me.tlpPasienBaru.Controls.Add(Me.Label27, 3, 3)
         Me.tlpPasienBaru.Controls.Add(Me.Label28, 3, 2)
         Me.tlpPasienBaru.Controls.Add(Me.Label29, 1, 1)
@@ -1060,39 +1164,69 @@ Partial Class frmAppointment
         Me.tlpPasienBaru.Controls.Add(Me.Label31, 1, 2)
         Me.tlpPasienBaru.Controls.Add(Me.Label32, 1, 3)
         Me.tlpPasienBaru.Controls.Add(Me.Label33, 1, 4)
+        Me.tlpPasienBaru.Controls.Add(Me.teBaruRemarks, 4, 5)
+        Me.tlpPasienBaru.Controls.Add(Me.Label26, 3, 5)
         Me.tlpPasienBaru.Dock = System.Windows.Forms.DockStyle.Fill
         Me.tlpPasienBaru.Font = New System.Drawing.Font("Tahoma", 10.0!)
         Me.tlpPasienBaru.ForeColor = System.Drawing.Color.Black
         Me.tlpPasienBaru.Location = New System.Drawing.Point(0, 0)
         Me.tlpPasienBaru.Margin = New System.Windows.Forms.Padding(0)
         Me.tlpPasienBaru.Name = "tlpPasienBaru"
-        Me.tlpPasienBaru.RowCount = 6
-        Me.tlpPasienBaru.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 4.0!))
+        Me.tlpPasienBaru.RowCount = 7
+        Me.tlpPasienBaru.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
         Me.tlpPasienBaru.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 24.0!))
         Me.tlpPasienBaru.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 24.0!))
         Me.tlpPasienBaru.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 24.0!))
-        Me.tlpPasienBaru.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 72.0!))
-        Me.tlpPasienBaru.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
-        Me.tlpPasienBaru.Size = New System.Drawing.Size(813, 154)
+        Me.tlpPasienBaru.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 24.0!))
+        Me.tlpPasienBaru.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 24.0!))
+        Me.tlpPasienBaru.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
+        Me.tlpPasienBaru.Size = New System.Drawing.Size(813, 129)
         Me.tlpPasienBaru.TabIndex = 1
         '
-        'teBaruRemarks
+        'Label16
         '
-        Me.teBaruRemarks.Anchor = System.Windows.Forms.AnchorStyles.Left
-        Me.teBaruRemarks.Location = New System.Drawing.Point(484, 102)
-        Me.teBaruRemarks.Margin = New System.Windows.Forms.Padding(0)
-        Me.teBaruRemarks.Name = "teBaruRemarks"
-        Me.teBaruRemarks.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.teBaruRemarks.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 9.0!)
-        Me.teBaruRemarks.Properties.Appearance.ForeColor = System.Drawing.Color.Black
-        Me.teBaruRemarks.Properties.Appearance.Options.UseBackColor = True
-        Me.teBaruRemarks.Properties.Appearance.Options.UseFont = True
-        Me.teBaruRemarks.Properties.Appearance.Options.UseForeColor = True
-        Me.teBaruRemarks.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple
-        Me.teBaruRemarks.Properties.MaxLength = 300
-        Me.teBaruRemarks.Size = New System.Drawing.Size(234, 20)
-        Me.teBaruRemarks.TabIndex = 40
-        Me.teBaruRemarks.Tag = ""
+        Me.Label16.Anchor = System.Windows.Forms.AnchorStyles.Right
+        Me.Label16.AutoSize = True
+        Me.Label16.BackColor = System.Drawing.Color.FromArgb(CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer))
+        Me.Label16.Font = New System.Drawing.Font("Tahoma", 9.0!)
+        Me.Label16.Location = New System.Drawing.Point(387, 81)
+        Me.Label16.Margin = New System.Windows.Forms.Padding(0)
+        Me.Label16.Name = "Label16"
+        Me.Label16.Size = New System.Drawing.Size(97, 14)
+        Me.Label16.TabIndex = 48
+        Me.Label16.Text = "Appointment via"
+        Me.Label16.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        '
+        'lueBaruAppVia
+        '
+        Me.lueBaruAppVia.Anchor = System.Windows.Forms.AnchorStyles.Left
+        Me.lueBaruAppVia.Location = New System.Drawing.Point(484, 78)
+        Me.lueBaruAppVia.Margin = New System.Windows.Forms.Padding(0)
+        Me.lueBaruAppVia.Name = "lueBaruAppVia"
+        Me.lueBaruAppVia.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.lueBaruAppVia.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 9.0!)
+        Me.lueBaruAppVia.Properties.Appearance.ForeColor = System.Drawing.Color.Black
+        Me.lueBaruAppVia.Properties.Appearance.Options.UseBackColor = True
+        Me.lueBaruAppVia.Properties.Appearance.Options.UseFont = True
+        Me.lueBaruAppVia.Properties.Appearance.Options.UseForeColor = True
+        Me.lueBaruAppVia.Properties.AppearanceDisabled.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.lueBaruAppVia.Properties.AppearanceDisabled.Font = New System.Drawing.Font("Tahoma", 9.0!)
+        Me.lueBaruAppVia.Properties.AppearanceDisabled.Options.UseBackColor = True
+        Me.lueBaruAppVia.Properties.AppearanceDisabled.Options.UseFont = True
+        Me.lueBaruAppVia.Properties.AppearanceReadOnly.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.lueBaruAppVia.Properties.AppearanceReadOnly.Font = New System.Drawing.Font("Tahoma", 9.0!)
+        Me.lueBaruAppVia.Properties.AppearanceReadOnly.Options.UseBackColor = True
+        Me.lueBaruAppVia.Properties.AppearanceReadOnly.Options.UseFont = True
+        Me.lueBaruAppVia.Properties.BestFitMode = DevExpress.XtraEditors.Controls.BestFitMode.BestFitResizePopup
+        Me.lueBaruAppVia.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple
+        Me.lueBaruAppVia.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.lueBaruAppVia.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id", "ID", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default], DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("content", "Content")})
+        Me.lueBaruAppVia.Properties.NullText = "[Isian belum dipilih]"
+        Me.lueBaruAppVia.Properties.NullValuePrompt = "[Isian belum dipilih]"
+        Me.lueBaruAppVia.Properties.ShowPopupShadow = False
+        Me.lueBaruAppVia.Size = New System.Drawing.Size(135, 20)
+        Me.lueBaruAppVia.TabIndex = 49
+        Me.lueBaruAppVia.Tag = "reffid"
         '
         'deBaruTanggalLahir
         '
@@ -1161,7 +1295,7 @@ Partial Class frmAppointment
         'teBaruAlamat
         '
         Me.teBaruAlamat.Anchor = System.Windows.Forms.AnchorStyles.Left
-        Me.teBaruAlamat.Location = New System.Drawing.Point(119, 79)
+        Me.teBaruAlamat.Location = New System.Drawing.Point(119, 76)
         Me.teBaruAlamat.Margin = New System.Windows.Forms.Padding(0)
         Me.teBaruAlamat.Name = "teBaruAlamat"
         Me.teBaruAlamat.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer))
@@ -1186,7 +1320,7 @@ Partial Class frmAppointment
         Me.teBaruAlamat.Properties.MaxLength = 1000
         Me.teBaruAlamat.Properties.NullText = "-"
         Me.teBaruAlamat.Properties.ReadOnly = True
-        Me.teBaruAlamat.Size = New System.Drawing.Size(234, 66)
+        Me.teBaruAlamat.Size = New System.Drawing.Size(234, 24)
         Me.teBaruAlamat.TabIndex = 73
         '
         'teBaruNoRM
@@ -1276,20 +1410,6 @@ Partial Class frmAppointment
         Me.teBaruTelepon1.Size = New System.Drawing.Size(157, 20)
         Me.teBaruTelepon1.TabIndex = 30
         Me.teBaruTelepon1.Tag = ""
-        '
-        'Label26
-        '
-        Me.Label26.Anchor = System.Windows.Forms.AnchorStyles.Right
-        Me.Label26.AutoSize = True
-        Me.Label26.BackColor = System.Drawing.Color.FromArgb(CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer))
-        Me.Label26.Font = New System.Drawing.Font("Tahoma", 9.0!)
-        Me.Label26.Location = New System.Drawing.Point(428, 105)
-        Me.Label26.Margin = New System.Windows.Forms.Padding(0)
-        Me.Label26.Name = "Label26"
-        Me.Label26.Size = New System.Drawing.Size(56, 14)
-        Me.Label26.TabIndex = 34
-        Me.Label26.Text = "Catatan*"
-        Me.Label26.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         '
         'Label27
         '
@@ -1381,13 +1501,45 @@ Partial Class frmAppointment
         Me.Label33.AutoSize = True
         Me.Label33.BackColor = System.Drawing.Color.FromArgb(CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer))
         Me.Label33.Font = New System.Drawing.Font("Tahoma", 9.0!)
-        Me.Label33.Location = New System.Drawing.Point(75, 105)
+        Me.Label33.Location = New System.Drawing.Point(75, 81)
         Me.Label33.Margin = New System.Windows.Forms.Padding(0)
         Me.Label33.Name = "Label33"
         Me.Label33.Size = New System.Drawing.Size(44, 14)
         Me.Label33.TabIndex = 33
         Me.Label33.Text = "Alamat"
         Me.Label33.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        '
+        'teBaruRemarks
+        '
+        Me.teBaruRemarks.Anchor = System.Windows.Forms.AnchorStyles.Left
+        Me.teBaruRemarks.Location = New System.Drawing.Point(484, 102)
+        Me.teBaruRemarks.Margin = New System.Windows.Forms.Padding(0)
+        Me.teBaruRemarks.Name = "teBaruRemarks"
+        Me.teBaruRemarks.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.teBaruRemarks.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 9.0!)
+        Me.teBaruRemarks.Properties.Appearance.ForeColor = System.Drawing.Color.Black
+        Me.teBaruRemarks.Properties.Appearance.Options.UseBackColor = True
+        Me.teBaruRemarks.Properties.Appearance.Options.UseFont = True
+        Me.teBaruRemarks.Properties.Appearance.Options.UseForeColor = True
+        Me.teBaruRemarks.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple
+        Me.teBaruRemarks.Properties.MaxLength = 300
+        Me.teBaruRemarks.Size = New System.Drawing.Size(234, 20)
+        Me.teBaruRemarks.TabIndex = 40
+        Me.teBaruRemarks.Tag = ""
+        '
+        'Label26
+        '
+        Me.Label26.Anchor = System.Windows.Forms.AnchorStyles.Right
+        Me.Label26.AutoSize = True
+        Me.Label26.BackColor = System.Drawing.Color.FromArgb(CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer))
+        Me.Label26.Font = New System.Drawing.Font("Tahoma", 9.0!)
+        Me.Label26.Location = New System.Drawing.Point(428, 105)
+        Me.Label26.Margin = New System.Windows.Forms.Padding(0)
+        Me.Label26.Name = "Label26"
+        Me.Label26.Size = New System.Drawing.Size(56, 14)
+        Me.Label26.TabIndex = 34
+        Me.Label26.Text = "Catatan*"
+        Me.Label26.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         '
         'pnlInfo
         '
@@ -1963,7 +2115,8 @@ Partial Class frmAppointment
         Me.xtpPasienLama.ResumeLayout(False)
         Me.tlpPasienLama.ResumeLayout(False)
         Me.tlpPasienLama.PerformLayout()
-        CType(Me.teLamaRemarks.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.lueLamaAppType.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.lueLamaAppVia.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.slueLamaNama.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.slueView, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.teLamaAlamat.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1972,10 +2125,11 @@ Partial Class frmAppointment
         CType(Me.teLamaTelepon1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.teLamaJenisKelamin.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.teLamaTanggalLahir.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.teLamaRemarks.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.xtpPasienBaru.ResumeLayout(False)
         Me.tlpPasienBaru.ResumeLayout(False)
         Me.tlpPasienBaru.PerformLayout()
-        CType(Me.teBaruRemarks.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.lueBaruAppVia.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.deBaruTanggalLahir.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.deBaruTanggalLahir.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.lueBaruJenisKelamin.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1984,6 +2138,7 @@ Partial Class frmAppointment
         CType(Me.teBaruNama.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.teBaruTelepon2.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.teBaruTelepon1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.teBaruRemarks.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.pnlInfo.ResumeLayout(False)
         CType(Me.pbcIcon, System.ComponentModel.ISupportInitialize).EndInit()
         Me.panelDoctor.ResumeLayout(False)
@@ -2104,4 +2259,10 @@ Partial Class frmAppointment
     Friend WithEvents btnAppHarian As Button
     Friend WithEvents teLamaRemarks As DevExpress.XtraEditors.TextEdit
     Friend WithEvents teBaruRemarks As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents lueLamaAppVia As DevExpress.XtraEditors.LookUpEdit
+    Friend WithEvents Label15 As Label
+    Friend WithEvents lueLamaAppType As DevExpress.XtraEditors.LookUpEdit
+    Friend WithEvents Label17 As Label
+    Friend WithEvents Label16 As Label
+    Friend WithEvents lueBaruAppVia As DevExpress.XtraEditors.LookUpEdit
 End Class

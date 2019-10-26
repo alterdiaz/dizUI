@@ -10,7 +10,7 @@
     <OutputType>WinExe</OutputType>
     <StartupObject>dizUI.My.MyApplication</StartupObject>
     <RootNamespace>dizUI</RootNamespace>
-    <AssemblyName>dizUIdemo</AssemblyName>
+    <AssemblyName>dizUI</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <MyType>WindowsForms</MyType>
     <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
@@ -18,7 +18,7 @@
     <OptionCompare>Binary</OptionCompare>
     <OptionStrict>Off</OptionStrict>
     <OptionInfer>Off</OptionInfer>
-    <ApplicationIcon>Resources\dizDemo.ico</ApplicationIcon>
+    <ApplicationIcon>Resources\dizLive.ico</ApplicationIcon>
     <ApplicationManifest>My Project\app.manifest</ApplicationManifest>
     <IsWebBootstrapper>false</IsWebBootstrapper>
     <FileUpgradeFlags>
@@ -50,7 +50,7 @@
     <DefineDebug>true</DefineDebug>
     <DefineTrace>true</DefineTrace>
     <OutputPath>bin\Debug\</OutputPath>
-    <DocumentationFile>dizUIdemo.xml</DocumentationFile>
+    <DocumentationFile>dizUI.xml</DocumentationFile>
     <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022,42353,42354,42355</NoWarn>
     <Prefer32Bit>false</Prefer32Bit>
     <PlatformTarget>x86</PlatformTarget>
@@ -61,7 +61,7 @@
     <DefineTrace>true</DefineTrace>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
-    <DocumentationFile>dizUIdemo.xml</DocumentationFile>
+    <DocumentationFile>dizUI.xml</DocumentationFile>
     <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022,42353,42354,42355</NoWarn>
     <Prefer32Bit>false</Prefer32Bit>
     <PlatformTarget>x86</PlatformTarget>
@@ -69,7 +69,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Live|AnyCPU'">
     <DefineTrace>true</DefineTrace>
     <OutputPath>bin\Live\</OutputPath>
-    <DocumentationFile>dizUIdemo.xml</DocumentationFile>
+    <DocumentationFile>dizUI.xml</DocumentationFile>
     <Optimize>true</Optimize>
     <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022,42353,42354,42355</NoWarn>
     <DebugType>pdbonly</DebugType>
@@ -80,7 +80,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Demo|AnyCPU'">
     <DefineTrace>true</DefineTrace>
     <OutputPath>bin\Demo\</OutputPath>
-    <DocumentationFile>dizUIdemo.xml</DocumentationFile>
+    <DocumentationFile>dizUI.xml</DocumentationFile>
     <Optimize>true</Optimize>
     <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022,42353,42354,42355</NoWarn>
     <DebugType>Full</DebugType>
@@ -4103,6 +4103,7 @@
     <Content Include="dizEngine20.db">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <None Include="Resources\AnatomiK.png" />
     <Content Include="SQLite.Interop.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

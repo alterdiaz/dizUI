@@ -47,7 +47,7 @@ Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "MigrasiUser", "MigrasiUser\
 EndProject
 Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "GetIDKomputer", "GetIDKomputer\GetIDKomputer.vbproj", "{1B60E742-7BD0-40CF-BB0C-424B98C06F53}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "dizUInetcore", "dizUInetcore\dizUInetcore.csproj", "{7E649952-8A91-4294-97B4-3A68906D903C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "dizUIcore", "dizUIcore\dizUIcore.csproj", "{7F1D0287-806F-4D08-8C53-D339F98D3D7C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -235,14 +235,14 @@ Global
 		{1B60E742-7BD0-40CF-BB0C-424B98C06F53}.Live|Any CPU.Build.0 = Release|Any CPU
 		{1B60E742-7BD0-40CF-BB0C-424B98C06F53}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1B60E742-7BD0-40CF-BB0C-424B98C06F53}.Release|Any CPU.Build.0 = Release|Any CPU
-		{7E649952-8A91-4294-97B4-3A68906D903C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{7E649952-8A91-4294-97B4-3A68906D903C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{7E649952-8A91-4294-97B4-3A68906D903C}.Demo|Any CPU.ActiveCfg = Debug|Any CPU
-		{7E649952-8A91-4294-97B4-3A68906D903C}.Demo|Any CPU.Build.0 = Debug|Any CPU
-		{7E649952-8A91-4294-97B4-3A68906D903C}.Live|Any CPU.ActiveCfg = Debug|Any CPU
-		{7E649952-8A91-4294-97B4-3A68906D903C}.Live|Any CPU.Build.0 = Debug|Any CPU
-		{7E649952-8A91-4294-97B4-3A68906D903C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{7E649952-8A91-4294-97B4-3A68906D903C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7F1D0287-806F-4D08-8C53-D339F98D3D7C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7F1D0287-806F-4D08-8C53-D339F98D3D7C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7F1D0287-806F-4D08-8C53-D339F98D3D7C}.Demo|Any CPU.ActiveCfg = Debug|Any CPU
+		{7F1D0287-806F-4D08-8C53-D339F98D3D7C}.Demo|Any CPU.Build.0 = Debug|Any CPU
+		{7F1D0287-806F-4D08-8C53-D339F98D3D7C}.Live|Any CPU.ActiveCfg = Debug|Any CPU
+		{7F1D0287-806F-4D08-8C53-D339F98D3D7C}.Live|Any CPU.Build.0 = Debug|Any CPU
+		{7F1D0287-806F-4D08-8C53-D339F98D3D7C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7F1D0287-806F-4D08-8C53-D339F98D3D7C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

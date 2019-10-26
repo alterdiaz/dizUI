@@ -25,6 +25,9 @@ Partial Class btnBookingR
         Me.Button2 = New System.Windows.Forms.Button()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.Button1 = New System.Windows.Forms.Button()
+        Me.lblAppRemarks = New System.Windows.Forms.Label()
+        Me.pboAppType = New System.Windows.Forms.PictureBox()
+        CType(Me.pboAppType, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'Button2
@@ -82,22 +85,53 @@ Partial Class btnBookingR
         Me.Button1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.Button1.UseVisualStyleBackColor = False
         '
+        'lblAppRemarks
+        '
+        Me.lblAppRemarks.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.lblAppRemarks.BackColor = System.Drawing.Color.White
+        Me.lblAppRemarks.Font = New System.Drawing.Font("Tahoma", 8.0!)
+        Me.lblAppRemarks.Location = New System.Drawing.Point(510, 48)
+        Me.lblAppRemarks.Margin = New System.Windows.Forms.Padding(0)
+        Me.lblAppRemarks.Name = "lblAppRemarks"
+        Me.lblAppRemarks.Size = New System.Drawing.Size(320, 14)
+        Me.lblAppRemarks.TabIndex = 37
+        Me.lblAppRemarks.Text = "123456789012345678901234567890"
+        Me.lblAppRemarks.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.lblAppRemarks.Visible = False
+        '
+        'pboAppType
+        '
+        Me.pboAppType.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.pboAppType.BackColor = System.Drawing.Color.White
+        Me.pboAppType.Image = Global.dizUI.My.Resources.Resources.AnatomiK
+        Me.pboAppType.Location = New System.Drawing.Point(715, 5)
+        Me.pboAppType.Margin = New System.Windows.Forms.Padding(0)
+        Me.pboAppType.Name = "pboAppType"
+        Me.pboAppType.Size = New System.Drawing.Size(40, 40)
+        Me.pboAppType.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.pboAppType.TabIndex = 38
+        Me.pboAppType.TabStop = False
+        '
         'btnBookingR
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(235, Byte), Integer), CType(CType(236, Byte), Integer), CType(CType(239, Byte), Integer))
+        Me.Controls.Add(Me.pboAppType)
+        Me.Controls.Add(Me.lblAppRemarks)
         Me.Controls.Add(Me.Button2)
         Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.Button1)
         Me.Margin = New System.Windows.Forms.Padding(0)
         Me.Name = "btnBookingR"
         Me.Size = New System.Drawing.Size(900, 65)
+        CType(Me.pboAppType, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
     Friend WithEvents Button2 As System.Windows.Forms.Button
     Friend WithEvents Button1 As System.Windows.Forms.Button
     Friend WithEvents Label1 As System.Windows.Forms.Label
-
+    Friend WithEvents lblAppRemarks As Label
+    Friend WithEvents pboAppType As PictureBox
 End Class

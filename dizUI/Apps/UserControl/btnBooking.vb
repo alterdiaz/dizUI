@@ -197,12 +197,6 @@
     End Sub
 
     Public Sub buildObj()
-        If appnote = "-" Then
-            lblAppRemarks.Visible = False
-        Else
-            lblAppRemarks.Visible = True
-            lblAppRemarks.BringToFront()
-        End If
         'MsgBox(timeStr & vbCrLf & counter)
         If idApp = "-1" Then
             Button2.Text = "Waktu " & timeStr & " - Sesi " & sessionName & vbCrLf & "Slot Kosong"
@@ -211,7 +205,7 @@
             If remarks = "" Then
                 Button2.Text = "Waktu " & timeStr & " - Sesi " & sessionName & vbCrLf & patientName & " (" & mrn & ")" & vbCrLf & "Phone1 (" & cell1 & ") Phone2 (" & cell2 & ")"
             Else
-                Button2.Text = "Waktu " & timeStr & " - Sesi " & sessionName & vbCrLf & patientName & " (" & mrn & ")" & vbCrLf & "Phone1 (" & cell1 & ") Phone2 (" & cell2 & ") Note: " & remarks
+                Button2.Text = "Waktu " & timeStr & " - Sesi " & sessionName & vbCrLf & patientName & " (" & mrn & ")" & vbCrLf & "Phone1 (" & cell1 & ") Phone2 (" & cell2 & ")" & vbCrLf & "Note: " & remarks
             End If
             Label1.Text = counter & "  "
         End If

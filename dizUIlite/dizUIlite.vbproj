@@ -257,7 +257,7 @@
     <Import Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="C:\Program Files (x86)\System.Data.SQLite\2013\bin\SQLite.Interop.dll">
+    <Content Include="..\..\DLL\SQLite.Interop.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <None Include="packages.config" />

@@ -128,6 +128,39 @@ Public Class frmAppointment
             pExit_Click(Me, Nothing)
             Exit Sub
         End If
+
+        mysqls.DMLQuery("select idgeneral as id, generalcode as content from sys_generalcode where gctype='APPVIA'", "appvia")
+        lueBaruAppVia.Properties.DataSource = mysqls.dataTable("appvia")
+        lueBaruAppVia.Properties.DisplayMember = "content"
+        lueBaruAppVia.Properties.ValueMember = "id"
+        lueBaruAppVia.EditValue = CLng(0)
+        If mysqls.getDataSet("appvia") = 0 Then
+            dizMsgbox("Appointment Via tidak ditemukan" & vbCrLf & "Appointment Via harap entry dulu", dizMsgboxStyle.Peringatan, Me)
+            pExit_Click(Me, Nothing)
+            Exit Sub
+        End If
+
+        mysqls.DMLQuery("select idgeneral as id, generalcode as content from sys_generalcode where gctype='APPVIA'", "appvial")
+        lueLamaAppVia.Properties.DataSource = mysqls.dataTable("appvial")
+        lueLamaAppVia.Properties.DisplayMember = "content"
+        lueLamaAppVia.Properties.ValueMember = "id"
+        lueLamaAppVia.EditValue = CLng(0)
+        If mysqls.getDataSet("appvial") = 0 Then
+            dizMsgbox("Appointment Via tidak ditemukan" & vbCrLf & "Appointment Via harap entry dulu", dizMsgboxStyle.Peringatan, Me)
+            pExit_Click(Me, Nothing)
+            Exit Sub
+        End If
+
+        mysqls.DMLQuery("select idgeneral as id, generalcode as content from sys_generalcode where gctype='APPTYPE'", "apptype")
+        lueLamaAppType.Properties.DataSource = mysqls.dataTable("apptype")
+        lueLamaAppType.Properties.DisplayMember = "content"
+        lueLamaAppType.Properties.ValueMember = "id"
+        lueLamaAppType.EditValue = CLng(0)
+        If mysqls.getDataSet("apptype") = 0 Then
+            dizMsgbox("Appointment Type tidak ditemukan" & vbCrLf & "Appointment Type harap entry dulu", dizMsgboxStyle.Peringatan, Me)
+            pExit_Click(Me, Nothing)
+            Exit Sub
+        End If
     End Sub
 
     Private lenParamedis As Integer = 400
@@ -359,6 +392,11 @@ Public Class frmAppointment
 
         kosongkanIsian(tlpPasienLama)
         kosongkanIsian(tlpPasienBaru)
+
+        lueLamaAppType.EditValue = CLng(0)
+        lueLamaAppVia.EditValue = CLng(0)
+        lueBaruAppVia.EditValue = CLng(0)
+
         xtccPatientData.SelectedTabPage = xtpPasienLama
 
         Me.Cursor = Cursors.Default
@@ -407,8 +445,9 @@ Public Class frmAppointment
             teLamaAlamat.Text = "-"
             teLamaTelepon1.Text = "0"
             teLamaTelepon2.Text = "0"
-            teLamaRemarks.Text = "-"
-
+            teLamaRemarks.EditValue = Nothing
+            lueLamaAppType.EditValue = CLng(0)
+            lueLamaAppVia.EditValue = CLng(0)
             Exit Sub
         End If
         If isPatient = True Then Exit Sub
@@ -433,7 +472,9 @@ Public Class frmAppointment
         Else
             teLamaTelepon2.Text = "0"
         End If
-        teLamaRemarks.Text = "-"
+        teLamaRemarks.EditValue = Nothing
+        lueLamaAppType.EditValue = CLng(0)
+        lueLamaAppVia.EditValue = CLng(0)
     End Sub
 
     Private Sub lueLamaNoRM_EditValueChanged(sender As Object, e As EventArgs) Handles lueLamaNoRM.EditValueChanged
@@ -711,7 +752,7 @@ Public Class frmAppointment
             btnObj.sessionString = lueJadwalSesi.Text
             btnObj.sessionNo = lueJadwalSesi.EditValue
             btnObj.setStatus = 0
-            btnObj.id = -1
+            btnObj.id = "-1"
             btnObj.Size = New Size(900, 65)
             btnObj.Anchor = AnchorStyles.None
             btnObj.Dock = DockStyle.None
@@ -722,7 +763,7 @@ Public Class frmAppointment
             AddHandler btnObj.Button4.Click, AddressOf okClick
             counter += 1
 
-            sqls.DMLQuery("select a.idappointment,a.idjadwalsesi,j.nama as jadwalsesi,convert(varchar,a.appointmentdate,105) + ' ' + convert(varchar,a.appointmentdate,108) as appointmentdate,convert(varchar,a.bookingdate,105) + ' ' + convert(varchar,a.bookingdate,108) as bookingdate,a.bookingstatus,a.nomorurut,a.idrekammedis,isnull(dbo.fFormatNoRM(r.rekammedisno),'00-00-00-00') as rekammedisno,a.nama,a.telepon1,a.telepon2,a.jeniskelamin,a.alamat,a.tanggallahir,a.remarks,a.idregistrasi,a.issms,a.issmssent,a.isdeleted,a.createdby,a.createddate,a.updatedby,a.updateddate,a.remarks from appointment a left join rekammedis r on a.idrekammedis=r.idrekammedis left join jadwalsesi j on a.idjadwalsesi=j.idjadwalsesi where a.idparamedisspesialis=(select top 1 idparamedisspesialis from paramedisspesialis where idparamedis='" & lueParamedis.EditValue & "' and idspesialis='" & lueSpesialis.EditValue & "') and a.idjadwalsesi='" & lueJadwalSesi.EditValue & "' and a.nomorurut='" & (a + 1) & "' and convert(varchar,a.bookingdate,105)='" & strDate & "' and a.isdeleted=0 order by a.createddate asc", "cekappointment")
+            sqls.DMLQuery("select a.idappointment,a.idjadwalsesi,j.nama as jadwalsesi,convert(varchar,a.appointmentdate,105) + ' ' + convert(varchar,a.appointmentdate,108) as appointmentdate,convert(varchar,a.bookingdate,105) + ' ' + convert(varchar,a.bookingdate,108) as bookingdate,a.bookingstatus,a.nomorurut,a.idrekammedis,isnull(dbo.fFormatNoRM(r.rekammedisno),'00-00-00-00') as rekammedisno,a.nama,a.telepon1,a.telepon2,a.jeniskelamin,a.alamat,a.tanggallahir,a.remarks,a.idregistrasi,a.issms,a.issmssent,a.isdeleted,a.createdby,a.createddate,a.updatedby,a.updateddate,a.remarks,isnull(a.appointmenttype,0) as appointmenttype,isnull(a.appointmentvia,0) as appointmentvia,at.generalcode as apptype,av.generalcode as appvia from appointment a left join rekammedis r on a.idrekammedis=r.idrekammedis left join jadwalsesi j on a.idjadwalsesi=j.idjadwalsesi left join sys_generalcode at on isnull(a.appointmenttype,0)=at.idgeneral and at.gctype='APPTYPE' left join sys_generalcode av on isnull(a.appointmentvia,0)=av.idgeneral and av.gctype='APPVIA' where a.idparamedisspesialis=(select top 1 idparamedisspesialis from paramedisspesialis where idparamedis='" & lueParamedis.EditValue & "' and idspesialis='" & lueSpesialis.EditValue & "') and a.idjadwalsesi='" & lueJadwalSesi.EditValue & "' and a.nomorurut='" & (a + 1) & "' and convert(varchar,a.bookingdate,105)='" & strDate & "' and a.isdeleted=0 order by a.createddate asc", "cekappointment")
             If sqls.getDataSet("cekappointment") > 0 Then
                 Dim jamslot As String = sqls.getDataSet("cekappointment", 0, "bookingdate").ToString.Split(" ")(1)
                 Dim schdate As DateTime = New DateTime(thisDate.Year, thisDate.Month, thisDate.Day, jamslot.Split(":")(0), jamslot.Split(":")(1), jamslot.Split(":")(2))
@@ -735,6 +776,19 @@ Public Class frmAppointment
                 Dim intSession As String = sqls.getDataSet("cekappointment", 0, "idjadwalsesi")
                 Dim strSession As String = sqls.getDataSet("cekappointment", 0, "jadwalsesi")
                 Dim appremarks As String = sqls.getDataSet("cekappointment", 0, "remarks")
+                Dim appnote As String = ""
+                If CLng(sqls.getDataSet("cekappointment", 0, "appointmentvia")) <> CLng(0) Then
+                    If appnote <> "" Then
+                        appnote &= " "
+                    End If
+                    appnote &= sqls.getDataSet("cekappointment", 0, "appvia")
+                End If
+                If CLng(sqls.getDataSet("cekappointment", 0, "appointmenttype")) <> CLng(0) Then
+                    If appnote <> "" Then
+                        appnote &= " "
+                    End If
+                    appnote &= sqls.getDataSet("cekappointment", 0, "apptype")
+                End If
 
                 idappointment = sqls.getDataSet("cekappointment", 0, "idappointment")
                 btnObj.labelTanggal = schdate
@@ -745,16 +799,18 @@ Public Class frmAppointment
                 btnObj.setStatus = bookstat
                 btnObj.sessionNo = intSession
                 btnObj.sessionString = strSession
-                btnObj.remarks = appremarks
+                btnObj.remarks = appremarks & appnote
                 btnObj.id = idappointment
+
+                'MsgBox(sqls.getDataSet("cekappointment", 0, "appointmenttype"))
                 '8 1 2018 19 0 0|4|1|-]-]-]-]-1]-1
                 If sqls.getDataSet("cekappointment") > 1 Then
-                    For t As Integer = 1 To sqls.getDataSet("cekappointment") - 1
-                        sqls.DMLQuery("delete from appointment where isdeleted=0 and idappointment='" & sqls.getDataSet("cekappointment", t, "idappointment") & "'", False)
-                    Next
+                        For t As Integer = 1 To sqls.getDataSet("cekappointment") - 1
+                            sqls.DMLQuery("delete from appointment where isdeleted=0 and idappointment='" & sqls.getDataSet("cekappointment", t, "idappointment") & "'", False)
+                        Next
+                    End If
                 End If
-            End If
-            sqls.clearDataSet("cekappointment")
+                sqls.clearDataSet("cekappointment")
             btnObj.buildObj()
 
             tlpSlot.RowCount = a + 1
@@ -822,6 +878,12 @@ Public Class frmAppointment
                     cekRequired = True
                 End If
             End If
+            If lueLamaAppVia.EditValue Is Nothing Then
+                cekRequired = False
+            End If
+            If lueLamaAppType.EditValue Is Nothing Then
+                cekRequired = False
+            End If
         ElseIf xtccPatientData.SelectedTabPage Is xtpPasienBaru Then
             If teBaruTelepon1.Text = "" Then
                 cekRequired = False
@@ -845,8 +907,11 @@ Public Class frmAppointment
             If lueBaruJenisKelamin.EditValue Is Nothing Then
                 cekRequired = False
             End If
+            If lueBaruAppVia.EditValue Is Nothing Then
+                cekRequired = False
+            End If
         End If
-        If sender.tag.ToString.Split("|")(0) = -1 Then
+        If sender.tag.ToString.Split("|")(0) = "-1" Then
             If cekPatient = False Then
                 dizMsgbox("Nama Pasien harus diisi", dizMsgboxStyle.Peringatan, "Peringatan", Me)
                 Exit Sub
@@ -872,7 +937,7 @@ Public Class frmAppointment
                 Dim mys As New dtsetSQLS(dbstring)
                 Dim field As New List(Of String)
                 Dim value As New List(Of Object)
-                field.AddRange(New String() {"idappointment", "idparamedisspesialis", "idjadwalsesi", "idregistrasi", "appointmentdate", "bookingdate", "bookingstatus", "durasi", "nomorurut", "idrekammedis", "nama", "isdeleted", "tanggallahir", "telepon1", "telepon2", "jeniskelamin", "alamat", "remarks", "issms", "issmssent", "isdeleted", "deletereason", "idcompany", "createdby", "createddate"})
+                field.AddRange(New String() {"idappointment", "idparamedisspesialis", "idjadwalsesi", "idregistrasi", "appointmentdate", "bookingdate", "bookingstatus", "durasi", "nomorurut", "idrekammedis", "nama", "isdeleted", "tanggallahir", "telepon1", "telepon2", "jeniskelamin", "alamat", "remarks", "issms", "issmssent", "isdeleted", "deletereason", "idcompany", "createdby", "createddate", "appointmenttype", "appointmentvia"})
 
                 Dim appdate As DateTime = nowTime
                 Dim dateAngka As String = sender.tag.ToString.Split("|")(2)
@@ -890,15 +955,18 @@ Public Class frmAppointment
 
                 If xtccPatientData.SelectedTabPage Is xtpPasienLama Then
                     sqls.DMLQuery("select top 1 idregistrasi,registrasistatus,registrasidate from registrasi where convert(varchar,registrasidate,105)='" & Format(schdate, "dd-MM-yyyy") & "' and iddokterruangan='" & lueParamedis.EditValue & "' and idspesialisruangan='" & lueSpesialis.EditValue & "' and idrekammedis='" & slueLamaNama.EditValue & "' order by registrasidate asc", "regstat")
+                    If teLamaRemarks.EditValue Is Nothing Then
+                        teLamaRemarks.EditValue = ""
+                    End If
 
                     If sqls.getDataSet("regstat") = 0 Then
                         If teLamaTanggalLahir.EditValue Is Nothing Then
                             birthdate = Nothing
-                            value.AddRange(New Object() {idappointment, idps, lueJadwalSesi.EditValue, 0, appdate, schdate, 0, durasi, nourut, slueLamaNama.EditValue, slueLamaNama.Text, 0, DBNull.Value, teLamaTelepon1.Text, teLamaTelepon2.Text, teLamaJenisKelamin.Tag, teLamaAlamat.Text, teLamaRemarks.Text, isSMS, 0, 0, "-", idcomp, userid, nowTime})
+                            value.AddRange(New Object() {idappointment, idps, lueJadwalSesi.EditValue, 0, appdate, schdate, 0, durasi, nourut, slueLamaNama.EditValue, slueLamaNama.Text, 0, DBNull.Value, teLamaTelepon1.Text, teLamaTelepon2.Text, teLamaJenisKelamin.Tag, teLamaAlamat.Text, teLamaRemarks.Text, isSMS, 0, 0, "-", idcomp, userid, nowTime, lueLamaAppType.EditValue, lueLamaAppVia.EditValue})
                             'debugList(value)
                         Else
                             birthdate = Strdate2Date(teLamaTanggalLahir.Text)
-                            value.AddRange(New Object() {idappointment, idps, lueJadwalSesi.EditValue, 0, appdate, schdate, 0, durasi, nourut, slueLamaNama.EditValue, slueLamaNama.Text, 0, birthdate, teLamaTelepon1.Text, teLamaTelepon2.Text, teLamaJenisKelamin.Tag, teLamaAlamat.Text, teLamaRemarks.Text, isSMS, 0, 0, "-", idcomp, userid, nowTime})
+                            value.AddRange(New Object() {idappointment, idps, lueJadwalSesi.EditValue, 0, appdate, schdate, 0, durasi, nourut, slueLamaNama.EditValue, slueLamaNama.Text, 0, birthdate, teLamaTelepon1.Text, teLamaTelepon2.Text, teLamaJenisKelamin.Tag, teLamaAlamat.Text, teLamaRemarks.Text, isSMS, 0, 0, "-", idcomp, userid, nowTime, lueLamaAppType.EditValue, lueLamaAppVia.EditValue})
                             'debugList(value)
                         End If
                     Else
@@ -907,11 +975,11 @@ Public Class frmAppointment
 
                             If teLamaTanggalLahir.EditValue Is Nothing Then
                                 birthdate = Nothing
-                                value.AddRange(New Object() {idappointment, idps, lueJadwalSesi.EditValue, 0, appdate, schdate, 2, durasi, nourut, slueLamaNama.EditValue, slueLamaNama.Text, 0, DBNull.Value, teLamaTelepon1.Text, teLamaTelepon2.Text, teLamaJenisKelamin.Tag, teLamaAlamat.Text, teLamaRemarks.Text, isSMS, 0, 0, "-", idcomp, userid, nowTime})
+                                value.AddRange(New Object() {idappointment, idps, lueJadwalSesi.EditValue, 0, appdate, schdate, 2, durasi, nourut, slueLamaNama.EditValue, slueLamaNama.Text, 0, DBNull.Value, teLamaTelepon1.Text, teLamaTelepon2.Text, teLamaJenisKelamin.Tag, teLamaAlamat.Text, teLamaRemarks.Text, isSMS, 0, 0, "-", idcomp, userid, nowTime, lueLamaAppType.EditValue, lueLamaAppVia.EditValue})
                                 'debugList(value)
                             Else
                                 birthdate = Strdate2Date(teLamaTanggalLahir.Text)
-                                value.AddRange(New Object() {idappointment, idps, lueJadwalSesi.EditValue, 0, appdate, schdate, 2, durasi, nourut, slueLamaNama.EditValue, slueLamaNama.Text, 0, birthdate, teLamaTelepon1.Text, teLamaTelepon2.Text, teLamaJenisKelamin.Tag, teLamaAlamat.Text, teLamaRemarks.Text, isSMS, 0, 0, "-", idcomp, userid, nowTime})
+                                value.AddRange(New Object() {idappointment, idps, lueJadwalSesi.EditValue, 0, appdate, schdate, 2, durasi, nourut, slueLamaNama.EditValue, slueLamaNama.Text, 0, birthdate, teLamaTelepon1.Text, teLamaTelepon2.Text, teLamaJenisKelamin.Tag, teLamaAlamat.Text, teLamaRemarks.Text, isSMS, 0, 0, "-", idcomp, userid, nowTime, lueLamaAppType.EditValue, lueLamaAppVia.EditValue})
                                 'debugList(value)
                             End If
                         ElseIf sqls.getDataSet("regstat", 0, "registrasistatus") = 2 Or sqls.getDataSet("regstat", 0, "registrasistatus") = 5 Then
@@ -919,11 +987,11 @@ Public Class frmAppointment
 
                             If teLamaTanggalLahir.EditValue Is Nothing Then
                                 birthdate = Nothing
-                                value.AddRange(New Object() {idappointment, idps, lueJadwalSesi.EditValue, 0, appdate, schdate, 2, durasi, nourut, slueLamaNama.EditValue, slueLamaNama.Text, 1, DBNull.Value, teLamaTelepon1.Text, teLamaTelepon2.Text, teLamaJenisKelamin.Tag, teLamaAlamat.Text, teLamaRemarks.Text, isSMS, 0, 0, "-", idcomp, userid, nowTime})
+                                value.AddRange(New Object() {idappointment, idps, lueJadwalSesi.EditValue, 0, appdate, schdate, 2, durasi, nourut, slueLamaNama.EditValue, slueLamaNama.Text, 1, DBNull.Value, teLamaTelepon1.Text, teLamaTelepon2.Text, teLamaJenisKelamin.Tag, teLamaAlamat.Text, teLamaRemarks.Text, isSMS, 0, 0, "-", idcomp, userid, nowTime, lueLamaAppType.EditValue, lueLamaAppVia.EditValue})
                                 'debugList(value)
                             Else
                                 birthdate = Strdate2Date(teLamaTanggalLahir.Text)
-                                value.AddRange(New Object() {idappointment, idps, lueJadwalSesi.EditValue, 0, appdate, schdate, 2, durasi, nourut, slueLamaNama.EditValue, slueLamaNama.Text, 1, birthdate, teLamaTelepon1.Text, teLamaTelepon2.Text, teLamaJenisKelamin.Tag, teLamaAlamat.Text, teLamaRemarks.Text, isSMS, 0, 0, "-", idcomp, userid, nowTime})
+                                value.AddRange(New Object() {idappointment, idps, lueJadwalSesi.EditValue, 0, appdate, schdate, 2, durasi, nourut, slueLamaNama.EditValue, slueLamaNama.Text, 1, birthdate, teLamaTelepon1.Text, teLamaTelepon2.Text, teLamaJenisKelamin.Tag, teLamaAlamat.Text, teLamaRemarks.Text, isSMS, 0, 0, "-", idcomp, userid, nowTime, lueLamaAppType.EditValue, lueLamaAppVia.EditValue})
                                 'debugList(value)
                             End If
                         ElseIf sqls.getDataSet("regstat", 0, "registrasistatus") = 7 Then
@@ -931,18 +999,22 @@ Public Class frmAppointment
 
                             If teLamaTanggalLahir.EditValue Is Nothing Then
                                 birthdate = Nothing
-                                value.AddRange(New Object() {idappointment, idps, lueJadwalSesi.EditValue, 0, appdate, schdate, 3, durasi, nourut, slueLamaNama.EditValue, slueLamaNama.Text, 0, DBNull.Value, teLamaTelepon1.Text, teLamaTelepon2.Text, teLamaJenisKelamin.Tag, teLamaAlamat.Text, teLamaRemarks.Text, isSMS, 0, 0, "-", idcomp, userid, nowTime})
+                                value.AddRange(New Object() {idappointment, idps, lueJadwalSesi.EditValue, 0, appdate, schdate, 3, durasi, nourut, slueLamaNama.EditValue, slueLamaNama.Text, 0, DBNull.Value, teLamaTelepon1.Text, teLamaTelepon2.Text, teLamaJenisKelamin.Tag, teLamaAlamat.Text, teLamaRemarks.Text, isSMS, 0, 0, "-", idcomp, userid, nowTime, lueLamaAppType.EditValue, lueLamaAppVia.EditValue})
                                 'debugList(value)
                             Else
                                 birthdate = Strdate2Date(teLamaTanggalLahir.Text)
-                                value.AddRange(New Object() {idappointment, idps, lueJadwalSesi.EditValue, 0, appdate, schdate, 3, durasi, nourut, slueLamaNama.EditValue, slueLamaNama.Text, 0, birthdate, teLamaTelepon1.Text, teLamaTelepon2.Text, teLamaJenisKelamin.Tag, teLamaAlamat.Text, teLamaRemarks.Text, isSMS, 0, 0, "-", idcomp, userid, nowTime})
+                                value.AddRange(New Object() {idappointment, idps, lueJadwalSesi.EditValue, 0, appdate, schdate, 3, durasi, nourut, slueLamaNama.EditValue, slueLamaNama.Text, 0, birthdate, teLamaTelepon1.Text, teLamaTelepon2.Text, teLamaJenisKelamin.Tag, teLamaAlamat.Text, teLamaRemarks.Text, isSMS, 0, 0, "-", idcomp, userid, nowTime, lueLamaAppType.EditValue, lueLamaAppVia.EditValue})
                                 'debugList(value)
                             End If
                         End If
                     End If
                 Else
+                    If teBaruRemarks.EditValue Is Nothing Then
+                        teBaruRemarks.EditValue = ""
+                    End If
+
                     birthdate = CDate(deBaruTanggalLahir.EditValue)
-                    value.AddRange(New Object() {idappointment, idps, lueJadwalSesi.EditValue, 0, appdate, schdate, 0, durasi, nourut, 0, teBaruNama.Text, 0, birthdate, teBaruTelepon1.Text, teBaruTelepon2.Text, lueBaruJenisKelamin.EditValue, teBaruAlamat.Text, teBaruRemarks.Text, isSMS, 0, 0, "-", idcomp, userid, nowTime})
+                    value.AddRange(New Object() {idappointment, idps, lueJadwalSesi.EditValue, 0, appdate, schdate, 0, durasi, nourut, 0, teBaruNama.Text, 0, birthdate, teBaruTelepon1.Text, teBaruTelepon2.Text, lueBaruJenisKelamin.EditValue, teBaruAlamat.Text, teBaruRemarks.Text, isSMS, 0, 0, "-", idcomp, userid, nowTime, 0, lueBaruAppVia.EditValue})
                     'debugList(value)
                 End If
 
@@ -1059,15 +1131,17 @@ Public Class frmAppointment
         teLamaTanggalLahir.EditValue = Nothing
         teLamaTelepon1.EditValue = Nothing
         teLamaTelepon2.EditValue = Nothing
+        lueLamaAppType.EditValue = CLng(0)
+        lueLamaAppVia.EditValue = CLng(0)
 
         teBaruAlamat.EditValue = Nothing
         teBaruNoRM.EditValue = Nothing
         teBaruTelepon1.EditValue = Nothing
         teBaruTelepon2.EditValue = Nothing
-        teBaruRemarks.EditValue = Nothing
         lueBaruJenisKelamin.EditValue = Nothing
         deBaruTanggalLahir.EditValue = Nothing
         teBaruRemarks.EditValue = Nothing
+        lueBaruAppVia.EditValue = CLng(0)
     End Sub
 
     Private Sub btnRefreshSlot_Click(sender As Object, e As EventArgs) Handles btnRefreshSlot.Click

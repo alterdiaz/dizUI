@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Data;
 
 namespace dizUInetcore
 {
@@ -13,6 +14,7 @@ namespace dizUInetcore
 
         private void test()
         {
+            System.Data.Sqlclient.SqlDataAdapter sqls = new System.Data.Sqlclient
             String var = "";
             if (var == "")
             {

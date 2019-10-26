@@ -13,6 +13,27 @@
     Private intSession As Integer = -1
     Private bookStat As Integer = -1
     Private idapp As Integer = -1
+    Private apptype As Long = 0
+    Private appvia As Long = 0
+
+    Public Property atype As Long
+        Get
+            Return Me.apptype
+        End Get
+        Set(value As Long)
+            Me.apptype = value
+        End Set
+    End Property
+
+    Public Property avia As Long
+        Get
+            Return Me.appvia
+        End Get
+        Set(value As Long)
+            Me.appvia = value
+        End Set
+    End Property
+
     Public Property nomorUrut() As Integer
         Get
             Return nourut
@@ -149,6 +170,11 @@
             Button1.Visible = True
             Button1.BringToFront()
             Button2.BringToFront()
+        End If
+        If apptype = CLng(0) Then
+            pboAppType.Visible = False
+        ElseIf apptype = CLng(1) Then
+            pboAppType.Visible = True
         End If
     End Sub
 
