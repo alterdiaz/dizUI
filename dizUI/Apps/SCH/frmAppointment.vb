@@ -776,16 +776,19 @@ Public Class frmAppointment
                 Dim intSession As String = sqls.getDataSet("cekappointment", 0, "idjadwalsesi")
                 Dim strSession As String = sqls.getDataSet("cekappointment", 0, "jadwalsesi")
                 Dim appremarks As String = sqls.getDataSet("cekappointment", 0, "remarks")
+                If appremarks = "-" Then
+                    appremarks = ""
+                End If
                 Dim appnote As String = ""
                 If CLng(sqls.getDataSet("cekappointment", 0, "appointmentvia")) <> CLng(0) Then
-                    If appnote <> "" Then
-                        appnote &= " "
+                    If appremarks <> "" Then
+                        appnote &= ", "
                     End If
                     appnote &= sqls.getDataSet("cekappointment", 0, "appvia")
                 End If
                 If CLng(sqls.getDataSet("cekappointment", 0, "appointmenttype")) <> CLng(0) Then
                     If appnote <> "" Then
-                        appnote &= " "
+                        appnote &= ", "
                     End If
                     appnote &= sqls.getDataSet("cekappointment", 0, "apptype")
                 End If
@@ -805,12 +808,12 @@ Public Class frmAppointment
                 'MsgBox(sqls.getDataSet("cekappointment", 0, "appointmenttype"))
                 '8 1 2018 19 0 0|4|1|-]-]-]-]-1]-1
                 If sqls.getDataSet("cekappointment") > 1 Then
-                        For t As Integer = 1 To sqls.getDataSet("cekappointment") - 1
-                            sqls.DMLQuery("delete from appointment where isdeleted=0 and idappointment='" & sqls.getDataSet("cekappointment", t, "idappointment") & "'", False)
-                        Next
-                    End If
+                    For t As Integer = 1 To sqls.getDataSet("cekappointment") - 1
+                        sqls.DMLQuery("delete from appointment where isdeleted=0 and idappointment='" & sqls.getDataSet("cekappointment", t, "idappointment") & "'", False)
+                    Next
                 End If
-                sqls.clearDataSet("cekappointment")
+            End If
+            sqls.clearDataSet("cekappointment")
             btnObj.buildObj()
 
             tlpSlot.RowCount = a + 1

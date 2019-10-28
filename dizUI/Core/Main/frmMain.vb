@@ -1462,6 +1462,7 @@ Public Class frmMain
 
     Private cntIdle As Integer = 0
     Private intIdle As Integer = 0
+    Private isCekVersion As Boolean = False
     Private Sub tmrWaktu_Tick(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles tmrWaktu.Tick
         Try
             nowTime = nowTime.AddSeconds(1)
@@ -1591,12 +1592,14 @@ Public Class frmMain
             End If
             If nowTime.Second = 55 Then
                 Dim sqls As New SQLs(dbstring)
-                sqls.DMLQuery("select top 1 replace(value,'.','') from sys_AppSetting where variable='ProductVersion'", "getver")
-                Dim tmpver As String = sqls.getDataSet("getver", 0, 0)
+                sqls.DMLQuery("select top 1 replace(value,'.','') as tmpint,value as tmpstr from sys_AppSetting where variable='ProductVersion'", "getver")
+                Dim tmpver As String = sqls.getDataSet("getver", 0, "tmpint")
+                Dim tmpstr As String = sqls.getDataSet("getver", 0, "tmpstr")
                 If versiApp <> tmpver Then
-                    If niUpdate.Visible = False Then
+                    If isCekVersion = False Then
                         niUpdate.Visible = True
-                        niUpdate.ShowBalloonTip(10000, "Sistem Update", "Versi terbaru telah tersedia" & vbCrLf & "Silahkan restart aplikasi ini", ToolTipIcon.Info)
+                        niUpdate.ShowBalloonTip(10000, "Sistem Update " & tmpstr, "Versi terbaru (" & tmpstr & ") telah tersedia" & vbCrLf & "Silahkan restart aplikasi ini", ToolTipIcon.Info)
+                        isCekVersion = True
                     End If
                 End If
             End If

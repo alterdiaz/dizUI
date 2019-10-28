@@ -486,6 +486,12 @@
     <Compile Include="Apps\HIS\Trans\frmAlihDPJP.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Apps\HIS\Trans\frmRujukanInternal.Designer.vb">
+      <DependentUpon>frmRujukanInternal.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\HIS\Trans\frmRujukanInternal.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Apps\HRD\Data\frmAbsensiKaryawan.Designer.vb">
       <DependentUpon>frmAbsensiKaryawan.vb</DependentUpon>
     </Compile>
@@ -3041,6 +3047,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Apps\HIS\Trans\frmAlihDPJP.resx">
       <DependentUpon>frmAlihDPJP.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps\HIS\Trans\frmRujukanInternal.resx">
+      <DependentUpon>frmRujukanInternal.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Apps\HRD\Data\frmAbsensiKaryawan.resx">
       <DependentUpon>frmAbsensiKaryawan.vb</DependentUpon>

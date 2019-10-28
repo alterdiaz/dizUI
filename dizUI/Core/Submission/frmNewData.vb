@@ -157,7 +157,13 @@
                 Dim StartActivatedCode As String = dizEngine.processE(StartActivated)
                 lite.DMLQuery("update appsetting set value='" & StartActivated & "' where variable='StartActivated'", False)
                 lite.DMLQuery("update appsetting set value='" & StartActivatedCode & "' where variable='StartActivatedCode'", False)
+            Else
+                Dim StartActivated As String = Format(tmpnowTime, "dd-MM-yyyy")
+                Dim StartActivatedCode As String = dizEngine.processE(StartActivated)
+                lite.DMLQuery("update appsetting set value='" & StartActivated & "' where variable='StartActivated'", False)
+                lite.DMLQuery("update appsetting set value='" & StartActivatedCode & "' where variable='StartActivatedCode'", False)
             End If
+
             aktif(False, False, False, True)
         End If
     End Sub

@@ -200,12 +200,15 @@
         'MsgBox(timeStr & vbCrLf & counter)
         If idApp = "-1" Then
             Button2.Text = "Waktu " & timeStr & " - Sesi " & sessionName & vbCrLf & "Slot Kosong"
+            Button2.Font = New System.Drawing.Font("Tahoma", 10.0!)
             Label1.Text = counter & "  "
         Else
             If remarks = "" Then
-                Button2.Text = "Waktu " & timeStr & " - Sesi " & sessionName & vbCrLf & patientName & " (" & mrn & ")" & vbCrLf & "Phone1 (" & cell1 & ") Phone2 (" & cell2 & ")"
+                Button2.Text = "Waktu " & timeStr & " - Sesi " & sessionName & vbCrLf & patientName & " (" & mrn & ") Telp1 (" & cell1 & ") Telp2 (" & cell2 & ")"
+                Button2.Font = New System.Drawing.Font("Tahoma", 9.0!)
             Else
-                Button2.Text = "Waktu " & timeStr & " - Sesi " & sessionName & vbCrLf & patientName & " (" & mrn & ")" & vbCrLf & "Phone1 (" & cell1 & ") Phone2 (" & cell2 & ")" & vbCrLf & "Note: " & remarks
+                Button2.Text = "Waktu " & timeStr & " - Sesi " & sessionName & vbCrLf & patientName & " (" & mrn & ") Telp1 (" & cell1 & ") Telp2 (" & cell2 & ")" & vbCrLf & "Note: " & remarks
+                Button2.Font = New System.Drawing.Font("Tahoma", 8.5!)
             End If
             Label1.Text = counter & "  "
         End If
