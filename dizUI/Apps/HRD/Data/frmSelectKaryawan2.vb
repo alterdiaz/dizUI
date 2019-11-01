@@ -29,7 +29,7 @@ Public Class frmSelectKaryawan2
 
     Private Sub loadGrid()
         Dim mysqls As New SQLs(dbstring)
-        mysqls.DMLQuery("select k.idstaff,k.nama,k.iddepartment,d.department from staff k left join department d on k.iddepartment=d.iddepartment left join position p on k.idposition=p.idposition where k.isdeleted=0 and k.iddepartment not in (select value from sys_appsetting where variable in ('IDSystemDept','IDVendorDept')) and k.idcompany in (select top 1 value from sys_appsetting where variable='CompanyID') order by d.department asc,k.nama asc", "kary")
+        mysqls.DMLQuery("select k.idstaff,k.nama,k.iddepartment,d.department from staff k left join department d on k.iddepartment=d.iddepartment left join position p on k.idposition=p.idposition where k.isdeleted=0 and k.iddepartment not in (select value from sys_appsetting where variable in ('IDSystemDept','IDVendorDept')) order by d.department asc,k.nama asc", "kary")
 
         gcData.DataSource = mysqls.dataTable("kary")
         gvData.BestFitColumns()

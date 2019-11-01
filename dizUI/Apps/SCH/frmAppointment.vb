@@ -129,7 +129,7 @@ Public Class frmAppointment
             Exit Sub
         End If
 
-        mysqls.DMLQuery("select idgeneral as id, generalcode as content from sys_generalcode where gctype='APPVIA'", "appvia")
+        mysqls.DMLQuery("select idgeneral as id, generalcode as content from sys_generalcode where gctype='APPVIA' and idreff=0 order by generalcode asc", "appvia")
         lueBaruAppVia.Properties.DataSource = mysqls.dataTable("appvia")
         lueBaruAppVia.Properties.DisplayMember = "content"
         lueBaruAppVia.Properties.ValueMember = "id"
@@ -140,7 +140,7 @@ Public Class frmAppointment
             Exit Sub
         End If
 
-        mysqls.DMLQuery("select idgeneral as id, generalcode as content from sys_generalcode where gctype='APPVIA'", "appvial")
+        mysqls.DMLQuery("select idgeneral as id, generalcode as content from sys_generalcode where gctype='APPVIA' and idreff=0 order by generalcode asc", "appvial")
         lueLamaAppVia.Properties.DataSource = mysqls.dataTable("appvial")
         lueLamaAppVia.Properties.DisplayMember = "content"
         lueLamaAppVia.Properties.ValueMember = "id"
@@ -151,7 +151,7 @@ Public Class frmAppointment
             Exit Sub
         End If
 
-        mysqls.DMLQuery("select idgeneral as id, generalcode as content from sys_generalcode where gctype='APPTYPE'", "apptype")
+        mysqls.DMLQuery("select idgeneral as id, generalcode as content from sys_generalcode where gctype='APPTYPE' order by generalcode asc", "apptype")
         lueLamaAppType.Properties.DataSource = mysqls.dataTable("apptype")
         lueLamaAppType.Properties.DisplayMember = "content"
         lueLamaAppType.Properties.ValueMember = "id"
@@ -354,7 +354,7 @@ Public Class frmAppointment
         Dim strDate As String = sender.Tag
         Dim dateDate As Date = Strdate2Date(strDate)
         isButton = True
-        dnKalender.DateTime = dateDate
+        dnKalender.EditValue = dateDate
         isButton = False
 
         lueJadwalSesi.Properties.DataSource = Nothing

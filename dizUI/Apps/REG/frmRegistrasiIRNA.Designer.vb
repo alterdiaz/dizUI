@@ -1441,7 +1441,7 @@ Partial Class frmRegistrasiIRNA
         Me.Label6.Name = "Label6"
         Me.Label6.Size = New System.Drawing.Size(94, 14)
         Me.Label6.TabIndex = 21
-        Me.Label6.Text = "Tgl Pendaftaran"
+        Me.Label6.Text = "Tgl Registrasi"
         Me.Label6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
         'Label13

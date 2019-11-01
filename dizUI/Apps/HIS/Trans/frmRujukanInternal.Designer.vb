@@ -51,6 +51,7 @@ Partial Class frmRujukanInternal
         Me.Panel2 = New System.Windows.Forms.Panel()
         Me.Label17 = New System.Windows.Forms.Label()
         Me.tlpRegistrasi = New System.Windows.Forms.TableLayoutPanel()
+        Me.Label1 = New System.Windows.Forms.Label()
         Me.teDeptInduk = New DevExpress.XtraEditors.TextEdit()
         Me.lblDeptInduk = New System.Windows.Forms.Label()
         Me.teNoRegistrasiInduk = New DevExpress.XtraEditors.TextEdit()
@@ -58,7 +59,6 @@ Partial Class frmRujukanInternal
         Me.teTanggalPendaftaran = New DevExpress.XtraEditors.TextEdit()
         Me.Label6 = New System.Windows.Forms.Label()
         Me.Label13 = New System.Windows.Forms.Label()
-        Me.Label1 = New System.Windows.Forms.Label()
         Me.tlpForm.SuspendLayout()
         Me.pTitle.SuspendLayout()
         CType(Me.pMinimize, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -97,11 +97,12 @@ Partial Class frmRujukanInternal
         Me.tlpForm.Location = New System.Drawing.Point(0, 0)
         Me.tlpForm.Margin = New System.Windows.Forms.Padding(0)
         Me.tlpForm.Name = "tlpForm"
-        Me.tlpForm.RowCount = 3
+        Me.tlpForm.RowCount = 4
         Me.tlpForm.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30.0!))
         Me.tlpForm.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30.0!))
         Me.tlpForm.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
-        Me.tlpForm.Size = New System.Drawing.Size(654, 228)
+        Me.tlpForm.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 2.0!))
+        Me.tlpForm.Size = New System.Drawing.Size(644, 230)
         Me.tlpForm.TabIndex = 0
         '
         'pTitle
@@ -114,7 +115,7 @@ Partial Class frmRujukanInternal
         Me.pTitle.Location = New System.Drawing.Point(2, 0)
         Me.pTitle.Margin = New System.Windows.Forms.Padding(0)
         Me.pTitle.Name = "pTitle"
-        Me.pTitle.Size = New System.Drawing.Size(650, 30)
+        Me.pTitle.Size = New System.Drawing.Size(640, 30)
         Me.pTitle.TabIndex = 10
         '
         'lblTitle
@@ -127,7 +128,7 @@ Partial Class frmRujukanInternal
         Me.lblTitle.Margin = New System.Windows.Forms.Padding(0)
         Me.lblTitle.Name = "lblTitle"
         Me.lblTitle.Padding = New System.Windows.Forms.Padding(10, 0, 0, 0)
-        Me.lblTitle.Size = New System.Drawing.Size(560, 30)
+        Me.lblTitle.Size = New System.Drawing.Size(550, 30)
         Me.lblTitle.TabIndex = 6
         Me.lblTitle.Text = "Rujukan Internal"
         Me.lblTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
@@ -137,7 +138,7 @@ Partial Class frmRujukanInternal
         Me.pMinimize.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.pMinimize.Dock = System.Windows.Forms.DockStyle.Right
         Me.pMinimize.Image = Global.dizUI.My.Resources.Resources.min_w
-        Me.pMinimize.Location = New System.Drawing.Point(560, 0)
+        Me.pMinimize.Location = New System.Drawing.Point(550, 0)
         Me.pMinimize.Margin = New System.Windows.Forms.Padding(0)
         Me.pMinimize.Name = "pMinimize"
         Me.pMinimize.Size = New System.Drawing.Size(30, 30)
@@ -150,7 +151,7 @@ Partial Class frmRujukanInternal
         Me.pMaximize.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.pMaximize.Dock = System.Windows.Forms.DockStyle.Right
         Me.pMaximize.Image = Global.dizUI.My.Resources.Resources.max_w
-        Me.pMaximize.Location = New System.Drawing.Point(590, 0)
+        Me.pMaximize.Location = New System.Drawing.Point(580, 0)
         Me.pMaximize.Margin = New System.Windows.Forms.Padding(0)
         Me.pMaximize.Name = "pMaximize"
         Me.pMaximize.Size = New System.Drawing.Size(30, 30)
@@ -163,7 +164,7 @@ Partial Class frmRujukanInternal
         Me.pExit.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.pExit.Dock = System.Windows.Forms.DockStyle.Right
         Me.pExit.Image = Global.dizUI.My.Resources.Resources.exit_w
-        Me.pExit.Location = New System.Drawing.Point(620, 0)
+        Me.pExit.Location = New System.Drawing.Point(610, 0)
         Me.pExit.Margin = New System.Windows.Forms.Padding(0)
         Me.pExit.Name = "pExit"
         Me.pExit.Size = New System.Drawing.Size(30, 30)
@@ -180,7 +181,7 @@ Partial Class frmRujukanInternal
         Me.pHeader.Location = New System.Drawing.Point(2, 30)
         Me.pHeader.Margin = New System.Windows.Forms.Padding(0)
         Me.pHeader.Name = "pHeader"
-        Me.pHeader.Size = New System.Drawing.Size(650, 30)
+        Me.pHeader.Size = New System.Drawing.Size(640, 30)
         Me.pHeader.TabIndex = 103
         '
         'btnSave
@@ -192,7 +193,7 @@ Partial Class frmRujukanInternal
         Me.btnSave.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DarkGray
         Me.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnSave.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnSave.Location = New System.Drawing.Point(570, 0)
+        Me.btnSave.Location = New System.Drawing.Point(560, 0)
         Me.btnSave.Name = "btnSave"
         Me.btnSave.Size = New System.Drawing.Size(80, 30)
         Me.btnSave.TabIndex = 3
@@ -209,19 +210,19 @@ Partial Class frmRujukanInternal
         Me.pBody.Location = New System.Drawing.Point(2, 60)
         Me.pBody.Margin = New System.Windows.Forms.Padding(0)
         Me.pBody.Name = "pBody"
-        Me.pBody.Size = New System.Drawing.Size(650, 168)
+        Me.pBody.Size = New System.Drawing.Size(640, 168)
         Me.pBody.TabIndex = 7
         '
         'tlpField
         '
         Me.tlpField.AutoSize = True
-        Me.tlpField.ColumnCount = 3
-        Me.tlpField.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
+        Me.tlpField.ColumnCount = 1
         Me.tlpField.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 640.0!))
-        Me.tlpField.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
-        Me.tlpField.Controls.Add(Me.tlpKunjungan, 1, 4)
-        Me.tlpField.Controls.Add(Me.Panel2, 1, 3)
-        Me.tlpField.Controls.Add(Me.tlpRegistrasi, 1, 1)
+        Me.tlpField.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
+        Me.tlpField.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
+        Me.tlpField.Controls.Add(Me.tlpKunjungan, 0, 4)
+        Me.tlpField.Controls.Add(Me.Panel2, 0, 3)
+        Me.tlpField.Controls.Add(Me.tlpRegistrasi, 0, 1)
         Me.tlpField.Dock = System.Windows.Forms.DockStyle.Top
         Me.tlpField.Location = New System.Drawing.Point(0, 0)
         Me.tlpField.Margin = New System.Windows.Forms.Padding(0)
@@ -233,8 +234,7 @@ Partial Class frmRujukanInternal
         Me.tlpField.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30.0!))
         Me.tlpField.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 72.0!))
         Me.tlpField.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 6.0!))
-        Me.tlpField.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
-        Me.tlpField.Size = New System.Drawing.Size(650, 168)
+        Me.tlpField.Size = New System.Drawing.Size(640, 168)
         Me.tlpField.TabIndex = 102
         '
         'tlpKunjungan
@@ -242,9 +242,9 @@ Partial Class frmRujukanInternal
         Me.tlpKunjungan.AutoSize = True
         Me.tlpKunjungan.ColumnCount = 4
         Me.tlpKunjungan.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 140.0!))
-        Me.tlpKunjungan.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 160.0!))
+        Me.tlpKunjungan.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 190.0!))
         Me.tlpKunjungan.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 120.0!))
-        Me.tlpKunjungan.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 220.0!))
+        Me.tlpKunjungan.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 190.0!))
         Me.tlpKunjungan.Controls.Add(Me.lueParamedis, 1, 0)
         Me.tlpKunjungan.Controls.Add(Me.lueODS, 3, 2)
         Me.tlpKunjungan.Controls.Add(Me.Label4, 2, 2)
@@ -257,7 +257,7 @@ Partial Class frmRujukanInternal
         Me.tlpKunjungan.Controls.Add(Me.Label19, 0, 2)
         Me.tlpKunjungan.Controls.Add(Me.lueRuang, 3, 1)
         Me.tlpKunjungan.Controls.Add(Me.Label21, 2, 1)
-        Me.tlpKunjungan.Location = New System.Drawing.Point(5, 90)
+        Me.tlpKunjungan.Location = New System.Drawing.Point(0, 90)
         Me.tlpKunjungan.Margin = New System.Windows.Forms.Padding(0)
         Me.tlpKunjungan.Name = "tlpKunjungan"
         Me.tlpKunjungan.RowCount = 3
@@ -328,7 +328,7 @@ Partial Class frmRujukanInternal
         'lueODS
         '
         Me.lueODS.Anchor = System.Windows.Forms.AnchorStyles.Left
-        Me.lueODS.Location = New System.Drawing.Point(420, 50)
+        Me.lueODS.Location = New System.Drawing.Point(450, 50)
         Me.lueODS.Margin = New System.Windows.Forms.Padding(0)
         Me.lueODS.Name = "lueODS"
         Me.lueODS.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[False]
@@ -355,7 +355,7 @@ Partial Class frmRujukanInternal
         Me.Label4.Anchor = System.Windows.Forms.AnchorStyles.Right
         Me.Label4.AutoSize = True
         Me.Label4.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label4.Location = New System.Drawing.Point(349, 53)
+        Me.Label4.Location = New System.Drawing.Point(379, 53)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(68, 14)
         Me.Label4.TabIndex = 25
@@ -398,7 +398,7 @@ Partial Class frmRujukanInternal
         'lueSpesialis
         '
         Me.lueSpesialis.Anchor = System.Windows.Forms.AnchorStyles.Left
-        Me.lueSpesialis.Location = New System.Drawing.Point(420, 2)
+        Me.lueSpesialis.Location = New System.Drawing.Point(450, 2)
         Me.lueSpesialis.Margin = New System.Windows.Forms.Padding(0)
         Me.lueSpesialis.Name = "lueSpesialis"
         Me.lueSpesialis.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[False]
@@ -412,7 +412,7 @@ Partial Class frmRujukanInternal
         Me.lueSpesialis.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id", "ID", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default], DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("content", "Content")})
         Me.lueSpesialis.Properties.NullText = "[Isian belum dipilih]"
         Me.lueSpesialis.Properties.NullValuePrompt = "[Isian belum dipilih]"
-        Me.lueSpesialis.Size = New System.Drawing.Size(220, 20)
+        Me.lueSpesialis.Size = New System.Drawing.Size(183, 20)
         Me.lueSpesialis.TabIndex = 15
         Me.lueSpesialis.Tag = "idspesialis"
         '
@@ -433,7 +433,7 @@ Partial Class frmRujukanInternal
         Me.Label20.Anchor = System.Windows.Forms.AnchorStyles.Right
         Me.Label20.AutoSize = True
         Me.Label20.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label20.Location = New System.Drawing.Point(354, 5)
+        Me.Label20.Location = New System.Drawing.Point(384, 5)
         Me.Label20.Name = "Label20"
         Me.Label20.Size = New System.Drawing.Size(63, 14)
         Me.Label20.TabIndex = 23
@@ -474,7 +474,7 @@ Partial Class frmRujukanInternal
         'lueRuang
         '
         Me.lueRuang.Anchor = System.Windows.Forms.AnchorStyles.Left
-        Me.lueRuang.Location = New System.Drawing.Point(420, 26)
+        Me.lueRuang.Location = New System.Drawing.Point(450, 26)
         Me.lueRuang.Margin = New System.Windows.Forms.Padding(0)
         Me.lueRuang.Name = "lueRuang"
         Me.lueRuang.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[False]
@@ -488,7 +488,7 @@ Partial Class frmRujukanInternal
         Me.lueRuang.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id", "ID", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default], DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("content", "Content")})
         Me.lueRuang.Properties.NullText = "[Isian belum dipilih]"
         Me.lueRuang.Properties.NullValuePrompt = "[Isian belum dipilih]"
-        Me.lueRuang.Size = New System.Drawing.Size(220, 20)
+        Me.lueRuang.Size = New System.Drawing.Size(183, 20)
         Me.lueRuang.TabIndex = 14
         Me.lueRuang.Tag = "idlokasi"
         '
@@ -497,7 +497,7 @@ Partial Class frmRujukanInternal
         Me.Label21.Anchor = System.Windows.Forms.AnchorStyles.Right
         Me.Label21.AutoSize = True
         Me.Label21.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label21.Location = New System.Drawing.Point(376, 29)
+        Me.Label21.Location = New System.Drawing.Point(406, 29)
         Me.Label21.Name = "Label21"
         Me.Label21.Size = New System.Drawing.Size(41, 14)
         Me.Label21.TabIndex = 24
@@ -508,8 +508,9 @@ Partial Class frmRujukanInternal
         '
         Me.Panel2.BackColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer))
         Me.Panel2.Controls.Add(Me.Label17)
+        Me.Panel2.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Panel2.ForeColor = System.Drawing.Color.White
-        Me.Panel2.Location = New System.Drawing.Point(5, 60)
+        Me.Panel2.Location = New System.Drawing.Point(0, 60)
         Me.Panel2.Margin = New System.Windows.Forms.Padding(0)
         Me.Panel2.Name = "Panel2"
         Me.Panel2.Size = New System.Drawing.Size(640, 30)
@@ -543,7 +544,7 @@ Partial Class frmRujukanInternal
         Me.tlpRegistrasi.Controls.Add(Me.Label6, 2, 0)
         Me.tlpRegistrasi.Controls.Add(Me.Label13, 0, 0)
         Me.tlpRegistrasi.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.tlpRegistrasi.Location = New System.Drawing.Point(5, 6)
+        Me.tlpRegistrasi.Location = New System.Drawing.Point(0, 6)
         Me.tlpRegistrasi.Margin = New System.Windows.Forms.Padding(0)
         Me.tlpRegistrasi.Name = "tlpRegistrasi"
         Me.tlpRegistrasi.RowCount = 2
@@ -551,6 +552,18 @@ Partial Class frmRujukanInternal
         Me.tlpRegistrasi.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 24.0!))
         Me.tlpRegistrasi.Size = New System.Drawing.Size(640, 48)
         Me.tlpRegistrasi.TabIndex = 102
+        '
+        'Label1
+        '
+        Me.Label1.Anchor = System.Windows.Forms.AnchorStyles.Right
+        Me.Label1.AutoSize = True
+        Me.Label1.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label1.Location = New System.Drawing.Point(22, 29)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(115, 14)
+        Me.Label1.TabIndex = 24
+        Me.Label1.Text = "No. Registrasi Induk"
+        Me.Label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
         'teDeptInduk
         '
@@ -645,11 +658,11 @@ Partial Class frmRujukanInternal
         Me.Label6.Anchor = System.Windows.Forms.AnchorStyles.Right
         Me.Label6.AutoSize = True
         Me.Label6.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label6.Location = New System.Drawing.Point(353, 5)
+        Me.Label6.Location = New System.Drawing.Point(369, 5)
         Me.Label6.Name = "Label6"
-        Me.Label6.Size = New System.Drawing.Size(94, 14)
+        Me.Label6.Size = New System.Drawing.Size(78, 14)
         Me.Label6.TabIndex = 21
-        Me.Label6.Text = "Tgl Pendaftaran"
+        Me.Label6.Text = "Tgl Registrasi"
         Me.Label6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
         'Label13
@@ -664,24 +677,12 @@ Partial Class frmRujukanInternal
         Me.Label13.Text = "No. Registrasi"
         Me.Label13.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
-        'Label1
-        '
-        Me.Label1.Anchor = System.Windows.Forms.AnchorStyles.Right
-        Me.Label1.AutoSize = True
-        Me.Label1.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label1.Location = New System.Drawing.Point(22, 29)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(115, 14)
-        Me.Label1.TabIndex = 24
-        Me.Label1.Text = "No. Registrasi Induk"
-        Me.Label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        '
         'frmRujukanInternal
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer))
-        Me.ClientSize = New System.Drawing.Size(654, 228)
+        Me.ClientSize = New System.Drawing.Size(644, 230)
         Me.Controls.Add(Me.tlpForm)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
         Me.Name = "frmRujukanInternal"

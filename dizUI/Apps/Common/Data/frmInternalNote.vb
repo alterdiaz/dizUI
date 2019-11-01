@@ -134,8 +134,24 @@ Public Class frmInternalNote
         meRemarks.EditValue = Nothing
 
         btnAuto_Click(btnAuto, Nothing)
+
+        sqls.DMLQuery("select isnull(isnotereview,0) as isnotereview,isnull(isnotedelete,0) as isnotedelete from sys_user where iduser='" & userid & "'", "getrd")
+        isnotereview = sqls.getDataSet("getrd", 0, "isnotereview")
+        isnotedelete = sqls.getDataSet("getrd", 0, "isnotedelete")
+        If isnotereview = 0 Then
+            btnProses.Enabled = False
+        Else
+            btnProses.Enabled = True
+        End If
+        If isnotedelete = 0 Then
+            btnDelete.Enabled = False
+        Else
+            btnDelete.Enabled = True
+        End If
     End Sub
 
+    Private isnotereview As Long = 0
+    Private isnotedelete As Long = 0
     Private Sub loadLOV()
         Dim sqls As New SQLs(dbstring)
         sqls.DMLQuery("select idunit as id,unit as content from unit where idunit not in (select value from sys_appsetting where variable in ('IDSystemUnit','IDVendorUnit')) and idunit<>'0' and isdeleted=0 order by unit asc", "unit")
@@ -170,6 +186,7 @@ Public Class frmInternalNote
         meRemarks.EditValue = Nothing
         iddata = ""
         btnDelete.Text = "HAPUS"
+        btnSave.Enabled = True
         statdata = statusData.Baru
     End Sub
 
@@ -224,16 +241,33 @@ Public Class frmInternalNote
             slueUnit.EditValue = sqls.getDataSet("cekuserstaff", 0, "idunit")
             slueDept.EditValue = sqls.getDataSet("cekuserstaff", 0, "iddepartment")
             idstaff = sqls.getDataSet("cekuserstaff", 0, "idstaff")
+
+            sqls.DMLQuery("select isnull(isnotereview,0) as isnotereview,isnull(isnotedelete,0) as isnotedelete from sys_user where iduser='" & lueUsername.EditValue & "'", "getrd")
+            isnotereview = sqls.getDataSet("getrd", 0, "isnotereview")
+            isnotedelete = sqls.getDataSet("getrd", 0, "isnotedelete")
+
+            btnRefresh_Click(btnRefresh, Nothing)
         End If
     End Sub
 
     Private Sub loadGrid(idunit As String, iddept As String, tglentry As String)
         Dim sqls As New SQLs(dbstring)
-        sqls.DMLQuery("select ni.idinternalnote,ni.judul,ni.remarks as isi,convert(varchar,ni.createddate,105)+' '+convert(varchar,ni.createddate,108) as notedate,ni.isdeleted,ni.isreviewed,case when reviewedby is null then 'Dibuat '+convert(varchar,ni.createddate,105)+' '+convert(varchar,ni.createddate,108) +' '+ uc.username else 'Dibuat '+convert(varchar,ni.createddate,105)+' '+convert(varchar,ni.createddate,108) +' '+ uc.username + ' Direview '+convert(varchar,ni.revieweddate,105)+' '+convert(varchar,ni.revieweddate,108) +' '+ ur.username end as note,'JUDUL ' + ni.judul + char(13) + char(10) + ni.remarks as catatan from internalnote ni left join sys_user uc on ni.createdby=uc.iduser left join sys_user ur on ni.reviewedby=ur.iduser where ni.isdeleted=0 and ni.idunit='" & idunit & "' and ni.iddepartment='" & iddept & "' and convert(varchar,ni.createddate,105)='" & tglentry & "' order by ni.createddate desc", "getdata")
+        Dim iddept2 As New List(Of String)
+        Dim iddepttmp As String = ""
+        sqls.DMLQuery("WITH DepartmentCTE AS ( SELECT iddepartment, department, idparent,1 as Level FROM dbo.department WHERE iddepartment='" & iddept & "' UNION ALL SELECT a.iddepartment, a.department, a.idparent,Level+1 FROM dbo.department a INNER JOIN DepartmentCTE s ON a.idparent = s.iddepartment ) SELECT iddepartment FROM DepartmentCTE", "alldept")
+        For i As Integer = 0 To sqls.getDataSet("alldept") - 1
+            iddept2.Add("'" & sqls.getDataSet("alldept", i, "iddepartment").ToString & "'")
+            iddepttmp &= ("'" & sqls.getDataSet("alldept", i, "iddepartment").ToString & "'")
+            If i <> sqls.getDataSet("alldept") - 1 Then
+                iddepttmp &= ","
+            End If
+        Next
+
+        sqls.DMLQuery("select ni.idinternalnote,ni.iddepartment,ni.judul,ni.remarks as isi,convert(varchar,ni.createddate,105)+' '+convert(varchar,ni.createddate,108) as notedate,ni.isdeleted,ni.isreviewed,case when reviewedby is null then d.department + ' Dibuat '+convert(varchar,ni.createddate,105)+' '+convert(varchar,ni.createddate,108) +' '+ uc.username else d.department + ' Dibuat '+convert(varchar,ni.createddate,105)+' '+convert(varchar,ni.createddate,108) +' '+ uc.username + ' Direview '+convert(varchar,ni.revieweddate,105)+' '+convert(varchar,ni.revieweddate,108) +' '+ ur.username end as note,'JUDUL ' + ni.judul + char(13) + char(10) + ni.remarks as catatan from internalnote ni left join department d on ni.iddepartment=d.iddepartment left join sys_user uc on ni.createdby=uc.iduser left join sys_user ur on ni.reviewedby=ur.iduser where ni.isdeleted=0 and ni.idunit='" & idunit & "' and ni.iddepartment in (" & iddepttmp & ") and convert(varchar,ni.createddate,105)='" & tglentry & "' order by ni.createddate desc", "getdata")
         RemoveHandler gvData.FocusedRowChanged, AddressOf gvData_FocusedRowChanged
         gcData.DataSource = sqls.dataTable("getdata")
         gvData.BestFitColumns()
-        gvData.PreviewIndent = GridColumn2.Width
+        gvData.PreviewIndent = 0 'GridColumn2.Width
         gvData.ViewCaption = "Catatan Internal " & tglentry.Split("-")(0) & " " & NamaBulan(CInt(tglentry.Split("-")(1))) & " " & tglentry.Split("-")(2)
         AddHandler gvData.FocusedRowChanged, AddressOf gvData_FocusedRowChanged
     End Sub
@@ -272,13 +306,14 @@ Public Class frmInternalNote
             iddata = dr("idinternalnote")
             Dim sqls As New SQLs(dbstring)
             sqls.DMLQuery("update internalnote set isdeleted=1,updateddate=getdate(),updatedby='" & userid & "' where idinternalnote='" & iddata & "'", False)
-            btnDelete.Text = "AKTIF"
+            'btnDelete.Text = "AKTIF"
         Else
             iddata = dr("idinternalnote")
             Dim sqls As New SQLs(dbstring)
             sqls.DMLQuery("update internalnote set isdeleted=0,updateddate=getdate(),updatedby='" & userid & "' where idinternalnote='" & iddata & "'", False)
-            btnDelete.Text = "HAPUS"
+            'btnDelete.Text = "HAPUS"
         End If
+        btnNew_Click(btnNew, Nothing)
         btnRefresh_Click(btnRefresh, Nothing)
     End Sub
 
@@ -311,6 +346,9 @@ Public Class frmInternalNote
         If gvData.RowCount = 1 Then gvData.FocusedRowHandle = 0
 
         Dim dr As DataRow = gvData.GetDataRow(gvData.FocusedRowHandle)
+        If dr("iddepartment") <> slueDept.EditValue Then
+            Exit Sub
+        End If
         If dr("isreviewed") = 0 Then
             iddata = dr("idinternalnote")
         Dim sqls As New SQLs(dbstring)
@@ -331,7 +369,11 @@ Public Class frmInternalNote
 
     Private Sub gvData_FocusedRowChanged(sender As Object, e As FocusedRowChangedEventArgs) Handles gvData.FocusedRowChanged
         If e.FocusedRowHandle < 0 Then Exit Sub
-        Dim dr As DataRow = gvData.GetDataRow(e.FocusedRowHandle)
+        Dim idxfocus As Integer = e.FocusedRowHandle
+        If gvData.RowCount = 1 Then
+            idxfocus = 0
+        End If
+        Dim dr As DataRow = gvData.GetDataRow(idxfocus)
         If dr("isreviewed") = 0 Then
             iddata = dr("idinternalnote")
             teJudul.EditValue = dr("judul")
@@ -340,14 +382,30 @@ Public Class frmInternalNote
             btnSave.Enabled = True
             btnProses.Enabled = True
             statdata = statusData.Edit
+
+            If isnotereview = 0 Then
+                btnProses.Enabled = False
+            Else
+                btnProses.Enabled = True
+            End If
         Else
+            iddata = dr("idinternalnote")
+            teJudul.EditValue = dr("judul")
+            meRemarks.EditValue = dr("isi")
+            deTanggal.EditValue = Strdatetime2Datetime(dr("notedate"))
             btnSave.Enabled = False
             btnProses.Enabled = False
+            statdata = statusData.Edit
         End If
         If dr("isdeleted") = 0 Then
             btnDelete.Text = "HAPUS"
         Else
             btnDelete.Text = "AKTIF"
+        End If
+        If isnotedelete = 0 Then
+            btnDelete.Enabled = False
+        Else
+            btnDelete.Enabled = True
         End If
     End Sub
 

@@ -96,6 +96,18 @@ Partial Class frmRegistrasi
         Me.Panel4 = New System.Windows.Forms.Panel()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.tlpAsal = New System.Windows.Forms.TableLayoutPanel()
+        Me.lueAsalPx4 = New DevExpress.XtraEditors.SearchLookUpEdit()
+        Me.GridView3 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.lueAsalPx3 = New DevExpress.XtraEditors.SearchLookUpEdit()
+        Me.GridView2 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.lueAsalPx2 = New DevExpress.XtraEditors.SearchLookUpEdit()
+        Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.Label33 = New System.Windows.Forms.Label()
         Me.lblAsalPx2 = New System.Windows.Forms.Label()
         Me.lueAsalPx = New DevExpress.XtraEditors.LookUpEdit()
@@ -109,6 +121,14 @@ Partial Class frmRegistrasi
         Me.Label10 = New System.Windows.Forms.Label()
         Me.meAlamat = New DevExpress.XtraEditors.MemoEdit()
         Me.tlpPembayar = New System.Windows.Forms.TableLayoutPanel()
+        Me.luePayer = New DevExpress.XtraEditors.SearchLookUpEdit()
+        Me.GridView5 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.lueAsuransi = New DevExpress.XtraEditors.SearchLookUpEdit()
+        Me.GridView4 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.lueJenisPembayar = New DevExpress.XtraEditors.LookUpEdit()
         Me.Label16 = New System.Windows.Forms.Label()
         Me.lblAsuransi = New System.Windows.Forms.Label()
@@ -127,26 +147,6 @@ Partial Class frmRegistrasi
         Me.btnMonRegHarian = New System.Windows.Forms.Button()
         Me.btnMonRegister = New System.Windows.Forms.Button()
         Me.GroupControl1 = New DevExpress.XtraEditors.GroupControl()
-        Me.lueAsalPx2 = New DevExpress.XtraEditors.SearchLookUpEdit()
-        Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.lueAsalPx3 = New DevExpress.XtraEditors.SearchLookUpEdit()
-        Me.GridView2 = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.lueAsalPx4 = New DevExpress.XtraEditors.SearchLookUpEdit()
-        Me.GridView3 = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.lueAsuransi = New DevExpress.XtraEditors.SearchLookUpEdit()
-        Me.GridView4 = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.luePayer = New DevExpress.XtraEditors.SearchLookUpEdit()
-        Me.GridView5 = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.tlpForm.SuspendLayout()
         Me.pTitle.SuspendLayout()
         CType(Me.pMinimize, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -186,26 +186,26 @@ Partial Class frmRegistrasi
         CType(Me.teTanggalPendaftaran.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel4.SuspendLayout()
         Me.tlpAsal.SuspendLayout()
+        CType(Me.lueAsalPx4.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridView3, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.lueAsalPx3.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridView2, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.lueAsalPx2.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.lueAsalPx.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel3.SuspendLayout()
         Me.tlpAlamat.SuspendLayout()
         CType(Me.meAlamat.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.tlpPembayar.SuspendLayout()
+        CType(Me.luePayer.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridView5, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.lueAsuransi.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridView4, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.lueJenisPembayar.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.teNoAsuransi.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.tlpSidebar.SuspendLayout()
         CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl1.SuspendLayout()
-        CType(Me.lueAsalPx2.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.lueAsalPx3.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GridView2, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.lueAsalPx4.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GridView3, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.lueAsuransi.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GridView4, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.luePayer.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GridView5, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'tlpForm
@@ -317,7 +317,7 @@ Partial Class frmRegistrasi
         '
         'btnSwap
         '
-        Me.btnSwap.BackColor = System.Drawing.Color.green
+        Me.btnSwap.BackColor = System.Drawing.Color.Green
         Me.btnSwap.Dock = System.Windows.Forms.DockStyle.Left
         Me.btnSwap.FlatAppearance.BorderSize = 0
         Me.btnSwap.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DimGray
@@ -424,7 +424,7 @@ Partial Class frmRegistrasi
         '
         'btnSave
         '
-        Me.btnSave.BackColor = System.Drawing.Color.green
+        Me.btnSave.BackColor = System.Drawing.Color.Green
         Me.btnSave.Dock = System.Windows.Forms.DockStyle.Right
         Me.btnSave.FlatAppearance.BorderSize = 0
         Me.btnSave.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DimGray
@@ -1443,11 +1443,11 @@ Partial Class frmRegistrasi
         Me.Label6.Anchor = System.Windows.Forms.AnchorStyles.Right
         Me.Label6.AutoSize = True
         Me.Label6.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label6.Location = New System.Drawing.Point(353, 5)
+        Me.Label6.Location = New System.Drawing.Point(369, 5)
         Me.Label6.Name = "Label6"
-        Me.Label6.Size = New System.Drawing.Size(94, 14)
+        Me.Label6.Size = New System.Drawing.Size(78, 14)
         Me.Label6.TabIndex = 21
-        Me.Label6.Text = "Tgl Pendaftaran"
+        Me.Label6.Text = "Tgl Registrasi"
         Me.Label6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
         'Label13
@@ -1510,6 +1510,180 @@ Partial Class frmRegistrasi
         Me.tlpAsal.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 24.0!))
         Me.tlpAsal.Size = New System.Drawing.Size(640, 48)
         Me.tlpAsal.TabIndex = 101
+        '
+        'lueAsalPx4
+        '
+        Me.lueAsalPx4.Anchor = System.Windows.Forms.AnchorStyles.Left
+        Me.lueAsalPx4.Location = New System.Drawing.Point(420, 26)
+        Me.lueAsalPx4.Margin = New System.Windows.Forms.Padding(0)
+        Me.lueAsalPx4.Name = "lueAsalPx4"
+        Me.lueAsalPx4.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.lueAsalPx4.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 9.0!)
+        Me.lueAsalPx4.Properties.Appearance.ForeColor = System.Drawing.Color.Black
+        Me.lueAsalPx4.Properties.Appearance.Options.UseBackColor = True
+        Me.lueAsalPx4.Properties.Appearance.Options.UseFont = True
+        Me.lueAsalPx4.Properties.Appearance.Options.UseForeColor = True
+        Me.lueAsalPx4.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple
+        Me.lueAsalPx4.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.lueAsalPx4.Properties.NullText = "[Isian belum dipilih]"
+        Me.lueAsalPx4.Properties.NullValuePrompt = "[Isian belum dipilih]"
+        Me.lueAsalPx4.Properties.PopupBorderStyle = DevExpress.XtraEditors.Controls.PopupBorderStyles.Simple
+        Me.lueAsalPx4.Properties.PopupFindMode = DevExpress.XtraEditors.FindMode.Always
+        Me.lueAsalPx4.Properties.PopupView = Me.GridView3
+        Me.lueAsalPx4.Properties.ShowFooter = False
+        Me.lueAsalPx4.Properties.ShowPopupShadow = False
+        Me.lueAsalPx4.Properties.ViewType = DevExpress.XtraEditors.Repository.GridLookUpViewType.GridView
+        Me.lueAsalPx4.Size = New System.Drawing.Size(220, 20)
+        Me.lueAsalPx4.TabIndex = 50
+        Me.lueAsalPx4.Tag = "iddokterrujukan"
+        '
+        'GridView3
+        '
+        Me.GridView3.Appearance.EvenRow.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.GridView3.Appearance.EvenRow.Options.UseBackColor = True
+        Me.GridView3.Appearance.OddRow.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer))
+        Me.GridView3.Appearance.OddRow.Options.UseBackColor = True
+        Me.GridView3.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn5, Me.GridColumn6})
+        Me.GridView3.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.GridView3.Name = "GridView3"
+        Me.GridView3.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.GridView3.OptionsView.EnableAppearanceEvenRow = True
+        Me.GridView3.OptionsView.EnableAppearanceOddRow = True
+        Me.GridView3.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn5
+        '
+        Me.GridColumn5.Caption = "ID"
+        Me.GridColumn5.FieldName = "id"
+        Me.GridColumn5.Name = "GridColumn5"
+        Me.GridColumn5.OptionsColumn.AllowEdit = False
+        Me.GridColumn5.OptionsColumn.ReadOnly = True
+        '
+        'GridColumn6
+        '
+        Me.GridColumn6.Caption = "Content"
+        Me.GridColumn6.FieldName = "content"
+        Me.GridColumn6.Name = "GridColumn6"
+        Me.GridColumn6.OptionsColumn.AllowEdit = False
+        Me.GridColumn6.OptionsColumn.ReadOnly = True
+        Me.GridColumn6.Visible = True
+        Me.GridColumn6.VisibleIndex = 0
+        '
+        'lueAsalPx3
+        '
+        Me.lueAsalPx3.Anchor = System.Windows.Forms.AnchorStyles.Left
+        Me.lueAsalPx3.Location = New System.Drawing.Point(420, 2)
+        Me.lueAsalPx3.Margin = New System.Windows.Forms.Padding(0)
+        Me.lueAsalPx3.Name = "lueAsalPx3"
+        Me.lueAsalPx3.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.lueAsalPx3.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 9.0!)
+        Me.lueAsalPx3.Properties.Appearance.ForeColor = System.Drawing.Color.Black
+        Me.lueAsalPx3.Properties.Appearance.Options.UseBackColor = True
+        Me.lueAsalPx3.Properties.Appearance.Options.UseFont = True
+        Me.lueAsalPx3.Properties.Appearance.Options.UseForeColor = True
+        Me.lueAsalPx3.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple
+        Me.lueAsalPx3.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.lueAsalPx3.Properties.NullText = "[Isian belum dipilih]"
+        Me.lueAsalPx3.Properties.NullValuePrompt = "[Isian belum dipilih]"
+        Me.lueAsalPx3.Properties.PopupBorderStyle = DevExpress.XtraEditors.Controls.PopupBorderStyles.Simple
+        Me.lueAsalPx3.Properties.PopupFindMode = DevExpress.XtraEditors.FindMode.Always
+        Me.lueAsalPx3.Properties.PopupView = Me.GridView2
+        Me.lueAsalPx3.Properties.ShowFooter = False
+        Me.lueAsalPx3.Properties.ShowPopupShadow = False
+        Me.lueAsalPx3.Properties.ViewType = DevExpress.XtraEditors.Repository.GridLookUpViewType.GridView
+        Me.lueAsalPx3.Size = New System.Drawing.Size(220, 20)
+        Me.lueAsalPx3.TabIndex = 50
+        Me.lueAsalPx3.Tag = "asalpx3"
+        '
+        'GridView2
+        '
+        Me.GridView2.Appearance.EvenRow.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.GridView2.Appearance.EvenRow.Options.UseBackColor = True
+        Me.GridView2.Appearance.OddRow.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer))
+        Me.GridView2.Appearance.OddRow.Options.UseBackColor = True
+        Me.GridView2.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn3, Me.GridColumn4})
+        Me.GridView2.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.GridView2.Name = "GridView2"
+        Me.GridView2.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.GridView2.OptionsView.EnableAppearanceEvenRow = True
+        Me.GridView2.OptionsView.EnableAppearanceOddRow = True
+        Me.GridView2.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn3
+        '
+        Me.GridColumn3.Caption = "ID"
+        Me.GridColumn3.FieldName = "id"
+        Me.GridColumn3.Name = "GridColumn3"
+        Me.GridColumn3.OptionsColumn.AllowEdit = False
+        Me.GridColumn3.OptionsColumn.ReadOnly = True
+        '
+        'GridColumn4
+        '
+        Me.GridColumn4.Caption = "Content"
+        Me.GridColumn4.FieldName = "content"
+        Me.GridColumn4.Name = "GridColumn4"
+        Me.GridColumn4.OptionsColumn.AllowEdit = False
+        Me.GridColumn4.OptionsColumn.ReadOnly = True
+        Me.GridColumn4.Visible = True
+        Me.GridColumn4.VisibleIndex = 0
+        '
+        'lueAsalPx2
+        '
+        Me.lueAsalPx2.Anchor = System.Windows.Forms.AnchorStyles.Left
+        Me.lueAsalPx2.Location = New System.Drawing.Point(140, 26)
+        Me.lueAsalPx2.Margin = New System.Windows.Forms.Padding(0)
+        Me.lueAsalPx2.Name = "lueAsalPx2"
+        Me.lueAsalPx2.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.lueAsalPx2.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 9.0!)
+        Me.lueAsalPx2.Properties.Appearance.ForeColor = System.Drawing.Color.Black
+        Me.lueAsalPx2.Properties.Appearance.Options.UseBackColor = True
+        Me.lueAsalPx2.Properties.Appearance.Options.UseFont = True
+        Me.lueAsalPx2.Properties.Appearance.Options.UseForeColor = True
+        Me.lueAsalPx2.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple
+        Me.lueAsalPx2.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.lueAsalPx2.Properties.NullText = "[Isian belum dipilih]"
+        Me.lueAsalPx2.Properties.NullValuePrompt = "[Isian belum dipilih]"
+        Me.lueAsalPx2.Properties.PopupBorderStyle = DevExpress.XtraEditors.Controls.PopupBorderStyles.Simple
+        Me.lueAsalPx2.Properties.PopupFindMode = DevExpress.XtraEditors.FindMode.Always
+        Me.lueAsalPx2.Properties.PopupView = Me.GridView1
+        Me.lueAsalPx2.Properties.ShowFooter = False
+        Me.lueAsalPx2.Properties.ShowPopupShadow = False
+        Me.lueAsalPx2.Properties.ViewType = DevExpress.XtraEditors.Repository.GridLookUpViewType.GridView
+        Me.lueAsalPx2.Size = New System.Drawing.Size(160, 20)
+        Me.lueAsalPx2.TabIndex = 49
+        Me.lueAsalPx2.Tag = "asalpx2"
+        '
+        'GridView1
+        '
+        Me.GridView1.Appearance.EvenRow.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.GridView1.Appearance.EvenRow.Options.UseBackColor = True
+        Me.GridView1.Appearance.OddRow.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer))
+        Me.GridView1.Appearance.OddRow.Options.UseBackColor = True
+        Me.GridView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2})
+        Me.GridView1.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.GridView1.Name = "GridView1"
+        Me.GridView1.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.GridView1.OptionsView.EnableAppearanceEvenRow = True
+        Me.GridView1.OptionsView.EnableAppearanceOddRow = True
+        Me.GridView1.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn1
+        '
+        Me.GridColumn1.Caption = "ID"
+        Me.GridColumn1.FieldName = "id"
+        Me.GridColumn1.Name = "GridColumn1"
+        Me.GridColumn1.OptionsColumn.AllowEdit = False
+        Me.GridColumn1.OptionsColumn.ReadOnly = True
+        '
+        'GridColumn2
+        '
+        Me.GridColumn2.Caption = "Content"
+        Me.GridColumn2.FieldName = "content"
+        Me.GridColumn2.Name = "GridColumn2"
+        Me.GridColumn2.OptionsColumn.AllowEdit = False
+        Me.GridColumn2.OptionsColumn.ReadOnly = True
+        Me.GridColumn2.Visible = True
+        Me.GridColumn2.VisibleIndex = 0
         '
         'Label33
         '
@@ -1715,6 +1889,122 @@ Partial Class frmRegistrasi
         Me.tlpPembayar.Size = New System.Drawing.Size(640, 48)
         Me.tlpPembayar.TabIndex = 104
         '
+        'luePayer
+        '
+        Me.luePayer.Anchor = System.Windows.Forms.AnchorStyles.Left
+        Me.luePayer.Location = New System.Drawing.Point(420, 2)
+        Me.luePayer.Margin = New System.Windows.Forms.Padding(0)
+        Me.luePayer.Name = "luePayer"
+        Me.luePayer.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.luePayer.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 9.0!)
+        Me.luePayer.Properties.Appearance.ForeColor = System.Drawing.Color.Black
+        Me.luePayer.Properties.Appearance.Options.UseBackColor = True
+        Me.luePayer.Properties.Appearance.Options.UseFont = True
+        Me.luePayer.Properties.Appearance.Options.UseForeColor = True
+        Me.luePayer.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple
+        Me.luePayer.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.luePayer.Properties.NullText = "[Isian belum dipilih]"
+        Me.luePayer.Properties.NullValuePrompt = "[Isian belum dipilih]"
+        Me.luePayer.Properties.PopupBorderStyle = DevExpress.XtraEditors.Controls.PopupBorderStyles.Simple
+        Me.luePayer.Properties.PopupFindMode = DevExpress.XtraEditors.FindMode.Always
+        Me.luePayer.Properties.PopupView = Me.GridView5
+        Me.luePayer.Properties.ShowFooter = False
+        Me.luePayer.Properties.ShowPopupShadow = False
+        Me.luePayer.Properties.ViewType = DevExpress.XtraEditors.Repository.GridLookUpViewType.GridView
+        Me.luePayer.Size = New System.Drawing.Size(220, 20)
+        Me.luePayer.TabIndex = 52
+        Me.luePayer.Tag = "idpayer"
+        '
+        'GridView5
+        '
+        Me.GridView5.Appearance.EvenRow.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.GridView5.Appearance.EvenRow.Options.UseBackColor = True
+        Me.GridView5.Appearance.OddRow.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer))
+        Me.GridView5.Appearance.OddRow.Options.UseBackColor = True
+        Me.GridView5.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn9, Me.GridColumn10})
+        Me.GridView5.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.GridView5.Name = "GridView5"
+        Me.GridView5.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.GridView5.OptionsView.EnableAppearanceEvenRow = True
+        Me.GridView5.OptionsView.EnableAppearanceOddRow = True
+        Me.GridView5.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn9
+        '
+        Me.GridColumn9.Caption = "ID"
+        Me.GridColumn9.FieldName = "id"
+        Me.GridColumn9.Name = "GridColumn9"
+        Me.GridColumn9.OptionsColumn.AllowEdit = False
+        Me.GridColumn9.OptionsColumn.ReadOnly = True
+        '
+        'GridColumn10
+        '
+        Me.GridColumn10.Caption = "Content"
+        Me.GridColumn10.FieldName = "content"
+        Me.GridColumn10.Name = "GridColumn10"
+        Me.GridColumn10.OptionsColumn.AllowEdit = False
+        Me.GridColumn10.OptionsColumn.ReadOnly = True
+        Me.GridColumn10.Visible = True
+        Me.GridColumn10.VisibleIndex = 0
+        '
+        'lueAsuransi
+        '
+        Me.lueAsuransi.Anchor = System.Windows.Forms.AnchorStyles.Left
+        Me.lueAsuransi.Location = New System.Drawing.Point(140, 26)
+        Me.lueAsuransi.Margin = New System.Windows.Forms.Padding(0)
+        Me.lueAsuransi.Name = "lueAsuransi"
+        Me.lueAsuransi.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.lueAsuransi.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 9.0!)
+        Me.lueAsuransi.Properties.Appearance.ForeColor = System.Drawing.Color.Black
+        Me.lueAsuransi.Properties.Appearance.Options.UseBackColor = True
+        Me.lueAsuransi.Properties.Appearance.Options.UseFont = True
+        Me.lueAsuransi.Properties.Appearance.Options.UseForeColor = True
+        Me.lueAsuransi.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple
+        Me.lueAsuransi.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.lueAsuransi.Properties.NullText = "[Isian belum dipilih]"
+        Me.lueAsuransi.Properties.NullValuePrompt = "[Isian belum dipilih]"
+        Me.lueAsuransi.Properties.PopupBorderStyle = DevExpress.XtraEditors.Controls.PopupBorderStyles.Simple
+        Me.lueAsuransi.Properties.PopupFindMode = DevExpress.XtraEditors.FindMode.Always
+        Me.lueAsuransi.Properties.PopupView = Me.GridView4
+        Me.lueAsuransi.Properties.ShowFooter = False
+        Me.lueAsuransi.Properties.ShowPopupShadow = False
+        Me.lueAsuransi.Properties.ViewType = DevExpress.XtraEditors.Repository.GridLookUpViewType.GridView
+        Me.lueAsuransi.Size = New System.Drawing.Size(160, 20)
+        Me.lueAsuransi.TabIndex = 51
+        Me.lueAsuransi.Tag = "idasuransi"
+        '
+        'GridView4
+        '
+        Me.GridView4.Appearance.EvenRow.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.GridView4.Appearance.EvenRow.Options.UseBackColor = True
+        Me.GridView4.Appearance.OddRow.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer))
+        Me.GridView4.Appearance.OddRow.Options.UseBackColor = True
+        Me.GridView4.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn7, Me.GridColumn8})
+        Me.GridView4.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.GridView4.Name = "GridView4"
+        Me.GridView4.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.GridView4.OptionsView.EnableAppearanceEvenRow = True
+        Me.GridView4.OptionsView.EnableAppearanceOddRow = True
+        Me.GridView4.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn7
+        '
+        Me.GridColumn7.Caption = "ID"
+        Me.GridColumn7.FieldName = "id"
+        Me.GridColumn7.Name = "GridColumn7"
+        Me.GridColumn7.OptionsColumn.AllowEdit = False
+        Me.GridColumn7.OptionsColumn.ReadOnly = True
+        '
+        'GridColumn8
+        '
+        Me.GridColumn8.Caption = "Content"
+        Me.GridColumn8.FieldName = "content"
+        Me.GridColumn8.Name = "GridColumn8"
+        Me.GridColumn8.OptionsColumn.AllowEdit = False
+        Me.GridColumn8.OptionsColumn.ReadOnly = True
+        Me.GridColumn8.Visible = True
+        Me.GridColumn8.VisibleIndex = 0
+        '
         'lueJenisPembayar
         '
         Me.lueJenisPembayar.Anchor = System.Windows.Forms.AnchorStyles.Left
@@ -1859,7 +2149,7 @@ Partial Class frmRegistrasi
         Me.tlpSidebar.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30.0!))
         Me.tlpSidebar.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30.0!))
         Me.tlpSidebar.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30.0!))
-        Me.tlpSidebar.Size = New System.Drawing.Size(130, 276)
+        Me.tlpSidebar.Size = New System.Drawing.Size(130, 306)
         Me.tlpSidebar.TabIndex = 8
         '
         'btnRegistrasiCCL
@@ -1883,7 +2173,7 @@ Partial Class frmRegistrasi
         '
         'btnAppHarian
         '
-        Me.btnAppHarian.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(0, Byte), Integer))
+        Me.btnAppHarian.BackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer))
         Me.btnAppHarian.FlatAppearance.BorderSize = 0
         Me.btnAppHarian.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DimGray
         Me.btnAppHarian.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DarkGray
@@ -2046,298 +2336,8 @@ Partial Class frmRegistrasi
         Me.GroupControl1.Margin = New System.Windows.Forms.Padding(0)
         Me.GroupControl1.Name = "GroupControl1"
         Me.GroupControl1.Padding = New System.Windows.Forms.Padding(4)
-        Me.GroupControl1.Size = New System.Drawing.Size(142, 307)
+        Me.GroupControl1.Size = New System.Drawing.Size(142, 337)
         Me.GroupControl1.TabIndex = 9
-        '
-        'lueAsalPx2
-        '
-        Me.lueAsalPx2.Anchor = System.Windows.Forms.AnchorStyles.Left
-        Me.lueAsalPx2.Location = New System.Drawing.Point(140, 26)
-        Me.lueAsalPx2.Margin = New System.Windows.Forms.Padding(0)
-        Me.lueAsalPx2.Name = "lueAsalPx2"
-        Me.lueAsalPx2.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.lueAsalPx2.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 9.0!)
-        Me.lueAsalPx2.Properties.Appearance.ForeColor = System.Drawing.Color.Black
-        Me.lueAsalPx2.Properties.Appearance.Options.UseBackColor = True
-        Me.lueAsalPx2.Properties.Appearance.Options.UseFont = True
-        Me.lueAsalPx2.Properties.Appearance.Options.UseForeColor = True
-        Me.lueAsalPx2.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple
-        Me.lueAsalPx2.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.lueAsalPx2.Properties.NullText = "[Isian belum dipilih]"
-        Me.lueAsalPx2.Properties.NullValuePrompt = "[Isian belum dipilih]"
-        Me.lueAsalPx2.Properties.PopupBorderStyle = DevExpress.XtraEditors.Controls.PopupBorderStyles.Simple
-        Me.lueAsalPx2.Properties.PopupFindMode = DevExpress.XtraEditors.FindMode.Always
-        Me.lueAsalPx2.Properties.PopupView = Me.GridView1
-        Me.lueAsalPx2.Properties.ShowFooter = False
-        Me.lueAsalPx2.Properties.ShowPopupShadow = False
-        Me.lueAsalPx2.Properties.ViewType = DevExpress.XtraEditors.Repository.GridLookUpViewType.GridView
-        Me.lueAsalPx2.Size = New System.Drawing.Size(160, 20)
-        Me.lueAsalPx2.TabIndex = 49
-        Me.lueAsalPx2.Tag = "asalpx2"
-        '
-        'GridView1
-        '
-        Me.GridView1.Appearance.EvenRow.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.GridView1.Appearance.EvenRow.Options.UseBackColor = True
-        Me.GridView1.Appearance.OddRow.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer))
-        Me.GridView1.Appearance.OddRow.Options.UseBackColor = True
-        Me.GridView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2})
-        Me.GridView1.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
-        Me.GridView1.Name = "GridView1"
-        Me.GridView1.OptionsSelection.EnableAppearanceFocusedCell = False
-        Me.GridView1.OptionsView.EnableAppearanceEvenRow = True
-        Me.GridView1.OptionsView.EnableAppearanceOddRow = True
-        Me.GridView1.OptionsView.ShowGroupPanel = False
-        '
-        'GridColumn1
-        '
-        Me.GridColumn1.Caption = "ID"
-        Me.GridColumn1.FieldName = "id"
-        Me.GridColumn1.Name = "GridColumn1"
-        Me.GridColumn1.OptionsColumn.AllowEdit = False
-        Me.GridColumn1.OptionsColumn.ReadOnly = True
-        '
-        'GridColumn2
-        '
-        Me.GridColumn2.Caption = "Content"
-        Me.GridColumn2.FieldName = "content"
-        Me.GridColumn2.Name = "GridColumn2"
-        Me.GridColumn2.OptionsColumn.AllowEdit = False
-        Me.GridColumn2.OptionsColumn.ReadOnly = True
-        Me.GridColumn2.Visible = True
-        Me.GridColumn2.VisibleIndex = 0
-        '
-        'lueAsalPx3
-        '
-        Me.lueAsalPx3.Anchor = System.Windows.Forms.AnchorStyles.Left
-        Me.lueAsalPx3.Location = New System.Drawing.Point(420, 2)
-        Me.lueAsalPx3.Margin = New System.Windows.Forms.Padding(0)
-        Me.lueAsalPx3.Name = "lueAsalPx3"
-        Me.lueAsalPx3.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.lueAsalPx3.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 9.0!)
-        Me.lueAsalPx3.Properties.Appearance.ForeColor = System.Drawing.Color.Black
-        Me.lueAsalPx3.Properties.Appearance.Options.UseBackColor = True
-        Me.lueAsalPx3.Properties.Appearance.Options.UseFont = True
-        Me.lueAsalPx3.Properties.Appearance.Options.UseForeColor = True
-        Me.lueAsalPx3.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple
-        Me.lueAsalPx3.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.lueAsalPx3.Properties.NullText = "[Isian belum dipilih]"
-        Me.lueAsalPx3.Properties.NullValuePrompt = "[Isian belum dipilih]"
-        Me.lueAsalPx3.Properties.PopupBorderStyle = DevExpress.XtraEditors.Controls.PopupBorderStyles.Simple
-        Me.lueAsalPx3.Properties.PopupFindMode = DevExpress.XtraEditors.FindMode.Always
-        Me.lueAsalPx3.Properties.PopupView = Me.GridView2
-        Me.lueAsalPx3.Properties.ShowFooter = False
-        Me.lueAsalPx3.Properties.ShowPopupShadow = False
-        Me.lueAsalPx3.Properties.ViewType = DevExpress.XtraEditors.Repository.GridLookUpViewType.GridView
-        Me.lueAsalPx3.Size = New System.Drawing.Size(220, 20)
-        Me.lueAsalPx3.TabIndex = 50
-        Me.lueAsalPx3.Tag = "asalpx3"
-        '
-        'GridView2
-        '
-        Me.GridView2.Appearance.EvenRow.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.GridView2.Appearance.EvenRow.Options.UseBackColor = True
-        Me.GridView2.Appearance.OddRow.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer))
-        Me.GridView2.Appearance.OddRow.Options.UseBackColor = True
-        Me.GridView2.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn3, Me.GridColumn4})
-        Me.GridView2.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
-        Me.GridView2.Name = "GridView2"
-        Me.GridView2.OptionsSelection.EnableAppearanceFocusedCell = False
-        Me.GridView2.OptionsView.EnableAppearanceEvenRow = True
-        Me.GridView2.OptionsView.EnableAppearanceOddRow = True
-        Me.GridView2.OptionsView.ShowGroupPanel = False
-        '
-        'GridColumn3
-        '
-        Me.GridColumn3.Caption = "ID"
-        Me.GridColumn3.FieldName = "id"
-        Me.GridColumn3.Name = "GridColumn3"
-        Me.GridColumn3.OptionsColumn.AllowEdit = False
-        Me.GridColumn3.OptionsColumn.ReadOnly = True
-        '
-        'GridColumn4
-        '
-        Me.GridColumn4.Caption = "Content"
-        Me.GridColumn4.FieldName = "content"
-        Me.GridColumn4.Name = "GridColumn4"
-        Me.GridColumn4.OptionsColumn.AllowEdit = False
-        Me.GridColumn4.OptionsColumn.ReadOnly = True
-        Me.GridColumn4.Visible = True
-        Me.GridColumn4.VisibleIndex = 0
-        '
-        'lueAsalPx4
-        '
-        Me.lueAsalPx4.Anchor = System.Windows.Forms.AnchorStyles.Left
-        Me.lueAsalPx4.Location = New System.Drawing.Point(420, 26)
-        Me.lueAsalPx4.Margin = New System.Windows.Forms.Padding(0)
-        Me.lueAsalPx4.Name = "lueAsalPx4"
-        Me.lueAsalPx4.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.lueAsalPx4.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 9.0!)
-        Me.lueAsalPx4.Properties.Appearance.ForeColor = System.Drawing.Color.Black
-        Me.lueAsalPx4.Properties.Appearance.Options.UseBackColor = True
-        Me.lueAsalPx4.Properties.Appearance.Options.UseFont = True
-        Me.lueAsalPx4.Properties.Appearance.Options.UseForeColor = True
-        Me.lueAsalPx4.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple
-        Me.lueAsalPx4.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.lueAsalPx4.Properties.NullText = "[Isian belum dipilih]"
-        Me.lueAsalPx4.Properties.NullValuePrompt = "[Isian belum dipilih]"
-        Me.lueAsalPx4.Properties.PopupBorderStyle = DevExpress.XtraEditors.Controls.PopupBorderStyles.Simple
-        Me.lueAsalPx4.Properties.PopupFindMode = DevExpress.XtraEditors.FindMode.Always
-        Me.lueAsalPx4.Properties.PopupView = Me.GridView3
-        Me.lueAsalPx4.Properties.ShowFooter = False
-        Me.lueAsalPx4.Properties.ShowPopupShadow = False
-        Me.lueAsalPx4.Properties.ViewType = DevExpress.XtraEditors.Repository.GridLookUpViewType.GridView
-        Me.lueAsalPx4.Size = New System.Drawing.Size(220, 20)
-        Me.lueAsalPx4.TabIndex = 50
-        Me.lueAsalPx4.Tag = "iddokterrujukan"
-        '
-        'GridView3
-        '
-        Me.GridView3.Appearance.EvenRow.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.GridView3.Appearance.EvenRow.Options.UseBackColor = True
-        Me.GridView3.Appearance.OddRow.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer))
-        Me.GridView3.Appearance.OddRow.Options.UseBackColor = True
-        Me.GridView3.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn5, Me.GridColumn6})
-        Me.GridView3.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
-        Me.GridView3.Name = "GridView3"
-        Me.GridView3.OptionsSelection.EnableAppearanceFocusedCell = False
-        Me.GridView3.OptionsView.EnableAppearanceEvenRow = True
-        Me.GridView3.OptionsView.EnableAppearanceOddRow = True
-        Me.GridView3.OptionsView.ShowGroupPanel = False
-        '
-        'GridColumn5
-        '
-        Me.GridColumn5.Caption = "ID"
-        Me.GridColumn5.FieldName = "id"
-        Me.GridColumn5.Name = "GridColumn5"
-        Me.GridColumn5.OptionsColumn.AllowEdit = False
-        Me.GridColumn5.OptionsColumn.ReadOnly = True
-        '
-        'GridColumn6
-        '
-        Me.GridColumn6.Caption = "Content"
-        Me.GridColumn6.FieldName = "content"
-        Me.GridColumn6.Name = "GridColumn6"
-        Me.GridColumn6.OptionsColumn.AllowEdit = False
-        Me.GridColumn6.OptionsColumn.ReadOnly = True
-        Me.GridColumn6.Visible = True
-        Me.GridColumn6.VisibleIndex = 0
-        '
-        'lueAsuransi
-        '
-        Me.lueAsuransi.Anchor = System.Windows.Forms.AnchorStyles.Left
-        Me.lueAsuransi.Location = New System.Drawing.Point(140, 26)
-        Me.lueAsuransi.Margin = New System.Windows.Forms.Padding(0)
-        Me.lueAsuransi.Name = "lueAsuransi"
-        Me.lueAsuransi.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.lueAsuransi.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 9.0!)
-        Me.lueAsuransi.Properties.Appearance.ForeColor = System.Drawing.Color.Black
-        Me.lueAsuransi.Properties.Appearance.Options.UseBackColor = True
-        Me.lueAsuransi.Properties.Appearance.Options.UseFont = True
-        Me.lueAsuransi.Properties.Appearance.Options.UseForeColor = True
-        Me.lueAsuransi.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple
-        Me.lueAsuransi.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.lueAsuransi.Properties.NullText = "[Isian belum dipilih]"
-        Me.lueAsuransi.Properties.NullValuePrompt = "[Isian belum dipilih]"
-        Me.lueAsuransi.Properties.PopupBorderStyle = DevExpress.XtraEditors.Controls.PopupBorderStyles.Simple
-        Me.lueAsuransi.Properties.PopupFindMode = DevExpress.XtraEditors.FindMode.Always
-        Me.lueAsuransi.Properties.PopupView = Me.GridView4
-        Me.lueAsuransi.Properties.ShowFooter = False
-        Me.lueAsuransi.Properties.ShowPopupShadow = False
-        Me.lueAsuransi.Properties.ViewType = DevExpress.XtraEditors.Repository.GridLookUpViewType.GridView
-        Me.lueAsuransi.Size = New System.Drawing.Size(160, 20)
-        Me.lueAsuransi.TabIndex = 51
-        Me.lueAsuransi.Tag = "idasuransi"
-        '
-        'GridView4
-        '
-        Me.GridView4.Appearance.EvenRow.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.GridView4.Appearance.EvenRow.Options.UseBackColor = True
-        Me.GridView4.Appearance.OddRow.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer))
-        Me.GridView4.Appearance.OddRow.Options.UseBackColor = True
-        Me.GridView4.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn7, Me.GridColumn8})
-        Me.GridView4.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
-        Me.GridView4.Name = "GridView4"
-        Me.GridView4.OptionsSelection.EnableAppearanceFocusedCell = False
-        Me.GridView4.OptionsView.EnableAppearanceEvenRow = True
-        Me.GridView4.OptionsView.EnableAppearanceOddRow = True
-        Me.GridView4.OptionsView.ShowGroupPanel = False
-        '
-        'GridColumn7
-        '
-        Me.GridColumn7.Caption = "ID"
-        Me.GridColumn7.FieldName = "id"
-        Me.GridColumn7.Name = "GridColumn7"
-        Me.GridColumn7.OptionsColumn.AllowEdit = False
-        Me.GridColumn7.OptionsColumn.ReadOnly = True
-        '
-        'GridColumn8
-        '
-        Me.GridColumn8.Caption = "Content"
-        Me.GridColumn8.FieldName = "content"
-        Me.GridColumn8.Name = "GridColumn8"
-        Me.GridColumn8.OptionsColumn.AllowEdit = False
-        Me.GridColumn8.OptionsColumn.ReadOnly = True
-        Me.GridColumn8.Visible = True
-        Me.GridColumn8.VisibleIndex = 0
-        '
-        'luePayer
-        '
-        Me.luePayer.Anchor = System.Windows.Forms.AnchorStyles.Left
-        Me.luePayer.Location = New System.Drawing.Point(420, 2)
-        Me.luePayer.Margin = New System.Windows.Forms.Padding(0)
-        Me.luePayer.Name = "luePayer"
-        Me.luePayer.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.luePayer.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 9.0!)
-        Me.luePayer.Properties.Appearance.ForeColor = System.Drawing.Color.Black
-        Me.luePayer.Properties.Appearance.Options.UseBackColor = True
-        Me.luePayer.Properties.Appearance.Options.UseFont = True
-        Me.luePayer.Properties.Appearance.Options.UseForeColor = True
-        Me.luePayer.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple
-        Me.luePayer.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.luePayer.Properties.NullText = "[Isian belum dipilih]"
-        Me.luePayer.Properties.NullValuePrompt = "[Isian belum dipilih]"
-        Me.luePayer.Properties.PopupBorderStyle = DevExpress.XtraEditors.Controls.PopupBorderStyles.Simple
-        Me.luePayer.Properties.PopupFindMode = DevExpress.XtraEditors.FindMode.Always
-        Me.luePayer.Properties.PopupView = Me.GridView5
-        Me.luePayer.Properties.ShowFooter = False
-        Me.luePayer.Properties.ShowPopupShadow = False
-        Me.luePayer.Properties.ViewType = DevExpress.XtraEditors.Repository.GridLookUpViewType.GridView
-        Me.luePayer.Size = New System.Drawing.Size(220, 20)
-        Me.luePayer.TabIndex = 52
-        Me.luePayer.Tag = "idpayer"
-        '
-        'GridView5
-        '
-        Me.GridView5.Appearance.EvenRow.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.GridView5.Appearance.EvenRow.Options.UseBackColor = True
-        Me.GridView5.Appearance.OddRow.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer))
-        Me.GridView5.Appearance.OddRow.Options.UseBackColor = True
-        Me.GridView5.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn9, Me.GridColumn10})
-        Me.GridView5.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
-        Me.GridView5.Name = "GridView5"
-        Me.GridView5.OptionsSelection.EnableAppearanceFocusedCell = False
-        Me.GridView5.OptionsView.EnableAppearanceEvenRow = True
-        Me.GridView5.OptionsView.EnableAppearanceOddRow = True
-        Me.GridView5.OptionsView.ShowGroupPanel = False
-        '
-        'GridColumn9
-        '
-        Me.GridColumn9.Caption = "ID"
-        Me.GridColumn9.FieldName = "id"
-        Me.GridColumn9.Name = "GridColumn9"
-        Me.GridColumn9.OptionsColumn.AllowEdit = False
-        Me.GridColumn9.OptionsColumn.ReadOnly = True
-        '
-        'GridColumn10
-        '
-        Me.GridColumn10.Caption = "Content"
-        Me.GridColumn10.FieldName = "content"
-        Me.GridColumn10.Name = "GridColumn10"
-        Me.GridColumn10.OptionsColumn.AllowEdit = False
-        Me.GridColumn10.OptionsColumn.ReadOnly = True
-        Me.GridColumn10.Visible = True
-        Me.GridColumn10.VisibleIndex = 0
         '
         'frmRegistrasi
         '
@@ -2396,6 +2396,12 @@ Partial Class frmRegistrasi
         Me.Panel4.ResumeLayout(False)
         Me.tlpAsal.ResumeLayout(False)
         Me.tlpAsal.PerformLayout()
+        CType(Me.lueAsalPx4.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridView3, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.lueAsalPx3.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridView2, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.lueAsalPx2.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.lueAsalPx.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Panel3.ResumeLayout(False)
         Me.tlpAlamat.ResumeLayout(False)
@@ -2403,22 +2409,16 @@ Partial Class frmRegistrasi
         CType(Me.meAlamat.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.tlpPembayar.ResumeLayout(False)
         Me.tlpPembayar.PerformLayout()
+        CType(Me.luePayer.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridView5, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.lueAsuransi.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridView4, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.lueJenisPembayar.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.teNoAsuransi.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.tlpSidebar.ResumeLayout(False)
         CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupControl1.ResumeLayout(False)
         Me.GroupControl1.PerformLayout()
-        CType(Me.lueAsalPx2.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.lueAsalPx3.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GridView2, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.lueAsalPx4.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GridView3, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.lueAsuransi.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GridView4, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.luePayer.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GridView5, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub

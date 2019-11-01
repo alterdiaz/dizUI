@@ -117,22 +117,16 @@
         cboDepartment.Properties.DataSource = sqls.dataTable("dept")
         cboDepartment.Properties.ValueMember = "id"
         cboDepartment.Properties.DisplayMember = "content"
+        cboDepartment.SetEditValue(New Object() {Nothing})
 
         sqls.DMLQuery("select idgeneral as id,generalcode as content from sys_generalcode where gctype='REGSTATUS' and idgeneral<>0", "regstat")
         lueRegStatus.Properties.DataSource = sqls.dataTable("regstat")
         lueRegStatus.Properties.ValueMember = "id"
         lueRegStatus.Properties.DisplayMember = "content"
         lueRegStatus.EditValue = Nothing
-
-        sqls.DMLQuery("select idtransactiontype from transactiontype where kodetransaksi='REG' and iddepartment in (select [value] from sys_appsetting where variable in ('idirnadept'))", "idtranstype")
-        If sqls.getDataSet("idtranstype") > 0 Then
-            idtranstype = sqls.getDataSet("idtranstype", 0, "idtransactiontype")
-        Else
-            idtranstype = 0
-        End If
     End Sub
 
-    Dim idtranstype As String = 0
+    Dim idtranstype As New List(Of String)
     Private Sub frmRegistrasiUpdate_Load(sender As Object, e As EventArgs) Handles Me.Load
         getRegex(dbstring)
 
@@ -141,7 +135,9 @@
 
     Private isLoad As Boolean = False
     Private Sub btnNew_Click(sender As Object, e As EventArgs) Handles btnNew.Click
+        RemoveHandler cboDepartment.EditValueChanged, AddressOf cboDepartment_EditValueChanged
         loadLOV()
+        AddHandler cboDepartment.EditValueChanged, AddressOf cboDepartment_EditValueChanged
 
         If fromParent = True Then
             cboDepartment.SetEditValue(New Object() {iddept})
@@ -183,8 +179,8 @@
                         dtsqls.datasetSave("registrasi", dra("idregistrasi"), field, value, False)
                     Else
                         sqls = New SQLs(dbstring)
-                        sqls.DMLQuery("select idregistrasi from registrasi where iddepartment not in (select value from sys_appsetting where variable in ('IDRadDept','IDLabDept','idibsdept','IDHDDept','IDICUDept','IDICCUDept','IDHCUDept','IDPICUDept','IDNICUDept','IDICUDept','IDVKDept','idirnadept','IDCathDept')) and isasesmenmedis=1 and idregistrasi='" & dra("idregistrasi") & "'", "cekasm")
-                        regno = ""
+                        'sqls.DMLQuery("select idregistrasi from registrasi where iddepartment not in (select value from sys_appsetting where variable in ('IDRadDept','IDLabDept')) and isasesmenmedis=1 and idregistrasi='" & dra("idregistrasi") & "'", "cekasm")
+                        regno = dra("registrasino")
                         'If sqls.getDataSet("cekasm") > 0 Then
                         '    field.AddRange(New String() {"idregistrasi", "registrasistatus", "updatedby", "updateddate"})
                         '    value.AddRange(New Object() {dra("idregistrasi"), lueRegStatus.EditValue, userid, nowTime})
@@ -205,16 +201,21 @@
                         '    End If
                         'End If
                     End If
-
-                    If dra("registrasino") <> regno And CStr(dra("transactiontype")) = idtranstype Then
+                    Dim istype As Boolean = False
+                    For aa As Integer = 0 To idtranstype.Count - 1
+                        If CStr(dra("transactiontype")) = idtranstype(aa) Then
+                            istype = True
+                        End If
+                    Next
+                    If dra("registrasino") = regno And istype = True Then
                         sqls = New SQLs(dbstring)
-                        Dim idregkamar As String = 0
+                        Dim idregkamar As String = "0"
                         sqls.DMLQuery("select idregistrasikamar from registrasikamar where idlokasi='" & dra("idlokasi") & "' and idregistrasi='" & dra("idregistrasi") & "'", "getidregkamar")
                         If sqls.getDataSet("getidregkamar") > 0 Then
                             idregkamar = sqls.getDataSet("getidregkamar", 0, "idregistrasikamar")
 
                             sqls.DMLQuery("select idkamar from kamar where idlokasi='" & dra("idlokasi") & "'", "getidkamar")
-                            Dim idkamar As String = 0
+                            Dim idkamar As String = "0"
                             idkamar = sqls.getDataSet("getidkamar", 0, "idkamar")
 
                             dtsqls = New dtsetSQLS(dbstring)
@@ -242,12 +243,14 @@
 
         If cekbool = True Then
             dizMsgbox("Data tersimpan", dizMsgboxStyle.Info, Me)
-            If regno <> "" Then
-                dizMsgbox("Satu atau lebih Registrasi belum dilakukan asesmen medis", dizMsgboxStyle.Info, Me)
-            End If
+            'If regno <> "" Then
+            '    dizMsgbox("Satu atau lebih Registrasi belum dilakukan asesmen medis", dizMsgboxStyle.Info, Me)
+            'End If
 
             btnNew_Click(btnNew, Nothing)
-            cboDepartment_EditValueChanged(cboDepartment, Nothing)
+            If fromParent = False Then
+                cboDepartment_EditValueChanged(cboDepartment, Nothing)
+            End If
         Else
             dizMsgbox("Tidak ada data yang disimpan", dizMsgboxStyle.Info, Me)
         End If
@@ -269,14 +272,22 @@
             gcData.DataSource = Nothing
             gvData.BestFitColumns()
         Else
+            sqls.DMLQuery("select idtransactiontype from transactiontype where kodetransaksi='REG' and iddepartment in ('" & iddept.Replace(",", "','") & "')", "idtranstype")
+            If sqls.getDataSet("idtranstype") > 0 Then
+                idtranstype.Clear()
+                idtranstype.Add(sqls.getDataSet("idtranstype", 0, "idtransactiontype"))
+            Else
+                idtranstype.Clear()
+            End If
+
             Dim field As New List(Of String)
             Dim value As New List(Of Object)
             field.AddRange(New String() {"@iddept"})
             value.AddRange(New Object() {iddept})
             sqls.CallSP("spRegistrasiPasienDept", "monregall", field, value)
+            gcData.DataSource = sqls.dataTable("monregall")
+            gvData.BestFitColumns()
         End If
-        gcData.DataSource = sqls.dataTable("monregall")
-        gvData.BestFitColumns()
     End Sub
 
 End Class

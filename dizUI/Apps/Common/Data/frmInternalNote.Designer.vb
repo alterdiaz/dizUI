@@ -33,6 +33,7 @@ Partial Class frmInternalNote
         Me.gcData = New DevExpress.XtraGrid.GridControl()
         Me.gvData = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn23 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -125,7 +126,7 @@ Partial Class frmInternalNote
         Me.tlpForm.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30.0!))
         Me.tlpForm.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
         Me.tlpForm.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
-        Me.tlpForm.Size = New System.Drawing.Size(790, 430)
+        Me.tlpForm.Size = New System.Drawing.Size(790, 469)
         Me.tlpForm.TabIndex = 0
         '
         'pTitle
@@ -208,7 +209,7 @@ Partial Class frmInternalNote
         Me.pBody.Location = New System.Drawing.Point(2, 30)
         Me.pBody.Margin = New System.Windows.Forms.Padding(0)
         Me.pBody.Name = "pBody"
-        Me.pBody.Size = New System.Drawing.Size(786, 400)
+        Me.pBody.Size = New System.Drawing.Size(786, 439)
         Me.pBody.TabIndex = 7
         '
         'gcData
@@ -231,7 +232,7 @@ Partial Class frmInternalNote
         Me.gcData.MainView = Me.gvData
         Me.gcData.Name = "gcData"
         Me.gcData.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.rimeNote})
-        Me.gcData.Size = New System.Drawing.Size(786, 148)
+        Me.gcData.Size = New System.Drawing.Size(786, 187)
         Me.gcData.TabIndex = 13
         Me.gcData.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gvData})
         '
@@ -253,7 +254,7 @@ Partial Class frmInternalNote
         Me.gvData.Appearance.Row.Options.UseFont = True
         Me.gvData.Appearance.TopNewRow.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
         Me.gvData.Appearance.TopNewRow.Options.UseBackColor = True
-        Me.gvData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn23, Me.GridColumn2, Me.GridColumn6, Me.GridColumn5, Me.GridColumn4, Me.GridColumn7, Me.GridColumn8})
+        Me.gvData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn23, Me.GridColumn9, Me.GridColumn2, Me.GridColumn6, Me.GridColumn5, Me.GridColumn4, Me.GridColumn7, Me.GridColumn8})
         Me.gvData.GridControl = Me.gcData
         Me.gvData.Name = "gvData"
         Me.gvData.NewItemRowText = "Tambah Data Disini"
@@ -265,7 +266,7 @@ Partial Class frmInternalNote
         Me.gvData.OptionsView.ShowPreview = True
         Me.gvData.OptionsView.ShowViewCaption = True
         Me.gvData.PreviewFieldName = "note"
-        Me.gvData.PreviewIndent = 137
+        Me.gvData.PreviewIndent = 4
         Me.gvData.PreviewLineCount = 1
         Me.gvData.ViewCaption = " "
         '
@@ -276,6 +277,12 @@ Partial Class frmInternalNote
         Me.GridColumn23.Name = "GridColumn23"
         Me.GridColumn23.OptionsColumn.AllowEdit = False
         Me.GridColumn23.OptionsColumn.ReadOnly = True
+        '
+        'GridColumn9
+        '
+        Me.GridColumn9.Caption = "ID"
+        Me.GridColumn9.FieldName = "iddepartment"
+        Me.GridColumn9.Name = "GridColumn9"
         '
         'GridColumn2
         '
@@ -1012,7 +1019,7 @@ Partial Class frmInternalNote
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer))
-        Me.ClientSize = New System.Drawing.Size(790, 430)
+        Me.ClientSize = New System.Drawing.Size(790, 469)
         Me.Controls.Add(Me.tlpForm)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
         Me.Name = "frmInternalNote"
@@ -1108,4 +1115,5 @@ Partial Class frmInternalNote
     Friend WithEvents teJudul As DevExpress.XtraEditors.TextEdit
     Friend WithEvents GridColumn7 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn8 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn9 As DevExpress.XtraGrid.Columns.GridColumn
 End Class

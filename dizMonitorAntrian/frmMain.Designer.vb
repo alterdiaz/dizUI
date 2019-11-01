@@ -22,9 +22,10 @@ Partial Class frmMain
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmMain))
         Me.btnExit = New System.Windows.Forms.Button()
-        Me.tmr = New System.Windows.Forms.Timer()
+        Me.tmr = New System.Windows.Forms.Timer(Me.components)
         Me.lblWaktu = New System.Windows.Forms.Label()
         Me.pVideo = New System.Windows.Forms.Panel()
         Me.vspVideo = New AForge.Controls.VideoSourcePlayer()
@@ -93,6 +94,9 @@ Partial Class frmMain
         '
         'pVideo
         '
+        Me.pVideo.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.pVideo.BackColor = System.Drawing.Color.Black
         Me.pVideo.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.pVideo.Controls.Add(Me.vspVideo)
@@ -106,6 +110,7 @@ Partial Class frmMain
         '
         Me.vspVideo.Dock = System.Windows.Forms.DockStyle.Fill
         Me.vspVideo.Location = New System.Drawing.Point(0, 0)
+        Me.vspVideo.Margin = New System.Windows.Forms.Padding(0)
         Me.vspVideo.Name = "vspVideo"
         Me.vspVideo.Size = New System.Drawing.Size(930, 620)
         Me.vspVideo.TabIndex = 0
@@ -115,6 +120,8 @@ Partial Class frmMain
         '
         'pNote
         '
+        Me.pNote.Anchor = CType(((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.pNote.Controls.Add(Me.lblNote2)
         Me.pNote.Controls.Add(Me.lblNote1)
         Me.pNote.Font = New System.Drawing.Font("Calibri", 20.0!)
@@ -151,6 +158,7 @@ Partial Class frmMain
         '
         'pAntrian3
         '
+        Me.pAntrian3.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.pAntrian3.BackColor = System.Drawing.Color.Transparent
         Me.pAntrian3.BackgroundImage = Global.dizMonitorAntrian.My.Resources.Resources.slotantrian
         Me.pAntrian3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
@@ -223,6 +231,7 @@ Partial Class frmMain
         '
         'pAntrian2
         '
+        Me.pAntrian2.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.pAntrian2.BackColor = System.Drawing.Color.Transparent
         Me.pAntrian2.BackgroundImage = Global.dizMonitorAntrian.My.Resources.Resources.slotantrian
         Me.pAntrian2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
@@ -295,6 +304,7 @@ Partial Class frmMain
         '
         'pAntrian1
         '
+        Me.pAntrian1.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.pAntrian1.BackColor = System.Drawing.Color.Transparent
         Me.pAntrian1.BackgroundImage = Global.dizMonitorAntrian.My.Resources.Resources.slotantrian
         Me.pAntrian1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
@@ -367,9 +377,6 @@ Partial Class frmMain
         '
         'pboLogo
         '
-        Me.pboLogo.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-            Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.pboLogo.BackColor = System.Drawing.Color.Transparent
         Me.pboLogo.Location = New System.Drawing.Point(16, 0)
         Me.pboLogo.Margin = New System.Windows.Forms.Padding(0)

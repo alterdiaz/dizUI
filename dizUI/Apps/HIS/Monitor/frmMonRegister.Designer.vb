@@ -33,6 +33,7 @@ Partial Class frmMonRegister
         Me.gcData = New DevExpress.XtraGrid.GridControl()
         Me.gvData = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn25 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn23 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn24 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -64,14 +65,13 @@ Partial Class frmMonRegister
         Me.lblPengajuanNo = New System.Windows.Forms.Label()
         Me.deTanggal = New DevExpress.XtraEditors.DateEdit()
         Me.pHeader = New System.Windows.Forms.Panel()
+        Me.btnRujukInternal = New System.Windows.Forms.Button()
         Me.lblRefresh = New System.Windows.Forms.Label()
         Me.btnAuto = New System.Windows.Forms.Button()
         Me.btnRefresh = New System.Windows.Forms.Button()
         Me.btnExport = New System.Windows.Forms.Button()
         Me.lblSep5 = New System.Windows.Forms.Label()
         Me.tmrWaktu = New System.Windows.Forms.Timer(Me.components)
-        Me.GridColumn25 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.btnSave = New System.Windows.Forms.Button()
         Me.tlpForm.SuspendLayout()
         Me.pTitle.SuspendLayout()
         CType(Me.pMinimize, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -252,6 +252,18 @@ Partial Class frmMonRegister
         Me.GridColumn1.OptionsColumn.ReadOnly = True
         Me.GridColumn1.Visible = True
         Me.GridColumn1.VisibleIndex = 0
+        '
+        'GridColumn25
+        '
+        Me.GridColumn25.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn25.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn25.Caption = "Lokasi"
+        Me.GridColumn25.FieldName = "lokasi"
+        Me.GridColumn25.Name = "GridColumn25"
+        Me.GridColumn25.OptionsColumn.AllowEdit = False
+        Me.GridColumn25.OptionsColumn.ReadOnly = True
+        Me.GridColumn25.Visible = True
+        Me.GridColumn25.VisibleIndex = 1
         '
         'GridColumn23
         '
@@ -671,7 +683,7 @@ Partial Class frmMonRegister
         'pHeader
         '
         Me.pHeader.BackColor = System.Drawing.Color.FromArgb(CType(CType(66, Byte), Integer), CType(CType(66, Byte), Integer), CType(CType(66, Byte), Integer))
-        Me.pHeader.Controls.Add(Me.btnSave)
+        Me.pHeader.Controls.Add(Me.btnRujukInternal)
         Me.pHeader.Controls.Add(Me.lblRefresh)
         Me.pHeader.Controls.Add(Me.btnAuto)
         Me.pHeader.Controls.Add(Me.btnRefresh)
@@ -683,6 +695,23 @@ Partial Class frmMonRegister
         Me.pHeader.Name = "pHeader"
         Me.pHeader.Size = New System.Drawing.Size(786, 30)
         Me.pHeader.TabIndex = 4
+        '
+        'btnRujukInternal
+        '
+        Me.btnRujukInternal.BackColor = System.Drawing.Color.Green
+        Me.btnRujukInternal.Dock = System.Windows.Forms.DockStyle.Left
+        Me.btnRujukInternal.FlatAppearance.BorderSize = 0
+        Me.btnRujukInternal.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DimGray
+        Me.btnRujukInternal.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DarkGray
+        Me.btnRujukInternal.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnRujukInternal.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnRujukInternal.Location = New System.Drawing.Point(250, 0)
+        Me.btnRujukInternal.Name = "btnRujukInternal"
+        Me.btnRujukInternal.Size = New System.Drawing.Size(120, 30)
+        Me.btnRujukInternal.TabIndex = 25
+        Me.btnRujukInternal.Text = "RUJUK INTERNAL"
+        Me.btnRujukInternal.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
+        Me.btnRujukInternal.UseVisualStyleBackColor = False
         '
         'lblRefresh
         '
@@ -767,35 +796,6 @@ Partial Class frmMonRegister
         '
         Me.tmrWaktu.Interval = 1000
         '
-        'GridColumn25
-        '
-        Me.GridColumn25.AppearanceHeader.Options.UseTextOptions = True
-        Me.GridColumn25.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GridColumn25.Caption = "Lokasi"
-        Me.GridColumn25.FieldName = "lokasi"
-        Me.GridColumn25.Name = "GridColumn25"
-        Me.GridColumn25.OptionsColumn.AllowEdit = False
-        Me.GridColumn25.OptionsColumn.ReadOnly = True
-        Me.GridColumn25.Visible = True
-        Me.GridColumn25.VisibleIndex = 1
-        '
-        'btnSave
-        '
-        Me.btnSave.BackColor = System.Drawing.Color.Green
-        Me.btnSave.Dock = System.Windows.Forms.DockStyle.Left
-        Me.btnSave.FlatAppearance.BorderSize = 0
-        Me.btnSave.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DimGray
-        Me.btnSave.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DarkGray
-        Me.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btnSave.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnSave.Location = New System.Drawing.Point(250, 0)
-        Me.btnSave.Name = "btnSave"
-        Me.btnSave.Size = New System.Drawing.Size(120, 30)
-        Me.btnSave.TabIndex = 25
-        Me.btnSave.Text = "RUJUK INTERNAL"
-        Me.btnSave.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
-        Me.btnSave.UseVisualStyleBackColor = False
-        '
         'frmMonRegister
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -875,5 +875,5 @@ Partial Class frmMonRegister
     Friend WithEvents GridColumn23 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn24 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn25 As DevExpress.XtraGrid.Columns.GridColumn
-    Public WithEvents btnSave As Button
+    Public WithEvents btnRujukInternal As Button
 End Class

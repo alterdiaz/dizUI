@@ -148,6 +148,12 @@ Public Class frmMonRegister
         End If
 
         loadgrid()
+
+        If Format(CDate(deTanggal.EditValue), "dd-MM-yyyy") = Format(nowTime, "dd-MM-yyyy") Then
+            btnRujukInternal.Enabled = True
+        Else
+            btnRujukInternal.Enabled = False
+        End If
     End Sub
 
     Private Sub Form_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
@@ -269,7 +275,7 @@ Public Class frmMonRegister
 
     Private jenisPelayanan As String = ""
 
-    Private Sub btnSave_Click(sender As Object, e As EventArgs) Handles btnSave.Click
+    Private Sub btnSave_Click(sender As Object, e As EventArgs) Handles btnRujukInternal.Click
         If gvData.RowCount = 0 Then Exit Sub
 
         Dim view As DevExpress.XtraGrid.Views.Grid.GridView = gvData
@@ -280,13 +286,20 @@ Public Class frmMonRegister
             Dim idreg As String = dr("idregistrasi")
 
             If idreg <> "" Then
+                tmrWaktu.Stop()
                 jenisPelayanan = ""
-                tlpField.Enabled = False
-                Dim selectPelayanan As New frmPelayananSelect()
+
+                Dim selectPelayanan As New frmRujukanSelect()
                 tambahChild(selectPelayanan)
                 selectPelayanan.ShowDialog()
+                jenisPelayanan = selectPelayanan.getStringPilih
 
+                If jenisPelayanan <> "" Then
+                    Dim rujinternal As New frmRujukanInternal(jenisPelayanan, idreg)
+                    rujinternal.ShowDialog()
+                End If
 
+                tmrWaktu.Start()
             End If
         End If
     End Sub

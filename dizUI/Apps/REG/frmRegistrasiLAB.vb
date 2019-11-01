@@ -1017,8 +1017,8 @@
     End Sub
 
     Private Sub ceksimpanAppointment(idparam As String, idsp As String, idjs As String, idrm As String, idreg As String)
-        Dim idps As String = -1
-        Dim idapp As String = -1
+        Dim idps As String = "-1"
+        Dim idapp As String = "-1"
         If idsp = "0" Then
             Exit Sub
         End If
@@ -1029,7 +1029,7 @@
         sqls.DMLQuery("select idparamedisspesialis from paramedisspesialis where idparamedis='" & idparam & "' and idspesialis='" & idsp & "'", "getidps")
         If sqls.getDataSet("getidps") > 0 Then
             idps = sqls.getDataSet("getidps", 0, "idparamedisspesialis").ToString
-            sqls.DMLQuery("select idappointment from appointment where convert(varchar,bookingdate,105)=convert(varchar,getdate(),105)and idparamedisspesialis='" & idps & "' and idjadwalsesi='" & idjs & "' and idrekammedis='" & idrm & "'", "getidapp")
+            sqls.DMLQuery("select idappointment from appointment where convert(varchar,bookingdate,105)=convert(varchar,getdate(),105) and idparamedisspesialis='" & idps & "' and idjadwalsesi='" & idjs & "' and idrekammedis='" & idrm & "'", "getidapp")
             If sqls.getDataSet("getidapp") > 0 Then
                 idapp = sqls.getDataSet("getidapp", 0, "idappointment").ToString
                 sqls.DMLQuery("update appointment set idregistrasi='" & idreg & "',bookingstatus=2,updateddate=getdate(),updatedby='" & userid & "' where idappointment='" & idapp & "'", False)
@@ -1331,13 +1331,15 @@
             End If
         End If
 
-        sqls.DMLQuery("select count(idregistrasi) as count from registrasi where registrasistatus<>1 and idrekammedis='" & teNoRM.Tag & "'", "cnt")
+        sqls.DMLQuery("select count(idregistrasi) as count from registrasi where registrasistatus<>2 and idrekammedis='" & teNoRM.Tag & "'", "cnt")
+        cnt = sqls.getDataSet("cnt", 0, "count")
+
         If iddept <> "0" Then
-            sqls.DMLQuery("select count(idregistrasi) as count from registrasi where registrasistatus<>1 and iddepartment='" & iddept & "' and idunit='" & idunit & "' and idrekammedis='" & teNoRM.Tag & "'", "cntdept")
+            sqls.DMLQuery("select count(idregistrasi) as count from registrasi where registrasistatus<>2 and iddepartment='" & iddept & "' and idunit='" & idunit & "' and idrekammedis='" & teNoRM.Tag & "'", "cntdept")
             cntdept = sqls.getDataSet("cntdept", 0, "count")
         End If
         If lueParamedis.EditValue IsNot Nothing Then
-            sqls.DMLQuery("select count(idregistrasi) as count from registrasi where registrasistatus<>1 and iddokterruangan='" & lueParamedis.EditValue & "' and idrekammedis='" & teNoRM.Tag & "'", "cntdokter")
+            sqls.DMLQuery("select count(idregistrasi) as count from registrasi where registrasistatus<>2 and iddokterruangan='" & lueParamedis.EditValue & "' and idrekammedis='" & teNoRM.Tag & "'", "cntdokter")
             cntdokter = sqls.getDataSet("cntdokter", 0, "count")
         End If
 
@@ -1482,7 +1484,7 @@
     Private iddokterparent As String
     Private Sub lnkNoRegistrasiInduk_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles lnkNoRegistrasiInduk.LinkClicked
         Dim sqls As New SQLs(dbstring)
-        sqls.DMLQuery("select r.idregistrasi,convert(varchar,r.registrasidate,105)+' '+convert(varchar,r.registrasidate,108) as 'Tgl Registrasi',r.registrasino as 'No Registrasi',pm.nama as 'Tenaga Medis',dbo.fformatnorm(rm.rekammedisno) as 'No RM',rm.nama as 'Nama Pasien',jk.generalcode as 'Jenis Kelamin',convert(varchar,rm.tanggallahir,105) as 'Tgl Lahir',dbo.fUmurRegister(rm.tanggallahir,r.registrasidate) as 'Umur',kw.wilayah as 'Kewarganegaraan' from registrasi r left join rekammedis rm on r.idrekammedis=rm.idrekammedis left join sys_generalcode jk on rm.jeniskelamin=jk.idgeneral and jk.gctype='SEXTYPE' left join wilayah kw on rm.kewarganegaraan=kw.idwilayah  left join paramedis pm on r.iddokterruangan=pm.idparamedis where convert(varchar,r.registrasidate,105) in ('" & Format(nowTime, "dd-MM-yyyy") & "','" & Format(nowTime.AddDays(-1), "dd-MM-yyyy") & "') and r.idregistrasiparent=0 and r.isdeleted=0 and r.registrasistatus=7 and r.transactiontype in (select idtransactiontype from transactiontype where kodetransaksi='REG' and iddepartment in (select [value] from sys_appsetting where variable in ('idirmdept','idigddept','IDIRJDept'))) and rm.rekammedisno<>0  order by r.registrasidate desc", "search")
+        sqls.DMLQuery("select r.idregistrasi,convert(varchar,r.registrasidate,105)+' '+convert(varchar,r.registrasidate,108) as 'Tgl Registrasi',r.registrasino as 'No Registrasi',pm.nama as 'Tenaga Medis',dbo.fformatnorm(rm.rekammedisno) as 'No RM',rm.nama as 'Nama Pasien',jk.generalcode as 'Jenis Kelamin',convert(varchar,rm.tanggallahir,105) as 'Tgl Lahir',dbo.fUmurRegister(rm.tanggallahir,r.registrasidate) as 'Umur',kw.wilayah as 'Kewarganegaraan' from registrasi r left join rekammedis rm on r.idrekammedis=rm.idrekammedis left join sys_generalcode jk on rm.jeniskelamin=jk.idgeneral and jk.gctype='SEXTYPE' left join wilayah kw on rm.kewarganegaraan=kw.idwilayah  left join paramedis pm on r.iddokterruangan=pm.idparamedis where convert(varchar,r.registrasidate,105) in ('" & Format(nowTime, "dd-MM-yyyy") & "','" & Format(nowTime.AddDays(-1), "dd-MM-yyyy") & "') and r.idregistrasiparent='0' and r.isdeleted=0 and r.registrasistatus in (0,1,4,7) and r.transactiontype in (select idtransactiontype from transactiontype where kodetransaksi='REG' and iddepartment in (select [value] from sys_appsetting where variable in ('idirmdept','idigddept','IDIRJDept'))) and rm.rekammedisno<>0  order by r.registrasidate desc", "search")
         Dim cari As New frmSearch(sqls.dataSet, "search", "idregistrasi")
         If cari.ShowDialog = Windows.Forms.DialogResult.OK Then
             idselectparent = cari.GetIDSelectData

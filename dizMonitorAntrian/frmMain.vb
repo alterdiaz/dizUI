@@ -1,4 +1,5 @@
 ﻿Imports System.Runtime.InteropServices
+Imports AForge.Video
 
 Public Class frmMain
 
@@ -15,7 +16,7 @@ Public Class frmMain
     Private nPixelsPerMMY As Single
 
     Private Sub frmMain_FormClosing(sender As Object, e As FormClosingEventArgs) Handles Me.FormClosing
-        e.Cancel = bClose
+        e.Cancel = bclose
     End Sub
 
     Private rs As New Resizer
@@ -47,7 +48,7 @@ Public Class frmMain
         Cursor.Hide()
 
         Dim de As New dizEngine.engine
-        dblite = appPath & de.processD("l59ruEcWFgphomWNjDb5gA==")
+        dblite = strPath & de.processD("l59ruEcWFgphomWNjDb5gA==")
 
         Try
             If My.Computer.FileSystem.GetDriveInfo(Application.StartupPath).DriveType <> IO.DriveType.Fixed Then
@@ -113,7 +114,7 @@ Public Class frmMain
                 lblNote1.Text = ""
             End If
         End If
-        playStatus = IsPlaying()
+        playStatus = vspVideo.IsRunning 'IsPlaying()
         If playStatus = False Then
             idxFile += 1
             If idxFile > lstString.Count - 1 Then
@@ -145,9 +146,9 @@ Public Class frmMain
         End If
     End Sub
 
-    <DllImport("winmm.dll", SetLastError:=True, CharSet:=CharSet.Auto)> _
-    Public Shared Function mciSendString(commandString As String, returnString As String, returnStringLength As Integer, _mciCallback As IntPtr) As Int32
-    End Function
+    '<DllImport("winmm.dll", SetLastError:=True, CharSet:=CharSet.Auto)>
+    'Public Shared Function mciSendString(commandString As String, returnString As String, returnStringLength As Integer, _mciCallback As IntPtr) As Int32
+    'End Function
 
     Private idxFile As Integer = 0
     Private lstString As New List(Of String)
@@ -168,82 +169,98 @@ Public Class frmMain
     Dim WithEvents fvs As New AForge.Video.DirectShow.FileVideoSource
     Private Sub playVideo(filename As String)
         playStatus = False
-        'vspVideo.Stop()
+        vspVideo.SignalToStop()
+        vspVideo.WaitForStop()
+        vspVideo.Stop()
+        fvs.SignalToStop()
+        fvs.WaitForStop()
+        fvs.Stop()
+        MsgBox(filename)
+        fvs = New AForge.Video.DirectShow.FileVideoSource(filename)
+        fvs.PreventFreezing = True
 
-        'fvs = New AForge.Video.DirectShow.FileVideoSource(filename)
-        'vspVideo.VideoSource = fvs
+        vspVideo.VideoSource = fvs
+        fvs.Start()
         'vspVideo.Start()
-        mciSendString("open " & Chr(34) & filename & Chr(34) & " type mpegvideo alias movie parent " _
-            & pVideo.Handle.ToInt32 & " style child", "", 0, 0)
-        SizeVideoWindow(pVideo.Size)
-        mciSendString("play movie", "", 0, 0)
-        playStatus = True
+        Try
+            'mciSendString("open " & Chr(34) & filename & Chr(34) & " type mpegvideo alias movie parent " _
+            '    & pVideo.Handle.ToInt32 & " style child", "", 0, 0)
+            'SizeVideoWindow(pVideo.Size)
+            'mciSendString("play movie", "", 0, 0)
+            'playStatus = True
+        Catch ex As Exception
+            MsgBox(ex.Message)
+            playStatus = False
+        End Try
     End Sub
+
 
     Private mcierror As Integer
     Private returndata As String
-    Public Function IsPlaying() As Boolean
-        mcierror = mciSendString("status MediaFile mode", returndata, 128, 0)
-        'MsgBox(returndata)
-        If returndata IsNot Nothing Then
-            If returndata.Length = 7 AndAlso returndata.ToString().Substring(0, 7) = "playing" Then
-                Return True
-            Else
-                Return False
-            End If
-        Else
-            Return False
-        End If
-    End Function
+    'Public Function IsPlaying() As Boolean
+    '    mcierror = mciSendString("status MediaFile mode", returndata, 128, 0)
+    '    If returndata IsNot Nothing Then
+    '        If returndata.Length = 7 AndAlso returndata.ToString().Substring(0, 7) = "playing" Then
+    '            Return True
+    '        Else
+    '            Return False
+    '        End If
+    '    Else
+    '        Return False
+    '    End If
+    'End Function
 
-    Public Function getDefaultSize() As Size
-        'Returns the default width, height the movie
-        Dim c_Data As String = Space(128)
-        mciSendString("where movie source", c_Data, 128, 0)
-        Dim parts() As String = Split(c_Data, " ")
+    'Public Function getDefaultSize() As Size
+    '    If playStatus = False Then
+    '        Return New Size(Screen.PrimaryScreen.WorkingArea.Width, Screen.PrimaryScreen.WorkingArea.Height)
+    '    Else
+    '        'Returns the default width, height the movie
+    '        Dim c_Data As String = Space(128)
+    '        mciSendString("where movie source", c_Data, 128, 0)
+    '        Dim parts() As String = Split(c_Data, " ")
 
-        Return New Size(CInt(parts(2)), CInt(parts(3)))
-    End Function
+    '        Return New Size(CInt(parts(2)), CInt(parts(3)))
+    '    End If
+    'End Function
 
-    Private Sub SizeVideoWindow(maxSize As Size)
-        Dim ActualMovieSize As Size = getDefaultSize()
-        Dim AspectRatio As Single = ActualMovieSize.Width / ActualMovieSize.Height
+    'Private Sub SizeVideoWindow(maxSize As Size)
+    '    Dim ActualMovieSize As Size = getDefaultSize()
+    '    Dim AspectRatio As Single = ActualMovieSize.Width / ActualMovieSize.Height
 
-        Dim iLeft As Integer = 0
-        Dim iTop As Integer = 0
+    '    Dim iLeft As Integer = 0
+    '    Dim iTop As Integer = 0
 
-        Dim newWidth As Integer = maxSize.width
-        Dim newHeight As Integer = newWidth \ AspectRatio
+    '    Dim newWidth As Integer = maxSize.Width
+    '    Dim newHeight As Integer = newWidth \ AspectRatio
 
-        If newHeight > maxSize.height Then
+    '    If newHeight > maxSize.Height Then
 
-            newHeight = maxSize.height
-            newWidth = newHeight * AspectRatio
-            iLeft = (maxSize.width - newWidth) \ 2
+    '        newHeight = maxSize.Height
+    '        newWidth = newHeight * AspectRatio
+    '        iLeft = (maxSize.Width - newWidth) \ 2
 
-        Else
+    '    Else
 
-            iTop = (maxSize.height - newHeight) \ 2
+    '        iTop = (maxSize.Height - newHeight) \ 2
+    '    End If
 
-        End If
-
-        mciSendString("put movie window at " & iLeft & " " & iTop & " " & newWidth & " " & newHeight, 0, 0, 0)
-    End Sub
-
-    'Private Sub vspVideo_NewFrame(sender As Object, ByRef image As Bitmap) Handles vspVideo.NewFrame
-    '    Dim Graphics As Graphics = Graphics.FromImage(image)
-    '    Dim SolidBrush As SolidBrush = New SolidBrush(Color.Red)
-    '    Graphics.DrawString(Now.ToString(), Me.Font, SolidBrush, New PointF(5.0F, 5.0F))
-    '    SolidBrush.Dispose()
-    '    Graphics.Dispose()
+    '    mciSendString("put movie window at " & iLeft & " " & iTop & " " & newWidth & " " & newHeight, 0, 0, 0)
     'End Sub
+
+    Private Sub vspVideo_NewFrame(sender As Object, ByRef image As Bitmap) Handles vspVideo.NewFrame
+        Dim Graphics As Graphics = Graphics.FromImage(image)
+        Dim SolidBrush As SolidBrush = New SolidBrush(Color.Red)
+        Graphics.DrawString(Now.ToString(), Me.Font, SolidBrush, New PointF(5.0F, 5.0F))
+        SolidBrush.Dispose()
+        Graphics.Dispose()
+    End Sub
 
     Private Sub vspVideo_PlayingFinished(sender As Object, reason As AForge.Video.ReasonToFinishPlaying) Handles vspVideo.PlayingFinished
         playStatus = False
     End Sub
 
-    'Private Sub fvs_NewFrame(sender As Object, eventArgs As AForge.Video.NewFrameEventArgs) Handles fvs.NewFrame
-    '    Dim Bitmap As Bitmap = eventArgs.Frame
-    'End Sub
+    Private Sub fvs_NewFrame(sender As Object, eventArgs As AForge.Video.NewFrameEventArgs) Handles fvs.NewFrame
+        Dim Bitmap As Bitmap = eventArgs.Frame
+    End Sub
 
 End Class

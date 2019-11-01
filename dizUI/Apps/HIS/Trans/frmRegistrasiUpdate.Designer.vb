@@ -564,19 +564,20 @@ Partial Class frmRegistrasiUpdate
         '
         'btnNew
         '
+        Me.btnNew.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(0, Byte), Integer))
         Me.btnNew.Dock = System.Windows.Forms.DockStyle.Right
         Me.btnNew.FlatAppearance.BorderSize = 0
         Me.btnNew.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DimGray
         Me.btnNew.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DarkGray
         Me.btnNew.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnNew.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnNew.Location = New System.Drawing.Point(646, 0)
+        Me.btnNew.Location = New System.Drawing.Point(626, 0)
         Me.btnNew.Name = "btnNew"
-        Me.btnNew.Size = New System.Drawing.Size(60, 30)
+        Me.btnNew.Size = New System.Drawing.Size(80, 30)
         Me.btnNew.TabIndex = 17
-        Me.btnNew.Text = "BARU"
+        Me.btnNew.Text = "REFRESH"
         Me.btnNew.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
-        Me.btnNew.UseVisualStyleBackColor = True
+        Me.btnNew.UseVisualStyleBackColor = False
         '
         'btnSave
         '
