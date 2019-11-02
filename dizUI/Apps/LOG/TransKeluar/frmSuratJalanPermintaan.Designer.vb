@@ -51,6 +51,8 @@ Partial Class frmSuratJalanPermintaan
         Me.seSubtotal = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit()
         Me.RepositoryItemLookUpEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit()
         Me.tlpField = New System.Windows.Forms.TableLayoutPanel()
+        Me.teDeptTujuan = New DevExpress.XtraEditors.TextEdit()
+        Me.Label9 = New System.Windows.Forms.Label()
         Me.lueUnitAsal = New DevExpress.XtraEditors.LookUpEdit()
         Me.Label8 = New System.Windows.Forms.Label()
         Me.teNote = New DevExpress.XtraEditors.TextEdit()
@@ -67,8 +69,8 @@ Partial Class frmSuratJalanPermintaan
         Me.lblParent = New System.Windows.Forms.Label()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.teUnitTujuan = New DevExpress.XtraEditors.TextEdit()
-        Me.Label4 = New System.Windows.Forms.Label()
         Me.teNotePermintaan = New DevExpress.XtraEditors.TextEdit()
+        Me.Label4 = New System.Windows.Forms.Label()
         Me.xtcItem = New DevExpress.XtraTab.XtraTabControl()
         Me.xtpItem = New DevExpress.XtraTab.XtraTabPage()
         Me.gcItem = New DevExpress.XtraGrid.GridControl()
@@ -88,8 +90,6 @@ Partial Class frmSuratJalanPermintaan
         Me.btnSave = New System.Windows.Forms.Button()
         Me.btnDelete = New System.Windows.Forms.Button()
         Me.lblSep5 = New System.Windows.Forms.Label()
-        Me.Label9 = New System.Windows.Forms.Label()
-        Me.teDeptTujuan = New DevExpress.XtraEditors.TextEdit()
         Me.tlpForm.SuspendLayout()
         Me.pTitle.SuspendLayout()
         CType(Me.pMinimize, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -106,6 +106,7 @@ Partial Class frmSuratJalanPermintaan
         CType(Me.seSubtotal, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemLookUpEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.tlpField.SuspendLayout()
+        CType(Me.teDeptTujuan.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.lueUnitAsal.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.teNote.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.deTanggalPermintaan.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -127,7 +128,6 @@ Partial Class frmSuratJalanPermintaan
         CType(Me.teSearch.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.pItem.SuspendLayout()
         Me.pHeader.SuspendLayout()
-        CType(Me.teDeptTujuan.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'tlpForm
@@ -283,7 +283,7 @@ Partial Class frmSuratJalanPermintaan
         'gcidsatuan
         '
         Me.gcidsatuan.Caption = "idsatuan"
-        Me.gcidsatuan.FieldName = "idsatuan2"
+        Me.gcidsatuan.FieldName = "idsatuan"
         Me.gcidsatuan.Name = "gcidsatuan"
         '
         'gcType
@@ -506,6 +506,41 @@ Partial Class frmSuratJalanPermintaan
         Me.tlpField.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 6.0!))
         Me.tlpField.Size = New System.Drawing.Size(613, 132)
         Me.tlpField.TabIndex = 7
+        '
+        'teDeptTujuan
+        '
+        Me.teDeptTujuan.Anchor = System.Windows.Forms.AnchorStyles.Left
+        Me.teDeptTujuan.Enabled = False
+        Me.teDeptTujuan.Location = New System.Drawing.Point(106, 80)
+        Me.teDeptTujuan.Margin = New System.Windows.Forms.Padding(0)
+        Me.teDeptTujuan.Name = "teDeptTujuan"
+        Me.teDeptTujuan.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[True]
+        Me.teDeptTujuan.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.teDeptTujuan.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 9.0!)
+        Me.teDeptTujuan.Properties.Appearance.ForeColor = System.Drawing.Color.Black
+        Me.teDeptTujuan.Properties.Appearance.Options.UseBackColor = True
+        Me.teDeptTujuan.Properties.Appearance.Options.UseFont = True
+        Me.teDeptTujuan.Properties.Appearance.Options.UseForeColor = True
+        Me.teDeptTujuan.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple
+        Me.teDeptTujuan.Properties.MaxLength = 300
+        Me.teDeptTujuan.Properties.NullText = "[Belum Diisi]"
+        Me.teDeptTujuan.Properties.NullValuePrompt = "[Belum Diisi]"
+        Me.teDeptTujuan.Properties.ReadOnly = True
+        Me.teDeptTujuan.Size = New System.Drawing.Size(190, 20)
+        Me.teDeptTujuan.TabIndex = 20
+        Me.teDeptTujuan.Tag = "kode"
+        '
+        'Label9
+        '
+        Me.Label9.Anchor = System.Windows.Forms.AnchorStyles.Right
+        Me.Label9.AutoSize = True
+        Me.Label9.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label9.Location = New System.Drawing.Point(27, 83)
+        Me.Label9.Name = "Label9"
+        Me.Label9.Size = New System.Drawing.Size(76, 14)
+        Me.Label9.TabIndex = 22
+        Me.Label9.Text = "Dept Tujuan"
+        Me.Label9.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
         'lueUnitAsal
         '
@@ -833,18 +868,6 @@ Partial Class frmSuratJalanPermintaan
         Me.teUnitTujuan.TabIndex = 19
         Me.teUnitTujuan.Tag = "kode"
         '
-        'Label4
-        '
-        Me.Label4.Anchor = System.Windows.Forms.AnchorStyles.Right
-        Me.Label4.AutoSize = True
-        Me.Label4.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label4.Location = New System.Drawing.Point(12, 107)
-        Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(91, 14)
-        Me.Label4.TabIndex = 23
-        Me.Label4.Text = "Ket.Permintaan"
-        Me.Label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        '
         'teNotePermintaan
         '
         Me.teNotePermintaan.Anchor = System.Windows.Forms.AnchorStyles.Left
@@ -870,6 +893,18 @@ Partial Class frmSuratJalanPermintaan
         Me.teNotePermintaan.Size = New System.Drawing.Size(150, 20)
         Me.teNotePermintaan.TabIndex = 20
         Me.teNotePermintaan.Tag = "remarks"
+        '
+        'Label4
+        '
+        Me.Label4.Anchor = System.Windows.Forms.AnchorStyles.Right
+        Me.Label4.AutoSize = True
+        Me.Label4.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label4.Location = New System.Drawing.Point(12, 107)
+        Me.Label4.Name = "Label4"
+        Me.Label4.Size = New System.Drawing.Size(91, 14)
+        Me.Label4.TabIndex = 23
+        Me.Label4.Text = "Ket.Permintaan"
+        Me.Label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
         'xtcItem
         '
@@ -1143,41 +1178,6 @@ Partial Class frmSuratJalanPermintaan
         Me.lblSep5.Text = "|"
         Me.lblSep5.TextAlign = System.Drawing.ContentAlignment.TopCenter
         '
-        'Label9
-        '
-        Me.Label9.Anchor = System.Windows.Forms.AnchorStyles.Right
-        Me.Label9.AutoSize = True
-        Me.Label9.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label9.Location = New System.Drawing.Point(27, 83)
-        Me.Label9.Name = "Label9"
-        Me.Label9.Size = New System.Drawing.Size(76, 14)
-        Me.Label9.TabIndex = 22
-        Me.Label9.Text = "Dept Tujuan"
-        Me.Label9.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        '
-        'teDeptTujuan
-        '
-        Me.teDeptTujuan.Anchor = System.Windows.Forms.AnchorStyles.Left
-        Me.teDeptTujuan.Enabled = False
-        Me.teDeptTujuan.Location = New System.Drawing.Point(106, 80)
-        Me.teDeptTujuan.Margin = New System.Windows.Forms.Padding(0)
-        Me.teDeptTujuan.Name = "teDeptTujuan"
-        Me.teDeptTujuan.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[True]
-        Me.teDeptTujuan.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.teDeptTujuan.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 9.0!)
-        Me.teDeptTujuan.Properties.Appearance.ForeColor = System.Drawing.Color.Black
-        Me.teDeptTujuan.Properties.Appearance.Options.UseBackColor = True
-        Me.teDeptTujuan.Properties.Appearance.Options.UseFont = True
-        Me.teDeptTujuan.Properties.Appearance.Options.UseForeColor = True
-        Me.teDeptTujuan.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple
-        Me.teDeptTujuan.Properties.MaxLength = 300
-        Me.teDeptTujuan.Properties.NullText = "[Belum Diisi]"
-        Me.teDeptTujuan.Properties.NullValuePrompt = "[Belum Diisi]"
-        Me.teDeptTujuan.Properties.ReadOnly = True
-        Me.teDeptTujuan.Size = New System.Drawing.Size(190, 20)
-        Me.teDeptTujuan.TabIndex = 20
-        Me.teDeptTujuan.Tag = "kode"
-        '
         'frmSuratJalanPermintaan
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1207,6 +1207,7 @@ Partial Class frmSuratJalanPermintaan
         CType(Me.RepositoryItemLookUpEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.tlpField.ResumeLayout(False)
         Me.tlpField.PerformLayout()
+        CType(Me.teDeptTujuan.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.lueUnitAsal.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.teNote.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.deTanggalPermintaan.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1229,7 +1230,6 @@ Partial Class frmSuratJalanPermintaan
         CType(Me.teSearch.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.pItem.ResumeLayout(False)
         Me.pHeader.ResumeLayout(False)
-        CType(Me.teDeptTujuan.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub

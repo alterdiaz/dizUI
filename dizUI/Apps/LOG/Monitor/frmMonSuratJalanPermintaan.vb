@@ -115,12 +115,12 @@
                 Dim value As New List(Of Object)
                 field.AddRange(New String() {"@tahun", "@bulan", "@idunit"})
                 value.AddRange(New Object() {CDate(deTanggal.EditValue).Year, CDate(deTanggal.EditValue).Month, lueUnit.EditValue})
-                sqls.CallSP("spMonSPBUnit", "parent", field, value)
+                sqls.CallSP("spMonSJMUnit", "parent", field, value)
                 Dim field2 As New List(Of String)
                 Dim value2 As New List(Of Object)
                 field2.AddRange(New String() {"@tahun", "@bulan", "@idunit"})
                 value2.AddRange(New Object() {CDate(deTanggal.EditValue).Year, CDate(deTanggal.EditValue).Month, lueUnit.EditValue})
-                sqls.CallSP("spMonSPBUnitdt", "child", field2, value2)
+                sqls.CallSP("spMonSJMUnitdt", "child", field2, value2)
                 Threading.Thread.Sleep(200)
 
                 dtset = New DataSet
@@ -143,19 +143,19 @@
                 'Next
                 gvData.BestFitColumns()
                 gvDetil.BestFitColumns()
-                gvData.ViewCaption = "Permintaan Barang - " & NamaBulan(CDate(deTanggal.EditValue).Month) & " " & CDate(deTanggal.EditValue).Year & " " & lueUnit.Text
+                gvData.ViewCaption = "Surat Jalan Permintaan - " & NamaBulan(CDate(deTanggal.EditValue).Month) & " " & CDate(deTanggal.EditValue).Year & " " & lueUnit.Text
             Else
                 Dim sqls As New SQLs(dbstring)
                 Dim field As New List(Of String)
                 Dim value As New List(Of Object)
                 field.AddRange(New String() {"@tahun", "@bulan", "@iddept", "@idunit"})
                 value.AddRange(New Object() {CDate(deTanggal.EditValue).Year, CDate(deTanggal.EditValue).Month, lueDepartment.EditValue, lueUnit.EditValue})
-                sqls.CallSP("spMonSPB", "parent", field, value)
+                sqls.CallSP("spMonSJM", "parent", field, value)
                 Dim field2 As New List(Of String)
                 Dim value2 As New List(Of Object)
                 field2.AddRange(New String() {"@tahun", "@bulan", "@iddept", "@idunit"})
                 value2.AddRange(New Object() {CDate(deTanggal.EditValue).Year, CDate(deTanggal.EditValue).Month, lueDepartment.EditValue, lueUnit.EditValue})
-                sqls.CallSP("spMonSPBdt", "child", field2, value2)
+                sqls.CallSP("spMonSJMdt", "child", field2, value2)
                 Threading.Thread.Sleep(200)
 
                 dtset = New DataSet
@@ -178,7 +178,7 @@
                 'Next
                 gvData.BestFitColumns()
                 gvDetil.BestFitColumns()
-                gvData.ViewCaption = "Permintaan Barang - " & NamaBulan(CDate(deTanggal.EditValue).Month) & " " & CDate(deTanggal.EditValue).Year & " " & lueUnit.Text & " - " & lueDepartment.Text
+                gvData.ViewCaption = "Surat Jalan Permintaan - " & NamaBulan(CDate(deTanggal.EditValue).Month) & " " & CDate(deTanggal.EditValue).Year & " " & lueUnit.Text & " - " & lueDepartment.Text
             End If
         Catch ex As Exception
         End Try
@@ -232,11 +232,11 @@
 
     Private Sub btnCetak_Click(sender As Object, e As EventArgs) Handles btnCetak.Click
         If gvData.RowCount = 0 Then
-            dizMsgbox("SPB tidak ditemukan", dizMsgboxStyle.Kesalahan, Me)
+            dizMsgbox("SJM tidak ditemukan", dizMsgboxStyle.Kesalahan, Me)
             Exit Sub
         End If
         If gvData.FocusedRowHandle < 0 Then
-            dizMsgbox("Belum memilih SPB", dizMsgboxStyle.Kesalahan, Me)
+            dizMsgbox("Belum memilih SJM", dizMsgboxStyle.Kesalahan, Me)
             Exit Sub
         End If
 
@@ -250,7 +250,7 @@
             cetakBerkas(idselect, cu.preview, "")
         ElseIf selectPrint.getStringPilih = "CETAK" Then
             Dim prntname As String = ""
-            prntname = getPrinter("SPB")
+            prntname = getPrinter("SJM")
             'Dim sd As New frmSelectDevice
             'tambahChild(sd)
             'If sd.ShowDialog() = DialogResult.OK Then
@@ -291,8 +291,8 @@
         Dim valuectk As New List(Of Object)
         fieldctk.AddRange(New String() {"@id"})
         valuectk.AddRange(New Object() {iddata})
-        mys.CallSP("spSPB", "spSPB", fieldctk, valuectk)
-        mys.CallSP("spSPBLMA", "spSPBLMA", fieldctk, valuectk)
+        mys.CallSP("spSJM", "spSJM", fieldctk, valuectk)
+        mys.CallSP("spSJMdt", "spSJMdt", fieldctk, valuectk)
 
         Dim spbs As New frmSPBCetakSelect
         tambahChild(spbs)
@@ -304,12 +304,7 @@
             Exit Sub
         End If
 
-        Dim rpt As New Object
-        If spbstr = "QtyLMA" Then
-            rpt = New xrSPBLMA
-        ElseIf spbstr = "QtyM" Then
-            rpt = New xrSPBM
-        End If
+        Dim rpt As New xrSJM
 
         'If mysUnit.getDataSet("transstat", 0, "transaksistatus") = "2" Then
         '    rpt.Watermark.Image = My.Resources.stampVoid
@@ -344,12 +339,8 @@
         rpt.RequestParameters = False
         rpt.DataAdapter = mys.getDataAdapter
         rpt.DataSource = mys.dataSet
-        rpt.DataMember = "spSPBLMA"
-        If spbstr = "QtyLMA" Then
-            rpt.DisplayName = "SPBLMA"
-        ElseIf spbstr = "QtyM" Then
-            rpt.DisplayName = "SPBM"
-        End If
+        rpt.DataMember = "spSJM"
+        rpt.DisplayName = "SPSJM"
         rpt.Parameters("pID").Value = iddata
         rpt.Parameters("pNo").Value = iddata
         rpt.Parameters("pUnit").Value = mysUnit.getDataSet("unit", 0, "unit")
@@ -369,11 +360,7 @@
                 End Try
             Else
                 Dim sharename As String = ""
-                If spbstr = "QtyLMA" Then
-                    sharename = getPrinter("SPBLMA")
-                ElseIf spbstr = "QtyM" Then
-                    sharename = getPrinter("SPBM")
-                End If
+                sharename = getPrinter("SJM")
                 If sharename <> "" Then
                     Try
                         pt.Print(sharename)

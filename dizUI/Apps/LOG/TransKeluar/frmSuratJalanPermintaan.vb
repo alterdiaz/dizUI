@@ -113,13 +113,13 @@ Public Class frmSuratJalanPermintaan
         statdata = statusData.Baru
 
         deTanggalPermintaan.EditValue = Nothing
-        tePermintaanNo.EditValue = "XXXX/XXX/XXX/" & Format(nowTime, "yyyyMMdd") & "/XXXX"
+        tePermintaanNo.EditValue = "XXXX/XXX/SJM/" & Format(nowTime, "yyyyMMdd") & "/XXXX"
         teUnitTujuan.EditValue = Nothing
         teDeptTujuan.EditValue = Nothing
         teNotePermintaan.EditValue = Nothing
 
         deTanggal.EditValue = nowTime
-        teTransNo.EditValue = "XXXX/XXX/XXX/" & Format(nowTime, "yyyyMMdd") & "/XXXX"
+        teTransNo.EditValue = "XXXX/XXX/SJM/" & Format(nowTime, "yyyyMMdd") & "/XXXX"
         lueUnitAsal.EditValue = Nothing
         lueKendaraan.EditValue = Nothing
         teNote.EditValue = Nothing
@@ -130,14 +130,14 @@ Public Class frmSuratJalanPermintaan
 
     Private Sub loadParent(idparent As String)
         Dim sqls As New SQLs(dbstring)
-        sqls.DMLQuery("select d.idtransaksidt,d.iditem,i.itemtype,i.idsatuan,i.kode,it.generalcode as type,i.item,d.qtycharges,s.satuan,d.harga,d.subtotaldisclainppn,d.remarks from transaksidt d left join item i on d.iditem=i.iditem left join sys_generalcode it on i.itemtype=it.idgeneral and it.gctype='ITEMTYPE' left join satuan s on s.idsatuan=i.idsatuan where d.idtransaksi='" & idtrans & "' and d.isdeleted=0 order by i.item asc", "grid")
+        sqls.DMLQuery("select d.idtransaksidt,d.iditem,i.itemtype,i.idsatuan,i.kode,it.generalcode as type,i.item,d.qtycharges,s.satuan,d.harga,d.subtotaldisclainppn,d.remarks from transaksidt d left join item i on d.iditem=i.iditem left join sys_generalcode it on i.itemtype=it.idgeneral and it.gctype='ITEMTYPE' left join satuan s on s.idsatuan=i.idsatuan where d.idtransaksi='" & idparent & "' and d.isdeleted=0 order by i.item asc", "grid")
         gcData.DataSource = sqls.dataTable("grid")
         gvData.BestFitColumns()
     End Sub
 
     Private Sub loadGrid(idtrans As String)
         Dim sqls As New SQLs(dbstring)
-        sqls.DMLQuery("select d.idtransaksidt,d.iditem,i.itemtype,i.idsatuan,i.kode,it.generalcode as type,i.item,d.qtycharges,s.satuan,d.harga,d.subtotaldisclainppn,d.remarks from transaksidt d left join item i on d.iditem=i.iditem left join sys_generalcode it on i.itemtype=it.idgeneral and it.gctype='ITEMTYPE' left join satuan s on s.idsatuan=i.idsatuan where d.idtransaksi3='" & idtrans & "' and d.isdeleted=0 order by i.item asc", "grid")
+        sqls.DMLQuery("select d.idtransaksidt,d.iditem,i.itemtype,i.idsatuan,i.kode,it.generalcode as type,i.item,d.qtycharges,s.satuan,d.harga,d.subtotaldisclainppn,d.remarks from transaksidt d left join item i on d.iditem=i.iditem left join sys_generalcode it on i.itemtype=it.idgeneral and it.gctype='ITEMTYPE' left join satuan s on s.idsatuan=i.idsatuan where d.idtransaksi='" & idtrans & "' and d.isdeleted=0 order by i.item asc", "grid")
         gcData.DataSource = sqls.dataTable("grid")
         gvData.BestFitColumns()
     End Sub
@@ -206,7 +206,7 @@ Public Class frmSuratJalanPermintaan
 
     Private Sub btnSearch_Click(sender As Object, e As EventArgs) Handles btnSearch.Click
         Dim sqls As New SQLs(dbstring)
-        sqls.DMLQuery("select t.idtransaksi,t.transaksino,tf.transaksino as reffno,t.remarks,dt.counter as totalitem,dtot.total as totalbarang,convert(varchar,t.createddate,105)+' '+convert(varchar,t.createddate,108) as createddate,c.username from transaksi t left join transaksi tf on t.idtransaksireff=tf.idtransaksi left join sys_user c on c.iduser=t.createdby left join (select idtransaksi3,count(idtransaksidt) as counter from transaksidt dt group by idtransaksi3) dt on t.idtransaksi=dt.idtransaksi3 left join (select idtransaksi3,sum(qtycharges) as total from transaksidt dt group by idtransaksi3) dtot on t.idtransaksi=dtot.idtransaksi3 where t.transaksitype in (select tt.idtransactiontype from transactiontype tt where tt.kodetransaksi=(select [value] from sys_appsetting where [variable]='KodeSuratJalanPermintaan')) and t.transaksistatus in (1) and t.reviewedby is null and t.isdeleted=0 order by t.createddate desc", "search")
+        sqls.DMLQuery("select t.idtransaksi,t.transaksino,tf.transaksino as reffno,t.remarks,dt.counter as totalitem,dtot.total as totalbarang,convert(varchar,t.createddate,105)+' '+convert(varchar,t.createddate,108) as createddate,c.username from transaksi t left join transaksi tf on t.idtransaksireff=tf.idtransaksi left join sys_user c on c.iduser=t.createdby left join (select idtransaksi,count(idtransaksidt) as counter from transaksidt dt group by idtransaksi) dt on t.idtransaksi=dt.idtransaksi left join (select idtransaksi,sum(qtycharges) as total from transaksidt dt group by idtransaksi) dtot on t.idtransaksi=dtot.idtransaksi where t.transaksitype in (select tt.idtransactiontype from transactiontype tt where tt.kodetransaksi=(select [value] from sys_appsetting where [variable]='KodeSuratJalanPermintaan')) and t.transaksistatus in (1) and t.reviewedby is null and t.isdeleted=0 order by t.createddate desc", "search")
         Dim cari As New frmSearch(sqls.dataSet, "search", "idtransaksi")
         tambahChild(cari)
 
@@ -303,10 +303,22 @@ Public Class frmSuratJalanPermintaan
             retval = dtsqls.datasetSave("transaksi", iddata, field, value, False)
 
             For i As Integer = 0 To gvData.RowCount - 1
-                Dim sqls11 As New SQLs(dbstring)
+                Dim dtsql2 As New dtsetSQLS(dbstring)
+                Dim field2 As New List(Of String)
+                Dim value2 As New List(Of Object)
                 Dim dr As DataRow = gvData.GetDataRow(i)
-                Dim iddatadt As String = CStr(dr("idtransaksidt"))
-                sqls11.DMLQuery("update transaksidt set updatedby='" & userid & "',updateddate=getdate(),idtransaksi3='" & iddata & "' where idtransaksidt='" & iddatadt & "'", False)
+                Dim iddatadt As String = ""
+
+                If statdata = statusData.Baru Then
+                    iddatadt = GenerateGUID()
+                    field2.AddRange(New String() {"idtransaksidt", "idtransaksi", "iditem", "idsatuan", "kodeitem", "item", "itemtype", "type", "qtydispose", "qtycharges", "satuan", "harga", "isdeleted", "createdby", "createddate", "createdfromip", "createdfromhostname", "idcompany"})
+                    value2.AddRange(New Object() {iddatadt, iddata, dr("iditem"), dr("idsatuan"), dr("kode"), dr("item"), dr("itemtype"), dr("type"), dr("qtycharges"), dr("qtycharges"), dr("idsatuan"), dr("satuan"), dr("harga"), 0, userid, nowTime, getIPAddress(ipaddparam.IP), getIPAddress(ipaddparam.Host), idcomp})
+                Else
+                    iddatadt = CStr(dr("idtransaksidt"))
+                    field2.AddRange(New String() {"idtransaksidt", "idtransaksi", "iditem", "idsatuan", "kodeitem", "item", "itemtype", "type", "qtydispose", "qtycharges", "satuan", "harga", "isdeleted", "updatedby", "updateddate", "updatedfromip", "updatedfromhostname", "idcompany"})
+                    value2.AddRange(New Object() {iddatadt, iddata, dr("iditem"), dr("idsatuan"), dr("kode"), dr("item"), dr("itemtype"), dr("type"), dr("qtycharges"), dr("qtycharges"), dr("idsatuan"), dr("satuan"), dr("harga"), 0, userid, nowTime, getIPAddress(ipaddparam.IP), getIPAddress(ipaddparam.Host), idcomp})
+                End If
+                dtsql2.datasetSave("transaksidt", iddatadt, field2, value2, False)
             Next
         Else
             field.AddRange(New String() {"idtransaksi", "idtransaksireff", "transaksitype", "transaksino", "transaksistatus", "idasal", "asaltype", "iddeptasal", "idtujuan", "tujuantype", "iddepttujuan", "isdeleted", "remarks", "createdby", "createddate", "createdfromip", "createdfromhostname", "idcompany", "kirimdate", "tempodate", "reviewedby", "revieweddate", "reviewedfromip", "reviewedfromhostname", "subtotal", "discsubtotal", "subtotaldisc", "ppn", "subtotaldiscppn", "subtotaldiscppnongkir", "idvehicle"})
@@ -314,10 +326,22 @@ Public Class frmSuratJalanPermintaan
             retval = dtsqls.datasetSave("transaksi", iddata, field, value, False)
 
             For i As Integer = 0 To gvData.RowCount - 1
-                Dim sqls11 As New SQLs(dbstring)
+                Dim dtsql2 As New dtsetSQLS(dbstring)
+                Dim field2 As New List(Of String)
+                Dim value2 As New List(Of Object)
                 Dim dr As DataRow = gvData.GetDataRow(i)
-                Dim iddatadt As String = CStr(dr("idtransaksidt"))
-                sqls11.DMLQuery("update transaksidt set updatedby='" & userid & "',updateddate=getdate(),idtransaksi3='" & iddata & "' where idtransaksidt='" & iddatadt & "'", False)
+                Dim iddatadt As String = ""
+
+                If statdata = statusData.Baru Then
+                    iddatadt = GenerateGUID()
+                    field2.AddRange(New String() {"idtransaksidt", "idtransaksi", "iditem", "idsatuan", "kodeitem", "item", "itemtype", "type", "qtydispose", "qtycharges", "satuan", "harga", "isdeleted", "createdby", "createddate", "createdfromip", "createdfromhostname", "idcompany"})
+                    value2.AddRange(New Object() {iddatadt, iddata, dr("iditem"), dr("idsatuan"), dr("kode"), dr("item"), dr("itemtype"), dr("type"), dr("qtycharges"), dr("qtycharges"), dr("idsatuan"), dr("satuan"), dr("harga"), 0, userid, nowTime, getIPAddress(ipaddparam.IP), getIPAddress(ipaddparam.Host), idcomp})
+                Else
+                    iddatadt = CStr(dr("idtransaksidt"))
+                    field2.AddRange(New String() {"idtransaksidt", "idtransaksi", "iditem", "idsatuan", "kodeitem", "item", "itemtype", "type", "qtydispose", "qtycharges", "satuan", "harga", "isdeleted", "updatedby", "updateddate", "updatedfromip", "updatedfromhostname", "idcompany"})
+                    value2.AddRange(New Object() {iddatadt, iddata, dr("iditem"), dr("idsatuan"), dr("kode"), dr("item"), dr("itemtype"), dr("type"), dr("qtycharges"), dr("qtycharges"), dr("idsatuan"), dr("satuan"), dr("harga"), 0, userid, nowTime, getIPAddress(ipaddparam.IP), getIPAddress(ipaddparam.Host), idcomp})
+                End If
+                dtsql2.datasetSave("transaksidt", iddatadt, field2, value2, False)
             Next
 
             'item log
