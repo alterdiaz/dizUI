@@ -1,4 +1,5 @@
 ﻿Public Class frmKamarPindahDept
+
     Const HTCAPTION = &H2
     Const WM_NCLBUTTONDOWN = &HA1
     Private idreg As String = ""
@@ -8,12 +9,10 @@
     Private idrm As String = ""
 
     Public Sub New()
-
         ' This call is required by the designer.
         InitializeComponent()
 
         ' Add any initialization after the InitializeComponent() call.
-
     End Sub
 
     'API functions   

@@ -53,7 +53,7 @@
     <OptionInfer>On</OptionInfer>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>Resources\dizNotif.ico</ApplicationIcon>
+    <ApplicationIcon>dizNotif2nb.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="DevExpress.Charts.v17.2.Core, Version=17.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
@@ -256,6 +256,12 @@
     <Compile Include="frmNotifbox.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="frmNotifikasi.Designer.vb">
+      <DependentUpon>frmNotifikasi.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmNotifikasi.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="modCore.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
@@ -285,6 +291,9 @@
     <EmbeddedResource Include="frmNotifbox.resx">
       <DependentUpon>frmNotifbox.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmNotifikasi.resx">
+      <DependentUpon>frmNotifikasi.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.vb</LastGenOutput>
@@ -305,6 +314,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="dizNotif2nb.ico" />
     <Content Include="dizNotification60.ico" />
     <AdditionalFiles Include="notifset">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -313,6 +323,9 @@
     <None Include="Resources\loading2.gif" />
     <None Include="Resources\dizNotif.png" />
     <None Include="Resources\dizNotif.ico" />
+    <None Include="Resources\dizNotif2.ico" />
+    <None Include="Resources\dizNotif2.png" />
+    <None Include="Resources\dizNotif2nb.png" />
     <Content Include="SQLite.Interop.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

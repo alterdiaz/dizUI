@@ -118,46 +118,55 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="ico_question" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\ico_question.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="min_w" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\min_w.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="exit_w" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\exit_w.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="max_w" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\max_w.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="dizNotifikasi60" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\dizNotification60.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="ico_info" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\ico_info.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="ico_critical" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\ico_critical.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="ok" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\ok.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="ico_warning" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\ico_warning.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="ok_w" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\ok w.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="canvas_msgbox" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\canvas_msgbox.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="dizNotif2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\dizNotif2.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="loading2" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\loading2.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="ico_question" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ico_question.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="dizNotifikasi60" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\dizNotification60.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="canvas_msgbox" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\canvas_msgbox.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="dizNotif" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\dizNotif.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="ico_critical" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ico_critical.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="dizNotif21" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\dizNotif2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="exit_w" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\exit_w.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ok_w" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ok w.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ico_warning" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ico_warning.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ico_info" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ico_info.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="max_w" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\max_w.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="min_w" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\min_w.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="dizNotif1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\dizNotif.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ok" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ok.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="dizNotif2nb" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\dizNotif2nb.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

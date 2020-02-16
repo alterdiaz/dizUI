@@ -22,10 +22,9 @@ Partial Class frmMain
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmMain))
         Me.btnExit = New System.Windows.Forms.Button()
-        Me.tmr = New System.Windows.Forms.Timer(Me.components)
+        Me.tmr = New System.Windows.Forms.Timer()
         Me.lblWaktu = New System.Windows.Forms.Label()
         Me.pVideo = New System.Windows.Forms.Panel()
         Me.vspVideo = New AForge.Controls.VideoSourcePlayer()
@@ -108,6 +107,7 @@ Partial Class frmMain
         '
         'vspVideo
         '
+        Me.vspVideo.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
         Me.vspVideo.Dock = System.Windows.Forms.DockStyle.Fill
         Me.vspVideo.Location = New System.Drawing.Point(0, 0)
         Me.vspVideo.Margin = New System.Windows.Forms.Padding(0)
@@ -116,7 +116,6 @@ Partial Class frmMain
         Me.vspVideo.TabIndex = 0
         Me.vspVideo.Text = "VideoSourcePlayer1"
         Me.vspVideo.VideoSource = Nothing
-        Me.vspVideo.Visible = False
         '
         'pNote
         '

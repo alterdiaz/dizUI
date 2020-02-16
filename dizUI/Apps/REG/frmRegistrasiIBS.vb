@@ -201,7 +201,7 @@
             lueParamedisCase.Properties.BestFitMode = DevExpress.XtraEditors.Controls.BestFitMode.BestFitResizePopup
             'lueParamedisCase.Properties.BestFit()
 
-            sqls.DMLQuery("select distinct l.idlokasi as id,k.kelas,l.nama as content from lokasi l left join kelaskamar kk on l.idlokasi=kk.idlokasi left join kelas k on kk.idkelas=k.idkelas and k.isdeleted=0 where l.isdeleted=0 and l.idlokasi not in (select idlokasi from kamar where checkout is not null) and l.lokasitype in(3,4) and l.iddepartment=(select value from sys_appsetting where variable='idibsdept') order by k.kelas asc,l.nama asc", "ruang")
+            sqls.DMLQuery("select distinct l.idlokasi as id,k.kelas,l.nama as content from lokasi l left join kelaskamar kk on l.idlokasi=kk.idlokasi left join kelas k on kk.idkelas=k.idkelas and k.isdeleted=0 where l.isdeleted=0 and l.idlokasi not in (select idlokasi from kamar where statusbed<>1) and l.lokasitype in(3,4) and l.iddepartment=(select value from sys_appsetting where variable='IDIBSDEPT') order by k.kelas asc,l.nama asc", "ruang")
             lueRuang.Properties.DataSource = sqls.dataTable("ruang")
             lueRuang.Properties.DisplayMember = "content"
             lueRuang.Properties.ValueMember = "id"
@@ -250,7 +250,7 @@
             lueParamedisCase.Properties.BestFitMode = DevExpress.XtraEditors.Controls.BestFitMode.BestFitResizePopup
             'lueParamedisCase.Properties.BestFit()
 
-            sqls.DMLQuery("select distinct l.idlokasi as id,k.kelas,l.nama as content from lokasi l left join kelaskamar kk on l.idlokasi=kk.idlokasi left join kelas k on kk.idkelas=k.idkelas and k.isdeleted=0 where l.isdeleted=0 and l.idlokasi not in (select idlokasi from kamar where checkout is not null) and l.lokasitype=4 and l.iddepartment=(select value from sys_appsetting where variable='idibsdept') order by k.kelas asc,l.nama asc", "ruang")
+            sqls.DMLQuery("select distinct l.idlokasi as id,k.kelas,l.nama as content from lokasi l left join kelaskamar kk on l.idlokasi=kk.idlokasi left join kelas k on kk.idkelas=k.idkelas and k.isdeleted=0 where l.isdeleted=0 and l.idlokasi not in (select idlokasi from kamar where statusbed<>1) and l.lokasitype=4 and l.iddepartment=(select value from sys_appsetting where variable='IDIBSDEPT') order by k.kelas asc,l.nama asc", "ruang")
             lueRuang.Properties.DataSource = sqls.dataTable("ruang")
             lueRuang.Properties.DisplayMember = "content"
             lueRuang.Properties.ValueMember = "id"
@@ -697,6 +697,16 @@
         formTitle = Me.lblTitle.Text
     End Sub
 
+    Private Function checkkamar(idlokasi As String) As Boolean
+        Dim retval As Boolean = False
+        Dim sqls As New SQLs(dbstring)
+        sqls.DMLQuery("select a.* from (select distinct l.idlokasi as id,k.kelas,l.nama as content from lokasi l left join kelaskamar kk on l.idlokasi=kk.idlokasi left join kelas k on kk.idkelas=k.idkelas and k.isdeleted=0 where l.isdeleted=0 and l.idlokasi not in (select idlokasi from kamar where statusbed<>1) and l.lokasitype=4 and l.iddepartment=(select value from sys_appsetting where variable='IDIBSDEPT')) a where a.id='" & idlokasi & "'", "cek")
+        If sqls.getDataSet("cek") > 0 Then
+            retval = True
+        End If
+        Return retval
+    End Function
+
     Private Sub btnSave_Click(sender As Object, e As EventArgs) Handles btnSave.Click
         If idselectparent = "0" Then
             dizMsgbox("Registrasi Induk belum dipilih", dizMsgboxStyle.Peringatan, Me)
@@ -716,6 +726,10 @@
         'End If
         If checkEntry() = False Then
             dizMsgbox("Isian belum benar", dizMsgboxStyle.Peringatan, Me)
+            Exit Sub
+        End If
+        If checkkamar(lueRuang.EditValue) = False Then
+            dizMsgbox("Ruang tidak tersedia", dizMsgboxStyle.Peringatan, Me)
             Exit Sub
         End If
 
@@ -1064,7 +1078,7 @@
     Private iddokterparent As String = "0"
     Private Sub lnkNoRegistrasiInduk_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles lnkNoRegistrasiInduk.LinkClicked
         Dim sqls As New SQLs(dbstring)
-        sqls.DMLQuery("select r.idregistrasi,convert(varchar,r.registrasidate,105)+' '+convert(varchar,r.registrasidate,108) as 'Tgl Registrasi',r.registrasino as 'No Registrasi',pm.nama as 'Tenaga Medis',dbo.fformatnorm(rm.rekammedisno) as 'No RM',rm.nama as 'Nama Pasien',jk.generalcode as 'Jenis Kelamin',convert(varchar,rm.tanggallahir,105) as 'Tgl Lahir',dbo.fUmurRegister(rm.tanggallahir,r.registrasidate) as 'Umur',kw.wilayah as 'Kewarganegaraan' from registrasi r left join rekammedis rm on r.idrekammedis=rm.idrekammedis left join sys_generalcode jk on rm.jeniskelamin=jk.idgeneral and jk.gctype='SEXTYPE' left join wilayah kw on rm.kewarganegaraan=kw.idwilayah  left join paramedis pm on r.iddokterruangan=pm.idparamedis where r.isdeleted=0 and ((convert(varchar,r.registrasidate,105) in ('" & Format(nowTime, "dd-MM-yyyy") & "','" & Format(nowTime.AddDays(-1), "dd-MM-yyyy") & "') and r.registrasistatus in (0,1,4,7) and r.transactiontype in (select idtransactiontype from transactiontype where kodetransaksi='REG' and iddepartment in (select [value] from sys_appsetting where variable in ('IDIRJDept','idigddept')))) or (r.registrasistatus=0 and r.transactiontype in (select idtransactiontype from transactiontype where kodetransaksi='REG' and iddepartment in (select [value] from sys_appsetting where variable in ('idirnadept','IDVKDept'))))) and rm.rekammedisno<>0 and r.idregistrasi not in (select r.idregistrasiparent from registrasi r left join rekammedis rm on r.idrekammedis=rm.idrekammedis where convert(varchar,r.registrasidate,105) in ('" & Format(nowTime, "dd-MM-yyyy") & "','" & Format(nowTime.AddDays(-1), "dd-MM-yyyy") & "') and r.isdeleted=0 and r.transactiontype in (select idtransactiontype from transactiontype where kodetransaksi='REG' and iddepartment in (select [value] from sys_appsetting where variable in ('idibsdept'))) and rm.rekammedisno<>0) order by r.registrasidate desc", "search")
+        sqls.DMLQuery("select r.idregistrasi,convert(varchar,r.registrasidate,105)+' '+convert(varchar,r.registrasidate,108) as 'Tgl Registrasi',r.registrasino as 'No Registrasi',pm.nama as 'Tenaga Medis',dbo.fformatnorm(rm.rekammedisno) as 'No RM',rm.nama as 'Nama Pasien',jk.generalcode as 'Jenis Kelamin',convert(varchar,rm.tanggallahir,105) as 'Tgl Lahir',dbo.fUmurRegister(rm.tanggallahir,r.registrasidate) as 'Umur',kw.wilayah as 'Kewarganegaraan' from registrasi r left join rekammedis rm on r.idrekammedis=rm.idrekammedis left join sys_generalcode jk on rm.jeniskelamin=jk.idgeneral and jk.gctype='SEXTYPE' left join wilayah kw on rm.kewarganegaraan=kw.idwilayah left join paramedis pm on r.iddokterruangan=pm.idparamedis where r.isdeleted=0 and ((r.registrasidate between '" & Format(nowTime.AddDays(1), "yyyy/MM/dd") & "' and '" & Format(nowTime.AddDays(-45), "yyyy/MM/dd") & "' and r.registrasistatus<>2 and r.transactiontype in (select idtransactiontype from transactiontype where kodetransaksi='REG' and iddepartment in (select [value] from sys_appsetting where variable in ('IDIRJDept','IDIGDDept','IDIRNADept','IDVKDept','IDICUDept','IDICCUDept','IDHCUDept')))) or (r.registrasistatus=0 and r.transactiontype in (select idtransactiontype from transactiontype where kodetransaksi='REG' and iddepartment in (select [value] from sys_appsetting where variable in ('IDIRJDept','IDIGDDept','IDIRNADept','IDVKDept','IDICUDept','IDICCUDept','IDHCUDept'))))) and rm.rekammedisno<>0 and r.idregistrasi not in (select r.idregistrasiparent from registrasi r left join rekammedis rm on r.idrekammedis=rm.idrekammedis where r.registrasidate between '" & Format(nowTime.AddDays(1), "yyyy/MM/dd") & "' and '" & Format(nowTime.AddDays(-45), "yyyy/MM/dd") & "' and r.isdeleted=0 and r.transactiontype in (select idtransactiontype from transactiontype where kodetransaksi='REG' and iddepartment in (select [value] from sys_appsetting where variable in ('IDIBSDept'))) and rm.rekammedisno<>0) order by r.registrasidate desc", "search")
         Dim cari As New frmSearch(sqls.dataSet, "search", "idregistrasi")
         If cari.ShowDialog = Windows.Forms.DialogResult.OK Then
             idselectparent = CStr(cari.GetIDSelectData)
@@ -1317,6 +1331,19 @@
     Private Sub btnAlihDPJP_Click(sender As Object, e As EventArgs) Handles btnAlihDPJP.Click
         formTitle = "Alih DPJP"
         Dim frmMon As New frmAlihDPJP("IDIBSDept")
+        tambahChild(frmMon)
+        frmMon.StartPosition = FormStartPosition.CenterScreen
+        frmMon.pMinimize.Enabled = False
+        frmMon.pMaximize.Enabled = False
+        frmMon.tlpForm.RowCount = 4
+        frmMon.tlpForm.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 2.0!))
+        frmMon.ShowDialog(Me)
+        formTitle = Me.lblTitle.Text
+    End Sub
+
+    Private Sub btnPindahKamar_Click(sender As Object, e As EventArgs) Handles btnPindahKamar.Click
+        formTitle = "Pindah Kamar"
+        Dim frmMon As New frmKamarPindahIBS
         tambahChild(frmMon)
         frmMon.StartPosition = FormStartPosition.CenterScreen
         frmMon.pMinimize.Enabled = False

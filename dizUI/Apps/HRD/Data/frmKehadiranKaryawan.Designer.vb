@@ -83,6 +83,7 @@ Partial Class frmKehadiranKaryawan
         Me.btnExport = New System.Windows.Forms.Button()
         Me.rimeAddress = New DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit()
         Me.lblSep5 = New System.Windows.Forms.Label()
+        Me.btnSave = New System.Windows.Forms.Button()
         Me.tlpForm.SuspendLayout()
         Me.pTitle.SuspendLayout()
         CType(Me.pMinimize, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -1046,9 +1047,10 @@ Partial Class frmKehadiranKaryawan
         'pHeader
         '
         Me.pHeader.BackColor = System.Drawing.Color.FromArgb(CType(CType(66, Byte), Integer), CType(CType(66, Byte), Integer), CType(CType(66, Byte), Integer))
+        Me.pHeader.Controls.Add(Me.btnRefresh)
+        Me.pHeader.Controls.Add(Me.btnSave)
         Me.pHeader.Controls.Add(Me.btnImportDatang)
         Me.pHeader.Controls.Add(Me.btnExportFormat)
-        Me.pHeader.Controls.Add(Me.btnRefresh)
         Me.pHeader.Controls.Add(Me.btnExport)
         Me.pHeader.Dock = System.Windows.Forms.DockStyle.Top
         Me.pHeader.ForeColor = System.Drawing.Color.White
@@ -1103,7 +1105,7 @@ Partial Class frmKehadiranKaryawan
         Me.btnRefresh.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DarkGray
         Me.btnRefresh.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnRefresh.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnRefresh.Location = New System.Drawing.Point(606, 0)
+        Me.btnRefresh.Location = New System.Drawing.Point(526, 0)
         Me.btnRefresh.Name = "btnRefresh"
         Me.btnRefresh.Size = New System.Drawing.Size(80, 30)
         Me.btnRefresh.TabIndex = 19
@@ -1146,6 +1148,23 @@ Partial Class frmKehadiranKaryawan
         Me.lblSep5.TabIndex = 19
         Me.lblSep5.Text = "|"
         Me.lblSep5.TextAlign = System.Drawing.ContentAlignment.TopCenter
+        '
+        'btnSave
+        '
+        Me.btnSave.BackColor = System.Drawing.Color.Green
+        Me.btnSave.Dock = System.Windows.Forms.DockStyle.Right
+        Me.btnSave.FlatAppearance.BorderSize = 0
+        Me.btnSave.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DimGray
+        Me.btnSave.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DarkGray
+        Me.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnSave.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnSave.Location = New System.Drawing.Point(606, 0)
+        Me.btnSave.Name = "btnSave"
+        Me.btnSave.Size = New System.Drawing.Size(80, 30)
+        Me.btnSave.TabIndex = 27
+        Me.btnSave.Text = "SIMPAN"
+        Me.btnSave.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
+        Me.btnSave.UseVisualStyleBackColor = False
         '
         'frmKehadiranKaryawan
         '
@@ -1240,4 +1259,5 @@ Partial Class frmKehadiranKaryawan
     Friend WithEvents gc30 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents gc31 As DevExpress.XtraGrid.Columns.GridColumn
     Public WithEvents btnExport As Button
+    Public WithEvents btnSave As Button
 End Class

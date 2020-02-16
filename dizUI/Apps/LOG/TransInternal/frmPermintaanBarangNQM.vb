@@ -177,7 +177,8 @@ Public Class frmPermintaanBarangNQM
         End If
 
         checkFieldMaxLength(dbstring, tlpField, "transaksi")
-        btnNew_Click(btnNew, Nothing)
+        loadgrid()
+        kosongkanIsian(tlpField)
     End Sub
 
     Private idunit2 As New List(Of String)
@@ -533,7 +534,8 @@ Public Class frmPermintaanBarangNQM
 
         If retval = True Then
             dizMsgbox("Data telah tersimpan", dizMsgboxStyle.Info, Me)
-            btnNew_Click(btnNew, Nothing)
+            loadgrid()
+            kosongkanIsian(tlpField)
         End If
     End Sub
 

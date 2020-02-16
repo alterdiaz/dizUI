@@ -19,26 +19,26 @@ Partial Public Class xrItem18815_201901
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Dim UpcaGenerator1 As DevExpress.XtraPrinting.BarCode.UPCAGenerator = New DevExpress.XtraPrinting.BarCode.UPCAGenerator()
+        Dim EaN13Generator1 As DevExpress.XtraPrinting.BarCode.EAN13Generator = New DevExpress.XtraPrinting.BarCode.EAN13Generator()
         Dim QrCodeGenerator1 As DevExpress.XtraPrinting.BarCode.QRCodeGenerator = New DevExpress.XtraPrinting.BarCode.QRCodeGenerator()
-        Dim UpcaGenerator2 As DevExpress.XtraPrinting.BarCode.UPCAGenerator = New DevExpress.XtraPrinting.BarCode.UPCAGenerator()
+        Dim EaN13Generator2 As DevExpress.XtraPrinting.BarCode.EAN13Generator = New DevExpress.XtraPrinting.BarCode.EAN13Generator()
         Dim QrCodeGenerator2 As DevExpress.XtraPrinting.BarCode.QRCodeGenerator = New DevExpress.XtraPrinting.BarCode.QRCodeGenerator()
-        Dim UpcaGenerator3 As DevExpress.XtraPrinting.BarCode.UPCAGenerator = New DevExpress.XtraPrinting.BarCode.UPCAGenerator()
+        Dim EaN13Generator3 As DevExpress.XtraPrinting.BarCode.EAN13Generator = New DevExpress.XtraPrinting.BarCode.EAN13Generator()
         Dim QrCodeGenerator3 As DevExpress.XtraPrinting.BarCode.QRCodeGenerator = New DevExpress.XtraPrinting.BarCode.QRCodeGenerator()
-        Dim UpcaGenerator4 As DevExpress.XtraPrinting.BarCode.UPCAGenerator = New DevExpress.XtraPrinting.BarCode.UPCAGenerator()
+        Dim EaN13Generator4 As DevExpress.XtraPrinting.BarCode.EAN13Generator = New DevExpress.XtraPrinting.BarCode.EAN13Generator()
         Dim QrCodeGenerator4 As DevExpress.XtraPrinting.BarCode.QRCodeGenerator = New DevExpress.XtraPrinting.BarCode.QRCodeGenerator()
-        Dim UpcaGenerator5 As DevExpress.XtraPrinting.BarCode.UPCAGenerator = New DevExpress.XtraPrinting.BarCode.UPCAGenerator()
+        Dim EaN13Generator5 As DevExpress.XtraPrinting.BarCode.EAN13Generator = New DevExpress.XtraPrinting.BarCode.EAN13Generator()
         Dim QrCodeGenerator5 As DevExpress.XtraPrinting.BarCode.QRCodeGenerator = New DevExpress.XtraPrinting.BarCode.QRCodeGenerator()
-        Dim UpcaGenerator6 As DevExpress.XtraPrinting.BarCode.UPCAGenerator = New DevExpress.XtraPrinting.BarCode.UPCAGenerator()
+        Dim EaN13Generator6 As DevExpress.XtraPrinting.BarCode.EAN13Generator = New DevExpress.XtraPrinting.BarCode.EAN13Generator()
         Dim QrCodeGenerator6 As DevExpress.XtraPrinting.BarCode.QRCodeGenerator = New DevExpress.XtraPrinting.BarCode.QRCodeGenerator()
-        Dim UpcaGenerator7 As DevExpress.XtraPrinting.BarCode.UPCAGenerator = New DevExpress.XtraPrinting.BarCode.UPCAGenerator()
+        Dim EaN13Generator7 As DevExpress.XtraPrinting.BarCode.EAN13Generator = New DevExpress.XtraPrinting.BarCode.EAN13Generator()
         Dim QrCodeGenerator7 As DevExpress.XtraPrinting.BarCode.QRCodeGenerator = New DevExpress.XtraPrinting.BarCode.QRCodeGenerator()
-        Dim UpcaGenerator8 As DevExpress.XtraPrinting.BarCode.UPCAGenerator = New DevExpress.XtraPrinting.BarCode.UPCAGenerator()
+        Dim EaN13Generator8 As DevExpress.XtraPrinting.BarCode.EAN13Generator = New DevExpress.XtraPrinting.BarCode.EAN13Generator()
         Dim QrCodeGenerator8 As DevExpress.XtraPrinting.BarCode.QRCodeGenerator = New DevExpress.XtraPrinting.BarCode.QRCodeGenerator()
-        Dim UpcaGenerator9 As DevExpress.XtraPrinting.BarCode.UPCAGenerator = New DevExpress.XtraPrinting.BarCode.UPCAGenerator()
+        Dim EaN13Generator9 As DevExpress.XtraPrinting.BarCode.EAN13Generator = New DevExpress.XtraPrinting.BarCode.EAN13Generator()
         Dim QrCodeGenerator9 As DevExpress.XtraPrinting.BarCode.QRCodeGenerator = New DevExpress.XtraPrinting.BarCode.QRCodeGenerator()
         Dim QrCodeGenerator10 As DevExpress.XtraPrinting.BarCode.QRCodeGenerator = New DevExpress.XtraPrinting.BarCode.QRCodeGenerator()
-        Dim UpcaGenerator10 As DevExpress.XtraPrinting.BarCode.UPCAGenerator = New DevExpress.XtraPrinting.BarCode.UPCAGenerator()
+        Dim EaN13Generator10 As DevExpress.XtraPrinting.BarCode.EAN13Generator = New DevExpress.XtraPrinting.BarCode.EAN13Generator()
         Me.Detail = New DevExpress.XtraReports.UI.DetailBand()
         Me.XrPanel6 = New DevExpress.XtraReports.UI.XRPanel()
         Me.xrp10BC = New DevExpress.XtraReports.UI.XRBarCode()
@@ -179,8 +179,7 @@ Partial Public Class xrItem18815_201901
         '
         'xrp10BC
         '
-        Me.xrp10BC.Alignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
-        Me.xrp10BC.AutoModule = True
+        Me.xrp10BC.Alignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
         Me.xrp10BC.Dpi = 254.0!
         Me.xrp10BC.LocationFloat = New DevExpress.Utils.PointFloat(210.0005!, 190.0!)
         Me.xrp10BC.Module = 5.08!
@@ -190,7 +189,7 @@ Partial Public Class xrItem18815_201901
         Me.xrp10BC.SizeF = New System.Drawing.SizeF(640.0!, 59.99997!)
         Me.xrp10BC.StylePriority.UsePadding = False
         Me.xrp10BC.StylePriority.UseTextAlignment = False
-        Me.xrp10BC.Symbology = UpcaGenerator1
+        Me.xrp10BC.Symbology = EaN13Generator1
         Me.xrp10BC.Text = "733894317076"
         Me.xrp10BC.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
         '
@@ -276,8 +275,7 @@ Partial Public Class xrItem18815_201901
         '
         'xrp9BC
         '
-        Me.xrp9BC.Alignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
-        Me.xrp9BC.AutoModule = True
+        Me.xrp9BC.Alignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
         Me.xrp9BC.Dpi = 254.0!
         Me.xrp9BC.LocationFloat = New DevExpress.Utils.PointFloat(210.0005!, 190.0001!)
         Me.xrp9BC.Module = 5.08!
@@ -287,7 +285,7 @@ Partial Public Class xrItem18815_201901
         Me.xrp9BC.SizeF = New System.Drawing.SizeF(640.0!, 59.99997!)
         Me.xrp9BC.StylePriority.UsePadding = False
         Me.xrp9BC.StylePriority.UseTextAlignment = False
-        Me.xrp9BC.Symbology = UpcaGenerator2
+        Me.xrp9BC.Symbology = EaN13Generator2
         Me.xrp9BC.Text = "733894317076"
         Me.xrp9BC.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
         '
@@ -373,8 +371,7 @@ Partial Public Class xrItem18815_201901
         '
         'xrp8BC
         '
-        Me.xrp8BC.Alignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
-        Me.xrp8BC.AutoModule = True
+        Me.xrp8BC.Alignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
         Me.xrp8BC.Dpi = 254.0!
         Me.xrp8BC.LocationFloat = New DevExpress.Utils.PointFloat(209.9993!, 190.0!)
         Me.xrp8BC.Module = 5.08!
@@ -384,7 +381,7 @@ Partial Public Class xrItem18815_201901
         Me.xrp8BC.SizeF = New System.Drawing.SizeF(640.0!, 59.99997!)
         Me.xrp8BC.StylePriority.UsePadding = False
         Me.xrp8BC.StylePriority.UseTextAlignment = False
-        Me.xrp8BC.Symbology = UpcaGenerator3
+        Me.xrp8BC.Symbology = EaN13Generator3
         Me.xrp8BC.Text = "733894317076"
         Me.xrp8BC.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
         '
@@ -470,8 +467,7 @@ Partial Public Class xrItem18815_201901
         '
         'xrp7BC
         '
-        Me.xrp7BC.Alignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
-        Me.xrp7BC.AutoModule = True
+        Me.xrp7BC.Alignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
         Me.xrp7BC.Dpi = 254.0!
         Me.xrp7BC.LocationFloat = New DevExpress.Utils.PointFloat(209.9995!, 190.0!)
         Me.xrp7BC.Module = 5.08!
@@ -481,7 +477,7 @@ Partial Public Class xrItem18815_201901
         Me.xrp7BC.SizeF = New System.Drawing.SizeF(640.0!, 59.99997!)
         Me.xrp7BC.StylePriority.UsePadding = False
         Me.xrp7BC.StylePriority.UseTextAlignment = False
-        Me.xrp7BC.Symbology = UpcaGenerator4
+        Me.xrp7BC.Symbology = EaN13Generator4
         Me.xrp7BC.Text = "733894317076"
         Me.xrp7BC.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
         '
@@ -567,8 +563,7 @@ Partial Public Class xrItem18815_201901
         '
         'xrp6BC
         '
-        Me.xrp6BC.Alignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
-        Me.xrp6BC.AutoModule = True
+        Me.xrp6BC.Alignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
         Me.xrp6BC.Dpi = 254.0!
         Me.xrp6BC.LocationFloat = New DevExpress.Utils.PointFloat(209.9995!, 190.0!)
         Me.xrp6BC.Module = 5.08!
@@ -578,8 +573,8 @@ Partial Public Class xrItem18815_201901
         Me.xrp6BC.SizeF = New System.Drawing.SizeF(640.0!, 59.99997!)
         Me.xrp6BC.StylePriority.UsePadding = False
         Me.xrp6BC.StylePriority.UseTextAlignment = False
-        Me.xrp6BC.Symbology = UpcaGenerator5
-        Me.xrp6BC.Text = "733894317076"
+        Me.xrp6BC.Symbology = EaN13Generator5
+        Me.xrp6BC.Text = "33814291735"
         Me.xrp6BC.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
         '
         'xrp6QR
@@ -664,8 +659,7 @@ Partial Public Class xrItem18815_201901
         '
         'xrp5BC
         '
-        Me.xrp5BC.Alignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
-        Me.xrp5BC.AutoModule = True
+        Me.xrp5BC.Alignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
         Me.xrp5BC.Dpi = 254.0!
         Me.xrp5BC.LocationFloat = New DevExpress.Utils.PointFloat(209.9996!, 190.0!)
         Me.xrp5BC.Module = 5.08!
@@ -675,7 +669,7 @@ Partial Public Class xrItem18815_201901
         Me.xrp5BC.SizeF = New System.Drawing.SizeF(640.0!, 59.99997!)
         Me.xrp5BC.StylePriority.UsePadding = False
         Me.xrp5BC.StylePriority.UseTextAlignment = False
-        Me.xrp5BC.Symbology = UpcaGenerator6
+        Me.xrp5BC.Symbology = EaN13Generator6
         Me.xrp5BC.Text = "733894317076"
         Me.xrp5BC.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
         '
@@ -761,8 +755,7 @@ Partial Public Class xrItem18815_201901
         '
         'xrp4BC
         '
-        Me.xrp4BC.Alignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
-        Me.xrp4BC.AutoModule = True
+        Me.xrp4BC.Alignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
         Me.xrp4BC.Dpi = 254.0!
         Me.xrp4BC.LocationFloat = New DevExpress.Utils.PointFloat(210.0004!, 190.0002!)
         Me.xrp4BC.Module = 5.08!
@@ -772,7 +765,7 @@ Partial Public Class xrItem18815_201901
         Me.xrp4BC.SizeF = New System.Drawing.SizeF(640.0!, 59.99997!)
         Me.xrp4BC.StylePriority.UsePadding = False
         Me.xrp4BC.StylePriority.UseTextAlignment = False
-        Me.xrp4BC.Symbology = UpcaGenerator7
+        Me.xrp4BC.Symbology = EaN13Generator7
         Me.xrp4BC.Text = "733894317076"
         Me.xrp4BC.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
         '
@@ -858,8 +851,7 @@ Partial Public Class xrItem18815_201901
         '
         'xrp3BC
         '
-        Me.xrp3BC.Alignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
-        Me.xrp3BC.AutoModule = True
+        Me.xrp3BC.Alignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
         Me.xrp3BC.Dpi = 254.0!
         Me.xrp3BC.LocationFloat = New DevExpress.Utils.PointFloat(209.9996!, 189.9997!)
         Me.xrp3BC.Module = 5.08!
@@ -869,7 +861,7 @@ Partial Public Class xrItem18815_201901
         Me.xrp3BC.SizeF = New System.Drawing.SizeF(640.0!, 59.99997!)
         Me.xrp3BC.StylePriority.UsePadding = False
         Me.xrp3BC.StylePriority.UseTextAlignment = False
-        Me.xrp3BC.Symbology = UpcaGenerator8
+        Me.xrp3BC.Symbology = EaN13Generator8
         Me.xrp3BC.Text = "733894317076"
         Me.xrp3BC.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
         '
@@ -955,8 +947,7 @@ Partial Public Class xrItem18815_201901
         '
         'xrp2BC
         '
-        Me.xrp2BC.Alignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
-        Me.xrp2BC.AutoModule = True
+        Me.xrp2BC.Alignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
         Me.xrp2BC.Dpi = 254.0!
         Me.xrp2BC.LocationFloat = New DevExpress.Utils.PointFloat(210.0004!, 190.0001!)
         Me.xrp2BC.Module = 5.08!
@@ -966,7 +957,7 @@ Partial Public Class xrItem18815_201901
         Me.xrp2BC.SizeF = New System.Drawing.SizeF(640.0!, 59.99997!)
         Me.xrp2BC.StylePriority.UsePadding = False
         Me.xrp2BC.StylePriority.UseTextAlignment = False
-        Me.xrp2BC.Symbology = UpcaGenerator9
+        Me.xrp2BC.Symbology = EaN13Generator9
         Me.xrp2BC.Text = "733894317076"
         Me.xrp2BC.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
         '
@@ -1072,8 +1063,7 @@ Partial Public Class xrItem18815_201901
         '
         'xrp1BC
         '
-        Me.xrp1BC.Alignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
-        Me.xrp1BC.AutoModule = True
+        Me.xrp1BC.Alignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
         Me.xrp1BC.Dpi = 254.0!
         Me.xrp1BC.LocationFloat = New DevExpress.Utils.PointFloat(209.9998!, 190.0!)
         Me.xrp1BC.Module = 5.08!
@@ -1083,7 +1073,7 @@ Partial Public Class xrItem18815_201901
         Me.xrp1BC.SizeF = New System.Drawing.SizeF(640.0!, 59.99997!)
         Me.xrp1BC.StylePriority.UsePadding = False
         Me.xrp1BC.StylePriority.UseTextAlignment = False
-        Me.xrp1BC.Symbology = UpcaGenerator10
+        Me.xrp1BC.Symbology = EaN13Generator10
         Me.xrp1BC.Text = "733894317076"
         Me.xrp1BC.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
         '

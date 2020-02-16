@@ -127,7 +127,7 @@
         Dim strfilter As String = ""
         strQuery &= " and r.rekammedisno<>0"
         If teSearchLama.Text <> "" Then
-            strQuery &= " and r.nama like '%" & teSearchLama.Text & "%'"
+            strQuery &= " and (r.idrekammedis='" & teSearchLama.Text & "' or r.nama like '%" & teSearchLama.Text & "%' or replace(dbo.fformatnorm(r.rekammedisno),'-','') like '%" & teSearchLama.Text & "%' or dbo.fformatnorm(r.rekammedisno) like '%" & teSearchLama.Text & "%' or convert(varchar,r.rekammedisno) like '%" & teSearchLama.Text & "%')"
         End If
         strQuery &= " order by r.rekammedisno desc"
 
@@ -194,7 +194,7 @@
         Dim strfilter As String = ""
         strQuery &= " and r.rekammedisno<>0"
         If teSearchLama.Text <> "" Then
-            strQuery &= " and r.nama like '%" & teSearchBaru.Text & "%'"
+            strQuery &= " and (r.idrekammedis='" & teSearchBaru.Text & "' or r.nama like '%" & teSearchBaru.Text & "%' or replace(dbo.fformatnorm(r.rekammedisno),'-','') like '%" & teSearchBaru.Text & "%' or dbo.fformatnorm(r.rekammedisno) like '%" & teSearchBaru.Text & "%' or convert(varchar,r.rekammedisno) like '%" & teSearchBaru.Text & "%')"
         End If
         strQuery &= " order by r.rekammedisno desc"
 
@@ -245,6 +245,18 @@
                 dizMsgbox("Swap Data telah tersimpan" & vbCrLf & "Nomor Rekam Medis Lama dinonaktifkan" & vbCrLf & "Nomor Rekam Medis Lama dapat digunakan pasien baru", dizMsgboxStyle.Info, Me)
                 kosongkanisian()
             End If
+        End If
+    End Sub
+
+    Private Sub teSearchLama_KeyPress(sender As Object, e As KeyPressEventArgs) Handles teSearchLama.KeyPress
+        If Asc(e.KeyChar) = 13 Then
+            btnSearchLama_Click(btnSearchLama, Nothing)
+        End If
+    End Sub
+
+    Private Sub teSearchBaru_KeyPress(sender As Object, e As KeyPressEventArgs) Handles teSearchBaru.KeyPress
+        If Asc(e.KeyChar) = 13 Then
+            btnSearchBaru_Click(btnSearchBaru, Nothing)
         End If
     End Sub
 

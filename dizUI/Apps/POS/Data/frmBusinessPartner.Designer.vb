@@ -883,7 +883,7 @@ Partial Class frmBusinessPartner
         '
         'Button2
         '
-        Me.Button2.BackColor = System.Drawing.Color.green
+        Me.Button2.BackColor = System.Drawing.Color.Green
         Me.Button2.Dock = System.Windows.Forms.DockStyle.Right
         Me.Button2.FlatAppearance.BorderSize = 0
         Me.Button2.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DimGray
@@ -1518,7 +1518,7 @@ Partial Class frmBusinessPartner
         '
         'btnSaveAlamat
         '
-        Me.btnSaveAlamat.BackColor = System.Drawing.Color.green
+        Me.btnSaveAlamat.BackColor = System.Drawing.Color.Green
         Me.btnSaveAlamat.Dock = System.Windows.Forms.DockStyle.Right
         Me.btnSaveAlamat.FlatAppearance.BorderSize = 0
         Me.btnSaveAlamat.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DimGray
@@ -1833,7 +1833,7 @@ Partial Class frmBusinessPartner
         '
         'btnSaveEmail
         '
-        Me.btnSaveEmail.BackColor = System.Drawing.Color.green
+        Me.btnSaveEmail.BackColor = System.Drawing.Color.Green
         Me.btnSaveEmail.Dock = System.Windows.Forms.DockStyle.Right
         Me.btnSaveEmail.FlatAppearance.BorderSize = 0
         Me.btnSaveEmail.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DimGray
@@ -2192,7 +2192,7 @@ Partial Class frmBusinessPartner
         '
         'btnSaveTelepon
         '
-        Me.btnSaveTelepon.BackColor = System.Drawing.Color.green
+        Me.btnSaveTelepon.BackColor = System.Drawing.Color.Green
         Me.btnSaveTelepon.Dock = System.Windows.Forms.DockStyle.Right
         Me.btnSaveTelepon.FlatAppearance.BorderSize = 0
         Me.btnSaveTelepon.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DimGray
@@ -2431,15 +2431,18 @@ Partial Class frmBusinessPartner
         Me.teKode.Margin = New System.Windows.Forms.Padding(0)
         Me.teKode.Name = "teKode"
         Me.teKode.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[True]
-        Me.teKode.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.teKode.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
         Me.teKode.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 9.0!)
         Me.teKode.Properties.Appearance.Options.UseBackColor = True
         Me.teKode.Properties.Appearance.Options.UseFont = True
+        Me.teKode.Properties.AppearanceDisabled.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.teKode.Properties.AppearanceDisabled.Options.UseBackColor = True
+        Me.teKode.Properties.AppearanceReadOnly.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.teKode.Properties.AppearanceReadOnly.Options.UseBackColor = True
         Me.teKode.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple
         Me.teKode.Properties.MaxLength = 300
         Me.teKode.Properties.NullText = "[Belum Diisi]"
         Me.teKode.Properties.NullValuePrompt = "[Belum Diisi]"
-        Me.teKode.Properties.ReadOnly = True
         Me.teKode.Size = New System.Drawing.Size(150, 20)
         Me.teKode.TabIndex = 18
         Me.teKode.Tag = "kode"
@@ -2690,7 +2693,7 @@ Partial Class frmBusinessPartner
         '
         'btnSave
         '
-        Me.btnSave.BackColor = System.Drawing.Color.green
+        Me.btnSave.BackColor = System.Drawing.Color.Green
         Me.btnSave.Dock = System.Windows.Forms.DockStyle.Right
         Me.btnSave.FlatAppearance.BorderSize = 0
         Me.btnSave.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DimGray

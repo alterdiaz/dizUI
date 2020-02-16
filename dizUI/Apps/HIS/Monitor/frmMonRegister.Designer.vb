@@ -39,6 +39,7 @@ Partial Class frmMonRegister
         Me.GridColumn24 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn26 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -59,17 +60,24 @@ Partial Class frmMonRegister
         Me.GridColumn21 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn22 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.rimeNote = New DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit()
+        Me.gcPayerType = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.gcPayer = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.gcAsuransi = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.tlpField = New System.Windows.Forms.TableLayoutPanel()
+        Me.btnApply = New System.Windows.Forms.Button()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.cboDepartment = New DevExpress.XtraEditors.CheckedComboBoxEdit()
         Me.lblPengajuanNo = New System.Windows.Forms.Label()
         Me.deTanggal = New DevExpress.XtraEditors.DateEdit()
+        Me.btnAllData = New System.Windows.Forms.Button()
         Me.pHeader = New System.Windows.Forms.Panel()
-        Me.btnRujukInternal = New System.Windows.Forms.Button()
         Me.lblRefresh = New System.Windows.Forms.Label()
         Me.btnAuto = New System.Windows.Forms.Button()
         Me.btnRefresh = New System.Windows.Forms.Button()
         Me.btnExport = New System.Windows.Forms.Button()
+        Me.btnRiwayat = New System.Windows.Forms.Button()
+        Me.btnRujukInternal = New System.Windows.Forms.Button()
+        Me.btnFormat = New System.Windows.Forms.Button()
         Me.lblSep5 = New System.Windows.Forms.Label()
         Me.tmrWaktu = New System.Windows.Forms.Timer(Me.components)
         Me.tlpForm.SuspendLayout()
@@ -227,10 +235,15 @@ Partial Class frmMonRegister
         Me.gvData.Appearance.Row.Options.UseFont = True
         Me.gvData.Appearance.TopNewRow.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
         Me.gvData.Appearance.TopNewRow.Options.UseBackColor = True
-        Me.gvData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn25, Me.GridColumn23, Me.GridColumn2, Me.GridColumn24, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6, Me.GridColumn7, Me.GridColumn8, Me.GridColumn9, Me.GridColumn10, Me.GridColumn11, Me.GridColumn12, Me.GridColumn13, Me.GridColumn14, Me.GridColumn15, Me.GridColumn16, Me.GridColumn17, Me.GridColumn18, Me.GridColumn19, Me.GridColumn20, Me.GridColumn21, Me.GridColumn22})
+        Me.gvData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn25, Me.GridColumn23, Me.GridColumn2, Me.GridColumn24, Me.GridColumn3, Me.GridColumn4, Me.GridColumn26, Me.GridColumn5, Me.GridColumn6, Me.GridColumn7, Me.GridColumn8, Me.GridColumn9, Me.GridColumn10, Me.GridColumn11, Me.GridColumn12, Me.GridColumn13, Me.GridColumn14, Me.GridColumn15, Me.GridColumn16, Me.GridColumn17, Me.GridColumn18, Me.GridColumn19, Me.GridColumn20, Me.GridColumn21, Me.GridColumn22, Me.gcPayerType, Me.gcPayer, Me.gcAsuransi})
         Me.gvData.GridControl = Me.gcData
         Me.gvData.Name = "gvData"
         Me.gvData.NewItemRowText = "Tambah Data Disini"
+        Me.gvData.OptionsFind.AlwaysVisible = True
+        Me.gvData.OptionsFind.FindMode = DevExpress.XtraEditors.FindMode.Always
+        Me.gvData.OptionsFind.FindNullPrompt = "Pencarian"
+        Me.gvData.OptionsFind.ShowCloseButton = False
+        Me.gvData.OptionsFind.ShowFindButton = False
         Me.gvData.OptionsView.AnimationType = DevExpress.XtraGrid.Views.Base.GridAnimationType.AnimateAllContent
         Me.gvData.OptionsView.ColumnAutoWidth = False
         Me.gvData.OptionsView.EnableAppearanceEvenRow = True
@@ -326,7 +339,19 @@ Partial Class frmMonRegister
         Me.GridColumn4.OptionsColumn.AllowEdit = False
         Me.GridColumn4.OptionsColumn.ReadOnly = True
         Me.GridColumn4.Visible = True
-        Me.GridColumn4.VisibleIndex = 7
+        Me.GridColumn4.VisibleIndex = 8
+        '
+        'GridColumn26
+        '
+        Me.GridColumn26.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn26.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn26.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn26.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn26.Caption = "No RM"
+        Me.GridColumn26.FieldName = "norm1"
+        Me.GridColumn26.Name = "GridColumn26"
+        Me.GridColumn26.OptionsColumn.AllowEdit = False
+        Me.GridColumn26.OptionsColumn.ReadOnly = True
         '
         'GridColumn5
         '
@@ -338,7 +363,7 @@ Partial Class frmMonRegister
         Me.GridColumn5.OptionsColumn.AllowEdit = False
         Me.GridColumn5.OptionsColumn.ReadOnly = True
         Me.GridColumn5.Visible = True
-        Me.GridColumn5.VisibleIndex = 8
+        Me.GridColumn5.VisibleIndex = 9
         Me.GridColumn5.Width = 105
         '
         'GridColumn6
@@ -351,7 +376,7 @@ Partial Class frmMonRegister
         Me.GridColumn6.OptionsColumn.AllowEdit = False
         Me.GridColumn6.OptionsColumn.ReadOnly = True
         Me.GridColumn6.Visible = True
-        Me.GridColumn6.VisibleIndex = 9
+        Me.GridColumn6.VisibleIndex = 10
         '
         'GridColumn7
         '
@@ -363,7 +388,7 @@ Partial Class frmMonRegister
         Me.GridColumn7.OptionsColumn.AllowEdit = False
         Me.GridColumn7.OptionsColumn.ReadOnly = True
         Me.GridColumn7.Visible = True
-        Me.GridColumn7.VisibleIndex = 10
+        Me.GridColumn7.VisibleIndex = 11
         '
         'GridColumn8
         '
@@ -375,7 +400,7 @@ Partial Class frmMonRegister
         Me.GridColumn8.OptionsColumn.AllowEdit = False
         Me.GridColumn8.OptionsColumn.ReadOnly = True
         Me.GridColumn8.Visible = True
-        Me.GridColumn8.VisibleIndex = 11
+        Me.GridColumn8.VisibleIndex = 12
         '
         'GridColumn9
         '
@@ -388,7 +413,7 @@ Partial Class frmMonRegister
         Me.GridColumn9.OptionsColumn.AllowEdit = False
         Me.GridColumn9.OptionsColumn.ReadOnly = True
         Me.GridColumn9.Visible = True
-        Me.GridColumn9.VisibleIndex = 12
+        Me.GridColumn9.VisibleIndex = 13
         '
         'rimeAddress
         '
@@ -407,7 +432,7 @@ Partial Class frmMonRegister
         Me.GridColumn10.OptionsColumn.AllowEdit = False
         Me.GridColumn10.OptionsColumn.ReadOnly = True
         Me.GridColumn10.Visible = True
-        Me.GridColumn10.VisibleIndex = 13
+        Me.GridColumn10.VisibleIndex = 14
         '
         'GridColumn11
         '
@@ -419,7 +444,7 @@ Partial Class frmMonRegister
         Me.GridColumn11.OptionsColumn.AllowEdit = False
         Me.GridColumn11.OptionsColumn.ReadOnly = True
         Me.GridColumn11.Visible = True
-        Me.GridColumn11.VisibleIndex = 14
+        Me.GridColumn11.VisibleIndex = 15
         '
         'GridColumn12
         '
@@ -431,7 +456,7 @@ Partial Class frmMonRegister
         Me.GridColumn12.OptionsColumn.AllowEdit = False
         Me.GridColumn12.OptionsColumn.ReadOnly = True
         Me.GridColumn12.Visible = True
-        Me.GridColumn12.VisibleIndex = 15
+        Me.GridColumn12.VisibleIndex = 16
         '
         'GridColumn13
         '
@@ -443,7 +468,7 @@ Partial Class frmMonRegister
         Me.GridColumn13.OptionsColumn.AllowEdit = False
         Me.GridColumn13.OptionsColumn.ReadOnly = True
         Me.GridColumn13.Visible = True
-        Me.GridColumn13.VisibleIndex = 16
+        Me.GridColumn13.VisibleIndex = 17
         '
         'GridColumn14
         '
@@ -455,7 +480,7 @@ Partial Class frmMonRegister
         Me.GridColumn14.OptionsColumn.AllowEdit = False
         Me.GridColumn14.OptionsColumn.ReadOnly = True
         Me.GridColumn14.Visible = True
-        Me.GridColumn14.VisibleIndex = 17
+        Me.GridColumn14.VisibleIndex = 18
         '
         'GridColumn15
         '
@@ -467,7 +492,7 @@ Partial Class frmMonRegister
         Me.GridColumn15.OptionsColumn.AllowEdit = False
         Me.GridColumn15.OptionsColumn.ReadOnly = True
         Me.GridColumn15.Visible = True
-        Me.GridColumn15.VisibleIndex = 18
+        Me.GridColumn15.VisibleIndex = 19
         '
         'GridColumn16
         '
@@ -479,7 +504,7 @@ Partial Class frmMonRegister
         Me.GridColumn16.OptionsColumn.AllowEdit = False
         Me.GridColumn16.OptionsColumn.ReadOnly = True
         Me.GridColumn16.Visible = True
-        Me.GridColumn16.VisibleIndex = 19
+        Me.GridColumn16.VisibleIndex = 20
         '
         'GridColumn17
         '
@@ -491,7 +516,7 @@ Partial Class frmMonRegister
         Me.GridColumn17.OptionsColumn.AllowEdit = False
         Me.GridColumn17.OptionsColumn.ReadOnly = True
         Me.GridColumn17.Visible = True
-        Me.GridColumn17.VisibleIndex = 20
+        Me.GridColumn17.VisibleIndex = 21
         '
         'GridColumn18
         '
@@ -528,7 +553,7 @@ Partial Class frmMonRegister
         Me.GridColumn20.OptionsColumn.AllowEdit = False
         Me.GridColumn20.OptionsColumn.ReadOnly = True
         Me.GridColumn20.Visible = True
-        Me.GridColumn20.VisibleIndex = 21
+        Me.GridColumn20.VisibleIndex = 22
         '
         'GridColumn21
         '
@@ -540,7 +565,7 @@ Partial Class frmMonRegister
         Me.GridColumn21.OptionsColumn.AllowEdit = False
         Me.GridColumn21.OptionsColumn.ReadOnly = True
         Me.GridColumn21.Visible = True
-        Me.GridColumn21.VisibleIndex = 22
+        Me.GridColumn21.VisibleIndex = 7
         '
         'GridColumn22
         '
@@ -562,22 +587,67 @@ Partial Class frmMonRegister
         Me.rimeNote.ReadOnly = True
         Me.rimeNote.ScrollBars = System.Windows.Forms.ScrollBars.None
         '
+        'gcPayerType
+        '
+        Me.gcPayerType.AppearanceCell.Options.UseTextOptions = True
+        Me.gcPayerType.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.gcPayerType.AppearanceHeader.Options.UseTextOptions = True
+        Me.gcPayerType.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.gcPayerType.Caption = "Jenis Payer"
+        Me.gcPayerType.FieldName = "payername"
+        Me.gcPayerType.Name = "gcPayerType"
+        Me.gcPayerType.OptionsColumn.AllowEdit = False
+        Me.gcPayerType.OptionsColumn.ReadOnly = True
+        Me.gcPayerType.Visible = True
+        Me.gcPayerType.VisibleIndex = 24
+        '
+        'gcPayer
+        '
+        Me.gcPayer.AppearanceCell.Options.UseTextOptions = True
+        Me.gcPayer.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.gcPayer.AppearanceHeader.Options.UseTextOptions = True
+        Me.gcPayer.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.gcPayer.Caption = "Payer"
+        Me.gcPayer.FieldName = "payer"
+        Me.gcPayer.Name = "gcPayer"
+        Me.gcPayer.OptionsColumn.AllowEdit = False
+        Me.gcPayer.OptionsColumn.ReadOnly = True
+        Me.gcPayer.Visible = True
+        Me.gcPayer.VisibleIndex = 25
+        '
+        'gcAsuransi
+        '
+        Me.gcAsuransi.AppearanceCell.Options.UseTextOptions = True
+        Me.gcAsuransi.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.gcAsuransi.AppearanceHeader.Options.UseTextOptions = True
+        Me.gcAsuransi.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.gcAsuransi.Caption = "Asuransi"
+        Me.gcAsuransi.FieldName = "asuransi"
+        Me.gcAsuransi.Name = "gcAsuransi"
+        Me.gcAsuransi.OptionsColumn.AllowEdit = False
+        Me.gcAsuransi.OptionsColumn.ReadOnly = True
+        Me.gcAsuransi.Visible = True
+        Me.gcAsuransi.VisibleIndex = 26
+        '
         'tlpField
         '
         Me.tlpField.AutoSize = True
         Me.tlpField.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
         Me.tlpField.BackColor = System.Drawing.Color.FromArgb(CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer))
-        Me.tlpField.ColumnCount = 6
+        Me.tlpField.ColumnCount = 7
         Me.tlpField.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
-        Me.tlpField.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 120.0!))
+        Me.tlpField.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 80.0!))
         Me.tlpField.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 200.0!))
-        Me.tlpField.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 120.0!))
-        Me.tlpField.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 200.0!))
+        Me.tlpField.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 60.0!))
+        Me.tlpField.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 110.0!))
+        Me.tlpField.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 110.0!))
         Me.tlpField.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
+        Me.tlpField.Controls.Add(Me.btnApply, 6, 1)
         Me.tlpField.Controls.Add(Me.Label1, 1, 1)
         Me.tlpField.Controls.Add(Me.cboDepartment, 2, 1)
         Me.tlpField.Controls.Add(Me.lblPengajuanNo, 3, 1)
         Me.tlpField.Controls.Add(Me.deTanggal, 4, 1)
+        Me.tlpField.Controls.Add(Me.btnAllData, 5, 1)
         Me.tlpField.Dock = System.Windows.Forms.DockStyle.Top
         Me.tlpField.Location = New System.Drawing.Point(0, 30)
         Me.tlpField.Margin = New System.Windows.Forms.Padding(0)
@@ -588,6 +658,26 @@ Partial Class frmMonRegister
         Me.tlpField.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 6.0!))
         Me.tlpField.Size = New System.Drawing.Size(786, 36)
         Me.tlpField.TabIndex = 14
+        '
+        'btnApply
+        '
+        Me.btnApply.BackColor = System.Drawing.Color.Green
+        Me.btnApply.Dock = System.Windows.Forms.DockStyle.Left
+        Me.btnApply.FlatAppearance.BorderSize = 0
+        Me.btnApply.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DimGray
+        Me.btnApply.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DarkGray
+        Me.btnApply.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnApply.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnApply.ForeColor = System.Drawing.Color.White
+        Me.btnApply.Location = New System.Drawing.Point(673, 6)
+        Me.btnApply.Margin = New System.Windows.Forms.Padding(0)
+        Me.btnApply.Name = "btnApply"
+        Me.btnApply.Size = New System.Drawing.Size(100, 24)
+        Me.btnApply.TabIndex = 29
+        Me.btnApply.Text = "ATUR FORMAT"
+        Me.btnApply.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
+        Me.btnApply.UseVisualStyleBackColor = False
+        Me.btnApply.Visible = False
         '
         'Label1
         '
@@ -635,7 +725,7 @@ Partial Class frmMonRegister
         Me.lblPengajuanNo.Anchor = System.Windows.Forms.AnchorStyles.Right
         Me.lblPengajuanNo.AutoSize = True
         Me.lblPengajuanNo.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblPengajuanNo.Location = New System.Drawing.Point(460, 11)
+        Me.lblPengajuanNo.Location = New System.Drawing.Point(400, 11)
         Me.lblPengajuanNo.Name = "lblPengajuanNo"
         Me.lblPengajuanNo.Size = New System.Drawing.Size(50, 14)
         Me.lblPengajuanNo.TabIndex = 22
@@ -646,7 +736,7 @@ Partial Class frmMonRegister
         '
         Me.deTanggal.Anchor = System.Windows.Forms.AnchorStyles.Left
         Me.deTanggal.EditValue = Nothing
-        Me.deTanggal.Location = New System.Drawing.Point(513, 8)
+        Me.deTanggal.Location = New System.Drawing.Point(453, 8)
         Me.deTanggal.Margin = New System.Windows.Forms.Padding(0)
         Me.deTanggal.Name = "deTanggal"
         Me.deTanggal.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
@@ -680,14 +770,35 @@ Partial Class frmMonRegister
         Me.deTanggal.Size = New System.Drawing.Size(104, 20)
         Me.deTanggal.TabIndex = 33
         '
+        'btnAllData
+        '
+        Me.btnAllData.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(0, Byte), Integer))
+        Me.btnAllData.Dock = System.Windows.Forms.DockStyle.Left
+        Me.btnAllData.FlatAppearance.BorderSize = 0
+        Me.btnAllData.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DimGray
+        Me.btnAllData.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DarkGray
+        Me.btnAllData.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnAllData.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnAllData.ForeColor = System.Drawing.Color.White
+        Me.btnAllData.Location = New System.Drawing.Point(563, 6)
+        Me.btnAllData.Margin = New System.Windows.Forms.Padding(0)
+        Me.btnAllData.Name = "btnAllData"
+        Me.btnAllData.Size = New System.Drawing.Size(100, 24)
+        Me.btnAllData.TabIndex = 27
+        Me.btnAllData.Text = "SEMUA REG"
+        Me.btnAllData.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
+        Me.btnAllData.UseVisualStyleBackColor = False
+        '
         'pHeader
         '
         Me.pHeader.BackColor = System.Drawing.Color.FromArgb(CType(CType(66, Byte), Integer), CType(CType(66, Byte), Integer), CType(CType(66, Byte), Integer))
-        Me.pHeader.Controls.Add(Me.btnRujukInternal)
         Me.pHeader.Controls.Add(Me.lblRefresh)
         Me.pHeader.Controls.Add(Me.btnAuto)
         Me.pHeader.Controls.Add(Me.btnRefresh)
         Me.pHeader.Controls.Add(Me.btnExport)
+        Me.pHeader.Controls.Add(Me.btnRiwayat)
+        Me.pHeader.Controls.Add(Me.btnRujukInternal)
+        Me.pHeader.Controls.Add(Me.btnFormat)
         Me.pHeader.Dock = System.Windows.Forms.DockStyle.Top
         Me.pHeader.ForeColor = System.Drawing.Color.White
         Me.pHeader.Location = New System.Drawing.Point(0, 0)
@@ -696,29 +807,12 @@ Partial Class frmMonRegister
         Me.pHeader.Size = New System.Drawing.Size(786, 30)
         Me.pHeader.TabIndex = 4
         '
-        'btnRujukInternal
-        '
-        Me.btnRujukInternal.BackColor = System.Drawing.Color.Green
-        Me.btnRujukInternal.Dock = System.Windows.Forms.DockStyle.Left
-        Me.btnRujukInternal.FlatAppearance.BorderSize = 0
-        Me.btnRujukInternal.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DimGray
-        Me.btnRujukInternal.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DarkGray
-        Me.btnRujukInternal.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btnRujukInternal.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnRujukInternal.Location = New System.Drawing.Point(250, 0)
-        Me.btnRujukInternal.Name = "btnRujukInternal"
-        Me.btnRujukInternal.Size = New System.Drawing.Size(120, 30)
-        Me.btnRujukInternal.TabIndex = 25
-        Me.btnRujukInternal.Text = "RUJUK INTERNAL"
-        Me.btnRujukInternal.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
-        Me.btnRujukInternal.UseVisualStyleBackColor = False
-        '
         'lblRefresh
         '
         Me.lblRefresh.Dock = System.Windows.Forms.DockStyle.Left
         Me.lblRefresh.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblRefresh.Location = New System.Drawing.Point(120, 0)
-        Me.lblRefresh.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.lblRefresh.Location = New System.Drawing.Point(450, 0)
+        Me.lblRefresh.Margin = New System.Windows.Forms.Padding(0)
         Me.lblRefresh.Name = "lblRefresh"
         Me.lblRefresh.Size = New System.Drawing.Size(130, 30)
         Me.lblRefresh.TabIndex = 24
@@ -735,10 +829,10 @@ Partial Class frmMonRegister
         Me.btnAuto.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DarkGray
         Me.btnAuto.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnAuto.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnAuto.Location = New System.Drawing.Point(0, 0)
+        Me.btnAuto.Location = New System.Drawing.Point(340, 0)
         Me.btnAuto.Margin = New System.Windows.Forms.Padding(0)
         Me.btnAuto.Name = "btnAuto"
-        Me.btnAuto.Size = New System.Drawing.Size(120, 30)
+        Me.btnAuto.Size = New System.Drawing.Size(110, 30)
         Me.btnAuto.TabIndex = 20
         Me.btnAuto.Text = "AUTO REFRESH"
         Me.btnAuto.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
@@ -778,6 +872,61 @@ Partial Class frmMonRegister
         Me.btnExport.Text = "EXPORT"
         Me.btnExport.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
         Me.btnExport.UseVisualStyleBackColor = True
+        '
+        'btnRiwayat
+        '
+        Me.btnRiwayat.BackColor = System.Drawing.Color.Green
+        Me.btnRiwayat.Dock = System.Windows.Forms.DockStyle.Left
+        Me.btnRiwayat.FlatAppearance.BorderSize = 0
+        Me.btnRiwayat.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DimGray
+        Me.btnRiwayat.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DarkGray
+        Me.btnRiwayat.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnRiwayat.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnRiwayat.Location = New System.Drawing.Point(220, 0)
+        Me.btnRiwayat.Margin = New System.Windows.Forms.Padding(0)
+        Me.btnRiwayat.Name = "btnRiwayat"
+        Me.btnRiwayat.Size = New System.Drawing.Size(120, 30)
+        Me.btnRiwayat.TabIndex = 26
+        Me.btnRiwayat.Text = "RIWAYAT PASIEN"
+        Me.btnRiwayat.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
+        Me.btnRiwayat.UseVisualStyleBackColor = False
+        '
+        'btnRujukInternal
+        '
+        Me.btnRujukInternal.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(0, Byte), Integer))
+        Me.btnRujukInternal.Dock = System.Windows.Forms.DockStyle.Left
+        Me.btnRujukInternal.FlatAppearance.BorderSize = 0
+        Me.btnRujukInternal.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DimGray
+        Me.btnRujukInternal.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DarkGray
+        Me.btnRujukInternal.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnRujukInternal.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnRujukInternal.Location = New System.Drawing.Point(100, 0)
+        Me.btnRujukInternal.Margin = New System.Windows.Forms.Padding(0)
+        Me.btnRujukInternal.Name = "btnRujukInternal"
+        Me.btnRujukInternal.Size = New System.Drawing.Size(120, 30)
+        Me.btnRujukInternal.TabIndex = 25
+        Me.btnRujukInternal.Text = "RUJUK INTERNAL"
+        Me.btnRujukInternal.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
+        Me.btnRujukInternal.UseVisualStyleBackColor = False
+        '
+        'btnFormat
+        '
+        Me.btnFormat.BackColor = System.Drawing.Color.Green
+        Me.btnFormat.Dock = System.Windows.Forms.DockStyle.Left
+        Me.btnFormat.FlatAppearance.BorderSize = 0
+        Me.btnFormat.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DimGray
+        Me.btnFormat.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DarkGray
+        Me.btnFormat.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnFormat.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnFormat.ForeColor = System.Drawing.Color.White
+        Me.btnFormat.Location = New System.Drawing.Point(0, 0)
+        Me.btnFormat.Margin = New System.Windows.Forms.Padding(0)
+        Me.btnFormat.Name = "btnFormat"
+        Me.btnFormat.Size = New System.Drawing.Size(100, 30)
+        Me.btnFormat.TabIndex = 28
+        Me.btnFormat.Text = "FORMAT GRID"
+        Me.btnFormat.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
+        Me.btnFormat.UseVisualStyleBackColor = False
         '
         'lblSep5
         '
@@ -876,4 +1025,12 @@ Partial Class frmMonRegister
     Friend WithEvents GridColumn24 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn25 As DevExpress.XtraGrid.Columns.GridColumn
     Public WithEvents btnRujukInternal As Button
+    Public WithEvents btnRiwayat As Button
+    Public WithEvents btnAllData As Button
+    Public WithEvents btnFormat As Button
+    Friend WithEvents GridColumn26 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents gcPayerType As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents gcPayer As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents gcAsuransi As DevExpress.XtraGrid.Columns.GridColumn
+    Public WithEvents btnApply As Button
 End Class

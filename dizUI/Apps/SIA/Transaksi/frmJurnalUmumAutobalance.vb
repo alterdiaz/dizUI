@@ -95,7 +95,13 @@
         slueCOA.Properties.DisplayMember = "coa"
         slueCOA.Properties.ValueMember = "idcoa"
         slueCOA.Properties.BestFitMode = DevExpress.XtraEditors.Controls.BestFitMode.BestFitResizePopup
-       
+
+        sqls.DMLQuery("select idcoa, coa, remarks from coa where isdeleted=0 and (convert(decimal(20,0),COA)=-1 or LEN(convert(decimal(20,0),COA))>=3) order by convert(varchar(20),COA) asc", "coai")
+        slueCOAI.Properties.DataSource = sqls.dataTable("coai")
+        slueCOAI.Properties.DisplayMember = "coa"
+        slueCOAI.Properties.ValueMember = "idcoa"
+        slueCOAI.Properties.BestFitMode = DevExpress.XtraEditors.Controls.BestFitMode.BestFitResizePopup
+
         sqls.DMLQuery("select idgeneral as id, generalcode as content from sys_generalcode where gctype='DELETE'", "del")
         lueStatusData.Properties.DataSource = sqls.dataTable("del")
         lueStatusData.Properties.DisplayMember = "content"
@@ -112,22 +118,22 @@
 
         sqls.DMLQuery("select idcoa from coa where convert(decimal(20,0),COA)=-1", "getnotdefined")
         If sqls.getDataSet("getnotdefined") > 0 Then
-            idcoanotdefined = sqls.getDataSet("getnotdefined", 0, "idcoa")
+            idcoanotdefined = CStr(sqls.getDataSet("getnotdefined", 0, "idcoa"))
         End If
 
         sqls.DMLQuery("select idgeneral as id from sys_generalcode where gctype='DELETE' and generalcode='deleted'", "getdeleted")
         If sqls.getDataSet("getdeleted") > 0 Then
-            idisdeleted = sqls.getDataSet("getdeleted", 0, "id")
+            idisdeleted = CInt(sqls.getDataSet("getdeleted", 0, "id"))
         End If
 
         sqls.DMLQuery("select idgeneral as id from sys_generalcode where gctype='DELETE' and generalcode='active'", "getactive")
         If sqls.getDataSet("getactive") > 0 Then
-            idisactive = sqls.getDataSet("getactive", 0, "id")
+            idisactive = CInt(sqls.getDataSet("getactive", 0, "id"))
         End If
 
         sqls.DMLQuery("select idgeneral as id from sys_generalcode where gctype='POSISIDK' and generalcode='not defined'", "getdknotdefined")
         If sqls.getDataSet("getdknotdefined") > 0 Then
-            iddknotdefined = sqls.getDataSet("getdknotdefined", 0, "id")
+            iddknotdefined = CInt(sqls.getDataSet("getdknotdefined", 0, "id"))
         End If
 
         btnNew_Click(btnNew, Nothing)
@@ -326,10 +332,10 @@
         End If
     End Sub
 
-    Private idcoanotdefined As Integer = -1
-    Private idisdeleted As Integer = -1
-    Private idisactive As Integer = -1
-    Private iddknotdefined As Integer = -1
+    Private idcoanotdefined As String = "-1"
+    Private idisdeleted As Long = -1
+    Private idisactive As Long = -1
+    Private iddknotdefined As Long = -1
     Private dtset As New DataSet
     Private Sub btnNew_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnNew.Click
         nojurnal = "-1"
@@ -430,6 +436,16 @@
         Dim mys As New SQLs(dbstring)
         mys.DMLQuery("select remarks from coa where idcoa='" & slueCOA.EditValue & "'", "coa")
         teCOA.EditValue = mys.getDataSet("coa", 0, "remarks")
+    End Sub
+
+    Private Sub slueCOAI_EditValueChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles slueCOAI.EditValueChanged
+        If slueCOAI.EditValue Is Nothing Then
+            teCOAl.EditValue = Nothing
+        End If
+
+        Dim mys As New SQLs(dbstring)
+        mys.DMLQuery("select remarks from coa where idcoa='" & slueCOAI.EditValue & "'", "coa")
+        teCOAl.EditValue = mys.getDataSet("coa", 0, "remarks")
     End Sub
 
     Public Sub New()
@@ -579,7 +595,11 @@
             dr("jumlahuang") = seSaldo.Value
             dr("isdeleted") = lueStatusData.EditValue
             dr("statusdata") = lueStatusData.Text
-            dr("posisidk") = luePosisiDK.EditValue
+            If luePosisiDK.EditValue = 1 Then
+                dr("posisidk") = 2
+            ElseIf luePosisiDK.EditValue = 2 Then
+                dr("posisidk") = 1
+            End If
             dr("debetkredit") = luePosisiDK.Text
             gcData.DataSource = dtset.Tables("data")
             gvData.BestFitColumns()
@@ -588,10 +608,21 @@
     End Sub
 
     Private Sub luePosisiDK_EditValueChanged(sender As Object, e As EventArgs) Handles luePosisiDK.EditValueChanged
+        If luePosisiDK.EditValue Is Nothing Then
+            Exit Sub
+        End If
+        If luePosisiDK.EditValue = 0 Then
+            Exit Sub
+        End If
+
         If gvData.RowCount > 0 Then
             For i As Integer = 0 To gvData.RowCount - 1
                 Dim dr As DataRow = gvData.GetDataRow(i)
-                dr("posisidk") = luePosisiDK.EditValue
+                If luePosisiDK.EditValue = 1 Then
+                    dr("posisidk") = 2
+                ElseIf luePosisiDK.EditValue = 2 Then
+                    dr("posisidk") = 1
+                End If
             Next
         End If
     End Sub

@@ -626,6 +626,8 @@ Partial Public Class spBPB
         
         Private columnpurchaseno As Global.System.Data.DataColumn
         
+        Private columndokumenno2 As Global.System.Data.DataColumn
+        
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Public Sub New()
@@ -742,6 +744,14 @@ Partial Public Class spBPB
         End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property dokumenno2Column() As Global.System.Data.DataColumn
+            Get
+                Return Me.columndokumenno2
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0"),  _
          Global.System.ComponentModel.Browsable(false)>  _
         Public ReadOnly Property Count() As Integer
@@ -778,9 +788,9 @@ Partial Public Class spBPB
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Overloads Function AddspBPBRow(ByVal idtransaksi As String, ByVal transaksitype As String, ByVal transaksino As String, ByVal unit As String, ByVal createddate As String, ByVal namalengkap As String, ByVal remarks As String, ByVal businesspartner As String, ByVal dokumenno As String, ByVal purchaseno As String) As spBPBRow
+        Public Overloads Function AddspBPBRow(ByVal idtransaksi As String, ByVal transaksitype As String, ByVal transaksino As String, ByVal unit As String, ByVal createddate As String, ByVal namalengkap As String, ByVal remarks As String, ByVal businesspartner As String, ByVal dokumenno As String, ByVal purchaseno As String, ByVal dokumenno2 As String) As spBPBRow
             Dim rowspBPBRow As spBPBRow = CType(Me.NewRow,spBPBRow)
-            Dim columnValuesArray() As Object = New Object() {idtransaksi, transaksitype, transaksino, unit, createddate, namalengkap, remarks, businesspartner, dokumenno, purchaseno}
+            Dim columnValuesArray() As Object = New Object() {idtransaksi, transaksitype, transaksino, unit, createddate, namalengkap, remarks, businesspartner, dokumenno, purchaseno, dokumenno2}
             rowspBPBRow.ItemArray = columnValuesArray
             Me.Rows.Add(rowspBPBRow)
             Return rowspBPBRow
@@ -819,6 +829,7 @@ Partial Public Class spBPB
             Me.columnbusinesspartner = MyBase.Columns("businesspartner")
             Me.columndokumenno = MyBase.Columns("dokumenno")
             Me.columnpurchaseno = MyBase.Columns("purchaseno")
+            Me.columndokumenno2 = MyBase.Columns("dokumenno2")
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -844,6 +855,8 @@ Partial Public Class spBPB
             MyBase.Columns.Add(Me.columndokumenno)
             Me.columnpurchaseno = New Global.System.Data.DataColumn("purchaseno", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnpurchaseno)
+            Me.columndokumenno2 = New Global.System.Data.DataColumn("dokumenno2", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columndokumenno2)
             Me.Constraints.Add(New Global.System.Data.UniqueConstraint("Constraint1", New Global.System.Data.DataColumn() {Me.columnidtransaksi}, true))
             Me.columnidtransaksi.AllowDBNull = false
             Me.columnidtransaksi.Unique = true
@@ -862,6 +875,8 @@ Partial Public Class spBPB
             Me.columndokumenno.AllowDBNull = false
             Me.columndokumenno.MaxLength = 20
             Me.columnpurchaseno.MaxLength = 50
+            Me.columndokumenno2.AllowDBNull = false
+            Me.columndokumenno2.MaxLength = 20
             Me.ExtendedProperties.Add("Generator_TablePropName", "_spBPB")
             Me.ExtendedProperties.Add("Generator_UserTableName", "spBPB")
         End Sub
@@ -1798,6 +1813,17 @@ Partial Public Class spBPB
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property dokumenno2() As String
+            Get
+                Return CType(Me(Me.tablespBPB.dokumenno2Column),String)
+            End Get
+            Set
+                Me(Me.tablespBPB.dokumenno2Column) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Public Function IsunitNull() As Boolean
             Return Me.IsNull(Me.tablespBPB.unitColumn)
         End Function
@@ -1977,21 +2003,21 @@ Partial Public Class spBPB
             End Set
         End Property
         
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>
-        Public Overloads Property item() As String
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property item() As String
             Get
-                Try
-                    Return CType(Me(Me.tablespBPBcurrent.itemColumn), String)
+                Try 
+                    Return CType(Me(Me.tablespBPBcurrent.itemColumn),String)
                 Catch e As Global.System.InvalidCastException
                     Throw New Global.System.Data.StrongTypingException("The value for column 'item' in table 'spBPBcurrent' is DBNull.", e)
                 End Try
             End Get
             Set
-                Me(Me.tablespBPBcurrent.itemColumn) = Value
+                Me(Me.tablespBPBcurrent.itemColumn) = value
             End Set
         End Property
-
+        
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Public Property satuan() As String
@@ -3024,6 +3050,7 @@ Namespace spBPBTableAdapters
             tableMapping.ColumnMappings.Add("businesspartner", "businesspartner")
             tableMapping.ColumnMappings.Add("dokumenno", "dokumenno")
             tableMapping.ColumnMappings.Add("purchaseno", "purchaseno")
+            tableMapping.ColumnMappings.Add("dokumenno2", "dokumenno2")
             Me._adapter.TableMappings.Add(tableMapping)
         End Sub
         

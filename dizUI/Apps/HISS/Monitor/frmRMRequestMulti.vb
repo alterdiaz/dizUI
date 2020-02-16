@@ -136,6 +136,9 @@
     End Sub
 
     Private Sub btnSave_Click(sender As Object, e As EventArgs) Handles btnSave.Click
+        gvData.ApplyFindFilter("")
+        Threading.Thread.Sleep(100)
+
         Dim sqls As New SQLs(dbstring)
         Dim cekbool As Boolean = False
         For i As Integer = 0 To gvData.RowCount - 1

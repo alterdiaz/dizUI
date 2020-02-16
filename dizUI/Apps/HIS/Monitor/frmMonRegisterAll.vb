@@ -100,12 +100,12 @@
     End Sub
 
     Private Sub loadgrid()
-        Dim loadScr As New frmLoading()
-        splashClosed = False
-        loadScr.Show(Me)
-        loadScr.BringToFront()
-        Application.DoEvents()
-        Me.Cursor = Cursors.WaitCursor
+        'Dim loadScr As New frmLoading()
+        'splashClosed = False
+        'loadScr.Show(Me)
+        'loadScr.BringToFront()
+        'Application.DoEvents()
+        'Me.Cursor = Cursors.WaitCursor
 
         Dim sqls As New SQLs(dbstring)
         Dim field As New List(Of String)
@@ -234,12 +234,12 @@
     End Sub
 
     Private Sub loadAll()
-        Dim loadScr As New frmLoading()
-        splashClosed = False
-        loadScr.Show(Me)
-        loadScr.BringToFront()
-        Application.DoEvents()
-        Me.Cursor = Cursors.WaitCursor
+        'Dim loadScr As New frmLoading()
+        'splashClosed = False
+        'loadScr.Show(Me)
+        'loadScr.BringToFront()
+        'Application.DoEvents()
+        'Me.Cursor = Cursors.WaitCursor
 
         Dim sqls As New SQLs(dbstring)
         Dim field As New List(Of String)

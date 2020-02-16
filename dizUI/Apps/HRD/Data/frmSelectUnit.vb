@@ -27,7 +27,7 @@ Public Class frmSelectUnit
 
     Private Sub loadGrid()
         Dim mysqls As New SQLs(dbstring)
-        mysqls.DMLQuery("select idunit,unit from unit where (idunit<>(select isnull(value,0) from sys_appsetting where variable='IDSystemUnit') and idunit<>(select isnull(value,0) from sys_appsetting where variable='IDVendorUnit')) and isdeleted=0", "unit")
+        mysqls.DMLQuery("select idunit,unit from unit where (idunit<>(select isnull(value,0) from sys_appsetting where variable='IDSystemUnit') and idunit<>(select isnull(value,0) from sys_appsetting where variable='IDVendorUnit') and idunit<>'0') and isdeleted=0", "unit")
         gcData.DataSource = mysqls.dataTable("unit")
         gvData.BestFitColumns()
 

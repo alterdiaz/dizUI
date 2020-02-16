@@ -22,7 +22,6 @@ Partial Class frmNotifbox
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmNotifbox))
         Me.tlpForm = New System.Windows.Forms.TableLayoutPanel()
         Me.pTitle = New System.Windows.Forms.Panel()
@@ -35,7 +34,7 @@ Partial Class frmNotifbox
         Me.btnOK = New System.Windows.Forms.Button()
         Me.pbLogo = New System.Windows.Forms.PictureBox()
         Me.lblContent = New System.Windows.Forms.Label()
-        Me.tmrWaktu = New System.Windows.Forms.Timer(Me.components)
+        Me.tmrWaktu = New System.Windows.Forms.Timer()
         Me.tlpForm.SuspendLayout()
         Me.pTitle.SuspendLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -52,7 +51,7 @@ Partial Class frmNotifbox
         Me.tlpForm.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 2.0!))
         Me.tlpForm.Controls.Add(Me.pTitle, 1, 0)
         Me.tlpForm.Controls.Add(Me.pBody, 1, 1)
-        Me.tlpForm.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.tlpForm.Dock = System.Windows.Forms.DockStyle.Top
         Me.tlpForm.Location = New System.Drawing.Point(0, 0)
         Me.tlpForm.Margin = New System.Windows.Forms.Padding(0)
         Me.tlpForm.Name = "tlpForm"
@@ -60,6 +59,7 @@ Partial Class frmNotifbox
         Me.tlpForm.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30.0!))
         Me.tlpForm.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
         Me.tlpForm.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 2.0!))
+        Me.tlpForm.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
         Me.tlpForm.Size = New System.Drawing.Size(423, 162)
         Me.tlpForm.TabIndex = 1
         '
@@ -95,7 +95,7 @@ Partial Class frmNotifbox
         'PictureBox1
         '
         Me.PictureBox1.Dock = System.Windows.Forms.DockStyle.Left
-        Me.PictureBox1.Image = Global.dizNotifikasi.My.Resources.Resources.dizNotif
+        Me.PictureBox1.Image = Global.dizNotifikasi.My.Resources.Resources.dizNotif2nb
         Me.PictureBox1.Location = New System.Drawing.Point(0, 0)
         Me.PictureBox1.Name = "PictureBox1"
         Me.PictureBox1.Size = New System.Drawing.Size(30, 30)
@@ -170,12 +170,13 @@ Partial Class frmNotifbox
         Me.pBody.Location = New System.Drawing.Point(2, 30)
         Me.pBody.Margin = New System.Windows.Forms.Padding(0)
         Me.pBody.Name = "pBody"
+        Me.pBody.Padding = New System.Windows.Forms.Padding(4)
         Me.pBody.Size = New System.Drawing.Size(419, 130)
         Me.pBody.TabIndex = 7
         '
         'btnOK
         '
-        Me.btnOK.Anchor = System.Windows.Forms.AnchorStyles.None
+        Me.btnOK.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.btnOK.BackColor = System.Drawing.Color.Transparent
         Me.btnOK.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.btnOK.DialogResult = System.Windows.Forms.DialogResult.OK
@@ -185,7 +186,7 @@ Partial Class frmNotifbox
         Me.btnOK.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnOK.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnOK.Image = Global.dizNotifikasi.My.Resources.Resources.ok
-        Me.btnOK.Location = New System.Drawing.Point(15, 79)
+        Me.btnOK.Location = New System.Drawing.Point(8, 83)
         Me.btnOK.Margin = New System.Windows.Forms.Padding(4)
         Me.btnOK.Name = "btnOK"
         Me.btnOK.Size = New System.Drawing.Size(40, 40)
@@ -196,8 +197,8 @@ Partial Class frmNotifbox
         'pbLogo
         '
         Me.pbLogo.Image = Global.dizNotifikasi.My.Resources.Resources.ico_warning
-        Me.pbLogo.Location = New System.Drawing.Point(15, 12)
-        Me.pbLogo.Margin = New System.Windows.Forms.Padding(8)
+        Me.pbLogo.Location = New System.Drawing.Point(8, 8)
+        Me.pbLogo.Margin = New System.Windows.Forms.Padding(4)
         Me.pbLogo.Name = "pbLogo"
         Me.pbLogo.Size = New System.Drawing.Size(40, 40)
         Me.pbLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
@@ -207,14 +208,12 @@ Partial Class frmNotifbox
         'lblContent
         '
         Me.lblContent.Font = New System.Drawing.Font("Tahoma", 9.0!)
-        Me.lblContent.Location = New System.Drawing.Point(71, 8)
-        Me.lblContent.Margin = New System.Windows.Forms.Padding(8)
+        Me.lblContent.Location = New System.Drawing.Point(56, 8)
+        Me.lblContent.Margin = New System.Windows.Forms.Padding(4)
         Me.lblContent.Name = "lblContent"
-        Me.lblContent.Padding = New System.Windows.Forms.Padding(8)
-        Me.lblContent.Size = New System.Drawing.Size(340, 114)
+        Me.lblContent.Size = New System.Drawing.Size(355, 115)
         Me.lblContent.TabIndex = 10
         Me.lblContent.Text = "-"
-        Me.lblContent.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
         'tmrWaktu
         '
@@ -224,8 +223,8 @@ Partial Class frmNotifbox
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.BackColor = System.Drawing.Color.White
-        Me.ClientSize = New System.Drawing.Size(423, 162)
+        Me.BackColor = System.Drawing.Color.DarkKhaki
+        Me.ClientSize = New System.Drawing.Size(423, 166)
         Me.Controls.Add(Me.tlpForm)
         Me.DoubleBuffered = True
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
@@ -236,7 +235,7 @@ Partial Class frmNotifbox
         Me.ShowInTaskbar = False
         Me.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "SOTH Notifications"
+        Me.Text = "Sistem Notifikasi"
         Me.tlpForm.ResumeLayout(False)
         Me.pTitle.ResumeLayout(False)
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()

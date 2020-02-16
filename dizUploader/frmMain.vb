@@ -17,6 +17,7 @@
 
     Private versionstr As String = 0
     Private versionint As Integer = 0
+    Private filetype As String = ""
     Private Sub btnBrowse_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnBrowse.Click
         Dim folderdlg As New OpenFileDialog()
         If IO.Directory.Exists(tboPath.Text) = False Then
@@ -37,18 +38,75 @@
             Dim files As String()
             files = IO.Directory.GetFiles(tboPath.Text)
             Dim bfound As Boolean = False
+            Dim cekfileUI As Boolean = False
+            Dim cekfileSET As Boolean = False
+            Dim file As String = ""
+            Dim fileSET As String = ""
             For i As Integer = 0 To files.Length - 1
                 files(i) = files(i).Remove(0, tboPath.Text.Length)
-
                 If files(i) = "dizUI.exe" Then
-                    Dim file As String = tboPath.Text & files(i)
-                    Dim fvi As System.Diagnostics.FileVersionInfo = System.Diagnostics.FileVersionInfo.GetVersionInfo(file)
-                    versionstr = fvi.FileVersion
-                    versionint = CLng(fvi.FileVersion.Replace(".", ""))
-                    lblVersion.Text = "File Version " & fvi.FileVersion
-                    bfound = True
+                    cekfileUI = True
+                    file = tboPath.Text & files(i)
+                End If
+                If files(i) = "dizSetting.exe" Then
+                    cekfileSET = True
+                    fileSET = tboPath.Text & files(i)
                 End If
             Next
+            If cekfileUI = True And cekfileSET = True Then
+                Dim fvi As System.Diagnostics.FileVersionInfo = System.Diagnostics.FileVersionInfo.GetVersionInfo(file)
+                versionstr = fvi.FileVersion
+                versionint = CLng(fvi.FileVersion.Replace(".", ""))
+                lblVersion.Text = "File UI Version: " & fvi.FileVersion
+                bfound = True
+
+                Dim tmppath As String = tboPath.Text
+                tmppath = modCore.CheckAndRepairValidPath(tmppath)
+
+                Dim de As New dizEngine.engine
+                If IO.File.Exists(tmppath & de.processD("l59ruEcWFgphomWNjDb5gA==")) Then
+                    dblite = tmppath & de.processD("l59ruEcWFgphomWNjDb5gA==")
+                    dbstring = readSettingFile()
+                    lblVersion.Text = "File UI Version: " & fvi.FileVersion & " - IP Server: " & dbsvr
+                    filetype = "UI"
+                End If
+            End If
+            If cekfileUI = True And cekfileSET = False Then
+                Dim fvi As System.Diagnostics.FileVersionInfo = System.Diagnostics.FileVersionInfo.GetVersionInfo(file)
+                versionstr = fvi.FileVersion
+                versionint = CLng(fvi.FileVersion.Replace(".", ""))
+                lblVersion.Text = "File UI Version: " & fvi.FileVersion
+                bfound = True
+
+                Dim tmppath As String = tboPath.Text
+                tmppath = modCore.CheckAndRepairValidPath(tmppath)
+
+                Dim de As New dizEngine.engine
+                If IO.File.Exists(tmppath & de.processD("l59ruEcWFgphomWNjDb5gA==")) Then
+                    dblite = tmppath & de.processD("l59ruEcWFgphomWNjDb5gA==")
+                    dbstring = readSettingFile()
+                    lblVersion.Text = "File UI Version: " & fvi.FileVersion & " - IP Server: " & dbsvr
+                    filetype = "UI"
+                End If
+            End If
+            If cekfileUI = False And cekfileSET = True Then
+                Dim fvi As System.Diagnostics.FileVersionInfo = System.Diagnostics.FileVersionInfo.GetVersionInfo(fileSET)
+                versionstr = fvi.FileVersion
+                versionint = CLng(fvi.FileVersion.Replace(".", ""))
+                lblVersion.Text = "File Setting Version: " & fvi.FileVersion & " - IP Server: " & dbsvr
+                bfound = True
+
+                Dim tmppath As String = tboPath.Text
+                tmppath = modCore.CheckAndRepairValidPath(tmppath)
+
+                Dim de As New dizEngine.engine
+                If IO.File.Exists(tmppath & de.processD("l59ruEcWFgphomWNjDb5gA==")) Then
+                    dblite = tmppath & de.processD("l59ruEcWFgphomWNjDb5gA==")
+                    dbstring = readSettingFile()
+                    lblVersion.Text = "File Setting Version: " & fvi.FileVersion & " - IP Server: " & dbsvr
+                    filetype = "SET"
+                End If
+            End If
             If bfound = False Then
                 versionstr = 0
                 versionint = 0
@@ -108,8 +166,13 @@
         End If
         Me.Cursor = Cursors.WaitCursor
         Dim sqls As New SQLs(dbstring)
-        sqls.DMLQuery("delete from sys_appfiles", False)
-        sqls.DMLQuery("delete from sys_appversion", False)
+        If filetype = "UI" Then
+            sqls.DMLQuery("delete from sys_appfiles", False)
+            sqls.DMLQuery("delete from sys_appversion", False)
+        ElseIf filetype = "SET" Then
+            sqls.DMLQuery("delete from sys_appsettingfiles", False)
+            sqls.DMLQuery("delete from sys_appsettingversion", False)
+        End If
 
         'Dim img As Image = Nothing
         Dim retval As Boolean = False
@@ -118,92 +181,147 @@
         Dim value As New List(Of Object)
         Dim nowTime As Date = Now
         Dim idtmp As String = GenerateGUID()
-        field.AddRange(New String() {"idappversion", "appversion", "appversionnumber", "createddate", "postdate"})
-        value.AddRange(New Object() {idtmp, versionstr, versionint, nowTime, nowTime})
+        If filetype = "UI" Then
+            field.AddRange(New String() {"idappversion", "appversion", "appversionnumber", "createddate", "postdate"})
+            value.AddRange(New Object() {idtmp, versionstr, versionint, nowTime, nowTime})
 
-        dtsql = New dtsetSQLS(dbstring)
-        retval = dtsql.datasetSave("sys_appversion", idtmp, field, value, False)
+            dtsql = New dtsetSQLS(dbstring)
+            retval = dtsql.datasetSave("sys_appversion", idtmp, field, value, False)
+        ElseIf filetype = "SET" Then
+            field.AddRange(New String() {"idappsettingversion", "appversion", "appversionnumber", "createddate", "postdate"})
+            value.AddRange(New Object() {idtmp, versionstr, versionint, nowTime, nowTime})
+
+            dtsql = New dtsetSQLS(dbstring)
+            retval = dtsql.datasetSave("sys_appsettingversion", idtmp, field, value, False)
+        End If
 
         field.Clear()
         value.Clear()
 
         Dim strlbl As String = lblVersion.Text
-        field.AddRange(New String() {"idappfiles", "filename", "appversion", "createddate", "postdate", "filebinary"})
-        'Dim fs As IO.FileStream
-        Dim counter As Long = 0
-        For Each Str As String In lbFilenames.Items
-            If Str.ToLower <> IO.Path.GetFileName(Application.ExecutablePath).ToLower Then
-                Try
-                    idtmp = GenerateGUID()
-                    dtsql = New dtsetSQLS(dbstring)
-                    value = New List(Of Object)
-                    imgByteArray = Nothing
+        If filetype = "UI" Then
+            field.AddRange(New String() {"idappfiles", "filename", "appversion", "createddate", "postdate", "filebinary"})
+            Dim counter As Long = 0
+            For Each Str As String In lbFilenames.Items
+                If Str.ToLower <> IO.Path.GetFileName(Application.ExecutablePath).ToLower Then
+                    Try
+                        idtmp = GenerateGUID()
+                        dtsql = New dtsetSQLS(dbstring)
+                        value = New List(Of Object)
+                        imgByteArray = Nothing
 
-                    Dim fi As New IO.FileInfo(tboPath.Text & Str)
-                    Dim createddate As Date = System.IO.File.GetLastWriteTime(tboPath.Text & Str)
-                    imgByteArray = IO.File.ReadAllBytes(tboPath.Text & Str)
-                    Dim lenfile As Long = imgByteArray.LongLength
-                    'fs = Nothing
-                    'fs = New IO.FileStream(tboPath.Text & Str, IO.FileMode.Open)
-                    'Dim sr As IO.Stream
-                    'sr = fs
-                    'imgByteArray = GetStreamAsByteArray(fs)
+                        Dim fi As New IO.FileInfo(tboPath.Text & Str)
+                        Dim createddate As Date = System.IO.File.GetLastWriteTime(tboPath.Text & Str)
+                        imgByteArray = IO.File.ReadAllBytes(tboPath.Text & Str)
+                        Dim lenfile As Long = imgByteArray.LongLength
 
-                    'img = Nothing
-                    'img = Image.FromFile(tboPath.Text & Str)
-                    'img.Save(imgMemoryStream, System.Drawing.Imaging.ImageFormat.Jpeg)
-                    'imgByteArray = imgMemoryStream.GetBuffer()
-
-                    sqls = New SQLs(dbstring)
-                    If Str.ToLower = "dizui.exe" Then
-                        sqls.DMLQuery("delete from sys_appfiles where filename='dizui.exe'", False)
-                    ElseIf Str.ToLower = "dizuidemo.exe" Then
-                        sqls.DMLQuery("delete from sys_appfiles where filename='dizuidemo.exe'", False)
-                    ElseIf Str.ToLower = "diznotifikasi.exe" Then
-                        sqls.DMLQuery("delete from sys_appfiles where filename='diznotifikasi.exe'", False)
-                    ElseIf Str.ToLower = "dizsetting.exe" Then
-                        sqls.DMLQuery("delete from sys_appfiles where filename='dizsetting.exe'", False)
-                    End If
-                    sqls.DMLQuery("select top 1 convert(varchar,createddate,105)+' '+convert(varchar,createddate,108) as createddate,len(filebinary) as length from sys_appfiles where filename='" & Str & "' order by postdate desc", "cekfiles")
-
-                    Dim excreateddate As Date
-                    Dim exlenfile As Long
-                    If sqls.getDataSet("cekfiles") > 0 Then
-                        excreateddate = Strdatetime2Datetime(sqls.getDataSet("cekfiles", 0, "createddate"))
-                        exlenfile = sqls.getDataSet("cekfiles", 0, "length")
-
-                        'MsgBox(Format(createddate, "dd-MM-yyyy HH:mm:ss") & " " & Format(excreateddate, "dd-MM-yyyy HH:mm:ss") & vbCrLf & lenfile & " " & exlenfile)
-                        If Format(createddate, "dd-MM-yyyy HH:mm:ss") <> Format(excreateddate, "dd-MM-yyyy HH:mm:ss") Then
-                            value.AddRange(New Object() {idtmp, Str, versionstr, createddate, nowTime, imgByteArray})
-                            retval = dtsql.datasetSave("sys_AppFiles", idtmp, field, value, False)
+                        sqls = New SQLs(dbstring)
+                        If Str.ToLower = "dizui.exe" Then
+                            sqls.DMLQuery("delete from sys_appfiles where filename='dizui.exe'", False)
+                        ElseIf Str.ToLower = "dizuidemo.exe" Then
+                            sqls.DMLQuery("delete from sys_appfiles where filename='dizuidemo.exe'", False)
+                        ElseIf Str.ToLower = "diznotifikasi.exe" Then
+                            sqls.DMLQuery("delete from sys_appfiles where filename='diznotifikasi.exe'", False)
+                        ElseIf Str.ToLower = "dizsetting.exe" Then
+                            sqls.DMLQuery("delete from sys_appfiles where filename='dizsetting.exe'", False)
                         End If
-                    Else
-                        value.AddRange(New Object() {idtmp, Str, versionstr, createddate, nowTime, imgByteArray})
-                        retval = dtsql.datasetSave("sys_AppFiles", idtmp, field, value, False)
-                    End If
+                        sqls.DMLQuery("select top 1 convert(varchar,createddate,105)+' '+convert(varchar,createddate,108) as createddate,len(filebinary) as length from sys_appfiles where filename='" & Str & "' order by postdate desc", "cekfiles")
 
-                    'sqls = New mySQLs(dbstring)
-                    'retval = sqls.InsertImage("sys_AppFiles", "filename,appversion,createddate", "'" & Str & "','" & versionstr & "','" & Format(Now, "MM/dd/yyyy HH:mm:ss") & "'", "filebinary", "filebinary", imgByteArray, False)
-                    If retval = False Then
-                        'MsgBox(Str)
-                        Exit For
-                    End If
-                    'fs.Close()
-                    'img = Nothing
+                        Dim excreateddate As Date
+                        Dim exlenfile As Long
+                        If sqls.getDataSet("cekfiles") > 0 Then
+                            excreateddate = Strdatetime2Datetime(sqls.getDataSet("cekfiles", 0, "createddate"))
+                            exlenfile = sqls.getDataSet("cekfiles", 0, "length")
 
-                    counter += 1
-                    lblVersion.Text = strlbl & " (" & counter & "/" & lbFilenames.Items.Count & ")"
-                    Me.Refresh()
-                    Application.DoEvents()
-                    Threading.Thread.Sleep(100)
-                    GC.Collect()
-                Catch ex As Exception
-                End Try
-            End If
-        Next
-        If retval = True Then
+                            If Format(createddate, "dd-MM-yyyy HH:mm:ss") <> Format(excreateddate, "dd-MM-yyyy HH:mm:ss") Then
+                                value.AddRange(New Object() {idtmp, Str, versionstr, createddate, nowTime, imgByteArray})
+                                retval = dtsql.datasetSave("sys_appfiles", idtmp, field, value, False)
+                            End If
+                        Else
+                            value.AddRange(New Object() {idtmp, Str, versionstr, createddate, nowTime, imgByteArray})
+                            retval = dtsql.datasetSave("sys_appfiles", idtmp, field, value, False)
+                        End If
+
+                        If retval = False Then
+                            Exit For
+                        End If
+
+                        counter += 1
+                        lblVersion.Text = strlbl & " (" & counter & "/" & lbFilenames.Items.Count & ")"
+                        Me.Refresh()
+                        Application.DoEvents()
+                        Threading.Thread.Sleep(100)
+                        GC.Collect()
+                    Catch ex As Exception
+                    End Try
+                End If
+            Next
+        ElseIf filetype = "SET" Then
+            field.AddRange(New String() {"idappsettingfiles", "filename", "appversion", "createddate", "postdate", "filebinary"})
+            Dim counter As Long = 0
+            For Each Str As String In lbFilenames.Items
+                If Str.ToLower <> IO.Path.GetFileName(Application.ExecutablePath).ToLower Then
+                    Try
+                        idtmp = GenerateGUID()
+                        dtsql = New dtsetSQLS(dbstring)
+                        value = New List(Of Object)
+                        imgByteArray = Nothing
+
+                        Dim fi As New IO.FileInfo(tboPath.Text & Str)
+                        Dim createddate As Date = System.IO.File.GetLastWriteTime(tboPath.Text & Str)
+                        imgByteArray = IO.File.ReadAllBytes(tboPath.Text & Str)
+                        Dim lenfile As Long = imgByteArray.LongLength
+
+                        sqls = New SQLs(dbstring)
+                        If Str.ToLower = "dizui.exe" Then
+                            sqls.DMLQuery("delete from sys_appsettingfiles where filename='dizui.exe'", False)
+                        ElseIf Str.ToLower = "dizuidemo.exe" Then
+                            sqls.DMLQuery("delete from sys_appsettingfiles where filename='dizuidemo.exe'", False)
+                        ElseIf Str.ToLower = "diznotifikasi.exe" Then
+                            sqls.DMLQuery("delete from sys_appsettingfiles where filename='diznotifikasi.exe'", False)
+                        ElseIf Str.ToLower = "dizsetting.exe" Then
+                            sqls.DMLQuery("delete from sys_appsettingfiles where filename='dizsetting.exe'", False)
+                        End If
+                        sqls.DMLQuery("select top 1 convert(varchar,createddate,105)+' '+convert(varchar,createddate,108) as createddate,len(filebinary) as length from sys_appsettingfiles where filename='" & Str & "' order by postdate desc", "cekfiles")
+
+                        Dim excreateddate As Date
+                        Dim exlenfile As Long
+                        If sqls.getDataSet("cekfiles") > 0 Then
+                            excreateddate = Strdatetime2Datetime(sqls.getDataSet("cekfiles", 0, "createddate"))
+                            exlenfile = sqls.getDataSet("cekfiles", 0, "length")
+
+                            If Format(createddate, "dd-MM-yyyy HH:mm:ss") <> Format(excreateddate, "dd-MM-yyyy HH:mm:ss") Then
+                                value.AddRange(New Object() {idtmp, Str, versionstr, createddate, nowTime, imgByteArray})
+                                retval = dtsql.datasetSave("sys_appsettingfiles", idtmp, field, value, False)
+                            End If
+                        Else
+                            value.AddRange(New Object() {idtmp, Str, versionstr, createddate, nowTime, imgByteArray})
+                            retval = dtsql.datasetSave("sys_appsettingfiles", idtmp, field, value, False)
+                        End If
+
+                        If retval = False Then
+                            Exit For
+                        End If
+
+                        counter += 1
+                        lblVersion.Text = strlbl & " (" & counter & "/" & lbFilenames.Items.Count & ")"
+                        Me.Refresh()
+                        Application.DoEvents()
+                        Threading.Thread.Sleep(100)
+                        GC.Collect()
+                    Catch ex As Exception
+                    End Try
+                End If
+            Next
+        End If
+        If filetype = "UI" And retval = True Then
             sqls = New SQLs(dbstring)
             sqls.DMLQuery("update sys_appsetting set Value='" & versionstr & "' where Variable='ProductVersion'", False)
+            btnUpload.Enabled = False
+            lblVersion.Text = "Upload Berhasil"
+        ElseIf filetype = "SET" And retval = True Then
+            sqls = New SQLs(dbstring)
+            sqls.DMLQuery("update sys_appsetting set Value='" & versionstr & "' where Variable='ProductSettingVersion'", False)
             btnUpload.Enabled = False
             lblVersion.Text = "Upload Berhasil"
         End If
@@ -224,12 +342,12 @@
         End Try
 
         appPath = Application.StartupPath
-        If appPath.Chars(appPath.Length - 1) <> "\" Then
-            appPath &= "\"
-        End If
+        appPath = modCore.CheckAndRepairValidPath(appPath)
+
         Dim de As New dizEngine.engine
-        dblite = appPath & de.processD("VSnIwDye76lhomWNjDb5gA==")
+        dblite = appPath & de.processD("l59ruEcWFgphomWNjDb5gA==")
         dbstring = readSettingFile()
+        lblVersion.Text = "IP Server: " & dbsvr
         'Dim mys As New SQLs(dbstring)
         'If mys.checkConnection() = False Then
         '    MsgBox("Harap dijalankan di komputer server", MsgBoxStyle.Critical, "Kesalahan")

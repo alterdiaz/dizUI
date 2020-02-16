@@ -250,7 +250,7 @@
             lueParamedisCase.Properties.BestFitMode = DevExpress.XtraEditors.Controls.BestFitMode.BestFitResizePopup
             'lueParamedisCase.Properties.BestFit()
 
-            sqls.DMLQuery("select distinct l.idlokasi as id,k.kelas,l.nama as content from lokasi l left join kelaskamar kk on l.idlokasi=kk.idlokasi left join kelas k on kk.idkelas=k.idkelas and k.isdeleted=0 where l.isdeleted=0 and l.idlokasi not in (select idlokasi from kamar where checkout is not null) and l.lokasitype=22 and l.iddepartment=(select value from sys_appsetting where variable='IDVKDept') order by k.kelas asc,l.nama asc", "ruang")
+            sqls.DMLQuery("select distinct l.idlokasi as id,k.kelas,l.nama as content from lokasi l left join kelaskamar kk on l.idlokasi=kk.idlokasi left join kelas k on kk.idkelas=k.idkelas and k.isdeleted=0 where l.isdeleted=0 and l.idlokasi not in (select idlokasi from kamar where statusbed<>1) and l.lokasitype=22 and l.iddepartment=(select value from sys_appsetting where variable='IDVKDept') order by k.kelas asc,l.nama asc", "ruang")
             lueRuang.Properties.DataSource = sqls.dataTable("ruang")
             lueRuang.Properties.DisplayMember = "content"
             lueRuang.Properties.ValueMember = "id"
@@ -697,6 +697,16 @@
         formTitle = Me.lblTitle.Text
     End Sub
 
+    Private Function checkkamar(idlokasi As String) As Boolean
+        Dim retval As Boolean = False
+        Dim sqls As New SQLs(dbstring)
+        sqls.DMLQuery("select a.* from (select distinct l.idlokasi as id,k.kelas,l.nama as content from lokasi l left join kelaskamar kk on l.idlokasi=kk.idlokasi left join kelas k on kk.idkelas=k.idkelas and k.isdeleted=0 where l.isdeleted=0 and l.idlokasi not in (select idlokasi from kamar where statusbed<>1) and l.lokasitype=22 and l.iddepartment in (select value from sys_appsetting where variable in ('IDVKDept'))) a where a.id='" & idlokasi & "'", "cek")
+        If sqls.getDataSet("cek") > 0 Then
+            retval = True
+        End If
+        Return retval
+    End Function
+
     Private Sub btnSave_Click(sender As Object, e As EventArgs) Handles btnSave.Click
         If idselectparent = "0" Then
             dizMsgbox("Registrasi Induk belum dipilih", dizMsgboxStyle.Peringatan, Me)
@@ -718,6 +728,11 @@
             dizMsgbox("Isian belum benar", dizMsgboxStyle.Peringatan, Me)
             Exit Sub
         End If
+        If checkkamar(lueRuang.EditValue) = False Then
+            dizMsgbox("Ruang tidak tersedia", dizMsgboxStyle.Peringatan, Me)
+            Exit Sub
+        End If
+
         Dim pair As KeyValuePair(Of String, String) = generateno2(idunit, iddept, "Registrasi", False)
         Dim idtrans As String = pair.Key
         teNoRegistrasi.Text = pair.Value

@@ -50,6 +50,7 @@
               <Mapping SourceColumn="businesspartner" DataSetColumn="businesspartner" />
               <Mapping SourceColumn="dokumenno" DataSetColumn="dokumenno" />
               <Mapping SourceColumn="purchaseno" DataSetColumn="purchaseno" />
+              <Mapping SourceColumn="dokumenno2" DataSetColumn="dokumenno2" />
             </Mappings>
             <Sources />
           </TableAdapter>
@@ -106,14 +107,14 @@
   <xs:element name="spBPB" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="spBPB" msprop:Generator_UserDSName="spBPB">
     <xs:complexType>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
-        <xs:element name="spCompanyLogoCaptionSquare" msprop:Generator_TableClassName="spCompanyLogoCaptionSquareDataTable" msprop:Generator_TableVarName="tablespCompanyLogoCaptionSquare" msprop:Generator_RowChangedName="spCompanyLogoCaptionSquareRowChanged" msprop:Generator_TablePropName="spCompanyLogoCaptionSquare" msprop:Generator_RowDeletingName="spCompanyLogoCaptionSquareRowDeleting" msprop:Generator_RowChangingName="spCompanyLogoCaptionSquareRowChanging" msprop:Generator_RowEvHandlerName="spCompanyLogoCaptionSquareRowChangeEventHandler" msprop:Generator_RowDeletedName="spCompanyLogoCaptionSquareRowDeleted" msprop:Generator_RowClassName="spCompanyLogoCaptionSquareRow" msprop:Generator_UserTableName="spCompanyLogoCaptionSquare" msprop:Generator_RowEvArgName="spCompanyLogoCaptionSquareRowChangeEvent">
+        <xs:element name="spCompanyLogoCaptionSquare" msprop:Generator_TableClassName="spCompanyLogoCaptionSquareDataTable" msprop:Generator_TableVarName="tablespCompanyLogoCaptionSquare" msprop:Generator_TablePropName="spCompanyLogoCaptionSquare" msprop:Generator_RowDeletingName="spCompanyLogoCaptionSquareRowDeleting" msprop:Generator_RowChangingName="spCompanyLogoCaptionSquareRowChanging" msprop:Generator_RowEvHandlerName="spCompanyLogoCaptionSquareRowChangeEventHandler" msprop:Generator_RowDeletedName="spCompanyLogoCaptionSquareRowDeleted" msprop:Generator_UserTableName="spCompanyLogoCaptionSquare" msprop:Generator_RowChangedName="spCompanyLogoCaptionSquareRowChanged" msprop:Generator_RowEvArgName="spCompanyLogoCaptionSquareRowChangeEvent" msprop:Generator_RowClassName="spCompanyLogoCaptionSquareRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="images" msprop:Generator_ColumnVarNameInTable="columnimages" msprop:Generator_ColumnPropNameInRow="images" msprop:Generator_ColumnPropNameInTable="imagesColumn" msprop:Generator_UserColumnName="images" type="xs:base64Binary" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="spBPB" msprop:Generator_TableClassName="spBPBDataTable" msprop:Generator_TableVarName="tablespBPB" msprop:Generator_RowChangedName="spBPBRowChanged" msprop:Generator_TablePropName="_spBPB" msprop:Generator_RowDeletingName="spBPBRowDeleting" msprop:Generator_RowChangingName="spBPBRowChanging" msprop:Generator_RowEvHandlerName="spBPBRowChangeEventHandler" msprop:Generator_RowDeletedName="spBPBRowDeleted" msprop:Generator_RowClassName="spBPBRow" msprop:Generator_UserTableName="spBPB" msprop:Generator_RowEvArgName="spBPBRowChangeEvent">
+        <xs:element name="spBPB" msprop:Generator_TableClassName="spBPBDataTable" msprop:Generator_TableVarName="tablespBPB" msprop:Generator_TablePropName="_spBPB" msprop:Generator_RowDeletingName="spBPBRowDeleting" msprop:Generator_RowChangingName="spBPBRowChanging" msprop:Generator_RowEvHandlerName="spBPBRowChangeEventHandler" msprop:Generator_RowDeletedName="spBPBRowDeleted" msprop:Generator_UserTableName="spBPB" msprop:Generator_RowChangedName="spBPBRowChanged" msprop:Generator_RowEvArgName="spBPBRowChangeEvent" msprop:Generator_RowClassName="spBPBRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="idtransaksi" msprop:Generator_ColumnVarNameInTable="columnidtransaksi" msprop:Generator_ColumnPropNameInRow="idtransaksi" msprop:Generator_ColumnPropNameInTable="idtransaksiColumn" msprop:Generator_UserColumnName="idtransaksi">
@@ -186,10 +187,17 @@
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
+              <xs:element name="dokumenno2" msprop:Generator_ColumnVarNameInTable="columndokumenno2" msprop:Generator_ColumnPropNameInRow="dokumenno2" msprop:Generator_ColumnPropNameInTable="dokumenno2Column" msprop:Generator_UserColumnName="dokumenno2">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="20" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="spBPBcurrent" msprop:Generator_TableClassName="spBPBcurrentDataTable" msprop:Generator_TableVarName="tablespBPBcurrent" msprop:Generator_RowChangedName="spBPBcurrentRowChanged" msprop:Generator_TablePropName="spBPBcurrent" msprop:Generator_RowDeletingName="spBPBcurrentRowDeleting" msprop:Generator_RowChangingName="spBPBcurrentRowChanging" msprop:Generator_RowEvHandlerName="spBPBcurrentRowChangeEventHandler" msprop:Generator_RowDeletedName="spBPBcurrentRowDeleted" msprop:Generator_RowClassName="spBPBcurrentRow" msprop:Generator_UserTableName="spBPBcurrent" msprop:Generator_RowEvArgName="spBPBcurrentRowChangeEvent">
+        <xs:element name="spBPBcurrent" msprop:Generator_TableClassName="spBPBcurrentDataTable" msprop:Generator_TableVarName="tablespBPBcurrent" msprop:Generator_TablePropName="spBPBcurrent" msprop:Generator_RowDeletingName="spBPBcurrentRowDeleting" msprop:Generator_RowChangingName="spBPBcurrentRowChanging" msprop:Generator_RowEvHandlerName="spBPBcurrentRowChangeEventHandler" msprop:Generator_RowDeletedName="spBPBcurrentRowDeleted" msprop:Generator_UserTableName="spBPBcurrent" msprop:Generator_RowChangedName="spBPBcurrentRowChanged" msprop:Generator_RowEvArgName="spBPBcurrentRowChangeEvent" msprop:Generator_RowClassName="spBPBcurrentRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="nomor" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnnomor" msprop:Generator_ColumnPropNameInRow="nomor" msprop:Generator_ColumnPropNameInTable="nomorColumn" msprop:Generator_UserColumnName="nomor" type="xs:long" minOccurs="0" />

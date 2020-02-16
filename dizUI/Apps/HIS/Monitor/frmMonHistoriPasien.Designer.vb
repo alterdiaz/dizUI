@@ -37,6 +37,8 @@ Partial Class frmMonHistoriPasien
         Me.gcData = New DevExpress.XtraGrid.GridControl()
         Me.gvData = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn25 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn26 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn24 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -74,8 +76,6 @@ Partial Class frmMonHistoriPasien
         Me.btnSearch = New System.Windows.Forms.Button()
         Me.btnExport = New System.Windows.Forms.Button()
         Me.lblSep5 = New System.Windows.Forms.Label()
-        Me.GridColumn26 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn25 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.tlpForm.SuspendLayout()
         Me.pTitle.SuspendLayout()
         CType(Me.pMinimize, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -255,6 +255,18 @@ Partial Class frmMonHistoriPasien
         Me.GridColumn1.OptionsColumn.ReadOnly = True
         Me.GridColumn1.Visible = True
         Me.GridColumn1.VisibleIndex = 0
+        '
+        'GridColumn25
+        '
+        Me.GridColumn25.Caption = "nomorform"
+        Me.GridColumn25.FieldName = "nomorform"
+        Me.GridColumn25.Name = "GridColumn25"
+        '
+        'GridColumn26
+        '
+        Me.GridColumn26.Caption = "idassessment"
+        Me.GridColumn26.FieldName = "idassessment"
+        Me.GridColumn26.Name = "GridColumn26"
         '
         'GridColumn24
         '
@@ -684,11 +696,11 @@ Partial Class frmMonHistoriPasien
         Me.lblKaryawan.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.lblKaryawan.AutoSize = True
         Me.lblKaryawan.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblKaryawan.Location = New System.Drawing.Point(375, 8)
+        Me.lblKaryawan.Location = New System.Drawing.Point(331, 8)
         Me.lblKaryawan.Name = "lblKaryawan"
-        Me.lblKaryawan.Size = New System.Drawing.Size(75, 14)
+        Me.lblKaryawan.Size = New System.Drawing.Size(119, 14)
         Me.lblKaryawan.TabIndex = 18
-        Me.lblKaryawan.Text = "Nama Pasien"
+        Me.lblKaryawan.Text = "No. RM/Nama Pasien"
         Me.lblKaryawan.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
         'teSearch
@@ -760,18 +772,6 @@ Partial Class frmMonHistoriPasien
         Me.lblSep5.Text = "|"
         Me.lblSep5.TextAlign = System.Drawing.ContentAlignment.TopCenter
         '
-        'GridColumn26
-        '
-        Me.GridColumn26.Caption = "idassessment"
-        Me.GridColumn26.FieldName = "idassessment"
-        Me.GridColumn26.Name = "GridColumn26"
-        '
-        'GridColumn25
-        '
-        Me.GridColumn25.Caption = "nomorform"
-        Me.GridColumn25.FieldName = "nomorform"
-        Me.GridColumn25.Name = "GridColumn25"
-        '
         'frmMonHistoriPasien
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -782,6 +782,7 @@ Partial Class frmMonHistoriPasien
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
         Me.Name = "frmMonHistoriPasien"
         Me.ShowInTaskbar = False
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.Manual
         Me.Text = "Riwayat Pasien"
         Me.tlpForm.ResumeLayout(False)
         Me.pTitle.ResumeLayout(False)

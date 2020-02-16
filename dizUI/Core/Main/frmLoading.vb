@@ -18,6 +18,7 @@
 
         pbSync.BringToFront()
         pbSync.Image = dizUI.My.Resources.Resources.hourglass
+        Me.TopMost = True
         Me.ResumeLayout()
         Application.DoEvents()
 

@@ -119,13 +119,14 @@ Partial Class frmRegistrasiIBS
         Me.teNoAsuransi = New DevExpress.XtraEditors.TextEdit()
         Me.lblNoAsuransi = New System.Windows.Forms.Label()
         Me.tlpSidebar = New System.Windows.Forms.TableLayoutPanel()
+        Me.btnAlihDPJP = New System.Windows.Forms.Button()
         Me.btnMonRegisterAll = New System.Windows.Forms.Button()
         Me.btnAntarDept = New System.Windows.Forms.Button()
         Me.btnRegStatus = New System.Windows.Forms.Button()
         Me.btnMonRegister = New System.Windows.Forms.Button()
         Me.btnDataRM = New System.Windows.Forms.Button()
         Me.GroupControl1 = New DevExpress.XtraEditors.GroupControl()
-        Me.btnAlihDPJP = New System.Windows.Forms.Button()
+        Me.btnPindahKamar = New System.Windows.Forms.Button()
         Me.tlpForm.SuspendLayout()
         Me.pTitle.SuspendLayout()
         CType(Me.pMinimize, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -1398,9 +1399,9 @@ Partial Class frmRegistrasiIBS
         Me.Label6.Anchor = System.Windows.Forms.AnchorStyles.Right
         Me.Label6.AutoSize = True
         Me.Label6.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label6.Location = New System.Drawing.Point(353, 5)
+        Me.Label6.Location = New System.Drawing.Point(369, 5)
         Me.Label6.Name = "Label6"
-        Me.Label6.Size = New System.Drawing.Size(94, 14)
+        Me.Label6.Size = New System.Drawing.Size(78, 14)
         Me.Label6.TabIndex = 21
         Me.Label6.Text = "Tgl Registrasi"
         Me.Label6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
@@ -1853,6 +1854,7 @@ Partial Class frmRegistrasiIBS
         Me.tlpSidebar.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
         Me.tlpSidebar.ColumnCount = 1
         Me.tlpSidebar.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 130.0!))
+        Me.tlpSidebar.Controls.Add(Me.btnPindahKamar, 0, 6)
         Me.tlpSidebar.Controls.Add(Me.btnAlihDPJP, 0, 5)
         Me.tlpSidebar.Controls.Add(Me.btnMonRegisterAll, 0, 2)
         Me.tlpSidebar.Controls.Add(Me.btnAntarDept, 0, 4)
@@ -1863,15 +1865,36 @@ Partial Class frmRegistrasiIBS
         Me.tlpSidebar.Location = New System.Drawing.Point(6, 25)
         Me.tlpSidebar.Margin = New System.Windows.Forms.Padding(0)
         Me.tlpSidebar.Name = "tlpSidebar"
-        Me.tlpSidebar.RowCount = 6
+        Me.tlpSidebar.RowCount = 7
         Me.tlpSidebar.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30.0!))
         Me.tlpSidebar.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30.0!))
         Me.tlpSidebar.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30.0!))
         Me.tlpSidebar.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30.0!))
         Me.tlpSidebar.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30.0!))
         Me.tlpSidebar.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30.0!))
-        Me.tlpSidebar.Size = New System.Drawing.Size(130, 180)
+        Me.tlpSidebar.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30.0!))
+        Me.tlpSidebar.Size = New System.Drawing.Size(130, 210)
         Me.tlpSidebar.TabIndex = 8
+        '
+        'btnAlihDPJP
+        '
+        Me.btnAlihDPJP.BackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer))
+        Me.btnAlihDPJP.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.btnAlihDPJP.FlatAppearance.BorderSize = 0
+        Me.btnAlihDPJP.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DimGray
+        Me.btnAlihDPJP.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DarkGray
+        Me.btnAlihDPJP.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnAlihDPJP.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnAlihDPJP.ForeColor = System.Drawing.Color.White
+        Me.btnAlihDPJP.Location = New System.Drawing.Point(0, 150)
+        Me.btnAlihDPJP.Margin = New System.Windows.Forms.Padding(0)
+        Me.btnAlihDPJP.Name = "btnAlihDPJP"
+        Me.btnAlihDPJP.Size = New System.Drawing.Size(130, 30)
+        Me.btnAlihDPJP.TabIndex = 22
+        Me.btnAlihDPJP.Text = "ALIH DPJP"
+        Me.btnAlihDPJP.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.btnAlihDPJP.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
+        Me.btnAlihDPJP.UseVisualStyleBackColor = False
         '
         'btnMonRegisterAll
         '
@@ -1984,28 +2007,28 @@ Partial Class frmRegistrasiIBS
         Me.GroupControl1.Margin = New System.Windows.Forms.Padding(0)
         Me.GroupControl1.Name = "GroupControl1"
         Me.GroupControl1.Padding = New System.Windows.Forms.Padding(4)
-        Me.GroupControl1.Size = New System.Drawing.Size(142, 211)
+        Me.GroupControl1.Size = New System.Drawing.Size(142, 241)
         Me.GroupControl1.TabIndex = 9
         '
-        'btnAlihDPJP
+        'btnPindahKamar
         '
-        Me.btnAlihDPJP.BackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer))
-        Me.btnAlihDPJP.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.btnAlihDPJP.FlatAppearance.BorderSize = 0
-        Me.btnAlihDPJP.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DimGray
-        Me.btnAlihDPJP.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DarkGray
-        Me.btnAlihDPJP.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btnAlihDPJP.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnAlihDPJP.ForeColor = System.Drawing.Color.White
-        Me.btnAlihDPJP.Location = New System.Drawing.Point(0, 150)
-        Me.btnAlihDPJP.Margin = New System.Windows.Forms.Padding(0)
-        Me.btnAlihDPJP.Name = "btnAlihDPJP"
-        Me.btnAlihDPJP.Size = New System.Drawing.Size(130, 30)
-        Me.btnAlihDPJP.TabIndex = 22
-        Me.btnAlihDPJP.Text = "ALIH DPJP"
-        Me.btnAlihDPJP.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.btnAlihDPJP.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
-        Me.btnAlihDPJP.UseVisualStyleBackColor = False
+        Me.btnPindahKamar.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(0, Byte), Integer))
+        Me.btnPindahKamar.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.btnPindahKamar.FlatAppearance.BorderSize = 0
+        Me.btnPindahKamar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DimGray
+        Me.btnPindahKamar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DarkGray
+        Me.btnPindahKamar.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnPindahKamar.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnPindahKamar.ForeColor = System.Drawing.Color.White
+        Me.btnPindahKamar.Location = New System.Drawing.Point(0, 180)
+        Me.btnPindahKamar.Margin = New System.Windows.Forms.Padding(0)
+        Me.btnPindahKamar.Name = "btnPindahKamar"
+        Me.btnPindahKamar.Size = New System.Drawing.Size(130, 30)
+        Me.btnPindahKamar.TabIndex = 19
+        Me.btnPindahKamar.Text = "PINDAH KAMAR"
+        Me.btnPindahKamar.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.btnPindahKamar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
+        Me.btnPindahKamar.UseVisualStyleBackColor = False
         '
         'frmRegistrasiIBS
         '
@@ -2190,4 +2213,5 @@ Partial Class frmRegistrasiIBS
     Public WithEvents btnAntarDept As Button
     Public WithEvents btnMonRegisterAll As Button
     Public WithEvents btnAlihDPJP As Button
+    Public WithEvents btnPindahKamar As Button
 End Class

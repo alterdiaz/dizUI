@@ -11,7 +11,7 @@ Public Class frmMonHistoriPasien
 
         ' Add any initialization after the InitializeComponent() call.
         idrm = -1
-        Me.WindowState = FormWindowState.Maximized
+        'Me.WindowState = FormWindowState.Maximized
     End Sub
 
     'API functions   
@@ -106,10 +106,10 @@ Public Class frmMonHistoriPasien
         ' Add any initialization after the InitializeComponent() call.
         idrm = idpasien
 
-        Me.WindowState = FormWindowState.Normal
-        Me.Size = New Size(Screen.PrimaryScreen.WorkingArea.Width - 100, Screen.PrimaryScreen.WorkingArea.Height - 100)
-        Me.MaximumSize = New Size(Screen.PrimaryScreen.WorkingArea.Width - 100, Screen.PrimaryScreen.WorkingArea.Height - 100)
-        Me.StartPosition = FormStartPosition.CenterScreen
+        'Me.WindowState = FormWindowState.Normal
+        'Me.Size = New Size(Screen.PrimaryScreen.WorkingArea.Width - 100, Screen.PrimaryScreen.WorkingArea.Height - 100)
+        'Me.MaximumSize = New Size(Screen.PrimaryScreen.WorkingArea.Width - 100, Screen.PrimaryScreen.WorkingArea.Height - 100)
+        'Me.StartPosition = FormStartPosition.CenterScreen
     End Sub
 
     Private Sub frmMonHistoriPasien_Load(sender As Object, e As EventArgs) Handles Me.Load
@@ -134,6 +134,13 @@ Public Class frmMonHistoriPasien
         End If
         If idrm <> "-1" Then
             btnSemua_Click(btn10, Nothing)
+        End If
+        If Me.Location.X < 0 Then
+            'Me.StartPosition = FormStartPosition.CenterParent
+            'Dim pnt As Point = centerScreen(Me)
+            ''Me.Location = New Point(pnt.X, pnt.Y)
+            'Me.Left = pnt.X
+            'Me.Top = pnt.Y
         End If
     End Sub
 
@@ -197,7 +204,7 @@ Public Class frmMonHistoriPasien
         Dim strfilter As String = ""
         strQuery &= " and r.rekammedisno<>0"
         If teSearch.Text <> "" Then
-            strQuery &= " and r.nama like '%" & teSearch.Text & "%'"
+            strQuery &= " and (r.idrekammedis='" & teSearch.Text & "' or r.nama like '%" & teSearch.Text & "%' or replace(dbo.fformatnorm(r.rekammedisno),'-','') like '%" & teSearch.Text & "%' or dbo.fformatnorm(r.rekammedisno) like '%" & teSearch.Text & "%' or r.rekammedisno like '%" & teSearch.Text & "%') "
         End If
         strQuery &= " order by r.rekammedisno desc"
 

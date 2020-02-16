@@ -45,6 +45,8 @@ Partial Class frmPelayananSelect
         Me.btnKonsultasi = New System.Windows.Forms.Button()
         Me.btnRehabilitasi = New System.Windows.Forms.Button()
         Me.btnExit = New System.Windows.Forms.Button()
+        Me.lblUmumMCU = New System.Windows.Forms.Label()
+        Me.btnUmumMCU = New System.Windows.Forms.Button()
         Me.tlpForm.SuspendLayout()
         Me.pContent.SuspendLayout()
         Me.Panel1.SuspendLayout()
@@ -87,6 +89,8 @@ Partial Class frmPelayananSelect
         '
         Me.Panel1.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom), System.Windows.Forms.AnchorStyles)
         Me.Panel1.BackColor = System.Drawing.Color.Transparent
+        Me.Panel1.Controls.Add(Me.lblUmumMCU)
+        Me.Panel1.Controls.Add(Me.btnUmumMCU)
         Me.Panel1.Controls.Add(Me.lblODS)
         Me.Panel1.Controls.Add(Me.btnODS)
         Me.Panel1.Controls.Add(Me.lblMCU)
@@ -149,7 +153,7 @@ Partial Class frmPelayananSelect
         Me.lblMCU.BackColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer))
         Me.lblMCU.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblMCU.ForeColor = System.Drawing.Color.White
-        Me.lblMCU.Location = New System.Drawing.Point(399, 268)
+        Me.lblMCU.Location = New System.Drawing.Point(399, 334)
         Me.lblMCU.Margin = New System.Windows.Forms.Padding(0)
         Me.lblMCU.Name = "lblMCU"
         Me.lblMCU.Size = New System.Drawing.Size(86, 14)
@@ -167,7 +171,7 @@ Partial Class frmPelayananSelect
         Me.btnMCU.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnMCU.Font = New System.Drawing.Font("Tahoma", 10.0!)
         Me.btnMCU.ForeColor = System.Drawing.Color.White
-        Me.btnMCU.Location = New System.Drawing.Point(249, 225)
+        Me.btnMCU.Location = New System.Drawing.Point(249, 291)
         Me.btnMCU.Name = "btnMCU"
         Me.btnMCU.Size = New System.Drawing.Size(240, 60)
         Me.btnMCU.TabIndex = 29
@@ -181,7 +185,7 @@ Partial Class frmPelayananSelect
         Me.lblIGDelektif.BackColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer))
         Me.lblIGDelektif.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblIGDelektif.ForeColor = System.Drawing.Color.White
-        Me.lblIGDelektif.Location = New System.Drawing.Point(399, 201)
+        Me.lblIGDelektif.Location = New System.Drawing.Point(399, 267)
         Me.lblIGDelektif.Margin = New System.Windows.Forms.Padding(0)
         Me.lblIGDelektif.Name = "lblIGDelektif"
         Me.lblIGDelektif.Size = New System.Drawing.Size(86, 14)
@@ -195,7 +199,7 @@ Partial Class frmPelayananSelect
         Me.lblIGD.BackColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer))
         Me.lblIGD.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblIGD.ForeColor = System.Drawing.Color.White
-        Me.lblIGD.Location = New System.Drawing.Point(399, 135)
+        Me.lblIGD.Location = New System.Drawing.Point(399, 201)
         Me.lblIGD.Margin = New System.Windows.Forms.Padding(0)
         Me.lblIGD.Name = "lblIGD"
         Me.lblIGD.Size = New System.Drawing.Size(86, 14)
@@ -302,7 +306,7 @@ Partial Class frmPelayananSelect
         Me.btnIGDelektif.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnIGDelektif.Font = New System.Drawing.Font("Tahoma", 10.0!)
         Me.btnIGDelektif.ForeColor = System.Drawing.Color.White
-        Me.btnIGDelektif.Location = New System.Drawing.Point(249, 158)
+        Me.btnIGDelektif.Location = New System.Drawing.Point(249, 224)
         Me.btnIGDelektif.Name = "btnIGDelektif"
         Me.btnIGDelektif.Size = New System.Drawing.Size(240, 60)
         Me.btnIGDelektif.TabIndex = 15
@@ -320,7 +324,7 @@ Partial Class frmPelayananSelect
         Me.btnIGD.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnIGD.Font = New System.Drawing.Font("Tahoma", 10.0!)
         Me.btnIGD.ForeColor = System.Drawing.Color.White
-        Me.btnIGD.Location = New System.Drawing.Point(249, 92)
+        Me.btnIGD.Location = New System.Drawing.Point(249, 158)
         Me.btnIGD.Name = "btnIGD"
         Me.btnIGD.Size = New System.Drawing.Size(240, 60)
         Me.btnIGD.TabIndex = 14
@@ -351,7 +355,7 @@ Partial Class frmPelayananSelect
         Me.btnOK.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.btnOK.BackColor = System.Drawing.Color.Transparent
         Me.btnOK.DialogResult = System.Windows.Forms.DialogResult.OK
-        Me.btnOK.FlatAppearance.BorderColor = System.Drawing.Color.green
+        Me.btnOK.FlatAppearance.BorderColor = System.Drawing.Color.Green
         Me.btnOK.FlatAppearance.BorderSize = 0
         Me.btnOK.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
         Me.btnOK.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Lime
@@ -439,6 +443,39 @@ Partial Class frmPelayananSelect
         Me.btnExit.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText
         Me.btnExit.UseVisualStyleBackColor = False
         '
+        'lblUmumMCU
+        '
+        Me.lblUmumMCU.AutoSize = True
+        Me.lblUmumMCU.BackColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer))
+        Me.lblUmumMCU.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblUmumMCU.ForeColor = System.Drawing.Color.White
+        Me.lblUmumMCU.Location = New System.Drawing.Point(399, 135)
+        Me.lblUmumMCU.Margin = New System.Windows.Forms.Padding(0)
+        Me.lblUmumMCU.Name = "lblUmumMCU"
+        Me.lblUmumMCU.Size = New System.Drawing.Size(86, 14)
+        Me.lblUmumMCU.TabIndex = 34
+        Me.lblUmumMCU.Text = "Tidak Tersedia"
+        Me.lblUmumMCU.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        '
+        'btnUmumMCU
+        '
+        Me.btnUmumMCU.BackColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer))
+        Me.btnUmumMCU.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(143, Byte), Integer), CType(CType(215, Byte), Integer))
+        Me.btnUmumMCU.FlatAppearance.CheckedBackColor = System.Drawing.Color.Green
+        Me.btnUmumMCU.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.btnUmumMCU.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Purple
+        Me.btnUmumMCU.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnUmumMCU.Font = New System.Drawing.Font("Tahoma", 10.0!)
+        Me.btnUmumMCU.ForeColor = System.Drawing.Color.White
+        Me.btnUmumMCU.Location = New System.Drawing.Point(249, 92)
+        Me.btnUmumMCU.Name = "btnUmumMCU"
+        Me.btnUmumMCU.Size = New System.Drawing.Size(240, 60)
+        Me.btnUmumMCU.TabIndex = 33
+        Me.btnUmumMCU.Tag = "UMUMMCU"
+        Me.btnUmumMCU.Text = "POLI UMUM - MCU"
+        Me.btnUmumMCU.UseMnemonic = False
+        Me.btnUmumMCU.UseVisualStyleBackColor = False
+        '
         'frmPelayananSelect
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -481,4 +518,6 @@ Partial Class frmPelayananSelect
     Friend WithEvents btnMCU As Button
     Friend WithEvents lblODS As Label
     Friend WithEvents btnODS As Button
+    Friend WithEvents lblUmumMCU As Label
+    Friend WithEvents btnUmumMCU As Button
 End Class

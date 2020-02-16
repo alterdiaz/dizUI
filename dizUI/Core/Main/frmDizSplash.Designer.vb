@@ -31,9 +31,10 @@ Partial Class frmDizSplash
         '
         'pbSync
         '
+        Me.pbSync.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.pbSync.BackColor = System.Drawing.Color.Transparent
         Me.pbSync.Image = Global.dizUI.My.Resources.Resources.loading2
-        Me.pbSync.Location = New System.Drawing.Point(6, 126)
+        Me.pbSync.Location = New System.Drawing.Point(579, 259)
         Me.pbSync.Margin = New System.Windows.Forms.Padding(0)
         Me.pbSync.Name = "pbSync"
         Me.pbSync.Size = New System.Drawing.Size(30, 30)
@@ -49,8 +50,8 @@ Partial Class frmDizSplash
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.BackgroundImage = Global.dizUI.My.Resources.Resources.canvas_splash
-        Me.ClientSize = New System.Drawing.Size(464, 162)
+        Me.BackgroundImage = Global.dizUI.My.Resources.Resources.canvas_splash4
+        Me.ClientSize = New System.Drawing.Size(620, 300)
         Me.ControlBox = False
         Me.Controls.Add(Me.pbSync)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None

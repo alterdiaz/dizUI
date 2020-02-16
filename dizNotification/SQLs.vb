@@ -381,6 +381,7 @@ Public Class SQLs
             sqlConn.ConnectionString = strConn
             sqlConn.Open()
         Catch ex As Exception
+            sqlConn.Close()
             'MsgBox(ex.Message, dizMsgboxStyle.Kesalahan, me)
             Return False
             Exit Function
@@ -408,6 +409,8 @@ Public Class SQLs
         Catch ex As Exception
             Try
                 sqltrans.Rollback()
+                sqlConn.Close()
+                'MsgBox(ex.Message)
                 'MsgBox(ex.Message, dizMsgboxStyle.Kesalahan, me)
                 Return False
             Catch ex2 As Exception
@@ -427,6 +430,7 @@ Public Class SQLs
             sqlConn.ConnectionString = strConn
             sqlConn.Open()
         Catch ex As Exception
+            sqlConn.Close()
             'MsgBox(ex.Message)
             Return False
             Exit Function
@@ -441,6 +445,7 @@ Public Class SQLs
             sqlConn.Close()
             Return True
         Catch ex As Exception
+            sqlConn.Close()
             'MsgBox(ex.Message)
             Return False
         End Try

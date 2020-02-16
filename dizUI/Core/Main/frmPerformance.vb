@@ -164,6 +164,30 @@ Public Class frmPerformance
             lblConnection.Text = "Connection Status : " & IIf(mys.checkConnection(), "CONNECTED", "DISCONNECTED")
             lblConnection.Refresh()
         End If
+        'upload counter
+        If uCounter < CLng(1024) Then
+            lblUpload.Text = "Upload : " & uCounter & " Bytes"
+        ElseIf uCounter >= CLng(1024) And uCounter < CLng(1024000) Then
+            lblUpload.Text = "Upload : " & Format(uCounter / CLng(1024), "#0.0") & " KBytes"
+        ElseIf uCounter >= CLng(1024000) And uCounter < CLng(1024000000) Then
+            lblUpload.Text = "Upload : " & Format(uCounter / CLng(1024000), "#0.0") & " MBytes"
+        ElseIf uCounter >= CLng(1024000000) And uCounter < CLng(1024000000000) Then
+            lblUpload.Text = "Upload : " & Format(uCounter / CLng(1024000000), "#0.0") & " GBytes"
+        ElseIf uCounter >= CLng(1024000000000) And uCounter < CLng(1024000000000000) Then
+            lblUpload.Text = "Upload : " & Format(uCounter / CLng(1024000000000), "#0.0") & " TBytes"
+        End If
+        'download counter
+        If dCounter < CLng(1024) Then
+            lblDownload.Text = "Download : " & dCounter & " Bytes"
+        ElseIf dCounter >= CLng(1024) And dCounter < CLng(1024000) Then
+            lblDownload.Text = "Download : " & Format(dCounter / CLng(1024), "#0.0") & " KBytes"
+        ElseIf dCounter >= CLng(1024000) And dCounter < CLng(1024000000) Then
+            lblDownload.Text = "Download : " & Format(dCounter / CLng(1024000), "#0.0") & " MBytes"
+        ElseIf dCounter >= CLng(1024000000) And dCounter < CLng(1024000000000) Then
+            lblDownload.Text = "Download : " & Format(dCounter / CLng(1024000000), "#0.0") & " GBytes"
+        ElseIf dCounter >= CLng(1024000000000) And dCounter < CLng(1024000000000000) Then
+            lblDownload.Text = "Download : " & Format(dCounter / CLng(1024000000000), "#0.0") & " TBytes"
+        End If
         Application.DoEvents()
     End Sub
 

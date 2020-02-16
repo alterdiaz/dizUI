@@ -204,11 +204,6 @@ Public Class frmPembelianBarang
     End Sub
 
     Private Sub btnNew_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnNew.Click
-        kosongkangrid()
-        kosongkanIsian(tlpField)
-
-        updateSPP()
-
         Dim sqls As New SQLs(dbstring)
         sqls.DMLQuery("select t.idtransaksi,t.transaksino,t.remarks,dt.counter as totalitem,dtot.total as totalbarang,c.username as createdby,convert(varchar,t.createddate,105)+' '+convert(varchar,t.createddate,108) as createddate from transaksi t left join sys_user c on t.createdby=c.iduser left join (select idtransaksi2,count(idtransaksidt) as counter from transaksidt dt group by idtransaksi2) dt on t.idtransaksi=dt.idtransaksi2 left join (select idtransaksi2,sum(qtycharges) as total from transaksidt dt group by idtransaksi2) dtot on t.idtransaksi=dtot.idtransaksi2 where t.transaksitype in (select tt.idtransactiontype from transactiontype tt where tt.kodetransaksi=(select [value] from sys_appsetting where [variable]='KodePermintaanPembelianBarang')) and t.reviewedby is not null and t.isdeleted=0 and t.transaksistatus in (3,6) order by t.createddate desc", "allitem")
 
@@ -405,7 +400,10 @@ Public Class frmPembelianBarang
             Next
             If retval = True Then
                 dizMsgbox("Data telah tersimpan", dizMsgboxStyle.Info, Me)
-                btnNew_Click(btnNew, Nothing)
+
+                kosongkangrid()
+                kosongkanIsian(tlpField)
+                updateSPP()
             End If
         End If
     End Sub

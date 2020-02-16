@@ -226,6 +226,9 @@
   <ItemGroup>
     <Content Include="diznet icon.ico" />
     <Content Include="dizsiepamuploader.ico" />
+    <Content Include="SQLite.Interop.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <None Include="Resources\dizUploader.png" />
     <None Include="Resources\ok w.png" />
     <None Include="Resources\exit_w.png" />

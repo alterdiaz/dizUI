@@ -10,8 +10,8 @@
     Declare Auto Function SendMessage Lib "user32.dll" (ByVal hWnd As IntPtr, ByVal msg As Integer, ByVal wParam As IntPtr, ByVal lParam As IntPtr) As IntPtr
     Private Sub lblTitle_MouseDown(ByVal sender As Object, ByVal e As System.Windows.Forms.MouseEventArgs) Handles lblTitle.MouseDown
         'This code can be used in the MouseDown event of any control(s) you want to be able to move your form with   
-        ReleaseCapture()
-        SendMessage(Me.Handle, WM_NCLBUTTONDOWN, HTCAPTION, 0&)
+        'ReleaseCapture()
+        'SendMessage(Me.Handle, WM_NCLBUTTONDOWN, HTCAPTION, 0&)
     End Sub
     Private Sub btnExit_Click(sender As Object, e As EventArgs) Handles btnExit.Click
         Dim dtsqls As New dtsetSQLS(dbstring)
@@ -153,6 +153,7 @@
         'MsgBox(queryOK)
         Dim sqls As New SQLs(dbstring)
         If queryOK <> "" Then
+            'Clipboard.SetText(queryOK)
             sqls.DMLQuery(queryOK, False)
         End If
         sqls.DMLQuery("update sys_notifications set konfirmdate=getdate(),konfirmby='" & userid & "',iskonfirm=1 where idnotifications='" & notifid & "'", "cekdata")

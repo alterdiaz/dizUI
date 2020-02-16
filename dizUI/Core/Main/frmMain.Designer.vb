@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class frmMain
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         Try
             If disposing AndAlso components IsNot Nothing Then
@@ -54,6 +54,8 @@ Partial Class frmMain
         Me.lblQuota = New System.Windows.Forms.Label()
         Me.pBody = New System.Windows.Forms.Panel()
         Me.pForm = New System.Windows.Forms.Panel()
+        Me.lblFormTanggal = New System.Windows.Forms.Label()
+        Me.lblFormJam = New System.Windows.Forms.Label()
         Me.pHeader = New System.Windows.Forms.Panel()
         Me.btnTaskManager = New System.Windows.Forms.Button()
         Me.btnDBSetting = New System.Windows.Forms.Button()
@@ -87,6 +89,7 @@ Partial Class frmMain
         Me.pnlTaskList.SuspendLayout()
         Me.pnTaskList.SuspendLayout()
         Me.pBody.SuspendLayout()
+        Me.pForm.SuspendLayout()
         Me.pHeader.SuspendLayout()
         CType(Me.pSidebar, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.teSearch.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -467,12 +470,42 @@ Partial Class frmMain
         Me.pForm.BackColor = System.Drawing.Color.Black
         Me.pForm.BackgroundImage = Global.dizUI.My.Resources.Resources.canvas_body
         Me.pForm.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
+        Me.pForm.Controls.Add(Me.lblFormTanggal)
+        Me.pForm.Controls.Add(Me.lblFormJam)
         Me.pForm.Dock = System.Windows.Forms.DockStyle.Fill
         Me.pForm.Location = New System.Drawing.Point(0, 0)
         Me.pForm.Margin = New System.Windows.Forms.Padding(0)
         Me.pForm.Name = "pForm"
         Me.pForm.Size = New System.Drawing.Size(996, 536)
         Me.pForm.TabIndex = 8
+        '
+        'lblFormTanggal
+        '
+        Me.lblFormTanggal.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.lblFormTanggal.BackColor = System.Drawing.Color.Transparent
+        Me.lblFormTanggal.Font = New System.Drawing.Font("Tahoma", 30.0!)
+        Me.lblFormTanggal.Location = New System.Drawing.Point(442, 462)
+        Me.lblFormTanggal.Margin = New System.Windows.Forms.Padding(0)
+        Me.lblFormTanggal.Name = "lblFormTanggal"
+        Me.lblFormTanggal.Size = New System.Drawing.Size(520, 50)
+        Me.lblFormTanggal.TabIndex = 80
+        Me.lblFormTanggal.Text = " "
+        Me.lblFormTanggal.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.lblFormTanggal.Visible = False
+        '
+        'lblFormJam
+        '
+        Me.lblFormJam.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.lblFormJam.BackColor = System.Drawing.Color.Transparent
+        Me.lblFormJam.Font = New System.Drawing.Font("Tahoma", 62.0!)
+        Me.lblFormJam.Location = New System.Drawing.Point(600, 372)
+        Me.lblFormJam.Margin = New System.Windows.Forms.Padding(0)
+        Me.lblFormJam.Name = "lblFormJam"
+        Me.lblFormJam.Size = New System.Drawing.Size(380, 90)
+        Me.lblFormJam.TabIndex = 79
+        Me.lblFormJam.Text = " "
+        Me.lblFormJam.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.lblFormJam.Visible = False
         '
         'pHeader
         '
@@ -933,6 +966,7 @@ Partial Class frmMain
         Me.pnlTaskList.ResumeLayout(False)
         Me.pnTaskList.ResumeLayout(False)
         Me.pBody.ResumeLayout(False)
+        Me.pForm.ResumeLayout(False)
         Me.pHeader.ResumeLayout(False)
         CType(Me.pSidebar, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.teSearch.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1007,4 +1041,6 @@ Partial Class frmMain
     Public WithEvents btnSidebar As Button
     Friend WithEvents cmsMenu As ContextMenuStrip
     Friend WithEvents cmsTutupPaksa As ToolStripMenuItem
+    Friend WithEvents lblFormTanggal As Label
+    Friend WithEvents lblFormJam As Label
 End Class

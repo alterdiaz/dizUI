@@ -448,7 +448,7 @@ Partial Class frmKelas
         '
         'btnSave
         '
-        Me.btnSave.BackColor = System.Drawing.Color.green
+        Me.btnSave.BackColor = System.Drawing.Color.Green
         Me.btnSave.Dock = System.Windows.Forms.DockStyle.Right
         Me.btnSave.FlatAppearance.BorderSize = 0
         Me.btnSave.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DimGray

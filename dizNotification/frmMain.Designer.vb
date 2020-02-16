@@ -22,10 +22,9 @@ Partial Class frmMain
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmMain))
-        Me.niNotify = New System.Windows.Forms.NotifyIcon(Me.components)
-        Me.cmsMenu = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.niNotify = New System.Windows.Forms.NotifyIcon()
+        Me.cmsMenu = New System.Windows.Forms.ContextMenuStrip()
         Me.tsmiTampilkan = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripSeparator1 = New System.Windows.Forms.ToolStripSeparator()
         Me.tsmiLogout = New System.Windows.Forms.ToolStripMenuItem()
@@ -50,14 +49,14 @@ Partial Class frmMain
         Me.tboUsername = New System.Windows.Forms.TextBox()
         Me.lblPassword = New System.Windows.Forms.Label()
         Me.lblUsername = New System.Windows.Forms.Label()
-        Me.tmrRM = New System.Windows.Forms.Timer(Me.components)
-        Me.tmrCek = New System.Windows.Forms.Timer(Me.components)
-        Me.tmrIRNA = New System.Windows.Forms.Timer(Me.components)
-        Me.tmrIGD = New System.Windows.Forms.Timer(Me.components)
-        Me.tmrIRJ = New System.Windows.Forms.Timer(Me.components)
-        Me.tmrNotes = New System.Windows.Forms.Timer(Me.components)
-        Me.tmrIRM = New System.Windows.Forms.Timer(Me.components)
-        Me.tmrProses = New System.Windows.Forms.Timer(Me.components)
+        Me.tmrRM = New System.Windows.Forms.Timer()
+        Me.tmrCek = New System.Windows.Forms.Timer()
+        Me.tmrIRNA = New System.Windows.Forms.Timer()
+        Me.tmrIGD = New System.Windows.Forms.Timer()
+        Me.tmrIRJ = New System.Windows.Forms.Timer()
+        Me.tmrNotes = New System.Windows.Forms.Timer()
+        Me.tmrIRM = New System.Windows.Forms.Timer()
+        Me.tmrProses = New System.Windows.Forms.Timer()
         Me.cmsMenu.SuspendLayout()
         Me.tlpForm.SuspendLayout()
         Me.pTitle.SuspendLayout()
@@ -166,7 +165,7 @@ Partial Class frmMain
         'PictureBox1
         '
         Me.PictureBox1.Dock = System.Windows.Forms.DockStyle.Left
-        Me.PictureBox1.Image = Global.dizNotifikasi.My.Resources.Resources.dizNotif
+        Me.PictureBox1.Image = Global.dizNotifikasi.My.Resources.Resources.dizNotif2nb
         Me.PictureBox1.Location = New System.Drawing.Point(0, 0)
         Me.PictureBox1.Name = "PictureBox1"
         Me.PictureBox1.Size = New System.Drawing.Size(30, 30)

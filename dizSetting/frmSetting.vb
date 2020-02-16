@@ -409,7 +409,7 @@
         Threading.Thread.Sleep(500)
         Dim dbstring As String = dbname & "|" & dbsvr & "|" & dbinstance & "|" & dbport & "|" & dbschema & "|" & dbid & "|" & dbpass
         Dim sqls As New SQLs(dbstring)
-        sqls.DMLQuery("select idappfiles,filename,appversion,createddate,filebinary from sys_appfiles where postdate=(select top 1 postdate from sys_appfiles order by postdate asc)", "appfilesawal")
+        'sqls.DMLQuery("select idappfiles,filename,appversion,createddate from sys_appfiles where postdate=(select top 1 postdate from sys_appfiles order by postdate asc)", "appfilesawal")
         Dim tmpbyte As Byte() = Nothing
         Dim filename As String = ""
 
@@ -460,7 +460,7 @@
         '    Next
         'End If
 
-        sqls.DMLQuery("select idappfiles,filename,appversion,createddate,filebinary from sys_appfiles where appversion=(select value from sys_appsetting where variable='ProductVersion')", "appfiles")
+        sqls.DMLQuery("select idappfiles,filename,appversion,createddate from sys_appfiles where appversion=(select value from sys_appsetting where variable='ProductVersion') order by len(filebinary) desc", "appfiles")
         'Dim fs As IO.FileStream
         lblCounter.Text = "Update Aplikasi" & vbCrLf & "0 / " & sqls.getDataSet("appfiles")
         For i As Integer = 0 To sqls.getDataSet("appfiles") - 1

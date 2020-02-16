@@ -177,7 +177,8 @@ Public Class frmPermintaanBarangNQLMA
         End If
 
         checkFieldMaxLength(dbstring, tlpField, "transaksi")
-        btnNew_Click(btnNew, Nothing)
+        loadgrid()
+        kosongkanIsian(tlpField)
     End Sub
 
     Private statData As statusData = statusData.Baru
@@ -186,9 +187,6 @@ Public Class frmPermintaanBarangNQLMA
     Private idunit2 As New List(Of String)
     Private iddept2 As New List(Of String)
     Private Sub btnNew_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnNew.Click
-        loadgrid()
-        kosongkanIsian(tlpField)
-
         idData = "-1"
         isVoid = False
         teKode.Text = "XXXX/XXX/XXX/" & Format(nowTime, "yyyyMMdd") & "/XXXX"
@@ -684,7 +682,8 @@ Public Class frmPermintaanBarangNQLMA
 
         If retval = True Then
             dizMsgbox("Data telah tersimpan", dizMsgboxStyle.Info, Me)
-            btnNew_Click(btnNew, Nothing)
+            loadgrid()
+            kosongkanIsian(tlpField)
         End If
     End Sub
 

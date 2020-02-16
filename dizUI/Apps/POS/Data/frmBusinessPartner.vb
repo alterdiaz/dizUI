@@ -228,6 +228,10 @@
         kosongkanIsian(tlpEmail)
         kosongkanIsian(tlpTelepon)
 
+        teKode.Properties.ReadOnly = False
+        teKode.Properties.Appearance.BackColor = canWrite
+        teKode.Enabled = True
+
         lueType.Properties.Appearance.BackColor = canWrite
         lueType.Properties.ReadOnly = False
         lueType.Enabled = True
@@ -464,6 +468,10 @@
             lueType.Properties.Appearance.BackColor = justRead
             lueType.Properties.ReadOnly = True
             lueType.EditValue = dcol("businesspartnertype")
+
+            teKode.Properties.ReadOnly = True
+            teKode.Properties.Appearance.BackColor = justRead
+            teKode.Enabled = False
 
             teKode.Text = dcol("kode")
             teNama.Text = dcol("nama")

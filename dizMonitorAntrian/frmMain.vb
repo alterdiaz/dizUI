@@ -2,8 +2,6 @@
 Imports AForge.Video
 
 Public Class frmMain
-
-
     Private Const LOGPIXELSX As Integer = 88
     Private Const LOGPIXELSY As Integer = 90
 
@@ -114,7 +112,7 @@ Public Class frmMain
                 lblNote1.Text = ""
             End If
         End If
-        playStatus = vspVideo.IsRunning 'IsPlaying()
+        'playStatus = vspVideo.IsRunning 'IsPlaying()
         If playStatus = False Then
             idxFile += 1
             If idxFile > lstString.Count - 1 Then
@@ -166,22 +164,24 @@ Public Class frmMain
     End Sub
 
     Private playStatus As Boolean = False
-    Dim WithEvents fvs As New AForge.Video.DirectShow.FileVideoSource
+    'Dim WithEvents fvs As New AForge.Video.DirectShow.FileVideoSource
     Private Sub playVideo(filename As String)
-        playStatus = False
+        playStatus = True
+        vspVideo.AutoSizeControl = False
         vspVideo.SignalToStop()
         vspVideo.WaitForStop()
         vspVideo.Stop()
-        fvs.SignalToStop()
-        fvs.WaitForStop()
-        fvs.Stop()
-        MsgBox(filename)
-        fvs = New AForge.Video.DirectShow.FileVideoSource(filename)
-        fvs.PreventFreezing = True
+        'fvs.SignalToStop()
+        'fvs.WaitForStop()
+        'fvs.Stop()
 
-        vspVideo.VideoSource = fvs
-        fvs.Start()
-        'vspVideo.Start()
+        'fvs = New AForge.Video.DirectShow.FileVideoSource(filename)
+        'MsgBox(filename)
+        'fvs.PreventFreezing = True
+
+        vspVideo.VideoSource = New AForge.Video.AsyncVideoSource(New AForge.Video.DirectShow.FileVideoSource(filename))
+        'fvs.Start()
+        vspVideo.Start()
         Try
             'mciSendString("open " & Chr(34) & filename & Chr(34) & " type mpegvideo alias movie parent " _
             '    & pVideo.Handle.ToInt32 & " style child", "", 0, 0)
@@ -193,7 +193,6 @@ Public Class frmMain
             playStatus = False
         End Try
     End Sub
-
 
     Private mcierror As Integer
     Private returndata As String
@@ -248,19 +247,20 @@ Public Class frmMain
     'End Sub
 
     Private Sub vspVideo_NewFrame(sender As Object, ByRef image As Bitmap) Handles vspVideo.NewFrame
-        Dim Graphics As Graphics = Graphics.FromImage(image)
-        Dim SolidBrush As SolidBrush = New SolidBrush(Color.Red)
-        Graphics.DrawString(Now.ToString(), Me.Font, SolidBrush, New PointF(5.0F, 5.0F))
-        SolidBrush.Dispose()
-        Graphics.Dispose()
+        'Dim Graphics As Graphics = Graphics.FromImage(image)
+        'Dim SolidBrush As SolidBrush = New SolidBrush(Color.Red)
+        'Graphics.DrawString(Now.ToString(), Me.Font, SolidBrush, New PointF(5.0F, 5.0F))
+        'SolidBrush.Dispose()
+        'Graphics.Dispose()
+        'playStatus = True
     End Sub
 
     Private Sub vspVideo_PlayingFinished(sender As Object, reason As AForge.Video.ReasonToFinishPlaying) Handles vspVideo.PlayingFinished
         playStatus = False
     End Sub
 
-    Private Sub fvs_NewFrame(sender As Object, eventArgs As AForge.Video.NewFrameEventArgs) Handles fvs.NewFrame
-        Dim Bitmap As Bitmap = eventArgs.Frame
-    End Sub
+    'Private Sub fvs_NewFrame(sender As Object, eventArgs As AForge.Video.NewFrameEventArgs) Handles fvs.NewFrame
+    '    Dim Bitmap As Bitmap = eventArgs.Frame
+    'End Sub
 
 End Class

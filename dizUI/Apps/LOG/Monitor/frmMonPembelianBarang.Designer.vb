@@ -400,6 +400,8 @@ Partial Class frmMonPembelianBarang
         '
         'GridColumn20
         '
+        Me.GridColumn20.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn20.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.GridColumn20.AppearanceHeader.Options.UseTextOptions = True
         Me.GridColumn20.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.GridColumn20.Caption = "Tgl. Kirim"
@@ -412,6 +414,8 @@ Partial Class frmMonPembelianBarang
         '
         'GridColumn21
         '
+        Me.GridColumn21.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn21.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.GridColumn21.AppearanceHeader.Options.UseTextOptions = True
         Me.GridColumn21.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.GridColumn21.Caption = "Jatuh Tempo"
@@ -750,7 +754,7 @@ Partial Class frmMonPembelianBarang
         Me.lblSep5.Text = "|"
         Me.lblSep5.TextAlign = System.Drawing.ContentAlignment.TopCenter
         '
-        'frmMonPB
+        'frmMonPembelianBarang
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
@@ -758,7 +762,7 @@ Partial Class frmMonPembelianBarang
         Me.ClientSize = New System.Drawing.Size(790, 430)
         Me.Controls.Add(Me.tlpForm)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
-        Me.Name = "frmMonPB"
+        Me.Name = "frmMonPembelianBarang"
         Me.ShowInTaskbar = False
         Me.Text = "Monitoring Pembelian Barang"
         CType(Me.gvDetil, System.ComponentModel.ISupportInitialize).EndInit()

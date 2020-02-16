@@ -9,12 +9,12 @@
             Dim img As Image
             img = Image.FromFile(appPath & "splash.jpg")
             Dim bcek As Boolean = False
-            If img.Size.Width = 464 Then
+            If img.Size.Width = 620 Then
                 bcek = True
             Else
                 bcek = False
             End If
-            If img.Size.Height = 162 Then
+            If img.Size.Height = 300 Then
                 bcek = True
             Else
                 bcek = False

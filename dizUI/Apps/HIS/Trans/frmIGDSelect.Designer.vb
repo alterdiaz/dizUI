@@ -126,7 +126,7 @@ Partial Class frmIGDSelect
         Me.btnIGD.Size = New System.Drawing.Size(240, 60)
         Me.btnIGD.TabIndex = 14
         Me.btnIGD.Tag = "IGD"
-        Me.btnIGD.Text = "IGD"
+        Me.btnIGD.Text = "NON ELEKTIF"
         Me.btnIGD.UseVisualStyleBackColor = False
         '
         'btnIGDelektif
@@ -144,7 +144,7 @@ Partial Class frmIGDSelect
         Me.btnIGDelektif.Size = New System.Drawing.Size(240, 60)
         Me.btnIGDelektif.TabIndex = 15
         Me.btnIGDelektif.Tag = "IGD ELEKTIF"
-        Me.btnIGDelektif.Text = "IGD - ELEKTIF"
+        Me.btnIGDelektif.Text = "ELEKTIF"
         Me.btnIGDelektif.UseVisualStyleBackColor = False
         '
         'btnOK
@@ -152,7 +152,7 @@ Partial Class frmIGDSelect
         Me.btnOK.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.btnOK.BackColor = System.Drawing.Color.Transparent
         Me.btnOK.DialogResult = System.Windows.Forms.DialogResult.OK
-        Me.btnOK.FlatAppearance.BorderColor = System.Drawing.Color.green
+        Me.btnOK.FlatAppearance.BorderColor = System.Drawing.Color.Green
         Me.btnOK.FlatAppearance.BorderSize = 0
         Me.btnOK.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
         Me.btnOK.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Lime

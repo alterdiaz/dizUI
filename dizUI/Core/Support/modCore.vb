@@ -6,6 +6,193 @@ Imports System.Management
 Imports System.Net
 Module modCore
 
+    Public Function updateSetting(path As String) As Boolean
+        Dim retval As Boolean = False
+
+        For Each i As String In IO.Directory.GetFiles(path)
+            IO.File.Delete(i)
+        Next
+
+        Dim sqls As New SQLs(dbstring)
+        sqls.DMLQuery("select idappsettingfiles,filename,appversion,createddate,filebinary from sys_appsettingfiles where appversion=(select value from sys_appsetting where variable='ProductSettingVersion')", "appfiles")
+        Dim tmpbyte As Byte() = Nothing
+        Dim filename As String = ""
+
+        For i As Integer = 0 To sqls.getDataSet("appfiles") - 1
+            Dim msqls As New SQLs(dbstring)
+            GC.Collect()
+            tmpbyte = Nothing
+            filename = sqls.getDataSet("appfiles", i, "filename")
+            If filename.ToLower <> IO.Path.GetFileName(path).ToLower Then
+                If filename <> "" Then
+                    tmpbyte = msqls.getData("sys_appsettingfiles", "filebinary", "filename", filename, False)
+                End If
+                Try
+                    Dim errBool As Boolean = False
+                    If IO.File.Exists(path & filename) = True Then
+                        Try
+                            IO.File.Delete(path & filename)
+                        Catch ex As Exception
+                            'MsgBox("error delete" & vbCrLf & filename & vbCrLf & sqls.getDataSet("appfiles", i, "createddate"))
+                            errBool = True
+                        End Try
+                        Application.DoEvents()
+                    End If
+                    If errBool = False Then
+                        Try
+                            IO.File.WriteAllBytes(path & filename, tmpbyte)
+                        Catch ex As Exception
+                            'MsgBox("error write" & vbCrLf & filename & vbCrLf & sqls.getDataSet("appfiles", i, "createddate"))
+                        End Try
+                    End If
+                    'MsgBox(updpath & filename)
+                    Application.DoEvents()
+                    Threading.Thread.Sleep(50)
+                Catch ex As Exception
+                    'MsgBox("unknown error" & vbCrLf & filename & vbCrLf & ex.Message)
+                End Try
+            End If
+        Next
+
+        Return retval
+    End Function
+
+    Public Function applyFormatGrid(_ipclient As String, _frmname As String, _gridname As String, gridview As DevExpress.XtraGrid.Views.Grid.GridView) As DevExpress.XtraGrid.Views.Grid.GridView
+        Dim gvtemp As DevExpress.XtraGrid.Views.Grid.GridView = gridview
+        Dim value As New List(Of Object)
+        Dim field As New List(Of String)
+        Dim sqls As New SQLs(dbstring)
+        field.AddRange(New String() {"@ipclient", "@iduserlevel", "@iduser", "@frmname", "@gridname"})
+        value.AddRange(New Object() {_ipclient, userlevelid, userid, _frmname, _gridname})
+        Dim idtype As Long = 0
+        sqls.CallSP("spCekFormatGrid", "cekfg", field, value)
+        idtype = sqls.getDataSet("cekfg", 0, "cek")
+
+        If idtype = CLng(1) Then
+            sqls.DMLQuery("select idformatgrid,columnstring,halignment,valuerules1,valuerules2,valuerules3 from formatgrid where idreff='" & _ipclient & "' and refftype='IPCLIENT' and frmname='" & _frmname & "' and gridname='" & _gridname & "' and ((valuerules1<>0 and valuerules2=0 and valuerules3=0) or (valuerules1<>0 and valuerules2<>0 and valuerules3=0) or (valuerules1<>0 and valuerules2<>0 and valuerules3<>0)) order by columnstring asc", "data")
+        ElseIf idtype = CLng(2) Then
+            sqls.DMLQuery("select idformatgrid,columnstring,halignment,valuerules1,valuerules2,valuerules3 from formatgrid where idreff='" & userlevelid & "' and refftype='USERLEVEL' and frmname='" & _frmname & "' and gridname='" & _gridname & "' order by columnstring asc", "data")
+        ElseIf idtype = CLng(3) Then
+            sqls.DMLQuery("select idformatgrid,columnstring,halignment,valuerules1,valuerules2,valuerules3 from formatgrid where idreff='" & userid & "' and refftype='USER' and frmname='" & _frmname & "' and gridname='" & _gridname & "' order by columnstring asc", "data")
+        End If
+        If idtype <> CLng(0) Then
+            For a As Integer = 0 To sqls.getDataSet("data") - 1
+                For i As Integer = 0 To gvtemp.Columns.Count - 1
+                    Dim colnamei As String = gvtemp.Columns(i).Caption
+                    Dim colnamea As String = sqls.getDataSet("data", a, "columnstring")
+                    Dim rule1 As Long = sqls.getDataSet("data", a, "valuerules1")
+                    Dim rule2 As Long = sqls.getDataSet("data", a, "valuerules2")
+                    Dim rule3 As Long = sqls.getDataSet("data", a, "valuerules3")
+                    If colnamei = colnamea Then
+                        If rule1 <> CLng(0) Then
+                            Dim rule As Long = rule1
+                            gvtemp = formatGrid(rule, i, gvtemp)
+                        End If
+                        If rule1 <> CLng(0) And rule2 <> CLng(0) Then
+                            Dim rule As Long = rule2
+                            gvtemp = formatGrid(rule, i, gvtemp)
+                        End If
+                        If rule1 <> CLng(0) And rule2 <> CLng(0) And rule3 <> CLng(0) Then
+                            Dim rule As Long = rule3
+                            gvtemp = formatGrid(rule, i, gvtemp)
+                        End If
+                    End If
+                Next
+            Next
+        End If
+        Return gvtemp
+    End Function
+
+    Private Function formatGrid(idrule As Long, idx As Integer, gridview As DevExpress.XtraGrid.Views.Grid.GridView)
+        Dim rule As Long = idrule
+        Dim gvtemp As DevExpress.XtraGrid.Views.Grid.GridView = gridview
+        Dim retErr As Boolean = False
+        For b As Integer = 0 To gvtemp.RowCount - 1
+            If retErr = False Then
+                If rule = CLng(1) Then
+                    Try
+                        Dim tmpval As String = gvtemp.GetRowCellValue(b, gvtemp.Columns(idx))
+                        Dim tmpres As Long = CLng(tmpval)
+                        gvtemp.SetRowCellValue(b, gvtemp.Columns(idx), tmpres)
+                    Catch ex As Exception
+                        retErr = True
+                    End Try
+                ElseIf rule = CLng(2) Then
+                    Try
+                        Dim tmpval As String = gvtemp.GetRowCellValue(b, gvtemp.Columns(idx))
+                        Dim tmpres As String = tmpval.Replace("-", "")
+                        gvtemp.SetRowCellValue(b, gvtemp.Columns(idx), tmpres)
+                    Catch ex As Exception
+                        retErr = True
+                    End Try
+                ElseIf rule = CLng(3) Then
+                    Try
+                        Dim tmpval As String = gvtemp.GetRowCellValue(b, gvtemp.Columns(idx))
+                        Dim tmpres As String = tmpval.Replace(".", "")
+                        gvtemp.SetRowCellValue(b, gvtemp.Columns(idx), tmpres)
+                    Catch ex As Exception
+                        retErr = True
+                    End Try
+                ElseIf rule = CLng(4) Then
+                    Try
+                        Dim tmpval As String = gvtemp.GetRowCellValue(b, gvtemp.Columns(idx))
+                        Dim tmpres As String = tmpval.Replace(".", "-")
+                        gvtemp.SetRowCellValue(b, gvtemp.Columns(idx), tmpres)
+                    Catch ex As Exception
+                        retErr = True
+                    End Try
+                ElseIf rule = CLng(5) Then
+                    Try
+                        Dim tmpval As String = gvtemp.GetRowCellValue(b, gvtemp.Columns(idx))
+                        Dim tmpres As String = tmpval.Replace("-", ".")
+                        gvtemp.SetRowCellValue(b, gvtemp.Columns(idx), tmpres)
+                    Catch ex As Exception
+                        retErr = True
+                    End Try
+                End If
+            End If
+        Next
+        Return gvtemp
+    End Function
+
+    Public Function centerScreen(obj As Object) As Point
+        Dim x As Integer
+        Dim y As Integer
+        Dim r As Rectangle
+
+        r = Screen.PrimaryScreen.WorkingArea
+        'MsgBox(r.Width & " " & r.Height)
+        'MsgBox(obj.Width & " " & obj.Height)
+
+        x = r.Width - obj.Width
+        y = r.Height - obj.Height
+
+        x = CInt(x / 2)
+        y = CInt(y / 2)
+
+        'MsgBox(x & " " & y)
+        Dim pnt As New Point(x, y)
+        Return pnt
+    End Function
+
+    'TelegramBot
+    Public telegramToken As String = ""
+    Public bott As Telegram.Bot.TelegramBotClient
+
+    Public Sub initTelegramBot()
+        Try
+            bott = New Telegram.Bot.TelegramBotClient(modCore.telegramToken)
+        Catch ex As Exception
+        End Try
+    End Sub
+
+    Public Async Function sendMessage(ByVal destID As String, ByVal text As String) As System.Threading.Tasks.Task
+        Try
+            Await bott.SendTextMessageAsync(destID, text, Telegram.Bot.Types.Enums.ParseMode.Markdown, False, False, 0, Nothing)
+        Catch e As Exception
+        End Try
+    End Function
+
     Public isDemo As Integer = 0
     Public timeoutApps As Integer = 180
     'Public siteonline As String = ""
@@ -25,7 +212,7 @@ Module modCore
     Public curTh As Thread
     Public culInfo As String = "id-ID"
 
-    Public appPath As String = Application.StartupPath
+    Public appPath As String = CheckAndRepairValidPath(Application.StartupPath)
     Public pathTemp As String = appPath & "Temp\"
     Public pathSetting As String = appPath & "Setting\"
     Public pathReport As String = appPath & "Report\"
@@ -34,7 +221,7 @@ Module modCore
     Public pathLog As String = appPath & "Log\"
     Public pathIcon As String = appPath & "Icon\"
     Public pathMap As String = appPath & "Map\"
-    Public uCounter, dCounter As Integer
+    Public uCounter, dCounter As Long
     Public svrstat As Boolean = False
     Public startTime As DateTime
     Public splashClosed As Boolean = False
@@ -1129,6 +1316,8 @@ Module modCore
                         CType(ctrl, DevExpress.XtraEditors.TextEdit).Properties.MaxLength = sqls.getDataSet("cekType", 0, 0)
                     ElseIf ctrl.ToString.Contains("DevExpress.XtraEditors.MemoEdit") Then
                         CType(ctrl, DevExpress.XtraEditors.MemoEdit).Properties.MaxLength = sqls.getDataSet("cekType", 0, 0)
+                    ElseIf ctrl.ToString.Contains("DevExpress.XtraEditors.DateEdit") Then
+                        CType(ctrl, DevExpress.XtraEditors.DateEdit).EditValue = nowTime
                     ElseIf ctrl.ToString.Contains("DevExpress.XtraEditors.TimeEdit") Then
                         CType(ctrl, DevExpress.XtraEditors.TimeEdit).EditValue = New Date(nowTime.Year, nowTime.Month, nowTime.Day, 0, 0, 0)
                     ElseIf ctrl.ToString.Contains("DevExpress.XtraEditors.CheckedComboBoxEdit") Then
@@ -1148,6 +1337,16 @@ Module modCore
                     If sqls.getDataSet("cekType", 0, 1) = "False" Then
                         If ctrl.Tag.ToString.Chars(ctrl.Tag.ToString.Length - 1) <> "*" Then
                             ctrl.Tag &= "*"
+                        End If
+                    Else
+                        If ctrl.ToString.Contains("DevExpress.XtraEditors.TextEdit") Then
+                            CType(ctrl, DevExpress.XtraEditors.TextEdit).EditValue = Nothing
+                        ElseIf ctrl.ToString.Contains("DevExpress.XtraEditors.MemoEdit") Then
+                            CType(ctrl, DevExpress.XtraEditors.MemoEdit).EditValue = Nothing
+                        ElseIf ctrl.ToString.Contains("DevExpress.XtraEditors.DateEdit") Then
+                            CType(ctrl, DevExpress.XtraEditors.DateEdit).EditValue = Nothing
+                        ElseIf ctrl.ToString.Contains("DevExpress.XtraEditors.TimeEdit") Then
+                            CType(ctrl, DevExpress.XtraEditors.TimeEdit).EditValue = Nothing
                         End If
                     End If
                 End If
@@ -1178,6 +1377,8 @@ Module modCore
                             CType(ctrl, DevExpress.XtraEditors.MemoEdit).Properties.MaxLength = sqls.getDataSet("cekType", 0, 0)
                         ElseIf ctrl.ToString.Contains("DevExpress.XtraEditors.TimeEdit") Then
                             CType(ctrl, DevExpress.XtraEditors.TimeEdit).EditValue = New Date(nowTime.Year, nowTime.Month, nowTime.Day, 0, 0, 0)
+                        ElseIf ctrl.ToString.Contains("DevExpress.XtraEditors.DateEdit") Then
+                            CType(ctrl, DevExpress.XtraEditors.DateEdit).EditValue = nowTime
                         ElseIf ctrl.ToString.Contains("DevExpress.XtraEditors.CheckedComboBoxEdit") Then
                             For i As Integer = 0 To CType(ctrl, DevExpress.XtraEditors.CheckedComboBoxEdit).Properties.Items.Count - 1
                                 CType(ctrl, DevExpress.XtraEditors.CheckedComboBoxEdit).Properties.Items.Item(i).CheckState = CheckState.Unchecked
@@ -1196,6 +1397,16 @@ Module modCore
                             If ctrl.Tag.ToString.Chars(ctrl.Tag.ToString.Length - 1) <> "*" Then
                                 ctrl.Tag &= "*"
                                 'MsgBox(ctrl.Tag)
+                            End If
+                        Else
+                            If ctrl.ToString.Contains("DevExpress.XtraEditors.TextEdit") Then
+                                CType(ctrl, DevExpress.XtraEditors.TextEdit).EditValue = Nothing
+                            ElseIf ctrl.ToString.Contains("DevExpress.XtraEditors.MemoEdit") Then
+                                CType(ctrl, DevExpress.XtraEditors.MemoEdit).EditValue = Nothing
+                            ElseIf ctrl.ToString.Contains("DevExpress.XtraEditors.DateEdit") Then
+                                CType(ctrl, DevExpress.XtraEditors.DateEdit).EditValue = Nothing
+                            ElseIf ctrl.ToString.Contains("DevExpress.XtraEditors.TimeEdit") Then
+                                CType(ctrl, DevExpress.XtraEditors.TimeEdit).EditValue = Nothing
                             End If
                         End If
                     End If
@@ -1522,7 +1733,11 @@ Module modCore
                 ElseIf a.ToString = "System.Windows.Forms.CheckBox" Then
                     CType(a, Windows.Forms.CheckBox).Checked = False
                 ElseIf a.ToString = "DevExpress.XtraEditors.DateEdit" Then
-                    CType(a, DevExpress.XtraEditors.DateEdit).EditValue = Now
+                    If CType(a, DevExpress.XtraEditors.DateEdit).Tag.ToString.Contains("*") Then
+                        CType(a, DevExpress.XtraEditors.DateEdit).EditValue = Now
+                    Else
+                        CType(a, DevExpress.XtraEditors.DateEdit).EditValue = Nothing
+                    End If
                 ElseIf a.ToString = "DevExpress.XtraEditors.TextEdit" Then
                     CType(a, DevExpress.XtraEditors.TextEdit).EditValue = Nothing
                 ElseIf a.ToString = "DevExpress.XtraEditors.MemoEdit" Then
@@ -1539,7 +1754,11 @@ Module modCore
                 ElseIf a.ToString = "DevExpress.XtraEditors.ToggleSwitch" Then
                     CType(a, DevExpress.XtraEditors.ToggleSwitch).IsOn = False
                 ElseIf a.ToString = "DevExpress.XtraEditors.TimeEdit" Then
-                    CType(a, DevExpress.XtraEditors.TimeEdit).EditValue = New Date(nowTime.Year, nowTime.Month, nowTime.Day, 0, 0, 0)
+                    If CType(a, DevExpress.XtraEditors.TimeEdit).Tag.ToString.Contains("*") Then
+                        CType(a, DevExpress.XtraEditors.TimeEdit).EditValue = New Date(nowTime.Year, nowTime.Month, nowTime.Day, 0, 0, 0)
+                    Else
+                        CType(a, DevExpress.XtraEditors.TimeEdit).EditValue = Nothing
+                    End If
                 ElseIf a.ToString = "DevExpress.XtraEditors.CheckedComboBoxEdit" Then
                     For i As Integer = 0 To CType(a, DevExpress.XtraEditors.CheckedComboBoxEdit).Properties.Items.Count - 1
                         CType(a, DevExpress.XtraEditors.CheckedComboBoxEdit).Properties.Items.Item(i).CheckState = CheckState.Unchecked
@@ -1572,7 +1791,11 @@ Module modCore
                 ElseIf a.ToString = "System.Windows.Forms.CheckBox" Then
                     CType(a, Windows.Forms.CheckBox).Checked = False
                 ElseIf a.ToString = "DevExpress.XtraEditors.DateEdit" Then
-                    CType(a, DevExpress.XtraEditors.DateEdit).EditValue = Now
+                    If CType(a, DevExpress.XtraEditors.DateEdit).Tag.ToString.Contains("*") Then
+                        CType(a, DevExpress.XtraEditors.DateEdit).EditValue = Now
+                    Else
+                        CType(a, DevExpress.XtraEditors.DateEdit).EditValue = Nothing
+                    End If
                 ElseIf a.ToString = "DevExpress.XtraEditors.TextEdit" Then
                     CType(a, DevExpress.XtraEditors.TextEdit).EditValue = Nothing
                 ElseIf a.ToString = "DevExpress.XtraEditors.MemoEdit" Then
@@ -1589,7 +1812,11 @@ Module modCore
                 ElseIf a.ToString = "DevExpress.XtraEditors.ToggleSwitch" Then
                     CType(a, DevExpress.XtraEditors.ToggleSwitch).IsOn = False
                 ElseIf a.ToString = "DevExpress.XtraEditors.TimeEdit" Then
-                    CType(a, DevExpress.XtraEditors.TimeEdit).EditValue = New Date(nowTime.Year, nowTime.Month, nowTime.Day, 0, 0, 0)
+                    If CType(a, DevExpress.XtraEditors.TimeEdit).Tag.ToString.Contains("*") Then
+                        CType(a, DevExpress.XtraEditors.TimeEdit).EditValue = New Date(nowTime.Year, nowTime.Month, nowTime.Day, 0, 0, 0)
+                    Else
+                        CType(a, DevExpress.XtraEditors.TimeEdit).EditValue = Nothing
+                    End If
                 ElseIf a.ToString = "DevExpress.XtraEditors.CheckedComboBoxEdit" Then
                     For i As Integer = 0 To CType(a, DevExpress.XtraEditors.CheckedComboBoxEdit).Properties.Items.Count - 1
                         CType(a, DevExpress.XtraEditors.CheckedComboBoxEdit).Properties.Items.Item(i).CheckState = CheckState.Unchecked

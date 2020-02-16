@@ -9,7 +9,7 @@ Module Module1
     Dim bott As Telegram.Bot.TelegramBotClient
     Sub initbot()
         If isBotError = False Then
-            Dim YourBotTokenHere = "ABABAB944321638:AAHo1VKJUDcA0DLFYLCQSPpyqxPDYasQGmU"
+            Dim YourBotTokenHere = "944321638:AAHo1VKJUDcA0DLFYLCQSPpyqxPDYasQGmU"
             bott = New Telegram.Bot.TelegramBotClient(YourBotTokenHere)
 
             RemoveHandler bott.OnUpdate, AddressOf OnUpdate
@@ -81,51 +81,53 @@ Module Module1
                         e.Message.From.LastName & " " & e.Message.From.Username
 
         Dim ID As String = e.Message.From.Id.ToString ' it is your id
-        If e.Message.Type.Equals(Telegram.Bot.Types.Enums.MessageType.TextMessage) Then
-            Select Case True
-                Case e.Message.Text = "/start" 'response with the date and time
-                    Await sendMessage(ID, "Perintah yang tersedia :" & vbCrLf & "/now untuk cek tanggal dan waktu" & vbCrLf & "/mytelegram untuk cek username telegram" & vbCrLf & "/help untuk bantuan lebih lanjut")
-                Case e.Message.Text = "/now" 'response with the date and time
-                    Await sendMessage(ID, Format(Now, "dd-MM-yyyy HH:mm:ss"))
-                Case e.Message.Text = "/mytelegram" 'response with yor name and ID
-                    Await sendMessage(ID, e.Message.From.Username & vbCrLf & e.Message.From.FirstName & " " & e.Message.From.LastName & vbCrLf & e.Message.From.Id.ToString)
-                Case e.Message.Text = "/help" 'response with yor name and ID
-                    Await sendMessage(ID, "Goblok!!!")
-                Case e.Message.Text.Split(" ")(0) = "/norm"
-                    If e.Message.Text.Split(" ").Count <> 4 Then
-                        Await sendMessage(ID, "PERINGATAN: Gunakan format berikut: /norm(spasi)KodePerusahaan(spasi)nomorrm 00-00-00-00(spasi)nomor identitas")
-                    Else
-                        Dim nick As String = e.Message.Text.Split(" ")(1)
-                        Dim norm As String = e.Message.Text.Split(" ")(2)
-                        Dim idno As String = e.Message.Text.Split(" ")(3)
-                        Dim sqls As New SQLs(dbstring)
-                        sqls.DMLQuery("select * from sys_appsetting where variable='CompanyNickname' and value='" & nick & "'", "getcompanynick")
-                        If sqls.getDataSet("getcompanynick") = 0 Then
-                            Await sendMessage(ID, "PERINGATAN: Kode Perusahaan tidak valid")
-                            Exit Sub
+            If e.Message.Type.Equals(Telegram.Bot.Types.Enums.MessageType.Text) Then
+                Select Case True
+                    Case e.Message.Text = "/start" 'response with the date and time
+                        Await sendMessage(ID, "Perintah yang tersedia :" & vbCrLf & "/now untuk cek tanggal dan waktu" & vbCrLf & "/mytelegram untuk cek username telegram" & vbCrLf & "/help untuk bantuan lebih lanjut")
+                    Case e.Message.Text = "/now" 'response with the date and time
+                        Await sendMessage(ID, Format(Now, "dd-MM-yyyy HH:mm:ss"))
+                    Case e.Message.Text = "/mytelegram" 'response with yor name and ID
+                        Await sendMessage(ID, e.Message.From.Username & vbCrLf & e.Message.From.FirstName & " " & e.Message.From.LastName & vbCrLf & e.Message.From.Id.ToString)
+                    Case e.Message.Text = "/help" 'response with yor name and ID
+                        Await sendMessage(ID, "Goblok!!!")
+                    Case e.Message.Text = "/sendfile"
+                        Await sendDocument("249618110", "d:\AAA.png")
+                    Case e.Message.Text.Split(" ")(0) = "/norm"
+                        If e.Message.Text.Split(" ").Count <> 4 Then
+                            Await sendMessage(ID, "PERINGATAN: Gunakan format berikut: /norm(spasi)KodePerusahaan(spasi)nomorrm 00-00-00-00(spasi)nomor identitas")
                         Else
-                            sqls.DMLQuery("select count(r.idregistrasi) as cnt,rm.nama,k.nomorkartu from registrasi r left join rekammedis rm on r.idrekammedis=rm.idrekammedis left join (select top 1 * from kartu where isdeleted=0 and isprimary=1 and tablereff='PASIEN' and idreff=(select idrekammedis from rekammedis where dbo.fFormatNoRM(rekammedisno)='" & norm & "') order by createddate desc) k on k.idreff=rm.idrekammedis where r.isdeleted=0 and r.idrekammedis in (select idrekammedis from rekammedis where dbo.fFormatNoRM(rekammedisno)='" & norm & "') group by rm.nama,k.nomorkartu", "getreg")
-                            Dim idno2 As String = sqls.getDataSet("getreg", 0, "nomorkartu")
-                            If idno <> idno2 Then
-                                Await sendMessage(ID, "PERINGATAN: Nomor Identitas tidak terdaftar")
+                            Dim nick As String = e.Message.Text.Split(" ")(1)
+                            Dim norm As String = e.Message.Text.Split(" ")(2)
+                            Dim idno As String = e.Message.Text.Split(" ")(3)
+                            Dim sqls As New SQLs(dbstring)
+                            sqls.DMLQuery("select * from sys_appsetting where variable='CompanyNickname' and value='" & nick & "'", "getcompanynick")
+                            If sqls.getDataSet("getcompanynick") = 0 Then
+                                Await sendMessage(ID, "PERINGATAN: Kode Perusahaan tidak valid")
+                                Exit Sub
                             Else
-                                sqls.DMLQuery("select top 1 convert(varchar,r.registrasidate,105)+' '+convert(varchar,r.registrasidate,108) as regdate,p.nama as paramedis,d.department from registrasi r left join department d on r.iddepartment=d.iddepartment left join paramedis p on r.iddokterruangan=p.idparamedis where r.isdeleted=0 and r.idrekammedis in (select idrekammedis from rekammedis where dbo.fFormatNoRM(rekammedisno)='" & norm & "')", "getlast")
+                                sqls.DMLQuery("select count(r.idregistrasi) as cnt,rm.nama,k.nomorkartu from registrasi r left join rekammedis rm on r.idrekammedis=rm.idrekammedis left join (select top 1 * from kartu where isdeleted=0 and isprimary=1 and tablereff='PASIEN' and idreff=(select idrekammedis from rekammedis where dbo.fFormatNoRM(rekammedisno)='" & norm & "') order by createddate desc) k on k.idreff=rm.idrekammedis where r.isdeleted=0 and r.idrekammedis in (select idrekammedis from rekammedis where dbo.fFormatNoRM(rekammedisno)='" & norm & "') group by rm.nama,k.nomorkartu", "getreg")
+                                Dim idno2 As String = sqls.getDataSet("getreg", 0, "nomorkartu")
+                                If idno <> idno2 Then
+                                    Await sendMessage(ID, "PERINGATAN: Nomor Identitas tidak terdaftar")
+                                Else
+                                    sqls.DMLQuery("select top 1 convert(varchar,r.registrasidate,105)+' '+convert(varchar,r.registrasidate,108) as regdate,p.nama as paramedis,d.department from registrasi r left join department d on r.iddepartment=d.iddepartment left join paramedis p on r.iddokterruangan=p.idparamedis where r.isdeleted=0 and r.idrekammedis in (select idrekammedis from rekammedis where dbo.fFormatNoRM(rekammedisno)='" & norm & "')", "getlast")
 
-                                Await sendMessage(ID, "No.RM " & norm & vbCrLf &
+                                    Await sendMessage(ID, "No.RM " & norm & vbCrLf &
                                 sqls.getDataSet("getreg", 0, "nama") & vbCrLf &
                                 "Kunjungan Terakhir: " & vbCrLf &
                                 sqls.getDataSet("getlast", 0, "regdate") & vbCrLf &
                                 sqls.getDataSet("getlast", 0, "paramedis") & vbCrLf &
                                 sqls.getDataSet("getlast", 0, "department"))
+                                End If
                             End If
                         End If
-                    End If
-                Case Else
-                    Await sendMessage(ID, "Perintah yang tersedia :" & vbCrLf & "/now untuk cek tanggal dan waktu" & vbCrLf & "/myid untuk cek ID" & vbCrLf & "/myuser untuk cek username" & vbCrLf & "/help untuk bantuan lebih lanjut")
-            End Select
-            log(e.Message.Text & " ==> " & te)
-        Else
-            Dim t = "Perintah tidak ditemukan"
+                    Case Else
+                        Await sendMessage(ID, "Perintah yang tersedia :" & vbCrLf & "/now untuk cek tanggal dan waktu" & vbCrLf & "/mytelegram untuk cek username telegram" & vbCrLf & "/help untuk bantuan lebih lanjut")
+                End Select
+                log(e.Message.Text & " ==> " & te)
+            Else
+                Dim t = "Perintah tidak ditemukan"
             log(e.Message.Text & " ==> " & te)
             Await sendMessage(ID, t)
         End If
@@ -138,6 +140,21 @@ Module Module1
                 Await bott.SendTextMessageAsync(destID, text, Telegram.Bot.Types.Enums.ParseMode.Markdown, False, False, 0, Nothing)
             End If
         Catch e As Exception
+        End Try
+    End Function
+
+    Public Async Function sendDocument(destID As String, filepath As String) As Task
+        Try
+            If isBotError = False Then
+                Dim f1 As FileStream = File.OpenRead(filepath)
+                Dim str As Stream = f1
+
+                Dim olfile As New Telegram.Bot.Types.InputFiles.InputOnlineFile(str, filepath)
+                olfile.FileName = filepath
+                Await bott.SendDocumentAsync(destID, olfile, Nothing, Telegram.Bot.Types.Enums.ParseMode.Default, False, 0, Nothing, Nothing)
+            End If
+        Catch e As Exception
+            Console.WriteLine("BotErrorSendDocument" & vbCrLf & e.Message)
         End Try
     End Function
 
@@ -157,55 +174,37 @@ Module Module1
     Private dbstring As String = ""
     Private dbsvr As String = ""
     Private apppath As String = ""
-    WithEvents tmrCek As New Timer
     Private MonitorEnabled As Boolean = True
-    Private intLoop As Integer = 0
-    Private intvLoop As Integer = 0
+
     Sub Main()
         apppath = System.AppDomain.CurrentDomain.BaseDirectory
         apppath = CheckAndRepairValidPath(apppath)
         Dim de As New dizEngine.engine
-        dblite = appPath & de.processD("l59ruEcWFgphomWNjDb5gA==")
+        dblite = apppath & de.processD("l59ruEcWFgphomWNjDb5gA==")
         dbstring = readSettingFile()
 
-        tmrCek.Interval = 5000
-        tmrCek.Start()
+        initbot()
 
-        intLoop = CInt(Format(Now.AddSeconds(5), "ss"))
-        'Place Application in Hold Pattern until MonitorEnabled is False.	
-        Do While MonitorEnabled
-            'If CInt(Format(Now, "ss")) >= intLoop Then
-            If isBotError = True Then
-                    intLoop += 1
-                    If intLoop = 60 Then
-                        intLoop = 0
-                    End If
-                    isBotError = False
-                Else
-                    intvLoop += 1
-                    If intvLoop > 4 Then
-                        intvLoop = 0
-                        initbot()
-                    End If
-                End If
-            'End If
-        Loop
-        tmrCek.Stop()
-
+        ''Place Application in Hold Pattern until MonitorEnabled is False.	
+        'Do While MonitorEnabled
+        '    'If CInt(Format(Now, "ss")) >= intLoop Then
+        '    If isBotError = True Then
+        '            intLoop += 1
+        '            If intLoop = 60 Then
+        '                intLoop = 0
+        '            End If
+        '            isBotError = False
+        '        Else
+        '            intvLoop += 1
+        '            If intvLoop > 4 Then
+        '                intvLoop = 0
+        '                initbot()
+        '            End If
+        '        End If
+        '    'End If
+        'Loop
+        'tmrCek.Stop()
         Console.ReadLine()
-    End Sub
-
-    Private Sub tmrCek_Elapsed(ByVal sender As Object, ByVal e As System.Timers.ElapsedEventArgs) Handles tmrCek.Elapsed
-        Try
-            Dim TASK As Boolean = True
-            'Some TASK...Normally Returns True
-
-            If Not TASK Then
-                MonitorEnabled = False
-            End If
-        Catch ex As Exception
-            MonitorEnabled = False
-        End Try
     End Sub
 
     Public Function readSettingFile() As String

@@ -687,6 +687,10 @@
             dizMsgbox("NAMA tidak boleh " & teNamaPanggilan.Text & ", silahkan cek isian anda", dizMsgboxStyle.Peringatan, Me)
             Exit Sub
         End If
+        If deTanggalLahir.EditValue Is Nothing Then
+            dizMsgbox("Isian belum benar, silahkan cek isian anda" & vbCrLf & ctrlname, dizMsgboxStyle.Peringatan, Me)
+            Exit Sub
+        End If
         If checkEntry(tlpAsalPasien) = False Then
             dizMsgbox("Isian belum benar, silahkan cek isian anda" & vbCrLf & ctrlname, dizMsgboxStyle.Peringatan, Me)
             Exit Sub
@@ -1104,6 +1108,10 @@
         End If
         If isRestrictedString(teNamaPanggilan.Text, dbstring) = True Then
             dizMsgbox("NAMA tidak boleh " & teNamaPanggilan.Text & ", silahkan cek isian anda", dizMsgboxStyle.Peringatan, Me)
+            Exit Sub
+        End If
+        If deTanggalLahir.EditValue Is Nothing Then
+            dizMsgbox("Isian belum benar, silahkan cek isian anda" & vbCrLf & ctrlname, dizMsgboxStyle.Peringatan, Me)
             Exit Sub
         End If
         If checkEntry(tlpAsalPasien) = False Then
@@ -1722,7 +1730,7 @@
         Next
         strQuery &= " and r.rekammedisno<>0"
         If teSearch.Text <> "" Then
-            strQuery &= " and (r.nama like '%" & teSearch.Text & "%' or convert(varchar,r.rekammedisno) like '%" & teSearch.Text & "%')"
+            strQuery &= " and (r.idrekammedis='" & teSearch.Text & "' or r.nama like '%" & teSearch.Text & "%' or replace(dbo.fformatnorm(r.rekammedisno),'-','') like '%" & teSearch.Text & "%' or dbo.fformatnorm(r.rekammedisno) like '%" & teSearch.Text & "%' or convert(varchar,r.rekammedisno) like '%" & teSearch.Text & "%')"
         End If
         strQuery &= " order by r.rekammedisno desc"
 
@@ -1795,8 +1803,16 @@
                 lueAgama.EditValue = sqls.getDataSet("getrm", 0, "agama")
                 lueKewarganegaraan.EditValue = sqls.getDataSet("getrm", 0, "kewarganegaraan")
                 lueTempatLahir.EditValue = sqls.getDataSet("getrm", 0, "kotalahir")
-                Dim tgllahir As String = sqls.getDataSet("getrm", 0, "tanggallahir")
-                deTanggalLahir.EditValue = Strdate2Date(tgllahir)
+                If sqls.getDataSet("getrm", 0, "tanggallahir") Is Nothing Then
+                    deTanggalLahir.EditValue = Nothing
+                Else
+                    Dim tgllahir As String = sqls.getDataSet("getrm", 0, "tanggallahir")
+                    If tgllahir = "" Then
+                        deTanggalLahir.EditValue = Nothing
+                    Else
+                        deTanggalLahir.EditValue = Strdate2Date(tgllahir)
+                    End If
+                End If
                 luePendidikan.EditValue = sqls.getDataSet("getrm", 0, "pendidikan")
                 luePekerjaan.EditValue = sqls.getDataSet("getrm", 0, "pekerjaan")
                 luePernikahan.EditValue = sqls.getDataSet("getrm", 0, "pernikahan")
@@ -1928,7 +1944,7 @@
     Private Sub btnCetakRegistrasi_Click(sender As Object, e As EventArgs) Handles btnCetakRegistrasi.Click
         Dim sqls As New SQLs(dbstring)
         'sqls.DMLQuery("Select r.idregistrasi, Convert(varchar, r.registrasidate, 105) +' '+convert(varchar,r.registrasidate,108) as 'Tgl Registrasi',r.registrasino as 'No Registrasi',pm.nama as 'Tenaga Medis',dbo.fformatnorm(rm.rekammedisno) as 'No RM',rm.nama as 'Nama Pasien',jk.generalcode as 'Jenis Kelamin',convert(varchar,rm.tanggallahir,105) as 'Tgl Lahir',dbo.fUmurRegister(rm.tanggallahir,r.registrasidate) as 'Umur',kw.wilayah as 'Kewarganegaraan' from registrasi r left join rekammedis rm on r.idrekammedis=rm.idrekammedis left join sys_generalcode jk on rm.jeniskelamin=jk.idgeneral and jk.gctype='SEXTYPE' left join wilayah kw on rm.kewarganegaraan=kw.idwilayah  left join paramedis pm on r.iddokterruangan=pm.idparamedis where (r.registrasistatus=0 or r.registrasistatus=1) and convert(varchar,r.registrasidate,105)=convert(varchar,getdate(),105) order by r.registrasino desc,r.registrasidate desc", "search")
-        sqls.DMLQuery("select r.idrekammedis,convert(varchar,r.createddate,105)+' '+convert(varchar,r.createddate,108) as 'Tgl. Simpan',dbo.fFormatNoRM(r.rekammedisno) as 'No. RM',r.nama as 'Nama Pasien',jk.generalcode as 'Jenis Kelamin',convert(varchar,r.tanggallahir,105) as 'Tgl. Lahir',dbo.fUmurRegister(r.tanggallahir,r.createddate) as 'Umur',kw.wilayah as 'Kewarganegaraan' from rekammedis r left join sys_generalcode jk on r.jeniskelamin=jk.idgeneral and jk.gctype='SEXTYPE' left join wilayah kw on r.kewarganegaraan=kw.idwilayah where convert(varchar,r.createddate,105) = convert(varchar,getdate(),105) or convert(varchar,r.createddate,105) = convert(varchar,dateadd(DAY,-1,getdate()),105) order by r.createddate desc", "search")
+        sqls.DMLQuery("select r.idrekammedis,convert(varchar,r.createddate,105)+' '+convert(varchar,r.createddate,108) as 'Tgl. Simpan',dbo.fFormatNoRM(r.rekammedisno) as 'No. RM',r.nama as 'Nama Pasien',jk.generalcode as 'Jenis Kelamin',convert(varchar,r.tanggallahir,105) as 'Tgl. Lahir',dbo.fUmurRegister(r.tanggallahir,r.createddate) as 'Umur',kw.wilayah as 'Kewarganegaraan' from rekammedis r left join sys_generalcode jk on r.jeniskelamin=jk.idgeneral and jk.gctype='SEXTYPE' left join wilayah kw on r.kewarganegaraan=kw.idwilayah where r.rekammedisno<>0 order by r.rekammedisno desc", "search")
         Dim cari As New frmSearch(sqls.dataSet, "search", "idrekammedis")
         tambahChild(cari)
 

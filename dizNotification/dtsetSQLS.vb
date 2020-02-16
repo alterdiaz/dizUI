@@ -203,6 +203,7 @@ Public Class dtsetSQLS
         Catch ex As Exception
             sqlTrans.Rollback()
             dtset.Tables(TableName).RejectChanges()
+            sqlConn.Close()
             retval = False
             If ShowMsg = True Then
                 dizMsgbox("Data tidak tersimpan" & vbCrLf & "Koneksi jaringan terputus atau hubungi administrator" & vbCrLf & ex.Message, dizMsgboxStyle.Info)
@@ -224,6 +225,7 @@ Public Class dtsetSQLS
             sqlConn.ConnectionString = strConn
             sqlConn.Open()
         Catch ex As Exception
+            sqlConn.Close()
             'MsgBox(ex.Message, dizMsgboxStyle.Kesalahan, me)
             Return False
             Exit Function
@@ -238,6 +240,7 @@ Public Class dtsetSQLS
             sqlConn.Close()
             Return True
         Catch ex As Exception
+            sqlConn.Close()
             'MsgBox(ex.Message, dizMsgboxStyle.Kesalahan, me)
             Return False
         End Try

@@ -56,6 +56,9 @@ Partial Class frmMonRegisterLAB
         Me.GridColumn20 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn21 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn22 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.gcPayerType = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.gcPayer = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.gcAsuransi = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.rimeNote = New DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit()
         Me.RepositoryItemSpinEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit()
         Me.tlpField = New System.Windows.Forms.TableLayoutPanel()
@@ -221,7 +224,7 @@ Partial Class frmMonRegisterLAB
         Me.gvData.Appearance.Row.Options.UseFont = True
         Me.gvData.Appearance.TopNewRow.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
         Me.gvData.Appearance.TopNewRow.Options.UseBackColor = True
-        Me.gvData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn23, Me.GridColumn2, Me.GridColumn24, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6, Me.GridColumn7, Me.GridColumn8, Me.GridColumn9, Me.GridColumn10, Me.GridColumn11, Me.GridColumn12, Me.GridColumn13, Me.GridColumn14, Me.GridColumn15, Me.GridColumn16, Me.GridColumn17, Me.GridColumn18, Me.GridColumn19, Me.GridColumn20, Me.GridColumn21, Me.GridColumn22})
+        Me.gvData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn23, Me.GridColumn2, Me.GridColumn24, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6, Me.GridColumn7, Me.GridColumn8, Me.GridColumn9, Me.GridColumn10, Me.GridColumn11, Me.GridColumn12, Me.GridColumn13, Me.GridColumn14, Me.GridColumn15, Me.GridColumn16, Me.GridColumn17, Me.GridColumn18, Me.GridColumn19, Me.GridColumn20, Me.GridColumn21, Me.GridColumn22, Me.gcPayerType, Me.gcPayer, Me.gcAsuransi})
         Me.gvData.GridControl = Me.gcData
         Me.gvData.Name = "gvData"
         Me.gvData.NewItemRowText = "Tambah Data Disini"
@@ -549,6 +552,48 @@ Partial Class frmMonRegisterLAB
         Me.RepositoryItemSpinEdit1.Mask.EditMask = "N00"
         Me.RepositoryItemSpinEdit1.Name = "RepositoryItemSpinEdit1"
         '
+        'gcPayerType
+        '
+        Me.gcPayerType.AppearanceCell.Options.UseTextOptions = True
+        Me.gcPayerType.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.gcPayerType.AppearanceHeader.Options.UseTextOptions = True
+        Me.gcPayerType.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.gcPayerType.Caption = "Jenis Payer"
+        Me.gcPayerType.FieldName = "payername"
+        Me.gcPayerType.Name = "gcPayerType"
+        Me.gcPayerType.OptionsColumn.AllowEdit = False
+        Me.gcPayerType.OptionsColumn.ReadOnly = True
+        Me.gcPayerType.Visible = True
+        Me.gcPayerType.VisibleIndex = 22
+        '
+        'gcPayer
+        '
+        Me.gcPayer.AppearanceCell.Options.UseTextOptions = True
+        Me.gcPayer.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.gcPayer.AppearanceHeader.Options.UseTextOptions = True
+        Me.gcPayer.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.gcPayer.Caption = "Payer"
+        Me.gcPayer.FieldName = "payer"
+        Me.gcPayer.Name = "gcPayer"
+        Me.gcPayer.OptionsColumn.AllowEdit = False
+        Me.gcPayer.OptionsColumn.ReadOnly = True
+        Me.gcPayer.Visible = True
+        Me.gcPayer.VisibleIndex = 23
+        '
+        'gcAsuransi
+        '
+        Me.gcAsuransi.AppearanceCell.Options.UseTextOptions = True
+        Me.gcAsuransi.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.gcAsuransi.AppearanceHeader.Options.UseTextOptions = True
+        Me.gcAsuransi.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.gcAsuransi.Caption = "Asuransi"
+        Me.gcAsuransi.FieldName = "asuransi"
+        Me.gcAsuransi.Name = "gcAsuransi"
+        Me.gcAsuransi.OptionsColumn.AllowEdit = False
+        Me.gcAsuransi.OptionsColumn.ReadOnly = True
+        Me.gcAsuransi.Visible = True
+        Me.gcAsuransi.VisibleIndex = 24
+        '
         'tlpField
         '
         Me.tlpField.BackColor = System.Drawing.Color.FromArgb(CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer))
@@ -780,4 +825,7 @@ Partial Class frmMonRegisterLAB
     Friend WithEvents GridColumn23 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn24 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents RepositoryItemSpinEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit
+    Friend WithEvents gcPayerType As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents gcPayer As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents gcAsuransi As DevExpress.XtraGrid.Columns.GridColumn
 End Class

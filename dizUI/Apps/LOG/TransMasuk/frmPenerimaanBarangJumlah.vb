@@ -91,19 +91,21 @@ Public Class frmPenerimaanBarangJumlah
         teKode.EditValue = "XXXX/XXX/XXX/" & Format(nowTime, "yyyyMMdd") & "/XXXX"
         teNote.EditValue = Nothing
         lueSupplier.EditValue = Nothing
-        lueSupplier.ReadOnly = False
+        lueSupplier.ReadOnly = True
         lueUnit.EditValue = Nothing
-        lueUnit.ReadOnly = False
+        lueUnit.ReadOnly = True
         deTanggalKirim.EditValue = Nothing
         deTanggalTempo.EditValue = Nothing
         deTanggal.EditValue = Nothing
+        teNoDokumen.EditValue = Nothing
         btnLock.ForeColor = Color.White
         btnLock.BackColor = Color.Green
-        xtcItem.Enabled = False
+        xtcItem.Enabled = True
 
         kosongkanGrid()
         kosongkanlovsupp()
         gcItem.DataSource = Nothing
+        loadlovallsupp()
     End Sub
 
     Private dttbl As New DataTable
@@ -134,7 +136,7 @@ Public Class frmPenerimaanBarangJumlah
         lueSupplier.Properties.ValueMember = "id"
         lueSupplier.Properties.DisplayMember = "content"
 
-        sqls.DMLQuery("select idunit as id,unit as content from unit where idunit not in (select value from sys_appsetting where variable in ('IDSystemUnit','IDVendorUnit')) and isdeleted=0", "unit")
+        sqls.DMLQuery("select idunit as id,unit as content from unit where idunit not in (select value from sys_appsetting where variable in ('IDSystemUnit','IDVendorUnit')) and idunit<>'0' and isdeleted=0", "unit")
         lueUnit.Properties.DataSource = sqls.dataTable("unit")
         lueUnit.Properties.ValueMember = "id"
         lueUnit.Properties.DisplayMember = "content"
@@ -180,6 +182,7 @@ Public Class frmPenerimaanBarangJumlah
 
             teKode.Text = ""
             deTanggal.EditValue = nowTime
+            teNoDokumen.EditValue = Nothing
 
             gcData.Enabled = True
 
@@ -190,13 +193,14 @@ Public Class frmPenerimaanBarangJumlah
             btnDelete.Text = "VOID"
             statdata = statusData.Edit
 
-            sqls.DMLQuery("select transaksino,convert(varchar,createddate,105) as tanggal,convert(varchar,createddate,108) as waktu,remarks,idasal,idtujuan from transaksi where idtransaksi='" & iddata & "'", "header")
+            sqls.DMLQuery("select transaksino,convert(varchar,createddate,105) as tanggal,convert(varchar,createddate,108) as waktu,remarks,idasal,idtujuan,dokumenno2 from transaksi where idtransaksi='" & iddata & "'", "header")
 
             lueUnit.EditValue = sqls.getDataSet("header", 0, "idtujuan")
             lueSupplier.EditValue = sqls.getDataSet("header", 0, "idasal")
 
             teKode.EditValue = sqls.getDataSet("header", 0, "transaksino")
             teNote.EditValue = sqls.getDataSet("header", 0, "remarks")
+            teNoDokumen.EditValue = sqls.getDataSet("header", 0, "dokumenno2")
 
             Dim tmptgl As String = sqls.getDataSet("header", 0, "tanggal").ToString
             Dim tmpwaktu As String = sqls.getDataSet("header", 0, "waktu").ToString
@@ -231,15 +235,12 @@ Public Class frmPenerimaanBarangJumlah
     Private iddata As String = ""
     Private idtrans As String = ""
     Private Sub btnLock_Click(sender As Object, e As EventArgs) Handles btnLock.Click
-        Dim ceksuppunit As Boolean = True
         If lueSupplier.EditValue Is Nothing Then
-            ceksuppunit = False
+            dizMsgbox("Supplier belum dipilih", dizMsgboxStyle.Kesalahan, Me)
+            Exit Sub
         End If
         If lueUnit.EditValue Is Nothing Then
-            ceksuppunit = False
-        End If
-        If ceksuppunit = False Then
-            dizMsgbox("Supplier Unit belum dipilih", dizMsgboxStyle.Kesalahan, Me)
+            dizMsgbox("Unit belum dipilih", dizMsgboxStyle.Kesalahan, Me)
             Exit Sub
         End If
         If btnLock.BackColor = Color.Maroon Then
@@ -262,7 +263,7 @@ Public Class frmPenerimaanBarangJumlah
             lueUnit.ReadOnly = True
             lueSupplier.ReadOnly = True
             xtcItem.Enabled = True
-            loadlovsupp(lueSupplier.EditValue, lueUnit.EditValue)
+            'loadlovsupp(lueSupplier.EditValue, lueUnit.EditValue)
             idunit = lueUnit.EditValue
         End If
     End Sub
@@ -325,7 +326,11 @@ Public Class frmPenerimaanBarangJumlah
         gcData.DataSource = dttbl
         gvData.BestFitColumns()
 
-        sqls.DMLQuery("select '-' as remarks,'0' as transaksino,t.remarks,t.kirimdate,t.tempodate from transaksi t where t.idtransaksi='" & idpo & "'", "cekhd")
+        sqls.DMLQuery("select '-' as remarks,'0' as transaksino,t.remarks,t.kirimdate,t.tempodate,t.idasal,t.idtujuan from transaksi t where t.idtransaksi='" & idpo & "'", "cekhd")
+        If sqls.getDataSet("cekhd") > 0 Then
+            lueSupplier.EditValue = sqls.getDataSet("cekhd", 0, "idtujuan")
+            lueUnit.EditValue = sqls.getDataSet("cekhd", 0, "idasal")
+        End If
 
         sqls.DMLQuery("select [value] from sys_appsetting where variable='IDLogDept'", "getidlog")
         If sqls.getDataSet("getidlog") > 0 Then
@@ -430,15 +435,15 @@ Public Class frmPenerimaanBarangJumlah
         Dim value As New List(Of Object)
         If isautoreview = "0" Then
             If statdata = statusData.Baru Then
-                field.AddRange(New String() {"idtransaksi", "idtransaksireff", "transaksitype", "transaksino", "transaksistatus", "idasal", "asaltype", "idtujuan", "tujuantype", "iddepttujuan", "isdeleted", "remarks", "createdby", "createddate", "createdfromip", "createdfromhostname", "idcompany", "kirimdate", "tempodate"})
+                field.AddRange(New String() {"idtransaksi", "idtransaksireff", "transaksitype", "transaksino", "transaksistatus", "idasal", "asaltype", "idtujuan", "tujuantype", "iddepttujuan", "isdeleted", "remarks", "dokumenno2", "createdby", "createddate", "createdfromip", "createdfromhostname", "idcompany", "kirimdate", "tempodate"})
             Else
-                field.AddRange(New String() {"idtransaksi", "idtransaksireff", "transaksitype", "transaksino", "transaksistatus", "idasal", "asaltype", "idtujuan", "tujuantype", "iddepttujuan", "isdeleted", "remarks", "updatedby", "updateddate", "updatedfromip", "updatedfromhostname", "idcompany", "kirimdate", "tempodate"})
+                field.AddRange(New String() {"idtransaksi", "idtransaksireff", "transaksitype", "transaksino", "transaksistatus", "idasal", "asaltype", "idtujuan", "tujuantype", "iddepttujuan", "isdeleted", "remarks", "dokumenno2", "updatedby", "updateddate", "updatedfromip", "updatedfromhostname", "idcompany", "kirimdate", "tempodate"})
             End If
-            value.AddRange(New Object() {iddata, idParent, idtrans, teKode.Text, 1, lueSupplier.EditValue, "BusinessPartner", lueUnit.EditValue, "Unit", iddept, 0, teNote.Text, userid, nowTime, getIPAddress(ipaddparam.IP), getIPAddress(ipaddparam.Host), idcomp, If(deTanggalKirim.EditValue Is Nothing, DBNull.Value, CDate(deTanggalKirim.EditValue)), If(deTanggalTempo.EditValue Is Nothing, Nothing, CDate(deTanggalTempo.EditValue))})
+            value.AddRange(New Object() {iddata, idParent, idtrans, teKode.Text, 1, lueSupplier.EditValue, "BusinessPartner", lueUnit.EditValue, "Unit", iddept, 0, teNote.Text, If(teNoDokumen.EditValue, "-"), userid, nowTime, getIPAddress(ipaddparam.IP), getIPAddress(ipaddparam.Host), idcomp, If(deTanggalKirim.EditValue Is Nothing, DBNull.Value, CDate(deTanggalKirim.EditValue)), If(deTanggalTempo.EditValue Is Nothing, Nothing, CDate(deTanggalTempo.EditValue))})
             retval = dtsql.datasetSave("transaksi", iddata, field, value, False)
         Else
-            field.AddRange(New String() {"idtransaksi", "idtransaksireff", "transaksitype", "transaksino", "transaksistatus", "idasal", "asaltype", "idtujuan", "tujuantype", "iddepttujuan", "isdeleted", "remarks", "createdby", "createddate", "createdfromip", "createdfromhostname", "idcompany", "kirimdate", "tempodate", "reviewedby", "revieweddate", "reviewedfromip", "reviewedfromhostname"})
-            value.AddRange(New Object() {iddata, idParent, idtrans, teKode.Text, 6, lueSupplier.EditValue, "BusinessPartner", lueUnit.EditValue, "Unit", iddept, 0, teNote.Text, userid, nowTime, getIPAddress(ipaddparam.IP), getIPAddress(ipaddparam.Host), idcomp, If(deTanggalKirim.EditValue Is Nothing, DBNull.Value, CDate(deTanggalKirim.EditValue)), If(deTanggalTempo.EditValue Is Nothing, Nothing, CDate(deTanggalTempo.EditValue)), userid, nowTime, getIPAddress(ipaddparam.IP), getIPAddress(ipaddparam.Host)})
+            field.AddRange(New String() {"idtransaksi", "idtransaksireff", "transaksitype", "transaksino", "transaksistatus", "idasal", "asaltype", "idtujuan", "tujuantype", "iddepttujuan", "isdeleted", "remarks", "dokumenno2", "createdby", "createddate", "createdfromip", "createdfromhostname", "idcompany", "kirimdate", "tempodate", "reviewedby", "revieweddate", "reviewedfromip", "reviewedfromhostname"})
+            value.AddRange(New Object() {iddata, idParent, idtrans, teKode.Text, 6, lueSupplier.EditValue, "BusinessPartner", lueUnit.EditValue, "Unit", iddept, 0, teNote.Text, If(teNoDokumen.EditValue, "-"), userid, nowTime, getIPAddress(ipaddparam.IP), getIPAddress(ipaddparam.Host), idcomp, If(deTanggalKirim.EditValue Is Nothing, DBNull.Value, CDate(deTanggalKirim.EditValue)), If(deTanggalTempo.EditValue Is Nothing, Nothing, CDate(deTanggalTempo.EditValue)), userid, nowTime, getIPAddress(ipaddparam.IP), getIPAddress(ipaddparam.Host)})
             retval = dtsql.datasetSave("transaksi", iddata, field, value, False)
 
             'item log
@@ -586,6 +591,9 @@ Public Class frmPenerimaanBarangJumlah
     End Sub
 
     Private Sub btnAddItem_Click(sender As Object, e As EventArgs) Handles btnAddItem.Click
+        If btnLock.BackColor = Color.Green Then
+            Exit Sub
+        End If
         Dim additem As New frmTransaksiItemTambahan()
         tambahChild(additem)
         additem.ShowDialog(Me)
@@ -723,6 +731,13 @@ Public Class frmPenerimaanBarangJumlah
         If e.KeyData = Keys.F3 Then
             teSearch.Focus()
         End If
+    End Sub
+
+    Private Sub loadlovallsupp()
+        Dim sqls As New SQLs(dbstring)
+        sqls.CallSP("spLoadLOVItemPNBAll", "getpo")
+        gcItem.DataSource = sqls.dataTable("getpo")
+        gvItem.BestFitColumns()
     End Sub
 
 End Class

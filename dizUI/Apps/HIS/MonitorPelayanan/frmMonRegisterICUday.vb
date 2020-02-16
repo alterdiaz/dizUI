@@ -167,4 +167,15 @@
         deTanggal_EditValueChanged(deTanggal, Nothing)
     End Sub
 
+    Private Sub gvData_KeyDown(sender As Object, e As KeyEventArgs) Handles gvData.KeyDown
+        If gvData.FocusedRowHandle < 0 Then Exit Sub
+        Dim view As DevExpress.XtraGrid.Views.Grid.GridView = gvData
+        If e.Control AndAlso e.KeyCode = Keys.C Then
+            If view.GetRowCellValue(view.FocusedRowHandle, view.FocusedColumn) IsNot Nothing AndAlso view.GetRowCellValue(view.FocusedRowHandle, view.FocusedColumn).ToString() <> [String].Empty Then
+                Clipboard.SetText(view.GetRowCellValue(view.FocusedRowHandle, view.FocusedColumn).ToString())
+            End If
+            e.Handled = True
+        End If
+    End Sub
+
 End Class

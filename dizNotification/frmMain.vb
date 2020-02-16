@@ -1,6 +1,16 @@
 ﻿Imports System.Runtime.InteropServices
 Public Class frmMain
 
+    <DllImport("user32.dll", SetLastError:=True, CharSet:=CharSet.Auto)>
+    Private Shared Function FindWindow(
+     ByVal lpClassName As String,
+     ByVal lpWindowName As String) As IntPtr
+    End Function
+
+    <DllImport("user32.dll")>
+    Private Shared Function SetForegroundWindow(ByVal hWnd As IntPtr) As <MarshalAs(UnmanagedType.Bool)> Boolean
+    End Function
+
     <DllImport("User32")>
     Public Shared Function GetGuiResources(ByVal hProcess As IntPtr, ByVal uiFlags As Integer) As Integer
     End Function
@@ -122,6 +132,10 @@ Public Class frmMain
             nowTime = Now
         End If
         Me.Cursor = Cursors.Default
+        fNotif.Location = New Point(Screen.PrimaryScreen.WorkingArea.Width - 433, 0)
+        fNotif.Size = New Size(433, Screen.PrimaryScreen.WorkingArea.Height)
+        fNotif.btnMaximize.Visible = False
+        'fNotif.Show()
         'tmrNotes.Start()
         tmrProses.Start()
 
@@ -396,6 +410,7 @@ Public Class frmMain
     End Sub
 
     Private isProses As Boolean = False
+    Private isAdding As Boolean = False
     Private Sub tmrProses_Tick(sender As Object, e As EventArgs) Handles tmrProses.Tick
         Try
             If statLogin = True Then
@@ -406,10 +421,14 @@ Public Class frmMain
 
                         Dim sqls As New SQLs(dbstring)
                         If usersuper = "1" Then
-                            sqls.DMLQuery("select TOP 50 ROW_NUMBER() OVER (partition by n.kode Order by n.createddate asc) as nomor,n.idnotifications,n.kode,n.judul,n.konten,n.frmname,n.tableid,n.tablename,n.tablecolumnid,n.tablecolumndate,n.tablecolumnflag,n.tablecolumniduser,isnull(a.color,16777344) as color,isnull(a.notiftype,1) as notiftype from sys_notifications n left join sys_appnotification a on n.kode=a.kode where n.iskonfirm=0 and n.duedate<=getdate() and (n.kode<>'0' AND n.kode<>'-') order by n.createddate asc", "allnotif")
+                            'sqls.DMLQuery("select TOP 50 ROW_NUMBER() OVER (partition by n.kode Order by n.createddate asc) as nomor,n.idnotifications,n.kode,n.judul,n.konten,n.frmname,n.tableid,n.tablename,n.tablecolumnid,n.tablecolumndate,n.tablecolumnflag,n.tablecolumniduser,isnull(a.color,16777344) as color,isnull(a.notiftype,1) as notiftype from sys_notifications n left join sys_appnotification a on n.kode=a.kode where n.iskonfirm=0 and n.duedate<=getdate() and (n.kode<>'0' AND n.kode<>'-') order by n.createddate asc", "allnotif")
+                            sqls.DMLQuery("select TOP 50 ROW_NUMBER() OVER (partition by n.kode Order by n.createddate asc) as nomor,n.idnotifications,n.kode,n.judul,n.konten,n.frmname,n.tableid,n.tablename,n.tablecolumnid,n.tablecolumndate,n.tablecolumnflag,n.tablecolumniduser,isnull(n.color,16777344) as color,isnull(n.notiftype,1) as notiftype,urutdate from (select n.idnotifications,n.kode,n.judul,n.konten,n.frmname,n.tableid,n.tablename,n.tablecolumnid,n.tablecolumndate,n.tablecolumnflag,n.tablecolumniduser,isnull(a.color,16777344) as color,isnull(a.notiftype,1) as notiftype,n.createddate,replace(replace(replace(convert(varchar,n.createddate,120),' ',''),':',''),'-','') as urutdate from sys_notifications n left join sys_appnotification a on n.kode=a.kode where isnull(n.kodedept,'0')='0' and n.iskonfirm=0 and n.duedate<=getdate() and (n.kode<>'0' AND n.kode<>'-') union select n.idnotifications,n.kode,n.judul,n.konten,n.frmname,n.tableid,n.tablename,n.tablecolumnid,n.tablecolumndate,n.tablecolumnflag,n.tablecolumniduser,isnull(a.color,16777344) as color,isnull(a.notiftype,1) as notiftype,n.createddate,replace(replace(replace(convert(varchar,n.createddate,120),' ',''),':',''),'-','') as urutdate from sys_notifications n left join sys_appnotification a on n.kode=a.kode where isnull(n.kodedept,'0')<>'0' and n.iskonfirm=0 and n.duedate<=getdate() and (n.kode<>'0' AND n.kode<>'-') and n.kodedept in (select d.kode from department d)) n order by n.createddate desc", "allnotif")
                         Else
-                            sqls.DMLQuery("select TOP 50 ROW_NUMBER() OVER (partition by n.kode Order by n.createddate asc) as nomor,n.idnotifications,n.kode,n.judul,n.konten,n.frmname,n.tableid,n.tablename,n.tablecolumnid,n.tablecolumndate,n.tablecolumnflag,n.tablecolumniduser,isnull(a.color,16777344) as color,isnull(a.notiftype,1) as notiftype from sys_notifications n left join sys_appnotification a on n.kode=a.kode where (n.kode<>'0' and n.kode<>'-') and ((n.kode in (select kode from sys_userlevelnotification where iduserlevel='" & userlevelid & "') and n.iskonfirm=0 and n.duedate<=getdate()) or (n.iduser='" & userid & "' and n.iskonfirm=0 and n.duedate<=getdate())) order by n.createddate asc", "allnotif")
+                            'sqls.DMLQuery("select TOP 50 ROW_NUMBER() OVER (partition by n.kode Order by n.createddate asc) as nomor,n.idnotifications,n.kode,n.judul,n.konten,n.frmname,n.tableid,n.tablename,n.tablecolumnid,n.tablecolumndate,n.tablecolumnflag,n.tablecolumniduser,isnull(a.color,16777344) as color,isnull(a.notiftype,1) as notiftype from sys_notifications n left join sys_appnotification a on n.kode=a.kode where (n.kode<>'0' and n.kode<>'-') and ((n.kode in (select kode from sys_userlevelnotification where iduserlevel='" & userlevelid & "') and n.iskonfirm=0 and n.duedate<=getdate()) or (n.iduser='" & userid & "' and n.iskonfirm=0 and n.duedate<=getdate())) order by n.createddate asc", "allnotif")
+                            sqls.DMLQuery("select TOP 50 ROW_NUMBER() OVER (partition by n.kode Order by n.createddate asc) as nomor,n.idnotifications,n.kode,n.judul,n.konten,n.frmname,n.tableid,n.tablename,n.tablecolumnid,n.tablecolumndate,n.tablecolumnflag,n.tablecolumniduser,isnull(n.color,16777344) as color,isnull(n.notiftype,1) as notiftype,urutdate from (select n.idnotifications,n.kode,n.judul,n.konten,n.frmname,n.tableid,n.tablename,n.tablecolumnid,n.tablecolumndate,n.tablecolumnflag,n.tablecolumniduser,isnull(a.color,16777344) as color,isnull(a.notiftype,1) as notiftype,n.createddate,replace(replace(replace(convert(varchar,n.createddate,120),' ',''),':',''),'-','') as urutdate from sys_notifications n left join sys_appnotification a on n.kode=a.kode where isnull(n.kodedept,'0')='0' and (n.kode<>'0' and n.kode<>'-') and ((n.kode in (select kode from sys_userlevelnotification where iduserlevel='" & userlevelid & "') and n.iskonfirm=0 and n.duedate<=getdate()) or (n.iduser='" & userid & "' and n.iskonfirm=0 and n.duedate<=getdate())) union select n.idnotifications,n.kode,n.judul,n.konten,n.frmname,n.tableid,n.tablename,n.tablecolumnid,n.tablecolumndate,n.tablecolumnflag,n.tablecolumniduser,isnull(a.color,16777344) as color,isnull(a.notiftype,1) as notiftype,n.createddate,replace(replace(replace(convert(varchar,n.createddate,120),' ',''),':',''),'-','') as urutdate from sys_notifications n left join sys_appnotification a on n.kode=a.kode where isnull(n.kodedept,'0')<>'0' and n.iskonfirm=0 and n.duedate<=getdate() and (n.kode<>'0' AND n.kode<>'-') and n.kodedept in (select top 1 d.kode from department d left join staff s on s.iddepartment=d.iddepartment where s.iduser='" & userid & "')) n order by n.createddate desc", "allnotif")
                         End If
+                        isAdding = False
+
                         For i As Integer = 0 To sqls.getDataSet("allnotif") - 1
                             Try
                                 Dim notifid As String = sqls.getDataSet("allnotif", i, "idnotifications")
@@ -425,14 +444,29 @@ Public Class frmMain
                                 Dim notiftbcoliduser As String = sqls.getDataSet("allnotif", i, "tablecolumniduser")
                                 Dim notifcolor As Integer = CInt(sqls.getDataSet("allnotif", i, "color"))
                                 Dim notiftype As Integer = CInt(sqls.getDataSet("allnotif", i, "notiftype"))
+                                Dim notifurut As Long = CLng(sqls.getDataSet("allnotif", i, "urutdate"))
 
                                 If idnotif.Count = 0 Then
                                     idnotif.Add(notifid)
                                     Dim infobox As New frmNotifbox(notifid, notifjudul, notifkonten, notiftype, notiftbid, notiftbname, notiftbcolid, notiftbcoldate, notiftbcolflag, notiftbcoliduser, notifcolor)
-                                    infobox.BringToFront()
-                                    infobox.TopMost = True
+                                    'MsgBox("A")
+                                    infobox.Name = notifid
+                                    infobox.Tag = notifurut
+                                    infobox.WindowState = FormWindowState.Normal
+                                    infobox.TopMost = False
+                                    infobox.TopLevel = False
+                                    infobox.Anchor = AnchorStyles.None
+                                    infobox.lblTitle.TextAlign = ContentAlignment.MiddleLeft
+                                    infobox.PictureBox1.Visible = False
+                                    infobox.btnMaximize.Visible = False
+                                    infobox.btnMinimize.Visible = False
+                                    infobox.Parent = pBody
+                                    fNotif.pBody.Controls.Add(infobox)
                                     tambahChild(infobox)
                                     infobox.Show()
+                                    infobox.BringToFront()
+                                    infobox.Dock = Dock.Top
+                                    isAdding = True
                                 Else
                                     Dim id As String = idnotif.Find(Function(val As String)
                                                                         Return val = sqls.getDataSet("allnotif", i, "idnotifications").ToString
@@ -440,19 +474,73 @@ Public Class frmMain
                                     If id = String.Empty Then
                                         idnotif.Add(notifid)
                                         Dim infobox As New frmNotifbox(notifid, notifjudul, notifkonten, notiftype, notiftbid, notiftbname, notiftbcolid, notiftbcoldate, notiftbcolflag, notiftbcoliduser, notifcolor)
+                                        'MsgBox("B")
+                                        infobox.Name = notifid
+                                        infobox.Tag = notifurut
                                         infobox.WindowState = FormWindowState.Normal
-                                        infobox.BringToFront()
-                                        infobox.TopMost = True
+                                        infobox.TopMost = False
+                                        infobox.TopLevel = False
+                                        infobox.Anchor = AnchorStyles.None
+                                        infobox.lblTitle.TextAlign = ContentAlignment.MiddleLeft
+                                        infobox.PictureBox1.Visible = False
+                                        infobox.btnMaximize.Visible = False
+                                        infobox.btnMinimize.Visible = False
+                                        infobox.Parent = pBody
+                                        fNotif.pBody.Controls.Add(infobox)
                                         tambahChild(infobox)
                                         infobox.Show()
+                                        infobox.BringToFront()
+                                        infobox.Dock = Dock.Top
+                                        isAdding = True
                                     End If
                                 End If
                             Catch ex As Exception
                                 MsgBox(sqls.getDataSet("allnotif", i, "idnotifications") & vbCrLf & sqls.getDataSet("allnotif", i, "judul") & vbCrLf & ex.Message)
                             End Try
                         Next
+                        'fNotif.pBody.Visible = False
+                        'fNotif.pBody.Invalidate()
+                        'fNotif.pBody.Visible = True
+
+                        'Dim maxcnt As Long = 0
+                        'For i As Integer = 0 To fNotif.pBody.Controls.Count - 1
+                        '    For a As Integer = 0 To fNotif.pBody.Controls.Count - 1
+                        '        If fNotif.pBody.Controls.Item(a).Tag > maxcnt Then
+                        '            maxcnt = CLng(fNotif.pBody.Controls.Item(a).Tag)
+                        '            'fNotif.pBody.Controls.Item(a).Dock = DockStyle.None
+                        '            fNotif.pBody.Controls.Item(a).BringToFront()
+                        '            'fNotif.pBody.Controls.Item(a).Location = New Point(0, 162 * i)
+                        '            'fNotif.pBody.Invalidate()
+                        '            Application.DoEvents()
+                        '        End If
+                        '    Next
+                        'Next
                     End If
                     isProses = False
+                End If
+                If fNotif.pBody.Controls.Count = 0 Then
+                    isfocus = False
+                    fNotif.TopLevel = False
+                    fNotif.TopMost = False
+                    fNotif.SendToBack()
+                    fNotif.Visible = False
+                    fNotif.Hide()
+                Else
+                    If isAdding = True Then
+                        fNotif.WindowState = FormWindowState.Normal
+                        fNotif.Show()
+                        fNotif.TopLevel = True
+                        fNotif.Visible = True
+                        fNotif.TopMost = True
+                        fNotif.BringToFront()
+                        fNotif.Activate()
+
+                        Dim Name As String = "Notifikasi"
+                        Dim ptr As IntPtr = FindWindow(Nothing, Name)
+                        SetForegroundWindow(ptr)
+                        isfocus = True
+                        fNotif.TopMost = False
+                    End If
                 End If
                 If isauto = False Then
                     If totalsec >= 28800 Then
@@ -473,6 +561,7 @@ Public Class frmMain
         End Try
     End Sub
 
+    Dim fNotif As New frmNotifikasi
     Private Sub tsmiForceClose_Click(sender As Object, e As EventArgs) Handles tsmiForceClose.Click
         Shell("taskkill -im dizUI.exe -f", AppWinStyle.Hide)
         Shell("taskkill -im dizUIdemo.exe -f", AppWinStyle.Hide)

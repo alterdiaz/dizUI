@@ -74,9 +74,9 @@ Partial Class frmDistribusiBarang
         Me.btnSearch = New System.Windows.Forms.Button()
         Me.btnNew = New System.Windows.Forms.Button()
         Me.btnSave = New System.Windows.Forms.Button()
+        Me.btnCetak = New System.Windows.Forms.Button()
         Me.btnDelete = New System.Windows.Forms.Button()
         Me.lblSep5 = New System.Windows.Forms.Label()
-        Me.btnCetak = New System.Windows.Forms.Button()
         Me.tlpForm.SuspendLayout()
         Me.pTitle.SuspendLayout()
         CType(Me.pMinimize, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -465,7 +465,7 @@ Partial Class frmDistribusiBarang
         Me.tlpField.BackColor = System.Drawing.Color.FromArgb(CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer))
         Me.tlpField.ColumnCount = 6
         Me.tlpField.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
-        Me.tlpField.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 70.0!))
+        Me.tlpField.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100.0!))
         Me.tlpField.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 200.0!))
         Me.tlpField.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100.0!))
         Me.tlpField.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 150.0!))
@@ -501,7 +501,7 @@ Partial Class frmDistribusiBarang
         Me.btnLock.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnLock.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnLock.ForeColor = System.Drawing.Color.White
-        Me.btnLock.Location = New System.Drawing.Point(92, 54)
+        Me.btnLock.Location = New System.Drawing.Point(107, 54)
         Me.btnLock.Margin = New System.Windows.Forms.Padding(4, 0, 0, 0)
         Me.btnLock.Name = "btnLock"
         Me.btnLock.Size = New System.Drawing.Size(100, 24)
@@ -513,7 +513,7 @@ Partial Class frmDistribusiBarang
         'teNote
         '
         Me.teNote.Anchor = System.Windows.Forms.AnchorStyles.Left
-        Me.teNote.Location = New System.Drawing.Point(388, 32)
+        Me.teNote.Location = New System.Drawing.Point(403, 32)
         Me.teNote.Margin = New System.Windows.Forms.Padding(0)
         Me.teNote.Name = "teNote"
         Me.teNote.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[True]
@@ -534,7 +534,7 @@ Partial Class frmDistribusiBarang
         Me.Label4.Anchor = System.Windows.Forms.AnchorStyles.Right
         Me.Label4.AutoSize = True
         Me.Label4.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label4.Location = New System.Drawing.Point(315, 35)
+        Me.Label4.Location = New System.Drawing.Point(330, 35)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(70, 14)
         Me.Label4.TabIndex = 24
@@ -545,7 +545,7 @@ Partial Class frmDistribusiBarang
         '
         Me.deTanggal.Anchor = System.Windows.Forms.AnchorStyles.Left
         Me.deTanggal.EditValue = Nothing
-        Me.deTanggal.Location = New System.Drawing.Point(388, 8)
+        Me.deTanggal.Location = New System.Drawing.Point(403, 8)
         Me.deTanggal.Margin = New System.Windows.Forms.Padding(0)
         Me.deTanggal.Name = "deTanggal"
         Me.deTanggal.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer))
@@ -585,7 +585,7 @@ Partial Class frmDistribusiBarang
         'teKode
         '
         Me.teKode.Anchor = System.Windows.Forms.AnchorStyles.Left
-        Me.teKode.Location = New System.Drawing.Point(88, 8)
+        Me.teKode.Location = New System.Drawing.Point(103, 8)
         Me.teKode.Margin = New System.Windows.Forms.Padding(0)
         Me.teKode.Name = "teKode"
         Me.teKode.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[True]
@@ -607,11 +607,11 @@ Partial Class frmDistribusiBarang
         Me.lblParent.Anchor = System.Windows.Forms.AnchorStyles.Right
         Me.lblParent.AutoSize = True
         Me.lblParent.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblParent.Location = New System.Drawing.Point(42, 11)
+        Me.lblParent.Location = New System.Drawing.Point(25, 11)
         Me.lblParent.Name = "lblParent"
-        Me.lblParent.Size = New System.Drawing.Size(43, 14)
+        Me.lblParent.Size = New System.Drawing.Size(75, 14)
         Me.lblParent.TabIndex = 20
-        Me.lblParent.Text = "Nomor"
+        Me.lblParent.Text = "No.Transaksi"
         Me.lblParent.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
         'lblDepartment
@@ -619,7 +619,7 @@ Partial Class frmDistribusiBarang
         Me.lblDepartment.Anchor = System.Windows.Forms.AnchorStyles.Right
         Me.lblDepartment.AutoSize = True
         Me.lblDepartment.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblDepartment.Location = New System.Drawing.Point(56, 35)
+        Me.lblDepartment.Location = New System.Drawing.Point(71, 35)
         Me.lblDepartment.Name = "lblDepartment"
         Me.lblDepartment.Size = New System.Drawing.Size(29, 14)
         Me.lblDepartment.TabIndex = 9
@@ -629,7 +629,7 @@ Partial Class frmDistribusiBarang
         'lueUnit
         '
         Me.lueUnit.Anchor = System.Windows.Forms.AnchorStyles.Left
-        Me.lueUnit.Location = New System.Drawing.Point(88, 32)
+        Me.lueUnit.Location = New System.Drawing.Point(103, 32)
         Me.lueUnit.Margin = New System.Windows.Forms.Padding(0)
         Me.lueUnit.Name = "lueUnit"
         Me.lueUnit.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[False]
@@ -651,7 +651,7 @@ Partial Class frmDistribusiBarang
         Me.Label2.Anchor = System.Windows.Forms.AnchorStyles.Right
         Me.Label2.AutoSize = True
         Me.Label2.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label2.Location = New System.Drawing.Point(335, 11)
+        Me.Label2.Location = New System.Drawing.Point(350, 11)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(50, 14)
         Me.Label2.TabIndex = 49
@@ -885,6 +885,24 @@ Partial Class frmDistribusiBarang
         Me.btnSave.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
         Me.btnSave.UseVisualStyleBackColor = False
         '
+        'btnCetak
+        '
+        Me.btnCetak.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(0, Byte), Integer))
+        Me.btnCetak.Dock = System.Windows.Forms.DockStyle.Right
+        Me.btnCetak.FlatAppearance.BorderSize = 0
+        Me.btnCetak.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DimGray
+        Me.btnCetak.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DarkGray
+        Me.btnCetak.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnCetak.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnCetak.Location = New System.Drawing.Point(652, 0)
+        Me.btnCetak.Name = "btnCetak"
+        Me.btnCetak.Size = New System.Drawing.Size(100, 30)
+        Me.btnCetak.TabIndex = 21
+        Me.btnCetak.Text = "SIMPAN CETAK"
+        Me.btnCetak.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
+        Me.btnCetak.UseMnemonic = False
+        Me.btnCetak.UseVisualStyleBackColor = False
+        '
         'btnDelete
         '
         Me.btnDelete.BackColor = System.Drawing.Color.Maroon
@@ -915,25 +933,7 @@ Partial Class frmDistribusiBarang
         Me.lblSep5.Text = "|"
         Me.lblSep5.TextAlign = System.Drawing.ContentAlignment.TopCenter
         '
-        'btnCetak
-        '
-        Me.btnCetak.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(0, Byte), Integer))
-        Me.btnCetak.Dock = System.Windows.Forms.DockStyle.Right
-        Me.btnCetak.FlatAppearance.BorderSize = 0
-        Me.btnCetak.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DimGray
-        Me.btnCetak.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DarkGray
-        Me.btnCetak.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btnCetak.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnCetak.Location = New System.Drawing.Point(652, 0)
-        Me.btnCetak.Name = "btnCetak"
-        Me.btnCetak.Size = New System.Drawing.Size(100, 30)
-        Me.btnCetak.TabIndex = 21
-        Me.btnCetak.Text = "SIMPAN CETAK"
-        Me.btnCetak.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
-        Me.btnCetak.UseMnemonic = False
-        Me.btnCetak.UseVisualStyleBackColor = False
-        '
-        'frmPermintaanBarangNQM
+        'frmDistribusiBarang
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
@@ -941,7 +941,7 @@ Partial Class frmDistribusiBarang
         Me.ClientSize = New System.Drawing.Size(836, 449)
         Me.Controls.Add(Me.tlpForm)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
-        Me.Name = "frmPermintaanBarangNQM"
+        Me.Name = "frmDistribusiBarang"
         Me.ShowInTaskbar = False
         Me.Text = "Permintaan Barang"
         Me.tlpForm.ResumeLayout(False)

@@ -64,7 +64,7 @@ Partial Class frmSplash
         '
         Me.BackColor = System.Drawing.Color.Gray
         Me.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.ClientSize = New System.Drawing.Size(464, 162)
+        Me.ClientSize = New System.Drawing.Size(620, 300)
         Me.Controls.Add(Me.lnkTG)
         Me.Controls.Add(Me.pbSync)
         Me.DoubleBuffered = True
@@ -73,7 +73,7 @@ Partial Class frmSplash
         Me.ShowIcon = False
         Me.ShowMode = DevExpress.XtraSplashScreen.ShowMode.Image
         Me.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide
-        Me.SplashImage = Global.dizUI.My.Resources.Resources.canvas_splash
+        Me.SplashImage = Global.dizUI.My.Resources.Resources.canvas_splash4
         Me.Text = "Diznet Indo Zahira 2015"
         Me.TopMost = True
         CType(Me.pbSync, System.ComponentModel.ISupportInitialize).EndInit()

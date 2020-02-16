@@ -121,7 +121,7 @@
         lueJenis.EditValue = Nothing
 
         Dim sqls As New SQLs(dbstring)
-        sqls.DMLQuery("select idproducttype,producttype from sys_appproducttype where idcompany='" & modCore.idcompany & "'", "cekpt")
+        sqls.DMLQuery("select idproducttype,producttype from sys_companyproducttype order by producttype asc", "cekpt")
         gcData.DataSource = sqls.dataTable("cekpt")
         gvData.BestFitColumns()
         'SQLs = New SQLs(mystring)
@@ -196,29 +196,29 @@
         Me.Cursor = Cursors.Default
         If cek = True Then
             Dim lite As New SQLi(dblite)
-            lite.DMLQuery("delete from companyproducttype where idcompany='" & modCore.idcompany & "'", False)
+            lite.DMLQuery("delete from companyproducttype", False)
             For i As Integer = 0 To gvData.RowCount - 1
                 'If gvData.GetDataRow(i).Item("cek").ToString = "1" Then
-                lite.DMLQuery("insert into companyproducttype(idcompanyproducttype,idcompanyproduct,idcompany,idproducttype,producttype) values('" & GenerateGUID() & "','0','" & modCore.idcompany & "','" & gvData.GetDataRow(i).Item("idproducttype").ToString & "','" & gvData.GetDataRow(i).Item("producttype").ToString & "')", False)
+                lite.DMLQuery("insert into companyproducttype(idcompanyproducttype,idcompany,idproducttype,producttype) values('" & GenerateGUID() & "','" & modCore.idcompany & "','" & gvData.GetDataRow(i).Item("idproducttype").ToString & "','" & gvData.GetDataRow(i).Item("producttype").ToString & "')", False)
                 'End If
             Next
             If lueJenis.EditValue IsNot Nothing Then
-                lite.DMLQuery("insert into companyproducttype(idcompanyproducttype,idcompanyproduct,idcompany,idproducttype,producttype) values('" & GenerateGUID() & "','0','" & modCore.idcompany & "','" & lueJenis.EditValue & "','" & lueJenis.Text & "')", False)
+                lite.DMLQuery("insert into companyproducttype(idcompanyproducttype,idcompany,idproducttype,producttype) values('" & GenerateGUID() & "','" & modCore.idcompany & "','" & lueJenis.EditValue & "','" & lueJenis.Text & "')", False)
             End If
 
             Dim sqlss As New SQLs(dbstring)
-            sqlss.DMLQuery("delete from sys_appproducttype where idcompany='" & modCore.idcompany & "'", False)
+            sqlss.DMLQuery("delete from sys_companyproducttype", False)
             For i As Integer = 0 To gvData.RowCount - 1
                 'If gvData.GetDataRow(i).Item("cek").ToString = "1" Then
-                sqlss.DMLQuery("insert into sys_appproducttype(idappproducttype,idcompanyproduct,idcompany,idproducttype,producttype) values('" & GenerateGUID() & "','0','" & modCore.idcompany & "','" & gvData.GetDataRow(i).Item("idproducttype").ToString & "','" & gvData.GetDataRow(i).Item("producttype").ToString & "')", False)
+                sqlss.DMLQuery("insert into sys_companyproducttype(idappproducttype,idcompany,idproducttype,producttype) values('" & GenerateGUID() & "','" & modCore.idcompany & "','" & gvData.GetDataRow(i).Item("idproducttype").ToString & "','" & gvData.GetDataRow(i).Item("producttype").ToString & "')", False)
                 'End If
             Next
             If lueJenis.EditValue IsNot Nothing Then
-                sqlss.DMLQuery("insert into sys_appproducttype(idappproducttype,idcompanyproduct,idcompany,idproducttype,producttype) values('" & GenerateGUID() & "','0','" & modCore.idcompany & "','" & lueJenis.EditValue & "','" & lueJenis.Text & "')", False)
+                sqlss.DMLQuery("insert into sys_companyproducttype(idappproducttype,idcompany,idproducttype,producttype) values('" & GenerateGUID() & "','" & modCore.idcompany & "','" & lueJenis.EditValue & "','" & lueJenis.Text & "')", False)
             End If
 
             Dim sqls As New SQLs(dbstring)
-            sqls.DMLQuery("select idproducttype,producttype from sys_appproducttype where idcompany='" & modCore.idcompany & "'", "cekpt")
+            sqls.DMLQuery("select distinct idproducttype,producttype from sys_companyproducttype order by producttype asc", "cekpt")
             gcData.DataSource = sqls.dataTable("cekpt")
             gvData.BestFitColumns()
 
@@ -249,16 +249,16 @@
         'json_result = modCore.HttpPOSTRequestSelect(mysite & "CompanyProductType", mparam, mvalue)
         'If json_result = "true" Then
         Dim sqls As New SQLs(dbstring)
-        sqls.DMLQuery("delete from sys_appproducttype where idproducttype='" & gvData.GetDataRow(gvData.FocusedRowHandle).Item("idproducttype").ToString & "' and idcompanyproduct='" & modCore.idcompany & "'", False)
+        sqls.DMLQuery("delete from sys_companyproducttype where idproducttype='" & gvData.GetDataRow(gvData.FocusedRowHandle).Item("idproducttype").ToString & "' and idcompanyproduct='" & modCore.idcompany & "'", False)
 
         Dim lite As New SQLi(dbstring)
-        lite.DMLQuery("delete from companyproducttype where idproducttype='" & gvData.GetDataRow(gvData.FocusedRowHandle).Item("idproducttype").ToString & "' and idcompanyproduct='" & modCore.idcompany & "'", False)
+        lite.DMLQuery("delete from companyproducttype where idproducttype='" & gvData.GetDataRow(gvData.FocusedRowHandle).Item("idproducttype").ToString & "'", False)
 
-        sqls.DMLQuery("select idproducttype,producttype from sys_appproducttype where idcompany='" & modCore.idcompany & "'", "cekpt")
+        sqls.DMLQuery("select idproducttype,producttype from sys_companyproducttype order by producttype asc", "cekpt")
         gcData.DataSource = sqls.dataTable("cekpt")
-            gvData.BestFitColumns()
+        gvData.BestFitColumns()
 
-            dizMsgbox("Data Jenis Produk terhapus", dizMsgboxStyle.Info, Me)
+        dizMsgbox("Data Jenis Produk terhapus", dizMsgboxStyle.Info, Me)
         'End If
     End Sub
 

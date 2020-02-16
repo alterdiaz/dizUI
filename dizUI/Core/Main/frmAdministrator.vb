@@ -915,8 +915,8 @@
         checkFieldMaxLength(dbstring, tlpPengguna, "sys_user")
         loadLOV()
 
-        Dim task As System.Threading.Tasks.Task = New System.Threading.Tasks.Task(AddressOf Sync)
-        task.Start()
+        'Dim task As System.Threading.Tasks.Task = New System.Threading.Tasks.Task(AddressOf Sync)
+        'task.Start()
 
         tmrCounter.Start()
         btnNew_Click(Me, Nothing)
@@ -997,14 +997,14 @@
 
     Private Sub tmrCounter_Tick(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles tmrCounter.Tick
         If nowTime.Second = 0 And nowTime.Minute Mod 3 = 0 Then
-            Dim task As System.Threading.Tasks.Task = New System.Threading.Tasks.Task(AddressOf Sync)
-            task.Start()
+            'Dim task As System.Threading.Tasks.Task = New System.Threading.Tasks.Task(AddressOf Sync)
+            'task.Start()
         End If
         'If isSync = False Then bwServer.RunWorkerAsync()
     End Sub
 
     Private Sub bwServer_DoWork(ByVal sender As System.Object, ByVal e As System.ComponentModel.DoWorkEventArgs) Handles bwServer.DoWork
-        Sync()
+        'Sync()
         If bwServer.IsBusy = False Then
             bwServer.RunWorkerAsync()
         End If

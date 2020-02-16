@@ -149,35 +149,53 @@ Public Class dtsetSQLS
         dCounter += dtset.GetXmlSchema.Length
 
         Dim dr As DataRow
-        If IsNumeric(idValueData) = False Then
-            If dtset.Tables(TableName).Rows.Count = 0 Then 'If idValueData < 0 Then
-                dr = dtset.Tables(TableName).NewRow
+        Try
+            If IsNumeric(idValueData) = False Then
+                If dtset.Tables(TableName).Rows.Count = 0 Then 'If idValueData < 0 Then
+                    dr = dtset.Tables(TableName).NewRow
+                Else
+                    dr = dtset.Tables(TableName).Rows(0)
+                End If
             Else
-                dr = dtset.Tables(TableName).Rows(0)
+                If idValueData < 0 Then
+                    dr = dtset.Tables(TableName).NewRow
+                Else
+                    dr = dtset.Tables(TableName).Rows(0)
+                End If
             End If
-        Else
-            If idValueData < 0 Then
-                dr = dtset.Tables(TableName).NewRow
+
+            For i As Integer = 0 To Field.Count - 1
+                'If TableName = "payment" Then MsgBox(Field(i))
+                dr.Item(Field(i)) = Value(i)
+            Next
+
+            If IsNumeric(idValueData) = False Then
+                If dtset.Tables(TableName).Rows.Count = 0 Then 'If idValueData < 0 Then
+                    dtset.Tables(TableName).Rows.Add(dr)
+                End If
             Else
-                dr = dtset.Tables(TableName).Rows(0)
+                If CLng(idValueData) < CLng(0) Then
+                    dtset.Tables(TableName).Rows.Add(dr)
+                End If
             End If
-        End If
-
-        For i As Integer = 0 To Field.Count - 1
-            'If TableName = "payment" Then MsgBox(Field(i))
-            dr.Item(Field(i)) = Value(i)
-        Next
-
-        If IsNumeric(idValueData) = False Then
-            If dtset.Tables(TableName).Rows.Count = 0 Then 'If idValueData < 0 Then
-                dtset.Tables(TableName).Rows.Add(dr)
+        Catch ex As Exception
+            Dim strfield As String = String.Join(",", Field)
+            Dim tmplist As New List(Of String)
+            For i As Integer = 0 To Value.Count - 1
+                tmplist.Add(Value(i).ToString)
+            Next
+            Dim strvalue As String = ""
+            For a As Integer = 0 To Field.Count - 1
+                If a > 0 Then
+                    strvalue &= vbCrLf
+                End If
+                strvalue &= Field(a) & "=" & tmplist(a)
+            Next
+            'Clipboard.SetText(ex.Message & vbCrLf & strvalue)
+            If sqlConn.State <> ConnectionState.Closed Then
+                sqlConn.Close()
             End If
-        Else
-            If idValueData < 0 Then
-                dtset.Tables(TableName).Rows.Add(dr)
-            End If
-        End If
-
+        End Try
         Try
             builder = New SqlClient.SqlCommandBuilder(sqlAdapt)
             sqlAdapt.UpdateCommand = builder.GetUpdateCommand()
@@ -216,9 +234,12 @@ Public Class dtsetSQLS
                 End If
                 strvalue &= Field(a) & "=" & tmplist(a)
             Next
-            Clipboard.SetText(strvalue)
+            Clipboard.SetText(ex.Message & vbCrLf & strvalue)
             sqlTrans.Rollback()
             dtset.Tables(TableName).RejectChanges()
+            If sqlConn.State <> ConnectionState.Closed Then
+                sqlConn.Close()
+            End If
             retval = False
             If ShowMsg = True Then
                 dizMsgbox("Data tidak tersimpan" & vbCrLf & "Koneksi jaringan terputus atau hubungi administrator" & vbCrLf & ex.Message, dizMsgboxStyle.Info)
@@ -243,6 +264,9 @@ Public Class dtsetSQLS
             End If
             sqlConn.Open()
         Catch ex As Exception
+            If sqlConn.State <> ConnectionState.Closed Then
+                sqlConn.Close()
+            End If
             'MsgBox(ex.Message, dizMsgboxStyle.Kesalahan, me)
             Return False
             Exit Function
@@ -257,6 +281,9 @@ Public Class dtsetSQLS
             sqlConn.Close()
             Return True
         Catch ex As Exception
+            If sqlConn.State <> ConnectionState.Closed Then
+                sqlConn.Close()
+            End If
             'MsgBox(ex.Message, dizMsgboxStyle.Kesalahan, me)
             Return False
         End Try

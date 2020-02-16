@@ -220,6 +220,9 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="DevExpress.XtraTreeMap.v17.2, Version=17.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DirectShowLib">
+      <HintPath>..\..\DLL\DirectShowLib.dll</HintPath>
+    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.3.0\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
@@ -230,9 +233,8 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\DLL\HL7SDK.dll</HintPath>
     </Reference>
-    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\DLL\Newtonsoft.Json.dll</HintPath>
+    <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.11.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="PrintingRaw">
@@ -258,6 +260,7 @@
     <Reference Include="System.Design" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Management" />
+    <Reference Include="System.Net.Http" />
     <Reference Include="System.Runtime.Remoting" />
     <Reference Include="System.ServiceModel" />
     <Reference Include="System.Web.Services" />
@@ -272,7 +275,19 @@
     <Reference Include="System.Data.DataSetExtensions">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
+    <Reference Include="Telegram.Bot, Version=15.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Telegram.Bot.15.0.0\lib\net45\Telegram.Bot.dll</HintPath>
+    </Reference>
     <Reference Include="UIAutomationClient" />
+    <Reference Include="WhatsAppApi, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\WhatsAppAPI.15.4.29\lib\net40\WhatsAppApi.dll</HintPath>
+    </Reference>
+    <Reference Include="zxing, Version=0.16.5.0, Culture=neutral, PublicKeyToken=4e88037ac681fe60, processorArchitecture=MSIL">
+      <HintPath>..\packages\ZXing.Net.0.16.5\lib\net47\zxing.dll</HintPath>
+    </Reference>
+    <Reference Include="zxing.presentation, Version=0.16.5.0, Culture=neutral, PublicKeyToken=4e88037ac681fe60, processorArchitecture=MSIL">
+      <HintPath>..\packages\ZXing.Net.0.16.5\lib\net47\zxing.presentation.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Import Include="Microsoft.VisualBasic" />
@@ -342,16 +357,58 @@
     <Compile Include="Apps\AKUN\frmTransaksiJurnal.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Apps\Common\Data\frmInternalNote.Designer.vb">
-      <DependentUpon>frmInternalNote.vb</DependentUpon>
+    <Compile Include="Apps\AUDIT\frmNeracaBulananUnit.Designer.vb">
+      <DependentUpon>frmNeracaBulananUnit.vb</DependentUpon>
     </Compile>
-    <Compile Include="Apps\Common\Data\frmInternalNote.vb">
+    <Compile Include="Apps\AUDIT\frmNeracaBulananUnit.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Apps\Common\Data\frmUnitAsuransi.Designer.vb">
+    <Compile Include="Apps\AUDIT\frmRugiLabaBulananUnit.Designer.vb">
+      <DependentUpon>frmRugiLabaBulananUnit.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\AUDIT\frmRugiLabaBulananUnit.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Apps\COMM\Data\frmInternalNote.Designer.vb">
+      <DependentUpon>frmInternalNote.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\COMM\Data\frmInternalNote.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Apps\COMM\Data\frmInternalSearch.Designer.vb">
+      <DependentUpon>frmInternalSearch.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\COMM\Data\frmInternalSearch.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Apps\COMM\Data\frmRekapAppPasien.Designer.vb">
+      <DependentUpon>frmRekapAppPasien.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\COMM\Data\frmRekapAppPasien.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Apps\COMM\Data\frmRekapRegPasien.Designer.vb">
+      <DependentUpon>frmRekapRegPasien.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\COMM\Data\frmRekapRegPasien.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Apps\COMM\Data\frmUnitAsuransi.Designer.vb">
       <DependentUpon>frmUnitAsuransi.vb</DependentUpon>
     </Compile>
-    <Compile Include="Apps\Common\Data\frmUnitAsuransi.vb">
+    <Compile Include="Apps\COMM\Data\frmUnitAsuransi.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Apps\COMM\Monitor\frmMonKendaraan.Designer.vb">
+      <DependentUpon>frmMonKendaraan.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\COMM\Monitor\frmMonKendaraan.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Apps\CRM\frmRencanaOperasi.Designer.vb">
+      <DependentUpon>frmRencanaOperasi.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\CRM\frmRencanaOperasi.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Apps\FAR\frmPermintaanPembelianFarmasiAllUnit.Designer.vb">
@@ -396,16 +453,28 @@
     <Compile Include="Apps\HISS\Monitor\frmRMTracing.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Apps\HIS\Asesmen\frmAMIRNA201901.Designer.vb">
+    <Compile Include="Apps\ASS\Medis\frmAMIRNA201901.Designer.vb">
       <DependentUpon>frmAMIRNA201901.vb</DependentUpon>
     </Compile>
-    <Compile Include="Apps\HIS\Asesmen\frmAMIRNA201901.vb">
+    <Compile Include="Apps\ASS\Medis\frmAMIRNA201901.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Apps\HIS\Dashboard\frmBoardPelayananPeriode.Designer.vb">
       <DependentUpon>frmBoardPelayananPeriode.vb</DependentUpon>
     </Compile>
     <Compile Include="Apps\HIS\Dashboard\frmBoardPelayananPeriode.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Apps\HIS\Dashboard\frmDashboardPelayanan.Designer.vb">
+      <DependentUpon>frmDashboardPelayanan.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\HIS\Dashboard\frmDashboardPelayanan.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Apps\HIS\Dashboard\frmDashboardPelayananTahunan.Designer.vb">
+      <DependentUpon>frmDashboardPelayananTahunan.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\HIS\Dashboard\frmDashboardPelayananTahunan.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Apps\HIS\FormReport\xrAMIRNA201901.Designer.vb">
@@ -468,10 +537,22 @@
     <Compile Include="Apps\HIS\MonitorPelayanan\frmMonRegisterODSday.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Apps\HIS\Monitor\frmMonPasien.Designer.vb">
+      <DependentUpon>frmMonPasien.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\HIS\Monitor\frmMonPasien.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Apps\HIS\Monitor\frmMonRegister.Designer.vb">
       <DependentUpon>frmMonRegister.vb</DependentUpon>
     </Compile>
     <Compile Include="Apps\HIS\Monitor\frmMonRegister.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Apps\HIS\Monitor\frmRegStatusSelect.Designer.vb">
+      <DependentUpon>frmRegStatusSelect.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\HIS\Monitor\frmRegStatusSelect.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Apps\HIS\Report\frmSelectLabel10RM.Designer.vb">
@@ -486,6 +567,12 @@
     <Compile Include="Apps\HIS\Trans\frmAlihDPJP.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Apps\HIS\Trans\frmKamarPindahIBS.Designer.vb">
+      <DependentUpon>frmKamarPindahIBS.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\HIS\Trans\frmKamarPindahIBS.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Apps\HIS\Trans\frmRujukanInternal.Designer.vb">
       <DependentUpon>frmRujukanInternal.vb</DependentUpon>
     </Compile>
@@ -496,6 +583,30 @@
       <DependentUpon>frmRujukanSelect.vb</DependentUpon>
     </Compile>
     <Compile Include="Apps\HIS\Trans\frmRujukanSelect.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Apps\HK\frmKamarBooking.Designer.vb">
+      <DependentUpon>frmKamarBooking.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\HK\frmKamarBooking.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Apps\HK\frmKamarBookingEntry.Designer.vb">
+      <DependentUpon>frmKamarBookingEntry.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\HK\frmKamarBookingEntry.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Apps\HK\frmKelasBooking.Designer.vb">
+      <DependentUpon>frmKelasBooking.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\HK\frmKelasBooking.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Apps\HK\frmKelasBookingEntry.Designer.vb">
+      <DependentUpon>frmKelasBookingEntry.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\HK\frmKelasBookingEntry.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Apps\HRD\Data\frmAbsensiKaryawan.Designer.vb">
@@ -546,6 +657,18 @@
     <Compile Include="Apps\HRD\Monitor\frmMonJadwalKerjaKaryawan.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Apps\HRD\Transaksi\frmSeminarNonMedis.Designer.vb">
+      <DependentUpon>frmSeminarNonMedis.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\HRD\Transaksi\frmSeminarNonMedis.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Apps\HRD\Transaksi\frmSeminarNonMedisTambah.Designer.vb">
+      <DependentUpon>frmSeminarNonMedisTambah.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\HRD\Transaksi\frmSeminarNonMedisTambah.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Apps\KEU\frmPenyusutanEntry.Designer.vb">
       <DependentUpon>frmPenyusutanEntry.vb</DependentUpon>
     </Compile>
@@ -594,6 +717,12 @@
     <Compile Include="Apps\LOG\Monitor\frmMonReturPembelianBarang.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Apps\LOG\Monitor\frmMonStokSaldo.Designer.vb">
+      <DependentUpon>frmMonStokSaldo.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\LOG\Monitor\frmMonStokSaldo.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Apps\LOG\Monitor\frmMonSuratJalanPermintaan.Designer.vb">
       <DependentUpon>frmMonSuratJalanPermintaan.vb</DependentUpon>
     </Compile>
@@ -606,16 +735,40 @@
     <Compile Include="Apps\LOG\Monitor\frmMutasiBarang.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Apps\LOG\Update\frmPembelianBarangUpdate.Designer.vb">
+      <DependentUpon>frmPembelianBarangUpdate.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\LOG\Update\frmPembelianBarangUpdate.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Apps\LOG\Update\frmPermintaanBarangUpdate.Designer.vb">
+      <DependentUpon>frmPermintaanBarangUpdate.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\LOG\Update\frmPermintaanBarangUpdate.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Apps\LOG\Update\frmPermintaanPembelianBarangUpdate.Designer.vb">
+      <DependentUpon>frmPermintaanPembelianBarangUpdate.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\LOG\Update\frmPermintaanPembelianBarangUpdate.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Apps\LOG\Report\frmSelectLabel10Item.Designer.vb">
       <DependentUpon>frmSelectLabel10Item.vb</DependentUpon>
     </Compile>
     <Compile Include="Apps\LOG\Report\frmSelectLabel10Item.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Apps\LOG\TransInternal\frmDistribusiBarang.Designer.vb">
-      <DependentUpon>frmDistribusiBarang.vb</DependentUpon>
+    <Compile Include="Apps\LOG\TransInternal\frmPermintaanBarangNQMU.Designer.vb">
+      <DependentUpon>frmPermintaanBarangNQMU.vb</DependentUpon>
     </Compile>
-    <Compile Include="Apps\LOG\TransInternal\frmDistribusiBarang.vb">
+    <Compile Include="Apps\LOG\TransInternal\frmPermintaanBarangNQMU.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Apps\LOG\TransInternal\frmPermintaanBarangQMU.Designer.vb">
+      <DependentUpon>frmPermintaanBarangQMU.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\LOG\TransInternal\frmPermintaanBarangQMU.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Apps\LOG\TransInternal\frmPermintaanItemUnit.Designer.vb">
@@ -708,6 +861,12 @@
     <Compile Include="Apps\LOG\TransKeluar\frmSuratJalanPermintaanReview.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Apps\LOG\TransMasuk\frmBuktiBarangMasuk.Designer.vb">
+      <DependentUpon>frmBuktiBarangMasuk.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\LOG\TransMasuk\frmBuktiBarangMasuk.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Apps\LOG\TransMasuk\frmPembelianBarangHarga.Designer.vb">
       <DependentUpon>frmPembelianBarangHarga.vb</DependentUpon>
     </Compile>
@@ -744,76 +903,94 @@
     <Compile Include="Apps\REG\frmRegistrasiODS.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Apps\SCH\frmDeleteReason.Designer.vb">
+    <Compile Include="Apps\SCH\Monitor\frmMonAppointmentDept.Designer.vb">
+      <DependentUpon>frmMonAppointmentDept.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\SCH\Monitor\frmMonAppointmentDept.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Apps\SCH\Monitor\frmMonAppointmentDeptEdit.Designer.vb">
+      <DependentUpon>frmMonAppointmentDeptEdit.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\SCH\Monitor\frmMonAppointmentDeptEdit.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Apps\SCH\Monitor\frmMonAppointmentHarianEdit.Designer.vb">
+      <DependentUpon>frmMonAppointmentHarianEdit.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\SCH\Monitor\frmMonAppointmentHarianEdit.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Apps\SCH\Transaksi\frmDeleteReason.Designer.vb">
       <DependentUpon>frmDeleteReason.vb</DependentUpon>
     </Compile>
-    <Compile Include="Apps\SCH\frmDeleteReason.vb">
+    <Compile Include="Apps\SCH\Transaksi\frmDeleteReason.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Apps\SCH\frmEditNoteReason.Designer.vb">
+    <Compile Include="Apps\SCH\Transaksi\frmEditNoteReason.Designer.vb">
       <DependentUpon>frmEditNoteReason.vb</DependentUpon>
     </Compile>
-    <Compile Include="Apps\SCH\frmEditNoteReason.vb">
+    <Compile Include="Apps\SCH\Transaksi\frmEditNoteReason.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Apps\SCH\frmJadwalParamedis.Designer.vb">
+    <Compile Include="Apps\SCH\Transaksi\frmJadwalParamedis.Designer.vb">
       <DependentUpon>frmJadwalParamedis.vb</DependentUpon>
     </Compile>
-    <Compile Include="Apps\SCH\frmJadwalParamedis.vb">
+    <Compile Include="Apps\SCH\Transaksi\frmJadwalParamedis.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Apps\SCH\frmParamedisCuti.Designer.vb">
+    <Compile Include="Apps\SCH\Transaksi\frmParamedisCuti.Designer.vb">
       <DependentUpon>frmParamedisCuti.vb</DependentUpon>
     </Compile>
-    <Compile Include="Apps\SCH\frmParamedisCuti.vb">
+    <Compile Include="Apps\SCH\Transaksi\frmParamedisCuti.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Apps\Auditor\frmArusKas.Designer.vb">
+    <Compile Include="Apps\AUDIT\frmArusKas.Designer.vb">
       <DependentUpon>frmArusKas.vb</DependentUpon>
     </Compile>
-    <Compile Include="Apps\Auditor\frmArusKas.vb">
+    <Compile Include="Apps\AUDIT\frmArusKas.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Apps\Auditor\frmNeracaTahunan.Designer.vb">
+    <Compile Include="Apps\AUDIT\frmNeracaTahunan.Designer.vb">
       <DependentUpon>frmNeracaTahunan.vb</DependentUpon>
     </Compile>
-    <Compile Include="Apps\Auditor\frmNeracaTahunan.vb">
+    <Compile Include="Apps\AUDIT\frmNeracaTahunan.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Apps\Auditor\frmNeracaBulanan.Designer.vb">
+    <Compile Include="Apps\AUDIT\frmNeracaBulanan.Designer.vb">
       <DependentUpon>frmNeracaBulanan.vb</DependentUpon>
     </Compile>
-    <Compile Include="Apps\Auditor\frmNeracaBulanan.vb">
+    <Compile Include="Apps\AUDIT\frmNeracaBulanan.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Apps\Auditor\frmRugiLabaBulanan.Designer.vb">
+    <Compile Include="Apps\AUDIT\frmRugiLabaBulanan.Designer.vb">
       <DependentUpon>frmRugiLabaBulanan.vb</DependentUpon>
     </Compile>
-    <Compile Include="Apps\Auditor\frmRugiLabaBulanan.vb">
+    <Compile Include="Apps\AUDIT\frmRugiLabaBulanan.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Apps\Auditor\frmRugiLabaTahunan.Designer.vb">
+    <Compile Include="Apps\AUDIT\frmRugiLabaTahunan.Designer.vb">
       <DependentUpon>frmRugiLabaTahunan.vb</DependentUpon>
     </Compile>
-    <Compile Include="Apps\Auditor\frmRugiLabaTahunan.vb">
+    <Compile Include="Apps\AUDIT\frmRugiLabaTahunan.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Apps\Common\Data\frmBank.Designer.vb">
+    <Compile Include="Apps\COMM\Data\frmBank.Designer.vb">
       <DependentUpon>frmBank.vb</DependentUpon>
     </Compile>
-    <Compile Include="Apps\Common\Data\frmBank.vb">
+    <Compile Include="Apps\COMM\Data\frmBank.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Apps\Common\Data\frmCariWilayah.Designer.vb">
+    <Compile Include="Apps\COMM\Data\frmCariWilayah.Designer.vb">
       <DependentUpon>frmCariWilayah.vb</DependentUpon>
     </Compile>
-    <Compile Include="Apps\Common\Data\frmCariWilayah.vb">
+    <Compile Include="Apps\COMM\Data\frmCariWilayah.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Apps\Common\Data\frmSelectDevice.Designer.vb">
+    <Compile Include="Apps\COMM\Data\frmSelectDevice.Designer.vb">
       <DependentUpon>frmSelectDevice.vb</DependentUpon>
     </Compile>
-    <Compile Include="Apps\Common\Data\frmSelectDevice.vb">
+    <Compile Include="Apps\COMM\Data\frmSelectDevice.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Apps\CRM\frmKlien.Designer.vb">
@@ -877,16 +1054,16 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Apps\PDAB\Transaksi\clsRenumberingArusPengajuan.vb" />
-    <Compile Include="Apps\Common\Data\frmLokasi.Designer.vb">
+    <Compile Include="Apps\COMM\Data\frmLokasi.Designer.vb">
       <DependentUpon>frmLokasi.vb</DependentUpon>
     </Compile>
-    <Compile Include="Apps\Common\Data\frmLokasi.vb">
+    <Compile Include="Apps\COMM\Data\frmLokasi.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Apps\Common\Data\frmDeviceLokasi.Designer.vb">
+    <Compile Include="Apps\COMM\Data\frmDeviceLokasi.Designer.vb">
       <DependentUpon>frmDeviceLokasi.vb</DependentUpon>
     </Compile>
-    <Compile Include="Apps\Common\Data\frmDeviceLokasi.vb">
+    <Compile Include="Apps\COMM\Data\frmDeviceLokasi.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Apps\POS\Data\frmItemGrup.Designer.vb">
@@ -991,22 +1168,34 @@
     <Compile Include="Apps\LOG\TransInternal\frmTransaksiItemTambahan.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Apps\HIS\Asesmen\frmFormIBS201901.Designer.vb">
+    <Compile Include="Apps\ASS\Form\frmFormIBS201901.Designer.vb">
       <DependentUpon>frmFormIBS201901.vb</DependentUpon>
     </Compile>
-    <Compile Include="Apps\HIS\Asesmen\frmFormIBS201901.vb">
+    <Compile Include="Apps\ASS\Form\frmFormIBS201901.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Apps\HIS\Asesmen\frmFormICU201901.Designer.vb">
+    <Compile Include="Apps\ASS\Form\frmFormICU201901.Designer.vb">
       <DependentUpon>frmFormICU201901.vb</DependentUpon>
     </Compile>
-    <Compile Include="Apps\HIS\Asesmen\frmFormICU201901.vb">
+    <Compile Include="Apps\ASS\Form\frmFormICU201901.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Apps\TMP\frmTestMessage.Designer.vb">
+      <DependentUpon>frmTestMessage.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Apps\TMP\frmTestMessage.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Core\Main\frmChatHelp.Designer.vb">
       <DependentUpon>frmChatHelp.vb</DependentUpon>
     </Compile>
     <Compile Include="Core\Main\frmChatHelp.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Core\Main\frmFormatGrid.Designer.vb">
+      <DependentUpon>frmFormatGrid.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Core\Main\frmFormatGrid.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Core\Main\frmPermissionCopy.Designer.vb">
@@ -1087,46 +1276,46 @@
     <Compile Include="Apps\POS\Transaksi\frmValidasiItemHarga.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Apps\HIS\Asesmen\frmAMIRM201801.Designer.vb">
+    <Compile Include="Apps\ASS\Medis\frmAMIRM201801.Designer.vb">
       <DependentUpon>frmAMIRM201801.vb</DependentUpon>
     </Compile>
-    <Compile Include="Apps\HIS\Asesmen\frmAMIRM201801.vb">
+    <Compile Include="Apps\ASS\Medis\frmAMIRM201801.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Apps\HIS\Asesmen\frmAMIRJ201801.Designer.vb">
+    <Compile Include="Apps\ASS\Medis\frmAMIRJ201801.Designer.vb">
       <DependentUpon>frmAMIRJ201801.vb</DependentUpon>
     </Compile>
-    <Compile Include="Apps\HIS\Asesmen\frmAMIRJ201801.vb">
+    <Compile Include="Apps\ASS\Medis\frmAMIRJ201801.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Apps\HIS\Asesmen\frmAPIGD201801.Designer.vb">
+    <Compile Include="Apps\ASS\Perawat\frmAPIGD201801.Designer.vb">
       <DependentUpon>frmAPIGD201801.vb</DependentUpon>
     </Compile>
-    <Compile Include="Apps\HIS\Asesmen\frmAPIGD201801.vb">
+    <Compile Include="Apps\ASS\Perawat\frmAPIGD201801.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Apps\HIS\Asesmen\frmAsesmenGizi.Designer.vb">
+    <Compile Include="Apps\ASS\MedisPenunjang\frmAsesmenGizi.Designer.vb">
       <DependentUpon>frmAsesmenGizi.vb</DependentUpon>
     </Compile>
-    <Compile Include="Apps\HIS\Asesmen\frmAsesmenGizi.vb">
+    <Compile Include="Apps\ASS\MedisPenunjang\frmAsesmenGizi.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Apps\HIS\Asesmen\frmAsesmenRehab.Designer.vb">
+    <Compile Include="Apps\ASS\MedisPenunjang\frmAsesmenRehab.Designer.vb">
       <DependentUpon>frmAsesmenRehab.vb</DependentUpon>
     </Compile>
-    <Compile Include="Apps\HIS\Asesmen\frmAsesmenRehab.vb">
+    <Compile Include="Apps\ASS\MedisPenunjang\frmAsesmenRehab.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Apps\HIS\Asesmen\frmDiagnosaKerja.Designer.vb">
+    <Compile Include="Apps\ASS\Lain\frmDiagnosaKerja.Designer.vb">
       <DependentUpon>frmDiagnosaKerja.vb</DependentUpon>
     </Compile>
-    <Compile Include="Apps\HIS\Asesmen\frmDiagnosaKerja.vb">
+    <Compile Include="Apps\ASS\Lain\frmDiagnosaKerja.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Apps\HIS\Asesmen\frmOrderDietPasien.Designer.vb">
+    <Compile Include="Apps\ASS\MedisPenunjang\frmOrderDietPasien.Designer.vb">
       <DependentUpon>frmOrderDietPasien.vb</DependentUpon>
     </Compile>
-    <Compile Include="Apps\HIS\Asesmen\frmOrderDietPasien.vb">
+    <Compile Include="Apps\ASS\MedisPenunjang\frmOrderDietPasien.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Apps\HIS\Dashboard\frmBoardPelayanan.Designer.vb">
@@ -1153,10 +1342,10 @@
     <Compile Include="Apps\HIS\Data\frmICD.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Apps\SCH\frmParamedisJadwal.Designer.vb">
+    <Compile Include="Apps\SCH\Transaksi\frmParamedisJadwal.Designer.vb">
       <DependentUpon>frmParamedisJadwal.vb</DependentUpon>
     </Compile>
-    <Compile Include="Apps\SCH\frmParamedisJadwal.vb">
+    <Compile Include="Apps\SCH\Transaksi\frmParamedisJadwal.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Apps\HIS\Data\frmInfoPasien.Designer.vb">
@@ -1465,10 +1654,10 @@
     <Compile Include="Apps\HIS\FormReport\xrRegistrasiSlip382801.vb">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Apps\SCH\frmAppointmentInfo.Designer.vb">
+    <Compile Include="Apps\SCH\Transaksi\frmAppointmentInfo.Designer.vb">
       <DependentUpon>frmAppointmentInfo.vb</DependentUpon>
     </Compile>
-    <Compile Include="Apps\SCH\frmAppointmentInfo.vb">
+    <Compile Include="Apps\SCH\Transaksi\frmAppointmentInfo.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Apps\HIS\FormReport\xrResultLaboratorium.Designer.vb">
@@ -1603,10 +1792,10 @@
     <Compile Include="Apps\HIS\Monitor\frmMonAgamaPasien.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Apps\HIS\Monitor\frmMonAppointmentHarian.Designer.vb">
+    <Compile Include="Apps\SCH\Monitor\frmMonAppointmentHarian.Designer.vb">
       <DependentUpon>frmMonAppointmentHarian.vb</DependentUpon>
     </Compile>
-    <Compile Include="Apps\HIS\Monitor\frmMonAppointmentHarian.vb">
+    <Compile Include="Apps\SCH\Monitor\frmMonAppointmentHarian.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Apps\HIS\Monitor\frmMonBukuTarif.Designer.vb">
@@ -1615,10 +1804,10 @@
     <Compile Include="Apps\HIS\Monitor\frmMonBukuTarif.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Apps\HIS\Monitor\frmMonJadwalDokterDay.Designer.vb">
+    <Compile Include="Apps\SCH\Monitor\frmMonJadwalDokterDay.Designer.vb">
       <DependentUpon>frmMonJadwalDokterDay.vb</DependentUpon>
     </Compile>
-    <Compile Include="Apps\HIS\Monitor\frmMonJadwalDokterDay.vb">
+    <Compile Include="Apps\SCH\Monitor\frmMonJadwalDokterDay.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Apps\HIS\Monitor\frmMonAnalisaRM.Designer.vb">
@@ -1627,16 +1816,16 @@
     <Compile Include="Apps\HIS\Monitor\frmMonAnalisaRM.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Apps\HIS\Monitor\frmMonAppointment.Designer.vb">
-      <DependentUpon>frmMonAppointment.vb</DependentUpon>
+    <Compile Include="Apps\SCH\Monitor\frmMonAppointmentParamedis.Designer.vb">
+      <DependentUpon>frmMonAppointmentParamedis.vb</DependentUpon>
     </Compile>
-    <Compile Include="Apps\HIS\Monitor\frmMonAppointment.vb">
+    <Compile Include="Apps\SCH\Monitor\frmMonAppointmentParamedis.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Apps\HIS\Monitor\frmMonAppointmentPasien.Designer.vb">
+    <Compile Include="Apps\SCH\Monitor\frmMonAppointmentPasien.Designer.vb">
       <DependentUpon>frmMonAppointmentPasien.vb</DependentUpon>
     </Compile>
-    <Compile Include="Apps\HIS\Monitor\frmMonAppointmentPasien.vb">
+    <Compile Include="Apps\SCH\Monitor\frmMonAppointmentPasien.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Apps\HIS\Monitor\frmMonDemografiPasien.Designer.vb">
@@ -1669,10 +1858,10 @@
     <Compile Include="Apps\HIS\Monitor\frmMonIjinPraktekParamedis.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Apps\HIS\Monitor\frmMonJadwalDokter.Designer.vb">
+    <Compile Include="Apps\SCH\Monitor\frmMonJadwalDokter.Designer.vb">
       <DependentUpon>frmMonJadwalDokter.vb</DependentUpon>
     </Compile>
-    <Compile Include="Apps\HIS\Monitor\frmMonJadwalDokter.vb">
+    <Compile Include="Apps\SCH\Monitor\frmMonJadwalDokter.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Apps\HIS\Monitor\frmMonKamar.Designer.vb">
@@ -1819,10 +2008,10 @@
     <Compile Include="Apps\HIS\Monitor\frmMonUltahPasien.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Apps\HIS\Asesmen\frmAMIGD201801.Designer.vb">
+    <Compile Include="Apps\ASS\Medis\frmAMIGD201801.Designer.vb">
       <DependentUpon>frmAMIGD201801.vb</DependentUpon>
     </Compile>
-    <Compile Include="Apps\HIS\Asesmen\frmAMIGD201801.vb">
+    <Compile Include="Apps\ASS\Medis\frmAMIGD201801.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Apps\HIS\FormReport\xrRadiologi13801990.Designer.vb">
@@ -2066,10 +2255,10 @@
     <Compile Include="Apps\HIS\Monitor\frmMonRegisterParamedis.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Apps\SCH\frmAppointment.Designer.vb">
+    <Compile Include="Apps\SCH\Transaksi\frmAppointment.Designer.vb">
       <DependentUpon>frmAppointment.vb</DependentUpon>
     </Compile>
-    <Compile Include="Apps\SCH\frmAppointment.vb">
+    <Compile Include="Apps\SCH\Transaksi\frmAppointment.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Apps\HIS\Trans\frmRegistrasiCancel.Designer.vb">
@@ -2126,10 +2315,10 @@
     <Compile Include="Apps\SIA\Transaksi\frmJurnalUmumAutobalance.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Apps\Temp\frmCOA_generator.Designer.vb">
+    <Compile Include="Apps\TMP\frmCOA_generator.Designer.vb">
       <DependentUpon>frmCOA_generator.vb</DependentUpon>
     </Compile>
-    <Compile Include="Apps\Temp\frmCOA_generator.vb">
+    <Compile Include="Apps\TMP\frmCOA_generator.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Apps\HRD\Data\frmDepartment.designer.vb">
@@ -2138,10 +2327,10 @@
     <Compile Include="Apps\HRD\Data\frmDepartment.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Apps\Temp\frmImportCOA.Designer.vb">
+    <Compile Include="Apps\TMP\frmImportCOA.Designer.vb">
       <DependentUpon>frmImportCOA.vb</DependentUpon>
     </Compile>
-    <Compile Include="Apps\Temp\frmImportCOA.vb">
+    <Compile Include="Apps\TMP\frmImportCOA.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Apps\HRD\Data\frmJabatan.designer.vb">
@@ -2192,10 +2381,10 @@
     <Compile Include="Apps\HRD\Data\frmUnit.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Apps\Auditor\frmJurnalBulanan.Designer.vb">
+    <Compile Include="Apps\AUDIT\frmJurnalBulanan.Designer.vb">
       <DependentUpon>frmJurnalBulanan.vb</DependentUpon>
     </Compile>
-    <Compile Include="Apps\Auditor\frmJurnalBulanan.vb">
+    <Compile Include="Apps\AUDIT\frmJurnalBulanan.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Apps\PDAB\Monitor\frmMonUserPPP.Designer.vb">
@@ -2435,36 +2624,36 @@
     <Compile Include="Apps\PDAB\Transaksi\frmInternalPUMPB.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Apps\Common\Data\frmWilayah.designer.vb">
+    <Compile Include="Apps\COMM\Data\frmWilayah.designer.vb">
       <DependentUpon>frmWilayah.vb</DependentUpon>
     </Compile>
-    <Compile Include="Apps\Common\Data\frmWilayah.vb">
+    <Compile Include="Apps\COMM\Data\frmWilayah.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Apps\Support\modApps.vb" />
-    <Compile Include="Apps\Support\modCSS.vb" />
-    <Compile Include="Apps\UserControl\btnBooking.designer.vb">
+    <Compile Include="Apps\SUPP\modApps.vb" />
+    <Compile Include="Apps\SUPP\modCSS.vb" />
+    <Compile Include="Apps\UC\btnBooking.designer.vb">
       <DependentUpon>btnBooking.vb</DependentUpon>
     </Compile>
-    <Compile Include="Apps\UserControl\btnBooking.vb">
+    <Compile Include="Apps\UC\btnBooking.vb">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Apps\UserControl\btnBookingR.designer.vb">
+    <Compile Include="Apps\UC\btnBookingR.designer.vb">
       <DependentUpon>btnBookingR.vb</DependentUpon>
     </Compile>
-    <Compile Include="Apps\UserControl\btnBookingR.vb">
+    <Compile Include="Apps\UC\btnBookingR.vb">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Apps\UserControl\btnJadwalDokter.Designer.vb">
+    <Compile Include="Apps\UC\btnJadwalDokter.Designer.vb">
       <DependentUpon>btnJadwalDokter.vb</DependentUpon>
     </Compile>
-    <Compile Include="Apps\UserControl\btnJadwalDokter.vb">
+    <Compile Include="Apps\UC\btnJadwalDokter.vb">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Apps\UserControl\btnSchedule.designer.vb">
+    <Compile Include="Apps\UC\btnSchedule.designer.vb">
       <DependentUpon>btnSchedule.vb</DependentUpon>
     </Compile>
-    <Compile Include="Apps\UserControl\btnSchedule.vb">
+    <Compile Include="Apps\UC\btnSchedule.vb">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Core\Main\frmAppDevice.Designer.vb">
@@ -2748,10 +2937,10 @@
     <Compile Include="Core\Support\MyRenderer.vb" />
     <Compile Include="Core\Support\SQLi.vb" />
     <Compile Include="Core\Support\SQLs.vb" />
-    <Compile Include="Apps\Temp\Form1.Designer.vb">
+    <Compile Include="Apps\TMP\Form1.Designer.vb">
       <DependentUpon>Form1.vb</DependentUpon>
     </Compile>
-    <Compile Include="Apps\Temp\Form1.vb">
+    <Compile Include="Apps\TMP\Form1.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Dataset\BRPPPset.vb">
@@ -2994,11 +3183,29 @@
     <EmbeddedResource Include="Apps\AKUN\frmTransaksiJurnal.resx">
       <DependentUpon>frmTransaksiJurnal.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Apps\Common\Data\frmInternalNote.resx">
+    <EmbeddedResource Include="Apps\AUDIT\frmNeracaBulananUnit.resx">
+      <DependentUpon>frmNeracaBulananUnit.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps\AUDIT\frmRugiLabaBulananUnit.resx">
+      <DependentUpon>frmRugiLabaBulananUnit.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps\COMM\Data\frmInternalNote.resx">
       <DependentUpon>frmInternalNote.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Apps\Common\Data\frmUnitAsuransi.resx">
+    <EmbeddedResource Include="Apps\COMM\Data\frmInternalSearch.resx">
+      <DependentUpon>frmInternalSearch.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps\COMM\Data\frmRekapAppPasien.resx">
+      <DependentUpon>frmRekapAppPasien.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps\COMM\Data\frmRekapRegPasien.resx">
+      <DependentUpon>frmRekapRegPasien.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps\COMM\Data\frmUnitAsuransi.resx">
       <DependentUpon>frmUnitAsuransi.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps\CRM\frmRencanaOperasi.resx">
+      <DependentUpon>frmRencanaOperasi.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Apps\HISS\Monitor\frmCPPT.resx">
       <DependentUpon>frmCPPT.vb</DependentUpon>
@@ -3018,11 +3225,17 @@
     <EmbeddedResource Include="Apps\HISS\Monitor\frmRMTracing.resx">
       <DependentUpon>frmRMTracing.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Apps\HIS\Asesmen\frmAMIRNA201901.resx">
+    <EmbeddedResource Include="Apps\ASS\Medis\frmAMIRNA201901.resx">
       <DependentUpon>frmAMIRNA201901.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Apps\HIS\Dashboard\frmBoardPelayananPeriode.resx">
       <DependentUpon>frmBoardPelayananPeriode.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps\HIS\Dashboard\frmDashboardPelayanan.resx">
+      <DependentUpon>frmDashboardPelayanan.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps\HIS\Dashboard\frmDashboardPelayananTahunan.resx">
+      <DependentUpon>frmDashboardPelayananTahunan.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Apps\HIS\FormReport\xrAMIRNA201901.resx">
       <DependentUpon>xrAMIRNA201901.vb</DependentUpon>
@@ -3032,6 +3245,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Apps\HIS\FormReport\xrSOAPIncIRNA201901.resx">
       <DependentUpon>xrSOAPIncIRNA201901.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps\HIS\MonitorPelayanan\frmMonRegisterCATHday.resx">
+      <DependentUpon>frmMonRegisterCATHday.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps\HIS\MonitorPelayanan\frmMonRegisterHD.resx">
+      <DependentUpon>frmMonRegisterHD.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps\HIS\MonitorPelayanan\frmMonRegisterHDday.resx">
+      <DependentUpon>frmMonRegisterHDday.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps\HIS\MonitorPelayanan\frmMonRegisterLABday.resx">
+      <DependentUpon>frmMonRegisterLABday.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Apps\HIS\MonitorPelayanan\frmMonRegisterMCU.resx">
       <DependentUpon>frmMonRegisterMCU.vb</DependentUpon>
@@ -3045,8 +3270,14 @@
     <EmbeddedResource Include="Apps\HIS\MonitorPelayanan\frmMonRegisterODSday.resx">
       <DependentUpon>frmMonRegisterODSday.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Apps\HIS\Monitor\frmMonPasien.resx">
+      <DependentUpon>frmMonPasien.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Apps\HIS\Monitor\frmMonRegister.resx">
       <DependentUpon>frmMonRegister.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps\HIS\Monitor\frmRegStatusSelect.resx">
+      <DependentUpon>frmRegStatusSelect.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Apps\HIS\Report\frmSelectLabel10RM.resx">
       <DependentUpon>frmSelectLabel10RM.vb</DependentUpon>
@@ -3059,6 +3290,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Apps\HIS\Trans\frmRujukanSelect.resx">
       <DependentUpon>frmRujukanSelect.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps\HK\frmKamarBooking.resx">
+      <DependentUpon>frmKamarBooking.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps\HK\frmKamarBookingEntry.resx">
+      <DependentUpon>frmKamarBookingEntry.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps\HK\frmKelasBooking.resx">
+      <DependentUpon>frmKelasBooking.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps\HK\frmKelasBookingEntry.resx">
+      <DependentUpon>frmKelasBookingEntry.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Apps\HRD\Data\frmAbsensiKaryawan.resx">
       <DependentUpon>frmAbsensiKaryawan.vb</DependentUpon>
@@ -3089,6 +3332,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Apps\HRD\Monitor\frmMonJadwalKerjaKaryawan.resx">
       <DependentUpon>frmMonJadwalKerjaKaryawan.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps\HRD\Transaksi\frmSeminarNonMedis.resx">
+      <DependentUpon>frmSeminarNonMedis.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps\HRD\Transaksi\frmSeminarNonMedisTambah.resx">
+      <DependentUpon>frmSeminarNonMedisTambah.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Apps\KEU\frmPenyusutanEntry.resx">
       <DependentUpon>frmPenyusutanEntry.vb</DependentUpon>
@@ -3123,11 +3372,17 @@
     <EmbeddedResource Include="Apps\LOG\Monitor\frmMutasiBarangUnit.resx">
       <DependentUpon>frmMutasiBarangUnit.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Apps\LOG\Update\frmPembelianBarangUpdate.resx">
+      <DependentUpon>frmPembelianBarangUpdate.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Apps\LOG\Report\frmSelectLabel10Item.resx">
       <DependentUpon>frmSelectLabel10Item.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Apps\LOG\TransInternal\frmDistribusiBarang.resx">
-      <DependentUpon>frmDistribusiBarang.vb</DependentUpon>
+    <EmbeddedResource Include="Apps\LOG\TransInternal\frmPermintaanBarangNQMU.resx">
+      <DependentUpon>frmPermintaanBarangNQMU.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps\LOG\TransInternal\frmPermintaanBarangQMU.resx">
+      <DependentUpon>frmPermintaanBarangQMU.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Apps\LOG\TransInternal\frmPermintaanItemUnit.resx">
       <DependentUpon>frmPermintaanItemUnit.vb</DependentUpon>
@@ -3165,6 +3420,9 @@
     <EmbeddedResource Include="Apps\LOG\TransKeluar\frmSuratJalanPermintaanReview.resx">
       <DependentUpon>frmSuratJalanPermintaanReview.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Apps\LOG\TransMasuk\frmBuktiBarangMasuk.resx">
+      <DependentUpon>frmBuktiBarangMasuk.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Apps\LOG\TransMasuk\frmPembelianBarangHarga.resx">
       <DependentUpon>frmPembelianBarangHarga.vb</DependentUpon>
     </EmbeddedResource>
@@ -3180,46 +3438,61 @@
     <EmbeddedResource Include="Apps\LOG\TransInternal\frmPermintaanPembelianAllUnit.resx">
       <DependentUpon>frmPermintaanPembelianAllUnit.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Apps\LOG\Update\frmPermintaanBarangUpdate.resx">
+      <DependentUpon>frmPermintaanBarangUpdate.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps\LOG\Update\frmPermintaanPembelianBarangUpdate.resx">
+      <DependentUpon>frmPermintaanPembelianBarangUpdate.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Apps\REG\frmRegistrasiMCU.resx">
       <DependentUpon>frmRegistrasiMCU.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Apps\REG\frmRegistrasiODS.resx">
       <DependentUpon>frmRegistrasiODS.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Apps\SCH\frmDeleteReason.resx">
+    <EmbeddedResource Include="Apps\SCH\Monitor\frmMonAppointmentDept.resx">
+      <DependentUpon>frmMonAppointmentDept.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps\SCH\Monitor\frmMonAppointmentDeptEdit.resx">
+      <DependentUpon>frmMonAppointmentDeptEdit.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps\SCH\Monitor\frmMonAppointmentHarianEdit.resx">
+      <DependentUpon>frmMonAppointmentHarianEdit.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps\SCH\Transaksi\frmDeleteReason.resx">
       <DependentUpon>frmDeleteReason.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Apps\SCH\frmEditNoteReason.resx">
+    <EmbeddedResource Include="Apps\SCH\Transaksi\frmEditNoteReason.resx">
       <DependentUpon>frmEditNoteReason.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Apps\SCH\frmJadwalParamedis.resx">
+    <EmbeddedResource Include="Apps\SCH\Transaksi\frmJadwalParamedis.resx">
       <DependentUpon>frmJadwalParamedis.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Apps\SCH\frmParamedisCuti.resx">
+    <EmbeddedResource Include="Apps\SCH\Transaksi\frmParamedisCuti.resx">
       <DependentUpon>frmParamedisCuti.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Apps\Auditor\frmArusKas.resx">
+    <EmbeddedResource Include="Apps\AUDIT\frmArusKas.resx">
       <DependentUpon>frmArusKas.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Apps\Auditor\frmNeracaTahunan.resx">
+    <EmbeddedResource Include="Apps\AUDIT\frmNeracaTahunan.resx">
       <DependentUpon>frmNeracaTahunan.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Apps\Auditor\frmNeracaBulanan.resx">
+    <EmbeddedResource Include="Apps\AUDIT\frmNeracaBulanan.resx">
       <DependentUpon>frmNeracaBulanan.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Apps\Auditor\frmRugiLabaBulanan.resx">
+    <EmbeddedResource Include="Apps\AUDIT\frmRugiLabaBulanan.resx">
       <DependentUpon>frmRugiLabaBulanan.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Apps\Auditor\frmRugiLabaTahunan.resx">
+    <EmbeddedResource Include="Apps\AUDIT\frmRugiLabaTahunan.resx">
       <DependentUpon>frmRugiLabaTahunan.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Apps\Common\Data\frmBank.resx">
+    <EmbeddedResource Include="Apps\COMM\Data\frmBank.resx">
       <DependentUpon>frmBank.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Apps\Common\Data\frmCariWilayah.resx">
+    <EmbeddedResource Include="Apps\COMM\Data\frmCariWilayah.resx">
       <DependentUpon>frmCariWilayah.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Apps\Common\Data\frmSelectDevice.resx">
+    <EmbeddedResource Include="Apps\COMM\Data\frmSelectDevice.resx">
       <DependentUpon>frmSelectDevice.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Apps\CRM\frmKlien.resx">
@@ -3228,7 +3501,7 @@
     <EmbeddedResource Include="Apps\HRD\Data\frmKaryawanCuti.resx">
       <DependentUpon>frmKaryawanCuti.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Apps\Common\Data\frmLokasi.resx">
+    <EmbeddedResource Include="Apps\COMM\Data\frmLokasi.resx">
       <DependentUpon>frmLokasi.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Apps\HRD\Monitor\frmMonMutasiKaryawan.resx">
@@ -3237,7 +3510,7 @@
     <EmbeddedResource Include="Apps\HRD\Monitor\frmMonTeguranKaryawan.resx">
       <DependentUpon>frmMonTeguranKaryawan.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Apps\Common\Data\frmDeviceLokasi.resx">
+    <EmbeddedResource Include="Apps\COMM\Data\frmDeviceLokasi.resx">
       <DependentUpon>frmDeviceLokasi.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Apps\HRD\Data\frmJadwalSesi.resx">
@@ -3297,10 +3570,10 @@
     <EmbeddedResource Include="Apps\LOG\TransInternal\frmTransaksiItemTambahan.resx">
       <DependentUpon>frmTransaksiItemTambahan.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Apps\HIS\Asesmen\frmFormIBS201901.resx">
+    <EmbeddedResource Include="Apps\ASS\Form\frmFormIBS201901.resx">
       <DependentUpon>frmFormIBS201901.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Apps\HIS\Asesmen\frmFormICU201901.resx">
+    <EmbeddedResource Include="Apps\ASS\Form\frmFormICU201901.resx">
       <DependentUpon>frmFormICU201901.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Apps\HIS\Dashboard\frmBoardPelayananTahunan.resx">
@@ -3336,25 +3609,25 @@
     <EmbeddedResource Include="Apps\POS\Transaksi\frmValidasiItemHarga.resx">
       <DependentUpon>frmValidasiItemHarga.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Apps\HIS\Asesmen\frmAMIRM201801.resx">
+    <EmbeddedResource Include="Apps\ASS\Medis\frmAMIRM201801.resx">
       <DependentUpon>frmAMIRM201801.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Apps\HIS\Asesmen\frmAMIRJ201801.resx">
+    <EmbeddedResource Include="Apps\ASS\Medis\frmAMIRJ201801.resx">
       <DependentUpon>frmAMIRJ201801.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Apps\HIS\Asesmen\frmAPIGD201801.resx">
+    <EmbeddedResource Include="Apps\ASS\Perawat\frmAPIGD201801.resx">
       <DependentUpon>frmAPIGD201801.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Apps\HIS\Asesmen\frmAsesmenGizi.resx">
+    <EmbeddedResource Include="Apps\ASS\MedisPenunjang\frmAsesmenGizi.resx">
       <DependentUpon>frmAsesmenGizi.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Apps\HIS\Asesmen\frmAsesmenRehab.resx">
+    <EmbeddedResource Include="Apps\ASS\MedisPenunjang\frmAsesmenRehab.resx">
       <DependentUpon>frmAsesmenRehab.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Apps\HIS\Asesmen\frmDiagnosaKerja.resx">
+    <EmbeddedResource Include="Apps\ASS\Lain\frmDiagnosaKerja.resx">
       <DependentUpon>frmDiagnosaKerja.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Apps\HIS\Asesmen\frmOrderDietPasien.resx">
+    <EmbeddedResource Include="Apps\ASS\MedisPenunjang\frmOrderDietPasien.resx">
       <DependentUpon>frmOrderDietPasien.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Apps\HIS\Dashboard\frmBoardPelayanan.resx">
@@ -3372,7 +3645,7 @@
     <EmbeddedResource Include="Apps\HIS\Data\frmICD.resx">
       <DependentUpon>frmICD.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Apps\SCH\frmParamedisJadwal.resx">
+    <EmbeddedResource Include="Apps\SCH\Transaksi\frmParamedisJadwal.resx">
       <DependentUpon>frmParamedisJadwal.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Apps\HIS\Data\frmInfoPasien.resx">
@@ -3515,10 +3788,10 @@
     <EmbeddedResource Include="Apps\HIS\FormReport\xrRegistrasiSlip382801.resx">
       <DependentUpon>xrRegistrasiSlip382801.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Apps\SCH\frmAppointment.resx">
+    <EmbeddedResource Include="Apps\SCH\Transaksi\frmAppointment.resx">
       <DependentUpon>frmAppointment.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Apps\SCH\frmAppointmentInfo.resx">
+    <EmbeddedResource Include="Apps\SCH\Transaksi\frmAppointmentInfo.resx">
       <DependentUpon>frmAppointmentInfo.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Apps\HIS\FormReport\xrResultRadiologi.resx">
@@ -3563,22 +3836,22 @@
     <EmbeddedResource Include="Apps\HIS\Monitor\frmMonAgamaPasien.resx">
       <DependentUpon>frmMonAgamaPasien.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Apps\HIS\Monitor\frmMonAppointmentHarian.resx">
+    <EmbeddedResource Include="Apps\SCH\Monitor\frmMonAppointmentHarian.resx">
       <DependentUpon>frmMonAppointmentHarian.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Apps\HIS\Monitor\frmMonBukuTarif.resx">
       <DependentUpon>frmMonBukuTarif.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Apps\HIS\Monitor\frmMonJadwalDokterDay.resx">
+    <EmbeddedResource Include="Apps\SCH\Monitor\frmMonJadwalDokterDay.resx">
       <DependentUpon>frmMonJadwalDokterDay.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Apps\HIS\Monitor\frmMonAnalisaRM.resx">
       <DependentUpon>frmMonAnalisaRM.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Apps\HIS\Monitor\frmMonAppointment.resx">
-      <DependentUpon>frmMonAppointment.vb</DependentUpon>
+    <EmbeddedResource Include="Apps\SCH\Monitor\frmMonAppointmentParamedis.resx">
+      <DependentUpon>frmMonAppointmentParamedis.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Apps\HIS\Monitor\frmMonAppointmentPasien.resx">
+    <EmbeddedResource Include="Apps\SCH\Monitor\frmMonAppointmentPasien.resx">
       <DependentUpon>frmMonAppointmentPasien.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Apps\HIS\Monitor\frmMonDemografiPasien.resx">
@@ -3596,7 +3869,7 @@
     <EmbeddedResource Include="Apps\HIS\Monitor\frmMonIjinPraktekParamedis.resx">
       <DependentUpon>frmMonIjinPraktekParamedis.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Apps\HIS\Monitor\frmMonJadwalDokter.resx">
+    <EmbeddedResource Include="Apps\SCH\Monitor\frmMonJadwalDokter.resx">
       <DependentUpon>frmMonJadwalDokter.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Apps\HIS\Monitor\frmMonKamar.resx">
@@ -3659,7 +3932,7 @@
     <EmbeddedResource Include="Apps\HIS\Monitor\frmMonUltahPasien.resx">
       <DependentUpon>frmMonUltahPasien.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Apps\HIS\Asesmen\frmAMIGD201801.resx">
+    <EmbeddedResource Include="Apps\ASS\Medis\frmAMIGD201801.resx">
       <DependentUpon>frmAMIGD201801.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Apps\HIS\FormReport\xrRadiologi13801990.resx">
@@ -3794,13 +4067,13 @@
     <EmbeddedResource Include="Apps\SIA\Transaksi\frmJurnalUmumAutobalance.resx">
       <DependentUpon>frmJurnalUmumAutobalance.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Apps\Temp\frmCOA_generator.resx">
+    <EmbeddedResource Include="Apps\TMP\frmCOA_generator.resx">
       <DependentUpon>frmCOA_generator.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Apps\HRD\Data\frmDepartment.resx">
       <DependentUpon>frmDepartment.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Apps\Temp\frmImportCOA.resx">
+    <EmbeddedResource Include="Apps\TMP\frmImportCOA.resx">
       <DependentUpon>frmImportCOA.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Apps\HRD\Data\frmJabatan.resx">
@@ -3827,7 +4100,7 @@
     <EmbeddedResource Include="Apps\HRD\Data\frmUnit.resx">
       <DependentUpon>frmUnit.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Apps\Auditor\frmJurnalBulanan.resx">
+    <EmbeddedResource Include="Apps\AUDIT\frmJurnalBulanan.resx">
       <DependentUpon>frmJurnalBulanan.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Apps\PDAB\Monitor\frmMonAnggaranRutin.resx">
@@ -3947,19 +4220,22 @@
     <EmbeddedResource Include="Apps\PDAB\Transaksi\frmInternalPUMPB.resx">
       <DependentUpon>frmInternalPUMPB.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Apps\Common\Data\frmWilayah.resx">
+    <EmbeddedResource Include="Apps\COMM\Data\frmWilayah.resx">
       <DependentUpon>frmWilayah.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Apps\UserControl\btnBooking.resx">
+    <EmbeddedResource Include="Apps\TMP\frmTestMessage.resx">
+      <DependentUpon>frmTestMessage.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apps\UC\btnBooking.resx">
       <DependentUpon>btnBooking.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Apps\UserControl\btnBookingR.resx">
+    <EmbeddedResource Include="Apps\UC\btnBookingR.resx">
       <DependentUpon>btnBookingR.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Apps\UserControl\btnJadwalDokter.resx">
+    <EmbeddedResource Include="Apps\UC\btnJadwalDokter.resx">
       <DependentUpon>btnJadwalDokter.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Apps\UserControl\btnSchedule.resx">
+    <EmbeddedResource Include="Apps\UC\btnSchedule.resx">
       <DependentUpon>btnSchedule.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Core\Main\Controls\ucChatbox.resx">
@@ -4006,6 +4282,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Core\Main\frmExportMap.resx">
       <DependentUpon>frmExportMap.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Core\Main\frmFormatGrid.resx">
+      <DependentUpon>frmFormatGrid.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Core\Main\frmMemo.resx">
       <DependentUpon>frmMemo.vb</DependentUpon>
@@ -4100,7 +4379,7 @@
     <EmbeddedResource Include="Core\Main\frmUserLevel.resx">
       <DependentUpon>frmUserLevel.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Apps\Temp\Form1.resx">
+    <EmbeddedResource Include="Apps\TMP\Form1.resx">
       <DependentUpon>Form1.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\licenses.licx" />
@@ -4122,6 +4401,19 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <None Include="Resources\AnatomiK.png" />
+    <None Include="Resources\canvas_splash3.jpg" />
+    <None Include="Resources\canvas_splash4.jpg" />
+    <None Include="Resources\sWebcam.png" />
+    <None Include="Resources\sQRwebcam.png" />
+    <None Include="Resources\sQRcode.png" />
+    <None Include="Resources\sNFC.png" />
+    <None Include="Resources\ScanNFC.png" />
+    <Content Include="NeracaBulananUnit.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="RugiLabaBulananUnit.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="SQLite.Interop.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -4821,13 +5113,13 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Apps\ASS\" />
     <Folder Include="Apps\LOGFAR\" />
     <Folder Include="Apps\PACS\Data\" />
     <Folder Include="Apps\PACS\Monitor\" />
     <Folder Include="Apps\POS\Monitor\" />
     <Folder Include="Apps\PPIC\" />
     <Folder Include="Apps\RIS\" />
+    <Folder Include="Apps\SCH\Data\" />
     <Folder Include="Core\Enum\" />
   </ItemGroup>
   <ItemGroup>

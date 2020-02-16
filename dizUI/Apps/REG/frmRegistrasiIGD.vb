@@ -1047,6 +1047,13 @@
         teNoRegistrasi.Text = pair.Value
 
         Dim sqls As New SQLs(dbstring)
+        sqls.DMLQuery("select r.idregistrasi,dbo.fFormatNoRM(rm.rekammedisno) as norm from registrasi r left join rekammedis rm on r.idrekammedis=rm.idrekammedis where r.isdeleted=0 and r.iddokterruangan='" & lueParamedis.EditValue & "' and r.idrekammedis='" & teNoRM.Tag & "' and convert(varchar,r.createddate,105)=convert(varchar,getdate(),105)", "cekregexist")
+        If sqls.getDataSet("cekregexist") > 0 Then
+            If dizMsgbox("Register aktif ditemukan untuk " & sqls.getDataSet("cekregexist", 0, "norm") & vbCrLf & " ke Dokter/Tenaga Medis " & lueParamedis.Text & vbCrLf & "Melanjutkan untuk diregister ulang?", dizMsgboxStyle.Konfirmasi, "Konfirmasi") = dizMsgboxValue.Batal Then
+                Exit Sub
+            End If
+        End If
+
         sqls.DMLQuery("select count(idregistrasi) as count from registrasi where isdeleted=0 and idrekammedis='" & teNoRM.Tag & "'", "cnt")
         cnt = sqls.getDataSet("cnt", 0, "count")
 
@@ -1338,6 +1345,13 @@
         teNoRegistrasi.Text = pair.Value
 
         Dim sqls As New SQLs(dbstring)
+        sqls.DMLQuery("select r.idregistrasi,dbo.fFormatNoRM(rm.rekammedisno) as norm from registrasi r left join rekammedis rm on r.idrekammedis=rm.idrekammedis where r.isdeleted=0 and r.iddokterruangan='" & lueParamedis.EditValue & "' and r.idrekammedis='" & teNoRM.Tag & "' and convert(varchar,r.createddate,105)=convert(varchar,getdate(),105)", "cekregexist")
+        If sqls.getDataSet("cekregexist") > 0 Then
+            If dizMsgbox("Register aktif ditemukan untuk " & sqls.getDataSet("cekregexist", 0, "norm") & vbCrLf & " ke Dokter/Tenaga Medis " & lueParamedis.Text & vbCrLf & "Melanjutkan untuk diregister ulang?", dizMsgboxStyle.Konfirmasi, "Konfirmasi") = dizMsgboxValue.Batal Then
+                Exit Sub
+            End If
+        End If
+
         sqls.DMLQuery("select count(idregistrasi) as count from registrasi where registrasistatus<>2 and idrekammedis='" & teNoRM.Tag & "'", "cnt")
         cnt = sqls.getDataSet("cnt", 0, "count")
 
@@ -1707,7 +1721,7 @@
 
     Private Sub btnAppDokter_Click(sender As Object, e As EventArgs) Handles btnAppDokter.Click
         formTitle = "Monitoring Appointment Dokter"
-        Dim frmMon As New frmMonAppointment
+        Dim frmMon As New frmMonAppointmentParamedis
         tambahChild(frmMon)
         frmMon.Size = New Size(Screen.PrimaryScreen.WorkingArea.Width - 100, Screen.PrimaryScreen.WorkingArea.Height - 100)
         frmMon.MaximumSize = New Size(Screen.PrimaryScreen.WorkingArea.Width - 100, Screen.PrimaryScreen.WorkingArea.Height - 100)

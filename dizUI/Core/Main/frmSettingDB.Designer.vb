@@ -275,6 +275,7 @@ Partial Class frmSettingDB
         Me.tboDBpwd.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple
         Me.tboDBpwd.Properties.NullText = "[Kosong]"
         Me.tboDBpwd.Properties.NullValuePrompt = "[Belum Diisi]"
+        Me.tboDBpwd.Properties.UseSystemPasswordChar = True
         Me.tboDBpwd.Size = New System.Drawing.Size(187, 20)
         Me.tboDBpwd.TabIndex = 36
         Me.tboDBpwd.Tag = "namalengkap"

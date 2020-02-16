@@ -372,9 +372,9 @@ Public Class frmStokOpnameBarang
             For i As Integer = 0 To dt.Rows.Count - 1
                 Try
                     Dim dra As DataRow = dt.Rows(i)
-                    For a As Integer = 0 To dt.Columns.Count - 1
-                        MsgBox(dra(a))
-                    Next
+                    'For a As Integer = 0 To dt.Columns.Count - 1
+                    '    MsgBox(dra(a))
+                    'Next
 
                     Dim dr As DataRow = dt.Rows(i)
                     Dim brggrup As String = If(dr(0), "")

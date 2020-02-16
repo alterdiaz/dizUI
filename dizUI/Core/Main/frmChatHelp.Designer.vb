@@ -31,12 +31,13 @@ Partial Class frmChatHelp
         Me.pMaximize = New System.Windows.Forms.PictureBox()
         Me.pExit = New System.Windows.Forms.PictureBox()
         Me.pBody = New System.Windows.Forms.Panel()
-        Me.webCtrl = New Awesomium.Windows.Forms.WebControl(Me.components)
         Me.pHeader = New System.Windows.Forms.Panel()
+        Me.btnExtBrowser = New System.Windows.Forms.Button()
         Me.btnRefresh = New System.Windows.Forms.Button()
         Me.rimeAddress = New DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit()
         Me.lblSep5 = New System.Windows.Forms.Label()
-        Me.btnExtBrowser = New System.Windows.Forms.Button()
+        Me.webCtrl = New Awesomium.Windows.Forms.WebControl(Me.components)
+        Me.WebControl1 = New Awesomium.Windows.Forms.WebControl(Me.components)
         Me.tlpForm.SuspendLayout()
         Me.pTitle.SuspendLayout()
         CType(Me.pMinimize, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -137,7 +138,7 @@ Partial Class frmChatHelp
         'pBody
         '
         Me.pBody.BackColor = System.Drawing.Color.FromArgb(CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer))
-        Me.pBody.Controls.Add(Me.webCtrl)
+        Me.pBody.Controls.Add(Me.WebControl1)
         Me.pBody.Controls.Add(Me.pHeader)
         Me.pBody.Dock = System.Windows.Forms.DockStyle.Fill
         Me.pBody.Location = New System.Drawing.Point(2, 30)
@@ -145,13 +146,6 @@ Partial Class frmChatHelp
         Me.pBody.Name = "pBody"
         Me.pBody.Size = New System.Drawing.Size(383, 474)
         Me.pBody.TabIndex = 7
-        '
-        'webCtrl
-        '
-        Me.webCtrl.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.webCtrl.Location = New System.Drawing.Point(0, 30)
-        Me.webCtrl.Size = New System.Drawing.Size(383, 444)
-        Me.webCtrl.TabIndex = 5
         '
         'pHeader
         '
@@ -165,6 +159,23 @@ Partial Class frmChatHelp
         Me.pHeader.Name = "pHeader"
         Me.pHeader.Size = New System.Drawing.Size(383, 30)
         Me.pHeader.TabIndex = 4
+        '
+        'btnExtBrowser
+        '
+        Me.btnExtBrowser.BackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer))
+        Me.btnExtBrowser.Dock = System.Windows.Forms.DockStyle.Left
+        Me.btnExtBrowser.FlatAppearance.BorderSize = 0
+        Me.btnExtBrowser.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DimGray
+        Me.btnExtBrowser.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DarkGray
+        Me.btnExtBrowser.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnExtBrowser.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnExtBrowser.Location = New System.Drawing.Point(0, 0)
+        Me.btnExtBrowser.Name = "btnExtBrowser"
+        Me.btnExtBrowser.Size = New System.Drawing.Size(100, 30)
+        Me.btnExtBrowser.TabIndex = 19
+        Me.btnExtBrowser.Text = "EXT BROWSER"
+        Me.btnExtBrowser.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
+        Me.btnExtBrowser.UseVisualStyleBackColor = False
         '
         'btnRefresh
         '
@@ -203,22 +214,20 @@ Partial Class frmChatHelp
         Me.lblSep5.Text = "|"
         Me.lblSep5.TextAlign = System.Drawing.ContentAlignment.TopCenter
         '
-        'btnExtBrowser
+        'webCtrl
         '
-        Me.btnExtBrowser.BackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer))
-        Me.btnExtBrowser.Dock = System.Windows.Forms.DockStyle.Left
-        Me.btnExtBrowser.FlatAppearance.BorderSize = 0
-        Me.btnExtBrowser.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DimGray
-        Me.btnExtBrowser.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DarkGray
-        Me.btnExtBrowser.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btnExtBrowser.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnExtBrowser.Location = New System.Drawing.Point(0, 0)
-        Me.btnExtBrowser.Name = "btnExtBrowser"
-        Me.btnExtBrowser.Size = New System.Drawing.Size(100, 30)
-        Me.btnExtBrowser.TabIndex = 19
-        Me.btnExtBrowser.Text = "EXT BROWSER"
-        Me.btnExtBrowser.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
-        Me.btnExtBrowser.UseVisualStyleBackColor = False
+        Me.webCtrl.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.webCtrl.Location = New System.Drawing.Point(0, 30)
+        Me.webCtrl.Size = New System.Drawing.Size(383, 444)
+        Me.webCtrl.TabIndex = 5
+        '
+        'WebControl1
+        '
+        Me.WebControl1.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.WebControl1.Location = New System.Drawing.Point(0, 30)
+        Me.WebControl1.Margin = New System.Windows.Forms.Padding(0)
+        Me.WebControl1.Size = New System.Drawing.Size(383, 444)
+        Me.WebControl1.TabIndex = 5
         '
         'frmChatHelp
         '
@@ -256,6 +265,7 @@ Partial Class frmChatHelp
     Friend WithEvents pMaximize As System.Windows.Forms.PictureBox
     Friend WithEvents pExit As System.Windows.Forms.PictureBox
     Public WithEvents btnRefresh As Button
-    Private WithEvents webCtrl As Awesomium.Windows.Forms.WebControl
     Public WithEvents btnExtBrowser As Button
+    Private WithEvents WebControl1 As Awesomium.Windows.Forms.WebControl
+    Private WithEvents webCtrl As Awesomium.Windows.Forms.WebControl
 End Class

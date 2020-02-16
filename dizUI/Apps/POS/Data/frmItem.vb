@@ -96,7 +96,7 @@ Public Class frmItem
         Me.Cursor = Cursors.WaitCursor
 
         Dim mysqls As New SQLs(dbstring)
-        mysqls.DMLQuery("select i.iditem,i.iditemgrup,i.itemtype,gc.generalcode as type,g.itemgrup as grup,i.kodeupc,i.kode,i.iditembrand,ib.nama as itembrand,i.item,i.isdeleted,d.generalcode as statdata,i.idsatuan,s.satuan,i.remarks from item i left join itembrand ib on i.iditembrand=ib.iditembrand left join satuan s on i.idsatuan=s.idsatuan left join itemgrup g on i.iditemgrup=g.iditemgrup left join sys_generalcode gc on gc.idgeneral=i.itemtype and gc.gctype='ITEMTYPE' left join sys_generalcode d on d.idgeneral=i.isdeleted and d.gctype='DELETE' order by i.item asc", "data")
+        mysqls.DMLQuery("select i.iditem,i.iditemgrup,i.itemtype,gc.generalcode as type,g.itemgrup as grup,i.kodeupc,i.kode,i.iditembrand,ib.nama as itembrand,i.item,i.isdeleted,d.generalcode as statdata,i.idsatuan,s.satuan,i.remarks from item i left join itembrand ib on i.iditembrand=ib.iditembrand left join satuan s on i.idsatuan=s.idsatuan left join itemgrup g on i.iditemgrup=g.iditemgrup left join sys_generalcode gc on gc.idgeneral=i.itemtype and gc.gctype='ITEMTYPE' left join sys_generalcode d on d.idgeneral=i.isdeleted and d.gctype='DELETE' order by g.itemgrup asc,i.item asc", "data")
         gcData.DataSource = mysqls.dataTable("data")
         gvData.BestFitColumns()
 

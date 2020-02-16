@@ -8,10 +8,10 @@ Imports System.Runtime.InteropServices
 
 ' Review the values of the assembly attributes
 
-<Assembly: AssemblyTitle("Sistem Informasi Enterprise")>
+<Assembly: AssemblyTitle("Datacube Enterprise")>
 <Assembly: AssemblyDescription("Sistem Informasi Enterprise dari Diznet Indo Zahira")>
 <Assembly: AssemblyCompany("Diznet Indo Zahira")>
-<Assembly: AssemblyProduct("Sistem Informasi Enterprise - Datacube")>
+<Assembly: AssemblyProduct("Datacube Enterprise")>
 <Assembly: AssemblyCopyright("Copyright © Diznet Indo Zahira 2015")> 
 <Assembly: AssemblyTrademark("Trademark ™ Diznet Indo Zahira 2015")> 
 
@@ -31,5 +31,5 @@ Imports System.Runtime.InteropServices
 ' by using the '*' as shown below:
 ' <Assembly: AssemblyVersion("1.0.*")> 
 
-<Assembly: AssemblyVersion("8.5.3.0")>
-<Assembly: AssemblyFileVersion("8.5.3.0")>
+<Assembly: AssemblyVersion("8.5.6.4")>
+<Assembly: AssemblyFileVersion("8.5.6.4")>

@@ -63,40 +63,30 @@ Partial Class frmPenerimaanBarangReview
         Me.Panel1 = New System.Windows.Forms.Panel()
         Me.btnDeleteItem = New System.Windows.Forms.Button()
         Me.tlpField = New System.Windows.Forms.TableLayoutPanel()
-        Me.Label5 = New System.Windows.Forms.Label()
-        Me.Label2 = New System.Windows.Forms.Label()
-        Me.deTanggalTempo = New DevExpress.XtraEditors.DateEdit()
-        Me.deTanggalKirim = New DevExpress.XtraEditors.DateEdit()
+        Me.teDokumen2 = New DevExpress.XtraEditors.TextEdit()
+        Me.Label7 = New System.Windows.Forms.Label()
+        Me.teDokumen = New DevExpress.XtraEditors.TextEdit()
+        Me.Label6 = New System.Windows.Forms.Label()
         Me.teUnit = New DevExpress.XtraEditors.TextEdit()
+        Me.Label4 = New System.Windows.Forms.Label()
         Me.teSupplier = New DevExpress.XtraEditors.TextEdit()
+        Me.teNote = New DevExpress.XtraEditors.TextEdit()
         Me.Label3 = New System.Windows.Forms.Label()
         Me.deTanggal = New DevExpress.XtraEditors.DateEdit()
         Me.teKode = New DevExpress.XtraEditors.TextEdit()
         Me.lblParent = New System.Windows.Forms.Label()
         Me.Label1 = New System.Windows.Forms.Label()
-        Me.teNote = New DevExpress.XtraEditors.TextEdit()
-        Me.Label4 = New System.Windows.Forms.Label()
         Me.lblDepartment = New System.Windows.Forms.Label()
+        Me.deTanggalKirim = New DevExpress.XtraEditors.DateEdit()
+        Me.Label2 = New System.Windows.Forms.Label()
+        Me.Label5 = New System.Windows.Forms.Label()
+        Me.deTanggalTempo = New DevExpress.XtraEditors.DateEdit()
         Me.pHeader = New System.Windows.Forms.Panel()
         Me.btnSearch = New System.Windows.Forms.Button()
         Me.btnSave = New System.Windows.Forms.Button()
         Me.btnDelete = New System.Windows.Forms.Button()
         Me.lblSep5 = New System.Windows.Forms.Label()
         Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.Label9 = New System.Windows.Forms.Label()
-        Me.Label10 = New System.Windows.Forms.Label()
-        Me.slueKCOA = New DevExpress.XtraEditors.SearchLookUpEdit()
-        Me.GridView2 = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.GridColumn19 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn20 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn21 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.slueDCOA = New DevExpress.XtraEditors.SearchLookUpEdit()
-        Me.slueCOAView = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.GridColumn16 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn17 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn18 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.teDokumen = New DevExpress.XtraEditors.TextEdit()
-        Me.Label6 = New System.Windows.Forms.Label()
         CType(Me.seQty, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.tlpForm.SuspendLayout()
         Me.pTitle.SuspendLayout()
@@ -114,22 +104,19 @@ Partial Class frmPenerimaanBarangReview
         CType(Me.RepositoryItemLookUpEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel1.SuspendLayout()
         Me.tlpField.SuspendLayout()
-        CType(Me.deTanggalTempo.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.deTanggalTempo.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.deTanggalKirim.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.deTanggalKirim.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.teDokumen2.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.teDokumen.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.teUnit.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.teSupplier.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.teNote.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.deTanggal.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.deTanggal.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.teKode.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.teNote.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.deTanggalKirim.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.deTanggalKirim.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.deTanggalTempo.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.deTanggalTempo.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.pHeader.SuspendLayout()
-        CType(Me.slueKCOA.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GridView2, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.slueDCOA.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.slueCOAView, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.teDokumen.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'seQty
@@ -632,16 +619,14 @@ Partial Class frmPenerimaanBarangReview
         Me.tlpField.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100.0!))
         Me.tlpField.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 150.0!))
         Me.tlpField.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
+        Me.tlpField.Controls.Add(Me.teDokumen2, 2, 4)
+        Me.tlpField.Controls.Add(Me.Label7, 1, 4)
         Me.tlpField.Controls.Add(Me.teDokumen, 2, 3)
-        Me.tlpField.Controls.Add(Me.Label10, 3, 5)
         Me.tlpField.Controls.Add(Me.Label6, 1, 3)
-        Me.tlpField.Controls.Add(Me.Label9, 1, 5)
-        Me.tlpField.Controls.Add(Me.slueKCOA, 4, 5)
-        Me.tlpField.Controls.Add(Me.slueDCOA, 2, 5)
         Me.tlpField.Controls.Add(Me.teUnit, 4, 2)
-        Me.tlpField.Controls.Add(Me.Label4, 1, 4)
+        Me.tlpField.Controls.Add(Me.Label4, 1, 5)
         Me.tlpField.Controls.Add(Me.teSupplier, 2, 2)
-        Me.tlpField.Controls.Add(Me.teNote, 2, 4)
+        Me.tlpField.Controls.Add(Me.teNote, 2, 5)
         Me.tlpField.Controls.Add(Me.Label3, 3, 1)
         Me.tlpField.Controls.Add(Me.deTanggal, 4, 1)
         Me.tlpField.Controls.Add(Me.teKode, 2, 1)
@@ -649,9 +634,9 @@ Partial Class frmPenerimaanBarangReview
         Me.tlpField.Controls.Add(Me.Label1, 3, 2)
         Me.tlpField.Controls.Add(Me.lblDepartment, 1, 2)
         Me.tlpField.Controls.Add(Me.deTanggalKirim, 4, 3)
-        Me.tlpField.Controls.Add(Me.deTanggalTempo, 4, 4)
         Me.tlpField.Controls.Add(Me.Label2, 3, 3)
         Me.tlpField.Controls.Add(Me.Label5, 3, 4)
+        Me.tlpField.Controls.Add(Me.deTanggalTempo, 4, 4)
         Me.tlpField.Dock = System.Windows.Forms.DockStyle.Top
         Me.tlpField.Location = New System.Drawing.Point(0, 30)
         Me.tlpField.Name = "tlpField"
@@ -663,132 +648,85 @@ Partial Class frmPenerimaanBarangReview
         Me.tlpField.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 24.0!))
         Me.tlpField.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 24.0!))
         Me.tlpField.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 6.0!))
+        Me.tlpField.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
         Me.tlpField.Size = New System.Drawing.Size(883, 132)
         Me.tlpField.TabIndex = 7
         '
-        'Label5
+        'teDokumen2
         '
-        Me.Label5.Anchor = System.Windows.Forms.AnchorStyles.Right
-        Me.Label5.AutoSize = True
-        Me.Label5.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label5.Location = New System.Drawing.Point(483, 83)
-        Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(80, 14)
-        Me.Label5.TabIndex = 39
-        Me.Label5.Text = "Jatuh Tempo"
-        Me.Label5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.teDokumen2.Anchor = System.Windows.Forms.AnchorStyles.Left
+        Me.teDokumen2.Location = New System.Drawing.Point(266, 80)
+        Me.teDokumen2.Margin = New System.Windows.Forms.Padding(0)
+        Me.teDokumen2.Name = "teDokumen2"
+        Me.teDokumen2.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[True]
+        Me.teDokumen2.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.teDokumen2.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 9.0!)
+        Me.teDokumen2.Properties.Appearance.ForeColor = System.Drawing.Color.Black
+        Me.teDokumen2.Properties.Appearance.Options.UseBackColor = True
+        Me.teDokumen2.Properties.Appearance.Options.UseFont = True
+        Me.teDokumen2.Properties.Appearance.Options.UseForeColor = True
+        Me.teDokumen2.Properties.AppearanceDisabled.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.teDokumen2.Properties.AppearanceDisabled.Options.UseBackColor = True
+        Me.teDokumen2.Properties.AppearanceReadOnly.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.teDokumen2.Properties.AppearanceReadOnly.Options.UseBackColor = True
+        Me.teDokumen2.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple
+        Me.teDokumen2.Properties.MaxLength = 300
+        Me.teDokumen2.Properties.NullText = "[Belum Diisi]"
+        Me.teDokumen2.Properties.NullValuePrompt = "[Belum Diisi]"
+        Me.teDokumen2.Properties.ReadOnly = True
+        Me.teDokumen2.Size = New System.Drawing.Size(190, 20)
+        Me.teDokumen2.TabIndex = 29
+        Me.teDokumen2.Tag = "dokumenno"
         '
-        'Label2
+        'Label7
         '
-        Me.Label2.Anchor = System.Windows.Forms.AnchorStyles.Right
-        Me.Label2.AutoSize = True
-        Me.Label2.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label2.Location = New System.Drawing.Point(484, 59)
-        Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(79, 14)
-        Me.Label2.TabIndex = 38
-        Me.Label2.Text = "Tanggal Kirim"
-        Me.Label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.Label7.Anchor = System.Windows.Forms.AnchorStyles.Right
+        Me.Label7.AutoSize = True
+        Me.Label7.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label7.Location = New System.Drawing.Point(178, 83)
+        Me.Label7.Name = "Label7"
+        Me.Label7.Size = New System.Drawing.Size(85, 14)
+        Me.Label7.TabIndex = 41
+        Me.Label7.Text = "No.Surat Jalan"
+        Me.Label7.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
-        'deTanggalTempo
+        'teDokumen
         '
-        Me.deTanggalTempo.Anchor = System.Windows.Forms.AnchorStyles.Left
-        Me.deTanggalTempo.EditValue = Nothing
-        Me.deTanggalTempo.Enabled = False
-        Me.deTanggalTempo.Location = New System.Drawing.Point(566, 80)
-        Me.deTanggalTempo.Margin = New System.Windows.Forms.Padding(0)
-        Me.deTanggalTempo.Name = "deTanggalTempo"
-        Me.deTanggalTempo.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.deTanggalTempo.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 9.0!)
-        Me.deTanggalTempo.Properties.Appearance.ForeColor = System.Drawing.Color.Black
-        Me.deTanggalTempo.Properties.Appearance.Options.UseBackColor = True
-        Me.deTanggalTempo.Properties.Appearance.Options.UseFont = True
-        Me.deTanggalTempo.Properties.Appearance.Options.UseForeColor = True
-        Me.deTanggalTempo.Properties.AppearanceCalendar.DayCellHighlighted.Font = New System.Drawing.Font("Tahoma", 9.0!)
-        Me.deTanggalTempo.Properties.AppearanceCalendar.DayCellHighlighted.Options.UseFont = True
-        Me.deTanggalTempo.Properties.AppearanceCalendar.Header.Font = New System.Drawing.Font("Tahoma", 9.0!)
-        Me.deTanggalTempo.Properties.AppearanceCalendar.Header.Options.UseFont = True
-        Me.deTanggalTempo.Properties.AppearanceCalendar.HeaderHighlighted.Font = New System.Drawing.Font("Tahoma", 9.0!)
-        Me.deTanggalTempo.Properties.AppearanceCalendar.HeaderHighlighted.Options.UseFont = True
-        Me.deTanggalTempo.Properties.AppearanceCalendar.WeekNumber.Font = New System.Drawing.Font("Tahoma", 9.0!)
-        Me.deTanggalTempo.Properties.AppearanceCalendar.WeekNumber.Options.UseFont = True
-        Me.deTanggalTempo.Properties.AppearanceDisabled.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.deTanggalTempo.Properties.AppearanceDisabled.Font = New System.Drawing.Font("Tahoma", 9.0!)
-        Me.deTanggalTempo.Properties.AppearanceDisabled.Options.UseBackColor = True
-        Me.deTanggalTempo.Properties.AppearanceDisabled.Options.UseFont = True
-        Me.deTanggalTempo.Properties.AppearanceDropDown.Font = New System.Drawing.Font("Tahoma", 9.0!)
-        Me.deTanggalTempo.Properties.AppearanceDropDown.Options.UseFont = True
-        Me.deTanggalTempo.Properties.AppearanceFocused.Font = New System.Drawing.Font("Tahoma", 9.0!)
-        Me.deTanggalTempo.Properties.AppearanceFocused.Options.UseFont = True
-        Me.deTanggalTempo.Properties.AppearanceReadOnly.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.deTanggalTempo.Properties.AppearanceReadOnly.Font = New System.Drawing.Font("Tahoma", 9.0!)
-        Me.deTanggalTempo.Properties.AppearanceReadOnly.Options.UseBackColor = True
-        Me.deTanggalTempo.Properties.AppearanceReadOnly.Options.UseFont = True
-        Me.deTanggalTempo.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple
-        Me.deTanggalTempo.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.deTanggalTempo.Properties.CalendarTimeEditing = DevExpress.Utils.DefaultBoolean.[True]
-        Me.deTanggalTempo.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
-        Me.deTanggalTempo.Properties.CalendarView = DevExpress.XtraEditors.Repository.CalendarView.Vista
-        Me.deTanggalTempo.Properties.DisplayFormat.FormatString = "dd-MM-yyyy HH:mm:ss"
-        Me.deTanggalTempo.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.deTanggalTempo.Properties.EditFormat.FormatString = "dd-MM-yyyy HH:mm:ss"
-        Me.deTanggalTempo.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.deTanggalTempo.Properties.Mask.EditMask = "dd-MM-yyyy HH:mm:ss"
-        Me.deTanggalTempo.Properties.ReadOnly = True
-        Me.deTanggalTempo.Properties.VistaDisplayMode = DevExpress.Utils.DefaultBoolean.[True]
-        Me.deTanggalTempo.Size = New System.Drawing.Size(135, 20)
-        Me.deTanggalTempo.TabIndex = 39
-        Me.deTanggalTempo.Tag = "createddate"
+        Me.teDokumen.Anchor = System.Windows.Forms.AnchorStyles.Left
+        Me.teDokumen.Location = New System.Drawing.Point(266, 56)
+        Me.teDokumen.Margin = New System.Windows.Forms.Padding(0)
+        Me.teDokumen.Name = "teDokumen"
+        Me.teDokumen.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[True]
+        Me.teDokumen.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.teDokumen.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 9.0!)
+        Me.teDokumen.Properties.Appearance.ForeColor = System.Drawing.Color.Black
+        Me.teDokumen.Properties.Appearance.Options.UseBackColor = True
+        Me.teDokumen.Properties.Appearance.Options.UseFont = True
+        Me.teDokumen.Properties.Appearance.Options.UseForeColor = True
+        Me.teDokumen.Properties.AppearanceDisabled.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.teDokumen.Properties.AppearanceDisabled.Options.UseBackColor = True
+        Me.teDokumen.Properties.AppearanceReadOnly.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.teDokumen.Properties.AppearanceReadOnly.Options.UseBackColor = True
+        Me.teDokumen.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple
+        Me.teDokumen.Properties.MaxLength = 300
+        Me.teDokumen.Properties.NullText = "[Belum Diisi]"
+        Me.teDokumen.Properties.NullValuePrompt = "[Belum Diisi]"
+        Me.teDokumen.Properties.ReadOnly = True
+        Me.teDokumen.Size = New System.Drawing.Size(190, 20)
+        Me.teDokumen.TabIndex = 28
+        Me.teDokumen.Tag = "dokumenno"
         '
-        'deTanggalKirim
+        'Label6
         '
-        Me.deTanggalKirim.Anchor = System.Windows.Forms.AnchorStyles.Left
-        Me.deTanggalKirim.EditValue = Nothing
-        Me.deTanggalKirim.Enabled = False
-        Me.deTanggalKirim.Location = New System.Drawing.Point(566, 56)
-        Me.deTanggalKirim.Margin = New System.Windows.Forms.Padding(0)
-        Me.deTanggalKirim.Name = "deTanggalKirim"
-        Me.deTanggalKirim.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.deTanggalKirim.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 9.0!)
-        Me.deTanggalKirim.Properties.Appearance.ForeColor = System.Drawing.Color.Black
-        Me.deTanggalKirim.Properties.Appearance.Options.UseBackColor = True
-        Me.deTanggalKirim.Properties.Appearance.Options.UseFont = True
-        Me.deTanggalKirim.Properties.Appearance.Options.UseForeColor = True
-        Me.deTanggalKirim.Properties.AppearanceCalendar.DayCellHighlighted.Font = New System.Drawing.Font("Tahoma", 9.0!)
-        Me.deTanggalKirim.Properties.AppearanceCalendar.DayCellHighlighted.Options.UseFont = True
-        Me.deTanggalKirim.Properties.AppearanceCalendar.Header.Font = New System.Drawing.Font("Tahoma", 9.0!)
-        Me.deTanggalKirim.Properties.AppearanceCalendar.Header.Options.UseFont = True
-        Me.deTanggalKirim.Properties.AppearanceCalendar.HeaderHighlighted.Font = New System.Drawing.Font("Tahoma", 9.0!)
-        Me.deTanggalKirim.Properties.AppearanceCalendar.HeaderHighlighted.Options.UseFont = True
-        Me.deTanggalKirim.Properties.AppearanceCalendar.WeekNumber.Font = New System.Drawing.Font("Tahoma", 9.0!)
-        Me.deTanggalKirim.Properties.AppearanceCalendar.WeekNumber.Options.UseFont = True
-        Me.deTanggalKirim.Properties.AppearanceDisabled.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.deTanggalKirim.Properties.AppearanceDisabled.Font = New System.Drawing.Font("Tahoma", 9.0!)
-        Me.deTanggalKirim.Properties.AppearanceDisabled.Options.UseBackColor = True
-        Me.deTanggalKirim.Properties.AppearanceDisabled.Options.UseFont = True
-        Me.deTanggalKirim.Properties.AppearanceDropDown.Font = New System.Drawing.Font("Tahoma", 9.0!)
-        Me.deTanggalKirim.Properties.AppearanceDropDown.Options.UseFont = True
-        Me.deTanggalKirim.Properties.AppearanceFocused.Font = New System.Drawing.Font("Tahoma", 9.0!)
-        Me.deTanggalKirim.Properties.AppearanceFocused.Options.UseFont = True
-        Me.deTanggalKirim.Properties.AppearanceReadOnly.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.deTanggalKirim.Properties.AppearanceReadOnly.Font = New System.Drawing.Font("Tahoma", 9.0!)
-        Me.deTanggalKirim.Properties.AppearanceReadOnly.Options.UseBackColor = True
-        Me.deTanggalKirim.Properties.AppearanceReadOnly.Options.UseFont = True
-        Me.deTanggalKirim.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple
-        Me.deTanggalKirim.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.deTanggalKirim.Properties.CalendarTimeEditing = DevExpress.Utils.DefaultBoolean.[True]
-        Me.deTanggalKirim.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
-        Me.deTanggalKirim.Properties.CalendarView = DevExpress.XtraEditors.Repository.CalendarView.Vista
-        Me.deTanggalKirim.Properties.DisplayFormat.FormatString = "dd-MM-yyyy HH:mm:ss"
-        Me.deTanggalKirim.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.deTanggalKirim.Properties.EditFormat.FormatString = "dd-MM-yyyy HH:mm:ss"
-        Me.deTanggalKirim.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.deTanggalKirim.Properties.Mask.EditMask = "dd-MM-yyyy HH:mm:ss"
-        Me.deTanggalKirim.Properties.ReadOnly = True
-        Me.deTanggalKirim.Properties.VistaDisplayMode = DevExpress.Utils.DefaultBoolean.[True]
-        Me.deTanggalKirim.Size = New System.Drawing.Size(135, 20)
-        Me.deTanggalKirim.TabIndex = 38
-        Me.deTanggalKirim.Tag = "createddate"
+        Me.Label6.Anchor = System.Windows.Forms.AnchorStyles.Right
+        Me.Label6.AutoSize = True
+        Me.Label6.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label6.Location = New System.Drawing.Point(199, 59)
+        Me.Label6.Name = "Label6"
+        Me.Label6.Size = New System.Drawing.Size(64, 14)
+        Me.Label6.TabIndex = 29
+        Me.Label6.Text = "No. Faktur"
+        Me.Label6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
         'teUnit
         '
@@ -816,6 +754,18 @@ Partial Class frmPenerimaanBarangReview
         Me.teUnit.TabIndex = 22
         Me.teUnit.Tag = "remarks"
         '
+        'Label4
+        '
+        Me.Label4.Anchor = System.Windows.Forms.AnchorStyles.Right
+        Me.Label4.AutoSize = True
+        Me.Label4.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label4.Location = New System.Drawing.Point(193, 107)
+        Me.Label4.Name = "Label4"
+        Me.Label4.Size = New System.Drawing.Size(70, 14)
+        Me.Label4.TabIndex = 23
+        Me.Label4.Text = "Keterangan"
+        Me.Label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        '
         'teSupplier
         '
         Me.teSupplier.Anchor = System.Windows.Forms.AnchorStyles.Left
@@ -841,6 +791,32 @@ Partial Class frmPenerimaanBarangReview
         Me.teSupplier.Size = New System.Drawing.Size(190, 20)
         Me.teSupplier.TabIndex = 21
         Me.teSupplier.Tag = "remarks"
+        '
+        'teNote
+        '
+        Me.teNote.Anchor = System.Windows.Forms.AnchorStyles.Left
+        Me.teNote.Location = New System.Drawing.Point(266, 104)
+        Me.teNote.Margin = New System.Windows.Forms.Padding(0)
+        Me.teNote.Name = "teNote"
+        Me.teNote.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[True]
+        Me.teNote.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.teNote.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 9.0!)
+        Me.teNote.Properties.Appearance.ForeColor = System.Drawing.Color.Black
+        Me.teNote.Properties.Appearance.Options.UseBackColor = True
+        Me.teNote.Properties.Appearance.Options.UseFont = True
+        Me.teNote.Properties.Appearance.Options.UseForeColor = True
+        Me.teNote.Properties.AppearanceDisabled.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.teNote.Properties.AppearanceDisabled.Options.UseBackColor = True
+        Me.teNote.Properties.AppearanceReadOnly.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.teNote.Properties.AppearanceReadOnly.Options.UseBackColor = True
+        Me.teNote.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple
+        Me.teNote.Properties.MaxLength = 300
+        Me.teNote.Properties.NullText = "[Belum Diisi]"
+        Me.teNote.Properties.NullValuePrompt = "[Belum Diisi]"
+        Me.teNote.Properties.ReadOnly = True
+        Me.teNote.Size = New System.Drawing.Size(150, 20)
+        Me.teNote.TabIndex = 20
+        Me.teNote.Tag = "remarks"
         '
         'Label3
         '
@@ -928,11 +904,11 @@ Partial Class frmPenerimaanBarangReview
         Me.lblParent.Anchor = System.Windows.Forms.AnchorStyles.Right
         Me.lblParent.AutoSize = True
         Me.lblParent.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblParent.Location = New System.Drawing.Point(220, 11)
+        Me.lblParent.Location = New System.Drawing.Point(188, 11)
         Me.lblParent.Name = "lblParent"
-        Me.lblParent.Size = New System.Drawing.Size(43, 14)
+        Me.lblParent.Size = New System.Drawing.Size(75, 14)
         Me.lblParent.TabIndex = 20
-        Me.lblParent.Text = "Nomor"
+        Me.lblParent.Text = "No.Transaksi"
         Me.lblParent.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
         'Label1
@@ -947,44 +923,6 @@ Partial Class frmPenerimaanBarangReview
         Me.Label1.Text = "Unit"
         Me.Label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
-        'teNote
-        '
-        Me.teNote.Anchor = System.Windows.Forms.AnchorStyles.Left
-        Me.teNote.Location = New System.Drawing.Point(266, 80)
-        Me.teNote.Margin = New System.Windows.Forms.Padding(0)
-        Me.teNote.Name = "teNote"
-        Me.teNote.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[True]
-        Me.teNote.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.teNote.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 9.0!)
-        Me.teNote.Properties.Appearance.ForeColor = System.Drawing.Color.Black
-        Me.teNote.Properties.Appearance.Options.UseBackColor = True
-        Me.teNote.Properties.Appearance.Options.UseFont = True
-        Me.teNote.Properties.Appearance.Options.UseForeColor = True
-        Me.teNote.Properties.AppearanceDisabled.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.teNote.Properties.AppearanceDisabled.Options.UseBackColor = True
-        Me.teNote.Properties.AppearanceReadOnly.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.teNote.Properties.AppearanceReadOnly.Options.UseBackColor = True
-        Me.teNote.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple
-        Me.teNote.Properties.MaxLength = 300
-        Me.teNote.Properties.NullText = "[Belum Diisi]"
-        Me.teNote.Properties.NullValuePrompt = "[Belum Diisi]"
-        Me.teNote.Properties.ReadOnly = True
-        Me.teNote.Size = New System.Drawing.Size(150, 20)
-        Me.teNote.TabIndex = 20
-        Me.teNote.Tag = "remarks"
-        '
-        'Label4
-        '
-        Me.Label4.Anchor = System.Windows.Forms.AnchorStyles.Right
-        Me.Label4.AutoSize = True
-        Me.Label4.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label4.Location = New System.Drawing.Point(193, 83)
-        Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(70, 14)
-        Me.Label4.TabIndex = 23
-        Me.Label4.Text = "Keterangan"
-        Me.Label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        '
         'lblDepartment
         '
         Me.lblDepartment.Anchor = System.Windows.Forms.AnchorStyles.Right
@@ -996,6 +934,130 @@ Partial Class frmPenerimaanBarangReview
         Me.lblDepartment.TabIndex = 9
         Me.lblDepartment.Text = "Supplier"
         Me.lblDepartment.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        '
+        'deTanggalKirim
+        '
+        Me.deTanggalKirim.Anchor = System.Windows.Forms.AnchorStyles.Left
+        Me.deTanggalKirim.EditValue = Nothing
+        Me.deTanggalKirim.Enabled = False
+        Me.deTanggalKirim.Location = New System.Drawing.Point(566, 56)
+        Me.deTanggalKirim.Margin = New System.Windows.Forms.Padding(0)
+        Me.deTanggalKirim.Name = "deTanggalKirim"
+        Me.deTanggalKirim.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.deTanggalKirim.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 9.0!)
+        Me.deTanggalKirim.Properties.Appearance.ForeColor = System.Drawing.Color.Black
+        Me.deTanggalKirim.Properties.Appearance.Options.UseBackColor = True
+        Me.deTanggalKirim.Properties.Appearance.Options.UseFont = True
+        Me.deTanggalKirim.Properties.Appearance.Options.UseForeColor = True
+        Me.deTanggalKirim.Properties.AppearanceCalendar.DayCellHighlighted.Font = New System.Drawing.Font("Tahoma", 9.0!)
+        Me.deTanggalKirim.Properties.AppearanceCalendar.DayCellHighlighted.Options.UseFont = True
+        Me.deTanggalKirim.Properties.AppearanceCalendar.Header.Font = New System.Drawing.Font("Tahoma", 9.0!)
+        Me.deTanggalKirim.Properties.AppearanceCalendar.Header.Options.UseFont = True
+        Me.deTanggalKirim.Properties.AppearanceCalendar.HeaderHighlighted.Font = New System.Drawing.Font("Tahoma", 9.0!)
+        Me.deTanggalKirim.Properties.AppearanceCalendar.HeaderHighlighted.Options.UseFont = True
+        Me.deTanggalKirim.Properties.AppearanceCalendar.WeekNumber.Font = New System.Drawing.Font("Tahoma", 9.0!)
+        Me.deTanggalKirim.Properties.AppearanceCalendar.WeekNumber.Options.UseFont = True
+        Me.deTanggalKirim.Properties.AppearanceDisabled.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.deTanggalKirim.Properties.AppearanceDisabled.Font = New System.Drawing.Font("Tahoma", 9.0!)
+        Me.deTanggalKirim.Properties.AppearanceDisabled.Options.UseBackColor = True
+        Me.deTanggalKirim.Properties.AppearanceDisabled.Options.UseFont = True
+        Me.deTanggalKirim.Properties.AppearanceDropDown.Font = New System.Drawing.Font("Tahoma", 9.0!)
+        Me.deTanggalKirim.Properties.AppearanceDropDown.Options.UseFont = True
+        Me.deTanggalKirim.Properties.AppearanceFocused.Font = New System.Drawing.Font("Tahoma", 9.0!)
+        Me.deTanggalKirim.Properties.AppearanceFocused.Options.UseFont = True
+        Me.deTanggalKirim.Properties.AppearanceReadOnly.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.deTanggalKirim.Properties.AppearanceReadOnly.Font = New System.Drawing.Font("Tahoma", 9.0!)
+        Me.deTanggalKirim.Properties.AppearanceReadOnly.Options.UseBackColor = True
+        Me.deTanggalKirim.Properties.AppearanceReadOnly.Options.UseFont = True
+        Me.deTanggalKirim.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple
+        Me.deTanggalKirim.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.deTanggalKirim.Properties.CalendarTimeEditing = DevExpress.Utils.DefaultBoolean.[True]
+        Me.deTanggalKirim.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
+        Me.deTanggalKirim.Properties.CalendarView = DevExpress.XtraEditors.Repository.CalendarView.Vista
+        Me.deTanggalKirim.Properties.DisplayFormat.FormatString = "dd-MM-yyyy HH:mm:ss"
+        Me.deTanggalKirim.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.deTanggalKirim.Properties.EditFormat.FormatString = "dd-MM-yyyy HH:mm:ss"
+        Me.deTanggalKirim.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.deTanggalKirim.Properties.Mask.EditMask = "dd-MM-yyyy HH:mm:ss"
+        Me.deTanggalKirim.Properties.ReadOnly = True
+        Me.deTanggalKirim.Properties.VistaDisplayMode = DevExpress.Utils.DefaultBoolean.[True]
+        Me.deTanggalKirim.Size = New System.Drawing.Size(135, 20)
+        Me.deTanggalKirim.TabIndex = 38
+        Me.deTanggalKirim.Tag = "createddate"
+        '
+        'Label2
+        '
+        Me.Label2.Anchor = System.Windows.Forms.AnchorStyles.Right
+        Me.Label2.AutoSize = True
+        Me.Label2.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label2.Location = New System.Drawing.Point(484, 59)
+        Me.Label2.Name = "Label2"
+        Me.Label2.Size = New System.Drawing.Size(79, 14)
+        Me.Label2.TabIndex = 38
+        Me.Label2.Text = "Tanggal Kirim"
+        Me.Label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        '
+        'Label5
+        '
+        Me.Label5.Anchor = System.Windows.Forms.AnchorStyles.Right
+        Me.Label5.AutoSize = True
+        Me.Label5.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label5.Location = New System.Drawing.Point(483, 83)
+        Me.Label5.Name = "Label5"
+        Me.Label5.Size = New System.Drawing.Size(80, 14)
+        Me.Label5.TabIndex = 39
+        Me.Label5.Text = "Jatuh Tempo"
+        Me.Label5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        '
+        'deTanggalTempo
+        '
+        Me.deTanggalTempo.Anchor = System.Windows.Forms.AnchorStyles.Left
+        Me.deTanggalTempo.EditValue = Nothing
+        Me.deTanggalTempo.Enabled = False
+        Me.deTanggalTempo.Location = New System.Drawing.Point(566, 80)
+        Me.deTanggalTempo.Margin = New System.Windows.Forms.Padding(0)
+        Me.deTanggalTempo.Name = "deTanggalTempo"
+        Me.deTanggalTempo.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.deTanggalTempo.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 9.0!)
+        Me.deTanggalTempo.Properties.Appearance.ForeColor = System.Drawing.Color.Black
+        Me.deTanggalTempo.Properties.Appearance.Options.UseBackColor = True
+        Me.deTanggalTempo.Properties.Appearance.Options.UseFont = True
+        Me.deTanggalTempo.Properties.Appearance.Options.UseForeColor = True
+        Me.deTanggalTempo.Properties.AppearanceCalendar.DayCellHighlighted.Font = New System.Drawing.Font("Tahoma", 9.0!)
+        Me.deTanggalTempo.Properties.AppearanceCalendar.DayCellHighlighted.Options.UseFont = True
+        Me.deTanggalTempo.Properties.AppearanceCalendar.Header.Font = New System.Drawing.Font("Tahoma", 9.0!)
+        Me.deTanggalTempo.Properties.AppearanceCalendar.Header.Options.UseFont = True
+        Me.deTanggalTempo.Properties.AppearanceCalendar.HeaderHighlighted.Font = New System.Drawing.Font("Tahoma", 9.0!)
+        Me.deTanggalTempo.Properties.AppearanceCalendar.HeaderHighlighted.Options.UseFont = True
+        Me.deTanggalTempo.Properties.AppearanceCalendar.WeekNumber.Font = New System.Drawing.Font("Tahoma", 9.0!)
+        Me.deTanggalTempo.Properties.AppearanceCalendar.WeekNumber.Options.UseFont = True
+        Me.deTanggalTempo.Properties.AppearanceDisabled.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.deTanggalTempo.Properties.AppearanceDisabled.Font = New System.Drawing.Font("Tahoma", 9.0!)
+        Me.deTanggalTempo.Properties.AppearanceDisabled.Options.UseBackColor = True
+        Me.deTanggalTempo.Properties.AppearanceDisabled.Options.UseFont = True
+        Me.deTanggalTempo.Properties.AppearanceDropDown.Font = New System.Drawing.Font("Tahoma", 9.0!)
+        Me.deTanggalTempo.Properties.AppearanceDropDown.Options.UseFont = True
+        Me.deTanggalTempo.Properties.AppearanceFocused.Font = New System.Drawing.Font("Tahoma", 9.0!)
+        Me.deTanggalTempo.Properties.AppearanceFocused.Options.UseFont = True
+        Me.deTanggalTempo.Properties.AppearanceReadOnly.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.deTanggalTempo.Properties.AppearanceReadOnly.Font = New System.Drawing.Font("Tahoma", 9.0!)
+        Me.deTanggalTempo.Properties.AppearanceReadOnly.Options.UseBackColor = True
+        Me.deTanggalTempo.Properties.AppearanceReadOnly.Options.UseFont = True
+        Me.deTanggalTempo.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple
+        Me.deTanggalTempo.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.deTanggalTempo.Properties.CalendarTimeEditing = DevExpress.Utils.DefaultBoolean.[True]
+        Me.deTanggalTempo.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
+        Me.deTanggalTempo.Properties.CalendarView = DevExpress.XtraEditors.Repository.CalendarView.Vista
+        Me.deTanggalTempo.Properties.DisplayFormat.FormatString = "dd-MM-yyyy HH:mm:ss"
+        Me.deTanggalTempo.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.deTanggalTempo.Properties.EditFormat.FormatString = "dd-MM-yyyy HH:mm:ss"
+        Me.deTanggalTempo.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.deTanggalTempo.Properties.Mask.EditMask = "dd-MM-yyyy HH:mm:ss"
+        Me.deTanggalTempo.Properties.ReadOnly = True
+        Me.deTanggalTempo.Properties.VistaDisplayMode = DevExpress.Utils.DefaultBoolean.[True]
+        Me.deTanggalTempo.Size = New System.Drawing.Size(135, 20)
+        Me.deTanggalTempo.TabIndex = 39
+        Me.deTanggalTempo.Tag = "createddate"
         '
         'pHeader
         '
@@ -1089,202 +1151,6 @@ Partial Class frmPenerimaanBarangReview
         Me.GridColumn2.Visible = True
         Me.GridColumn2.VisibleIndex = 3
         '
-        'Label9
-        '
-        Me.Label9.Anchor = System.Windows.Forms.AnchorStyles.Right
-        Me.Label9.AutoSize = True
-        Me.Label9.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label9.Location = New System.Drawing.Point(194, 107)
-        Me.Label9.Name = "Label9"
-        Me.Label9.Size = New System.Drawing.Size(69, 14)
-        Me.Label9.TabIndex = 28
-        Me.Label9.Text = "COA Debet"
-        Me.Label9.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        '
-        'Label10
-        '
-        Me.Label10.Anchor = System.Windows.Forms.AnchorStyles.Right
-        Me.Label10.AutoSize = True
-        Me.Label10.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label10.Location = New System.Drawing.Point(496, 107)
-        Me.Label10.Name = "Label10"
-        Me.Label10.Size = New System.Drawing.Size(67, 14)
-        Me.Label10.TabIndex = 29
-        Me.Label10.Text = "COA Kredit"
-        Me.Label10.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        '
-        'slueKCOA
-        '
-        Me.slueKCOA.Anchor = System.Windows.Forms.AnchorStyles.Left
-        Me.slueKCOA.Location = New System.Drawing.Point(566, 104)
-        Me.slueKCOA.Margin = New System.Windows.Forms.Padding(0)
-        Me.slueKCOA.Name = "slueKCOA"
-        Me.slueKCOA.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.slueKCOA.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 9.0!)
-        Me.slueKCOA.Properties.Appearance.ForeColor = System.Drawing.Color.Black
-        Me.slueKCOA.Properties.Appearance.Options.UseBackColor = True
-        Me.slueKCOA.Properties.Appearance.Options.UseFont = True
-        Me.slueKCOA.Properties.Appearance.Options.UseForeColor = True
-        Me.slueKCOA.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple
-        Me.slueKCOA.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.slueKCOA.Properties.NullText = "[Isian belum dipilih]"
-        Me.slueKCOA.Properties.NullValuePrompt = "[Isian belum dipilih]"
-        Me.slueKCOA.Properties.PopupBorderStyle = DevExpress.XtraEditors.Controls.PopupBorderStyles.Simple
-        Me.slueKCOA.Properties.PopupFindMode = DevExpress.XtraEditors.FindMode.Always
-        Me.slueKCOA.Properties.PopupView = Me.GridView2
-        Me.slueKCOA.Properties.ShowFooter = False
-        Me.slueKCOA.Properties.ShowPopupShadow = False
-        Me.slueKCOA.Properties.ViewType = DevExpress.XtraEditors.Repository.GridLookUpViewType.GridView
-        Me.slueKCOA.Size = New System.Drawing.Size(150, 20)
-        Me.slueKCOA.TabIndex = 27
-        '
-        'GridView2
-        '
-        Me.GridView2.Appearance.EvenRow.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.GridView2.Appearance.EvenRow.Options.UseBackColor = True
-        Me.GridView2.Appearance.OddRow.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer))
-        Me.GridView2.Appearance.OddRow.Options.UseBackColor = True
-        Me.GridView2.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn19, Me.GridColumn20, Me.GridColumn21})
-        Me.GridView2.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
-        Me.GridView2.Name = "GridView2"
-        Me.GridView2.OptionsSelection.EnableAppearanceFocusedCell = False
-        Me.GridView2.OptionsView.EnableAppearanceEvenRow = True
-        Me.GridView2.OptionsView.EnableAppearanceOddRow = True
-        Me.GridView2.OptionsView.ShowGroupPanel = False
-        '
-        'GridColumn19
-        '
-        Me.GridColumn19.Caption = "ID"
-        Me.GridColumn19.FieldName = "idcoa"
-        Me.GridColumn19.Name = "GridColumn19"
-        Me.GridColumn19.OptionsColumn.AllowEdit = False
-        Me.GridColumn19.OptionsColumn.ReadOnly = True
-        '
-        'GridColumn20
-        '
-        Me.GridColumn20.Caption = "COA"
-        Me.GridColumn20.FieldName = "coa"
-        Me.GridColumn20.Name = "GridColumn20"
-        Me.GridColumn20.OptionsColumn.AllowEdit = False
-        Me.GridColumn20.OptionsColumn.ReadOnly = True
-        Me.GridColumn20.Visible = True
-        Me.GridColumn20.VisibleIndex = 0
-        '
-        'GridColumn21
-        '
-        Me.GridColumn21.Caption = "Remarks"
-        Me.GridColumn21.FieldName = "remarks"
-        Me.GridColumn21.Name = "GridColumn21"
-        Me.GridColumn21.OptionsColumn.AllowEdit = False
-        Me.GridColumn21.OptionsColumn.ReadOnly = True
-        Me.GridColumn21.Visible = True
-        Me.GridColumn21.VisibleIndex = 1
-        '
-        'slueDCOA
-        '
-        Me.slueDCOA.Anchor = System.Windows.Forms.AnchorStyles.Left
-        Me.slueDCOA.Location = New System.Drawing.Point(266, 104)
-        Me.slueDCOA.Margin = New System.Windows.Forms.Padding(0)
-        Me.slueDCOA.Name = "slueDCOA"
-        Me.slueDCOA.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.slueDCOA.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 9.0!)
-        Me.slueDCOA.Properties.Appearance.ForeColor = System.Drawing.Color.Black
-        Me.slueDCOA.Properties.Appearance.Options.UseBackColor = True
-        Me.slueDCOA.Properties.Appearance.Options.UseFont = True
-        Me.slueDCOA.Properties.Appearance.Options.UseForeColor = True
-        Me.slueDCOA.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple
-        Me.slueDCOA.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.slueDCOA.Properties.NullText = "[Isian belum dipilih]"
-        Me.slueDCOA.Properties.NullValuePrompt = "[Isian belum dipilih]"
-        Me.slueDCOA.Properties.PopupBorderStyle = DevExpress.XtraEditors.Controls.PopupBorderStyles.Simple
-        Me.slueDCOA.Properties.PopupFindMode = DevExpress.XtraEditors.FindMode.Always
-        Me.slueDCOA.Properties.PopupView = Me.slueCOAView
-        Me.slueDCOA.Properties.ShowFooter = False
-        Me.slueDCOA.Properties.ShowPopupShadow = False
-        Me.slueDCOA.Properties.ViewType = DevExpress.XtraEditors.Repository.GridLookUpViewType.GridView
-        Me.slueDCOA.Size = New System.Drawing.Size(150, 20)
-        Me.slueDCOA.TabIndex = 26
-        '
-        'slueCOAView
-        '
-        Me.slueCOAView.Appearance.EvenRow.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.slueCOAView.Appearance.EvenRow.Options.UseBackColor = True
-        Me.slueCOAView.Appearance.OddRow.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer))
-        Me.slueCOAView.Appearance.OddRow.Options.UseBackColor = True
-        Me.slueCOAView.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn16, Me.GridColumn17, Me.GridColumn18})
-        Me.slueCOAView.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
-        Me.slueCOAView.Name = "slueCOAView"
-        Me.slueCOAView.OptionsSelection.EnableAppearanceFocusedCell = False
-        Me.slueCOAView.OptionsView.EnableAppearanceEvenRow = True
-        Me.slueCOAView.OptionsView.EnableAppearanceOddRow = True
-        Me.slueCOAView.OptionsView.ShowGroupPanel = False
-        '
-        'GridColumn16
-        '
-        Me.GridColumn16.Caption = "ID"
-        Me.GridColumn16.FieldName = "idcoa"
-        Me.GridColumn16.Name = "GridColumn16"
-        Me.GridColumn16.OptionsColumn.AllowEdit = False
-        Me.GridColumn16.OptionsColumn.ReadOnly = True
-        '
-        'GridColumn17
-        '
-        Me.GridColumn17.Caption = "COA"
-        Me.GridColumn17.FieldName = "coa"
-        Me.GridColumn17.Name = "GridColumn17"
-        Me.GridColumn17.OptionsColumn.AllowEdit = False
-        Me.GridColumn17.OptionsColumn.ReadOnly = True
-        Me.GridColumn17.Visible = True
-        Me.GridColumn17.VisibleIndex = 0
-        '
-        'GridColumn18
-        '
-        Me.GridColumn18.Caption = "Remarks"
-        Me.GridColumn18.FieldName = "remarks"
-        Me.GridColumn18.Name = "GridColumn18"
-        Me.GridColumn18.OptionsColumn.AllowEdit = False
-        Me.GridColumn18.OptionsColumn.ReadOnly = True
-        Me.GridColumn18.Visible = True
-        Me.GridColumn18.VisibleIndex = 1
-        '
-        'teDokumen
-        '
-        Me.teDokumen.Anchor = System.Windows.Forms.AnchorStyles.Left
-        Me.teDokumen.Location = New System.Drawing.Point(266, 56)
-        Me.teDokumen.Margin = New System.Windows.Forms.Padding(0)
-        Me.teDokumen.Name = "teDokumen"
-        Me.teDokumen.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[True]
-        Me.teDokumen.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.teDokumen.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 9.0!)
-        Me.teDokumen.Properties.Appearance.ForeColor = System.Drawing.Color.Black
-        Me.teDokumen.Properties.Appearance.Options.UseBackColor = True
-        Me.teDokumen.Properties.Appearance.Options.UseFont = True
-        Me.teDokumen.Properties.Appearance.Options.UseForeColor = True
-        Me.teDokumen.Properties.AppearanceDisabled.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.teDokumen.Properties.AppearanceDisabled.Options.UseBackColor = True
-        Me.teDokumen.Properties.AppearanceReadOnly.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.teDokumen.Properties.AppearanceReadOnly.Options.UseBackColor = True
-        Me.teDokumen.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple
-        Me.teDokumen.Properties.MaxLength = 300
-        Me.teDokumen.Properties.NullText = "[Belum Diisi]"
-        Me.teDokumen.Properties.NullValuePrompt = "[Belum Diisi]"
-        Me.teDokumen.Properties.ReadOnly = True
-        Me.teDokumen.Size = New System.Drawing.Size(190, 20)
-        Me.teDokumen.TabIndex = 28
-        Me.teDokumen.Tag = "dokumenno"
-        '
-        'Label6
-        '
-        Me.Label6.Anchor = System.Windows.Forms.AnchorStyles.Right
-        Me.Label6.AutoSize = True
-        Me.Label6.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label6.Location = New System.Drawing.Point(199, 59)
-        Me.Label6.Name = "Label6"
-        Me.Label6.Size = New System.Drawing.Size(64, 14)
-        Me.Label6.TabIndex = 29
-        Me.Label6.Text = "No. Faktur"
-        Me.Label6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        '
         'frmPenerimaanBarangReview
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1315,22 +1181,19 @@ Partial Class frmPenerimaanBarangReview
         Me.Panel1.ResumeLayout(False)
         Me.tlpField.ResumeLayout(False)
         Me.tlpField.PerformLayout()
-        CType(Me.deTanggalTempo.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.deTanggalTempo.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.deTanggalKirim.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.deTanggalKirim.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.teDokumen2.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.teDokumen.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.teUnit.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.teSupplier.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.teNote.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.deTanggal.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.deTanggal.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.teKode.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.teNote.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.deTanggalKirim.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.deTanggalKirim.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.deTanggalTempo.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.deTanggalTempo.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.pHeader.ResumeLayout(False)
-        CType(Me.slueKCOA.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GridView2, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.slueDCOA.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.slueCOAView, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.teDokumen.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -1395,18 +1258,8 @@ Partial Class frmPenerimaanBarangReview
     Public WithEvents Panel1 As Panel
     Public WithEvents btnDeleteItem As Button
     Friend WithEvents GridColumn4 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents Label10 As Label
-    Friend WithEvents Label9 As Label
-    Friend WithEvents slueDCOA As DevExpress.XtraEditors.SearchLookUpEdit
-    Friend WithEvents slueCOAView As DevExpress.XtraGrid.Views.Grid.GridView
-    Friend WithEvents GridColumn16 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn17 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn18 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents slueKCOA As DevExpress.XtraEditors.SearchLookUpEdit
-    Friend WithEvents GridView2 As DevExpress.XtraGrid.Views.Grid.GridView
-    Friend WithEvents GridColumn19 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn20 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn21 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents teDokumen As DevExpress.XtraEditors.TextEdit
     Friend WithEvents Label6 As Label
+    Friend WithEvents teDokumen2 As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents Label7 As Label
 End Class

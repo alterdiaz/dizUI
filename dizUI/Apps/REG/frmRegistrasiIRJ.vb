@@ -135,6 +135,7 @@
     End Sub
 
     Private isFromLoad As Boolean = True
+    Private isMCU As Long = 0
     Private Sub btnNew_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnNew.Click
         kosongkanIsian(tlpRegistrasi)
         kosongkanIsian(tlpAsal)
@@ -221,7 +222,7 @@
             lnkTanggalLahir.Enabled = True
             lnkNama.Enabled = True
             lueODS.EditValue = CLng(0)
-
+            isMCU = 0
             If selectPelayanan.getStringPilih = "KONSULTASI" Then
                 Dim sqls As New SQLs(dbstring)
                 sqls.DMLQuery("select case when isnull(max(convert(bigint,rekammedisno)),0)=0 then 1 else max(convert(bigint,rekammedisno))+1 end as mrn from rekammedis", "lastmrn")
@@ -410,6 +411,45 @@
                 teJenisKunjungan.Tag = 2
 
                 If selectPelayanan.getStringPilih = "UMUM" Then
+                    lueODS.Properties.ReadOnly = False
+                    lnkNoRegistrasiInduk.Visible = True
+                    teNoRegistrasiInduk.Visible = True
+                    lblDeptInduk.Visible = True
+                    teDeptInduk.Visible = True
+
+                    btnTunggakan.Enabled = True
+                    btnAppointment.Enabled = True
+                    btnDataRM.Enabled = True
+                End If
+
+                Dim sqls As New SQLs(dbstring)
+                sqls.DMLQuery("select p.idparamedis as id,p.nama as content from paramedis p where p.isservice=1 and p.isdeleted=0 and p.paramedistype=2 order by p.nama asc", "listdokter")
+                lueParamedis.Properties.DataSource = sqls.dataTable("listdokter")
+                lueParamedis.Properties.DisplayMember = "content"
+                lueParamedis.Properties.ValueMember = "id"
+                lueParamedis.Properties.BestFitMode = DevExpress.XtraEditors.Controls.BestFitMode.BestFitResizePopup
+                'lueParamedis.Properties.BestFit()
+
+                sqls.DMLQuery("select idlokasi as id,nama as content from lokasi where lokasitype in (3) and iddepartment in (select [value] from sys_appsetting where variable='IDIRJDept') order by nama asc", "jadwallokasi")
+                lueRuang.Properties.DataSource = sqls.dataTable("jadwallokasi")
+                lueRuang.Properties.DisplayMember = "content"
+                lueRuang.Properties.ValueMember = "id"
+                lueRuang.Properties.BestFitMode = DevExpress.XtraEditors.Controls.BestFitMode.BestFitResizePopup
+                lueRuang.Properties.BestFit()
+                lueRuang.EditValue = Nothing
+                If sqls.getDataSet("jadwallokasi") = 0 Then
+                    dizMsgbox("Lokasi tidak ditemukan" & vbCrLf & "Lokasi harap entry dulu", dizMsgboxStyle.Peringatan, Me)
+                    pExit_Click(Me, Nothing)
+                    Exit Sub
+                End If
+            ElseIf selectPelayanan.getStringPilih = "UMUMMCU" Then
+                isMCU = 1
+                teNoRM.Text = 0
+                jenisPelayanan = selectPelayanan.getStringPilih
+                teJenisKunjungan.Text = "Pemeriksaan"
+                teJenisKunjungan.Tag = 2
+
+                If selectPelayanan.getStringPilih = "UMUMMCU" Then
                     lueODS.Properties.ReadOnly = False
                     lnkNoRegistrasiInduk.Visible = True
                     teNoRegistrasiInduk.Visible = True
@@ -1045,9 +1085,9 @@
         teNoRegistrasi.Text = pair.Value
 
         Dim sqls As New SQLs(dbstring)
-        sqls.DMLQuery("select idregistrasi from registrasi where isdeleted=0 and iddokterruangan='" & lueParamedis.EditValue & "' and idrekammedis='" & teNoRM.Tag & "' and convert(varchar,createddate,105)=convert(varchar,getdate(),105)", "cekregexist")
+        sqls.DMLQuery("select r.idregistrasi,dbo.fFormatNoRM(rm.rekammedisno) as norm from registrasi r left join rekammedis rm on r.idrekammedis=rm.idrekammedis where r.isdeleted=0 and r.iddokterruangan='" & lueParamedis.EditValue & "' and r.idrekammedis='" & teNoRM.Tag & "' and convert(varchar,r.createddate,105)=convert(varchar,getdate(),105)", "cekregexist")
         If sqls.getDataSet("cekregexist") > 0 Then
-            If dizMsgbox("Register aktif ditemukan untuk " & teNoRM.Text & " ke Dokter/Tenaga Medis " & lueParamedis.Text & vbCrLf & "Melanjutkan untuk diregister ulang?", dizMsgboxStyle.Konfirmasi, "Konfirmasi") = dizMsgboxValue.Batal Then
+            If dizMsgbox("Register aktif ditemukan untuk " & sqls.getDataSet("cekregexist", 0, "norm") & vbCrLf & " ke Dokter/Tenaga Medis " & lueParamedis.Text & vbCrLf & "Melanjutkan untuk diregister ulang?", dizMsgboxStyle.Konfirmasi, "Konfirmasi") = dizMsgboxValue.Batal Then
                 Exit Sub
             End If
         End If
@@ -1077,11 +1117,11 @@
 
         idData = GenerateGUID()
         If idselectparent = "0" Then
-            field.AddRange(New String() {"idregistrasi", "transactiontype", "idjadwalsesi", "idcompany", "iddepartment", "idunit", "idrekammedis", "idlokasi", "idkelas", "iddokterruangan", "idspesialisruangan", "registrasino", "kunjunganke", "kunjungandokterke", "kunjungandepartmentke", "asalpx", "asalpx2", "asalrujukan", "iddokterrujukan", "jeniskunjungan", "registrasistatus", "remarks", "payertype", "idpayer", "idasuransi", "ishamil", "isdeleted", "deletereason", "createdby", "isoneday"})
-            value.AddRange(New Object() {idData, idtrans, If(lueSesi.EditValue, 0), idcomp, iddept, idunit, teNoRM.Tag, lueRuang.EditValue, idkelas, lueParamedis.EditValue, If(lueSpesialis.EditValue, 0), teNoRegistrasi.Text, cnt + 1, cntdokter + 1, cntdept + 1, If(lueAsalPx.EditValue, 0), If(lueAsalPx2.EditValue, 0), If(lueAsalPx3.EditValue, 0), If(lueAsalPx4.EditValue, 0), CLng(teJenisKunjungan.Tag), 0, remarks, lueJenisPembayar.EditValue, If(luePayer.EditValue, 0), If(lueAsuransi.EditValue, 0), lueHamil.EditValue, 0, "-", userid, If(lueODS.EditValue, 0)})
+            field.AddRange(New String() {"idregistrasi", "transactiontype", "idjadwalsesi", "idcompany", "iddepartment", "idunit", "idrekammedis", "idlokasi", "idkelas", "iddokterruangan", "idspesialisruangan", "registrasino", "kunjunganke", "kunjungandokterke", "kunjungandepartmentke", "asalpx", "asalpx2", "asalrujukan", "iddokterrujukan", "jeniskunjungan", "registrasistatus", "remarks", "payertype", "idpayer", "idasuransi", "ishamil", "isdeleted", "deletereason", "createdby", "isoneday", "ismcu"})
+            value.AddRange(New Object() {idData, idtrans, If(lueSesi.EditValue, 0), idcomp, iddept, idunit, teNoRM.Tag, lueRuang.EditValue, idkelas, lueParamedis.EditValue, If(lueSpesialis.EditValue, 0), teNoRegistrasi.Text, cnt + 1, cntdokter + 1, cntdept + 1, If(lueAsalPx.EditValue, 0), If(lueAsalPx2.EditValue, 0), If(lueAsalPx3.EditValue, 0), If(lueAsalPx4.EditValue, 0), CLng(teJenisKunjungan.Tag), 0, remarks, lueJenisPembayar.EditValue, If(luePayer.EditValue, 0), If(lueAsuransi.EditValue, 0), lueHamil.EditValue, 0, "-", userid, If(lueODS.EditValue, 0), isMCU})
         Else
-            field.AddRange(New String() {"idregistrasi", "transactiontype", "idjadwalsesi", "idcompany", "idregistrasiparent", "iddepartment", "idunit", "idrekammedis", "idlokasi", "idkelas", "iddokterruangan", "idspesialisruangan", "registrasino", "kunjunganke", "kunjungandokterke", "kunjungandepartmentke", "asalpx", "asalpx2", "asalrujukan", "iddokterrujukan", "jeniskunjungan", "registrasistatus", "remarks", "payertype", "idpayer", "idasuransi", "ishamil", "isdeleted", "deletereason", "createdby", "isoneday"})
-            value.AddRange(New Object() {idData, idtrans, If(lueSesi.EditValue, 0), idcomp, teNoRegistrasiInduk.Tag, iddept, idunit, teNoRM.Tag, lueRuang.EditValue, idkelas, lueParamedis.EditValue, If(lueSpesialis.EditValue, 0), teNoRegistrasi.Text, cnt + 1, cntdokter + 1, cntdept + 1, If(lueAsalPx.EditValue, 0), If(lueAsalPx2.EditValue, 0), If(lueAsalPx3.EditValue, 0), If(lueAsalPx4.EditValue, 0), CLng(teJenisKunjungan.Tag), 0, remarks, lueJenisPembayar.EditValue, If(luePayer.EditValue, 0), If(lueAsuransi.EditValue, 0), lueHamil.EditValue, 0, "-", userid, If(lueODS.EditValue, 0)})
+            field.AddRange(New String() {"idregistrasi", "transactiontype", "idjadwalsesi", "idcompany", "idregistrasiparent", "iddepartment", "idunit", "idrekammedis", "idlokasi", "idkelas", "iddokterruangan", "idspesialisruangan", "registrasino", "kunjunganke", "kunjungandokterke", "kunjungandepartmentke", "asalpx", "asalpx2", "asalrujukan", "iddokterrujukan", "jeniskunjungan", "registrasistatus", "remarks", "payertype", "idpayer", "idasuransi", "ishamil", "isdeleted", "deletereason", "createdby", "isoneday", "ismcu"})
+            value.AddRange(New Object() {idData, idtrans, If(lueSesi.EditValue, 0), idcomp, teNoRegistrasiInduk.Tag, iddept, idunit, teNoRM.Tag, lueRuang.EditValue, idkelas, lueParamedis.EditValue, If(lueSpesialis.EditValue, 0), teNoRegistrasi.Text, cnt + 1, cntdokter + 1, cntdept + 1, If(lueAsalPx.EditValue, 0), If(lueAsalPx2.EditValue, 0), If(lueAsalPx3.EditValue, 0), If(lueAsalPx4.EditValue, 0), CLng(teJenisKunjungan.Tag), 0, remarks, lueJenisPembayar.EditValue, If(luePayer.EditValue, 0), If(lueAsuransi.EditValue, 0), lueHamil.EditValue, 0, "-", userid, If(lueODS.EditValue, 0), isMCU})
         End If
         Dim dtsetsqls As New dtsetSQLS(dbstring)
         Dim cek As Boolean = dtsetsqls.datasetSave("registrasi", idData, field, value, False)
@@ -1126,12 +1166,12 @@
         If lueParamedis.EditValue Is Nothing Then
             retval = False
         End If
-        If jenisPelayanan <> "IGD" And jenisPelayanan <> "IGD ELEKTIF" And jenisPelayanan <> "UMUM" Then
+        If jenisPelayanan <> "IGD" And jenisPelayanan <> "IGD ELEKTIF" And jenisPelayanan <> "UMUM" And jenisPelayanan <> "UMUMMCU" Then
             If lueSpesialis.EditValue Is Nothing Then
                 retval = False
             End If
         End If
-        If jenisPelayanan <> "IGD" And jenisPelayanan <> "IGD ELEKTIF" And jenisPelayanan <> "UMUM" Then
+        If jenisPelayanan <> "IGD" And jenisPelayanan <> "IGD ELEKTIF" And jenisPelayanan <> "UMUM" And jenisPelayanan <> "UMUMMCU" Then
             If lueSesi.EditValue Is Nothing Then
                 retval = False
             End If
@@ -1322,9 +1362,9 @@
         teNoRegistrasi.Text = pair.Value
 
         Dim sqls As New SQLs(dbstring)
-        sqls.DMLQuery("select idregistrasi from registrasi where isdeleted=0 and iddokterruangan='" & lueParamedis.EditValue & "' and idrekammedis='" & teNoRM.Tag & "' and convert(varchar,createddate,105)=convert(varchar,getdate(),105)", "cekregexist")
+        sqls.DMLQuery("select r.idregistrasi,dbo.fFormatNoRM(rm.rekammedisno) as norm from registrasi r left join rekammedis rm on r.idrekammedis=rm.idrekammedis where r.isdeleted=0 and r.iddokterruangan='" & lueParamedis.EditValue & "' and r.idrekammedis='" & teNoRM.Tag & "' and convert(varchar,r.createddate,105)=convert(varchar,getdate(),105)", "cekregexist")
         If sqls.getDataSet("cekregexist") > 0 Then
-            If dizMsgbox("Register aktif ditemukan untuk " & teNoRM.Text & " ke Dokter/Tenaga Medis " & lueParamedis.Text & vbCrLf & "Melanjutkan untuk diregister ulang?", dizMsgboxStyle.Konfirmasi, "Konfirmasi") = dizMsgboxValue.Batal Then
+            If dizMsgbox("Register aktif ditemukan untuk " & sqls.getDataSet("cekregexist", 0, "norm") & vbCrLf & " ke Dokter/Tenaga Medis " & lueParamedis.Text & vbCrLf & "Melanjutkan untuk diregister ulang?", dizMsgboxStyle.Konfirmasi, "Konfirmasi") = dizMsgboxValue.Batal Then
                 Exit Sub
             End If
         End If
@@ -1354,11 +1394,11 @@
 
         idData = GenerateGUID()
         If idselectparent = "0" Then
-            field.AddRange(New String() {"idregistrasi", "transactiontype", "idjadwalsesi", "idcompany", "iddepartment", "idunit", "transactiontype", "idrekammedis", "idlokasi", "idkelas", "iddokterruangan", "idspesialisruangan", "registrasino", "kunjunganke", "kunjungandokterke", "kunjungandepartmentke", "asalpx", "asalpx2", "asalrujukan", "iddokterrujukan", "jeniskunjungan", "registrasistatus", "remarks", "payertype", "idpayer", "idasuransi", "ishamil", "isdeleted", "deletereason", "createdby", "isoneday"})
-            value.AddRange(New Object() {idData, idtrans, If(lueSesi.EditValue, 0), idcomp, iddept, idunit, idtrans, teNoRM.Tag, lueRuang.EditValue, idkelas, lueParamedis.EditValue, If(lueSpesialis.EditValue, 0), teNoRegistrasi.Text, cnt + 1, cntdokter + 1, cntdept + 1, If(lueAsalPx.EditValue, 0), If(lueAsalPx2.EditValue, 0), If(lueAsalPx3.EditValue, 0), If(lueAsalPx4.EditValue, 0), CLng(teJenisKunjungan.Tag), 0, remarks, lueJenisPembayar.EditValue, If(luePayer.EditValue, 0), If(lueAsuransi.EditValue, 0), lueHamil.EditValue, 0, "-", userid, If(lueODS.EditValue, 0)})
+            field.AddRange(New String() {"idregistrasi", "transactiontype", "idjadwalsesi", "idcompany", "iddepartment", "idunit", "transactiontype", "idrekammedis", "idlokasi", "idkelas", "iddokterruangan", "idspesialisruangan", "registrasino", "kunjunganke", "kunjungandokterke", "kunjungandepartmentke", "asalpx", "asalpx2", "asalrujukan", "iddokterrujukan", "jeniskunjungan", "registrasistatus", "remarks", "payertype", "idpayer", "idasuransi", "ishamil", "isdeleted", "deletereason", "createdby", "isoneday", "ismcu"})
+            value.AddRange(New Object() {idData, idtrans, If(lueSesi.EditValue, 0), idcomp, iddept, idunit, idtrans, teNoRM.Tag, lueRuang.EditValue, idkelas, lueParamedis.EditValue, If(lueSpesialis.EditValue, 0), teNoRegistrasi.Text, cnt + 1, cntdokter + 1, cntdept + 1, If(lueAsalPx.EditValue, 0), If(lueAsalPx2.EditValue, 0), If(lueAsalPx3.EditValue, 0), If(lueAsalPx4.EditValue, 0), CLng(teJenisKunjungan.Tag), 0, remarks, lueJenisPembayar.EditValue, If(luePayer.EditValue, 0), If(lueAsuransi.EditValue, 0), lueHamil.EditValue, 0, "-", userid, If(lueODS.EditValue, 0), isMCU})
         Else
-            field.AddRange(New String() {"idregistrasi", "transactiontype", "idjadwalsesi", "idcompany", "idregistrasiparent", "iddepartment", "idunit", "transactiontype", "idrekammedis", "idlokasi", "idkelas", "iddokterruangan", "idspesialisruangan", "registrasino", "kunjunganke", "kunjungandokterke", "kunjungandepartmentke", "asalpx", "asalpx2", "asalrujukan", "iddokterrujukan", "jeniskunjungan", "registrasistatus", "remarks", "payertype", "idpayer", "idasuransi", "ishamil", "isdeleted", "deletereason", "createdby", "isoneday"})
-            value.AddRange(New Object() {idData, idtrans, If(lueSesi.EditValue, 0), idcomp, CStr(teNoRegistrasiInduk.Tag), iddept, idunit, idtrans, teNoRM.Tag, lueRuang.EditValue, idkelas, lueParamedis.EditValue, If(lueSpesialis.EditValue, 0), teNoRegistrasi.Text, cnt + 1, cntdokter + 1, cntdept + 1, If(lueAsalPx.EditValue, 0), If(lueAsalPx2.EditValue, 0), If(lueAsalPx3.EditValue, 0), If(lueAsalPx4.EditValue, 0), CLng(teJenisKunjungan.Tag), 0, remarks, lueJenisPembayar.EditValue, If(luePayer.EditValue, 0), If(lueAsuransi.EditValue, 0), lueHamil.EditValue, 0, "-", userid, If(lueODS.EditValue, 0)})
+            field.AddRange(New String() {"idregistrasi", "transactiontype", "idjadwalsesi", "idcompany", "idregistrasiparent", "iddepartment", "idunit", "transactiontype", "idrekammedis", "idlokasi", "idkelas", "iddokterruangan", "idspesialisruangan", "registrasino", "kunjunganke", "kunjungandokterke", "kunjungandepartmentke", "asalpx", "asalpx2", "asalrujukan", "iddokterrujukan", "jeniskunjungan", "registrasistatus", "remarks", "payertype", "idpayer", "idasuransi", "ishamil", "isdeleted", "deletereason", "createdby", "isoneday", "ismcu"})
+            value.AddRange(New Object() {idData, idtrans, If(lueSesi.EditValue, 0), idcomp, CStr(teNoRegistrasiInduk.Tag), iddept, idunit, idtrans, teNoRM.Tag, lueRuang.EditValue, idkelas, lueParamedis.EditValue, If(lueSpesialis.EditValue, 0), teNoRegistrasi.Text, cnt + 1, cntdokter + 1, cntdept + 1, If(lueAsalPx.EditValue, 0), If(lueAsalPx2.EditValue, 0), If(lueAsalPx3.EditValue, 0), If(lueAsalPx4.EditValue, 0), CLng(teJenisKunjungan.Tag), 0, remarks, lueJenisPembayar.EditValue, If(luePayer.EditValue, 0), If(lueAsuransi.EditValue, 0), lueHamil.EditValue, 0, "-", userid, If(lueODS.EditValue, 0), isMCU})
         End If
         Dim dtsetsqls As New dtsetSQLS(dbstring)
         Dim cek As Boolean = dtsetsqls.datasetSave("registrasi", idData, field, value, False)
@@ -1614,7 +1654,7 @@
 
     Private Sub btnAppDokter_Click(sender As Object, e As EventArgs) Handles btnAppDokter.Click
         formTitle = "Monitoring Appointment Dokter"
-        Dim frmMon As New frmMonAppointment
+        Dim frmMon As New frmMonAppointmentParamedis
         tambahChild(frmMon)
         frmMon.Size = New Size(Screen.PrimaryScreen.WorkingArea.Width - 100, Screen.PrimaryScreen.WorkingArea.Height - 100)
         frmMon.MaximumSize = New Size(Screen.PrimaryScreen.WorkingArea.Width - 100, Screen.PrimaryScreen.WorkingArea.Height - 100)

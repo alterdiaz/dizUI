@@ -22,6 +22,7 @@ Partial Class frmProfile
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Dim QrCodeGenerator1 As DevExpress.XtraPrinting.BarCode.QRCodeGenerator = New DevExpress.XtraPrinting.BarCode.QRCodeGenerator()
         Me.tlpForm = New System.Windows.Forms.TableLayoutPanel()
         Me.pTitle = New System.Windows.Forms.Panel()
         Me.lblTitle = New System.Windows.Forms.Label()
@@ -61,6 +62,14 @@ Partial Class frmProfile
         Me.lblPassword = New System.Windows.Forms.Label()
         Me.lblLevel = New System.Windows.Forms.Label()
         Me.lblUsername = New System.Windows.Forms.Label()
+        Me.xtpQR = New DevExpress.XtraTab.XtraTabPage()
+        Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
+        Me.btnQRSimpan = New System.Windows.Forms.Button()
+        Me.btnQRGenerate = New System.Windows.Forms.Button()
+        Me.xtpNFC = New DevExpress.XtraTab.XtraTabPage()
+        Me.TableLayoutPanel2 = New System.Windows.Forms.TableLayoutPanel()
+        Me.btnNFCSimpan = New System.Windows.Forms.Button()
+        Me.btnNFCGenerate = New System.Windows.Forms.Button()
         Me.tlpField = New System.Windows.Forms.TableLayoutPanel()
         Me.pbUser = New System.Windows.Forms.PictureBox()
         Me.btnnBrowse = New System.Windows.Forms.Button()
@@ -71,6 +80,8 @@ Partial Class frmProfile
         Me.btnImgManager = New System.Windows.Forms.Button()
         Me.lblSep2 = New System.Windows.Forms.Label()
         Me.btnSave = New System.Windows.Forms.Button()
+        Me.qrpass = New DevExpress.XtraEditors.BarCodeControl()
+        Me.pbnfc = New System.Windows.Forms.PictureBox()
         Me.tlpForm.SuspendLayout()
         Me.pTitle.SuspendLayout()
         CType(Me.pExit, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -96,11 +107,16 @@ Partial Class frmProfile
         CType(Me.teUserLevel.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.tePassword.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.teUsername.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.xtpQR.SuspendLayout()
+        Me.TableLayoutPanel1.SuspendLayout()
+        Me.xtpNFC.SuspendLayout()
+        Me.TableLayoutPanel2.SuspendLayout()
         Me.tlpField.SuspendLayout()
         CType(Me.pbUser, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.pboPrev, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.pboNext, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.pHeader.SuspendLayout()
+        CType(Me.pbnfc, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'tlpForm
@@ -200,7 +216,7 @@ Partial Class frmProfile
         Me.xtcProfile.SelectedTabPage = Me.xtpUsername
         Me.xtcProfile.Size = New System.Drawing.Size(356, 300)
         Me.xtcProfile.TabIndex = 16
-        Me.xtcProfile.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.xtpUsername, Me.xtpProfile})
+        Me.xtcProfile.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.xtpUsername, Me.xtpProfile, Me.xtpQR, Me.xtpNFC})
         '
         'xtpUsername
         '
@@ -211,6 +227,7 @@ Partial Class frmProfile
         '
         'tlpPengguna
         '
+        Me.tlpPengguna.BackColor = System.Drawing.Color.FromArgb(CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer))
         Me.tlpPengguna.ColumnCount = 4
         Me.tlpPengguna.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
         Me.tlpPengguna.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 140.0!))
@@ -506,6 +523,7 @@ Partial Class frmProfile
         '
         'tlpProfile
         '
+        Me.tlpProfile.BackColor = System.Drawing.Color.FromArgb(CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer))
         Me.tlpProfile.ColumnCount = 4
         Me.tlpProfile.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
         Me.tlpProfile.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 120.0!))
@@ -777,6 +795,146 @@ Partial Class frmProfile
         Me.lblUsername.Text = "Username"
         Me.lblUsername.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
+        'xtpQR
+        '
+        Me.xtpQR.Controls.Add(Me.TableLayoutPanel1)
+        Me.xtpQR.Name = "xtpQR"
+        Me.xtpQR.Size = New System.Drawing.Size(350, 272)
+        Me.xtpQR.Text = "QR Password"
+        '
+        'TableLayoutPanel1
+        '
+        Me.TableLayoutPanel1.BackColor = System.Drawing.Color.FromArgb(CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer))
+        Me.TableLayoutPanel1.ColumnCount = 3
+        Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
+        Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 180.0!))
+        Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
+        Me.TableLayoutPanel1.Controls.Add(Me.qrpass, 1, 1)
+        Me.TableLayoutPanel1.Controls.Add(Me.btnQRSimpan, 1, 5)
+        Me.TableLayoutPanel1.Controls.Add(Me.btnQRGenerate, 1, 3)
+        Me.TableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.TableLayoutPanel1.Location = New System.Drawing.Point(0, 0)
+        Me.TableLayoutPanel1.Margin = New System.Windows.Forms.Padding(0)
+        Me.TableLayoutPanel1.Name = "TableLayoutPanel1"
+        Me.TableLayoutPanel1.RowCount = 7
+        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
+        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 180.0!))
+        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 2.0!))
+        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 24.0!))
+        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 2.0!))
+        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 24.0!))
+        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
+        Me.TableLayoutPanel1.Size = New System.Drawing.Size(350, 272)
+        Me.TableLayoutPanel1.TabIndex = 1
+        '
+        'btnQRSimpan
+        '
+        Me.btnQRSimpan.BackColor = System.Drawing.Color.Green
+        Me.btnQRSimpan.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.btnQRSimpan.FlatAppearance.BorderSize = 0
+        Me.btnQRSimpan.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DimGray
+        Me.btnQRSimpan.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DarkGray
+        Me.btnQRSimpan.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnQRSimpan.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnQRSimpan.ForeColor = System.Drawing.Color.White
+        Me.btnQRSimpan.Location = New System.Drawing.Point(85, 228)
+        Me.btnQRSimpan.Margin = New System.Windows.Forms.Padding(0)
+        Me.btnQRSimpan.Name = "btnQRSimpan"
+        Me.btnQRSimpan.Size = New System.Drawing.Size(180, 24)
+        Me.btnQRSimpan.TabIndex = 27
+        Me.btnQRSimpan.Text = "SIMPAN QR CODE"
+        Me.btnQRSimpan.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
+        Me.btnQRSimpan.UseVisualStyleBackColor = False
+        '
+        'btnQRGenerate
+        '
+        Me.btnQRGenerate.BackColor = System.Drawing.Color.Maroon
+        Me.btnQRGenerate.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.btnQRGenerate.FlatAppearance.BorderSize = 0
+        Me.btnQRGenerate.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DimGray
+        Me.btnQRGenerate.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DarkGray
+        Me.btnQRGenerate.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnQRGenerate.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnQRGenerate.ForeColor = System.Drawing.Color.White
+        Me.btnQRGenerate.Location = New System.Drawing.Point(85, 202)
+        Me.btnQRGenerate.Margin = New System.Windows.Forms.Padding(0)
+        Me.btnQRGenerate.Name = "btnQRGenerate"
+        Me.btnQRGenerate.Size = New System.Drawing.Size(180, 24)
+        Me.btnQRGenerate.TabIndex = 26
+        Me.btnQRGenerate.Text = "GENERATE QR CODE"
+        Me.btnQRGenerate.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
+        Me.btnQRGenerate.UseVisualStyleBackColor = False
+        '
+        'xtpNFC
+        '
+        Me.xtpNFC.Controls.Add(Me.TableLayoutPanel2)
+        Me.xtpNFC.Name = "xtpNFC"
+        Me.xtpNFC.Size = New System.Drawing.Size(350, 272)
+        Me.xtpNFC.Text = "NFC Password"
+        '
+        'TableLayoutPanel2
+        '
+        Me.TableLayoutPanel2.BackColor = System.Drawing.Color.FromArgb(CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer))
+        Me.TableLayoutPanel2.ColumnCount = 3
+        Me.TableLayoutPanel2.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
+        Me.TableLayoutPanel2.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 180.0!))
+        Me.TableLayoutPanel2.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
+        Me.TableLayoutPanel2.Controls.Add(Me.btnNFCSimpan, 1, 5)
+        Me.TableLayoutPanel2.Controls.Add(Me.btnNFCGenerate, 1, 3)
+        Me.TableLayoutPanel2.Controls.Add(Me.pbnfc, 1, 1)
+        Me.TableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.TableLayoutPanel2.Location = New System.Drawing.Point(0, 0)
+        Me.TableLayoutPanel2.Margin = New System.Windows.Forms.Padding(0)
+        Me.TableLayoutPanel2.Name = "TableLayoutPanel2"
+        Me.TableLayoutPanel2.RowCount = 7
+        Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
+        Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 180.0!))
+        Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 2.0!))
+        Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 24.0!))
+        Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 2.0!))
+        Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 24.0!))
+        Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
+        Me.TableLayoutPanel2.Size = New System.Drawing.Size(350, 272)
+        Me.TableLayoutPanel2.TabIndex = 2
+        '
+        'btnNFCSimpan
+        '
+        Me.btnNFCSimpan.BackColor = System.Drawing.Color.Green
+        Me.btnNFCSimpan.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.btnNFCSimpan.FlatAppearance.BorderSize = 0
+        Me.btnNFCSimpan.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DimGray
+        Me.btnNFCSimpan.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DarkGray
+        Me.btnNFCSimpan.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnNFCSimpan.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnNFCSimpan.ForeColor = System.Drawing.Color.White
+        Me.btnNFCSimpan.Location = New System.Drawing.Point(85, 228)
+        Me.btnNFCSimpan.Margin = New System.Windows.Forms.Padding(0)
+        Me.btnNFCSimpan.Name = "btnNFCSimpan"
+        Me.btnNFCSimpan.Size = New System.Drawing.Size(180, 24)
+        Me.btnNFCSimpan.TabIndex = 27
+        Me.btnNFCSimpan.Text = "WRITE NFC PASS"
+        Me.btnNFCSimpan.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
+        Me.btnNFCSimpan.UseVisualStyleBackColor = False
+        '
+        'btnNFCGenerate
+        '
+        Me.btnNFCGenerate.BackColor = System.Drawing.Color.Maroon
+        Me.btnNFCGenerate.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.btnNFCGenerate.FlatAppearance.BorderSize = 0
+        Me.btnNFCGenerate.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DimGray
+        Me.btnNFCGenerate.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DarkGray
+        Me.btnNFCGenerate.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnNFCGenerate.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnNFCGenerate.ForeColor = System.Drawing.Color.White
+        Me.btnNFCGenerate.Location = New System.Drawing.Point(85, 202)
+        Me.btnNFCGenerate.Margin = New System.Windows.Forms.Padding(0)
+        Me.btnNFCGenerate.Name = "btnNFCGenerate"
+        Me.btnNFCGenerate.Size = New System.Drawing.Size(180, 24)
+        Me.btnNFCGenerate.TabIndex = 26
+        Me.btnNFCGenerate.Text = "GENERATE NFC PASS"
+        Me.btnNFCGenerate.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
+        Me.btnNFCGenerate.UseVisualStyleBackColor = False
+        '
         'tlpField
         '
         Me.tlpField.BackColor = System.Drawing.Color.FromArgb(CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer))
@@ -918,7 +1076,7 @@ Partial Class frmProfile
         '
         'btnSave
         '
-        Me.btnSave.BackColor = System.Drawing.Color.green
+        Me.btnSave.BackColor = System.Drawing.Color.Green
         Me.btnSave.Dock = System.Windows.Forms.DockStyle.Right
         Me.btnSave.FlatAppearance.BorderSize = 0
         Me.btnSave.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DimGray
@@ -932,6 +1090,39 @@ Partial Class frmProfile
         Me.btnSave.Text = "SIMPAN"
         Me.btnSave.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
         Me.btnSave.UseVisualStyleBackColor = False
+        '
+        'qrpass
+        '
+        Me.qrpass.AutoModule = True
+        Me.qrpass.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.qrpass.ForeColor = System.Drawing.Color.Black
+        Me.qrpass.HorizontalAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.qrpass.HorizontalTextAlignment = DevExpress.Utils.HorzAlignment.[Default]
+        Me.qrpass.Location = New System.Drawing.Point(85, 20)
+        Me.qrpass.Margin = New System.Windows.Forms.Padding(0)
+        Me.qrpass.Module = 5.0R
+        Me.qrpass.Name = "qrpass"
+        Me.qrpass.Padding = New System.Windows.Forms.Padding(10, 2, 10, 0)
+        Me.qrpass.ShowText = False
+        Me.qrpass.Size = New System.Drawing.Size(180, 180)
+        QrCodeGenerator1.Version = DevExpress.XtraPrinting.BarCode.QRCodeVersion.Version2
+        Me.qrpass.Symbology = QrCodeGenerator1
+        Me.qrpass.TabIndex = 27
+        Me.qrpass.Text = "E00C43CA-3636-4513-8253-FD971C0625C1"
+        Me.qrpass.VerticalAlignment = DevExpress.Utils.VertAlignment.Center
+        Me.qrpass.VerticalTextAlignment = DevExpress.Utils.VertAlignment.Center
+        '
+        'pbnfc
+        '
+        Me.pbnfc.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.pbnfc.Image = Global.dizUI.My.Resources.Resources.ScanNFC
+        Me.pbnfc.Location = New System.Drawing.Point(85, 20)
+        Me.pbnfc.Margin = New System.Windows.Forms.Padding(0)
+        Me.pbnfc.Name = "pbnfc"
+        Me.pbnfc.Size = New System.Drawing.Size(180, 180)
+        Me.pbnfc.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.pbnfc.TabIndex = 28
+        Me.pbnfc.TabStop = False
         '
         'frmProfile
         '
@@ -972,12 +1163,17 @@ Partial Class frmProfile
         CType(Me.teUserLevel.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.tePassword.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.teUsername.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.xtpQR.ResumeLayout(False)
+        Me.TableLayoutPanel1.ResumeLayout(False)
+        Me.xtpNFC.ResumeLayout(False)
+        Me.TableLayoutPanel2.ResumeLayout(False)
         Me.tlpField.ResumeLayout(False)
         Me.tlpField.PerformLayout()
         CType(Me.pbUser, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.pboPrev, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.pboNext, System.ComponentModel.ISupportInitialize).EndInit()
         Me.pHeader.ResumeLayout(False)
+        CType(Me.pbnfc, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -1030,4 +1226,14 @@ Partial Class frmProfile
     Friend WithEvents pTitle As System.Windows.Forms.Panel
     Friend WithEvents lblTitle As System.Windows.Forms.Label
     Friend WithEvents pExit As System.Windows.Forms.PictureBox
+    Friend WithEvents xtpQR As DevExpress.XtraTab.XtraTabPage
+    Friend WithEvents TableLayoutPanel1 As TableLayoutPanel
+    Public WithEvents btnQRSimpan As Button
+    Public WithEvents btnQRGenerate As Button
+    Friend WithEvents xtpNFC As DevExpress.XtraTab.XtraTabPage
+    Friend WithEvents TableLayoutPanel2 As TableLayoutPanel
+    Public WithEvents btnNFCSimpan As Button
+    Public WithEvents btnNFCGenerate As Button
+    Friend WithEvents qrpass As DevExpress.XtraEditors.BarCodeControl
+    Friend WithEvents pbnfc As PictureBox
 End Class

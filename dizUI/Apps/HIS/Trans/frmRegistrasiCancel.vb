@@ -118,15 +118,18 @@
         cboDepartment.Properties.ValueMember = "id"
         cboDepartment.Properties.DisplayMember = "content"
 
-        sqls.DMLQuery("select idtransactiontype from transactiontype where kodetransaksi='REG' and iddepartment in (select [value] from sys_appsetting where variable in ('idirnadept'))", "idtranstype")
+        sqls.DMLQuery("select idtransactiontype from transactiontype where kodetransaksi='REG' and iddepartment in (select [value] from sys_appsetting where variable in ('idirnadept','idicudept','idiccudept','idhcudept','idcathdept','idpicudept','idnicudept','idvkdept',idhddept'))", "idtranstype")
         If sqls.getDataSet("idtranstype") > 0 Then
-            idtranstype = sqls.getDataSet("idtranstype", 0, "idtransactiontype")
+            idtranstype.Clear()
+            For i As Integer = 0 To sqls.getDataSet("idtranstype") - 1
+                idtranstype.Add(sqls.getDataSet("idtranstype", i, "idtransactiontype"))
+            Next
         Else
-            idtranstype = 0
+            idtranstype.Clear()
         End If
     End Sub
 
-    Dim idtranstype As String = 0
+    Dim idtranstype As New List(Of String)
     Private Sub frmRegistrasiUpdate_Load(sender As Object, e As EventArgs) Handles Me.Load
         getRegex(dbstring)
 
@@ -175,7 +178,7 @@
                     sqls.DMLQuery("update appointment set isdeleted=1,updateddate=getdate(),updatedby='" & userid & "' where idregistrasi='" & dra("idregistrasi") & "'", False)
                     dtsqls.datasetSave("registrasi", dra("idregistrasi"), field, value, False)
 
-                    If dra("registrasino") <> regno And CStr(dra("transactiontype")) = idtranstype Then
+                    If dra("registrasino") <> regno And idtranstype.Contains(CStr(dra("transactiontype"))) Then
                         sqls = New SQLs(dbstring)
                         Dim idregkamar As String = 0
                         sqls.DMLQuery("select idregistrasikamar from registrasikamar where idlokasi='" & dra("idlokasi") & "' and idregistrasi='" & dra("idregistrasi") & "'", "getidregkamar")

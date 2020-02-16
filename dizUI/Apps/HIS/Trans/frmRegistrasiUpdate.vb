@@ -152,6 +152,19 @@
             lueRegStatus.Focus()
             Exit Sub
         End If
+        Dim strreason As String = ""
+        If lueRegStatus.EditValue = 2 Then
+            Dim reason As New frmDeleteReason
+            If reason.ShowDialog = Windows.Forms.DialogResult.OK Then
+                If reason.reason.Length = 0 Then
+                    dizMsgbox("Alasan hapus harus diisi", dizMsgboxStyle.Peringatan, "Peringatan", Me)
+                    Exit Sub
+                End If
+            Else
+                Exit Sub
+            End If
+            strreason = "DELETE NOTE : " & vbCrLf & reason.reason
+        End If
 
         Dim loadScr As New frmLoading()
         splashClosed = False
@@ -171,11 +184,11 @@
                 If dra("cek") = "True" Then
                     Dim dtsqls As New dtsetSQLS(dbstring)
                     If lueRegStatus.EditValue = 2 Then 'Or lueRegStatus.EditValue = 5 Then
-                        field.AddRange(New String() {"idregistrasi", "registrasistatus", "isdeleted", "updatedby", "updateddate", "registrasiendby", "registrasienddate"})
-                        value.AddRange(New Object() {dra("idregistrasi"), lueRegStatus.EditValue, 1, userid, nowTime, userid, nowTime})
+                        field.AddRange(New String() {"idregistrasi", "registrasistatus", "isdeleted", "deletereason", "updatedby", "updateddate", "registrasiendby", "registrasienddate"})
+                        value.AddRange(New Object() {dra("idregistrasi"), lueRegStatus.EditValue, 1, strreason, userid, nowTime, userid, nowTime})
 
                         sqls = New SQLs(dbstring)
-                        sqls.DMLQuery("update appointment set isdeleted=1,updateddate=getdate(),updatedby='" & userid & "' where idregistrasi='" & dra("idregistrasi") & "'", False)
+                        sqls.DMLQuery("update appointment set deletereason='" & strreason & "',isdeleted=1,updateddate=getdate(),updatedby='" & userid & "' where idregistrasi='" & dra("idregistrasi") & "'", False)
                         dtsqls.datasetSave("registrasi", dra("idregistrasi"), field, value, False)
                     Else
                         sqls = New SQLs(dbstring)
@@ -201,38 +214,41 @@
                         '    End If
                         'End If
                     End If
-                    Dim istype As Boolean = False
-                    For aa As Integer = 0 To idtranstype.Count - 1
-                        If CStr(dra("transactiontype")) = idtranstype(aa) Then
-                            istype = True
-                        End If
-                    Next
-                    If dra("registrasino") = regno And istype = True Then
-                        sqls = New SQLs(dbstring)
-                        Dim idregkamar As String = "0"
-                        sqls.DMLQuery("select idregistrasikamar from registrasikamar where idlokasi='" & dra("idlokasi") & "' and idregistrasi='" & dra("idregistrasi") & "'", "getidregkamar")
-                        If sqls.getDataSet("getidregkamar") > 0 Then
-                            idregkamar = sqls.getDataSet("getidregkamar", 0, "idregistrasikamar")
+                    'Dim istype As Boolean = False
+                    'For aa As Integer = 0 To idtranstype.Count - 1
+                    '    If CStr(dra("transactiontype")) = idtranstype(aa) Then
+                    '        istype = True
+                    '    End If
+                    'Next
+                    'If dra("registrasino") = regno And istype = True Then
+                    sqls = New SQLs(dbstring)
+                    'Dim idregkamar As String = "0"
+                    'sqls.DMLQuery("select idregistrasikamar from registrasikamar where idlokasi='" & dra("idlokasi") & "' and idregistrasi='" & dra("idregistrasi") & "'", "getidregkamar")
+                    sqls.DMLQuery("update registrasikamar set checkout=getdate() where idlokasi=(select top 1 idlokasi from kamar where idregistrasi='" & dra("idregistrasi") & "') and idregistrasi='" & dra("idregistrasi") & "' and checkout is null", False)
+                    sqls.DMLQuery("update kamar set checkin=null,statusbed=2,idregistrasi='0' where idregistrasi='" & dra("idregistrasi") & "'", False)
 
-                            sqls.DMLQuery("select idkamar from kamar where idlokasi='" & dra("idlokasi") & "'", "getidkamar")
-                            Dim idkamar As String = "0"
-                            idkamar = sqls.getDataSet("getidkamar", 0, "idkamar")
+                    'If sqls.getDataSet("getidregkamar") > 0 Then
+                    '        idregkamar = sqls.getDataSet("getidregkamar", 0, "idregistrasikamar")
+                    '        MsgBox(idregkamar)
+                    '        sqls.DMLQuery("select idkamar from kamar where idlokasi='" & dra("idlokasi") & "'", "getidkamar")
+                    '        Dim idkamar As String = "0"
+                    '        idkamar = sqls.getDataSet("getidkamar", 0, "idkamar")
 
-                            dtsqls = New dtsetSQLS(dbstring)
-                            field = New List(Of String)
-                            value = New List(Of Object)
-                            field.AddRange(New String() {"idkamar", "idregistrasi", "checkin", "checkout", "statusbed", "updatedby", "updateddate"})
-                            value.AddRange(New Object() {idkamar, 0, DBNull.Value, nowTime, 2, userid, nowTime})
-                            dtsqls.datasetSave("kamar", idkamar, field, value, False)
+                    '        dtsqls = New dtsetSQLS(dbstring)
+                    '        field = New List(Of String)
+                    '        value = New List(Of Object)
+                    '        field.AddRange(New String() {"idkamar", "idregistrasi", "checkin", "checkout", "statusbed", "updatedby", "updateddate"})
+                    '        value.AddRange(New Object() {idkamar, 0, DBNull.Value, nowTime, 2, userid, nowTime})
+                    '        dtsqls.datasetSave("kamar", idkamar, field, value, False)
 
-                            dtsqls = New dtsetSQLS(dbstring)
-                            field = New List(Of String)
-                            value = New List(Of Object)
-                            field.AddRange(New String() {"idregistrasikamar", "idregistrasi", "checkout", "updatedby", "updateddate"})
-                            value.AddRange(New Object() {idregkamar, dra("idregistrasi"), nowTime, userid, nowTime})
-                            dtsqls.datasetSave("registrasikamar", idregkamar, field, value, False)
-                        End If
-                    End If
+                    '        dtsqls = New dtsetSQLS(dbstring)
+                    '        field = New List(Of String)
+                    '        value = New List(Of Object)
+                    '        field.AddRange(New String() {"idregistrasikamar", "idregistrasi", "checkout", "updatedby", "updateddate"})
+                    '        value.AddRange(New Object() {idregkamar, dra("idregistrasi"), nowTime, userid, nowTime})
+                    '        dtsqls.datasetSave("registrasikamar", idregkamar, field, value, False)
+                    '    End If
+                    'End If
                     cekbool = True
                 End If
             End If
@@ -247,7 +263,7 @@
             '    dizMsgbox("Satu atau lebih Registrasi belum dilakukan asesmen medis", dizMsgboxStyle.Info, Me)
             'End If
 
-            btnNew_Click(btnNew, Nothing)
+            'btnNew_Click(btnNew, Nothing)
             If fromParent = False Then
                 cboDepartment_EditValueChanged(cboDepartment, Nothing)
             End If
@@ -275,7 +291,9 @@
             sqls.DMLQuery("select idtransactiontype from transactiontype where kodetransaksi='REG' and iddepartment in ('" & iddept.Replace(",", "','") & "')", "idtranstype")
             If sqls.getDataSet("idtranstype") > 0 Then
                 idtranstype.Clear()
-                idtranstype.Add(sqls.getDataSet("idtranstype", 0, "idtransactiontype"))
+                For i As Integer = 0 To sqls.getDataSet("idtranstype") - 1
+                    idtranstype.Add(sqls.getDataSet("idtranstype", i, "idtransactiontype"))
+                Next
             Else
                 idtranstype.Clear()
             End If

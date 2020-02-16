@@ -62,6 +62,9 @@ Partial Class frmMonRegisterCATHday
         Me.pHeader = New System.Windows.Forms.Panel()
         Me.btnRefresh = New System.Windows.Forms.Button()
         Me.btnExport = New System.Windows.Forms.Button()
+        Me.gcPayerType = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.gcPayer = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.gcAsuransi = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.lblSep5 = New System.Windows.Forms.Label()
         Me.tlpForm.SuspendLayout()
         Me.pTitle.SuspendLayout()
@@ -376,6 +379,8 @@ Partial Class frmMonRegisterCATHday
         Me.GridColumn9.OptionsColumn.AllowEdit = False
         Me.GridColumn9.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.[False]
         Me.GridColumn9.OptionsColumn.ReadOnly = True
+        Me.GridColumn9.Visible = True
+        Me.GridColumn9.VisibleIndex = 12
         '
         'rimeAddress
         '
@@ -394,6 +399,8 @@ Partial Class frmMonRegisterCATHday
         Me.GridColumn10.OptionsColumn.AllowEdit = False
         Me.GridColumn10.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.[False]
         Me.GridColumn10.OptionsColumn.ReadOnly = True
+        Me.GridColumn10.Visible = True
+        Me.GridColumn10.VisibleIndex = 13
         '
         'GridColumn11
         '
@@ -405,6 +412,8 @@ Partial Class frmMonRegisterCATHday
         Me.GridColumn11.OptionsColumn.AllowEdit = False
         Me.GridColumn11.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.[False]
         Me.GridColumn11.OptionsColumn.ReadOnly = True
+        Me.GridColumn11.Visible = True
+        Me.GridColumn11.VisibleIndex = 14
         '
         'GridColumn12
         '
@@ -416,6 +425,8 @@ Partial Class frmMonRegisterCATHday
         Me.GridColumn12.OptionsColumn.AllowEdit = False
         Me.GridColumn12.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.[False]
         Me.GridColumn12.OptionsColumn.ReadOnly = True
+        Me.GridColumn12.Visible = True
+        Me.GridColumn12.VisibleIndex = 15
         '
         'GridColumn13
         '
@@ -427,6 +438,8 @@ Partial Class frmMonRegisterCATHday
         Me.GridColumn13.OptionsColumn.AllowEdit = False
         Me.GridColumn13.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.[False]
         Me.GridColumn13.OptionsColumn.ReadOnly = True
+        Me.GridColumn13.Visible = True
+        Me.GridColumn13.VisibleIndex = 16
         '
         'GridColumn14
         '
@@ -438,6 +451,8 @@ Partial Class frmMonRegisterCATHday
         Me.GridColumn14.OptionsColumn.AllowEdit = False
         Me.GridColumn14.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.[False]
         Me.GridColumn14.OptionsColumn.ReadOnly = True
+        Me.GridColumn14.Visible = True
+        Me.GridColumn14.VisibleIndex = 17
         '
         'GridColumn15
         '
@@ -449,6 +464,8 @@ Partial Class frmMonRegisterCATHday
         Me.GridColumn15.OptionsColumn.AllowEdit = False
         Me.GridColumn15.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.[False]
         Me.GridColumn15.OptionsColumn.ReadOnly = True
+        Me.GridColumn15.Visible = True
+        Me.GridColumn15.VisibleIndex = 18
         '
         'GridColumn16
         '
@@ -460,6 +477,8 @@ Partial Class frmMonRegisterCATHday
         Me.GridColumn16.OptionsColumn.AllowEdit = False
         Me.GridColumn16.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.[False]
         Me.GridColumn16.OptionsColumn.ReadOnly = True
+        Me.GridColumn16.Visible = True
+        Me.GridColumn16.VisibleIndex = 19
         '
         'GridColumn17
         '
@@ -471,6 +490,8 @@ Partial Class frmMonRegisterCATHday
         Me.GridColumn17.OptionsColumn.AllowEdit = False
         Me.GridColumn17.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.[False]
         Me.GridColumn17.OptionsColumn.ReadOnly = True
+        Me.GridColumn17.Visible = True
+        Me.GridColumn17.VisibleIndex = 20
         '
         'GridColumn18
         '
@@ -521,6 +542,8 @@ Partial Class frmMonRegisterCATHday
         Me.GridColumn22.OptionsColumn.AllowEdit = False
         Me.GridColumn22.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.[False]
         Me.GridColumn22.OptionsColumn.ReadOnly = True
+        Me.GridColumn22.Visible = True
+        Me.GridColumn22.VisibleIndex = 21
         '
         'rimeNote
         '
@@ -650,6 +673,48 @@ Partial Class frmMonRegisterCATHday
         Me.btnExport.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
         Me.btnExport.UseVisualStyleBackColor = True
         '
+        'gcPayerType
+        '
+        Me.gcPayerType.AppearanceCell.Options.UseTextOptions = True
+        Me.gcPayerType.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.gcPayerType.AppearanceHeader.Options.UseTextOptions = True
+        Me.gcPayerType.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.gcPayerType.Caption = "Jenis Payer"
+        Me.gcPayerType.FieldName = "payername"
+        Me.gcPayerType.Name = "gcPayerType"
+        Me.gcPayerType.OptionsColumn.AllowEdit = False
+        Me.gcPayerType.OptionsColumn.ReadOnly = True
+        Me.gcPayerType.Visible = True
+        Me.gcPayerType.VisibleIndex = 22
+        '
+        'gcPayer
+        '
+        Me.gcPayer.AppearanceCell.Options.UseTextOptions = True
+        Me.gcPayer.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.gcPayer.AppearanceHeader.Options.UseTextOptions = True
+        Me.gcPayer.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.gcPayer.Caption = "Payer"
+        Me.gcPayer.FieldName = "payer"
+        Me.gcPayer.Name = "gcPayer"
+        Me.gcPayer.OptionsColumn.AllowEdit = False
+        Me.gcPayer.OptionsColumn.ReadOnly = True
+        Me.gcPayer.Visible = True
+        Me.gcPayer.VisibleIndex = 23
+        '
+        'gcAsuransi
+        '
+        Me.gcAsuransi.AppearanceCell.Options.UseTextOptions = True
+        Me.gcAsuransi.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.gcAsuransi.AppearanceHeader.Options.UseTextOptions = True
+        Me.gcAsuransi.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.gcAsuransi.Caption = "Asuransi"
+        Me.gcAsuransi.FieldName = "asuransi"
+        Me.gcAsuransi.Name = "gcAsuransi"
+        Me.gcAsuransi.OptionsColumn.AllowEdit = False
+        Me.gcAsuransi.OptionsColumn.ReadOnly = True
+        Me.gcAsuransi.Visible = True
+        Me.gcAsuransi.VisibleIndex = 24
+        '
         'lblSep5
         '
         Me.lblSep5.BackColor = System.Drawing.Color.Transparent
@@ -663,7 +728,7 @@ Partial Class frmMonRegisterCATHday
         Me.lblSep5.Text = "|"
         Me.lblSep5.TextAlign = System.Drawing.ContentAlignment.TopCenter
         '
-        'frmMonRegisterIRNAday
+        'frmMonRegisterCATHday
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
@@ -733,4 +798,7 @@ Partial Class frmMonRegisterCATHday
     Friend WithEvents GridColumn22 As DevExpress.XtraGrid.Columns.GridColumn
     Public WithEvents btnRefresh As Button
     Friend WithEvents GridColumn23 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents gcPayerType As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents gcPayer As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents gcAsuransi As DevExpress.XtraGrid.Columns.GridColumn
 End Class

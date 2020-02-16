@@ -481,4 +481,8 @@ Public Class frmKehadiranKaryawan
         Return res
     End Function
 
+    Private Sub btnSave_Click(sender As Object, e As EventArgs) Handles btnSave.Click
+
+    End Sub
+
 End Class

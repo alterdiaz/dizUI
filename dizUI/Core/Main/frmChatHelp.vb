@@ -28,6 +28,7 @@
         webCtrl.Visible = False
         webCtrl.Source = New Uri(_url)
         'webCtrl.Update()
+        webCtrl.Invalidate()
         webCtrl.Visible = True
 
         pMaximize.Enabled = False
@@ -51,8 +52,11 @@
     End Sub
 
     Private Sub pExit_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles pExit.Click
-        webCtrl.Stop()
-        Me.Dispose()
+        Try
+            webCtrl.Stop()
+            Me.Dispose()
+        Catch ex As Exception
+        End Try
     End Sub
 
     Private Sub pMaximize_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles pMaximize.Click
@@ -122,14 +126,18 @@
     Private Sub btnRefresh_Click(sender As Object, e As EventArgs) Handles btnRefresh.Click
         webCtrl.Visible = False
         webCtrl.Source = New Uri(_url)
+        webCtrl.Invalidate()
         'webCtrl.Update()
         webCtrl.Visible = True
     End Sub
 
     Private Sub btnExtBrowser_Click(sender As Object, e As EventArgs) Handles btnExtBrowser.Click
-        System.Diagnostics.Process.Start("https://t.me/datacube_enterprise")
-        webCtrl.Stop()
-        Me.Dispose()
+        Try
+            System.Diagnostics.Process.Start("https://t.me/datacube_enterprise")
+            webCtrl.Stop()
+            Me.Dispose()
+        Catch ex As Exception
+        End Try
     End Sub
 
 End Class

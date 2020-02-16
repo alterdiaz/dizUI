@@ -90,6 +90,7 @@ Partial Class frmSuratJalanPermintaan
         Me.btnSave = New System.Windows.Forms.Button()
         Me.btnDelete = New System.Windows.Forms.Button()
         Me.lblSep5 = New System.Windows.Forms.Label()
+        Me.btnKendaraan = New System.Windows.Forms.Button()
         Me.tlpForm.SuspendLayout()
         Me.pTitle.SuspendLayout()
         CType(Me.pMinimize, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -650,11 +651,11 @@ Partial Class frmSuratJalanPermintaan
         Me.Label7.Anchor = System.Windows.Forms.AnchorStyles.Right
         Me.Label7.AutoSize = True
         Me.Label7.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label7.Location = New System.Drawing.Point(10, 11)
+        Me.Label7.Location = New System.Drawing.Point(14, 11)
         Me.Label7.Name = "Label7"
-        Me.Label7.Size = New System.Drawing.Size(93, 14)
+        Me.Label7.Size = New System.Drawing.Size(89, 14)
         Me.Label7.TabIndex = 24
-        Me.Label7.Text = "Tgl. Permintaan"
+        Me.Label7.Text = "Tgl.Permintaan"
         Me.Label7.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
         'Label3
@@ -662,11 +663,11 @@ Partial Class frmSuratJalanPermintaan
         Me.Label3.Anchor = System.Windows.Forms.AnchorStyles.Right
         Me.Label3.AutoSize = True
         Me.Label3.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label3.Location = New System.Drawing.Point(322, 11)
+        Me.Label3.Location = New System.Drawing.Point(326, 11)
         Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(81, 14)
+        Me.Label3.Size = New System.Drawing.Size(77, 14)
         Me.Label3.TabIndex = 23
-        Me.Label3.Text = "Tgl. Transaksi"
+        Me.Label3.Text = "Tgl.Transaksi"
         Me.Label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
         'deTanggal
@@ -791,11 +792,11 @@ Partial Class frmSuratJalanPermintaan
         Me.Label2.Anchor = System.Windows.Forms.AnchorStyles.Right
         Me.Label2.AutoSize = True
         Me.Label2.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label2.Location = New System.Drawing.Point(314, 35)
+        Me.Label2.Location = New System.Drawing.Point(328, 35)
         Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(89, 14)
+        Me.Label2.Size = New System.Drawing.Size(75, 14)
         Me.Label2.TabIndex = 21
-        Me.Label2.Text = "No. Surat Jalan"
+        Me.Label2.Text = "No.Transaksi"
         Me.Label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
         'tePermintaanNo
@@ -826,11 +827,11 @@ Partial Class frmSuratJalanPermintaan
         Me.lblParent.Anchor = System.Windows.Forms.AnchorStyles.Right
         Me.lblParent.AutoSize = True
         Me.lblParent.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblParent.Location = New System.Drawing.Point(12, 35)
+        Me.lblParent.Location = New System.Drawing.Point(16, 35)
         Me.lblParent.Name = "lblParent"
-        Me.lblParent.Size = New System.Drawing.Size(91, 14)
+        Me.lblParent.Size = New System.Drawing.Size(87, 14)
         Me.lblParent.TabIndex = 20
-        Me.lblParent.Text = "No. Permintaan"
+        Me.lblParent.Text = "No.Permintaan"
         Me.lblParent.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
         'Label1
@@ -1087,6 +1088,7 @@ Partial Class frmSuratJalanPermintaan
         'pHeader
         '
         Me.pHeader.BackColor = System.Drawing.Color.FromArgb(CType(CType(66, Byte), Integer), CType(CType(66, Byte), Integer), CType(CType(66, Byte), Integer))
+        Me.pHeader.Controls.Add(Me.btnKendaraan)
         Me.pHeader.Controls.Add(Me.btnSearch)
         Me.pHeader.Controls.Add(Me.btnNew)
         Me.pHeader.Controls.Add(Me.btnSave)
@@ -1177,6 +1179,24 @@ Partial Class frmSuratJalanPermintaan
         Me.lblSep5.TabIndex = 19
         Me.lblSep5.Text = "|"
         Me.lblSep5.TextAlign = System.Drawing.ContentAlignment.TopCenter
+        '
+        'btnKendaraan
+        '
+        Me.btnKendaraan.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(0, Byte), Integer))
+        Me.btnKendaraan.Dock = System.Windows.Forms.DockStyle.Left
+        Me.btnKendaraan.FlatAppearance.BorderSize = 0
+        Me.btnKendaraan.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DimGray
+        Me.btnKendaraan.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DarkGray
+        Me.btnKendaraan.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnKendaraan.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnKendaraan.Location = New System.Drawing.Point(0, 0)
+        Me.btnKendaraan.Margin = New System.Windows.Forms.Padding(0)
+        Me.btnKendaraan.Name = "btnKendaraan"
+        Me.btnKendaraan.Size = New System.Drawing.Size(90, 30)
+        Me.btnKendaraan.TabIndex = 28
+        Me.btnKendaraan.Text = "KENDARAAN"
+        Me.btnKendaraan.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
+        Me.btnKendaraan.UseVisualStyleBackColor = False
         '
         'frmSuratJalanPermintaan
         '
@@ -1301,4 +1321,5 @@ Partial Class frmSuratJalanPermintaan
     Friend WithEvents teNote As DevExpress.XtraEditors.TextEdit
     Friend WithEvents teDeptTujuan As DevExpress.XtraEditors.TextEdit
     Friend WithEvents Label9 As Label
+    Public WithEvents btnKendaraan As Button
 End Class

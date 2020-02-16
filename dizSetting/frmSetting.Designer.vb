@@ -22,13 +22,12 @@ Partial Class frmSetting
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmSetting))
         Me.lblTitle = New System.Windows.Forms.Label()
         Me.UpdSave = New System.Windows.Forms.Button()
         Me.btnKeluar = New System.Windows.Forms.Button()
         Me.btnRun = New System.Windows.Forms.Button()
-        Me.tmrAuto = New System.Windows.Forms.Timer(Me.components)
+        Me.tmrAuto = New System.Windows.Forms.Timer()
         Me.cboAutoRun = New System.Windows.Forms.CheckBox()
         Me.pCounter = New System.Windows.Forms.Panel()
         Me.btnCancel = New System.Windows.Forms.Button()
@@ -228,6 +227,7 @@ Partial Class frmSetting
         Me.tboPass.Name = "tboPass"
         Me.tboPass.Size = New System.Drawing.Size(196, 23)
         Me.tboPass.TabIndex = 5
+        Me.tboPass.UseSystemPasswordChar = True
         '
         'lblUser
         '

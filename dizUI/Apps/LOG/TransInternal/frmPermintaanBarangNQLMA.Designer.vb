@@ -49,6 +49,7 @@ Partial Class frmPermintaanBarangNQLMA
         Me.btnDeleteAllItem = New System.Windows.Forms.Button()
         Me.btnDeleteItem = New System.Windows.Forms.Button()
         Me.tlpField = New System.Windows.Forms.TableLayoutPanel()
+        Me.btnItemUnit = New System.Windows.Forms.Button()
         Me.btnLock = New System.Windows.Forms.Button()
         Me.teNote = New DevExpress.XtraEditors.TextEdit()
         Me.Label4 = New System.Windows.Forms.Label()
@@ -77,7 +78,6 @@ Partial Class frmPermintaanBarangNQLMA
         Me.btnCetak = New System.Windows.Forms.Button()
         Me.btnDelete = New System.Windows.Forms.Button()
         Me.lblSep5 = New System.Windows.Forms.Label()
-        Me.btnItemUnit = New System.Windows.Forms.Button()
         Me.tlpForm.SuspendLayout()
         Me.pTitle.SuspendLayout()
         CType(Me.pMinimize, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -124,7 +124,7 @@ Partial Class frmPermintaanBarangNQLMA
         Me.tlpForm.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30.0!))
         Me.tlpForm.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
         Me.tlpForm.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
-        Me.tlpForm.Size = New System.Drawing.Size(836, 449)
+        Me.tlpForm.Size = New System.Drawing.Size(944, 449)
         Me.tlpForm.TabIndex = 0
         '
         'pTitle
@@ -137,7 +137,7 @@ Partial Class frmPermintaanBarangNQLMA
         Me.pTitle.Location = New System.Drawing.Point(2, 0)
         Me.pTitle.Margin = New System.Windows.Forms.Padding(0)
         Me.pTitle.Name = "pTitle"
-        Me.pTitle.Size = New System.Drawing.Size(832, 30)
+        Me.pTitle.Size = New System.Drawing.Size(940, 30)
         Me.pTitle.TabIndex = 10
         '
         'lblTitle
@@ -150,7 +150,7 @@ Partial Class frmPermintaanBarangNQLMA
         Me.lblTitle.Margin = New System.Windows.Forms.Padding(0)
         Me.lblTitle.Name = "lblTitle"
         Me.lblTitle.Padding = New System.Windows.Forms.Padding(10, 0, 0, 0)
-        Me.lblTitle.Size = New System.Drawing.Size(742, 30)
+        Me.lblTitle.Size = New System.Drawing.Size(850, 30)
         Me.lblTitle.TabIndex = 6
         Me.lblTitle.Text = "Permintaan Barang"
         Me.lblTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
@@ -160,7 +160,7 @@ Partial Class frmPermintaanBarangNQLMA
         Me.pMinimize.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.pMinimize.Dock = System.Windows.Forms.DockStyle.Right
         Me.pMinimize.Image = Global.dizUI.My.Resources.Resources.min_w
-        Me.pMinimize.Location = New System.Drawing.Point(742, 0)
+        Me.pMinimize.Location = New System.Drawing.Point(850, 0)
         Me.pMinimize.Margin = New System.Windows.Forms.Padding(0)
         Me.pMinimize.Name = "pMinimize"
         Me.pMinimize.Size = New System.Drawing.Size(30, 30)
@@ -173,7 +173,7 @@ Partial Class frmPermintaanBarangNQLMA
         Me.pMaximize.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.pMaximize.Dock = System.Windows.Forms.DockStyle.Right
         Me.pMaximize.Image = Global.dizUI.My.Resources.Resources.max_w
-        Me.pMaximize.Location = New System.Drawing.Point(772, 0)
+        Me.pMaximize.Location = New System.Drawing.Point(880, 0)
         Me.pMaximize.Margin = New System.Windows.Forms.Padding(0)
         Me.pMaximize.Name = "pMaximize"
         Me.pMaximize.Size = New System.Drawing.Size(30, 30)
@@ -186,7 +186,7 @@ Partial Class frmPermintaanBarangNQLMA
         Me.pExit.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.pExit.Dock = System.Windows.Forms.DockStyle.Right
         Me.pExit.Image = Global.dizUI.My.Resources.Resources.exit_w
-        Me.pExit.Location = New System.Drawing.Point(802, 0)
+        Me.pExit.Location = New System.Drawing.Point(910, 0)
         Me.pExit.Margin = New System.Windows.Forms.Padding(0)
         Me.pExit.Name = "pExit"
         Me.pExit.Size = New System.Drawing.Size(30, 30)
@@ -202,7 +202,7 @@ Partial Class frmPermintaanBarangNQLMA
         Me.pBody.Location = New System.Drawing.Point(2, 30)
         Me.pBody.Margin = New System.Windows.Forms.Padding(0)
         Me.pBody.Name = "pBody"
-        Me.pBody.Size = New System.Drawing.Size(832, 419)
+        Me.pBody.Size = New System.Drawing.Size(940, 419)
         Me.pBody.TabIndex = 7
         '
         'sccForm
@@ -221,8 +221,8 @@ Partial Class frmPermintaanBarangNQLMA
         Me.sccForm.Panel2.Controls.Add(Me.pRightBar)
         Me.sccForm.Panel2.MinSize = 270
         Me.sccForm.Panel2.Text = "Panel2"
-        Me.sccForm.Size = New System.Drawing.Size(832, 389)
-        Me.sccForm.SplitterPosition = 557
+        Me.sccForm.Size = New System.Drawing.Size(940, 389)
+        Me.sccForm.SplitterPosition = 665
         Me.sccForm.TabIndex = 14
         Me.sccForm.Text = "SplitContainerControl1"
         '
@@ -234,7 +234,7 @@ Partial Class frmPermintaanBarangNQLMA
         Me.gcData.MainView = Me.gvData
         Me.gcData.Name = "gcData"
         Me.gcData.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.seQty})
-        Me.gcData.Size = New System.Drawing.Size(557, 275)
+        Me.gcData.Size = New System.Drawing.Size(665, 275)
         Me.gcData.TabIndex = 8
         Me.gcData.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gvData})
         '
@@ -426,7 +426,7 @@ Partial Class frmPermintaanBarangNQLMA
         Me.Panel1.Location = New System.Drawing.Point(0, 359)
         Me.Panel1.Margin = New System.Windows.Forms.Padding(0)
         Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(557, 30)
+        Me.Panel1.Size = New System.Drawing.Size(665, 30)
         Me.Panel1.TabIndex = 13
         '
         'btnDeleteAllItem
@@ -455,7 +455,7 @@ Partial Class frmPermintaanBarangNQLMA
         Me.btnDeleteItem.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DarkGray
         Me.btnDeleteItem.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnDeleteItem.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnDeleteItem.Location = New System.Drawing.Point(457, 0)
+        Me.btnDeleteItem.Location = New System.Drawing.Point(565, 0)
         Me.btnDeleteItem.Name = "btnDeleteItem"
         Me.btnDeleteItem.Size = New System.Drawing.Size(100, 30)
         Me.btnDeleteItem.TabIndex = 15
@@ -470,7 +470,7 @@ Partial Class frmPermintaanBarangNQLMA
         Me.tlpField.BackColor = System.Drawing.Color.FromArgb(CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer))
         Me.tlpField.ColumnCount = 6
         Me.tlpField.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
-        Me.tlpField.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 70.0!))
+        Me.tlpField.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100.0!))
         Me.tlpField.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 200.0!))
         Me.tlpField.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100.0!))
         Me.tlpField.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 150.0!))
@@ -495,8 +495,26 @@ Partial Class frmPermintaanBarangNQLMA
         Me.tlpField.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 24.0!))
         Me.tlpField.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 24.0!))
         Me.tlpField.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 6.0!))
-        Me.tlpField.Size = New System.Drawing.Size(557, 84)
+        Me.tlpField.Size = New System.Drawing.Size(665, 84)
         Me.tlpField.TabIndex = 7
+        '
+        'btnItemUnit
+        '
+        Me.btnItemUnit.BackColor = System.Drawing.Color.Green
+        Me.btnItemUnit.FlatAppearance.BorderSize = 0
+        Me.btnItemUnit.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DimGray
+        Me.btnItemUnit.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DarkGray
+        Me.btnItemUnit.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnItemUnit.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnItemUnit.ForeColor = System.Drawing.Color.White
+        Me.btnItemUnit.Location = New System.Drawing.Point(461, 54)
+        Me.btnItemUnit.Margin = New System.Windows.Forms.Padding(4, 0, 0, 0)
+        Me.btnItemUnit.Name = "btnItemUnit"
+        Me.btnItemUnit.Size = New System.Drawing.Size(100, 24)
+        Me.btnItemUnit.TabIndex = 20
+        Me.btnItemUnit.Text = "LOAD ITEM"
+        Me.btnItemUnit.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
+        Me.btnItemUnit.UseVisualStyleBackColor = False
         '
         'btnLock
         '
@@ -507,7 +525,7 @@ Partial Class frmPermintaanBarangNQLMA
         Me.btnLock.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnLock.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnLock.ForeColor = System.Drawing.Color.White
-        Me.btnLock.Location = New System.Drawing.Point(92, 54)
+        Me.btnLock.Location = New System.Drawing.Point(161, 54)
         Me.btnLock.Margin = New System.Windows.Forms.Padding(4, 0, 0, 0)
         Me.btnLock.Name = "btnLock"
         Me.btnLock.Size = New System.Drawing.Size(100, 24)
@@ -519,7 +537,7 @@ Partial Class frmPermintaanBarangNQLMA
         'teNote
         '
         Me.teNote.Anchor = System.Windows.Forms.AnchorStyles.Left
-        Me.teNote.Location = New System.Drawing.Point(388, 32)
+        Me.teNote.Location = New System.Drawing.Point(457, 32)
         Me.teNote.Margin = New System.Windows.Forms.Padding(0)
         Me.teNote.Name = "teNote"
         Me.teNote.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[True]
@@ -540,7 +558,7 @@ Partial Class frmPermintaanBarangNQLMA
         Me.Label4.Anchor = System.Windows.Forms.AnchorStyles.Right
         Me.Label4.AutoSize = True
         Me.Label4.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label4.Location = New System.Drawing.Point(315, 35)
+        Me.Label4.Location = New System.Drawing.Point(384, 35)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(70, 14)
         Me.Label4.TabIndex = 24
@@ -551,7 +569,7 @@ Partial Class frmPermintaanBarangNQLMA
         '
         Me.deTanggal.Anchor = System.Windows.Forms.AnchorStyles.Left
         Me.deTanggal.EditValue = Nothing
-        Me.deTanggal.Location = New System.Drawing.Point(388, 8)
+        Me.deTanggal.Location = New System.Drawing.Point(457, 8)
         Me.deTanggal.Margin = New System.Windows.Forms.Padding(0)
         Me.deTanggal.Name = "deTanggal"
         Me.deTanggal.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer))
@@ -591,7 +609,7 @@ Partial Class frmPermintaanBarangNQLMA
         'teKode
         '
         Me.teKode.Anchor = System.Windows.Forms.AnchorStyles.Left
-        Me.teKode.Location = New System.Drawing.Point(88, 8)
+        Me.teKode.Location = New System.Drawing.Point(157, 8)
         Me.teKode.Margin = New System.Windows.Forms.Padding(0)
         Me.teKode.Name = "teKode"
         Me.teKode.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[True]
@@ -613,11 +631,11 @@ Partial Class frmPermintaanBarangNQLMA
         Me.lblParent.Anchor = System.Windows.Forms.AnchorStyles.Right
         Me.lblParent.AutoSize = True
         Me.lblParent.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblParent.Location = New System.Drawing.Point(42, 11)
+        Me.lblParent.Location = New System.Drawing.Point(79, 11)
         Me.lblParent.Name = "lblParent"
-        Me.lblParent.Size = New System.Drawing.Size(43, 14)
+        Me.lblParent.Size = New System.Drawing.Size(75, 14)
         Me.lblParent.TabIndex = 20
-        Me.lblParent.Text = "Nomor"
+        Me.lblParent.Text = "No.Transaksi"
         Me.lblParent.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
         'lblDepartment
@@ -625,7 +643,7 @@ Partial Class frmPermintaanBarangNQLMA
         Me.lblDepartment.Anchor = System.Windows.Forms.AnchorStyles.Right
         Me.lblDepartment.AutoSize = True
         Me.lblDepartment.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblDepartment.Location = New System.Drawing.Point(56, 35)
+        Me.lblDepartment.Location = New System.Drawing.Point(125, 35)
         Me.lblDepartment.Name = "lblDepartment"
         Me.lblDepartment.Size = New System.Drawing.Size(29, 14)
         Me.lblDepartment.TabIndex = 9
@@ -635,7 +653,7 @@ Partial Class frmPermintaanBarangNQLMA
         'lueUnit
         '
         Me.lueUnit.Anchor = System.Windows.Forms.AnchorStyles.Left
-        Me.lueUnit.Location = New System.Drawing.Point(88, 32)
+        Me.lueUnit.Location = New System.Drawing.Point(157, 32)
         Me.lueUnit.Margin = New System.Windows.Forms.Padding(0)
         Me.lueUnit.Name = "lueUnit"
         Me.lueUnit.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[False]
@@ -657,7 +675,7 @@ Partial Class frmPermintaanBarangNQLMA
         Me.Label2.Anchor = System.Windows.Forms.AnchorStyles.Right
         Me.Label2.AutoSize = True
         Me.Label2.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label2.Location = New System.Drawing.Point(335, 11)
+        Me.Label2.Location = New System.Drawing.Point(404, 11)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(50, 14)
         Me.Label2.TabIndex = 49
@@ -839,7 +857,7 @@ Partial Class frmPermintaanBarangNQLMA
         Me.pHeader.Location = New System.Drawing.Point(0, 0)
         Me.pHeader.Margin = New System.Windows.Forms.Padding(0)
         Me.pHeader.Name = "pHeader"
-        Me.pHeader.Size = New System.Drawing.Size(832, 30)
+        Me.pHeader.Size = New System.Drawing.Size(940, 30)
         Me.pHeader.TabIndex = 4
         '
         'btnSearch
@@ -850,7 +868,7 @@ Partial Class frmPermintaanBarangNQLMA
         Me.btnSearch.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DarkGray
         Me.btnSearch.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnSearch.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnSearch.Location = New System.Drawing.Point(452, 0)
+        Me.btnSearch.Location = New System.Drawing.Point(560, 0)
         Me.btnSearch.Name = "btnSearch"
         Me.btnSearch.Size = New System.Drawing.Size(60, 30)
         Me.btnSearch.TabIndex = 18
@@ -866,7 +884,7 @@ Partial Class frmPermintaanBarangNQLMA
         Me.btnNew.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DarkGray
         Me.btnNew.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnNew.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnNew.Location = New System.Drawing.Point(512, 0)
+        Me.btnNew.Location = New System.Drawing.Point(620, 0)
         Me.btnNew.Name = "btnNew"
         Me.btnNew.Size = New System.Drawing.Size(60, 30)
         Me.btnNew.TabIndex = 17
@@ -883,7 +901,7 @@ Partial Class frmPermintaanBarangNQLMA
         Me.btnSave.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DarkGray
         Me.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnSave.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnSave.Location = New System.Drawing.Point(572, 0)
+        Me.btnSave.Location = New System.Drawing.Point(680, 0)
         Me.btnSave.Name = "btnSave"
         Me.btnSave.Size = New System.Drawing.Size(80, 30)
         Me.btnSave.TabIndex = 15
@@ -900,7 +918,7 @@ Partial Class frmPermintaanBarangNQLMA
         Me.btnCetak.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DarkGray
         Me.btnCetak.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnCetak.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnCetak.Location = New System.Drawing.Point(652, 0)
+        Me.btnCetak.Location = New System.Drawing.Point(760, 0)
         Me.btnCetak.Name = "btnCetak"
         Me.btnCetak.Size = New System.Drawing.Size(100, 30)
         Me.btnCetak.TabIndex = 19
@@ -918,7 +936,7 @@ Partial Class frmPermintaanBarangNQLMA
         Me.btnDelete.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DarkGray
         Me.btnDelete.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnDelete.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnDelete.Location = New System.Drawing.Point(752, 0)
+        Me.btnDelete.Location = New System.Drawing.Point(860, 0)
         Me.btnDelete.Name = "btnDelete"
         Me.btnDelete.Size = New System.Drawing.Size(80, 30)
         Me.btnDelete.TabIndex = 11
@@ -939,30 +957,12 @@ Partial Class frmPermintaanBarangNQLMA
         Me.lblSep5.Text = "|"
         Me.lblSep5.TextAlign = System.Drawing.ContentAlignment.TopCenter
         '
-        'btnItemUnit
-        '
-        Me.btnItemUnit.BackColor = System.Drawing.Color.Green
-        Me.btnItemUnit.FlatAppearance.BorderSize = 0
-        Me.btnItemUnit.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DimGray
-        Me.btnItemUnit.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DarkGray
-        Me.btnItemUnit.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btnItemUnit.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnItemUnit.ForeColor = System.Drawing.Color.White
-        Me.btnItemUnit.Location = New System.Drawing.Point(392, 54)
-        Me.btnItemUnit.Margin = New System.Windows.Forms.Padding(4, 0, 0, 0)
-        Me.btnItemUnit.Name = "btnItemUnit"
-        Me.btnItemUnit.Size = New System.Drawing.Size(100, 24)
-        Me.btnItemUnit.TabIndex = 20
-        Me.btnItemUnit.Text = "LOAD ITEM"
-        Me.btnItemUnit.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
-        Me.btnItemUnit.UseVisualStyleBackColor = False
-        '
         'frmPermintaanBarangNQLMA
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer))
-        Me.ClientSize = New System.Drawing.Size(836, 449)
+        Me.ClientSize = New System.Drawing.Size(944, 449)
         Me.Controls.Add(Me.tlpForm)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
         Me.Name = "frmPermintaanBarangNQLMA"

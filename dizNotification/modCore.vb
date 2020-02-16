@@ -9,6 +9,7 @@ Module modCore
     'Public idreg As New List(Of String)
     'Public idregi As New List(Of String)
     Public idnotif As New List(Of String)
+    Public isfocus As Boolean = False
 
     Public timeoutApps As Integer = 180
     Public siteonline As String = ""

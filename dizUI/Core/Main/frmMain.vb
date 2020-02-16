@@ -6,6 +6,35 @@ Imports System.ComponentModel
 
 Public Class frmMain
 
+    <FlagsAttribute()>
+    Public Enum EXECUTION_STATE As UInteger ' Determine Monitor State
+        ES_AWAYMODE_REQUIRED = &H40
+        ES_CONTINUOUS = &H80000000UI
+        ES_DISPLAY_REQUIRED = &H2
+        ES_SYSTEM_REQUIRED = &H1
+        ' Legacy flag, should not be used.
+        ' ES_USER_PRESENT = 0x00000004
+    End Enum
+
+    'Enables an application to inform the system that it is in use, thereby preventing the system from entering sleep or turning off the display while the application is running.
+    <DllImport("kernel32.dll", CharSet:=CharSet.Auto, SetLastError:=True)>
+    Private Shared Function SetThreadExecutionState(ByVal esFlags As EXECUTION_STATE) As EXECUTION_STATE
+    End Function
+
+    'This function queries or sets system-wide parameters, and updates the user profile during the process.
+    <DllImport("user32", EntryPoint:="SystemParametersInfo", CharSet:=CharSet.Auto, SetLastError:=True)>
+    Private Shared Function SystemParametersInfo(ByVal uAction As Integer, ByVal uParam As Integer, ByVal lpvParam As String, ByVal fuWinIni As Integer) As Integer
+    End Function
+
+    Private Const SPI_SETSCREENSAVETIMEOUT As Int32 = 15
+    Public Sub KeepMonitorActive()
+        SetThreadExecutionState(EXECUTION_STATE.ES_DISPLAY_REQUIRED + EXECUTION_STATE.ES_CONTINUOUS) 'Do not Go To Sleep
+    End Sub
+
+    Public Sub RestoreMonitorSettings()
+        SetThreadExecutionState(EXECUTION_STATE.ES_CONTINUOUS) 'Restore Previous Settings, ie, Go To Sleep Again
+    End Sub
+
     Const HTCAPTION = &H2
     Const WM_NCLBUTTONDOWN = &HA1
 
@@ -251,7 +280,7 @@ Public Class frmMain
         intNotif = 5
     End Sub
 
-    Private Sub ParseCommandLineArgs()
+    Private Sub callSetting()
         'Dim inputName As String = ""
 
         'Dim CommandLineArgs As System.Collections.ObjectModel.ReadOnlyCollection(Of String) = My.Application.CommandLineArgs
@@ -263,9 +292,9 @@ Public Class frmMain
 
         Dim exefilename As String = IO.Path.GetFileName(Application.ExecutablePath)
         'If inputName = "update" Then
-        If IO.File.Exists(CheckAndRepairValidPath(Application.StartupPath) & "Setting\dizSetting.exe") Then
+        If IO.File.Exists(pathSetting & "dizSetting.exe") Then
             Threading.Thread.Sleep(100)
-            System.Diagnostics.Process.Start(CheckAndRepairValidPath(Application.StartupPath) & "Setting\dizSetting.exe", exefilename)
+            System.Diagnostics.Process.Start(pathSetting & "dizSetting.exe", exefilename)
             Threading.Thread.Sleep(100)
             Environment.Exit(0)
         End If
@@ -357,6 +386,8 @@ Public Class frmMain
 
     Private versiApp As String = ""
     Private Sub frmMain_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
+        KeepMonitorActive()
+
         pHeader.Visible = False
         pHeader.SendToBack()
 
@@ -430,7 +461,7 @@ Public Class frmMain
 
         appPath = Application.StartupPath
         appPath = CheckAndRepairValidPath(appPath)
-        My.Computer.Registry.SetValue("HKEY_CURRENT_USER\Software\Datacube", "Path", appPath, RegistryValueKind.String)
+        My.Computer.Registry.SetValue("HKEY_CURRENT_USER\Software\Datacube Enterprise", "Path", appPath, RegistryValueKind.String)
         checkPath()
         If IO.Path.GetFileNameWithoutExtension(Application.ExecutablePath) = "dizUI" Then
             If IO.File.Exists(appPath & "default_live.jpg") Then
@@ -480,10 +511,21 @@ Public Class frmMain
                     colr.Add(Color.FromArgb(153, 0, 0))
                     colr.Add(Color.FromArgb(153, 0, 153))
 
+                    Dim strbgfile As String = IO.Path.GetFileNameWithoutExtension(filelist(idxrnd))
                     idxrnd = rnd.Next(0, colr.Count - 1)
                     tlpFooter.BackColor = colr(idxrnd) 'rgbidx.GetDominantColor(bm_dest)
+
+                    Dim listbgfile As New List(Of String)({"wallpaper202001", "wallpaper202003", "wallpaper202004", "wallpaper202028", "wallpaper202031"})
+                    If listbgfile.Contains(strbgfile) = True Then
+                        MsgBox(strbgfile)
+                        lblFormJam.ForeColor = Color.Black
+                        lblFormTanggal.ForeColor = Color.Black
+                    Else
+                        lblFormJam.ForeColor = Color.White
+                        lblFormTanggal.ForeColor = Color.White
+                    End If
                 Else
-                    imgBack = Image.FromFile(appPath & "default_live.jpg")
+                        imgBack = Image.FromFile(appPath & "default_live.jpg")
                 End If
 
                 tcTile.BackgroundImage = imgBack
@@ -750,7 +792,7 @@ Public Class frmMain
                 Dim thisversi As String = modCore.productversion
                 thisversi = thisversi.Replace(".", "")
                 If CInt(versi) <> CInt(thisversi) Then
-                    ParseCommandLineArgs()
+                    callSetting()
                 End If
             End If
 
@@ -793,9 +835,9 @@ Public Class frmMain
                 'lite.DMLQuery("select value from appsetting where variable='ProductTypeID'", "PTypeID")
                 'modCore.idproducttype = lite.getDataSet("PTypeID", 0, "value")
                 'sqls.DMLQuery("update sys_appsetting set value='" & modCore.idproducttype & "' where variable='ProductTypeID'", False)
-                sqli.DMLQuery("select idproducttype from companyproducttype where idcompany='" & modCore.idcompany & "'", "protype")
-                For i As Integer = 0 To sqli.getDataSet("protype") - 1
-                    idproducttype.Add(sqli.getDataSet("protype", i, "idproducttype"))
+                sqls.DMLQuery("select distinct idproducttype,producttype from sys_companyproducttype", "protype") ' where idcompany='" & modCore.idcompany & "'", "protype")
+                For i As Integer = 0 To sqls.getDataSet("protype") - 1
+                    idproducttype.Add(sqls.getDataSet("protype", i, "idproducttype"))
                 Next
             Else
                 Dim lite As New SQLi(dblite)
@@ -824,14 +866,17 @@ Public Class frmMain
                 'sqls.DMLQuery("select value from sys_appsetting where variable='ProductTypeID'", "PTypeID")
                 'modCore.idproducttype = sqls.getDataSet("PTypeID", 0, "value")
                 'lite.DMLQuery("update appsetting set value='" & idproducttype & "' where variable='ProductTypeID'", False)
-                sqls.DMLQuery("select idproducttype from sys_appproducttype where idcompany='" & modCore.idcompany & "'", "protype")
+                sqls.DMLQuery("select distinct idproducttype,producttype from sys_companyproducttype", "protype") ' where idcompany='" & modCore.idcompany & "'", "protype")
+                lite.DMLQuery("delete from companyproducttype", False)
                 For i As Integer = 0 To sqls.getDataSet("protype") - 1
                     idproducttype.Add(sqls.getDataSet("protype", i, "idproducttype"))
+                    lite.DMLQuery("insert into companyproducttype values('" & GenerateGUID() & "','" & modCore.idcompany & "','" & sqls.getDataSet("protype", i, "idproducttype") & "','" & sqls.getDataSet("protype", i, "producttype") & "'", False)
                 Next
             End If
 
-            Me.Cursor = Cursors.Default
             tmrWaktu.Start()
+
+            Me.Cursor = Cursors.Default
             'bwServer.WorkerReportsProgress = False
             If isServer = True Then
                 Dim task As System.Threading.Tasks.Task = New System.Threading.Tasks.Task(AddressOf cekTimer2)
@@ -848,15 +893,13 @@ Public Class frmMain
             writeLog(lblTitle.Text & " start running")
             showNotification(iconNotif.info, Me.Text & " start running")
 
-            pForm.Visible = False
-            pForm.SendToBack()
-            pForm.Dock = DockStyle.None
             tcTile.Groups.Clear()
-            tcTile.Visible = True
-            tcTile.BringToFront()
-            tcTile.Dock = DockStyle.Fill
-            tcTile.Focus()
-
+            tcTile.Visible = False
+            tcTile.SendToBack()
+            tcTile.Dock = DockStyle.None
+            pForm.Visible = True
+            pForm.BringToFront()
+            pForm.Dock = DockStyle.Fill
             'btnSidebar.BringToFront()
             'pSidebar.BringToFront()
         Catch ex As Exception
@@ -881,36 +924,133 @@ Public Class frmMain
             'Label3.BringToFront()
         End If
 
-        'If IO.Path.GetFileNameWithoutExtension(Application.ExecutablePath) = "dizUI" Then
-        '    Dim sqlsu As New SQLs(dbstring)
-        '    sqlsu.DMLQuery("select idappfiles,filename,appversion,createddate,filebinary from sys_appfiles where filename='dizSetting.exe' and appversion=(select value from sys_appsetting where variable='ProductVersion')", "appfiles")
-        '    If sqlsu.getDataSet("appfiles") > 0 Then
-        '        Dim tmpbyte As Byte() = Nothing
-        '        Dim filename As String = ""
-        '        GC.Collect()
-        '        tmpbyte = Nothing
-        '        filename = sqlsu.getDataSet("appfiles", 0, "filename")
-        '        tmpbyte = sqlsu.getData("sys_appfiles", "filebinary", "filename", filename, False)
-        '        If IO.File.Exists(CheckAndRepairValidPath(Application.StartupPath) & filename) = True Then
-        '            Dim errBool As Boolean = False
-        '            Try
-        '                IO.File.Delete(CheckAndRepairValidPath(Application.StartupPath) & filename)
-        '            Catch ex As Exception
-        '                'MsgBox("error delete" & vbCrLf & filename & vbCrLf & sqls.getDataSet("appfiles", i, "createddate"))
-        '                errBool = True
-        '            End Try
-        '            Application.DoEvents()
-        '            Threading.Thread.Sleep(100)
-        '        End If
-        '        Try
-        '            IO.File.WriteAllBytes(CheckAndRepairValidPath(Application.StartupPath) & filename, tmpbyte)
-        '        Catch ex As Exception
-        '            'MsgBox("error write" & vbCrLf & filename & vbCrLf & sqls.getDataSet("appfiles", i, "createddate"))
-        '        End Try
-        '        Application.DoEvents()
-        '        Threading.Thread.Sleep(100)
-        '    End If
-        'End If
+        If IO.File.Exists(pathSetting & "dizSetting.exe") = True Then
+            Dim verSetting As String = System.Diagnostics.FileVersionInfo.GetVersionInfo(pathSetting & "dizSetting.exe").FileVersion
+            Dim verSettingInt As Long = CLng(verSetting.Replace(".", ""))
+
+            Dim sqls As New SQLs(dbstring)
+            sqls.DMLQuery("select top 1 replace(value,'.','') as tmpint,value as tmpstr from sys_appsetting where variable='productsettingversion'", "getsetver")
+            Dim tmpsetver As Long = 0
+            Dim tmpsetstr As String = "0000"
+
+            If sqls.getDataSet("getsetver") > 0 Then
+                tmpsetver = CLng(sqls.getDataSet("getsetver", 0, "tmpint"))
+                tmpsetstr = sqls.getDataSet("getsetver", 0, "tmpstr")
+            End If
+            If verSettingInt <> tmpsetver Then
+                For Each i As String In IO.Directory.GetFiles(pathSetting)
+                    If i.Contains(de.processD("l59ruEcWFgphomWNjDb5gA==")) = False Then
+                        IO.File.Delete(i)
+                    End If
+                Next
+                If IO.Directory.Exists(pathSetting) = True Then
+                    IO.File.Copy(appPath & de.processD("l59ruEcWFgphomWNjDb5gA=="), pathSetting & de.processD("l59ruEcWFgphomWNjDb5gA=="), True)
+                End If
+
+                Dim tmpbyte As Byte() = Nothing
+                Dim filename As String = ""
+                sqls.DMLQuery("select idappsettingfiles,filename,appversion,createddate,filebinary from sys_appsettingfiles where filename<>'" & de.processD("l59ruEcWFgphomWNjDb5gA==") & "' and appversion=(select value from sys_appsetting where variable='productsettingversion') order by len(filebinary) desc", "appfiles")
+                'Dim fs As IO.FileStream
+                showNotification(iconNotif.info, "Menyelesaikan Update 0/" & sqls.getDataSet("appfiles"))
+                For i As Integer = 0 To sqls.getDataSet("appfiles") - 1
+                    Dim msqls As New SQLs(dbstring)
+                    GC.Collect()
+                    tmpbyte = Nothing
+                    filename = sqls.getDataSet("appfiles", i, "filename")
+                    If filename.ToLower <> IO.Path.GetFileName(pathSetting).ToLower Then
+                        If filename <> "" Then
+                            tmpbyte = msqls.getData("sys_appsettingfiles", "filebinary", "filename", filename, False)
+                        End If
+                        Try
+                            Dim errBool As Boolean = False
+                            If IO.File.Exists(pathSetting & filename) = True Then
+                                Try
+                                    IO.File.Delete(pathSetting & filename)
+                                Catch ex As Exception
+                                    'MsgBox("error delete" & vbCrLf & filename & vbCrLf & sqls.getDataSet("appfiles", i, "createddate"))
+                                    errBool = True
+                                End Try
+                                Me.Refresh()
+                                Application.DoEvents()
+                                Threading.Thread.Sleep(50)
+                            End If
+                            If errBool = False Then
+                                Try
+                                    IO.File.WriteAllBytes(pathSetting & filename, tmpbyte)
+                                Catch ex As Exception
+                                    'MsgBox("error write" & vbCrLf & filename & vbCrLf & sqls.getDataSet("appfiles", i, "createddate"))
+                                End Try
+                            End If
+                            'MsgBox(updpath & filename)
+                            Me.Refresh()
+                            Application.DoEvents()
+                            Threading.Thread.Sleep(50)
+                            showNotification(iconNotif.info, "Menyelesaikan Update " & i + 1 & "/" & sqls.getDataSet("appfiles"))
+                        Catch ex As Exception
+                            'MsgBox("unknown error" & vbCrLf & filename & vbCrLf & ex.Message)
+                        End Try
+                    End If
+                Next
+            End If
+        Else
+            Dim sqls As New SQLs(dbstring)
+            For Each i As String In IO.Directory.GetFiles(pathSetting)
+                If i.Contains(de.processD("l59ruEcWFgphomWNjDb5gA==")) = False Then
+                    IO.File.Delete(i)
+                End If
+            Next
+            If IO.Directory.Exists(pathSetting) = True Then
+                IO.File.Copy(appPath & de.processD("l59ruEcWFgphomWNjDb5gA=="), pathSetting & de.processD("l59ruEcWFgphomWNjDb5gA=="), True)
+            End If
+
+            Dim tmpbyte As Byte() = Nothing
+            Dim filename As String = ""
+            sqls.DMLQuery("select idappsettingfiles,filename,appversion,createddate,filebinary from sys_appsettingfiles where filename<>'" & de.processD("l59ruEcWFgphomWNjDb5gA==") & "' and appversion=(select value from sys_appsetting where variable='productsettingversion') order by len(filebinary) desc", "appfiles")
+            'Dim fs As IO.FileStream
+            showNotification(iconNotif.info, "Menyelesaikan Update 0/" & sqls.getDataSet("appfiles"))
+            For i As Integer = 0 To sqls.getDataSet("appfiles") - 1
+                Dim msqls As New SQLs(dbstring)
+                GC.Collect()
+                tmpbyte = Nothing
+                filename = sqls.getDataSet("appfiles", i, "filename")
+                If filename.ToLower <> IO.Path.GetFileName(pathSetting).ToLower Then
+                    If filename <> "" Then
+                        tmpbyte = msqls.getData("sys_appsettingfiles", "filebinary", "filename", filename, False)
+                    End If
+                    Try
+                        Dim errBool As Boolean = False
+                        If IO.File.Exists(pathSetting & filename) = True Then
+                            Try
+                                IO.File.Delete(pathSetting & filename)
+                            Catch ex As Exception
+                                'MsgBox("error delete" & vbCrLf & filename & vbCrLf & sqls.getDataSet("appfiles", i, "createddate"))
+                                errBool = True
+                            End Try
+                            Me.Refresh()
+                            Application.DoEvents()
+                            Threading.Thread.Sleep(50)
+                        End If
+                        If errBool = False Then
+                            Try
+                                IO.File.WriteAllBytes(pathSetting & filename, tmpbyte)
+                            Catch ex As Exception
+                                'MsgBox("error write" & vbCrLf & filename & vbCrLf & sqls.getDataSet("appfiles", i, "createddate"))
+                            End Try
+                        End If
+                        'MsgBox(updpath & filename)
+                        Me.Refresh()
+                        Application.DoEvents()
+                        Threading.Thread.Sleep(50)
+                        showNotification(iconNotif.info, "Menyelesaikan Update " & i + 1 & "/" & sqls.getDataSet("appfiles"))
+                    Catch ex As Exception
+                        'MsgBox("unknown error" & vbCrLf & filename & vbCrLf & ex.Message)
+                    End Try
+                End If
+            Next
+        End If
+        If IO.Directory.Exists(pathSetting) = True Then
+            IO.File.Copy(appPath & de.processD("l59ruEcWFgphomWNjDb5gA=="), pathSetting & de.processD("l59ruEcWFgphomWNjDb5gA=="), True)
+        End If
     End Sub
 
     Private isSync As Boolean = False
@@ -1401,7 +1541,6 @@ Public Class frmMain
                 nsud.Size = New Size(790, 400)
                 nsud.WindowState = FormWindowState.Maximized
 
-                'pForm.BringToFront()
                 pForm.Dock = DockStyle.Fill
                 pForm.Visible = True
                 pForm.BringToFront()
@@ -1423,6 +1562,7 @@ Public Class frmMain
                 nsud.ShowDialog()
             End If
         Catch ex As Exception
+            MsgBox(ex.Message)
             dizMsgbox("Menu tidak tersedia atau Aplikasi masih menggunakan versi lama", dizMsgboxStyle.Peringatan, Me)
             ClearForm(pForm)
         End Try
@@ -1434,30 +1574,58 @@ Public Class frmMain
             coll_form.Remove(CType(sender, Windows.Forms.Form).Name)
             addTaskList(coll_form)
             If coll_form.Count = 0 Then
-                tcTile.Dock = DockStyle.Fill
-                tcTile.Visible = True
-                tcTile.BringToFront()
-                tcTile.Focus()
-                teSearch.Visible = True
-                pForm.Dock = DockStyle.None
-                pForm.Visible = False
-                pForm.SendToBack()
+                Me.Cursor = Cursors.Default
+                splashClosed = True
+
+                If statLogin = False Then
+                    tcTile.Dock = DockStyle.None
+                    tcTile.Visible = False
+                    tcTile.SendToBack()
+                    teSearch.Visible = False
+                    pForm.Dock = DockStyle.Fill
+                    pForm.Visible = True
+                    pForm.BringToFront()
+                    pForm.Focus()
+                Else
+                    pForm.Dock = DockStyle.None
+                    pForm.Visible = False
+                    pForm.SendToBack()
+                    teSearch.Visible = True
+                    tcTile.Dock = DockStyle.Fill
+                    tcTile.Visible = True
+                    tcTile.BringToFront()
+                    tcTile.Focus()
+                End If
             End If
         Catch ex As Exception
         End Try
     End Sub
 
     Public Sub ClearForm(ByVal pform As Panel)
-        tcTile.Dock = DockStyle.Fill
-        tcTile.Visible = True
-        tcTile.BringToFront()
-        tcTile.Focus()
-        teSearch.Visible = True
-        pform.Dock = DockStyle.None
-        pform.Visible = False
-        pform.SendToBack()
+        If statLogin = False Then
+            tcTile.Dock = DockStyle.None
+            tcTile.Visible = False
+            tcTile.SendToBack()
+            teSearch.Visible = False
+            pform.Dock = DockStyle.Fill
+            pform.Visible = True
+            pform.BringToFront()
+        Else
+            pform.Dock = DockStyle.None
+            pform.Visible = False
+            pform.SendToBack()
+            teSearch.Visible = True
+            tcTile.Dock = DockStyle.Fill
+            tcTile.Visible = True
+            tcTile.BringToFront()
+        End If
 
-        pform.Controls.Clear()
+        For Each ctrl As Control In pform.Controls
+            If TypeOf ctrl Is Form Then
+                pform.Controls.Remove(ctrl)
+            End If
+        Next
+        'pform.Controls.Clear()
     End Sub
 
     Private cntIdle As Integer = 0
@@ -1610,9 +1778,27 @@ Public Class frmMain
                 pbNotification.Image = Nothing
                 pbNotification.BackColor = Color.Transparent 'FromArgb(0, 57, 64)
                 'lblNotification.Text = ""
-                lblNotification.Text = NamaHari(nowTime.DayOfWeek) & Format(nowTime, ", dd ") & NamaBulan(nowTime.Month) & Format(nowTime, " yyyy | HH:mm:ss")
+
+                If statLogin = True Then
+                    lblNotification.Text = NamaHari(nowTime.DayOfWeek) & Format(nowTime, ", dd ") & NamaBulan(nowTime.Month) & Format(nowTime, " yyyy | HH:mm:ss")
+                    lblFormJam.SendToBack()
+                    lblFormTanggal.SendToBack()
+                    lblFormJam.Text = ""
+                    lblFormTanggal.Text = ""
+                Else
+                    lblNotification.Text = ""
+                    lblFormJam.BringToFront()
+                    lblFormTanggal.BringToFront()
+                End If
                 lblNotification.Refresh()
                 Application.DoEvents()
+            End If
+
+            lblFormJam.Visible = Not statLogin
+            lblFormTanggal.Visible = Not statLogin
+            If lblFormJam.Visible = True Then
+                lblFormJam.Text = Format(nowTime, "HH:mm:ss")
+                lblFormTanggal.Text = NamaHari(nowTime.DayOfWeek) & Format(nowTime, ", dd ") & NamaBulan(nowTime.Month) & Format(nowTime, " yyyy")
             End If
 
             'gantinya backgroundworker
@@ -1636,8 +1822,9 @@ Public Class frmMain
         'SetStyle(ControlStyles.DoubleBuffer, True)
         'SetStyle(ControlStyles.AllPaintingInWmPaint, True)
         'SetStyle(ControlStyles.UserPaint, True)
+
         Me.SetStyle(ControlStyles.UserPaint Or ControlStyles.OptimizedDoubleBuffer Or ControlStyles.AllPaintingInWmPaint Or ControlStyles.SupportsTransparentBackColor, True)
-        UpdateStyles()
+        Me.UpdateStyles()
         Me.DoubleBuffered = True
         Me.Invalidate(True)
         mLastState = Me.WindowState
@@ -1688,6 +1875,7 @@ Public Class frmMain
         username = "guest"
         usersuper = 0
         userdata = 0
+        statLogin = False
     End Sub
 
     Private Sub btnLogin_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnLogin.Click
@@ -1722,6 +1910,13 @@ Public Class frmMain
                 btnMessage.SendToBack()
                 btnProfile.SendToBack()
 
+                pForm.Visible = False
+                pForm.SendToBack()
+                pForm.Dock = DockStyle.None
+                tcTile.Visible = True
+                tcTile.BringToFront()
+                tcTile.Dock = DockStyle.Fill
+
                 If tcTile.Visible = True Then
                     If tcTile.Groups.Count = 0 Then
                         teSearch.Visible = False
@@ -1744,8 +1939,8 @@ Public Class frmMain
 
                 'msMenu.Items.Clear()
                 tcTile.Groups.Clear()
-                ClearForm(pForm)
                 clearUser()
+                ClearForm(pForm)
                 sender.text = "Login"
                 lblUserActive.Text = username & " (" & userlevel & ")"
 
@@ -1808,16 +2003,24 @@ Public Class frmMain
             If pForm.Controls.Count > 0 Then
                 For Each ctrl As Control In pForm.Controls
                     Dim obj As Object = ctrl
-                    If CType(obj, Windows.Forms.Form).WindowState = FormWindowState.Maximized Then
-                        pForm.AutoScroll = False
-                        obj.WindowState = FormWindowState.Minimized
-                        'obj.Size = New Size(pForm.Size.Width, pForm.Size.Height)
-                        obj.WindowState = FormWindowState.Maximized
-                        pForm.Refresh()
-                        pForm.Invalidate()
+
+                    If TypeOf ctrl Is Form Then
+                        If CType(obj, Windows.Forms.Form).WindowState = FormWindowState.Maximized Then
+                            pForm.AutoScroll = False
+                            obj.WindowState = FormWindowState.Minimized
+                            'obj.Size = New Size(pForm.Size.Width, pForm.Size.Height)
+                            obj.WindowState = FormWindowState.Maximized
+                            pForm.Refresh()
+                            pForm.Invalidate()
+                        End If
                     End If
                 Next
             End If
+            'lblFormJam.Location = New Point(pForm.Size.Width - 396, pForm.Size.Height - 164)
+            'lblFormTanggal.Location = New Point(pForm.Size.Width - 554, pForm.Size.Height - 74)
+            'MsgBox(Not statLogin)
+            lblFormJam.Visible = Not statLogin
+            lblFormTanggal.Visible = Not statLogin
         Catch ex As Exception
             dizMsgbox(ex.Message, dizMsgboxStyle.Kesalahan, Me)
         End Try
@@ -2047,7 +2250,7 @@ Public Class frmMain
         End If
     End Sub
 
-    Private frmhelp = System.Windows.Forms.Application.OpenForms
+    Private frmhelp As New Collection '= System.Windows.Forms.Application.OpenForms
     Private Sub btnHelp_Click(sender As Object, e As EventArgs) Handles btnHelp.Click
         'System.Diagnostics.Process.Start("https://t.me/datacube_enterprise")
         Dim frm As New frmChatHelp("https://t.me/datacube_enterprise")
@@ -2057,6 +2260,7 @@ Public Class frmMain
                 Exit Sub
             End If
         Next i
+        frmhelp.Add(frm, frm.Name)
         frm.Show()
     End Sub
 
@@ -2080,6 +2284,24 @@ Public Class frmMain
 
     Private Sub frmMain_Closing(sender As Object, e As CancelEventArgs) Handles Me.Closing
         niUpdate.Visible = False
+    End Sub
+
+    Private Sub niUpdate_MouseDoubleClick(sender As Object, e As MouseEventArgs) Handles niUpdate.MouseDoubleClick
+        Me.Invalidate()
+        Me.Focus()
+        Me.BringToFront()
+        Me.TopMost = True
+        Application.DoEvents()
+        Me.TopMost = False
+    End Sub
+
+    Private Sub niUpdate_DoubleClick(sender As Object, e As EventArgs) Handles niUpdate.DoubleClick
+        Me.Invalidate()
+        Me.Focus()
+        Me.BringToFront()
+        Me.TopMost = True
+        Application.DoEvents()
+        Me.TopMost = False
     End Sub
 
     'Private Sub btnSidebar_Click(sender As Object, e As EventArgs) Handles btnSidebar.Click

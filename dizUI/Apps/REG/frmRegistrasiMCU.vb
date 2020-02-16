@@ -1742,7 +1742,7 @@
 
     Private Sub btnAppDokter_Click(sender As Object, e As EventArgs) Handles btnAppDokter.Click
         formTitle = "Monitoring Appointment Dokter"
-        Dim frmMon As New frmMonAppointment
+        Dim frmMon As New frmMonAppointmentParamedis
         tambahChild(frmMon)
         frmMon.Size = New Size(Screen.PrimaryScreen.WorkingArea.Width - 100, Screen.PrimaryScreen.WorkingArea.Height - 100)
         frmMon.MaximumSize = New Size(Screen.PrimaryScreen.WorkingArea.Width - 100, Screen.PrimaryScreen.WorkingArea.Height - 100)

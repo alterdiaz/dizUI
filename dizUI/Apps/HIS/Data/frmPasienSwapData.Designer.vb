@@ -29,6 +29,8 @@ Partial Class frmPasienSwapData
         Me.pMaximize = New System.Windows.Forms.PictureBox()
         Me.pExit = New System.Windows.Forms.PictureBox()
         Me.pBody = New System.Windows.Forms.Panel()
+        Me.TableLayoutPanel3 = New System.Windows.Forms.TableLayoutPanel()
+        Me.Label8 = New System.Windows.Forms.Label()
         Me.TableLayoutPanel2 = New System.Windows.Forms.TableLayoutPanel()
         Me.Label6 = New System.Windows.Forms.Label()
         Me.teNoRMbaru = New DevExpress.XtraEditors.TextEdit()
@@ -52,14 +54,13 @@ Partial Class frmPasienSwapData
         Me.lblKaryawan = New System.Windows.Forms.Label()
         Me.teSearchLama = New DevExpress.XtraEditors.TextEdit()
         Me.btnSearchLama = New System.Windows.Forms.Button()
-        Me.TableLayoutPanel3 = New System.Windows.Forms.TableLayoutPanel()
-        Me.Label8 = New System.Windows.Forms.Label()
         Me.tlpForm.SuspendLayout()
         Me.pTitle.SuspendLayout()
         CType(Me.pMinimize, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.pMaximize, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.pExit, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.pBody.SuspendLayout()
+        Me.TableLayoutPanel3.SuspendLayout()
         Me.TableLayoutPanel2.SuspendLayout()
         CType(Me.teNoRMbaru.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.teNamaBaru.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -71,7 +72,6 @@ Partial Class frmPasienSwapData
         CType(Me.teNamaLama.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.pHeader.SuspendLayout()
         CType(Me.teSearchLama.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.TableLayoutPanel3.SuspendLayout()
         Me.SuspendLayout()
         '
         'tlpForm
@@ -175,6 +175,37 @@ Partial Class frmPasienSwapData
         Me.pBody.Name = "pBody"
         Me.pBody.Size = New System.Drawing.Size(686, 276)
         Me.pBody.TabIndex = 7
+        '
+        'TableLayoutPanel3
+        '
+        Me.TableLayoutPanel3.AutoSize = True
+        Me.TableLayoutPanel3.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
+        Me.TableLayoutPanel3.BackColor = System.Drawing.Color.FromArgb(CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer))
+        Me.TableLayoutPanel3.ColumnCount = 3
+        Me.TableLayoutPanel3.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
+        Me.TableLayoutPanel3.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 570.0!))
+        Me.TableLayoutPanel3.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
+        Me.TableLayoutPanel3.Controls.Add(Me.Label8, 1, 0)
+        Me.TableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Top
+        Me.TableLayoutPanel3.Location = New System.Drawing.Point(0, 228)
+        Me.TableLayoutPanel3.Name = "TableLayoutPanel3"
+        Me.TableLayoutPanel3.RowCount = 1
+        Me.TableLayoutPanel3.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 48.0!))
+        Me.TableLayoutPanel3.Size = New System.Drawing.Size(686, 48)
+        Me.TableLayoutPanel3.TabIndex = 12
+        '
+        'Label8
+        '
+        Me.Label8.Anchor = System.Windows.Forms.AnchorStyles.None
+        Me.Label8.AutoSize = True
+        Me.Label8.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label8.Location = New System.Drawing.Point(91, 10)
+        Me.Label8.Name = "Label8"
+        Me.Label8.Size = New System.Drawing.Size(503, 28)
+        Me.Label8.TabIndex = 9
+        Me.Label8.Text = "Pemindahan Register Pasien akan menonaktifkan Nomor Rekam Medis Lama" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Nomor Rekam" &
+    " Medis Lama yang dinonaktifkan akan tersedia untuk Pendaftaran Pasien Baru"
+        Me.Label8.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
         'TableLayoutPanel2
         '
@@ -355,6 +386,7 @@ Partial Class frmPasienSwapData
         '
         'btnSearchBaru
         '
+        Me.btnSearchBaru.BackColor = System.Drawing.Color.FromArgb(CType(CType(128, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(0, Byte), Integer))
         Me.btnSearchBaru.Dock = System.Windows.Forms.DockStyle.Right
         Me.btnSearchBaru.FlatAppearance.BorderSize = 0
         Me.btnSearchBaru.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DimGray
@@ -368,11 +400,11 @@ Partial Class frmPasienSwapData
         Me.btnSearchBaru.TabIndex = 5
         Me.btnSearchBaru.Text = "CARI"
         Me.btnSearchBaru.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
-        Me.btnSearchBaru.UseVisualStyleBackColor = True
+        Me.btnSearchBaru.UseVisualStyleBackColor = False
         '
         'btnSave
         '
-        Me.btnSave.BackColor = System.Drawing.Color.green
+        Me.btnSave.BackColor = System.Drawing.Color.Green
         Me.btnSave.Dock = System.Windows.Forms.DockStyle.Right
         Me.btnSave.FlatAppearance.BorderSize = 0
         Me.btnSave.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DimGray
@@ -595,6 +627,7 @@ Partial Class frmPasienSwapData
         '
         'btnSearchLama
         '
+        Me.btnSearchLama.BackColor = System.Drawing.Color.FromArgb(CType(CType(128, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(0, Byte), Integer))
         Me.btnSearchLama.Dock = System.Windows.Forms.DockStyle.Right
         Me.btnSearchLama.FlatAppearance.BorderSize = 0
         Me.btnSearchLama.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DimGray
@@ -608,38 +641,7 @@ Partial Class frmPasienSwapData
         Me.btnSearchLama.TabIndex = 5
         Me.btnSearchLama.Text = "CARI"
         Me.btnSearchLama.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
-        Me.btnSearchLama.UseVisualStyleBackColor = True
-        '
-        'TableLayoutPanel3
-        '
-        Me.TableLayoutPanel3.AutoSize = True
-        Me.TableLayoutPanel3.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
-        Me.TableLayoutPanel3.BackColor = System.Drawing.Color.FromArgb(CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer))
-        Me.TableLayoutPanel3.ColumnCount = 3
-        Me.TableLayoutPanel3.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
-        Me.TableLayoutPanel3.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 570.0!))
-        Me.TableLayoutPanel3.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
-        Me.TableLayoutPanel3.Controls.Add(Me.Label8, 1, 0)
-        Me.TableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Top
-        Me.TableLayoutPanel3.Location = New System.Drawing.Point(0, 228)
-        Me.TableLayoutPanel3.Name = "TableLayoutPanel3"
-        Me.TableLayoutPanel3.RowCount = 1
-        Me.TableLayoutPanel3.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 48.0!))
-        Me.TableLayoutPanel3.Size = New System.Drawing.Size(686, 48)
-        Me.TableLayoutPanel3.TabIndex = 12
-        '
-        'Label8
-        '
-        Me.Label8.Anchor = System.Windows.Forms.AnchorStyles.None
-        Me.Label8.AutoSize = True
-        Me.Label8.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label8.Location = New System.Drawing.Point(91, 10)
-        Me.Label8.Name = "Label8"
-        Me.Label8.Size = New System.Drawing.Size(503, 28)
-        Me.Label8.TabIndex = 9
-        Me.Label8.Text = "Pemindahan Register Pasien akan menonaktifkan Nomor Rekam Medis Lama" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Nomor Rekam" &
-    " Medis Lama yang dinonaktifkan akan tersedia untuk Pendaftaran Pasien Baru"
-        Me.Label8.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        Me.btnSearchLama.UseVisualStyleBackColor = False
         '
         'frmPasienSwapData
         '
@@ -662,6 +664,8 @@ Partial Class frmPasienSwapData
         CType(Me.pExit, System.ComponentModel.ISupportInitialize).EndInit()
         Me.pBody.ResumeLayout(False)
         Me.pBody.PerformLayout()
+        Me.TableLayoutPanel3.ResumeLayout(False)
+        Me.TableLayoutPanel3.PerformLayout()
         Me.TableLayoutPanel2.ResumeLayout(False)
         Me.TableLayoutPanel2.PerformLayout()
         CType(Me.teNoRMbaru.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -678,8 +682,6 @@ Partial Class frmPasienSwapData
         Me.pHeader.ResumeLayout(False)
         Me.pHeader.PerformLayout()
         CType(Me.teSearchLama.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.TableLayoutPanel3.ResumeLayout(False)
-        Me.TableLayoutPanel3.PerformLayout()
         Me.ResumeLayout(False)
 
     End Sub

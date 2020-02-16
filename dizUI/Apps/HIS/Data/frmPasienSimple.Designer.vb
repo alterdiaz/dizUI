@@ -283,7 +283,7 @@ Partial Class frmPasienSimple
         Me.lblTitle.Padding = New System.Windows.Forms.Padding(10, 0, 0, 0)
         Me.lblTitle.Size = New System.Drawing.Size(806, 30)
         Me.lblTitle.TabIndex = 6
-        Me.lblTitle.Text = "Data Pasien Baru"
+        Me.lblTitle.Text = "Data Pasien"
         Me.lblTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
         'pMinimize
@@ -2602,7 +2602,7 @@ Partial Class frmPasienSimple
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
         Me.Name = "frmPasienSimple"
         Me.ShowInTaskbar = False
-        Me.Text = "Pasien Baru - Simple"
+        Me.Text = "Data Pasien - Simple"
         Me.tlpForm.ResumeLayout(False)
         Me.pTitle.ResumeLayout(False)
         CType(Me.pMinimize, System.ComponentModel.ISupportInitialize).EndInit()

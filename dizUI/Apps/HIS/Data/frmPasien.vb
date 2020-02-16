@@ -1301,7 +1301,7 @@
         Next
         strQuery &= " and r.rekammedisno<>0"
         If teSearch.Text <> "" Then
-            strQuery &= " and (r.nama like '%" & teSearch.Text & "%' or convert(varchar,r.rekammedisno) like '%" & teSearch.Text & "%')"
+            strQuery &= " and (r.nama like '%" & teSearch.Text & "%' or replace(dbo.fformatnorm(r.rekammedisno),'-','') like '%" & teSearch.Text & "%' or dbo.fformatnorm(r.rekammedisno) like '%" & teSearch.Text & "%' or convert(varchar,r.rekammedisno) like '%" & teSearch.Text & "%')"
         End If
         strQuery &= " order by r.rekammedisno desc"
 
@@ -1864,6 +1864,12 @@
         formTitle = Me.lblTitle.Text
 
         lueAsalPx.EditValue = Nothing
+    End Sub
+
+    Private Sub teSearch_KeyPress(sender As Object, e As KeyPressEventArgs) Handles teSearch.KeyPress
+        If Asc(e.KeyChar) = 13 Then
+            btnCari_Click(btnCari, Nothing)
+        End If
     End Sub
 
 End Class

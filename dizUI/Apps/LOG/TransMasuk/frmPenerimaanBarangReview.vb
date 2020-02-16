@@ -113,19 +113,19 @@ Public Class frmPenerimaanBarangReview
 
     Private Sub loadlov()
         Dim sqls As New SQLs(dbstring)
-        sqls.DMLQuery("select idcoa, coa, remarks from coa where isdeleted=0 and (COA<>'-1' and LEN(COA)>=3) order by convert(varchar(20),COA) asc", "dcoa")
-        slueDCOA.Properties.DataSource = SQLs.dataTable("dcoa")
-        slueDCOA.Properties.DisplayMember = "coa"
-        slueDCOA.Properties.ValueMember = "idcoa"
-        slueDCOA.Properties.BestFitMode = DevExpress.XtraEditors.Controls.BestFitMode.BestFitResizePopup
-        slueDCOA.EditValue = Nothing
+        'sqls.DMLQuery("select idcoa, coa, remarks from coa where isdeleted=0 and (COA<>'-1' and LEN(COA)>=3) order by convert(varchar(20),COA) asc", "dcoa")
+        'slueDCOA.Properties.DataSource = SQLs.dataTable("dcoa")
+        'slueDCOA.Properties.DisplayMember = "coa"
+        'slueDCOA.Properties.ValueMember = "idcoa"
+        'slueDCOA.Properties.BestFitMode = DevExpress.XtraEditors.Controls.BestFitMode.BestFitResizePopup
+        'slueDCOA.EditValue = Nothing
 
-        SQLs.DMLQuery("select idcoa, coa, remarks from coa where isdeleted=0 and (COA<>'-1' and LEN(COA)>=3) order by convert(varchar(20),COA) asc", "kcoa")
-        slueKCOA.Properties.DataSource = SQLs.dataTable("kcoa")
-        slueKCOA.Properties.DisplayMember = "coa"
-        slueKCOA.Properties.ValueMember = "idcoa"
-        slueKCOA.Properties.BestFitMode = DevExpress.XtraEditors.Controls.BestFitMode.BestFitResizePopup
-        slueKCOA.EditValue = Nothing
+        'SQLs.DMLQuery("select idcoa, coa, remarks from coa where isdeleted=0 and (COA<>'-1' and LEN(COA)>=3) order by convert(varchar(20),COA) asc", "kcoa")
+        'slueKCOA.Properties.DataSource = SQLs.dataTable("kcoa")
+        'slueKCOA.Properties.DisplayMember = "coa"
+        'slueKCOA.Properties.ValueMember = "idcoa"
+        'slueKCOA.Properties.BestFitMode = DevExpress.XtraEditors.Controls.BestFitMode.BestFitResizePopup
+        'slueKCOA.EditValue = Nothing
     End Sub
 
     Private Sub btnNew_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
@@ -144,10 +144,10 @@ Public Class frmPenerimaanBarangReview
         teNote.ReadOnly = True
         teDokumen.ReadOnly = True
 
-        slueDCOA.ReadOnly = False
-        slueKCOA.ReadOnly = False
-        slueDCOA.EditValue = Nothing
-        slueKCOA.EditValue = Nothing
+        'slueDCOA.ReadOnly = False
+        'slueKCOA.ReadOnly = False
+        'slueDCOA.EditValue = Nothing
+        'slueKCOA.EditValue = Nothing
 
         gcData.Enabled = True
 
@@ -312,6 +312,8 @@ Public Class frmPenerimaanBarangReview
             iddept2 = ""
             teKode.Text = ""
             deTanggal.EditValue = nowTime
+            teDokumen.EditValue = Nothing
+            teDokumen2.EditValue = Nothing
             teUnit.EditValue = Nothing
             teSupplier.EditValue = Nothing
             teNote.EditValue = Nothing
@@ -330,7 +332,7 @@ Public Class frmPenerimaanBarangReview
             btnDelete.Text = "VOID"
             statData = statusData.Edit
 
-            sqls.DMLQuery("select t.idtransaksireff,t.transaksino,t.dokumenno,convert(varchar,t.createddate,105) as tanggal,convert(varchar,t.createddate,108) as waktu,t.remarks,t.idasal,t.idtujuan,u.unit as asal,t.iddepttujuan,bp.nama as tujuan,convert(varchar,kirimdate,105)+' '+convert(varchar,kirimdate,108) as kirimdate,convert(varchar,tempodate,105)+' '+convert(varchar,tempodate,108) as tempodate,t.subtotaldiscppnongkir from transaksi t left join unit u on t.idtujuan=u.idunit left join businesspartner bp on t.idasal=bp.idbusinesspartner where t.idtransaksi='" & idData & "'", "header")
+            sqls.DMLQuery("select t.idtransaksireff,t.transaksino,t.dokumenno2,t.dokumenno,convert(varchar,t.createddate,105) as tanggal,convert(varchar,t.createddate,108) as waktu,t.remarks,t.idasal,t.idtujuan,u.unit as asal,t.iddepttujuan,bp.nama as tujuan,convert(varchar,kirimdate,105)+' '+convert(varchar,kirimdate,108) as kirimdate,convert(varchar,tempodate,105)+' '+convert(varchar,tempodate,108) as tempodate,t.subtotaldiscppnongkir from transaksi t left join unit u on t.idtujuan=u.idunit left join businesspartner bp on t.idasal=bp.idbusinesspartner where t.idtransaksi='" & idData & "'", "header")
 
             idParent = sqls.getDataSet("header", 0, "idtransaksireff")
             idunit2 = sqls.getDataSet("header", 0, "idtujuan")
@@ -341,6 +343,7 @@ Public Class frmPenerimaanBarangReview
             teKode.EditValue = sqls.getDataSet("header", 0, "transaksino")
             teNote.EditValue = sqls.getDataSet("header", 0, "remarks")
             teDokumen.EditValue = sqls.getDataSet("header", 0, "dokumenno")
+            teDokumen2.EditValue = sqls.getDataSet("header", 0, "dokumenno2")
 
             Dim tmptgl As String = sqls.getDataSet("header", 0, "tanggal").ToString
             Dim tmpwaktu As String = sqls.getDataSet("header", 0, "waktu").ToString
@@ -357,32 +360,32 @@ Public Class frmPenerimaanBarangReview
             gcData.DataSource = dttbl
             gvData.BestFitColumns()
 
-            sqls.DMLQuery("select idcoa from jurnal where posisidk=1 and tablereff='Transaksi' and idreff='" & idData & "'", "getjurnald")
-            sqls.DMLQuery("select idcoa from jurnal where posisidk=2 and tablereff='Transaksi' and idreff='" & idData & "'", "getjurnalk")
-            If sqls.getDataSet("getjurnald") > 0 Then
-                slueDCOA.EditValue = sqls.getDataSet("getjurnald", 0, "idcoa")
-            Else
-                slueDCOA.EditValue = Nothing
-            End If
-            If sqls.getDataSet("getjurnalk") > 0 Then
-                slueKCOA.EditValue = sqls.getDataSet("getjurnalk", 0, "idcoa")
-            Else
-                slueKCOA.EditValue = Nothing
-            End If
-            sqls.DMLQuery("select top 1 idcoad1,idcoak1 from transactioncoa where jenistransaksi='Penerimaan Barang' and idunit='" & idunit2 & "' and iddepartment='" & iddept2 & "'", "getcoatrans")
-            If sqls.getDataSet("getcoatrans") = 0 Then
-                sqls.DMLQuery("select top 1 idcoad1,idcoak1 from transactioncoa where jenistransaksi='Penerimaan Barang' and idunit='" & idunit2 & "' and iddepartment='0'", "getcoatrans")
-            End If
-            If slueDCOA.EditValue Is Nothing Then
-                If sqls.getDataSet("getcoatrans") > 0 Then
-                    slueDCOA.EditValue = sqls.getDataSet("getcoatrans", 0, "idcoad1")
-                End If
-            End If
-            If slueKCOA.EditValue Is Nothing Then
-                If sqls.getDataSet("getcoatrans") > 0 Then
-                    slueKCOA.EditValue = sqls.getDataSet("getcoatrans", 0, "idcoak1")
-                End If
-            End If
+            'sqls.DMLQuery("select idcoa from jurnal where posisidk=1 and tablereff='Transaksi' and idreff='" & idData & "'", "getjurnald")
+            'sqls.DMLQuery("select idcoa from jurnal where posisidk=2 and tablereff='Transaksi' and idreff='" & idData & "'", "getjurnalk")
+            'If sqls.getDataSet("getjurnald") > 0 Then
+            '    slueDCOA.EditValue = sqls.getDataSet("getjurnald", 0, "idcoa")
+            'Else
+            '    slueDCOA.EditValue = Nothing
+            'End If
+            'If sqls.getDataSet("getjurnalk") > 0 Then
+            '    slueKCOA.EditValue = sqls.getDataSet("getjurnalk", 0, "idcoa")
+            'Else
+            '    slueKCOA.EditValue = Nothing
+            'End If
+            'sqls.DMLQuery("select top 1 idcoad1,idcoak1 from transactioncoa where jenistransaksi='Penerimaan Barang' and idunit='" & idunit2 & "' and iddepartment='" & iddept2 & "'", "getcoatrans")
+            'If sqls.getDataSet("getcoatrans") = 0 Then
+            '    sqls.DMLQuery("select top 1 idcoad1,idcoak1 from transactioncoa where jenistransaksi='Penerimaan Barang' and idunit='" & idunit2 & "' and iddepartment='0'", "getcoatrans")
+            'End If
+            'If slueDCOA.EditValue Is Nothing Then
+            '    If sqls.getDataSet("getcoatrans") > 0 Then
+            '        slueDCOA.EditValue = sqls.getDataSet("getcoatrans", 0, "idcoad1")
+            '    End If
+            'End If
+            'If slueKCOA.EditValue Is Nothing Then
+            '    If sqls.getDataSet("getcoatrans") > 0 Then
+            '        slueKCOA.EditValue = sqls.getDataSet("getcoatrans", 0, "idcoak1")
+            '    End If
+            'End If
         End If
     End Sub
 
@@ -395,18 +398,18 @@ Public Class frmPenerimaanBarangReview
             dizMsgbox("Item tidak ditemukan", dizMsgboxStyle.Kesalahan, Me)
             Exit Sub
         End If
-        Dim cekcoa1 As Boolean = True
-        If slueDCOA.EditValue Is Nothing Then
-            cekcoa1 = False
-        End If
-            If slueKCOA.EditValue Is Nothing Then
-            cekcoa1 = False
-        End If
-        If cekcoa1 = False Then
-            If dizMsgbox("COA Debet/Kredit belum dipilih, tetap melanjutkan?", dizMsgboxStyle.Konfirmasi, Me) = dizMsgboxValue.Batal Then
-                Exit Sub
-            End If
-        End If
+        'Dim cekcoa1 As Boolean = True
+        'If slueDCOA.EditValue Is Nothing Then
+        '    cekcoa1 = False
+        'End If
+        '    If slueKCOA.EditValue Is Nothing Then
+        '    cekcoa1 = False
+        'End If
+        'If cekcoa1 = False Then
+        '    If dizMsgbox("COA Debet/Kredit belum dipilih, tetap melanjutkan?", dizMsgboxStyle.Konfirmasi, Me) = dizMsgboxValue.Batal Then
+        '        Exit Sub
+        '    End If
+        'End If
 
         If gvData.RowCount > 0 Then
             If dizMsgbox("Penerimaan Barang akan masuk Stok Gudang" & vbCrLf & "Apakah melanjutkan ?", dizMsgboxStyle.Konfirmasi, Me) = dizMsgboxValue.Batal Then
@@ -459,41 +462,41 @@ Public Class frmPenerimaanBarangReview
         value.AddRange(New Object() {idData, 6, userid, nowTime, getIPAddress(ipaddparam.IP), getIPAddress(ipaddparam.Host), idcomp})
         retval = dtsql.datasetSave("transaksi", idData, field, value, False)
 
-        Dim cekcoa As Boolean = True
-        If slueDCOA.EditValue Is Nothing Then
-            cekcoa = False
-        End If
-        If slueKCOA.EditValue Is Nothing Then
-            cekcoa = False
-        End If
-        If cekcoa = True Then
-            sqls.DMLQuery("delete from jurnal where tablereff='Transaksi' and idreff='" & idData & "'", False)
+        'Dim cekcoa As Boolean = True
+        'If slueDCOA.EditValue Is Nothing Then
+        '    cekcoa = False
+        'End If
+        'If slueKCOA.EditValue Is Nothing Then
+        '    cekcoa = False
+        'End If
+        'If cekcoa = True Then
+        '    sqls.DMLQuery("delete from jurnal where tablereff='Transaksi' and idreff='" & idData & "'", False)
 
-            Dim dtjurnal As New dtsetSQLS(dbstring)
-            Dim fieldj As New List(Of String)
-            Dim valuej As New List(Of Object)
-            Dim idjurnal As String = ""
-            Dim tgljurnal As DateTime
-            tgljurnal = nowTime
+        '    Dim dtjurnal As New dtsetSQLS(dbstring)
+        '    Dim fieldj As New List(Of String)
+        '    Dim valuej As New List(Of Object)
+        '    Dim idjurnal As String = ""
+        '    Dim tgljurnal As DateTime
+        '    tgljurnal = nowTime
 
-            fieldj.AddRange(New String() {"idjurnal", "tanggaljurnal", "jumlahuang", "remarks", "nodokumen", "posisidk", "isdeleted", "createdby", "createddate", "nobukti", "issystem", "jurnaltype", "tablereff", "tablereff2", "idcoa", "idcoalama", "idreff", "idreff2", "idunit", "idcompany"})
+        '    fieldj.AddRange(New String() {"idjurnal", "tanggaljurnal", "jumlahuang", "remarks", "nodokumen", "posisidk", "isdeleted", "createdby", "createddate", "nobukti", "issystem", "jurnaltype", "tablereff", "tablereff2", "idcoa", "idcoalama", "idreff", "idreff2", "idunit", "idcompany"})
 
-            idjurnal = GenerateGUID()
-            valuej = New List(Of Object)
-            dtjurnal = New dtsetSQLS(dbstring)
+        '    idjurnal = GenerateGUID()
+        '    valuej = New List(Of Object)
+        '    dtjurnal = New dtsetSQLS(dbstring)
 
-            valuej.Clear()
-            valuej.AddRange(New Object() {idjurnal, tgljurnal, subtotaldiscppnongkir, "Penerimaan Barang " & vbCrLf & teKode.Text, teDokumen.Text, 2, 0, userid, tgljurnal, teDokumen.Text, 0, 1, "Transaksi", "-", slueKCOA.EditValue, slueKCOA.EditValue, idData, "0", idunit2, idcomp})
-            dtjurnal.datasetSave("jurnal", idjurnal, fieldj, valuej, False)
+        '    valuej.Clear()
+        '    valuej.AddRange(New Object() {idjurnal, tgljurnal, subtotaldiscppnongkir, "Penerimaan Barang " & vbCrLf & teKode.Text, teDokumen.Text, 2, 0, userid, tgljurnal, teDokumen.Text, 0, 1, "Transaksi", "-", slueKCOA.EditValue, slueKCOA.EditValue, idData, "0", idunit2, idcomp})
+        '    dtjurnal.datasetSave("jurnal", idjurnal, fieldj, valuej, False)
 
-            idjurnal = GenerateGUID()
-            valuej = New List(Of Object)
-            dtjurnal = New dtsetSQLS(dbstring)
+        '    idjurnal = GenerateGUID()
+        '    valuej = New List(Of Object)
+        '    dtjurnal = New dtsetSQLS(dbstring)
 
-            valuej.Clear()
-            valuej.AddRange(New Object() {idjurnal, tgljurnal, subtotaldiscppnongkir, "Penerimaan Barang " & vbCrLf & teKode.Text, teDokumen.Text, 1, 0, userid, tgljurnal, teDokumen.Text, 0, 1, "Transaksi", "-", slueDCOA.EditValue, slueDCOA.EditValue, idData, "0", idunit2, idcomp})
-            dtjurnal.datasetSave("jurnal", idjurnal, fieldj, valuej, False)
-        End If
+        '    valuej.Clear()
+        '    valuej.AddRange(New Object() {idjurnal, tgljurnal, subtotaldiscppnongkir, "Penerimaan Barang " & vbCrLf & teKode.Text, teDokumen.Text, 1, 0, userid, tgljurnal, teDokumen.Text, 0, 1, "Transaksi", "-", slueDCOA.EditValue, slueDCOA.EditValue, idData, "0", idunit2, idcomp})
+        '    dtjurnal.datasetSave("jurnal", idjurnal, fieldj, valuej, False)
+        'End If
 
         'item log
         For i As Integer = 0 To gvData.RowCount - 1
@@ -562,8 +565,8 @@ Public Class frmPenerimaanBarangReview
         teUnit.Text = ""
         teDokumen.Text = ""
 
-        slueDCOA.EditValue = Nothing
-        slueKCOA.EditValue = Nothing
+        'slueDCOA.EditValue = Nothing
+        'slueKCOA.EditValue = Nothing
 
         gcData.Enabled = False
 

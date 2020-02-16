@@ -52,6 +52,7 @@
     Private idImage As String = 0
     Private Sub btnnBrowse_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnnBrowse.Click
         Dim brwse As New OpenFileDialog
+        brwse.Title = "Profile Pengguna"
         brwse.AddExtension = False
         brwse.AutoUpgradeEnabled = True
         brwse.CheckFileExists = True
@@ -101,7 +102,7 @@
         checkFieldMaxLength(dbstring, tlpProfile, "sys_user")
 
         Dim sqls As New SQLs(dbstring)
-        sqls.DMLQuery("select us.namalengkap,isnull(us.personalno,'') as personalno,us.cardtype,us.email,us.handphone,us.hint,us.recoveryquestion,us.recoveryanswer,us.username,'*******' as password,us.bannedreason,convert(varchar,us.waktucek,105)+' '+convert(varchar,us.waktucek,108) as waktucek,ul.userlevel,gc.generalcode as userstatus from sys_user us left join sys_userlevel ul on us.iduserlevel=ul.iduserlevel left join sys_generalcode gc on us.userstatus=gc.idgeneral and gc.gctype='USER' where us.iduser='" & userid & "'", "data")
+        sqls.DMLQuery("select us.namalengkap,isnull(us.personalno,'') as personalno,us.cardtype,us.email,us.handphone,us.hint,us.recoveryquestion,us.recoveryanswer,us.username,'*******' as password,us.bannedreason,convert(varchar,us.waktucek,105)+' '+convert(varchar,us.waktucek,108) as waktucek,ul.userlevel,gc.generalcode as userstatus,isnull(us.qrpass,CONVERT([varchar](50),newid(),(0))) as qrpass,isnull(us.nfcpass,CONVERT([varchar](50),newid(),(0))) as nfcpass from sys_user us left join sys_userlevel ul on us.iduserlevel=ul.iduserlevel left join sys_generalcode gc on us.userstatus=gc.idgeneral and gc.gctype='USER' where us.iduser='" & userid & "'", "data")
         teID.Text = sqls.getDataSet("data", 0, "personalno")
         lueJenis.EditValue = IIf(IsDBNull(sqls.getDataSet("data", 0, "cardtype")), Nothing, sqls.getDataSet("data", 0, "cardtype"))
         teNamaLengkap.Text = sqls.getDataSet("data", 0, "namalengkap")
@@ -116,6 +117,8 @@
         teUserStatus.Text = sqls.getDataSet("data", 0, "userstatus")
         teBannedReason.Text = sqls.getDataSet("data", 0, "bannedreason")
         teLastCheck.Text = sqls.getDataSet("data", 0, "waktucek")
+        qrpass.Text = sqls.getDataSet("data", 0, "qrpass")
+        nfcstr = sqls.getDataSet("data", 0, "nfcpass")
     End Sub
 
     Private Function cekIsian() As Boolean
@@ -172,6 +175,60 @@
             isiLog(userid, dbstring, field, value, "sys_user")
             dizMsgbox("Data Pengguna telah tersimpan", dizMsgboxStyle.Info, Me)
         End If
+    End Sub
+
+    Dim qrstr As String = ""
+    Private Sub btnQRGenerate_Click(sender As Object, e As EventArgs) Handles btnQRGenerate.Click
+        qrstr = GenerateGUID()
+        Dim dtsql As New dtsetSQLS(dbstring)
+        Dim field As New List(Of String)
+        Dim value As New List(Of Object)
+        field.AddRange(New String() {"iduser", "qrpass"})
+        value.AddRange(New Object() {userid, qrstr})
+        qrpass.Text = qrstr
+        If dtsql.datasetSave("sys_user", userid, field, value, False) = True Then
+            isiLog(userid, dbstring, field, value, "sys_user")
+        End If
+    End Sub
+
+    Private Sub btnQRSimpan_Click(sender As Object, e As EventArgs) Handles btnQRSimpan.Click
+        Dim pathselect As String = ""
+        Dim save As New SaveFileDialog()
+        save.Filter = "PNG Files (*.png)|*.png"
+        save.CheckPathExists = True
+        save.CheckFileExists = False
+        save.DefaultExt = "png"
+        save.InitialDirectory = IO.Path.GetPathRoot(Application.StartupPath)
+        save.FileName = qrstr.Replace("-", "") & ".png"
+        If save.ShowDialog = Windows.Forms.DialogResult.OK Then
+            pathselect = save.FileName
+        End If
+        If pathselect = "" Then Exit Sub
+        Dim bitmap As Bitmap = New Bitmap(qrpass.Width, qrpass.Height)
+        qrpass.DrawToBitmap(bitmap, qrpass.ClientRectangle)
+        bitmap.Save(pathselect, Imaging.ImageFormat.Png)
+        If IO.File.Exists(pathselect) Then
+            dizMsgbox("QR Password telah disimpan", dizMsgboxStyle.Info, Me)
+            Process.Start(pathselect)
+        End If
+    End Sub
+
+    Private nfcstr As String = ""
+    Private Sub btnNFCGenerate_Click(sender As Object, e As EventArgs) Handles btnNFCGenerate.Click
+        nfcstr = GenerateGUID()
+        Dim dtsql As New dtsetSQLS(dbstring)
+        Dim field As New List(Of String)
+        Dim value As New List(Of Object)
+        field.AddRange(New String() {"iduser", "nfcpass"})
+        value.AddRange(New Object() {userid, nfcstr})
+        qrpass.Text = qrstr
+        If dtsql.datasetSave("sys_user", userid, field, value, False) = True Then
+            isiLog(userid, dbstring, field, value, "sys_user")
+        End If
+    End Sub
+
+    Private Sub btnNFCSimpan_Click(sender As Object, e As EventArgs) Handles btnNFCSimpan.Click
+        dizMsgbox("Fitur ini akan segera tersedia", dizMsgboxStyle.Info, Me)
     End Sub
 
 End Class

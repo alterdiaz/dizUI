@@ -454,11 +454,11 @@ Public Class frmSelectLabel10
                 ceKTP.CheckState = CheckState.Checked
 
                 Application.DoEvents()
-                Threading.Thread.Sleep(100)
-                btnOK_Click(btnOK, EventArgs.Empty)
+                'Threading.Thread.Sleep(100)
+                btnOK_Click(btnOK, Nothing)
 
                 Application.DoEvents()
-                Threading.Thread.Sleep(100)
+                'Threading.Thread.Sleep(100)
                 Me.Dispose()
             End If
         End If

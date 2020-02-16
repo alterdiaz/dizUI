@@ -85,12 +85,12 @@
     End Sub
 
     Private Sub loadgrid()
-        Dim loadScr As New frmLoading()
-        splashClosed = False
-        loadScr.Show(Me)
-        loadScr.BringToFront()
-        Application.DoEvents()
-        Me.Cursor = Cursors.WaitCursor
+        'Dim loadScr As New frmLoading()
+        'splashClosed = False
+        'loadScr.Show(Me)
+        'loadScr.BringToFront()
+        'Application.DoEvents()
+        'Me.Cursor = Cursors.WaitCursor
 
         Dim sqls As New SQLs(dbstring)
         Dim field As New List(Of String)
@@ -98,8 +98,8 @@
 
         field.AddRange(New String() {"@tahun", "@bulan", "@tanggal"})
         value.AddRange(New Object() {CDate(deTanggal.EditValue).Year, CDate(deTanggal.EditValue).Month, CDate(deTanggal.EditValue).Day})
-            sqls.CallSP("spMonRegisterRHBDay", "monreg", field, value)
-            gvData.ViewCaption = "Register IRM - " & CDate(deTanggal.EditValue).Day & " " & NamaBulan(CDate(deTanggal.EditValue).Month) & " " & CDate(deTanggal.EditValue).Year
+        sqls.CallSP("spMonRegisterRHBDay", "monreg", field, value)
+        gvData.ViewCaption = "Register IRM - " & CDate(deTanggal.EditValue).Day & " " & NamaBulan(CDate(deTanggal.EditValue).Month) & " " & CDate(deTanggal.EditValue).Year
 
         If sqls.getDataSet("monreg") = 0 Then
             gcData.DataSource = Nothing
@@ -121,9 +121,29 @@
         GridColumn18.GroupIndex = 1
         gvData.ExpandAllGroups()
         gvData.BestFitColumns()
+        cnt = 15
 
         Me.Cursor = Cursors.Default
         splashClosed = True
+    End Sub
+
+    Private Sub btnAuto_Click(sender As Object, e As EventArgs) Handles btnAuto.Click
+        If btnAuto.Text = "AUTO REFRESH" Then
+            cnt = 15
+            lblRefresh.Text = "REFRESH " & cnt & " DETIK"
+            tmrWaktu.Start()
+            lblRefresh.Visible = True
+            btnAuto.Text = "MANUAL"
+        Else
+            tmrWaktu.Stop()
+            lblRefresh.Visible = False
+            btnAuto.Text = "AUTO REFRESH"
+        End If
+    End Sub
+
+    Private cnt As Integer = 15
+    Private Sub tmrWaktu_Tick(sender As Object, e As EventArgs) Handles tmrWaktu.Tick
+
     End Sub
 
     Private Sub deTanggal_EditValueChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles deTanggal.EditValueChanged
@@ -139,7 +159,7 @@
         loadgrid()
     End Sub
 
-    Private Sub Form_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
+    Private Sub Form_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles MyBase.Load
         getRegex(dbstring)
         If formTitle <> "" Then
             Me.Text = formTitle
@@ -150,16 +170,25 @@
         gvData.ViewCaption = " "
         deTanggal.EditValue = nowTime
         Threading.Thread.Sleep(100)
-        btnRefresh_Click(btnRefresh, Nothing)
+        btnAuto_Click(btnAuto, Nothing)
+        'btnRefresh_Click(btnRefresh, Nothing)
     End Sub
 
     Private Sub btnExport_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnExport.Click
+        Dim isauto As Boolean = False
+        If btnAuto.Text = "MANUAL" Then
+            isauto = True
+            btnAuto_Click(btnAuto, Nothing)
+        End If
         If gvData.RowCount > 0 Then
             Dim exp As New frmExport(gvData)
             tambahChild(exp)
             exp.ShowDialog()
         Else
             dizMsgbox("Data tidak ditemukan", dizMsgboxStyle.Peringatan, Me)
+        End If
+        If isauto = True Then
+            btnAuto_Click(btnAuto, Nothing)
         End If
     End Sub
 
@@ -277,6 +306,48 @@
     Private Sub PreviewForm_Load(sender As Object, ByVal e As EventArgs)
         Dim frm As DevExpress.XtraPrinting.Preview.PrintPreviewFormEx = CType(sender, DevExpress.XtraPrinting.Preview.PrintPreviewFormEx)
         frm.PrintingSystem.ExecCommand(DevExpress.XtraPrinting.PrintingSystemCommand.Scale, New Object() {1.0F})
+    End Sub
+
+    Private Sub gvData_KeyDown(sender As Object, e As KeyEventArgs) Handles gvData.KeyDown
+        If gvData.FocusedRowHandle < 0 Then Exit Sub
+        Dim view As DevExpress.XtraGrid.Views.Grid.GridView = gvData
+        If e.Control AndAlso e.KeyCode = Keys.C Then
+            If view.GetRowCellValue(view.FocusedRowHandle, view.FocusedColumn) IsNot Nothing AndAlso view.GetRowCellValue(view.FocusedRowHandle, view.FocusedColumn).ToString() <> [String].Empty Then
+                Clipboard.SetText(view.GetRowCellValue(view.FocusedRowHandle, view.FocusedColumn).ToString())
+            End If
+            e.Handled = True
+        End If
+    End Sub
+
+    Private jenisPelayanan As String = ""
+    Private idxFocus As Integer = -1
+    Private Sub btnRujukInternal_Click(sender As Object, e As EventArgs) Handles btnRujukInternal.Click
+        If gvData.RowCount = 0 Then Exit Sub
+
+        Dim view As DevExpress.XtraGrid.Views.Grid.GridView = gvData
+        idxFocus = view.FocusedRowHandle
+
+        If idxFocus >= 0 Then
+            Dim dr As DataRow = gvData.GetDataRow(idxFocus)
+            Dim idreg As String = dr("idregistrasi")
+
+            If idreg <> "" Then
+                tmrWaktu.Stop()
+                jenisPelayanan = ""
+
+                Dim selectPelayanan As New frmRujukanSelect()
+                tambahChild(selectPelayanan)
+                selectPelayanan.ShowDialog()
+                jenisPelayanan = selectPelayanan.getStringPilih
+
+                If jenisPelayanan <> "" Then
+                    Dim rujinternal As New frmRujukanInternal(jenisPelayanan, idreg)
+                    rujinternal.ShowDialog()
+                End If
+
+                tmrWaktu.Start()
+            End If
+        End If
     End Sub
 
 End Class

@@ -772,7 +772,7 @@
 
         fromGridChild = False
         Dim sqls As New SQLs(dbstring)
-        sqls.DMLQuery("select l.idpelatihan,l.idreff,l.tablereff,l.nomorsertifikat,l.judul,l.tempat,convert(varchar,l.tanggalpelatihan,105) as tanggalpelatihan,l.remarks,l.isdeleted,del.generalcode as statdata from pelatihan l left join sys_generalcode as del on del.idgeneral=l.isdeleted and del.generalcode='DELETE' where l.tablereff='PARAMEDIS' and l.idreff='" & idreff & "'", "pelatihan")
+        sqls.DMLQuery("select l.idpelatihan,l.idreff,l.tablereff,l.nomorsertifikat,l.judul,l.tempat,convert(varchar,l.tanggalawal,105) as tanggalpelatihan,l.remarks,l.isdeleted,del.generalcode as statdata from pelatihan l left join sys_generalcode as del on del.idgeneral=l.isdeleted and del.generalcode='DELETE' where l.tablereff='PARAMEDIS' and l.idreff='" & idreff & "'", "pelatihan")
         gcPelatihan.DataSource = sqls.dataTable("pelatihan")
         gvPelatihan.BestFitColumns()
         fromGridChild = True
@@ -1826,7 +1826,7 @@
             Dim idcomp As String = sqlscomp.getDataSet("CompID", 0, "value")
 
             Dim sqls As New SQLs(dbstring)
-            sqls.DMLQuery("select nomorsertifikat from pelatihan where tablereff='PARAMEDIS' and idreff='" & idData & "' and replace(tempat,' ','')='" & tePelatihanTempat.Text.Replace(" ", "") & "' and replace(judul,' ','')='" & tePelatihanJudul.Text.Replace(" ", "") & "' and convert(varchar,tanggalpelatihan,105)='" & Format(CDate(deTanggalPelatihan.EditValue), "dd-MM-yyyy") & "'", "cek")
+            sqls.DMLQuery("select nomorsertifikat from pelatihan where tablereff='PARAMEDIS' and idreff='" & idData & "' and replace(tempat,' ','')='" & tePelatihanTempat.Text.Replace(" ", "") & "' and replace(judul,' ','')='" & tePelatihanJudul.Text.Replace(" ", "") & "' and convert(varchar,tanggalawal,105)='" & Format(CDate(deTanggalPelatihan.EditValue), "dd-MM-yyyy") & "'", "cek")
             If sqls.getDataSet("cek") = 0 Then
                 idDataChild = GenerateGUID() '-1
             Else
@@ -1837,7 +1837,7 @@
             Dim dtsql As New dtsetSQLS(dbstring)
             Dim field As New List(Of String)
             Dim value As New List(Of Object)
-            field.AddRange(New String() {"idpelatihan", "idcompany", "idreff", "tablereff", "nomorsertifikat", "judul", "tempat", "tanggalpelatihan", "remarks", "isdeleted", "createdby", "createddate"})
+            field.AddRange(New String() {"idpelatihan", "idcompany", "idreff", "tablereff", "nomorsertifikat", "judul", "tempat", "tanggalawal", "remarks", "isdeleted", "createdby", "createddate"})
             value.AddRange(New Object() {idDataChild, idcomp, idData, "PARAMEDIS", tePelatihanNo.Text, tePelatihanJudul.Text, tePelatihanTempat.Text, CDate(deTanggalPelatihan.EditValue), tePelatihanRemarks.Text, 0, userid, nowTime})
             If dtsql.datasetSave("pelatihan", idDataChild, field, value, False) = True Then
                 dizMsgbox("Pelatihan telah tersimpan", dizMsgboxStyle.Info, "Informasi", Me)
@@ -1846,7 +1846,7 @@
             Dim dtsql As New dtsetSQLS(dbstring)
             Dim field As New List(Of String)
             Dim value As New List(Of Object)
-            field.AddRange(New String() {"idpelatihan", "idreff", "tablereff", "nomorsertifikat", "judul", "tempat", "tanggalpelatihan", "remarks", "updatedby", "updateddate"})
+            field.AddRange(New String() {"idpelatihan", "idreff", "tablereff", "nomorsertifikat", "judul", "tempat", "tanggalawal", "remarks", "updatedby", "updateddate"})
             value.AddRange(New Object() {idDataChild, idData, "PARAMEDIS", tePelatihanNo.Text, tePelatihanJudul.Text, tePelatihanTempat.Text, CDate(deTanggalPelatihan.EditValue), tePelatihanRemarks.Text, userid, nowTime})
             If dtsql.datasetSave("pelatihan", idDataChild, field, value, False) = True Then
                 dizMsgbox("Pelatihan telah tersimpan", dizMsgboxStyle.Info, "Informasi", Me)

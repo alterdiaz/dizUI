@@ -476,7 +476,7 @@ Partial Class frmPermintaanBarangReview
         Me.lblParent.Name = "lblParent"
         Me.lblParent.Size = New System.Drawing.Size(43, 14)
         Me.lblParent.TabIndex = 20
-        Me.lblParent.Text = "Nomor"
+        Me.lblParent.Text = "No.Transaksi"
         Me.lblParent.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
         'lblDepartment

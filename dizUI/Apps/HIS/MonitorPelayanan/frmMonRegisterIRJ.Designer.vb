@@ -39,13 +39,13 @@ Partial Class frmMonRegisterIRJ
         Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.gcAlamat = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.rimeAddress = New DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit()
-        Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn11 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn13 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn14 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.gcNegara = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.gcPropinsi = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.gcKabupaten = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.gcKecamatan = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.gcKelurahan = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn15 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn16 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn17 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -55,6 +55,9 @@ Partial Class frmMonRegisterIRJ
         Me.GridColumn21 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn22 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.rimeNote = New DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit()
+        Me.gcPayerType = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.gcPayer = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.gcAsuransi = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.tlpField = New System.Windows.Forms.TableLayoutPanel()
         Me.deTanggal = New DevExpress.XtraEditors.DateEdit()
         Me.lblPengajuanNo = New System.Windows.Forms.Label()
@@ -216,7 +219,7 @@ Partial Class frmMonRegisterIRJ
         Me.gvData.Appearance.Row.Options.UseFont = True
         Me.gvData.Appearance.TopNewRow.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
         Me.gvData.Appearance.TopNewRow.Options.UseBackColor = True
-        Me.gvData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6, Me.GridColumn7, Me.GridColumn8, Me.GridColumn9, Me.GridColumn10, Me.GridColumn11, Me.GridColumn12, Me.GridColumn13, Me.GridColumn14, Me.GridColumn15, Me.GridColumn16, Me.GridColumn17, Me.GridColumn18, Me.GridColumn19, Me.GridColumn20, Me.GridColumn21, Me.GridColumn22})
+        Me.gvData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6, Me.GridColumn7, Me.GridColumn8, Me.gcAlamat, Me.gcNegara, Me.gcPropinsi, Me.gcKabupaten, Me.gcKecamatan, Me.gcKelurahan, Me.GridColumn15, Me.GridColumn16, Me.GridColumn17, Me.GridColumn18, Me.GridColumn19, Me.GridColumn20, Me.GridColumn21, Me.GridColumn22, Me.gcPayerType, Me.gcPayer, Me.gcAsuransi})
         Me.gvData.GridControl = Me.gcData
         Me.gvData.Name = "gvData"
         Me.gvData.NewItemRowText = "Tambah Data Disini"
@@ -331,18 +334,18 @@ Partial Class frmMonRegisterIRJ
         Me.GridColumn8.Visible = True
         Me.GridColumn8.VisibleIndex = 7
         '
-        'GridColumn9
+        'gcAlamat
         '
-        Me.GridColumn9.AppearanceHeader.Options.UseTextOptions = True
-        Me.GridColumn9.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GridColumn9.Caption = "Alamat"
-        Me.GridColumn9.ColumnEdit = Me.rimeAddress
-        Me.GridColumn9.FieldName = "alamat"
-        Me.GridColumn9.Name = "GridColumn9"
-        Me.GridColumn9.OptionsColumn.AllowEdit = False
-        Me.GridColumn9.OptionsColumn.ReadOnly = True
-        Me.GridColumn9.Visible = True
-        Me.GridColumn9.VisibleIndex = 8
+        Me.gcAlamat.AppearanceHeader.Options.UseTextOptions = True
+        Me.gcAlamat.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.gcAlamat.Caption = "Alamat"
+        Me.gcAlamat.ColumnEdit = Me.rimeAddress
+        Me.gcAlamat.FieldName = "alamat"
+        Me.gcAlamat.Name = "gcAlamat"
+        Me.gcAlamat.OptionsColumn.AllowEdit = False
+        Me.gcAlamat.OptionsColumn.ReadOnly = True
+        Me.gcAlamat.Visible = True
+        Me.gcAlamat.VisibleIndex = 8
         '
         'rimeAddress
         '
@@ -351,65 +354,65 @@ Partial Class frmMonRegisterIRJ
         Me.rimeAddress.ReadOnly = True
         Me.rimeAddress.ScrollBars = System.Windows.Forms.ScrollBars.None
         '
-        'GridColumn10
+        'gcNegara
         '
-        Me.GridColumn10.AppearanceHeader.Options.UseTextOptions = True
-        Me.GridColumn10.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GridColumn10.Caption = "Negara"
-        Me.GridColumn10.FieldName = "negara"
-        Me.GridColumn10.Name = "GridColumn10"
-        Me.GridColumn10.OptionsColumn.AllowEdit = False
-        Me.GridColumn10.OptionsColumn.ReadOnly = True
-        Me.GridColumn10.Visible = True
-        Me.GridColumn10.VisibleIndex = 9
+        Me.gcNegara.AppearanceHeader.Options.UseTextOptions = True
+        Me.gcNegara.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.gcNegara.Caption = "Negara"
+        Me.gcNegara.FieldName = "negara"
+        Me.gcNegara.Name = "gcNegara"
+        Me.gcNegara.OptionsColumn.AllowEdit = False
+        Me.gcNegara.OptionsColumn.ReadOnly = True
+        Me.gcNegara.Visible = True
+        Me.gcNegara.VisibleIndex = 9
         '
-        'GridColumn11
+        'gcPropinsi
         '
-        Me.GridColumn11.AppearanceHeader.Options.UseTextOptions = True
-        Me.GridColumn11.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GridColumn11.Caption = "Propinsi"
-        Me.GridColumn11.FieldName = "propinsi"
-        Me.GridColumn11.Name = "GridColumn11"
-        Me.GridColumn11.OptionsColumn.AllowEdit = False
-        Me.GridColumn11.OptionsColumn.ReadOnly = True
-        Me.GridColumn11.Visible = True
-        Me.GridColumn11.VisibleIndex = 10
+        Me.gcPropinsi.AppearanceHeader.Options.UseTextOptions = True
+        Me.gcPropinsi.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.gcPropinsi.Caption = "Propinsi"
+        Me.gcPropinsi.FieldName = "propinsi"
+        Me.gcPropinsi.Name = "gcPropinsi"
+        Me.gcPropinsi.OptionsColumn.AllowEdit = False
+        Me.gcPropinsi.OptionsColumn.ReadOnly = True
+        Me.gcPropinsi.Visible = True
+        Me.gcPropinsi.VisibleIndex = 10
         '
-        'GridColumn12
+        'gcKabupaten
         '
-        Me.GridColumn12.AppearanceHeader.Options.UseTextOptions = True
-        Me.GridColumn12.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GridColumn12.Caption = "Kabupaten"
-        Me.GridColumn12.FieldName = "kabupaten"
-        Me.GridColumn12.Name = "GridColumn12"
-        Me.GridColumn12.OptionsColumn.AllowEdit = False
-        Me.GridColumn12.OptionsColumn.ReadOnly = True
-        Me.GridColumn12.Visible = True
-        Me.GridColumn12.VisibleIndex = 11
+        Me.gcKabupaten.AppearanceHeader.Options.UseTextOptions = True
+        Me.gcKabupaten.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.gcKabupaten.Caption = "Kabupaten"
+        Me.gcKabupaten.FieldName = "kabupaten"
+        Me.gcKabupaten.Name = "gcKabupaten"
+        Me.gcKabupaten.OptionsColumn.AllowEdit = False
+        Me.gcKabupaten.OptionsColumn.ReadOnly = True
+        Me.gcKabupaten.Visible = True
+        Me.gcKabupaten.VisibleIndex = 11
         '
-        'GridColumn13
+        'gcKecamatan
         '
-        Me.GridColumn13.AppearanceHeader.Options.UseTextOptions = True
-        Me.GridColumn13.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GridColumn13.Caption = "Kecamatan"
-        Me.GridColumn13.FieldName = "kecamatan"
-        Me.GridColumn13.Name = "GridColumn13"
-        Me.GridColumn13.OptionsColumn.AllowEdit = False
-        Me.GridColumn13.OptionsColumn.ReadOnly = True
-        Me.GridColumn13.Visible = True
-        Me.GridColumn13.VisibleIndex = 12
+        Me.gcKecamatan.AppearanceHeader.Options.UseTextOptions = True
+        Me.gcKecamatan.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.gcKecamatan.Caption = "Kecamatan"
+        Me.gcKecamatan.FieldName = "kecamatan"
+        Me.gcKecamatan.Name = "gcKecamatan"
+        Me.gcKecamatan.OptionsColumn.AllowEdit = False
+        Me.gcKecamatan.OptionsColumn.ReadOnly = True
+        Me.gcKecamatan.Visible = True
+        Me.gcKecamatan.VisibleIndex = 12
         '
-        'GridColumn14
+        'gcKelurahan
         '
-        Me.GridColumn14.AppearanceHeader.Options.UseTextOptions = True
-        Me.GridColumn14.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GridColumn14.Caption = "Kelurahan"
-        Me.GridColumn14.FieldName = "kelurahan"
-        Me.GridColumn14.Name = "GridColumn14"
-        Me.GridColumn14.OptionsColumn.AllowEdit = False
-        Me.GridColumn14.OptionsColumn.ReadOnly = True
-        Me.GridColumn14.Visible = True
-        Me.GridColumn14.VisibleIndex = 13
+        Me.gcKelurahan.AppearanceHeader.Options.UseTextOptions = True
+        Me.gcKelurahan.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.gcKelurahan.Caption = "Kelurahan"
+        Me.gcKelurahan.FieldName = "kelurahan"
+        Me.gcKelurahan.Name = "gcKelurahan"
+        Me.gcKelurahan.OptionsColumn.AllowEdit = False
+        Me.gcKelurahan.OptionsColumn.ReadOnly = True
+        Me.gcKelurahan.Visible = True
+        Me.gcKelurahan.VisibleIndex = 13
         '
         'GridColumn15
         '
@@ -515,6 +518,48 @@ Partial Class frmMonRegisterIRJ
         Me.rimeNote.Name = "rimeNote"
         Me.rimeNote.ReadOnly = True
         Me.rimeNote.ScrollBars = System.Windows.Forms.ScrollBars.None
+        '
+        'gcPayerType
+        '
+        Me.gcPayerType.AppearanceCell.Options.UseTextOptions = True
+        Me.gcPayerType.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.gcPayerType.AppearanceHeader.Options.UseTextOptions = True
+        Me.gcPayerType.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.gcPayerType.Caption = "Jenis Payer"
+        Me.gcPayerType.FieldName = "payername"
+        Me.gcPayerType.Name = "gcPayerType"
+        Me.gcPayerType.OptionsColumn.AllowEdit = False
+        Me.gcPayerType.OptionsColumn.ReadOnly = True
+        Me.gcPayerType.Visible = True
+        Me.gcPayerType.VisibleIndex = 22
+        '
+        'gcPayer
+        '
+        Me.gcPayer.AppearanceCell.Options.UseTextOptions = True
+        Me.gcPayer.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.gcPayer.AppearanceHeader.Options.UseTextOptions = True
+        Me.gcPayer.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.gcPayer.Caption = "Payer"
+        Me.gcPayer.FieldName = "payer"
+        Me.gcPayer.Name = "gcPayer"
+        Me.gcPayer.OptionsColumn.AllowEdit = False
+        Me.gcPayer.OptionsColumn.ReadOnly = True
+        Me.gcPayer.Visible = True
+        Me.gcPayer.VisibleIndex = 23
+        '
+        'gcAsuransi
+        '
+        Me.gcAsuransi.AppearanceCell.Options.UseTextOptions = True
+        Me.gcAsuransi.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.gcAsuransi.AppearanceHeader.Options.UseTextOptions = True
+        Me.gcAsuransi.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.gcAsuransi.Caption = "Asuransi"
+        Me.gcAsuransi.FieldName = "asuransi"
+        Me.gcAsuransi.Name = "gcAsuransi"
+        Me.gcAsuransi.OptionsColumn.AllowEdit = False
+        Me.gcAsuransi.OptionsColumn.ReadOnly = True
+        Me.gcAsuransi.Visible = True
+        Me.gcAsuransi.VisibleIndex = 24
         '
         'tlpField
         '
@@ -707,12 +752,12 @@ Partial Class frmMonRegisterIRJ
     Friend WithEvents GridColumn6 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn7 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn8 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn9 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn10 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn11 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn12 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn13 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn14 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents gcAlamat As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents gcNegara As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents gcPropinsi As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents gcKabupaten As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents gcKecamatan As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents gcKelurahan As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn15 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn16 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn17 As DevExpress.XtraGrid.Columns.GridColumn
@@ -723,4 +768,7 @@ Partial Class frmMonRegisterIRJ
     Friend WithEvents deTanggal As DevExpress.XtraEditors.DateEdit
     Friend WithEvents GridColumn22 As DevExpress.XtraGrid.Columns.GridColumn
     Public WithEvents btnRefresh As Button
+    Friend WithEvents gcPayerType As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents gcPayer As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents gcAsuransi As DevExpress.XtraGrid.Columns.GridColumn
 End Class

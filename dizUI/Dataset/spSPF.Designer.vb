@@ -1560,21 +1560,21 @@ Partial Public Class spSPF
             End Set
         End Property
         
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>
-        Public Overloads Property item() As String
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property item() As String
             Get
-                Try
-                    Return CType(Me(Me.tablespSPFLMA.itemColumn), String)
+                Try 
+                    Return CType(Me(Me.tablespSPFLMA.itemColumn),String)
                 Catch e As Global.System.InvalidCastException
                     Throw New Global.System.Data.StrongTypingException("The value for column 'item' in table 'spSPFLMA' is DBNull.", e)
                 End Try
             End Get
             Set
-                Me(Me.tablespSPFLMA.itemColumn) = Value
+                Me(Me.tablespSPFLMA.itemColumn) = value
             End Set
         End Property
-
+        
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Public Property qtylalu() As Decimal

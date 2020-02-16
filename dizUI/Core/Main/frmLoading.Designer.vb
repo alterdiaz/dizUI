@@ -24,11 +24,11 @@ Partial Class frmLoading
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Me.tableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
-        Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
         Me.Panel1 = New System.Windows.Forms.Panel()
+        Me.lblContent = New System.Windows.Forms.Label()
         Me.lblTitle = New System.Windows.Forms.Label()
         Me.pbSync = New System.Windows.Forms.PictureBox()
-        Me.lblContent = New System.Windows.Forms.Label()
+        Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
         Me.tableLayoutPanel1.SuspendLayout()
         Me.Panel1.SuspendLayout()
         CType(Me.pbSync, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -54,10 +54,6 @@ Partial Class frmLoading
         Me.tableLayoutPanel1.Size = New System.Drawing.Size(250, 77)
         Me.tableLayoutPanel1.TabIndex = 1
         '
-        'Timer1
-        '
-        Me.Timer1.Interval = 1000
-        '
         'Panel1
         '
         Me.Panel1.BackColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer))
@@ -70,6 +66,17 @@ Partial Class frmLoading
         Me.Panel1.Name = "Panel1"
         Me.Panel1.Size = New System.Drawing.Size(242, 69)
         Me.Panel1.TabIndex = 0
+        '
+        'lblContent
+        '
+        Me.lblContent.AutoSize = True
+        Me.lblContent.Font = New System.Drawing.Font("Tahoma", 8.0!)
+        Me.lblContent.ForeColor = System.Drawing.Color.White
+        Me.lblContent.Location = New System.Drawing.Point(80, 38)
+        Me.lblContent.Name = "lblContent"
+        Me.lblContent.Size = New System.Drawing.Size(92, 13)
+        Me.lblContent.TabIndex = 31
+        Me.lblContent.Text = "Mohon Menunggu"
         '
         'lblTitle
         '
@@ -92,16 +99,9 @@ Partial Class frmLoading
         Me.pbSync.TabIndex = 30
         Me.pbSync.TabStop = False
         '
-        'lblContent
+        'Timer1
         '
-        Me.lblContent.AutoSize = True
-        Me.lblContent.Font = New System.Drawing.Font("Tahoma", 8.0!)
-        Me.lblContent.ForeColor = System.Drawing.Color.White
-        Me.lblContent.Location = New System.Drawing.Point(80, 38)
-        Me.lblContent.Name = "lblContent"
-        Me.lblContent.Size = New System.Drawing.Size(92, 13)
-        Me.lblContent.TabIndex = 31
-        Me.lblContent.Text = "Mohon Menunggu"
+        Me.Timer1.Interval = 1000
         '
         'frmLoading
         '
@@ -116,7 +116,6 @@ Partial Class frmLoading
         Me.Name = "frmLoading"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.Manual
         Me.Text = "Loading"
-        Me.TopMost = True
         Me.tableLayoutPanel1.ResumeLayout(False)
         Me.Panel1.ResumeLayout(False)
         Me.Panel1.PerformLayout()

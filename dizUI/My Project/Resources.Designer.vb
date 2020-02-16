@@ -503,6 +503,26 @@ Namespace My.Resources
         '''<summary>
         '''  Looks up a localized resource of type System.Drawing.Bitmap.
         '''</summary>
+        Friend ReadOnly Property canvas_splash3() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("canvas_splash3", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized resource of type System.Drawing.Bitmap.
+        '''</summary>
+        Friend ReadOnly Property canvas_splash4() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("canvas_splash4", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized resource of type System.Drawing.Bitmap.
+        '''</summary>
         Friend ReadOnly Property check() As System.Drawing.Bitmap
             Get
                 Dim obj As Object = ResourceManager.GetObject("check", resourceCulture)
@@ -1253,6 +1273,16 @@ Namespace My.Resources
         '''<summary>
         '''  Looks up a localized resource of type System.Drawing.Bitmap.
         '''</summary>
+        Friend ReadOnly Property ScanNFC() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("ScanNFC", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized resource of type System.Drawing.Bitmap.
+        '''</summary>
         Friend ReadOnly Property server() As System.Drawing.Bitmap
             Get
                 Dim obj As Object = ResourceManager.GetObject("server", resourceCulture)
@@ -1363,9 +1393,39 @@ Namespace My.Resources
         '''<summary>
         '''  Looks up a localized resource of type System.Drawing.Bitmap.
         '''</summary>
+        Friend ReadOnly Property sNFC() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("sNFC", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized resource of type System.Drawing.Bitmap.
+        '''</summary>
         Friend ReadOnly Property splashImage() As System.Drawing.Bitmap
             Get
                 Dim obj As Object = ResourceManager.GetObject("splashImage", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized resource of type System.Drawing.Bitmap.
+        '''</summary>
+        Friend ReadOnly Property sQRcode() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("sQRcode", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized resource of type System.Drawing.Bitmap.
+        '''</summary>
+        Friend ReadOnly Property sQRwebcam() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("sQRwebcam", resourceCulture)
                 Return CType(obj,System.Drawing.Bitmap)
             End Get
         End Property
@@ -1416,6 +1476,16 @@ Namespace My.Resources
         Friend ReadOnly Property stampVoid() As System.Drawing.Bitmap
             Get
                 Dim obj As Object = ResourceManager.GetObject("stampVoid", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized resource of type System.Drawing.Bitmap.
+        '''</summary>
+        Friend ReadOnly Property sWebcam() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("sWebcam", resourceCulture)
                 Return CType(obj,System.Drawing.Bitmap)
             End Get
         End Property

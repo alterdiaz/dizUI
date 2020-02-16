@@ -176,7 +176,8 @@ Public Class frmPermintaanBarangQLMA
             Exit Sub
         End If
         checkFieldMaxLength(dbstring, tlpField, "transaksi")
-        btnNew_Click(btnNew, Nothing)
+        loadgrid()
+        kosongkanIsian(tlpField)
     End Sub
 
     Private statData As statusData = statusData.Baru
@@ -534,7 +535,8 @@ Public Class frmPermintaanBarangQLMA
 
         If retval = True Then
             dizMsgbox("Data telah tersimpan", dizMsgboxStyle.Info, Me)
-            btnNew_Click(btnNew, Nothing)
+            loadgrid()
+            kosongkanIsian(tlpField)
         End If
     End Sub
 

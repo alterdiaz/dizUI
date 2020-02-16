@@ -233,7 +233,7 @@
         Dim dtsetSQLS As New dtsetSQLS(dbstring)
         Dim field As New List(Of String)
         Dim value As New List(Of Object)
-        field.AddRange(New String() {"idregistrasi", "iddokterruangan", "idspesialisruangan", "updatedby", "updateddate"})
+        field.AddRange(New String() {"idregistrasi", "iddoktercase", "idspesialiscase", "updatedby", "updateddate"})
         value.AddRange(New Object() {idreg, lueCaseManager.EditValue, idspesialis, userid, nowTime})
         Dim cek As Boolean = dtsetSQLS.datasetSave("registrasi", idreg, field, value, False)
 

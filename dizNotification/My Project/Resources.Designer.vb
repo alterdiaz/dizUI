@@ -91,6 +91,36 @@ Namespace My.Resources
         End Property
         
         '''<summary>
+        '''  Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
+        '''</summary>
+        Friend ReadOnly Property dizNotif2() As System.Drawing.Icon
+            Get
+                Dim obj As Object = ResourceManager.GetObject("dizNotif2", resourceCulture)
+                Return CType(obj,System.Drawing.Icon)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized resource of type System.Drawing.Bitmap.
+        '''</summary>
+        Friend ReadOnly Property dizNotif21() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("dizNotif21", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized resource of type System.Drawing.Bitmap.
+        '''</summary>
+        Friend ReadOnly Property dizNotif2nb() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("dizNotif2nb", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        '''<summary>
         '''  Looks up a localized resource of type System.Drawing.Bitmap.
         '''</summary>
         Friend ReadOnly Property dizNotifikasi60() As System.Drawing.Bitmap

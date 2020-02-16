@@ -1841,21 +1841,21 @@ Partial Public Class spStokOpname
             End Set
         End Property
         
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>
-        Public Overloads Property item() As String
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property item() As String
             Get
-                Try
-                    Return CType(Me(Me.tablespStokOpnameDT.itemColumn), String)
+                Try 
+                    Return CType(Me(Me.tablespStokOpnameDT.itemColumn),String)
                 Catch e As Global.System.InvalidCastException
                     Throw New Global.System.Data.StrongTypingException("The value for column 'item' in table 'spStokOpnameDT' is DBNull.", e)
                 End Try
             End Get
             Set
-                Me(Me.tablespStokOpnameDT.itemColumn) = Value
+                Me(Me.tablespStokOpnameDT.itemColumn) = value
             End Set
         End Property
-
+        
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Public Property qty() As Decimal

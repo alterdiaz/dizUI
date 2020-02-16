@@ -10,7 +10,7 @@
     'End Sub
 
     Private txtPilih As String = ""
-    Private Sub btnKonsultasi_Click(sender As Object, e As EventArgs) Handles btnKonsultasi.Click, btnPemeriksaan.Click, btnPemeriksaanAPS.Click, btnIGD.Click, btnIGDelektif.Click, btnUmum.Click, btnRehabilitasi.Click, btnMCU.Click, btnODS.Click
+    Private Sub btnKonsultasi_Click(sender As Object, e As EventArgs) Handles btnKonsultasi.Click, btnPemeriksaan.Click, btnPemeriksaanAPS.Click, btnIGD.Click, btnIGDelektif.Click, btnUmum.Click, btnRehabilitasi.Click, btnMCU.Click, btnODS.Click, btnUmumMCU.Click
         txtPilih = sender.tag
         If sender.name = "btnKonsultasi" Then
             btnKonsultasi.BackColor = Color.Olive
@@ -20,6 +20,7 @@
             btnIGD.BackColor = Color.FromArgb(64, 0, 64)
             btnIGDelektif.BackColor = Color.FromArgb(64, 0, 64)
             btnUmum.BackColor = Color.FromArgb(64, 0, 64)
+            btnUmumMCU.BackColor = Color.FromArgb(64, 0, 64)
             btnMCU.BackColor = Color.FromArgb(64, 0, 64)
             btnODS.BackColor = Color.FromArgb(64, 0, 64)
         ElseIf sender.name = "btnPemeriksaan" Then
@@ -30,6 +31,7 @@
             btnIGD.BackColor = Color.FromArgb(64, 0, 64)
             btnIGDelektif.BackColor = Color.FromArgb(64, 0, 64)
             btnUmum.BackColor = Color.FromArgb(64, 0, 64)
+            btnUmumMCU.BackColor = Color.FromArgb(64, 0, 64)
             btnMCU.BackColor = Color.FromArgb(64, 0, 64)
             btnODS.BackColor = Color.FromArgb(64, 0, 64)
         ElseIf sender.name = "btnPemeriksaanAPS" Then
@@ -40,6 +42,7 @@
             btnIGD.BackColor = Color.FromArgb(64, 0, 64)
             btnIGDelektif.BackColor = Color.FromArgb(64, 0, 64)
             btnUmum.BackColor = Color.FromArgb(64, 0, 64)
+            btnUmumMCU.BackColor = Color.FromArgb(64, 0, 64)
             btnMCU.BackColor = Color.FromArgb(64, 0, 64)
             btnODS.BackColor = Color.FromArgb(64, 0, 64)
         ElseIf sender.name = "btnIGD" Then
@@ -50,6 +53,7 @@
             btnIGD.BackColor = Color.Olive
             btnIGDelektif.BackColor = Color.FromArgb(64, 0, 64)
             btnUmum.BackColor = Color.FromArgb(64, 0, 64)
+            btnUmumMCU.BackColor = Color.FromArgb(64, 0, 64)
             btnMCU.BackColor = Color.FromArgb(64, 0, 64)
             btnODS.BackColor = Color.FromArgb(64, 0, 64)
         ElseIf sender.name = "btnIGDelektif" Then
@@ -60,6 +64,7 @@
             btnIGD.BackColor = Color.FromArgb(64, 0, 64)
             btnIGDelektif.BackColor = Color.Olive
             btnUmum.BackColor = Color.FromArgb(64, 0, 64)
+            btnUmumMCU.BackColor = Color.FromArgb(64, 0, 64)
             btnMCU.BackColor = Color.FromArgb(64, 0, 64)
             btnODS.BackColor = Color.FromArgb(64, 0, 64)
         ElseIf sender.name = "btnUmum" Then
@@ -70,6 +75,18 @@
             btnIGD.BackColor = Color.FromArgb(64, 0, 64)
             btnIGDelektif.BackColor = Color.FromArgb(64, 0, 64)
             btnUmum.BackColor = Color.Olive
+            btnUmumMCU.BackColor = Color.FromArgb(64, 0, 64)
+            btnMCU.BackColor = Color.FromArgb(64, 0, 64)
+            btnODS.BackColor = Color.FromArgb(64, 0, 64)
+        ElseIf sender.name = "btnUmumMCU" Then
+            btnKonsultasi.BackColor = Color.FromArgb(64, 0, 64)
+            btnRehabilitasi.BackColor = Color.FromArgb(64, 0, 64)
+            btnPemeriksaan.BackColor = Color.FromArgb(64, 0, 64)
+            btnPemeriksaanAPS.BackColor = Color.FromArgb(64, 0, 64)
+            btnIGD.BackColor = Color.FromArgb(64, 0, 64)
+            btnIGDelektif.BackColor = Color.FromArgb(64, 0, 64)
+            btnUmum.BackColor = Color.FromArgb(64, 0, 64)
+            btnUmumMCU.BackColor = Color.Olive
             btnMCU.BackColor = Color.FromArgb(64, 0, 64)
             btnODS.BackColor = Color.FromArgb(64, 0, 64)
         ElseIf sender.name = "btnRehabilitasi" Then
@@ -80,6 +97,7 @@
             btnIGD.BackColor = Color.FromArgb(64, 0, 64)
             btnIGDelektif.BackColor = Color.FromArgb(64, 0, 64)
             btnUmum.BackColor = Color.FromArgb(64, 0, 64)
+            btnUmumMCU.BackColor = Color.FromArgb(64, 0, 64)
             btnMCU.BackColor = Color.FromArgb(64, 0, 64)
             btnODS.BackColor = Color.FromArgb(64, 0, 64)
         ElseIf sender.name = "btnMCU" Then
@@ -90,6 +108,7 @@
             btnIGD.BackColor = Color.FromArgb(64, 0, 64)
             btnIGDelektif.BackColor = Color.FromArgb(64, 0, 64)
             btnUmum.BackColor = Color.FromArgb(64, 0, 64)
+            btnUmumMCU.BackColor = Color.FromArgb(64, 0, 64)
             btnMCU.BackColor = Color.Olive
             btnODS.BackColor = Color.FromArgb(64, 0, 64)
         ElseIf sender.name = "btnODS" Then
@@ -100,6 +119,7 @@
             btnIGD.BackColor = Color.FromArgb(64, 0, 64)
             btnIGDelektif.BackColor = Color.FromArgb(64, 0, 64)
             btnUmum.BackColor = Color.FromArgb(64, 0, 64)
+            btnUmumMCU.BackColor = Color.FromArgb(64, 0, 64)
             btnMCU.BackColor = Color.FromArgb(64, 0, 64)
             btnODS.BackColor = Color.Olive
         End If
@@ -134,6 +154,7 @@
         lblPemeriksaanAPS.Visible = False
         lblRehabilitasi.Visible = False
         lblUmum.Visible = False
+        lblUmumMCU.Visible = False
         lblODS.Visible = False
         lblMCU.Visible = False
 
@@ -168,6 +189,8 @@
         If sqls.getDataSet("umum") = 0 Then
             btnUmum.Enabled = False
             lblUmum.Visible = True
+            btnUmumMCU.Enabled = False
+            lblUmumMCU.Visible = True
             btnMCU.Enabled = False
             lblMCU.Visible = True
         Else

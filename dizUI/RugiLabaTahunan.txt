@@ -15,6 +15,6 @@
 from coa c 
 where len(c.coa)<=4 
 and convert(bigint,c.coa)>=0 
-and convert(bigint,left(c.coa,1)) in (4,5,6,7) 
+and convert(bigint,left(c.coa,1)) in (4,5,6,7,8,9) 
 group by c.idcoa,c.coa,c.remarks 
 order by convert(varchar(20),c.coa) asc

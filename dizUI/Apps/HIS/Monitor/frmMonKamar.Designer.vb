@@ -33,6 +33,7 @@ Partial Class frmMonKamar
         Me.gvData = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn11 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn15 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -46,17 +47,18 @@ Partial Class frmMonKamar
         Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn13 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn14 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.rimeNote = New DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit()
         Me.pHeader = New System.Windows.Forms.Panel()
+        Me.btnRefresh = New System.Windows.Forms.Button()
+        Me.btnUpdateStatus = New System.Windows.Forms.Button()
+        Me.btnReady = New System.Windows.Forms.Button()
         Me.btnService = New System.Windows.Forms.Button()
         Me.btnCleaning = New System.Windows.Forms.Button()
-        Me.btnRefresh = New System.Windows.Forms.Button()
         Me.btnExport = New System.Windows.Forms.Button()
         Me.rimeAddress = New DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit()
         Me.lblSep5 = New System.Windows.Forms.Label()
-        Me.GridColumn13 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.btnReady = New System.Windows.Forms.Button()
-        Me.GridColumn14 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.tlpForm.SuspendLayout()
         Me.pTitle.SuspendLayout()
         CType(Me.pMinimize, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -207,7 +209,7 @@ Partial Class frmMonKamar
         Me.gvData.Appearance.Row.Options.UseFont = True
         Me.gvData.Appearance.TopNewRow.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
         Me.gvData.Appearance.TopNewRow.Options.UseBackColor = True
-        Me.gvData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn11, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6, Me.GridColumn7, Me.GridColumn8, Me.GridColumn18, Me.GridColumn19, Me.GridColumn22, Me.GridColumn9, Me.GridColumn12, Me.GridColumn10, Me.GridColumn13, Me.GridColumn14})
+        Me.gvData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn11, Me.GridColumn15, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6, Me.GridColumn7, Me.GridColumn8, Me.GridColumn18, Me.GridColumn19, Me.GridColumn22, Me.GridColumn9, Me.GridColumn12, Me.GridColumn10, Me.GridColumn13, Me.GridColumn14})
         Me.gvData.GridControl = Me.gcData
         Me.gvData.Name = "gvData"
         Me.gvData.NewItemRowText = "Tambah Data Disini"
@@ -241,6 +243,12 @@ Partial Class frmMonKamar
         Me.GridColumn11.Caption = "GridColumn11"
         Me.GridColumn11.FieldName = "id"
         Me.GridColumn11.Name = "GridColumn11"
+        '
+        'GridColumn15
+        '
+        Me.GridColumn15.Caption = "GridColumn15"
+        Me.GridColumn15.FieldName = "idregistrasi"
+        Me.GridColumn15.Name = "GridColumn15"
         '
         'GridColumn2
         '
@@ -406,6 +414,18 @@ Partial Class frmMonKamar
         Me.GridColumn10.Visible = True
         Me.GridColumn10.VisibleIndex = 3
         '
+        'GridColumn13
+        '
+        Me.GridColumn13.Caption = "GridColumn13"
+        Me.GridColumn13.FieldName = "statusbed"
+        Me.GridColumn13.Name = "GridColumn13"
+        '
+        'GridColumn14
+        '
+        Me.GridColumn14.Caption = "GridColumn14"
+        Me.GridColumn14.FieldName = "idkamar"
+        Me.GridColumn14.Name = "GridColumn14"
+        '
         'rimeNote
         '
         Me.rimeNote.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
@@ -416,10 +436,11 @@ Partial Class frmMonKamar
         'pHeader
         '
         Me.pHeader.BackColor = System.Drawing.Color.FromArgb(CType(CType(66, Byte), Integer), CType(CType(66, Byte), Integer), CType(CType(66, Byte), Integer))
+        Me.pHeader.Controls.Add(Me.btnRefresh)
+        Me.pHeader.Controls.Add(Me.btnUpdateStatus)
         Me.pHeader.Controls.Add(Me.btnReady)
         Me.pHeader.Controls.Add(Me.btnService)
         Me.pHeader.Controls.Add(Me.btnCleaning)
-        Me.pHeader.Controls.Add(Me.btnRefresh)
         Me.pHeader.Controls.Add(Me.btnExport)
         Me.pHeader.Dock = System.Windows.Forms.DockStyle.Top
         Me.pHeader.ForeColor = System.Drawing.Color.White
@@ -428,6 +449,58 @@ Partial Class frmMonKamar
         Me.pHeader.Name = "pHeader"
         Me.pHeader.Size = New System.Drawing.Size(786, 30)
         Me.pHeader.TabIndex = 4
+        '
+        'btnRefresh
+        '
+        Me.btnRefresh.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(0, Byte), Integer))
+        Me.btnRefresh.Dock = System.Windows.Forms.DockStyle.Right
+        Me.btnRefresh.FlatAppearance.BorderSize = 0
+        Me.btnRefresh.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DimGray
+        Me.btnRefresh.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DarkGray
+        Me.btnRefresh.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnRefresh.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnRefresh.Location = New System.Drawing.Point(476, 0)
+        Me.btnRefresh.Name = "btnRefresh"
+        Me.btnRefresh.Size = New System.Drawing.Size(80, 30)
+        Me.btnRefresh.TabIndex = 18
+        Me.btnRefresh.Text = "REFRESH"
+        Me.btnRefresh.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
+        Me.btnRefresh.UseVisualStyleBackColor = False
+        '
+        'btnUpdateStatus
+        '
+        Me.btnUpdateStatus.BackColor = System.Drawing.Color.Maroon
+        Me.btnUpdateStatus.Dock = System.Windows.Forms.DockStyle.Right
+        Me.btnUpdateStatus.FlatAppearance.BorderSize = 0
+        Me.btnUpdateStatus.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DimGray
+        Me.btnUpdateStatus.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DarkGray
+        Me.btnUpdateStatus.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnUpdateStatus.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnUpdateStatus.Location = New System.Drawing.Point(556, 0)
+        Me.btnUpdateStatus.Name = "btnUpdateStatus"
+        Me.btnUpdateStatus.Size = New System.Drawing.Size(130, 30)
+        Me.btnUpdateStatus.TabIndex = 22
+        Me.btnUpdateStatus.Text = "UPDATE STATUS"
+        Me.btnUpdateStatus.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
+        Me.btnUpdateStatus.UseVisualStyleBackColor = False
+        '
+        'btnReady
+        '
+        Me.btnReady.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(0, Byte), Integer))
+        Me.btnReady.Dock = System.Windows.Forms.DockStyle.Left
+        Me.btnReady.FlatAppearance.BorderSize = 0
+        Me.btnReady.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DimGray
+        Me.btnReady.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DarkGray
+        Me.btnReady.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnReady.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnReady.Location = New System.Drawing.Point(170, 0)
+        Me.btnReady.Name = "btnReady"
+        Me.btnReady.Size = New System.Drawing.Size(80, 30)
+        Me.btnReady.TabIndex = 21
+        Me.btnReady.Text = "READY"
+        Me.btnReady.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
+        Me.btnReady.UseMnemonic = False
+        Me.btnReady.UseVisualStyleBackColor = False
         '
         'btnService
         '
@@ -465,23 +538,6 @@ Partial Class frmMonKamar
         Me.btnCleaning.UseMnemonic = False
         Me.btnCleaning.UseVisualStyleBackColor = False
         '
-        'btnRefresh
-        '
-        Me.btnRefresh.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(0, Byte), Integer))
-        Me.btnRefresh.Dock = System.Windows.Forms.DockStyle.Right
-        Me.btnRefresh.FlatAppearance.BorderSize = 0
-        Me.btnRefresh.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DimGray
-        Me.btnRefresh.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DarkGray
-        Me.btnRefresh.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btnRefresh.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnRefresh.Location = New System.Drawing.Point(606, 0)
-        Me.btnRefresh.Name = "btnRefresh"
-        Me.btnRefresh.Size = New System.Drawing.Size(80, 30)
-        Me.btnRefresh.TabIndex = 18
-        Me.btnRefresh.Text = "REFRESH"
-        Me.btnRefresh.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
-        Me.btnRefresh.UseVisualStyleBackColor = False
-        '
         'btnExport
         '
         Me.btnExport.Dock = System.Windows.Forms.DockStyle.Right
@@ -517,36 +573,6 @@ Partial Class frmMonKamar
         Me.lblSep5.TabIndex = 19
         Me.lblSep5.Text = "|"
         Me.lblSep5.TextAlign = System.Drawing.ContentAlignment.TopCenter
-        '
-        'GridColumn13
-        '
-        Me.GridColumn13.Caption = "GridColumn13"
-        Me.GridColumn13.FieldName = "statusbed"
-        Me.GridColumn13.Name = "GridColumn13"
-        '
-        'btnReady
-        '
-        Me.btnReady.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(0, Byte), Integer))
-        Me.btnReady.Dock = System.Windows.Forms.DockStyle.Left
-        Me.btnReady.FlatAppearance.BorderSize = 0
-        Me.btnReady.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DimGray
-        Me.btnReady.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DarkGray
-        Me.btnReady.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btnReady.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnReady.Location = New System.Drawing.Point(170, 0)
-        Me.btnReady.Name = "btnReady"
-        Me.btnReady.Size = New System.Drawing.Size(80, 30)
-        Me.btnReady.TabIndex = 21
-        Me.btnReady.Text = "READY"
-        Me.btnReady.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
-        Me.btnReady.UseMnemonic = False
-        Me.btnReady.UseVisualStyleBackColor = False
-        '
-        'GridColumn14
-        '
-        Me.GridColumn14.Caption = "GridColumn14"
-        Me.GridColumn14.FieldName = "idkamar"
-        Me.GridColumn14.Name = "GridColumn14"
         '
         'frmMonKamar
         '
@@ -608,4 +634,6 @@ Partial Class frmMonKamar
     Friend WithEvents GridColumn13 As DevExpress.XtraGrid.Columns.GridColumn
     Public WithEvents btnReady As Button
     Friend WithEvents GridColumn14 As DevExpress.XtraGrid.Columns.GridColumn
+    Public WithEvents btnUpdateStatus As Button
+    Friend WithEvents GridColumn15 As DevExpress.XtraGrid.Columns.GridColumn
 End Class

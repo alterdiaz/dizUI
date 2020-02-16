@@ -62,14 +62,14 @@ Partial Class frmPenerimaanBarangJumlah
         Me.seDiscP = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit()
         Me.seSubtotal = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit()
         Me.tlpField = New System.Windows.Forms.TableLayoutPanel()
+        Me.teNoDokumen = New DevExpress.XtraEditors.TextEdit()
         Me.btnLock = New System.Windows.Forms.Button()
+        Me.Label7 = New System.Windows.Forms.Label()
         Me.Label3 = New System.Windows.Forms.Label()
         Me.deTanggal = New DevExpress.XtraEditors.DateEdit()
         Me.teKode = New DevExpress.XtraEditors.TextEdit()
         Me.lblParent = New System.Windows.Forms.Label()
-        Me.Label4 = New System.Windows.Forms.Label()
         Me.lueUnit = New DevExpress.XtraEditors.LookUpEdit()
-        Me.teNote = New DevExpress.XtraEditors.TextEdit()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.lueSupplier = New DevExpress.XtraEditors.LookUpEdit()
         Me.lblDepartment = New System.Windows.Forms.Label()
@@ -77,6 +77,8 @@ Partial Class frmPenerimaanBarangJumlah
         Me.Label5 = New System.Windows.Forms.Label()
         Me.deTanggalKirim = New DevExpress.XtraEditors.DateEdit()
         Me.Label2 = New System.Windows.Forms.Label()
+        Me.teNote = New DevExpress.XtraEditors.TextEdit()
+        Me.Label4 = New System.Windows.Forms.Label()
         Me.xtcItem = New DevExpress.XtraTab.XtraTabControl()
         Me.xtpItem = New DevExpress.XtraTab.XtraTabPage()
         Me.gcItem = New DevExpress.XtraGrid.GridControl()
@@ -115,16 +117,17 @@ Partial Class frmPenerimaanBarangJumlah
         CType(Me.seDiscP, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.seSubtotal, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.tlpField.SuspendLayout()
+        CType(Me.teNoDokumen.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.deTanggal.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.deTanggal.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.teKode.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.lueUnit.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.teNote.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.lueSupplier.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.deTanggalTempo.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.deTanggalTempo.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.deTanggalKirim.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.deTanggalKirim.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.teNote.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.xtcItem, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.xtcItem.SuspendLayout()
         Me.xtpItem.SuspendLayout()
@@ -620,14 +623,11 @@ Partial Class frmPenerimaanBarangJumlah
         Me.tlpField.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100.0!))
         Me.tlpField.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 150.0!))
         Me.tlpField.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
-        Me.tlpField.Controls.Add(Me.btnLock, 2, 3)
         Me.tlpField.Controls.Add(Me.Label3, 3, 1)
         Me.tlpField.Controls.Add(Me.deTanggal, 4, 1)
         Me.tlpField.Controls.Add(Me.teKode, 2, 1)
         Me.tlpField.Controls.Add(Me.lblParent, 1, 1)
-        Me.tlpField.Controls.Add(Me.Label4, 1, 4)
         Me.tlpField.Controls.Add(Me.lueUnit, 4, 2)
-        Me.tlpField.Controls.Add(Me.teNote, 2, 4)
         Me.tlpField.Controls.Add(Me.Label1, 3, 2)
         Me.tlpField.Controls.Add(Me.lueSupplier, 2, 2)
         Me.tlpField.Controls.Add(Me.lblDepartment, 1, 2)
@@ -635,6 +635,10 @@ Partial Class frmPenerimaanBarangJumlah
         Me.tlpField.Controls.Add(Me.Label5, 3, 4)
         Me.tlpField.Controls.Add(Me.deTanggalKirim, 4, 3)
         Me.tlpField.Controls.Add(Me.Label2, 3, 3)
+        Me.tlpField.Controls.Add(Me.teNoDokumen, 2, 3)
+        Me.tlpField.Controls.Add(Me.Label7, 1, 3)
+        Me.tlpField.Controls.Add(Me.Label4, 1, 4)
+        Me.tlpField.Controls.Add(Me.teNote, 2, 4)
         Me.tlpField.Dock = System.Windows.Forms.DockStyle.Top
         Me.tlpField.Location = New System.Drawing.Point(0, 30)
         Me.tlpField.Name = "tlpField"
@@ -645,8 +649,34 @@ Partial Class frmPenerimaanBarangJumlah
         Me.tlpField.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 24.0!))
         Me.tlpField.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 24.0!))
         Me.tlpField.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 6.0!))
+        Me.tlpField.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
         Me.tlpField.Size = New System.Drawing.Size(613, 108)
         Me.tlpField.TabIndex = 7
+        '
+        'teNoDokumen
+        '
+        Me.teNoDokumen.Anchor = System.Windows.Forms.AnchorStyles.Left
+        Me.teNoDokumen.Location = New System.Drawing.Point(131, 56)
+        Me.teNoDokumen.Margin = New System.Windows.Forms.Padding(0)
+        Me.teNoDokumen.Name = "teNoDokumen"
+        Me.teNoDokumen.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[True]
+        Me.teNoDokumen.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.teNoDokumen.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 9.0!)
+        Me.teNoDokumen.Properties.Appearance.ForeColor = System.Drawing.Color.Black
+        Me.teNoDokumen.Properties.Appearance.Options.UseBackColor = True
+        Me.teNoDokumen.Properties.Appearance.Options.UseFont = True
+        Me.teNoDokumen.Properties.Appearance.Options.UseForeColor = True
+        Me.teNoDokumen.Properties.AppearanceDisabled.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.teNoDokumen.Properties.AppearanceDisabled.Options.UseBackColor = True
+        Me.teNoDokumen.Properties.AppearanceReadOnly.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.teNoDokumen.Properties.AppearanceReadOnly.Options.UseBackColor = True
+        Me.teNoDokumen.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple
+        Me.teNoDokumen.Properties.MaxLength = 300
+        Me.teNoDokumen.Properties.NullText = "[Belum Diisi]"
+        Me.teNoDokumen.Properties.NullValuePrompt = "[Belum Diisi]"
+        Me.teNoDokumen.Size = New System.Drawing.Size(190, 20)
+        Me.teNoDokumen.TabIndex = 39
+        Me.teNoDokumen.Tag = "remarks"
         '
         'btnLock
         '
@@ -657,7 +687,7 @@ Partial Class frmPenerimaanBarangJumlah
         Me.btnLock.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnLock.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnLock.ForeColor = System.Drawing.Color.White
-        Me.btnLock.Location = New System.Drawing.Point(135, 54)
+        Me.btnLock.Location = New System.Drawing.Point(161, 6)
         Me.btnLock.Margin = New System.Windows.Forms.Padding(4, 0, 0, 0)
         Me.btnLock.Name = "btnLock"
         Me.btnLock.Size = New System.Drawing.Size(120, 24)
@@ -665,6 +695,19 @@ Partial Class frmPenerimaanBarangJumlah
         Me.btnLock.Text = "LOCK SUPPLIER"
         Me.btnLock.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
         Me.btnLock.UseVisualStyleBackColor = False
+        Me.btnLock.Visible = False
+        '
+        'Label7
+        '
+        Me.Label7.Anchor = System.Windows.Forms.AnchorStyles.Right
+        Me.Label7.AutoSize = True
+        Me.Label7.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label7.Location = New System.Drawing.Point(43, 59)
+        Me.Label7.Name = "Label7"
+        Me.Label7.Size = New System.Drawing.Size(85, 14)
+        Me.Label7.TabIndex = 40
+        Me.Label7.Text = "No.Surat Jalan"
+        Me.Label7.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
         'Label3
         '
@@ -752,24 +795,12 @@ Partial Class frmPenerimaanBarangJumlah
         Me.lblParent.Anchor = System.Windows.Forms.AnchorStyles.Right
         Me.lblParent.AutoSize = True
         Me.lblParent.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblParent.Location = New System.Drawing.Point(85, 11)
+        Me.lblParent.Location = New System.Drawing.Point(53, 11)
         Me.lblParent.Name = "lblParent"
-        Me.lblParent.Size = New System.Drawing.Size(43, 14)
+        Me.lblParent.Size = New System.Drawing.Size(75, 14)
         Me.lblParent.TabIndex = 20
-        Me.lblParent.Text = "Nomor"
+        Me.lblParent.Text = "No.Transaksi"
         Me.lblParent.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        '
-        'Label4
-        '
-        Me.Label4.Anchor = System.Windows.Forms.AnchorStyles.Right
-        Me.Label4.AutoSize = True
-        Me.Label4.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label4.Location = New System.Drawing.Point(58, 83)
-        Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(70, 14)
-        Me.Label4.TabIndex = 23
-        Me.Label4.Text = "Keterangan"
-        Me.Label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
         'lueUnit
         '
@@ -796,31 +827,6 @@ Partial Class frmPenerimaanBarangJumlah
         Me.lueUnit.Size = New System.Drawing.Size(150, 20)
         Me.lueUnit.TabIndex = 48
         Me.lueUnit.Tag = "idunitasal"
-        '
-        'teNote
-        '
-        Me.teNote.Anchor = System.Windows.Forms.AnchorStyles.Left
-        Me.teNote.Location = New System.Drawing.Point(131, 80)
-        Me.teNote.Margin = New System.Windows.Forms.Padding(0)
-        Me.teNote.Name = "teNote"
-        Me.teNote.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[True]
-        Me.teNote.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.teNote.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 9.0!)
-        Me.teNote.Properties.Appearance.ForeColor = System.Drawing.Color.Black
-        Me.teNote.Properties.Appearance.Options.UseBackColor = True
-        Me.teNote.Properties.Appearance.Options.UseFont = True
-        Me.teNote.Properties.Appearance.Options.UseForeColor = True
-        Me.teNote.Properties.AppearanceDisabled.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.teNote.Properties.AppearanceDisabled.Options.UseBackColor = True
-        Me.teNote.Properties.AppearanceReadOnly.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.teNote.Properties.AppearanceReadOnly.Options.UseBackColor = True
-        Me.teNote.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple
-        Me.teNote.Properties.MaxLength = 300
-        Me.teNote.Properties.NullText = "[Belum Diisi]"
-        Me.teNote.Properties.NullValuePrompt = "[Belum Diisi]"
-        Me.teNote.Size = New System.Drawing.Size(150, 20)
-        Me.teNote.TabIndex = 20
-        Me.teNote.Tag = "remarks"
         '
         'Label1
         '
@@ -991,6 +997,43 @@ Partial Class frmPenerimaanBarangJumlah
         Me.Label2.TabIndex = 37
         Me.Label2.Text = "Tanggal Terima"
         Me.Label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        '
+        'teNote
+        '
+        Me.teNote.Anchor = System.Windows.Forms.AnchorStyles.Left
+        Me.teNote.Location = New System.Drawing.Point(131, 80)
+        Me.teNote.Margin = New System.Windows.Forms.Padding(0)
+        Me.teNote.Name = "teNote"
+        Me.teNote.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[True]
+        Me.teNote.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.teNote.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 9.0!)
+        Me.teNote.Properties.Appearance.ForeColor = System.Drawing.Color.Black
+        Me.teNote.Properties.Appearance.Options.UseBackColor = True
+        Me.teNote.Properties.Appearance.Options.UseFont = True
+        Me.teNote.Properties.Appearance.Options.UseForeColor = True
+        Me.teNote.Properties.AppearanceDisabled.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.teNote.Properties.AppearanceDisabled.Options.UseBackColor = True
+        Me.teNote.Properties.AppearanceReadOnly.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.teNote.Properties.AppearanceReadOnly.Options.UseBackColor = True
+        Me.teNote.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple
+        Me.teNote.Properties.MaxLength = 300
+        Me.teNote.Properties.NullText = "[Belum Diisi]"
+        Me.teNote.Properties.NullValuePrompt = "[Belum Diisi]"
+        Me.teNote.Size = New System.Drawing.Size(150, 20)
+        Me.teNote.TabIndex = 20
+        Me.teNote.Tag = "remarks"
+        '
+        'Label4
+        '
+        Me.Label4.Anchor = System.Windows.Forms.AnchorStyles.Right
+        Me.Label4.AutoSize = True
+        Me.Label4.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label4.Location = New System.Drawing.Point(58, 83)
+        Me.Label4.Name = "Label4"
+        Me.Label4.Size = New System.Drawing.Size(70, 14)
+        Me.Label4.TabIndex = 23
+        Me.Label4.Text = "Keterangan"
+        Me.Label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
         'xtcItem
         '
@@ -1193,6 +1236,7 @@ Partial Class frmPenerimaanBarangJumlah
         '
         Me.pHeader.BackColor = System.Drawing.Color.FromArgb(CType(CType(66, Byte), Integer), CType(CType(66, Byte), Integer), CType(CType(66, Byte), Integer))
         Me.pHeader.Controls.Add(Me.btnShowHideItem)
+        Me.pHeader.Controls.Add(Me.btnLock)
         Me.pHeader.Controls.Add(Me.btnSearch)
         Me.pHeader.Controls.Add(Me.btnNew)
         Me.pHeader.Controls.Add(Me.btnSave)
@@ -1330,16 +1374,17 @@ Partial Class frmPenerimaanBarangJumlah
         CType(Me.seSubtotal, System.ComponentModel.ISupportInitialize).EndInit()
         Me.tlpField.ResumeLayout(False)
         Me.tlpField.PerformLayout()
+        CType(Me.teNoDokumen.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.deTanggal.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.deTanggal.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.teKode.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.lueUnit.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.teNote.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.lueSupplier.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.deTanggalTempo.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.deTanggalTempo.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.deTanggalKirim.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.deTanggalKirim.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.teNote.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.xtcItem, System.ComponentModel.ISupportInitialize).EndInit()
         Me.xtcItem.ResumeLayout(False)
         Me.xtpItem.ResumeLayout(False)
@@ -1430,4 +1475,6 @@ Partial Class frmPenerimaanBarangJumlah
     Friend WithEvents pSearch As Panel
     Friend WithEvents Label6 As Label
     Friend WithEvents teSearch As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents teNoDokumen As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents Label7 As Label
 End Class

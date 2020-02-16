@@ -77,6 +77,11 @@ Partial Class frmJurnalUmumAutobalance
         Me.btnNewRow = New System.Windows.Forms.Button()
         Me.btnSaveRow = New System.Windows.Forms.Button()
         Me.tlpField = New System.Windows.Forms.TableLayoutPanel()
+        Me.slueCOAI = New DevExpress.XtraEditors.SearchLookUpEdit()
+        Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.lueUnit = New DevExpress.XtraEditors.LookUpEdit()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.teNoBukti = New DevExpress.XtraEditors.TextEdit()
@@ -86,7 +91,6 @@ Partial Class frmJurnalUmumAutobalance
         Me.Label10 = New System.Windows.Forms.Label()
         Me.teCOAl = New DevExpress.XtraEditors.TextEdit()
         Me.Label9 = New System.Windows.Forms.Label()
-        Me.lueCOAl = New DevExpress.XtraEditors.LookUpEdit()
         Me.Label5 = New System.Windows.Forms.Label()
         Me.luePosisiDK = New DevExpress.XtraEditors.LookUpEdit()
         Me.pHeader = New System.Windows.Forms.Panel()
@@ -116,12 +120,13 @@ Partial Class frmJurnalUmumAutobalance
         Me.TableLayoutPanel1.SuspendLayout()
         Me.Panel1.SuspendLayout()
         Me.tlpField.SuspendLayout()
+        CType(Me.slueCOAI.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.lueUnit.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.teNoBukti.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.deTanggal.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.deTanggal.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.teCOAl.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.lueCOAl.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.luePosisiDK.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.pHeader.SuspendLayout()
         Me.SuspendLayout()
@@ -848,6 +853,7 @@ Partial Class frmJurnalUmumAutobalance
         Me.tlpField.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 120.0!))
         Me.tlpField.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 250.0!))
         Me.tlpField.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
+        Me.tlpField.Controls.Add(Me.slueCOAI, 2, 5)
         Me.tlpField.Controls.Add(Me.lueUnit, 2, 2)
         Me.tlpField.Controls.Add(Me.Label4, 1, 2)
         Me.tlpField.Controls.Add(Me.teNoBukti, 4, 1)
@@ -857,7 +863,6 @@ Partial Class frmJurnalUmumAutobalance
         Me.tlpField.Controls.Add(Me.Label10, 3, 5)
         Me.tlpField.Controls.Add(Me.teCOAl, 4, 5)
         Me.tlpField.Controls.Add(Me.Label9, 1, 5)
-        Me.tlpField.Controls.Add(Me.lueCOAl, 2, 5)
         Me.tlpField.Controls.Add(Me.Label5, 1, 4)
         Me.tlpField.Controls.Add(Me.luePosisiDK, 2, 4)
         Me.tlpField.Dock = System.Windows.Forms.DockStyle.Top
@@ -874,6 +879,73 @@ Partial Class frmJurnalUmumAutobalance
         Me.tlpField.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
         Me.tlpField.Size = New System.Drawing.Size(1146, 108)
         Me.tlpField.TabIndex = 7
+        '
+        'slueCOAI
+        '
+        Me.slueCOAI.Anchor = System.Windows.Forms.AnchorStyles.Left
+        Me.slueCOAI.Location = New System.Drawing.Point(363, 82)
+        Me.slueCOAI.Margin = New System.Windows.Forms.Padding(0)
+        Me.slueCOAI.Name = "slueCOAI"
+        Me.slueCOAI.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.slueCOAI.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 9.0!)
+        Me.slueCOAI.Properties.Appearance.ForeColor = System.Drawing.Color.Black
+        Me.slueCOAI.Properties.Appearance.Options.UseBackColor = True
+        Me.slueCOAI.Properties.Appearance.Options.UseFont = True
+        Me.slueCOAI.Properties.Appearance.Options.UseForeColor = True
+        Me.slueCOAI.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple
+        Me.slueCOAI.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.slueCOAI.Properties.NullText = "[Isian belum dipilih]"
+        Me.slueCOAI.Properties.NullValuePrompt = "[Isian belum dipilih]"
+        Me.slueCOAI.Properties.PopupBorderStyle = DevExpress.XtraEditors.Controls.PopupBorderStyles.Simple
+        Me.slueCOAI.Properties.PopupFindMode = DevExpress.XtraEditors.FindMode.Always
+        Me.slueCOAI.Properties.PopupView = Me.GridView1
+        Me.slueCOAI.Properties.ShowFooter = False
+        Me.slueCOAI.Properties.ShowPopupShadow = False
+        Me.slueCOAI.Properties.ViewType = DevExpress.XtraEditors.Repository.GridLookUpViewType.GridView
+        Me.slueCOAI.Size = New System.Drawing.Size(198, 20)
+        Me.slueCOAI.TabIndex = 22
+        '
+        'GridView1
+        '
+        Me.GridView1.Appearance.EvenRow.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.GridView1.Appearance.EvenRow.Options.UseBackColor = True
+        Me.GridView1.Appearance.OddRow.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer))
+        Me.GridView1.Appearance.OddRow.Options.UseBackColor = True
+        Me.GridView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn4, Me.GridColumn5, Me.GridColumn6})
+        Me.GridView1.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.GridView1.Name = "GridView1"
+        Me.GridView1.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.GridView1.OptionsView.EnableAppearanceEvenRow = True
+        Me.GridView1.OptionsView.EnableAppearanceOddRow = True
+        Me.GridView1.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn4
+        '
+        Me.GridColumn4.Caption = "ID"
+        Me.GridColumn4.FieldName = "idcoa"
+        Me.GridColumn4.Name = "GridColumn4"
+        Me.GridColumn4.OptionsColumn.AllowEdit = False
+        Me.GridColumn4.OptionsColumn.ReadOnly = True
+        '
+        'GridColumn5
+        '
+        Me.GridColumn5.Caption = "COA"
+        Me.GridColumn5.FieldName = "coa"
+        Me.GridColumn5.Name = "GridColumn5"
+        Me.GridColumn5.OptionsColumn.AllowEdit = False
+        Me.GridColumn5.OptionsColumn.ReadOnly = True
+        Me.GridColumn5.Visible = True
+        Me.GridColumn5.VisibleIndex = 0
+        '
+        'GridColumn6
+        '
+        Me.GridColumn6.Caption = "Remarks"
+        Me.GridColumn6.FieldName = "remarks"
+        Me.GridColumn6.Name = "GridColumn6"
+        Me.GridColumn6.OptionsColumn.AllowEdit = False
+        Me.GridColumn6.OptionsColumn.ReadOnly = True
+        Me.GridColumn6.Visible = True
+        Me.GridColumn6.VisibleIndex = 1
         '
         'lueUnit
         '
@@ -1042,26 +1114,6 @@ Partial Class frmJurnalUmumAutobalance
         Me.Label9.Text = "Kode Rekening Lawan"
         Me.Label9.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
-        'lueCOAl
-        '
-        Me.lueCOAl.Anchor = System.Windows.Forms.AnchorStyles.Left
-        Me.lueCOAl.Location = New System.Drawing.Point(363, 82)
-        Me.lueCOAl.Margin = New System.Windows.Forms.Padding(0)
-        Me.lueCOAl.Name = "lueCOAl"
-        Me.lueCOAl.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.lueCOAl.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 9.0!)
-        Me.lueCOAl.Properties.Appearance.ForeColor = System.Drawing.Color.Black
-        Me.lueCOAl.Properties.Appearance.Options.UseBackColor = True
-        Me.lueCOAl.Properties.Appearance.Options.UseFont = True
-        Me.lueCOAl.Properties.Appearance.Options.UseForeColor = True
-        Me.lueCOAl.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple
-        Me.lueCOAl.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.lueCOAl.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("idcoa", "ID", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default], DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("coa", "Kode Rekening"), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("remarks", "Remarks")})
-        Me.lueCOAl.Properties.NullText = "[Isian belum dipilih]"
-        Me.lueCOAl.Properties.NullValuePrompt = "[Isian belum dipilih]"
-        Me.lueCOAl.Size = New System.Drawing.Size(130, 20)
-        Me.lueCOAl.TabIndex = 59
-        '
         'Label5
         '
         Me.Label5.Anchor = System.Windows.Forms.AnchorStyles.Right
@@ -1226,12 +1278,13 @@ Partial Class frmJurnalUmumAutobalance
         Me.Panel1.ResumeLayout(False)
         Me.tlpField.ResumeLayout(False)
         Me.tlpField.PerformLayout()
+        CType(Me.slueCOAI.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.lueUnit.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.teNoBukti.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.deTanggal.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.deTanggal.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.teCOAl.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.lueCOAl.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.luePosisiDK.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.pHeader.ResumeLayout(False)
         Me.ResumeLayout(False)
@@ -1297,10 +1350,14 @@ Partial Class frmJurnalUmumAutobalance
     Friend WithEvents Label10 As System.Windows.Forms.Label
     Friend WithEvents Label9 As System.Windows.Forms.Label
     Friend WithEvents teCOAl As DevExpress.XtraEditors.TextEdit
-    Friend WithEvents lueCOAl As DevExpress.XtraEditors.LookUpEdit
     Friend WithEvents slueCOA As DevExpress.XtraEditors.SearchLookUpEdit
     Friend WithEvents slueCOAView As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn3 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents slueCOAI As DevExpress.XtraEditors.SearchLookUpEdit
+    Friend WithEvents GridView1 As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumn4 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn5 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn6 As DevExpress.XtraGrid.Columns.GridColumn
 End Class
